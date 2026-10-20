@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-20",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-20:word:confirmation",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — confirmation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:word:confirmation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — confirmation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:word:confirmation:audio",
+            "transcript": "confirmation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:word:confirmation:r1",
+              "targetText": "confirmation",
+              "meaningByLocale": {
+                "ru": "«подтверждение». She expects confirmation. — «Она ожидает подтверждения». Здесь информация о том, что заказ принят.",
+                "uk": "«підтвердження». She expects confirmation. — «Вона очікує підтвердження». Тут інформація про те, що замовлення прийнято."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "confirmation",
+            "definitionByLocale": {
+              "ru": "«подтверждение». She expects confirmation. — «Она ожидает подтверждения». Здесь информация о том, что заказ принят.",
+              "uk": "«підтвердження». She expects confirmation. — «Вона очікує підтвердження». Тут інформація про те, що замовлення прийнято."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега оформила заказ и ждёт сообщения о его принятии. Скажите: «Она ожидает подтверждения»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега оформила заказ и ждёт сообщения о его принятии. Скажите: «Она ожидает подтверждения»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She expects confirmation.",
+          "localizedMeaning": {
+            "ru": "Коллега оформила заказ и ждёт сообщения о его принятии. Скажите: «Она ожидает подтверждения»",
+            "uk": "Колега оформила замовлення й чекає повідомлення про його прийняття. Скажіть: «Вона очікує підтвердження»"
+          },
+          "orderedTokens": [
+            "She",
+            "expects",
+            "confirmation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i02:r1",
+            "text": "I expect the parcel today."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i02:r2",
+            "text": "We expect the parcel today."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i02:r3",
+            "text": "I expect the parcel tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i02:audio",
+            "transcript": "I expect the parcel today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:i02:r1",
+              "targetText": "I expect the parcel today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i02:r2",
+              "targetText": "We expect the parcel today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i02:r3",
+              "targetText": "I expect the parcel tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I expect the parcel today.",
+                "uk": "У записі звучить I expect the parcel today."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I expect the parcel today.",
+                "uk": "У записі звучить I expect the parcel today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму expect с she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i03:r1",
+            "text": "expects"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i03:r2",
+            "text": "expect"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i03:r3",
+            "text": "is expect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму expect с she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму expect с she",
+            "uk": "Виберіть форму expect з she"
+          },
+          "gappedTargetPhrase": "She ___ confirmation.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-20:i03:r1",
+              "text": "expects"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i03:r2",
+              "text": "expect"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i03:r3",
+              "text": "is expect"
+            }
+          ],
+          "testedDimension": "Выберите форму expect с she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму expect с she",
+              "feedbackByLocale": {
+                "ru": "С she нужна expects.",
+                "uk": "З she потрібна expects."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму expect с she",
+              "feedbackByLocale": {
+                "ru": "Is expect неверно; здесь нужна expects.",
+                "uk": "Is expect неправильно; тут потрібна expects."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:word:arrival",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — arrival",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:word:arrival:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — arrival",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:word:arrival:audio",
+            "transcript": "arrival"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:word:arrival:r1",
+              "targetText": "arrival",
+              "meaningByLocale": {
+                "ru": "«прибытие». Arrival is tomorrow. — «Прибытие завтра». Здесь момент, когда посылка достигнет места назначения.",
+                "uk": "«прибуття». Arrival is tomorrow. — «Прибуття завтра». Тут момент, коли посилка дістанеться місця призначення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "arrival",
+            "definitionByLocale": {
+              "ru": "«прибытие». Arrival is tomorrow. — «Прибытие завтра». Здесь момент, когда посылка достигнет места назначения.",
+              "uk": "«прибуття». Arrival is tomorrow. — «Прибуття завтра». Тут момент, коли посилка дістанеться місця призначення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает о дате прибытия посылки в сообщении. Скажите: «Прибытие завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает о дате прибытия посылки в сообщении. Скажите: «Прибытие завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Arrival is tomorrow.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о дате прибытия посылки в сообщении. Скажите: «Прибытие завтра»",
+            "uk": "Друг запитує про дату прибуття посилки в повідомленні. Скажіть: «Прибуття завтра»"
+          },
+          "orderedTokens": [
+            "Arrival",
+            "is",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i05:r1",
+            "text": "Arrival is today."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i05:r2",
+            "text": "Arrival is tomorrow."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i05:r3",
+            "text": "The meeting is today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i05:audio",
+            "transcript": "Arrival is today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:i05:r1",
+              "targetText": "Arrival is today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i05:r2",
+              "targetText": "Arrival is tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i05:r3",
+              "targetText": "The meeting is today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Arrival is today.",
+                "uk": "У записі звучить Arrival is today."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Arrival is today.",
+                "uk": "У записі звучить Arrival is today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму expect после does",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i06:r1",
+            "text": "expect"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i06:r2",
+            "text": "expects"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i06:r3",
+            "text": "expecting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму expect после does",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму expect после does",
+            "uk": "Виберіть форму expect після does"
+          },
+          "gappedTargetPhrase": "Does she ___ the parcel today?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-20:i06:r1",
+              "text": "expect"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i06:r2",
+              "text": "expects"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i06:r3",
+              "text": "expecting"
+            }
+          ],
+          "testedDimension": "Выберите форму expect после does",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму expect после does",
+              "feedbackByLocale": {
+                "ru": "После does глагол без s: expect.",
+                "uk": "Після does дієслово без s: expect."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму expect после does",
+              "feedbackByLocale": {
+                "ru": "После does нужна базовая форма expect.",
+                "uk": "Після does потрібна початкова форма expect."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:word:dispatch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dispatch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:word:dispatch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dispatch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:word:dispatch:audio",
+            "transcript": "dispatch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:word:dispatch:r1",
+              "targetText": "dispatch",
+              "meaningByLocale": {
+                "ru": "«отправка». Dispatch is today. — «Отправка сегодня». Здесь отправка посылки из магазина, а не её прибытие к вам.",
+                "uk": "«відправлення». Dispatch is today. — «Відправлення сьогодні». Тут відправлення посилки з магазину, а не її прибуття до вас."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dispatch",
+            "definitionByLocale": {
+              "ru": "«отправка». Dispatch is today. — «Отправка сегодня». Здесь отправка посылки из магазина, а не её прибытие к вам.",
+              "uk": "«відправлення». Dispatch is today. — «Відправлення сьогодні». Тут відправлення посилки з магазину, а не її прибуття до вас."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает, когда магазин отправляет посылку. Скажите: «Отправка сегодня»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает, когда магазин отправляет посылку. Скажите: «Отправка сегодня»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Dispatch is today.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, когда магазин отправляет посылку. Скажите: «Отправка сегодня»",
+            "uk": "Колега запитує, коли магазин відправляє посилку. Скажіть: «Відправлення сьогодні»"
+          },
+          "orderedTokens": [
+            "Dispatch",
+            "is",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i08:r1",
+            "text": "Dispatch is tomorrow."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i08:r2",
+            "text": "Dispatch is today."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i08:r3",
+            "text": "Arrival is tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i08:audio",
+            "transcript": "Dispatch is tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:i08:r1",
+              "targetText": "Dispatch is tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i08:r2",
+              "targetText": "Dispatch is today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i08:r3",
+              "targetText": "Arrival is tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Dispatch is tomorrow.",
+                "uk": "У записі звучить Dispatch is tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Dispatch is tomorrow.",
+                "uk": "У записі звучить Dispatch is tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку с dispatch в сообщении о дате",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку с dispatch в сообщении о дате",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку с dispatch в сообщении о дате",
+            "uk": "Виберіть зв’язку з dispatch у повідомленні про дату"
+          },
+          "gappedTargetPhrase": "Dispatch ___ today.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-20:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку с dispatch в сообщении о дате",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку с dispatch в сообщении о дате",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна is.",
+                "uk": "Тут потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку с dispatch в сообщении о дате",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:word:tracking-number",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tracking number",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:word:tracking-number:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tracking number",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:word:tracking-number:audio",
+            "transcript": "tracking number"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:word:tracking-number:r1",
+              "targetText": "tracking number",
+              "meaningByLocale": {
+                "ru": "«номер отслеживания». Do you have the tracking number? — «У тебя есть номер отслеживания?» Здесь номер, по которому проверяют путь посылки.",
+                "uk": "«номер відстеження». Do you have the tracking number? — «У тебе є номер відстеження?» Тут номер, за яким перевіряють шлях посилки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tracking number",
+            "definitionByLocale": {
+              "ru": "«номер отслеживания». Do you have the tracking number? — «У тебя есть номер отслеживания?» Здесь номер, по которому проверяют путь посылки.",
+              "uk": "«номер відстеження». Do you have the tracking number? — «У тебе є номер відстеження?» Тут номер, за яким перевіряють шлях посилки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг хочет проверить, где посылка. Спросите: «У тебя есть номер отслеживания?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хочет проверить, где посылка. Спросите: «У тебя есть номер отслеживания?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have the tracking number?",
+          "localizedMeaning": {
+            "ru": "Друг хочет проверить, где посылка. Спросите: «У тебя есть номер отслеживания?»",
+            "uk": "Друг хоче перевірити, де посилка. Запитайте: «У тебе є номер відстеження?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "the",
+            "tracking",
+            "number"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i11:r1",
+            "text": "The tracking number is in the email."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i11:r2",
+            "text": "The tracking number is on the box."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i11:r3",
+            "text": "The address is in the email."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i11:audio",
+            "transcript": "The tracking number is in the email."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:i11:r1",
+              "targetText": "The tracking number is in the email.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i11:r2",
+              "targetText": "The tracking number is on the box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i11:r3",
+              "targetText": "The address is in the email.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The tracking number is in the email.",
+                "uk": "У записі звучить The tracking number is in the email."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The tracking number is in the email.",
+                "uk": "У записі звучить The tracking number is in the email."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму have после do",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i12:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i12:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i12:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму have после do",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму have после do",
+            "uk": "Виберіть форму have після do"
+          },
+          "gappedTargetPhrase": "Do you ___ the tracking number?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-20:i12:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i12:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i12:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Выберите форму have после do",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму have после do",
+              "feedbackByLocale": {
+                "ru": "После do нужна have.",
+                "uk": "Після do потрібна have."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму have после do",
+              "feedbackByLocale": {
+                "ru": "После do нужна базовая форма have.",
+                "uk": "Після do потрібна початкова форма have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-20:i13:p1",
+              "target": "confirmation",
+              "meaningByLocale": {
+                "ru": "подтверждение",
+                "uk": "підтвердження"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-20:i13:p2",
+              "target": "arrival",
+              "meaningByLocale": {
+                "ru": "прибытие",
+                "uk": "прибуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-20:i13:p3",
+              "target": "dispatch",
+              "meaningByLocale": {
+                "ru": "отправка",
+                "uk": "відправлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-20:i13:p4",
+              "target": "tracking number",
+              "meaningByLocale": {
+                "ru": "номер отслеживания",
+                "uk": "номер відстеження"
+              }
+            }
+          ],
+          "leftColumn": [
+            "confirmation",
+            "arrival",
+            "dispatch",
+            "tracking number"
+          ],
+          "rightColumn": [
+            "подтверждение",
+            "прибытие",
+            "отправка",
+            "номер отслеживания"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос; today поставьте в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос; today поставьте в конце",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i14:audio",
+            "transcript": "Does she expect the parcel today?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does she expect the parcel today?",
+          "orderedTokens": [
+            "Does",
+            "she",
+            "expect",
+            "the",
+            "parcel",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает, когда вы ожидаете посылку по сообщению магазина. Скажите: «Я ожидаю посылку сегодня»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает, когда вы ожидаете посылку по сообщению магазина. Скажите: «Я ожидаю посылку сегодня»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i15:audio",
+            "transcript": "I expect the parcel today."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I expect the parcel today.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ищет номер, чтобы проверить путь посылки. Скажите: «Номер отслеживания в письме»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ищет номер, чтобы проверить путь посылки. Скажите: «Номер отслеживания в письме»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The tracking number is in the email.",
+          "localizedMeaning": {
+            "ru": "Друг ищет номер, чтобы проверить путь посылки. Скажите: «Номер отслеживания в письме»",
+            "uk": "Друг шукає номер, щоб перевірити шлях посилки. Скажіть: «Номер відстеження в листі»"
+          },
+          "orderedTokens": [
+            "The",
+            "tracking",
+            "number",
+            "is",
+            "in",
+            "the",
+            "email"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В сообщении магазина указана сегодняшняя дата доставки. Вы ещё не получили посылку. Друг спрашивает, когда вы рассчитываете её получить. Скажите: «Я ожидаю посылку сегодня»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "В сообщении магазина указана сегодняшняя дата доставки. Вы ещё не получили посылку. Друг спрашивает, когда вы рассчитываете её получить. Скажите: «Я ожидаю посылку сегодня»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i17:audio",
+            "transcript": "I expect the parcel today."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I expect the parcel today.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-20:word:confirmation",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — confirmation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:word:confirmation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — confirmation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:word:confirmation:audio",
+            "transcript": "confirmation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:word:confirmation:r1",
+              "targetText": "confirmation",
+              "meaningByLocale": {
+                "ru": "«подтверждение». She expects confirmation. — «Она ожидает подтверждения». Здесь информация о том, что заказ принят.",
+                "uk": "«підтвердження». She expects confirmation. — «Вона очікує підтвердження». Тут інформація про те, що замовлення прийнято."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "confirmation",
+            "definitionByLocale": {
+              "ru": "«подтверждение». She expects confirmation. — «Она ожидает подтверждения». Здесь информация о том, что заказ принят.",
+              "uk": "«підтвердження». She expects confirmation. — «Вона очікує підтвердження». Тут інформація про те, що замовлення прийнято."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега оформила замовлення й чекає повідомлення про його прийняття. Скажіть: «Вона очікує підтвердження»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега оформила замовлення й чекає повідомлення про його прийняття. Скажіть: «Вона очікує підтвердження»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She expects confirmation.",
+          "localizedMeaning": {
+            "ru": "Коллега оформила заказ и ждёт сообщения о его принятии. Скажите: «Она ожидает подтверждения»",
+            "uk": "Колега оформила замовлення й чекає повідомлення про його прийняття. Скажіть: «Вона очікує підтвердження»"
+          },
+          "orderedTokens": [
+            "She",
+            "expects",
+            "confirmation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i02:r1",
+            "text": "I expect the parcel today."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i02:r2",
+            "text": "We expect the parcel today."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i02:r3",
+            "text": "I expect the parcel tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i02:audio",
+            "transcript": "I expect the parcel today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:i02:r1",
+              "targetText": "I expect the parcel today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i02:r2",
+              "targetText": "We expect the parcel today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i02:r3",
+              "targetText": "I expect the parcel tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I expect the parcel today.",
+                "uk": "У записі звучить I expect the parcel today."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I expect the parcel today.",
+                "uk": "У записі звучить I expect the parcel today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму expect з she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i03:r1",
+            "text": "expects"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i03:r2",
+            "text": "expect"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i03:r3",
+            "text": "is expect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму expect з she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму expect с she",
+            "uk": "Виберіть форму expect з she"
+          },
+          "gappedTargetPhrase": "She ___ confirmation.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-20:i03:r1",
+              "text": "expects"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i03:r2",
+              "text": "expect"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i03:r3",
+              "text": "is expect"
+            }
+          ],
+          "testedDimension": "Виберіть форму expect з she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму expect з she",
+              "feedbackByLocale": {
+                "ru": "С she нужна expects.",
+                "uk": "З she потрібна expects."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму expect з she",
+              "feedbackByLocale": {
+                "ru": "Is expect неверно; здесь нужна expects.",
+                "uk": "Is expect неправильно; тут потрібна expects."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:word:arrival",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — arrival",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:word:arrival:audio"
+        ],
+        "accessibilityLabel": "Картка слова — arrival",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:word:arrival:audio",
+            "transcript": "arrival"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:word:arrival:r1",
+              "targetText": "arrival",
+              "meaningByLocale": {
+                "ru": "«прибытие». Arrival is tomorrow. — «Прибытие завтра». Здесь момент, когда посылка достигнет места назначения.",
+                "uk": "«прибуття». Arrival is tomorrow. — «Прибуття завтра». Тут момент, коли посилка дістанеться місця призначення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "arrival",
+            "definitionByLocale": {
+              "ru": "«прибытие». Arrival is tomorrow. — «Прибытие завтра». Здесь момент, когда посылка достигнет места назначения.",
+              "uk": "«прибуття». Arrival is tomorrow. — «Прибуття завтра». Тут момент, коли посилка дістанеться місця призначення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг запитує про дату прибуття посилки в повідомленні. Скажіть: «Прибуття завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитує про дату прибуття посилки в повідомленні. Скажіть: «Прибуття завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Arrival is tomorrow.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о дате прибытия посылки в сообщении. Скажите: «Прибытие завтра»",
+            "uk": "Друг запитує про дату прибуття посилки в повідомленні. Скажіть: «Прибуття завтра»"
+          },
+          "orderedTokens": [
+            "Arrival",
+            "is",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i05:r1",
+            "text": "Arrival is today."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i05:r2",
+            "text": "Arrival is tomorrow."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i05:r3",
+            "text": "The meeting is today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i05:audio",
+            "transcript": "Arrival is today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:i05:r1",
+              "targetText": "Arrival is today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i05:r2",
+              "targetText": "Arrival is tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i05:r3",
+              "targetText": "The meeting is today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Arrival is today.",
+                "uk": "У записі звучить Arrival is today."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Arrival is today.",
+                "uk": "У записі звучить Arrival is today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму expect після does",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i06:r1",
+            "text": "expect"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i06:r2",
+            "text": "expects"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i06:r3",
+            "text": "expecting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму expect після does",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму expect после does",
+            "uk": "Виберіть форму expect після does"
+          },
+          "gappedTargetPhrase": "Does she ___ the parcel today?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-20:i06:r1",
+              "text": "expect"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i06:r2",
+              "text": "expects"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i06:r3",
+              "text": "expecting"
+            }
+          ],
+          "testedDimension": "Виберіть форму expect після does",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму expect після does",
+              "feedbackByLocale": {
+                "ru": "После does глагол без s: expect.",
+                "uk": "Після does дієслово без s: expect."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму expect після does",
+              "feedbackByLocale": {
+                "ru": "После does нужна базовая форма expect.",
+                "uk": "Після does потрібна початкова форма expect."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:word:dispatch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dispatch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:word:dispatch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dispatch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:word:dispatch:audio",
+            "transcript": "dispatch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:word:dispatch:r1",
+              "targetText": "dispatch",
+              "meaningByLocale": {
+                "ru": "«отправка». Dispatch is today. — «Отправка сегодня». Здесь отправка посылки из магазина, а не её прибытие к вам.",
+                "uk": "«відправлення». Dispatch is today. — «Відправлення сьогодні». Тут відправлення посилки з магазину, а не її прибуття до вас."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dispatch",
+            "definitionByLocale": {
+              "ru": "«отправка». Dispatch is today. — «Отправка сегодня». Здесь отправка посылки из магазина, а не её прибытие к вам.",
+              "uk": "«відправлення». Dispatch is today. — «Відправлення сьогодні». Тут відправлення посилки з магазину, а не її прибуття до вас."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує, коли магазин відправляє посилку. Скажіть: «Відправлення сьогодні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує, коли магазин відправляє посилку. Скажіть: «Відправлення сьогодні»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Dispatch is today.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, когда магазин отправляет посылку. Скажите: «Отправка сегодня»",
+            "uk": "Колега запитує, коли магазин відправляє посилку. Скажіть: «Відправлення сьогодні»"
+          },
+          "orderedTokens": [
+            "Dispatch",
+            "is",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i08:r1",
+            "text": "Dispatch is tomorrow."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i08:r2",
+            "text": "Dispatch is today."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i08:r3",
+            "text": "Arrival is tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i08:audio",
+            "transcript": "Dispatch is tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:i08:r1",
+              "targetText": "Dispatch is tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i08:r2",
+              "targetText": "Dispatch is today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i08:r3",
+              "targetText": "Arrival is tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Dispatch is tomorrow.",
+                "uk": "У записі звучить Dispatch is tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Dispatch is tomorrow.",
+                "uk": "У записі звучить Dispatch is tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку з dispatch у повідомленні про дату",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку з dispatch у повідомленні про дату",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку с dispatch в сообщении о дате",
+            "uk": "Виберіть зв’язку з dispatch у повідомленні про дату"
+          },
+          "gappedTargetPhrase": "Dispatch ___ today.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-20:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку з dispatch у повідомленні про дату",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку з dispatch у повідомленні про дату",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна is.",
+                "uk": "Тут потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку з dispatch у повідомленні про дату",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:word:tracking-number",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tracking number",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:word:tracking-number:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tracking number",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:word:tracking-number:audio",
+            "transcript": "tracking number"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:word:tracking-number:r1",
+              "targetText": "tracking number",
+              "meaningByLocale": {
+                "ru": "«номер отслеживания». Do you have the tracking number? — «У тебя есть номер отслеживания?» Здесь номер, по которому проверяют путь посылки.",
+                "uk": "«номер відстеження». Do you have the tracking number? — «У тебе є номер відстеження?» Тут номер, за яким перевіряють шлях посилки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tracking number",
+            "definitionByLocale": {
+              "ru": "«номер отслеживания». Do you have the tracking number? — «У тебя есть номер отслеживания?» Здесь номер, по которому проверяют путь посылки.",
+              "uk": "«номер відстеження». Do you have the tracking number? — «У тебе є номер відстеження?» Тут номер, за яким перевіряють шлях посилки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг хоче перевірити, де посилка. Запитайте: «У тебе є номер відстеження?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг хоче перевірити, де посилка. Запитайте: «У тебе є номер відстеження?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have the tracking number?",
+          "localizedMeaning": {
+            "ru": "Друг хочет проверить, где посылка. Спросите: «У тебя есть номер отслеживания?»",
+            "uk": "Друг хоче перевірити, де посилка. Запитайте: «У тебе є номер відстеження?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "the",
+            "tracking",
+            "number"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i11:r1",
+            "text": "The tracking number is in the email."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i11:r2",
+            "text": "The tracking number is on the box."
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i11:r3",
+            "text": "The address is in the email."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i11:audio",
+            "transcript": "The tracking number is in the email."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-20:i11:r1",
+              "targetText": "The tracking number is in the email.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i11:r2",
+              "targetText": "The tracking number is on the box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i11:r3",
+              "targetText": "The address is in the email.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The tracking number is in the email.",
+                "uk": "У записі звучить The tracking number is in the email."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The tracking number is in the email.",
+                "uk": "У записі звучить The tracking number is in the email."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму have після do",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-20:i12:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i12:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-10:session-20:i12:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму have після do",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму have после do",
+            "uk": "Виберіть форму have після do"
+          },
+          "gappedTargetPhrase": "Do you ___ the tracking number?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-20:i12:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i12:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i12:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Виберіть форму have після do",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-20:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму have після do",
+              "feedbackByLocale": {
+                "ru": "После do нужна have.",
+                "uk": "Після do потрібна have."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-20:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму have після do",
+              "feedbackByLocale": {
+                "ru": "После do нужна базовая форма have.",
+                "uk": "Після do потрібна початкова форма have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-20:i13:p1",
+              "target": "confirmation",
+              "meaningByLocale": {
+                "ru": "подтверждение",
+                "uk": "підтвердження"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-20:i13:p2",
+              "target": "arrival",
+              "meaningByLocale": {
+                "ru": "прибытие",
+                "uk": "прибуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-20:i13:p3",
+              "target": "dispatch",
+              "meaningByLocale": {
+                "ru": "отправка",
+                "uk": "відправлення"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-20:i13:p4",
+              "target": "tracking number",
+              "meaningByLocale": {
+                "ru": "номер отслеживания",
+                "uk": "номер відстеження"
+              }
+            }
+          ],
+          "leftColumn": [
+            "confirmation",
+            "arrival",
+            "dispatch",
+            "tracking number"
+          ],
+          "rightColumn": [
+            "підтвердження",
+            "прибуття",
+            "відправлення",
+            "номер відстеження"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання; today поставте наприкінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання; today поставте наприкінці",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i14:audio",
+            "transcript": "Does she expect the parcel today?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does she expect the parcel today?",
+          "orderedTokens": [
+            "Does",
+            "she",
+            "expect",
+            "the",
+            "parcel",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега запитує, коли ви очікуєте посилку за повідомленням магазину. Скажіть: «Я очікую посилку сьогодні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i15:audio"
+        ],
+        "accessibilityLabel": "Колега запитує, коли ви очікуєте посилку за повідомленням магазину. Скажіть: «Я очікую посилку сьогодні»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i15:audio",
+            "transcript": "I expect the parcel today."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I expect the parcel today.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг шукає номер, щоб перевірити шлях посилки. Скажіть: «Номер відстеження в листі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг шукає номер, щоб перевірити шлях посилки. Скажіть: «Номер відстеження в листі»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The tracking number is in the email.",
+          "localizedMeaning": {
+            "ru": "Друг ищет номер, чтобы проверить путь посылки. Скажите: «Номер отслеживания в письме»",
+            "uk": "Друг шукає номер, щоб перевірити шлях посилки. Скажіть: «Номер відстеження в листі»"
+          },
+          "orderedTokens": [
+            "The",
+            "tracking",
+            "number",
+            "is",
+            "in",
+            "the",
+            "email"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-20:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У повідомленні магазину вказана сьогоднішня дата доставки. Ви ще не отримали посилку. Друг запитує, коли ви розраховуєте її отримати. Скажіть: «Я очікую посилку сьогодні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-20:i17:audio"
+        ],
+        "accessibilityLabel": "У повідомленні магазину вказана сьогоднішня дата доставки. Ви ще не отримали посилку. Друг запитує, коли ви розраховуєте її отримати. Скажіть: «Я очікую посилку сьогодні»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-20:i17:audio",
+            "transcript": "I expect the parcel today."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I expect the parcel today.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-20:word:confirmation",
+      "correctText": "confirmation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i01",
+      "correctText": "She expects confirmation.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i02",
+      "correctText": "I expect the parcel today.",
+      "correctResponseId": "en:lesson-10:session-20:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i03",
+      "correctText": "expects",
+      "correctResponseId": "en:lesson-10:session-20:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:word:arrival",
+      "correctText": "arrival",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i04",
+      "correctText": "Arrival is tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i05",
+      "correctText": "Arrival is today.",
+      "correctResponseId": "en:lesson-10:session-20:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i06",
+      "correctText": "expect",
+      "correctResponseId": "en:lesson-10:session-20:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:word:dispatch",
+      "correctText": "dispatch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i07",
+      "correctText": "Dispatch is today.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i08",
+      "correctText": "Dispatch is tomorrow.",
+      "correctResponseId": "en:lesson-10:session-20:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-20:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:word:tracking-number",
+      "correctText": "tracking number",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i10",
+      "correctText": "Do you have the tracking number?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i11",
+      "correctText": "The tracking number is in the email.",
+      "correctResponseId": "en:lesson-10:session-20:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i12",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-10:session-20:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i14",
+      "correctText": "Does she expect the parcel today?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i15",
+      "correctText": "I expect the parcel today.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i16",
+      "correctText": "The tracking number is in the email.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:i17",
+      "correctText": "I expect the parcel today.",
+      "correctResponseId": null
+    }
+  ]
+}

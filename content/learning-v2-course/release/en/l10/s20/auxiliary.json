@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-20:intro1:r2": {
+          "ru": "С I нужна expect без s.",
+          "uk": "З I потрібна expect без s."
+        },
+        "en:lesson-10:session-20:intro1:r3": {
+          "ru": "Am expect неверно. Здесь выбираем I expect.",
+          "uk": "Am expect неправильно. Тут вибираємо I expect."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-20:intro2:r2": {
+          "ru": "С she нужна expects.",
+          "uk": "З she потрібна expects."
+        },
+        "en:lesson-10:session-20:intro2:r3": {
+          "ru": "Is expect неверно; здесь нужна expects.",
+          "uk": "Is expect неправильно; тут потрібна expects."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-20:intro3:r2": {
+          "ru": "С arrival здесь нужна is.",
+          "uk": "З arrival тут потрібна is."
+        },
+        "en:lesson-10:session-20:intro3:r3": {
+          "ru": "Am употребляется с I.",
+          "uk": "Am уживається з I."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "92e8252ef1b2ca6636369420d95d2b77584fab8c90c4b455f59c3ce742a8e30c"
+}

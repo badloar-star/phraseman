@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-45:intro1:r2": {
+          "ru": "С hands нужно are.",
+          "uk": "З hands потрібне are."
+        },
+        "en:lesson-09:session-45:intro1:r3": {
+          "ru": "После are для действия сейчас нужна форма trembling.",
+          "uk": "Після are для дії зараз потрібна форма trembling."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-45:intro2:r2": {
+          "ru": "Одна речь: is.",
+          "uk": "Одна промова: is."
+        },
+        "en:lesson-09:session-45:intro2:r3": {
+          "ru": "В английской фразе здесь нужна связка is.",
+          "uk": "В англійській фразі тут потрібна зв’язка is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-45:intro3:r2": {
+          "ru": "После don’t нужна форма move.",
+          "uk": "Після don’t потрібна форма move."
+        },
+        "en:lesson-09:session-45:intro3:r3": {
+          "ru": "Для просьбы не делать что-то нужен don’t.",
+          "uk": "Для прохання не робити щось потрібне don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f0195ab177f7d796c68c9e73a71316c23541ac5fb210c7cbed1cdf1809baaeb1"
+}

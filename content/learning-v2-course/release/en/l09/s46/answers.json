@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-46:word:wander",
+    "correctText": "wander",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i01",
+    "correctText": "We wander through the town.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i02",
+    "correctText": "We are wandering through the town.",
+    "correctResponseId": "en:lesson-09:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:word:courtyard",
+    "correctText": "courtyard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i04",
+    "correctText": "I am in the courtyard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i05",
+    "correctText": "She is waiting in the courtyard.",
+    "correctResponseId": "en:lesson-09:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i06",
+    "correctText": "waiting",
+    "correctResponseId": "en:lesson-09:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:word:archway",
+    "correctText": "archway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i07",
+    "correctText": "The archway is narrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i08",
+    "correctText": "Please don't block the archway.",
+    "correctResponseId": "en:lesson-09:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i09",
+    "correctText": "Please don't block the archway.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:word:cobblestone",
+    "correctText": "cobblestone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i10",
+    "correctText": "This is a cobblestone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i11",
+    "correctText": "The cobblestones are wet.",
+    "correctResponseId": "en:lesson-09:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i13",
+    "correctText": "en:lesson-09:session-46:i13:p1=wander\nen:lesson-09:session-46:i13:p2=courtyard\nen:lesson-09:session-46:i13:p3=archway\nen:lesson-09:session-46:i13:p4=cobblestone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i14",
+    "correctText": "Are you wandering through the town?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i15",
+    "correctText": "block",
+    "correctResponseId": "en:lesson-09:session-46:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i16",
+    "correctText": "We are not wandering.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-46:i17",
+    "correctText": "We are wandering through the town.",
+    "correctResponseId": null
+  }
+]

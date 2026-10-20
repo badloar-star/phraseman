@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-46",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-46:word:wander",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wander",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:word:wander:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wander",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:word:wander:audio",
+            "transcript": "wander"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:word:wander:r1",
+              "targetText": "wander",
+              "meaningByLocale": {
+                "ru": "«бродить». We wander through the town. — «Мы бродим по городу». Ходить без определённого маршрута; wander → wandering.",
+                "uk": "«блукати». We wander through the town. — «Ми блукаємо містом». Ходити без певного маршруту; wander → wandering."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wander",
+            "definitionByLocale": {
+              "ru": "«бродить». We wander through the town. — «Мы бродим по городу». Ходить без определённого маршрута; wander → wandering.",
+              "uk": "«блукати». We wander through the town. — «Ми блукаємо містом». Ходити без певного маршруту; wander → wandering."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "По выходным вы гуляете без маршрута. Скажите: «Мы бродим по городу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "По выходным вы гуляете без маршрута. Скажите: «Мы бродим по городу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We wander through the town.",
+          "localizedMeaning": {
+            "ru": "По выходным вы гуляете без маршрута. Скажите: «Мы бродим по городу»",
+            "uk": "У вихідні ви гуляєте без маршруту. Скажіть: «Ми блукаємо містом»"
+          },
+          "orderedTokens": [
+            "We",
+            "wander",
+            "through",
+            "the",
+            "town"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i02:r1",
+            "text": "We are wandering through the town."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i02:r2",
+            "text": "We are running through the town."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i02:r3",
+            "text": "We are not wandering through the town."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i02:audio",
+            "transcript": "We are wandering through the town."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:i02:r1",
+              "targetText": "We are wandering through the town.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i02:r2",
+              "targetText": "We are running through the town.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i02:r3",
+              "targetText": "We are not wandering through the town.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are wandering through the town.",
+                "uk": "У записі звучить We are wandering through the town."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are wandering through the town.",
+                "uk": "У записі звучить We are wandering through the town."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму be для we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму be для we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму be для we",
+            "uk": "Виберіть форму be для we"
+          },
+          "gappedTargetPhrase": "We ___ wandering.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-46:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму be для we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму be для we",
+              "feedbackByLocale": {
+                "ru": "С we нужна форма are.",
+                "uk": "З we потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму be для we",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am вживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:word:courtyard",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — courtyard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:word:courtyard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — courtyard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:word:courtyard:audio",
+            "transcript": "courtyard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:word:courtyard:r1",
+              "targetText": "courtyard",
+              "meaningByLocale": {
+                "ru": "«внутренний двор». I am in the courtyard. — «Я во внутреннем дворе». Открытое пространство, окружённое зданиями или стенами.",
+                "uk": "«внутрішній двір». I am in the courtyard. — «Я у внутрішньому дворі». Відкритий простір, оточений будівлями або стінами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "courtyard",
+            "definitionByLocale": {
+              "ru": "«внутренний двор». I am in the courtyard. — «Я во внутреннем дворе». Открытое пространство, окружённое зданиями или стенами.",
+              "uk": "«внутрішній двір». I am in the courtyard. — «Я у внутрішньому дворі». Відкритий простір, оточений будівлями або стінами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ищет вас снаружи. Сообщите: «Я во внутреннем дворе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ищет вас снаружи. Сообщите: «Я во внутреннем дворе»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am in the courtyard.",
+          "localizedMeaning": {
+            "ru": "Друг ищет вас снаружи. Сообщите: «Я во внутреннем дворе»",
+            "uk": "Друг шукає вас зовні. Повідомте: «Я у внутрішньому дворі»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "in",
+            "the",
+            "courtyard"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i05:r1",
+            "text": "She is waiting in the courtyard."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i05:r2",
+            "text": "She is walking in the courtyard."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i05:r3",
+            "text": "She is waiting in the café."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i05:audio",
+            "transcript": "She is waiting in the courtyard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:i05:r1",
+              "targetText": "She is waiting in the courtyard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i05:r2",
+              "targetText": "She is walking in the courtyard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i05:r3",
+              "targetText": "She is waiting in the café.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is waiting in the courtyard.",
+                "uk": "У записі звучить She is waiting in the courtyard."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is waiting in the courtyard.",
+                "uk": "У записі звучить She is waiting in the courtyard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для ожидания сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i06:r1",
+            "text": "waiting"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i06:r2",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i06:r3",
+            "text": "waits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для ожидания сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для ожидания сейчас",
+            "uk": "Виберіть форму для очікування зараз"
+          },
+          "gappedTargetPhrase": "She is ___ in the courtyard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-46:i06:r1",
+              "text": "waiting"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i06:r2",
+              "text": "wait"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i06:r3",
+              "text": "waits"
+            }
+          ],
+          "testedDimension": "Выберите форму для ожидания сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для ожидания сейчас",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма waiting.",
+                "uk": "Після is потрібна форма waiting."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для ожидания сейчас",
+              "feedbackByLocale": {
+                "ru": "Здесь используем is waiting без окончания -s.",
+                "uk": "Тут використовуємо is waiting без закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:word:archway",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — archway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:word:archway:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — archway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:word:archway:audio",
+            "transcript": "archway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:word:archway:r1",
+              "targetText": "archway",
+              "meaningByLocale": {
+                "ru": "«арочный проход». The archway is narrow. — «Арочный проход узкий». Проход под аркой, например между улицей и двором.",
+                "uk": "«арковий прохід». The archway is narrow. — «Арковий прохід вузький». Прохід під аркою, наприклад між вулицею та двором."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "archway",
+            "definitionByLocale": {
+              "ru": "«арочный проход». The archway is narrow. — «Арочный проход узкий». Проход под аркой, например между улицей и двором.",
+              "uk": "«арковий прохід». The archway is narrow. — «Арковий прохід вузький». Прохід під аркою, наприклад між вулицею та двором."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, почему люди проходят по одному. Сообщите: «Арочный проход узкий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, почему люди проходят по одному. Сообщите: «Арочный проход узкий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The archway is narrow.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, почему люди проходят по одному. Сообщите: «Арочный проход узкий»",
+            "uk": "Друг запитує, чому люди проходять по одному. Повідомте: «Арковий прохід вузький»"
+          },
+          "orderedTokens": [
+            "The",
+            "archway",
+            "is",
+            "narrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i08:r1",
+            "text": "Please don't block the archway."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i08:r2",
+            "text": "Please block the archway."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i08:r3",
+            "text": "Please don't block the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i08:audio",
+            "transcript": "Please don't block the archway."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:i08:r1",
+              "targetText": "Please don't block the archway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i08:r2",
+              "targetText": "Please block the archway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i08:r3",
+              "targetText": "Please don't block the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't block the archway.",
+                "uk": "У записі звучить Please don't block the archway."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't block the archway.",
+                "uk": "У записі звучить Please don't block the archway."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Турист оставил чемодан в проходе под аркой. Попросите не загораживать этот проход; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i09:audio"
+        ],
+        "accessibilityLabel": "Турист оставил чемодан в проходе под аркой. Попросите не загораживать этот проход; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i09:audio",
+            "transcript": "Please don't block the archway."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't block the archway.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:word:cobblestone",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cobblestone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:word:cobblestone:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cobblestone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:word:cobblestone:audio",
+            "transcript": "cobblestone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:word:cobblestone:r1",
+              "targetText": "cobblestone",
+              "meaningByLocale": {
+                "ru": "«булыжник для мощения». This is a cobblestone. — «Это булыжник». Здесь отдельный округлый камень, которым вымощена улица.",
+                "uk": "«камінь для бруківки». This is a cobblestone. — «Це камінь для бруківки». Тут окремий округлий камінь, яким вимощена вулиця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cobblestone",
+            "definitionByLocale": {
+              "ru": "«булыжник для мощения». This is a cobblestone. — «Это булыжник». Здесь отдельный округлый камень, которым вымощена улица.",
+              "uk": "«камінь для бруківки». This is a cobblestone. — «Це камінь для бруківки». Тут окремий округлий камінь, яким вимощена вулиця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ребёнок спрашивает, что за округлый камень в старой мостовой. Скажите: «Это булыжник»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ребёнок спрашивает, что за округлый камень в старой мостовой. Скажите: «Это булыжник»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a cobblestone.",
+          "localizedMeaning": {
+            "ru": "Ребёнок спрашивает, что за округлый камень в старой мостовой. Скажите: «Это булыжник»",
+            "uk": "Дитина запитує, що це за округлий камінь у старій бруківці. Скажіть: «Це камінь для бруківки»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "cobblestone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i11:r1",
+            "text": "The cobblestones are wet."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i11:r2",
+            "text": "The cobblestones are dry."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i11:r3",
+            "text": "The courtyard is wet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i11:audio",
+            "transcript": "The cobblestones are wet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:i11:r1",
+              "targetText": "The cobblestones are wet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i11:r2",
+              "targetText": "The cobblestones are dry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i11:r3",
+              "targetText": "The courtyard is wet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cobblestones are wet.",
+                "uk": "У записі звучить The cobblestones are wet."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cobblestones are wet.",
+                "uk": "У записі звучить The cobblestones are wet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку для нескольких камней",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку для нескольких камней",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для нескольких камней",
+            "uk": "Виберіть зв’язку для кількох каменів"
+          },
+          "gappedTargetPhrase": "The cobblestones ___ wet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-46:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку для нескольких камней",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку для нескольких камней",
+              "feedbackByLocale": {
+                "ru": "Cobblestones во множественном числе: are.",
+                "uk": "Cobblestones у множині: are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку для нескольких камней",
+              "feedbackByLocale": {
+                "ru": "Am используем с I.",
+                "uk": "Am використовуємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с их значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с их значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-46:i13:p1",
+              "target": "wander",
+              "meaningByLocale": {
+                "ru": "бродить",
+                "uk": "блукати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-46:i13:p2",
+              "target": "courtyard",
+              "meaningByLocale": {
+                "ru": "внутренний двор",
+                "uk": "внутрішній двір"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-46:i13:p3",
+              "target": "archway",
+              "meaningByLocale": {
+                "ru": "арочный проход",
+                "uk": "арковий прохід"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-46:i13:p4",
+              "target": "cobblestone",
+              "meaningByLocale": {
+                "ru": "булыжник для мощения",
+                "uk": "камінь для бруківки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wander",
+            "courtyard",
+            "archway",
+            "cobblestone"
+          ],
+          "rightColumn": [
+            "бродить",
+            "внутренний двор",
+            "арочный проход",
+            "булыжник для мощения"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос о прогулке без маршрута сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос о прогулке без маршрута сейчас",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i14:audio",
+            "transcript": "Are you wandering through the town?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you wandering through the town?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "wandering",
+            "through",
+            "the",
+            "town"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после don’t в просьбе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i15:r1",
+            "text": "block"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i15:r2",
+            "text": "blocking"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i15:r3",
+            "text": "blocks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после don’t в просьбе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ the archway.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-46:i15:r1",
+              "text": "block"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i15:r2",
+              "text": "blocking"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i15:r3",
+              "text": "blocks"
+            }
+          ],
+          "testedDimension": "Выберите форму после don’t в просьбе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i15:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна форма block.",
+                "uk": "Після don’t потрібна форма block."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i15:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "После don’t в просьбе не добавляем -s.",
+                "uk": "Після don’t у проханні не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг думает, что вы ещё бродите по городу, но вы уже сидите в кафе. Скажите: «Мы не бродим»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг думает, что вы ещё бродите по городу, но вы уже сидите в кафе. Скажите: «Мы не бродим»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are not wandering.",
+          "localizedMeaning": {
+            "ru": "Друг думает, что вы ещё бродите по городу, но вы уже сидите в кафе. Скажите: «Мы не бродим»",
+            "uk": "Друг думає, що ви ще блукаєте містом, але ви вже сидите в кафе. Скажіть: «Ми не блукаємо»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "not",
+            "wandering"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с братом идёте по незнакомым улицам, выбирая повороты наугад. Мама звонит и спрашивает, чем вы заняты. Скажите, что вы сейчас бродите по городу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с братом идёте по незнакомым улицам, выбирая повороты наугад. Мама звонит и спрашивает, чем вы заняты. Скажите, что вы сейчас бродите по городу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i17:audio",
+            "transcript": "We are wandering through the town."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are wandering through the town.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-46:word:wander",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wander",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:word:wander:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wander",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:word:wander:audio",
+            "transcript": "wander"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:word:wander:r1",
+              "targetText": "wander",
+              "meaningByLocale": {
+                "ru": "«бродить». We wander through the town. — «Мы бродим по городу». Ходить без определённого маршрута; wander → wandering.",
+                "uk": "«блукати». We wander through the town. — «Ми блукаємо містом». Ходити без певного маршруту; wander → wandering."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wander",
+            "definitionByLocale": {
+              "ru": "«бродить». We wander through the town. — «Мы бродим по городу». Ходить без определённого маршрута; wander → wandering.",
+              "uk": "«блукати». We wander through the town. — «Ми блукаємо містом». Ходити без певного маршруту; wander → wandering."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У вихідні ви гуляєте без маршруту. Скажіть: «Ми блукаємо містом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вихідні ви гуляєте без маршруту. Скажіть: «Ми блукаємо містом»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We wander through the town.",
+          "localizedMeaning": {
+            "ru": "По выходным вы гуляете без маршрута. Скажите: «Мы бродим по городу»",
+            "uk": "У вихідні ви гуляєте без маршруту. Скажіть: «Ми блукаємо містом»"
+          },
+          "orderedTokens": [
+            "We",
+            "wander",
+            "through",
+            "the",
+            "town"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i02:r1",
+            "text": "We are wandering through the town."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i02:r2",
+            "text": "We are running through the town."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i02:r3",
+            "text": "We are not wandering through the town."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i02:audio",
+            "transcript": "We are wandering through the town."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:i02:r1",
+              "targetText": "We are wandering through the town.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i02:r2",
+              "targetText": "We are running through the town.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i02:r3",
+              "targetText": "We are not wandering through the town.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are wandering through the town.",
+                "uk": "У записі звучить We are wandering through the town."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are wandering through the town.",
+                "uk": "У записі звучить We are wandering through the town."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму be для we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму be для we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму be для we",
+            "uk": "Виберіть форму be для we"
+          },
+          "gappedTargetPhrase": "We ___ wandering.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-46:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму be для we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму be для we",
+              "feedbackByLocale": {
+                "ru": "С we нужна форма are.",
+                "uk": "З we потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму be для we",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am вживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:word:courtyard",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — courtyard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:word:courtyard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — courtyard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:word:courtyard:audio",
+            "transcript": "courtyard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:word:courtyard:r1",
+              "targetText": "courtyard",
+              "meaningByLocale": {
+                "ru": "«внутренний двор». I am in the courtyard. — «Я во внутреннем дворе». Открытое пространство, окружённое зданиями или стенами.",
+                "uk": "«внутрішній двір». I am in the courtyard. — «Я у внутрішньому дворі». Відкритий простір, оточений будівлями або стінами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "courtyard",
+            "definitionByLocale": {
+              "ru": "«внутренний двор». I am in the courtyard. — «Я во внутреннем дворе». Открытое пространство, окружённое зданиями или стенами.",
+              "uk": "«внутрішній двір». I am in the courtyard. — «Я у внутрішньому дворі». Відкритий простір, оточений будівлями або стінами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг шукає вас зовні. Повідомте: «Я у внутрішньому дворі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг шукає вас зовні. Повідомте: «Я у внутрішньому дворі»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am in the courtyard.",
+          "localizedMeaning": {
+            "ru": "Друг ищет вас снаружи. Сообщите: «Я во внутреннем дворе»",
+            "uk": "Друг шукає вас зовні. Повідомте: «Я у внутрішньому дворі»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "in",
+            "the",
+            "courtyard"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i05:r1",
+            "text": "She is waiting in the courtyard."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i05:r2",
+            "text": "She is walking in the courtyard."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i05:r3",
+            "text": "She is waiting in the café."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i05:audio",
+            "transcript": "She is waiting in the courtyard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:i05:r1",
+              "targetText": "She is waiting in the courtyard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i05:r2",
+              "targetText": "She is walking in the courtyard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i05:r3",
+              "targetText": "She is waiting in the café.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is waiting in the courtyard.",
+                "uk": "У записі звучить She is waiting in the courtyard."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is waiting in the courtyard.",
+                "uk": "У записі звучить She is waiting in the courtyard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для очікування зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i06:r1",
+            "text": "waiting"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i06:r2",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i06:r3",
+            "text": "waits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для очікування зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для ожидания сейчас",
+            "uk": "Виберіть форму для очікування зараз"
+          },
+          "gappedTargetPhrase": "She is ___ in the courtyard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-46:i06:r1",
+              "text": "waiting"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i06:r2",
+              "text": "wait"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i06:r3",
+              "text": "waits"
+            }
+          ],
+          "testedDimension": "Виберіть форму для очікування зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для очікування зараз",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма waiting.",
+                "uk": "Після is потрібна форма waiting."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для очікування зараз",
+              "feedbackByLocale": {
+                "ru": "Здесь используем is waiting без окончания -s.",
+                "uk": "Тут використовуємо is waiting без закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:word:archway",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — archway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:word:archway:audio"
+        ],
+        "accessibilityLabel": "Картка слова — archway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:word:archway:audio",
+            "transcript": "archway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:word:archway:r1",
+              "targetText": "archway",
+              "meaningByLocale": {
+                "ru": "«арочный проход». The archway is narrow. — «Арочный проход узкий». Проход под аркой, например между улицей и двором.",
+                "uk": "«арковий прохід». The archway is narrow. — «Арковий прохід вузький». Прохід під аркою, наприклад між вулицею та двором."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "archway",
+            "definitionByLocale": {
+              "ru": "«арочный проход». The archway is narrow. — «Арочный проход узкий». Проход под аркой, например между улицей и двором.",
+              "uk": "«арковий прохід». The archway is narrow. — «Арковий прохід вузький». Прохід під аркою, наприклад між вулицею та двором."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг запитує, чому люди проходять по одному. Повідомте: «Арковий прохід вузький»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитує, чому люди проходять по одному. Повідомте: «Арковий прохід вузький»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The archway is narrow.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, почему люди проходят по одному. Сообщите: «Арочный проход узкий»",
+            "uk": "Друг запитує, чому люди проходять по одному. Повідомте: «Арковий прохід вузький»"
+          },
+          "orderedTokens": [
+            "The",
+            "archway",
+            "is",
+            "narrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i08:r1",
+            "text": "Please don't block the archway."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i08:r2",
+            "text": "Please block the archway."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i08:r3",
+            "text": "Please don't block the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i08:audio",
+            "transcript": "Please don't block the archway."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:i08:r1",
+              "targetText": "Please don't block the archway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i08:r2",
+              "targetText": "Please block the archway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i08:r3",
+              "targetText": "Please don't block the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't block the archway.",
+                "uk": "У записі звучить Please don't block the archway."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't block the archway.",
+                "uk": "У записі звучить Please don't block the archway."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Турист залишив валізу в проході під аркою. Попросіть не загороджувати цей прохід; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i09:audio"
+        ],
+        "accessibilityLabel": "Турист залишив валізу в проході під аркою. Попросіть не загороджувати цей прохід; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i09:audio",
+            "transcript": "Please don't block the archway."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't block the archway.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:word:cobblestone",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cobblestone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:word:cobblestone:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cobblestone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:word:cobblestone:audio",
+            "transcript": "cobblestone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:word:cobblestone:r1",
+              "targetText": "cobblestone",
+              "meaningByLocale": {
+                "ru": "«булыжник для мощения». This is a cobblestone. — «Это булыжник». Здесь отдельный округлый камень, которым вымощена улица.",
+                "uk": "«камінь для бруківки». This is a cobblestone. — «Це камінь для бруківки». Тут окремий округлий камінь, яким вимощена вулиця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cobblestone",
+            "definitionByLocale": {
+              "ru": "«булыжник для мощения». This is a cobblestone. — «Это булыжник». Здесь отдельный округлый камень, которым вымощена улица.",
+              "uk": "«камінь для бруківки». This is a cobblestone. — «Це камінь для бруківки». Тут окремий округлий камінь, яким вимощена вулиця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дитина запитує, що це за округлий камінь у старій бруківці. Скажіть: «Це камінь для бруківки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дитина запитує, що це за округлий камінь у старій бруківці. Скажіть: «Це камінь для бруківки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a cobblestone.",
+          "localizedMeaning": {
+            "ru": "Ребёнок спрашивает, что за округлый камень в старой мостовой. Скажите: «Это булыжник»",
+            "uk": "Дитина запитує, що це за округлий камінь у старій бруківці. Скажіть: «Це камінь для бруківки»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "cobblestone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i11:r1",
+            "text": "The cobblestones are wet."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i11:r2",
+            "text": "The cobblestones are dry."
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i11:r3",
+            "text": "The courtyard is wet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i11:audio",
+            "transcript": "The cobblestones are wet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-46:i11:r1",
+              "targetText": "The cobblestones are wet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i11:r2",
+              "targetText": "The cobblestones are dry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i11:r3",
+              "targetText": "The courtyard is wet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cobblestones are wet.",
+                "uk": "У записі звучить The cobblestones are wet."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cobblestones are wet.",
+                "uk": "У записі звучить The cobblestones are wet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку для кількох каменів",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку для кількох каменів",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для нескольких камней",
+            "uk": "Виберіть зв’язку для кількох каменів"
+          },
+          "gappedTargetPhrase": "The cobblestones ___ wet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-46:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку для кількох каменів",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для кількох каменів",
+              "feedbackByLocale": {
+                "ru": "Cobblestones во множественном числе: are.",
+                "uk": "Cobblestones у множині: are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для кількох каменів",
+              "feedbackByLocale": {
+                "ru": "Am используем с I.",
+                "uk": "Am використовуємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова з їхніми значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова з їхніми значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-46:i13:p1",
+              "target": "wander",
+              "meaningByLocale": {
+                "ru": "бродить",
+                "uk": "блукати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-46:i13:p2",
+              "target": "courtyard",
+              "meaningByLocale": {
+                "ru": "внутренний двор",
+                "uk": "внутрішній двір"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-46:i13:p3",
+              "target": "archway",
+              "meaningByLocale": {
+                "ru": "арочный проход",
+                "uk": "арковий прохід"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-46:i13:p4",
+              "target": "cobblestone",
+              "meaningByLocale": {
+                "ru": "булыжник для мощения",
+                "uk": "камінь для бруківки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wander",
+            "courtyard",
+            "archway",
+            "cobblestone"
+          ],
+          "rightColumn": [
+            "блукати",
+            "внутрішній двір",
+            "арковий прохід",
+            "камінь для бруківки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання про прогулянку без маршруту зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання про прогулянку без маршруту зараз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i14:audio",
+            "transcript": "Are you wandering through the town?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you wandering through the town?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "wandering",
+            "through",
+            "the",
+            "town"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після don’t у проханні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-46:i15:r1",
+            "text": "block"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i15:r2",
+            "text": "blocking"
+          },
+          {
+            "responseId": "en:lesson-09:session-46:i15:r3",
+            "text": "blocks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після don’t у проханні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ the archway.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-46:i15:r1",
+              "text": "block"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i15:r2",
+              "text": "blocking"
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i15:r3",
+              "text": "blocks"
+            }
+          ],
+          "testedDimension": "Виберіть форму після don’t у проханні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-46:i15:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна форма block.",
+                "uk": "Після don’t потрібна форма block."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-46:i15:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "После don’t в просьбе не добавляем -s.",
+                "uk": "Після don’t у проханні не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг думає, що ви ще блукаєте містом, але ви вже сидите в кафе. Скажіть: «Ми не блукаємо»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг думає, що ви ще блукаєте містом, але ви вже сидите в кафе. Скажіть: «Ми не блукаємо»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are not wandering.",
+          "localizedMeaning": {
+            "ru": "Друг думает, что вы ещё бродите по городу, но вы уже сидите в кафе. Скажите: «Мы не бродим»",
+            "uk": "Друг думає, що ви ще блукаєте містом, але ви вже сидите в кафе. Скажіть: «Ми не блукаємо»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "not",
+            "wandering"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-46:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з братом ідете незнайомими вулицями, вибираючи повороти навмання. Мама телефонує й запитує, чим ви зайняті. Скажіть, що ви зараз блукаєте містом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з братом ідете незнайомими вулицями, вибираючи повороти навмання. Мама телефонує й запитує, чим ви зайняті. Скажіть, що ви зараз блукаєте містом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-46:i17:audio",
+            "transcript": "We are wandering through the town."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are wandering through the town.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-46:word:wander",
+      "correctText": "wander",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i01",
+      "correctText": "We wander through the town.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i02",
+      "correctText": "We are wandering through the town.",
+      "correctResponseId": "en:lesson-09:session-46:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-09:session-46:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:word:courtyard",
+      "correctText": "courtyard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i04",
+      "correctText": "I am in the courtyard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i05",
+      "correctText": "She is waiting in the courtyard.",
+      "correctResponseId": "en:lesson-09:session-46:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i06",
+      "correctText": "waiting",
+      "correctResponseId": "en:lesson-09:session-46:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:word:archway",
+      "correctText": "archway",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i07",
+      "correctText": "The archway is narrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i08",
+      "correctText": "Please don't block the archway.",
+      "correctResponseId": "en:lesson-09:session-46:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i09",
+      "correctText": "Please don't block the archway.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:word:cobblestone",
+      "correctText": "cobblestone",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i10",
+      "correctText": "This is a cobblestone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i11",
+      "correctText": "The cobblestones are wet.",
+      "correctResponseId": "en:lesson-09:session-46:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-09:session-46:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i14",
+      "correctText": "Are you wandering through the town?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i15",
+      "correctText": "block",
+      "correctResponseId": "en:lesson-09:session-46:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i16",
+      "correctText": "We are not wandering.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:i17",
+      "correctText": "We are wandering through the town.",
+      "correctResponseId": null
+    }
+  ]
+}

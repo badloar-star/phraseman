@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-45:word:tremble",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tremble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:word:tremble:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tremble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:word:tremble:audio",
+          "transcript": "tremble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-45:word:tremble:r1",
+            "targetText": "tremble",
+            "meaningByLocale": {
+              "ru": "«дрожать». My hands tremble. — «У меня дрожат руки». В этом занятии руки дрожат от волнения; tremble → trembling.",
+              "uk": "«тремтіти». My hands tremble. — «У мене тремтять руки». У цьому занятті руки тремтять від хвилювання; tremble → trembling."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tremble",
+          "definitionByLocale": {
+            "ru": "«дрожать». My hands tremble. — «У меня дрожат руки». В этом занятии руки дрожат от волнения; tremble → trembling.",
+            "uk": "«тремтіти». My hands tremble. — «У мене тремтять руки». У цьому занятті руки тремтять від хвилювання; tremble → trembling."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, что обычно бывает с вашими руками перед выступлением. Скажите: «У меня дрожат руки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, что обычно бывает с вашими руками перед выступлением. Скажите: «У меня дрожат руки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My hands tremble.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, что обычно бывает с вашими руками перед выступлением. Скажите: «У меня дрожат руки»",
+          "uk": "Друг запитує, що зазвичай буває з вашими руками перед виступом. Скажіть: «У мене тремтять руки»"
+        },
+        "orderedTokens": [
+          "My",
+          "hands",
+          "tremble"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-45:i02:r1",
+          "text": "My hands are trembling."
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i02:r2",
+          "text": "My hands are not trembling."
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i02:r3",
+          "text": "My feet are trembling."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:i02:audio",
+          "transcript": "My hands are trembling."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-45:i02:r1",
+            "targetText": "My hands are trembling.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i02:r2",
+            "targetText": "My hands are not trembling.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i02:r3",
+            "targetText": "My feet are trembling.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My hands are trembling.",
+              "uk": "У записі звучить My hands are trembling."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My hands are trembling.",
+              "uk": "У записі звучить My hands are trembling."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите написание tremble с -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-45:i03:r1",
+          "text": "trembling"
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i03:r2",
+          "text": "trembleing"
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i03:r3",
+          "text": "tremble"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите написание tremble с -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите написание tremble с -ing",
+          "uk": "Виберіть написання tremble з -ing"
+        },
+        "gappedTargetPhrase": "My hands are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-45:i03:r1",
+            "text": "trembling"
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i03:r2",
+            "text": "trembleing"
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i03:r3",
+            "text": "tremble"
+          }
+        ],
+        "testedDimension": "Выберите написание tremble с -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите написание tremble с -ing",
+            "feedbackByLocale": {
+              "ru": "Конечная e уходит перед -ing: trembling.",
+              "uk": "Кінцева e зникає перед -ing: trembling."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите написание tremble с -ing",
+            "feedbackByLocale": {
+              "ru": "После are для действия сейчас нужна форма trembling.",
+              "uk": "Після are для дії зараз потрібна форма trembling."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:word:lectern",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lectern",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:word:lectern:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lectern",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:word:lectern:audio",
+          "transcript": "lectern"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-45:word:lectern:r1",
+            "targetText": "lectern",
+            "meaningByLocale": {
+              "ru": "«кафедра для выступающего». The speech is on the lectern. — «Речь лежит на кафедре». Стойка с наклонной поверхностью для листов или книги.",
+              "uk": "«кафедра для промовця». The speech is on the lectern. — «Промова лежить на кафедрі». Стійка з похилою поверхнею для аркушів або книжки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lectern",
+          "definitionByLocale": {
+            "ru": "«кафедра для выступающего». The speech is on the lectern. — «Речь лежит на кафедре». Стойка с наклонной поверхностью для листов или книги.",
+            "uk": "«кафедра для промовця». The speech is on the lectern. — «Промова лежить на кафедрі». Стійка з похилою поверхнею для аркушів або книжки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Организатор ищет распечатанную речь. Скажите, что она на кафедре",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Организатор ищет распечатанную речь. Скажите, что она на кафедре",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The speech is on the lectern.",
+        "localizedMeaning": {
+          "ru": "Организатор ищет распечатанную речь. Скажите, что она на кафедре",
+          "uk": "Організатор шукає надруковану промову. Скажіть, що вона на кафедрі"
+        },
+        "orderedTokens": [
+          "The",
+          "speech",
+          "is",
+          "on",
+          "the",
+          "lectern"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-45:i05:r1",
+          "text": "The book is on the lectern."
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i05:r2",
+          "text": "The book is under the lectern."
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i05:r3",
+          "text": "The speech is on the lectern."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:i05:audio",
+          "transcript": "The book is on the lectern."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-45:i05:r1",
+            "targetText": "The book is on the lectern.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i05:r2",
+            "targetText": "The book is under the lectern.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i05:r3",
+            "targetText": "The speech is on the lectern.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The book is on the lectern.",
+              "uk": "У записі звучить The book is on the lectern."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The book is on the lectern.",
+              "uk": "У записі звучить The book is on the lectern."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку для одной книги",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-45:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку для одной книги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для одной книги",
+          "uk": "Виберіть зв’язку для однієї книжки"
+        },
+        "gappedTargetPhrase": "The book ___ on the lectern.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-45:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите связку для одной книги",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку для одной книги",
+            "feedbackByLocale": {
+              "ru": "Одна книга: is.",
+              "uk": "Одна книжка: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку для одной книги",
+            "feedbackByLocale": {
+              "ru": "Am используем с I.",
+              "uk": "Am використовуємо з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:word:spotlight",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spotlight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:word:spotlight:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spotlight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:word:spotlight:audio",
+          "transcript": "spotlight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-45:word:spotlight:r1",
+            "targetText": "spotlight",
+            "meaningByLocale": {
+              "ru": "«прожектор». The spotlight is on. — «Прожектор включён». Прибор, который направляет свет на определённое место.",
+              "uk": "«прожектор». The spotlight is on. — «Прожектор увімкнений». Прилад, який спрямовує світло на певне місце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spotlight",
+          "definitionByLocale": {
+            "ru": "«прожектор». The spotlight is on. — «Прожектор включён». Прибор, который направляет свет на определённое место.",
+            "uk": "«прожектор». The spotlight is on. — «Прожектор увімкнений». Прилад, який спрямовує світло на певне місце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Техник спрашивает, включён ли прожектор. Сообщите: «Прожектор включён»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Техник спрашивает, включён ли прожектор. Сообщите: «Прожектор включён»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The spotlight is on.",
+        "localizedMeaning": {
+          "ru": "Техник спрашивает, включён ли прожектор. Сообщите: «Прожектор включён»",
+          "uk": "Технік запитує, чи увімкнений прожектор. Повідомте: «Прожектор увімкнений»"
+        },
+        "orderedTokens": [
+          "The",
+          "spotlight",
+          "is",
+          "on"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-45:i08:r1",
+          "text": "Please turn on the spotlight."
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i08:r2",
+          "text": "Please turn off the spotlight."
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i08:r3",
+          "text": "Please move the spotlight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:i08:audio",
+          "transcript": "Please turn on the spotlight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-45:i08:r1",
+            "targetText": "Please turn on the spotlight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i08:r2",
+            "targetText": "Please turn off the spotlight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i08:r3",
+            "targetText": "Please move the spotlight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please turn on the spotlight.",
+              "uk": "У записі звучить Please turn on the spotlight."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please turn on the spotlight.",
+              "uk": "У записі звучить Please turn on the spotlight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Луч уже направлен куда нужно. Попросите помощника не двигать прожектор; начните с Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:i09:audio"
+      ],
+      "accessibilityLabel": "Луч уже направлен куда нужно. Попросите помощника не двигать прожектор; начните с Please",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:i09:audio",
+          "transcript": "Please don't move the spotlight."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don't move the spotlight.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:word:podium",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — podium",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:word:podium:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — podium",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:word:podium:audio",
+          "transcript": "podium"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-45:word:podium:r1",
+            "targetText": "podium",
+            "meaningByLocale": {
+              "ru": "«подиум, возвышение». She is standing on the podium. — «Она стоит на подиуме». Здесь небольшая поднятая площадка под ногами выступающего; не стойка для бумаги.",
+              "uk": "«подіум, підвищення». She is standing on the podium. — «Вона стоїть на подіумі». Тут невеликий піднятий майданчик під ногами промовця; не стійка для паперу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "podium",
+          "definitionByLocale": {
+            "ru": "«подиум, возвышение». She is standing on the podium. — «Она стоит на подиуме». Здесь небольшая поднятая площадка под ногами выступающего; не стойка для бумаги.",
+            "uk": "«подіум, підвищення». She is standing on the podium. — «Вона стоїть на подіумі». Тут невеликий піднятий майданчик під ногами промовця; не стійка для паперу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ведущая уже поднялась на возвышение. Скажите: «Она стоит на подиуме»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ведущая уже поднялась на возвышение. Скажите: «Она стоит на подиуме»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is standing on the podium.",
+        "localizedMeaning": {
+          "ru": "Ведущая уже поднялась на возвышение. Скажите: «Она стоит на подиуме»",
+          "uk": "Ведуча вже піднялася на підвищення. Скажіть: «Вона стоїть на подіумі»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "standing",
+          "on",
+          "the",
+          "podium"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-45:i11:r1",
+          "text": "The podium is empty."
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i11:r2",
+          "text": "The podium is not empty."
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i11:r3",
+          "text": "The lectern is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:i11:audio",
+          "transcript": "The podium is empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-45:i11:r1",
+            "targetText": "The podium is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i11:r2",
+            "targetText": "The podium is not empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i11:r3",
+            "targetText": "The lectern is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The podium is empty.",
+              "uk": "У записі звучить The podium is empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The podium is empty.",
+              "uk": "У записі звучить The podium is empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму be для ведущей",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-45:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму be для ведущей",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму be для ведущей",
+          "uk": "Виберіть форму be для ведучої"
+        },
+        "gappedTargetPhrase": "She ___ standing on the podium.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-45:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите форму be для ведущей",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму be для ведущей",
+            "feedbackByLocale": {
+              "ru": "С she нужно is.",
+              "uk": "З she потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму be для ведущей",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am вживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с их значениями в этом занятии",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с их значениями в этом занятии",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-45:i13:p1",
+            "target": "tremble",
+            "meaningByLocale": {
+              "ru": "дрожать",
+              "uk": "тремтіти"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-45:i13:p2",
+            "target": "lectern",
+            "meaningByLocale": {
+              "ru": "кафедра для выступающего",
+              "uk": "кафедра для промовця"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-45:i13:p3",
+            "target": "spotlight",
+            "meaningByLocale": {
+              "ru": "прожектор",
+              "uk": "прожектор"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-45:i13:p4",
+            "target": "podium",
+            "meaningByLocale": {
+              "ru": "возвышение для выступающего",
+              "uk": "підвищення для промовця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tremble",
+          "lectern",
+          "spotlight",
+          "podium"
+        ],
+        "rightColumn": [
+          "дрожать",
+          "кафедра для выступающего",
+          "прожектор",
+          "возвышение для выступающего"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос о руках сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос о руках сейчас",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:i14:audio",
+          "transcript": "Are your hands trembling?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are your hands trembling?",
+        "orderedTokens": [
+          "Are",
+          "your",
+          "hands",
+          "trembling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после don’t в просьбе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-45:i15:r1",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i15:r2",
+          "text": "moving"
+        },
+        {
+          "responseId": "en:lesson-09:session-45:i15:r3",
+          "text": "moves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после don’t в просьбе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после don’t в просьбе",
+          "uk": "Виберіть форму після don’t у проханні"
+        },
+        "gappedTargetPhrase": "Please don't ___ the spotlight.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-45:i15:r1",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i15:r2",
+            "text": "moving"
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i15:r3",
+            "text": "moves"
+          }
+        ],
+        "testedDimension": "Выберите форму после don’t в просьбе",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-45:i15:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после don’t в просьбе",
+            "feedbackByLocale": {
+              "ru": "После don’t нужна базовая форма move.",
+              "uk": "Після don’t потрібна базова форма move."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-45:i15:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после don’t в просьбе",
+            "feedbackByLocale": {
+              "ru": "В просьбе после don’t не добавляем -s.",
+              "uk": "У проханні після don’t не додаємо -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга спрашивает, дрожат ли ещё руки. Они уже спокойны. Скажите: «У меня не дрожат руки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга спрашивает, дрожат ли ещё руки. Они уже спокойны. Скажите: «У меня не дрожат руки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My hands are not trembling.",
+        "localizedMeaning": {
+          "ru": "Подруга спрашивает, дрожат ли ещё руки. Они уже спокойны. Скажите: «У меня не дрожат руки»",
+          "uk": "Подруга запитує, чи ще тремтять руки. Вони вже спокійні. Скажіть: «У мене не тремтять руки»"
+        },
+        "orderedTokens": [
+          "My",
+          "hands",
+          "are",
+          "not",
+          "trembling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-45:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы держите открытку перед поздравительной речью. Брат спрашивает, почему открытка трясётся. Объясните, что у вас сейчас дрожат руки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Вы держите открытку перед поздравительной речью. Брат спрашивает, почему открытка трясётся. Объясните, что у вас сейчас дрожат руки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-45:i17:audio",
+          "transcript": "My hands are trembling."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My hands are trembling.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8afbdebf5dd06e58ff9a7b0231f099816c7b7b4e44a99a86a81f5c0e42937280"
+}

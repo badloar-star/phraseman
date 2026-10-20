@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "My hands are trembling; on the lectern; Please don’t move the spotlight",
+    "uk": "My hands are trembling; on the lectern; Please don’t move the spotlight"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Лист бумаги дрожит в руках",
+        "uk": "Аркуш паперу тремтить у руках"
+      },
+      "bodyByLocale": {
+        "ru": "Через минуту вы впервые выступаете перед родителями в школе. Подруга замечает, что лист с речью мелко трясётся. My hands are trembling — «У меня дрожат руки». Tremble — дрожать, например от волнения. Здесь причина не холод: вы волнуетесь перед речью. Hands — несколько рук, поэтому are trembling.",
+        "uk": "За хвилину ви вперше виступаєте перед батьками в школі. Подруга помічає, що аркуш із промовою дрібно труситься. My hands are trembling — «У мене тремтять руки». Tremble — тремтіти, наприклад від хвилювання. Тут причина не холод: ви хвилюєтеся перед промовою. Hands — кілька рук, тому are trembling."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-45:intro1:r1",
+              "text": "My hands are trembling."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro1:r2",
+              "text": "My hands is trembling."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro1:r3",
+              "text": "My hands are tremble."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-45:intro1:r1",
+              "text": "My hands are trembling."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro1:r2",
+              "text": "My hands is trembling."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro1:r3",
+              "text": "My hands are tremble."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Куда положить речь",
+        "uk": "Куди покласти промову"
+      },
+      "bodyByLocale": {
+        "ru": "Организатор ищет вашу распечатанную речь. Вы уже положили её на наклонную подставку перед выступающим. The speech is on the lectern — «Речь лежит на кафедре». Lectern здесь — стойка с наклонной поверхностью для заметок или книги. На неё кладут листы; на ней не стоят.",
+        "uk": "Організатор шукає вашу надруковану промову. Ви вже поклали її на похилу підставку перед промовцем. The speech is on the lectern — «Промова лежить на кафедрі». Lectern тут — стійка з похилою поверхнею для нотаток або книжки. На неї кладуть аркуші; на ній не стоять."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-45:intro2:r1",
+              "text": "The speech is on the lectern."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro2:r2",
+              "text": "The speech are on the lectern."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro2:r3",
+              "text": "The speech on the lectern."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-45:intro2:r1",
+              "text": "The speech is on the lectern."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro2:r2",
+              "text": "The speech are on the lectern."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro2:r3",
+              "text": "The speech on the lectern."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Свет уже настроен",
+        "uk": "Світло вже налаштоване"
+      },
+      "bodyByLocale": {
+        "ru": "На репетиции луч прожектора направлен на место выступающего. Помощник собирается передвинуть прибор. Please don’t move the spotlight — «Пожалуйста, не двигай прожектор». Spotlight здесь — прибор, который освещает определённое место. После don’t используем move, без -ing.",
+        "uk": "На репетиції промінь прожектора спрямований на місце промовця. Помічник збирається пересунути прилад. Please don’t move the spotlight — «Будь ласка, не рухай прожектор». Spotlight тут — прилад, який освітлює певне місце. Після don’t використовуємо move, без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-45:intro3:r1",
+              "text": "Please don't move the spotlight."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro3:r2",
+              "text": "Please don't moving the spotlight."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro3:r3",
+              "text": "Please not move the spotlight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-45:intro3:r1",
+              "text": "Please don't move the spotlight."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro3:r2",
+              "text": "Please don't moving the spotlight."
+            },
+            {
+              "responseId": "en:lesson-09:session-45:intro3:r3",
+              "text": "Please not move the spotlight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e5e41694588af54a1caa38506e64cc0ebb71523f11c51a222d05b3ceb015a29f"
+}

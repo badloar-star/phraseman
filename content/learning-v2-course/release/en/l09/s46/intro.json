@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "We are wandering; in the courtyard; Please don’t block the archway",
+    "uk": "We are wandering; in the courtyard; Please don’t block the archway"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сегодня никуда не спешим",
+        "uk": "Сьогодні нікуди не поспішаємо"
+      },
+      "bodyByLocale": {
+        "ru": "В выходной вы с сестрой гуляете по старому кварталу без заранее выбранного маршрута. Друг звонит и спрашивает, куда вы направляетесь. We are wandering — «Мы бродим». Wander — ходить без определённой цели или маршрута. Это не обязательно значит заблудиться: сегодня вы сами выбрали такую прогулку. С we для действия сейчас нужно are wandering.",
+        "uk": "У вихідний ви із сестрою гуляєте старим кварталом без заздалегідь обраного маршруту. Друг телефонує й запитує, куди ви прямуєте. We are wandering — «Ми блукаємо». Wander — ходити без певної мети чи маршруту. Це не обов’язково означає заблукати: сьогодні ви самі вибрали таку прогулянку. З we для дії зараз потрібне are wandering."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-46:intro1:r1",
+              "text": "We are wandering."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro1:r2",
+              "text": "We is wandering."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro1:r3",
+              "text": "We are wander."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-46:intro1:r1",
+              "text": "We are wandering."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro1:r2",
+              "text": "We is wandering."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro1:r3",
+              "text": "We are wander."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Двор внутри квартала",
+        "uk": "Двір усередині кварталу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы договорились встретиться с другом у кафе. Он ищет вас на улице, а вы сидите во внутреннем дворе, окружённом стенами зданий. I am in the courtyard — «Я во внутреннем дворе». Courtyard — открытый двор, окружённый зданиями или стенами. Здесь называем место, поэтому после am не нужен глагол с -ing.",
+        "uk": "Ви домовилися зустрітися з другом біля кафе. Він шукає вас на вулиці, а ви сидите у внутрішньому дворі, оточеному стінами будівель. I am in the courtyard — «Я у внутрішньому дворі». Courtyard — відкритий двір, оточений будівлями або стінами. Тут називаємо місце, тому після am не потрібне дієслово з -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-46:intro2:r1",
+              "text": "I am in the courtyard."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro2:r2",
+              "text": "I in the courtyard."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro2:r3",
+              "text": "I are in the courtyard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-46:intro2:r1",
+              "text": "I am in the courtyard."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro2:r2",
+              "text": "I in the courtyard."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro2:r3",
+              "text": "I are in the courtyard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оставить проход свободным",
+        "uk": "Залишити прохід вільним"
+      },
+      "bodyByLocale": {
+        "ru": "У входа во двор турист поставил большой чемодан в арочном проходе. Людям трудно пройти. Please don’t block the archway — «Пожалуйста, не загораживай арочный проход». Archway — проход под аркой. Вежливо просим не делать что-то: Please don’t + block без окончания.",
+        "uk": "Біля входу у двір турист поставив велику валізу в арковому проході. Людям важко пройти. Please don’t block the archway — «Будь ласка, не загороджуй арковий прохід». Archway — прохід під аркою. Ввічливо просимо не робити щось: Please don’t + block без закінчення."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-46:intro3:r1",
+              "text": "Please don't block the archway."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro3:r2",
+              "text": "Please don't blocking the archway."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro3:r3",
+              "text": "Please not block the archway."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-46:intro3:r1",
+              "text": "Please don't block the archway."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro3:r2",
+              "text": "Please don't blocking the archway."
+            },
+            {
+              "responseId": "en:lesson-09:session-46:intro3:r3",
+              "text": "Please not block the archway."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1668121013660e5faae7bd80d17b98d16b19035a9d23feea1842f6e52d23b3eb"
+}

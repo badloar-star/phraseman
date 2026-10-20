@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-27",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-27:word:ridge",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ridge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:word:ridge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ridge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:word:ridge:audio",
+            "transcript": "ridge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:word:ridge:r1",
+              "targetText": "ridge",
+              "meaningByLocale": {
+                "ru": "«гребень холма». We are walking along the ridge. — «Мы идём вдоль гребня холма». Узкая вытянутая верхняя часть холма.",
+                "uk": "«гребінь пагорба». We are walking along the ridge. — «Ми йдемо вздовж гребеня пагорба». Вузька видовжена верхня частина пагорба."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ridge",
+            "definitionByLocale": {
+              "ru": "«гребень холма». We are walking along the ridge. — «Мы идём вдоль гребня холма». Узкая вытянутая верхняя часть холма.",
+              "uk": "«гребінь пагорба». We are walking along the ridge. — «Ми йдемо вздовж гребеня пагорба». Вузька видовжена верхня частина пагорба."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг звонит во время вашей прогулки по холму. Скажите: «Мы идём вдоль гребня холма»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг звонит во время вашей прогулки по холму. Скажите: «Мы идём вдоль гребня холма»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are walking along the ridge.",
+          "localizedMeaning": {
+            "ru": "Друг звонит во время вашей прогулки по холму. Скажите: «Мы идём вдоль гребня холма»",
+            "uk": "Друг телефонує під час вашої прогулянки пагорбом. Скажіть: «Ми йдемо вздовж гребеня пагорба»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "walking",
+            "along",
+            "the",
+            "ridge"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i02:r1",
+            "text": "The ridge is above the village."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i02:r2",
+            "text": "The ridge is behind the village."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i02:r3",
+            "text": "The hill is above the village."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i02:audio",
+            "transcript": "The ridge is above the village."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:i02:r1",
+              "targetText": "The ridge is above the village.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i02:r2",
+              "targetText": "The ridge is behind the village.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i02:r3",
+              "targetText": "The hill is above the village.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The ridge is above the village.",
+                "uk": "У записі звучить The ridge is above the village."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The ridge is above the village.",
+                "uk": "У записі звучить The ridge is above the village."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы рассказываете о привычке. Выберите форму watch",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i03:r1",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i03:r2",
+            "text": "watches"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i03:r3",
+            "text": "watching"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете о привычке. Выберите форму watch",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете о привычке. Выберите форму watch",
+            "uk": "Ви розповідаєте про звичку. Виберіть форму watch"
+          },
+          "gappedTargetPhrase": "We usually ___ the sunrise here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-27:i03:r1",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i03:r2",
+              "text": "watches"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i03:r3",
+              "text": "watching"
+            }
+          ],
+          "testedDimension": "Вы рассказываете о привычке. Выберите форму watch",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о привычке. Выберите форму watch",
+              "feedbackByLocale": {
+                "ru": "С we нужна watch без s.",
+                "uk": "З we потрібна watch без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о привычке. Выберите форму watch",
+              "feedbackByLocale": {
+                "ru": "Для этой привычки нужна watch.",
+                "uk": "Для цієї звички потрібна watch."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:word:foothills",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — foothills",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:word:foothills:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — foothills",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:word:foothills:audio",
+            "transcript": "foothills"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:word:foothills:r1",
+              "targetText": "foothills",
+              "meaningByLocale": {
+                "ru": "«предгорья». We are walking through the foothills. — «Мы идём через предгорья». Невысокие холмы у подножия гор; здесь форма множественного числа.",
+                "uk": "«передгір’я». We are walking through the foothills. — «Ми йдемо через передгір’я». Невисокі пагорби біля підніжжя гір; тут форма множини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foothills",
+            "definitionByLocale": {
+              "ru": "«предгорья». We are walking through the foothills. — «Мы идём через предгорья». Невысокие холмы у подножия гор; здесь форма множественного числа.",
+              "uk": "«передгір’я». We are walking through the foothills. — «Ми йдемо через передгір’я». Невисокі пагорби біля підніжжя гір; тут форма множини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другом идёте среди невысоких холмов у гор. Скажите по телефону: «Мы идём через предгорья»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом идёте среди невысоких холмов у гор. Скажите по телефону: «Мы идём через предгорья»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are walking through the foothills.",
+          "localizedMeaning": {
+            "ru": "Вы с другом идёте среди невысоких холмов у гор. Скажите по телефону: «Мы идём через предгорья»",
+            "uk": "Ви з другом ідете серед невисоких пагорбів біля гір. Скажіть телефоном: «Ми йдемо через передгір’я»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "walking",
+            "through",
+            "the",
+            "foothills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i05:r1",
+            "text": "The foothills are green."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i05:r2",
+            "text": "The foothills are brown."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i05:r3",
+            "text": "The fields are green."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i05:audio",
+            "transcript": "The foothills are green."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:i05:r1",
+              "targetText": "The foothills are green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i05:r2",
+              "targetText": "The foothills are brown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i05:r3",
+              "targetText": "The fields are green.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The foothills are green.",
+                "uk": "У записі звучить The foothills are green."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The foothills are green.",
+                "uk": "У записі звучить The foothills are green."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку для foothills во множественном числе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку для foothills во множественном числе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для foothills во множественном числе",
+            "uk": "Виберіть зв’язку для foothills у множині"
+          },
+          "gappedTargetPhrase": "The foothills ___ green.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-27:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку для foothills во множественном числе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку для foothills во множественном числе",
+              "feedbackByLocale": {
+                "ru": "Foothills — множественное число: are.",
+                "uk": "Foothills — множина: are."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку для foothills во множественном числе",
+              "feedbackByLocale": {
+                "ru": "Am используется с I; здесь нужно are.",
+                "uk": "Am використовуємо з I; тут потрібне are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:word:lookout",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lookout",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:word:lookout:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lookout",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:word:lookout:audio",
+            "transcript": "lookout"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:word:lookout:r1",
+              "targetText": "lookout",
+              "meaningByLocale": {
+                "ru": "«смотровая площадка». We are sitting at the lookout. — «Мы сидим на смотровой площадке». Здесь место, откуда удобно смотреть на окрестности.",
+                "uk": "«оглядовий майданчик». We are sitting at the lookout. — «Ми сидимо на оглядовому майданчику». Тут місце, звідки зручно дивитися на околиці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lookout",
+            "definitionByLocale": {
+              "ru": "«смотровая площадка». We are sitting at the lookout. — «Мы сидим на смотровой площадке». Здесь место, откуда удобно смотреть на окрестности.",
+              "uk": "«оглядовий майданчик». We are sitting at the lookout. — «Ми сидимо на оглядовому майданчику». Тут місце, звідки зручно дивитися на околиці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ищет вас во время прогулки. Вы отдыхаете на смотровой площадке. Скажите: «Мы сидим на смотровой площадке»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ищет вас во время прогулки. Вы отдыхаете на смотровой площадке. Скажите: «Мы сидим на смотровой площадке»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are sitting at the lookout.",
+          "localizedMeaning": {
+            "ru": "Друг ищет вас во время прогулки. Вы отдыхаете на смотровой площадке. Скажите: «Мы сидим на смотровой площадке»",
+            "uk": "Друг шукає вас під час прогулянки. Ви відпочиваєте на оглядовому майданчику. Скажіть: «Ми сидимо на оглядовому майданчику»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "sitting",
+            "at",
+            "the",
+            "lookout"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i08:r1",
+            "text": "The lookout is near the village."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i08:r2",
+            "text": "The lookout is near the river."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i08:r3",
+            "text": "The path is near the village."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i08:audio",
+            "transcript": "The lookout is near the village."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:i08:r1",
+              "targetText": "The lookout is near the village.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i08:r2",
+              "targetText": "The lookout is near the river.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i08:r3",
+              "targetText": "The path is near the village.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The lookout is near the village.",
+                "uk": "У записі звучить The lookout is near the village."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The lookout is near the village.",
+                "uk": "У записі звучить The lookout is near the village."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i09:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i09:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i09:r3",
+            "text": "sit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+            "uk": "Ви сидите на майданчику зараз. Виберіть написання форми sit"
+          },
+          "gappedTargetPhrase": "We are ___ at the lookout.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-27:i09:r1",
+              "text": "sitting"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i09:r2",
+              "text": "siting"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i09:r3",
+              "text": "sit"
+            }
+          ],
+          "testedDimension": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+              "feedbackByLocale": {
+                "ru": "В sitting удваиваем t.",
+                "uk": "У sitting подвоюємо t."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+              "feedbackByLocale": {
+                "ru": "После are для действия сейчас нужна sitting.",
+                "uk": "Після are для дії зараз потрібна sitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:word:headland",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — headland",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:word:headland:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — headland",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:word:headland:audio",
+            "transcript": "headland"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:word:headland:r1",
+              "targetText": "headland",
+              "meaningByLocale": {
+                "ru": "«мыс». I can see the headland. — «Я вижу мыс». Участок суши, выступающий в море.",
+                "uk": "«мис». I can see the headland. — «Я бачу мис». Ділянка суходолу, що виступає в море."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headland",
+            "definitionByLocale": {
+              "ru": "«мыс». I can see the headland. — «Я вижу мыс». Участок суши, выступающий в море.",
+              "uk": "«мис». I can see the headland. — «Я бачу мис». Ділянка суходолу, що виступає в море."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы смотрите на побережье со смотровой площадки. Скажите другу: «Я вижу мыс»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы смотрите на побережье со смотровой площадки. Скажите другу: «Я вижу мыс»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see the headland.",
+          "localizedMeaning": {
+            "ru": "Вы смотрите на побережье со смотровой площадки. Скажите другу: «Я вижу мыс»",
+            "uk": "Ви дивитеся на узбережжя з оглядового майданчика. Скажіть другу: «Я бачу мис»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "the",
+            "headland"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i11:r1",
+            "text": "The headland is in the distance."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i11:r2",
+            "text": "The village is in the distance."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i11:r3",
+            "text": "The headland is on the left."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i11:audio",
+            "transcript": "The headland is in the distance."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:i11:r1",
+              "targetText": "The headland is in the distance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i11:r2",
+              "targetText": "The village is in the distance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i11:r3",
+              "targetText": "The headland is on the left.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The headland is in the distance.",
+                "uk": "У записі звучить The headland is in the distance."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The headland is in the distance.",
+                "uk": "У записі звучить The headland is in the distance."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму see после can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i12:r1",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i12:r2",
+            "text": "sees"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i12:r3",
+            "text": "seeing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму see после can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму see после can",
+            "uk": "Виберіть форму see після can"
+          },
+          "gappedTargetPhrase": "We can ___ the headland.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-27:i12:r1",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i12:r2",
+              "text": "sees"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i12:r3",
+              "text": "seeing"
+            }
+          ],
+          "testedDimension": "Выберите форму see после can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму see после can",
+              "feedbackByLocale": {
+                "ru": "После can нужна see без s.",
+                "uk": "Після can потрібна see без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму see после can",
+              "feedbackByLocale": {
+                "ru": "После can нужна базовая форма see.",
+                "uk": "Після can потрібна початкова форма see."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-27:i13:p1",
+              "target": "ridge",
+              "meaningByLocale": {
+                "ru": "гребень холма",
+                "uk": "гребінь пагорба"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-27:i13:p2",
+              "target": "foothills",
+              "meaningByLocale": {
+                "ru": "предгорья",
+                "uk": "передгір’я"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-27:i13:p3",
+              "target": "lookout",
+              "meaningByLocale": {
+                "ru": "смотровая площадка",
+                "uk": "оглядовий майданчик"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-27:i13:p4",
+              "target": "headland",
+              "meaningByLocale": {
+                "ru": "мыс",
+                "uk": "мис"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ridge",
+            "foothills",
+            "lookout",
+            "headland"
+          ],
+          "rightColumn": [
+            "гребень холма",
+            "предгорья",
+            "смотровая площадка",
+            "мыс"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i14:audio",
+            "transcript": "We are sitting at the lookout."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are sitting at the lookout.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "sitting",
+            "at",
+            "the",
+            "lookout"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг звонит в момент восхода. Скажите, что вы делаете: «Мы сейчас наблюдаем восход солнца»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Друг звонит в момент восхода. Скажите, что вы делаете: «Мы сейчас наблюдаем восход солнца»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i15:audio",
+            "transcript": "We are watching the sunrise now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are watching the sunrise now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы рассказываете, где обычно встречаете восход. Скажите: «Мы обычно наблюдаем восход солнца здесь». Поставьте here в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете, где обычно встречаете восход. Скажите: «Мы обычно наблюдаем восход солнца здесь». Поставьте here в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We usually watch the sunrise here.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете, где обычно встречаете восход. Скажите: «Мы обычно наблюдаем восход солнца здесь». Поставьте here в конце",
+            "uk": "Ви розповідаєте, де зазвичай зустрічаєте схід. Скажіть: «Ми зазвичай спостерігаємо схід сонця тут». Поставте here у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "usually",
+            "watch",
+            "the",
+            "sunrise",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, что вы видите с площадки. Вы различаете выступающий в море участок суши. Скажите: «Я вижу мыс»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, что вы видите с площадки. Вы различаете выступающий в море участок суши. Скажите: «Я вижу мыс»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i17:audio",
+            "transcript": "I can see the headland."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can see the headland.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-27:word:ridge",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ridge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:word:ridge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ridge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:word:ridge:audio",
+            "transcript": "ridge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:word:ridge:r1",
+              "targetText": "ridge",
+              "meaningByLocale": {
+                "ru": "«гребень холма». We are walking along the ridge. — «Мы идём вдоль гребня холма». Узкая вытянутая верхняя часть холма.",
+                "uk": "«гребінь пагорба». We are walking along the ridge. — «Ми йдемо вздовж гребеня пагорба». Вузька видовжена верхня частина пагорба."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ridge",
+            "definitionByLocale": {
+              "ru": "«гребень холма». We are walking along the ridge. — «Мы идём вдоль гребня холма». Узкая вытянутая верхняя часть холма.",
+              "uk": "«гребінь пагорба». We are walking along the ridge. — «Ми йдемо вздовж гребеня пагорба». Вузька видовжена верхня частина пагорба."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг телефонує під час вашої прогулянки пагорбом. Скажіть: «Ми йдемо вздовж гребеня пагорба»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг телефонує під час вашої прогулянки пагорбом. Скажіть: «Ми йдемо вздовж гребеня пагорба»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are walking along the ridge.",
+          "localizedMeaning": {
+            "ru": "Друг звонит во время вашей прогулки по холму. Скажите: «Мы идём вдоль гребня холма»",
+            "uk": "Друг телефонує під час вашої прогулянки пагорбом. Скажіть: «Ми йдемо вздовж гребеня пагорба»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "walking",
+            "along",
+            "the",
+            "ridge"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i02:r1",
+            "text": "The ridge is above the village."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i02:r2",
+            "text": "The ridge is behind the village."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i02:r3",
+            "text": "The hill is above the village."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i02:audio",
+            "transcript": "The ridge is above the village."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:i02:r1",
+              "targetText": "The ridge is above the village.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i02:r2",
+              "targetText": "The ridge is behind the village.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i02:r3",
+              "targetText": "The hill is above the village.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The ridge is above the village.",
+                "uk": "У записі звучить The ridge is above the village."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The ridge is above the village.",
+                "uk": "У записі звучить The ridge is above the village."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви розповідаєте про звичку. Виберіть форму watch",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i03:r1",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i03:r2",
+            "text": "watches"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i03:r3",
+            "text": "watching"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте про звичку. Виберіть форму watch",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете о привычке. Выберите форму watch",
+            "uk": "Ви розповідаєте про звичку. Виберіть форму watch"
+          },
+          "gappedTargetPhrase": "We usually ___ the sunrise here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-27:i03:r1",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i03:r2",
+              "text": "watches"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i03:r3",
+              "text": "watching"
+            }
+          ],
+          "testedDimension": "Ви розповідаєте про звичку. Виберіть форму watch",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про звичку. Виберіть форму watch",
+              "feedbackByLocale": {
+                "ru": "С we нужна watch без s.",
+                "uk": "З we потрібна watch без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про звичку. Виберіть форму watch",
+              "feedbackByLocale": {
+                "ru": "Для этой привычки нужна watch.",
+                "uk": "Для цієї звички потрібна watch."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:word:foothills",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — foothills",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:word:foothills:audio"
+        ],
+        "accessibilityLabel": "Картка слова — foothills",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:word:foothills:audio",
+            "transcript": "foothills"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:word:foothills:r1",
+              "targetText": "foothills",
+              "meaningByLocale": {
+                "ru": "«предгорья». We are walking through the foothills. — «Мы идём через предгорья». Невысокие холмы у подножия гор; здесь форма множественного числа.",
+                "uk": "«передгір’я». We are walking through the foothills. — «Ми йдемо через передгір’я». Невисокі пагорби біля підніжжя гір; тут форма множини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "foothills",
+            "definitionByLocale": {
+              "ru": "«предгорья». We are walking through the foothills. — «Мы идём через предгорья». Невысокие холмы у подножия гор; здесь форма множественного числа.",
+              "uk": "«передгір’я». We are walking through the foothills. — «Ми йдемо через передгір’я». Невисокі пагорби біля підніжжя гір; тут форма множини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з другом ідете серед невисоких пагорбів біля гір. Скажіть телефоном: «Ми йдемо через передгір’я»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом ідете серед невисоких пагорбів біля гір. Скажіть телефоном: «Ми йдемо через передгір’я»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are walking through the foothills.",
+          "localizedMeaning": {
+            "ru": "Вы с другом идёте среди невысоких холмов у гор. Скажите по телефону: «Мы идём через предгорья»",
+            "uk": "Ви з другом ідете серед невисоких пагорбів біля гір. Скажіть телефоном: «Ми йдемо через передгір’я»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "walking",
+            "through",
+            "the",
+            "foothills"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i05:r1",
+            "text": "The foothills are green."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i05:r2",
+            "text": "The foothills are brown."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i05:r3",
+            "text": "The fields are green."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i05:audio",
+            "transcript": "The foothills are green."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:i05:r1",
+              "targetText": "The foothills are green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i05:r2",
+              "targetText": "The foothills are brown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i05:r3",
+              "targetText": "The fields are green.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The foothills are green.",
+                "uk": "У записі звучить The foothills are green."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The foothills are green.",
+                "uk": "У записі звучить The foothills are green."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку для foothills у множині",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку для foothills у множині",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для foothills во множественном числе",
+            "uk": "Виберіть зв’язку для foothills у множині"
+          },
+          "gappedTargetPhrase": "The foothills ___ green.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-27:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку для foothills у множині",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для foothills у множині",
+              "feedbackByLocale": {
+                "ru": "Foothills — множественное число: are.",
+                "uk": "Foothills — множина: are."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для foothills у множині",
+              "feedbackByLocale": {
+                "ru": "Am используется с I; здесь нужно are.",
+                "uk": "Am використовуємо з I; тут потрібне are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:word:lookout",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lookout",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:word:lookout:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lookout",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:word:lookout:audio",
+            "transcript": "lookout"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:word:lookout:r1",
+              "targetText": "lookout",
+              "meaningByLocale": {
+                "ru": "«смотровая площадка». We are sitting at the lookout. — «Мы сидим на смотровой площадке». Здесь место, откуда удобно смотреть на окрестности.",
+                "uk": "«оглядовий майданчик». We are sitting at the lookout. — «Ми сидимо на оглядовому майданчику». Тут місце, звідки зручно дивитися на околиці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lookout",
+            "definitionByLocale": {
+              "ru": "«смотровая площадка». We are sitting at the lookout. — «Мы сидим на смотровой площадке». Здесь место, откуда удобно смотреть на окрестности.",
+              "uk": "«оглядовий майданчик». We are sitting at the lookout. — «Ми сидимо на оглядовому майданчику». Тут місце, звідки зручно дивитися на околиці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг шукає вас під час прогулянки. Ви відпочиваєте на оглядовому майданчику. Скажіть: «Ми сидимо на оглядовому майданчику»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг шукає вас під час прогулянки. Ви відпочиваєте на оглядовому майданчику. Скажіть: «Ми сидимо на оглядовому майданчику»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are sitting at the lookout.",
+          "localizedMeaning": {
+            "ru": "Друг ищет вас во время прогулки. Вы отдыхаете на смотровой площадке. Скажите: «Мы сидим на смотровой площадке»",
+            "uk": "Друг шукає вас під час прогулянки. Ви відпочиваєте на оглядовому майданчику. Скажіть: «Ми сидимо на оглядовому майданчику»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "sitting",
+            "at",
+            "the",
+            "lookout"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i08:r1",
+            "text": "The lookout is near the village."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i08:r2",
+            "text": "The lookout is near the river."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i08:r3",
+            "text": "The path is near the village."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i08:audio",
+            "transcript": "The lookout is near the village."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:i08:r1",
+              "targetText": "The lookout is near the village.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i08:r2",
+              "targetText": "The lookout is near the river.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i08:r3",
+              "targetText": "The path is near the village.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The lookout is near the village.",
+                "uk": "У записі звучить The lookout is near the village."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The lookout is near the village.",
+                "uk": "У записі звучить The lookout is near the village."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i09:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i09:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i09:r3",
+            "text": "sit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сидите на площадке сейчас. Выберите написание формы sit",
+            "uk": "Ви сидите на майданчику зараз. Виберіть написання форми sit"
+          },
+          "gappedTargetPhrase": "We are ___ at the lookout.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-27:i09:r1",
+              "text": "sitting"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i09:r2",
+              "text": "siting"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i09:r3",
+              "text": "sit"
+            }
+          ],
+          "testedDimension": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+              "feedbackByLocale": {
+                "ru": "В sitting удваиваем t.",
+                "uk": "У sitting подвоюємо t."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви сидите на майданчику зараз. Виберіть написання форми sit",
+              "feedbackByLocale": {
+                "ru": "После are для действия сейчас нужна sitting.",
+                "uk": "Після are для дії зараз потрібна sitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:word:headland",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — headland",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:word:headland:audio"
+        ],
+        "accessibilityLabel": "Картка слова — headland",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:word:headland:audio",
+            "transcript": "headland"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:word:headland:r1",
+              "targetText": "headland",
+              "meaningByLocale": {
+                "ru": "«мыс». I can see the headland. — «Я вижу мыс». Участок суши, выступающий в море.",
+                "uk": "«мис». I can see the headland. — «Я бачу мис». Ділянка суходолу, що виступає в море."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headland",
+            "definitionByLocale": {
+              "ru": "«мыс». I can see the headland. — «Я вижу мыс». Участок суши, выступающий в море.",
+              "uk": "«мис». I can see the headland. — «Я бачу мис». Ділянка суходолу, що виступає в море."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви дивитеся на узбережжя з оглядового майданчика. Скажіть другу: «Я бачу мис»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви дивитеся на узбережжя з оглядового майданчика. Скажіть другу: «Я бачу мис»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see the headland.",
+          "localizedMeaning": {
+            "ru": "Вы смотрите на побережье со смотровой площадки. Скажите другу: «Я вижу мыс»",
+            "uk": "Ви дивитеся на узбережжя з оглядового майданчика. Скажіть другу: «Я бачу мис»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "the",
+            "headland"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i11:r1",
+            "text": "The headland is in the distance."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i11:r2",
+            "text": "The village is in the distance."
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i11:r3",
+            "text": "The headland is on the left."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i11:audio",
+            "transcript": "The headland is in the distance."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-27:i11:r1",
+              "targetText": "The headland is in the distance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i11:r2",
+              "targetText": "The village is in the distance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i11:r3",
+              "targetText": "The headland is on the left.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The headland is in the distance.",
+                "uk": "У записі звучить The headland is in the distance."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The headland is in the distance.",
+                "uk": "У записі звучить The headland is in the distance."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму see після can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-27:i12:r1",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i12:r2",
+            "text": "sees"
+          },
+          {
+            "responseId": "en:lesson-10:session-27:i12:r3",
+            "text": "seeing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму see після can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму see после can",
+            "uk": "Виберіть форму see після can"
+          },
+          "gappedTargetPhrase": "We can ___ the headland.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-27:i12:r1",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i12:r2",
+              "text": "sees"
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i12:r3",
+              "text": "seeing"
+            }
+          ],
+          "testedDimension": "Виберіть форму see після can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-27:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму see після can",
+              "feedbackByLocale": {
+                "ru": "После can нужна see без s.",
+                "uk": "Після can потрібна see без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-27:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму see після can",
+              "feedbackByLocale": {
+                "ru": "После can нужна базовая форма see.",
+                "uk": "Після can потрібна початкова форма see."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-27:i13:p1",
+              "target": "ridge",
+              "meaningByLocale": {
+                "ru": "гребень холма",
+                "uk": "гребінь пагорба"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-27:i13:p2",
+              "target": "foothills",
+              "meaningByLocale": {
+                "ru": "предгорья",
+                "uk": "передгір’я"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-27:i13:p3",
+              "target": "lookout",
+              "meaningByLocale": {
+                "ru": "смотровая площадка",
+                "uk": "оглядовий майданчик"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-27:i13:p4",
+              "target": "headland",
+              "meaningByLocale": {
+                "ru": "мыс",
+                "uk": "мис"
+              }
+            }
+          ],
+          "leftColumn": [
+            "ridge",
+            "foothills",
+            "lookout",
+            "headland"
+          ],
+          "rightColumn": [
+            "гребінь пагорба",
+            "передгір’я",
+            "оглядовий майданчик",
+            "мис"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i14:audio",
+            "transcript": "We are sitting at the lookout."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are sitting at the lookout.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "sitting",
+            "at",
+            "the",
+            "lookout"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг телефонує в мить сходу сонця. Скажіть, що ви робите: «Ми зараз спостерігаємо схід сонця»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Друг телефонує в мить сходу сонця. Скажіть, що ви робите: «Ми зараз спостерігаємо схід сонця»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i15:audio",
+            "transcript": "We are watching the sunrise now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are watching the sunrise now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви розповідаєте, де зазвичай зустрічаєте схід. Скажіть: «Ми зазвичай спостерігаємо схід сонця тут». Поставте here у кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте, де зазвичай зустрічаєте схід. Скажіть: «Ми зазвичай спостерігаємо схід сонця тут». Поставте here у кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We usually watch the sunrise here.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете, где обычно встречаете восход. Скажите: «Мы обычно наблюдаем восход солнца здесь». Поставьте here в конце",
+            "uk": "Ви розповідаєте, де зазвичай зустрічаєте схід. Скажіть: «Ми зазвичай спостерігаємо схід сонця тут». Поставте here у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "usually",
+            "watch",
+            "the",
+            "sunrise",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-27:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, що ви бачите з майданчика. Ви розрізняєте ділянку суходолу, що виступає в море. Скажіть: «Я бачу мис»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, що ви бачите з майданчика. Ви розрізняєте ділянку суходолу, що виступає в море. Скажіть: «Я бачу мис»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-27:i17:audio",
+            "transcript": "I can see the headland."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can see the headland.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-27:word:ridge",
+      "correctText": "ridge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i01",
+      "correctText": "We are walking along the ridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i02",
+      "correctText": "The ridge is above the village.",
+      "correctResponseId": "en:lesson-10:session-27:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i03",
+      "correctText": "watch",
+      "correctResponseId": "en:lesson-10:session-27:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:word:foothills",
+      "correctText": "foothills",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i04",
+      "correctText": "We are walking through the foothills.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i05",
+      "correctText": "The foothills are green.",
+      "correctResponseId": "en:lesson-10:session-27:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i06",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-10:session-27:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:word:lookout",
+      "correctText": "lookout",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i07",
+      "correctText": "We are sitting at the lookout.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i08",
+      "correctText": "The lookout is near the village.",
+      "correctResponseId": "en:lesson-10:session-27:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i09",
+      "correctText": "sitting",
+      "correctResponseId": "en:lesson-10:session-27:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:word:headland",
+      "correctText": "headland",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i10",
+      "correctText": "I can see the headland.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i11",
+      "correctText": "The headland is in the distance.",
+      "correctResponseId": "en:lesson-10:session-27:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i12",
+      "correctText": "see",
+      "correctResponseId": "en:lesson-10:session-27:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i14",
+      "correctText": "We are sitting at the lookout.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i15",
+      "correctText": "We are watching the sunrise now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i16",
+      "correctText": "We usually watch the sunrise here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:i17",
+      "correctText": "I can see the headland.",
+      "correctResponseId": null
+    }
+  ]
+}

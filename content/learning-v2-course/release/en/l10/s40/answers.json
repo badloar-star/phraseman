@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-40:word:reunion",
+    "correctText": "reunion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i01",
+    "correctText": "We have a reunion every year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i02",
+    "correctText": "The reunion is in the hall.",
+    "correctResponseId": "en:lesson-10:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i03",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-10:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:word:alumni",
+    "correctText": "alumni",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i04",
+    "correctText": "The alumni are arriving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i05",
+    "correctText": "The alumni are talking in the hall.",
+    "correctResponseId": "en:lesson-10:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-10:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:word:memento",
+    "correctText": "memento",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i07",
+    "correctText": "This photo is a memento.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i08",
+    "correctText": "I keep the badge as a memento.",
+    "correctResponseId": "en:lesson-10:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:word:centenary",
+    "correctText": "centenary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i10",
+    "correctText": "We are celebrating the centenary.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i11",
+    "correctText": "The centenary is in May.",
+    "correctResponseId": "en:lesson-10:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i12",
+    "correctText": "celebrating",
+    "correctResponseId": "en:lesson-10:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i13",
+    "correctText": "en:lesson-10:session-40:i13:p1=reunion\nen:lesson-10:session-40:i13:p2=alumni\nen:lesson-10:session-40:i13:p3=memento\nen:lesson-10:session-40:i13:p4=centenary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i14",
+    "correctText": "The alumni are arriving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i15",
+    "correctText": "We have a reunion every year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i16",
+    "correctText": "This photo is a memento.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-40:i17",
+    "correctText": "We are celebrating the centenary.",
+    "correctResponseId": null
+  }
+]

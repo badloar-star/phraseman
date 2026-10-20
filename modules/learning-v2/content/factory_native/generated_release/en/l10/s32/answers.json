@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-32:word:sapling",
+    "correctText": "sapling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i01",
+    "correctText": "I am watering the sapling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i02",
+    "correctText": "The sapling is growing.",
+    "correctResponseId": "en:lesson-10:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i03",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-10:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:word:mulch",
+    "correctText": "mulch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i04",
+    "correctText": "The mulch is in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i05",
+    "correctText": "The mulch is dry.",
+    "correctResponseId": "en:lesson-10:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:word:compost",
+    "correctText": "compost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i07",
+    "correctText": "There is compost in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i08",
+    "correctText": "The compost is dark.",
+    "correctResponseId": "en:lesson-10:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:word:seedbed",
+    "correctText": "seedbed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i10",
+    "correctText": "We are preparing the seedbed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i11",
+    "correctText": "The seedbed is beside the path.",
+    "correctResponseId": "en:lesson-10:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i12",
+    "correctText": "preparing",
+    "correctResponseId": "en:lesson-10:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i13",
+    "correctText": "en:lesson-10:session-32:i13:p1=sapling\nen:lesson-10:session-32:i13:p2=mulch\nen:lesson-10:session-32:i13:p3=compost\nen:lesson-10:session-32:i13:p4=seedbed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i14",
+    "correctText": "We are preparing the seedbed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i15",
+    "correctText": "I know this garden.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i16",
+    "correctText": "She is working here this week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-32:i17",
+    "correctText": "We are preparing the seedbed.",
+    "correctResponseId": null
+  }
+]

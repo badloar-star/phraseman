@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-31:intro1:r2": {
+          "ru": "Между spring и описанием нужна is.",
+          "uk": "Між spring та описом потрібне is."
+        },
+        "en:lesson-10:session-31:intro1:r3": {
+          "ru": "Spring здесь единственное число: is.",
+          "uk": "Spring тут однина: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-31:intro2:r2": {
+          "ru": "Перед in blossom нужна is.",
+          "uk": "Перед in blossom потрібне is."
+        },
+        "en:lesson-10:session-31:intro2:r3": {
+          "ru": "Говорим in blossom, не on blossom.",
+          "uk": "Кажемо in blossom, не on blossom."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-31:intro3:r2": {
+          "ru": "Foliage здесь неисчисляемое: is.",
+          "uk": "Foliage тут незлічуване: is."
+        },
+        "en:lesson-10:session-31:intro3:r3": {
+          "ru": "Перед turning нужна is.",
+          "uk": "Перед turning потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "111e643aa97d8f1c2f4480fb5f47a90718b38c29042377b481a18d7a23119f1f"
+}

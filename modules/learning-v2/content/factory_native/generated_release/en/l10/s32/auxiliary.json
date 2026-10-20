@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-32:intro1:r2": {
+          "ru": "С I нужна work без s.",
+          "uk": "З I потрібна work без s."
+        },
+        "en:lesson-10:session-32:intro1:r3": {
+          "ru": "Для этой привычки нужна work.",
+          "uk": "Для цієї звички потрібна work."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-32:intro2:r2": {
+          "ru": "Перед working нужен is.",
+          "uk": "Перед working потрібне is."
+        },
+        "en:lesson-10:session-32:intro2:r3": {
+          "ru": "С she нужно is.",
+          "uk": "З she потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-32:intro3:r2": {
+          "ru": "С I нужна know без s.",
+          "uk": "З I потрібна know без s."
+        },
+        "en:lesson-10:session-32:intro3:r3": {
+          "ru": "Am know неверно; здесь нужна know.",
+          "uk": "Am know неправильно; тут потрібна know."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9108237dd7a1f0a10c6724b4394506bbbc94759a2d2653d003a74f787d10ea64"
+}

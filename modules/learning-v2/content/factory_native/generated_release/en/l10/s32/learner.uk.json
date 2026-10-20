@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-32:word:sapling",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sapling",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:word:sapling:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sapling",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:word:sapling:audio",
+          "transcript": "sapling"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-32:word:sapling:r1",
+            "targetText": "sapling",
+            "meaningByLocale": {
+              "ru": "«молодое деревце». I am watering the sapling. — «Я поливаю молодое деревце». Молодое дерево с тонким стволом.",
+              "uk": "«молоде деревце». I am watering the sapling. — «Я поливаю молоде деревце». Молоде дерево з тонким стовбуром."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sapling",
+          "definitionByLocale": {
+            "ru": "«молодое деревце». I am watering the sapling. — «Я поливаю молодое деревце». Молодое дерево с тонким стволом.",
+            "uk": "«молоде деревце». I am watering the sapling. — «Я поливаю молоде деревце». Молоде дерево з тонким стовбуром."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг телефонує, поки ви поливаєте молоде дерево. Скажіть: «Я поливаю молоде деревце»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг телефонує, поки ви поливаєте молоде дерево. Скажіть: «Я поливаю молоде деревце»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am watering the sapling.",
+        "localizedMeaning": {
+          "ru": "Друг звонит, пока вы поливаете молодое дерево. Скажите: «Я поливаю молодое деревце»",
+          "uk": "Друг телефонує, поки ви поливаєте молоде дерево. Скажіть: «Я поливаю молоде деревце»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "watering",
+          "the",
+          "sapling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-32:i02:r1",
+          "text": "The sapling is growing."
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i02:r2",
+          "text": "The flower is growing."
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i02:r3",
+          "text": "The sapling is green."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:i02:audio",
+          "transcript": "The sapling is growing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-32:i02:r1",
+            "targetText": "The sapling is growing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i02:r2",
+            "targetText": "The flower is growing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i02:r3",
+            "targetText": "The sapling is green.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sapling is growing.",
+              "uk": "У записі звучить The sapling is growing."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sapling is growing.",
+              "uk": "У записі звучить The sapling is growing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви описуєте звичку. Виберіть форму work",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-32:i03:r1",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i03:r2",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i03:r3",
+          "text": "working"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви описуєте звичку. Виберіть форму work",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете привычку. Выберите форму work",
+          "uk": "Ви описуєте звичку. Виберіть форму work"
+        },
+        "gappedTargetPhrase": "I usually ___ here on Saturdays.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-32:i03:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i03:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i03:r3",
+            "text": "working"
+          }
+        ],
+        "testedDimension": "Ви описуєте звичку. Виберіть форму work",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви описуєте звичку. Виберіть форму work",
+            "feedbackByLocale": {
+              "ru": "С I нужна work без s.",
+              "uk": "З I потрібна work без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви описуєте звичку. Виберіть форму work",
+            "feedbackByLocale": {
+              "ru": "Для этой привычки нужна work.",
+              "uk": "Для цієї звички потрібна work."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:word:mulch",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mulch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:word:mulch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mulch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:word:mulch:audio",
+          "transcript": "mulch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-32:word:mulch:r1",
+            "targetText": "mulch",
+            "meaningByLocale": {
+              "ru": "«мульча». The mulch is in the bag. — «Мульча в мешке». Материал, которым покрывают поверхность почвы; здесь неисчисляемое существительное.",
+              "uk": "«мульча». The mulch is in the bag. — «Мульча в мішку». Матеріал, яким вкривають поверхню ґрунту; тут незлічуваний іменник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mulch",
+          "definitionByLocale": {
+            "ru": "«мульча». The mulch is in the bag. — «Мульча в мешке». Материал, которым покрывают поверхность почвы; здесь неисчисляемое существительное.",
+            "uk": "«мульча». The mulch is in the bag. — «Мульча в мішку». Матеріал, яким вкривають поверхню ґрунту; тут незлічуваний іменник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега шукає мульчу для вкривання ґрунту. Скажіть: «Мульча в мішку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега шукає мульчу для вкривання ґрунту. Скажіть: «Мульча в мішку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The mulch is in the bag.",
+        "localizedMeaning": {
+          "ru": "Коллега ищет мульчу для покрытия почвы. Скажите: «Мульча в мешке»",
+          "uk": "Колега шукає мульчу для вкривання ґрунту. Скажіть: «Мульча в мішку»"
+        },
+        "orderedTokens": [
+          "The",
+          "mulch",
+          "is",
+          "in",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-32:i05:r1",
+          "text": "The mulch is dry."
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i05:r2",
+          "text": "The mulch is wet."
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i05:r3",
+          "text": "The soil is dry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:i05:audio",
+          "transcript": "The mulch is dry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-32:i05:r1",
+            "targetText": "The mulch is dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i05:r2",
+            "targetText": "The mulch is wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i05:r3",
+            "targetText": "The soil is dry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-32:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mulch is dry.",
+              "uk": "У записі звучить The mulch is dry."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mulch is dry.",
+              "uk": "У записі звучить The mulch is dry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку з незлічуваним mulch",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-32:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку з незлічуваним mulch",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку с неисчисляемым mulch",
+          "uk": "Виберіть зв’язку з незлічуваним mulch"
+        },
+        "gappedTargetPhrase": "The mulch ___ dry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-32:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку з незлічуваним mulch",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-32:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку з незлічуваним mulch",
+            "feedbackByLocale": {
+              "ru": "С mulch здесь нужна is.",
+              "uk": "З mulch тут потрібна is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку з незлічуваним mulch",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь нужна is.",
+              "uk": "Am використовуємо з I; тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:word:compost",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — compost",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:word:compost:audio"
+      ],
+      "accessibilityLabel": "Картка слова — compost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:word:compost:audio",
+          "transcript": "compost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-32:word:compost:r1",
+            "targetText": "compost",
+            "meaningByLocale": {
+              "ru": "«компост». There is compost in the bag. — «В мешке компост». Перепревший органический материал для почвы.",
+              "uk": "«компост». There is compost in the bag. — «У мішку компост». Перепрілий органічний матеріал для ґрунту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "compost",
+          "definitionByLocale": {
+            "ru": "«компост». There is compost in the bag. — «В мешке компост». Перепревший органический материал для почвы.",
+            "uk": "«компост». There is compost in the bag. — «У мішку компост». Перепрілий органічний матеріал для ґрунту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг показує інший мішок і запитує, що в ньому. Скажіть: «У мішку компост»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг показує інший мішок і запитує, що в ньому. Скажіть: «У мішку компост»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is compost in the bag.",
+        "localizedMeaning": {
+          "ru": "Друг показывает другой мешок и спрашивает, что в нём. Скажите: «В мешке компост»",
+          "uk": "Друг показує інший мішок і запитує, що в ньому. Скажіть: «У мішку компост»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "compost",
+          "in",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-32:i08:r1",
+          "text": "The compost is dark."
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i08:r2",
+          "text": "The compost is dry."
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i08:r3",
+          "text": "The mulch is dark."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:i08:audio",
+          "transcript": "The compost is dark."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-32:i08:r1",
+            "targetText": "The compost is dark.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i08:r2",
+            "targetText": "The compost is dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i08:r3",
+            "targetText": "The mulch is dark.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The compost is dark.",
+              "uk": "У записі звучить The compost is dark."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The compost is dark.",
+              "uk": "У записі звучить The compost is dark."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку для незлічуваного compost",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-32:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку для незлічуваного compost",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для неисчисляемого compost",
+          "uk": "Виберіть зв’язку для незлічуваного compost"
+        },
+        "gappedTargetPhrase": "There ___ compost in the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-32:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку для незлічуваного compost",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для незлічуваного compost",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым compost используем there is.",
+              "uk": "З незлічуваним compost використовуємо there is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для незлічуваного compost",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна конструкция there is.",
+              "uk": "Тут потрібна конструкція there is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:word:seedbed",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — seedbed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:word:seedbed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — seedbed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:word:seedbed:audio",
+          "transcript": "seedbed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-32:word:seedbed:r1",
+            "targetText": "seedbed",
+            "meaningByLocale": {
+              "ru": "«грядка для посева». We are preparing the seedbed. — «Мы готовим грядку для посева». Участок почвы, подготовленный для семян.",
+              "uk": "«грядка для посіву». We are preparing the seedbed. — «Ми готуємо грядку для посіву». Ділянка ґрунту, підготовлена для насіння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seedbed",
+          "definitionByLocale": {
+            "ru": "«грядка для посева». We are preparing the seedbed. — «Мы готовим грядку для посева». Участок почвы, подготовленный для семян.",
+            "uk": "«грядка для посіву». We are preparing the seedbed. — «Ми готуємо грядку для посіву». Ділянка ґрунту, підготовлена для насіння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг запитує, над чим ви з колегою працюєте зараз. Скажіть: «Ми готуємо грядку для посіву»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитує, над чим ви з колегою працюєте зараз. Скажіть: «Ми готуємо грядку для посіву»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are preparing the seedbed.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, над чем вы с коллегой работаете сейчас. Скажите: «Мы готовим грядку для посева»",
+          "uk": "Друг запитує, над чим ви з колегою працюєте зараз. Скажіть: «Ми готуємо грядку для посіву»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "preparing",
+          "the",
+          "seedbed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-32:i11:r1",
+          "text": "The seedbed is beside the path."
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i11:r2",
+          "text": "The seedbed is beside the wall."
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i11:r3",
+          "text": "The sapling is beside the path."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:i11:audio",
+          "transcript": "The seedbed is beside the path."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-32:i11:r1",
+            "targetText": "The seedbed is beside the path.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i11:r2",
+            "targetText": "The seedbed is beside the wall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i11:r3",
+            "targetText": "The sapling is beside the path.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The seedbed is beside the path.",
+              "uk": "У записі звучить The seedbed is beside the path."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The seedbed is beside the path.",
+              "uk": "У записі звучить The seedbed is beside the path."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-32:i12:r1",
+          "text": "preparing"
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i12:r2",
+          "text": "prepareing"
+        },
+        {
+          "responseId": "en:lesson-10:session-32:i12:r3",
+          "text": "prepare"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы работаете над грядкой сейчас. Выберите написание формы prepare",
+          "uk": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare"
+        },
+        "gappedTargetPhrase": "We are ___ the seedbed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-32:i12:r1",
+            "text": "preparing"
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i12:r2",
+            "text": "prepareing"
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i12:r3",
+            "text": "prepare"
+          }
+        ],
+        "testedDimension": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+            "feedbackByLocale": {
+              "ru": "Перед ing конечная e исчезает: preparing.",
+              "uk": "Перед ing кінцева e зникає: preparing."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+            "feedbackByLocale": {
+              "ru": "После are здесь нужна preparing.",
+              "uk": "Після are тут потрібна preparing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-32:i13:p1",
+            "target": "sapling",
+            "meaningByLocale": {
+              "ru": "молодое деревце",
+              "uk": "молоде деревце"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-32:i13:p2",
+            "target": "mulch",
+            "meaningByLocale": {
+              "ru": "мульча",
+              "uk": "мульча"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-32:i13:p3",
+            "target": "compost",
+            "meaningByLocale": {
+              "ru": "компост",
+              "uk": "компост"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-32:i13:p4",
+            "target": "seedbed",
+            "meaningByLocale": {
+              "ru": "грядка для посева",
+              "uk": "грядка для посіву"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sapling",
+          "mulch",
+          "compost",
+          "seedbed"
+        ],
+        "rightColumn": [
+          "молоде деревце",
+          "мульча",
+          "компост",
+          "грядка для посіву"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:i14:audio",
+          "transcript": "We are preparing the seedbed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are preparing the seedbed.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "preparing",
+          "the",
+          "seedbed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чи знаєте ви цей сад. Ви давно допомагаєте тут. Скажіть: «Я знаю цей сад»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чи знаєте ви цей сад. Ви давно допомагаєте тут. Скажіть: «Я знаю цей сад»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:i15:audio",
+          "transcript": "I know this garden."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know this garden.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зазвичай колега працює в теплиці, але тимчасово допомагає тут. Скажіть: «Вона працює тут цього тижня». Поставте this week у кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зазвичай колега працює в теплиці, але тимчасово допомагає тут. Скажіть: «Вона працює тут цього тижня». Поставте this week у кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is working here this week.",
+        "localizedMeaning": {
+          "ru": "Обычно коллега работает в теплице, но временно помогает здесь. Скажите: «Она работает здесь на этой неделе». Поставьте this week в конце",
+          "uk": "Зазвичай колега працює в теплиці, але тимчасово допомагає тут. Скажіть: «Вона працює тут цього тижня». Поставте this week у кінці"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "working",
+          "here",
+          "this",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-32:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг телефонує й запитує, що ви робите разом із колегою. Ви готуєте ділянку для насіння. Скажіть: «Ми готуємо грядку для посіву»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Друг телефонує й запитує, що ви робите разом із колегою. Ви готуєте ділянку для насіння. Скажіть: «Ми готуємо грядку для посіву»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-32:i17:audio",
+          "transcript": "We are preparing the seedbed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are preparing the seedbed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0c538f722c4a858cab12c1975c58234e43337caf1b18ae75334c563fd9d67067"
+}

@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-31:word:blossom",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — blossom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:word:blossom:audio"
+      ],
+      "accessibilityLabel": "Картка слова — blossom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:word:blossom:audio",
+          "transcript": "blossom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-31:word:blossom:r1",
+            "targetText": "blossom",
+            "meaningByLocale": {
+              "ru": "«цветы на дереве». The tree is in blossom. — «Дерево в цвету». Здесь blossom обозначает цветы вместе; in blossom — «в цвету».",
+              "uk": "«квіти на дереві». The tree is in blossom. — «Дерево у цвіту». Тут blossom позначає квіти разом; in blossom — «у цвіту»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blossom",
+          "definitionByLocale": {
+            "ru": "«цветы на дереве». The tree is in blossom. — «Дерево в цвету». Здесь blossom обозначает цветы вместе; in blossom — «в цвету».",
+            "uk": "«квіти на дереві». The tree is in blossom. — «Дерево у цвіту». Тут blossom позначає квіти разом; in blossom — «у цвіту»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На весняній фотографії дерево вкрите квітами. Скажіть другу: «Дерево у цвіту»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На весняній фотографії дерево вкрите квітами. Скажіть другу: «Дерево у цвіту»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tree is in blossom.",
+        "localizedMeaning": {
+          "ru": "На весенней фотографии дерево покрыто цветами. Скажите другу: «Дерево в цвету»",
+          "uk": "На весняній фотографії дерево вкрите квітами. Скажіть другу: «Дерево у цвіту»"
+        },
+        "orderedTokens": [
+          "The",
+          "tree",
+          "is",
+          "in",
+          "blossom"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-31:i02:r1",
+          "text": "The blossom is pink."
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i02:r2",
+          "text": "The blossom is white."
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i02:r3",
+          "text": "The flower is pink."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:i02:audio",
+          "transcript": "The blossom is pink."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-31:i02:r1",
+            "targetText": "The blossom is pink.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i02:r2",
+            "targetText": "The blossom is white.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i02:r3",
+            "targetText": "The flower is pink.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The blossom is pink.",
+              "uk": "У записі звучить The blossom is pink."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The blossom is pink.",
+              "uk": "У записі звучить The blossom is pink."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть прийменник у сполученні «у цвіту»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-31:i03:r1",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i03:r2",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i03:r3",
+          "text": "at"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть прийменник у сполученні «у цвіту»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите предлог в сочетании «в цвету»",
+          "uk": "Виберіть прийменник у сполученні «у цвіту»"
+        },
+        "gappedTargetPhrase": "The tree is ___ blossom.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-31:i03:r1",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i03:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i03:r3",
+            "text": "at"
+          }
+        ],
+        "testedDimension": "Виберіть прийменник у сполученні «у цвіту»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник у сполученні «у цвіту»",
+            "feedbackByLocale": {
+              "ru": "Используем in blossom, не on blossom.",
+              "uk": "Використовуємо in blossom, не on blossom."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник у сполученні «у цвіту»",
+            "feedbackByLocale": {
+              "ru": "Используем in blossom, не at blossom.",
+              "uk": "Використовуємо in blossom, не at blossom."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:word:foliage",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — foliage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:word:foliage:audio"
+      ],
+      "accessibilityLabel": "Картка слова — foliage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:word:foliage:audio",
+          "transcript": "foliage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-31:word:foliage:r1",
+            "targetText": "foliage",
+            "meaningByLocale": {
+              "ru": "«листва». The foliage is turning yellow. — «Листва желтеет». Листья растения вместе; неисчисляемое существительное.",
+              "uk": "«листя». The foliage is turning yellow. — «Листя жовтіє». Листя рослини разом; незлічуваний іменник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "foliage",
+          "definitionByLocale": {
+            "ru": "«листва». The foliage is turning yellow. — «Листва желтеет». Листья растения вместе; неисчисляемое существительное.",
+            "uk": "«листя». The foliage is turning yellow. — «Листя жовтіє». Листя рослини разом; незлічуваний іменник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На осінній фотографії частина листя ще зелена, а частина вже жовта. Опишіть зміну: «Листя жовтіє»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На осінній фотографії частина листя ще зелена, а частина вже жовта. Опишіть зміну: «Листя жовтіє»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The foliage is turning yellow.",
+        "localizedMeaning": {
+          "ru": "На осенней фотографии часть листьев ещё зелёная, а часть уже жёлтая. Опишите изменение: «Листва желтеет»",
+          "uk": "На осінній фотографії частина листя ще зелена, а частина вже жовта. Опишіть зміну: «Листя жовтіє»"
+        },
+        "orderedTokens": [
+          "The",
+          "foliage",
+          "is",
+          "turning",
+          "yellow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-31:i05:r1",
+          "text": "The foliage is green."
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i05:r2",
+          "text": "The foliage is red."
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i05:r3",
+          "text": "The grass is green."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:i05:audio",
+          "transcript": "The foliage is green."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-31:i05:r1",
+            "targetText": "The foliage is green.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i05:r2",
+            "targetText": "The foliage is red.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i05:r3",
+            "targetText": "The grass is green.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-31:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The foliage is green.",
+              "uk": "У записі звучить The foliage is green."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The foliage is green.",
+              "uk": "У записі звучить The foliage is green."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку з незлічуваним foliage",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-31:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку з незлічуваним foliage",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку с неисчисляемым foliage",
+          "uk": "Виберіть зв’язку з незлічуваним foliage"
+        },
+        "gappedTargetPhrase": "The foliage ___ turning yellow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-31:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку з незлічуваним foliage",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку з незлічуваним foliage",
+            "feedbackByLocale": {
+              "ru": "Foliage здесь требует is.",
+              "uk": "Foliage тут потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку з незлічуваним foliage",
+            "feedbackByLocale": {
+              "ru": "Am используем с I; здесь нужна is.",
+              "uk": "Am використовуємо з I; тут потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:word:snowdrop",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — snowdrop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:word:snowdrop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — snowdrop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:word:snowdrop:audio",
+          "transcript": "snowdrop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-31:word:snowdrop:r1",
+            "targetText": "snowdrop",
+            "meaningByLocale": {
+              "ru": "«подснежник». I can see a snowdrop. — «Я вижу подснежник». Небольшой ранний цветок с белой поникающей головкой.",
+              "uk": "«підсніжник». I can see a snowdrop. — «Я бачу підсніжник». Невелика рання квітка з білою похиленою голівкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snowdrop",
+          "definitionByLocale": {
+            "ru": "«подснежник». I can see a snowdrop. — «Я вижу подснежник». Небольшой ранний цветок с белой поникающей головкой.",
+            "uk": "«підсніжник». I can see a snowdrop. — «Я бачу підсніжник». Невелика рання квітка з білою похиленою голівкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви розглядаєте весняну фотографію саду й помічаєте підсніжник. Скажіть другу: «Я бачу підсніжник»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви розглядаєте весняну фотографію саду й помічаєте підсніжник. Скажіть другу: «Я бачу підсніжник»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can see a snowdrop.",
+        "localizedMeaning": {
+          "ru": "Вы рассматриваете весеннюю фотографию сада и замечаете подснежник. Скажите другу: «Я вижу подснежник»",
+          "uk": "Ви розглядаєте весняну фотографію саду й помічаєте підсніжник. Скажіть другу: «Я бачу підсніжник»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "see",
+          "a",
+          "snowdrop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-31:i08:r1",
+          "text": "The snowdrop is beside the path."
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i08:r2",
+          "text": "The snowdrop is beside the wall."
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i08:r3",
+          "text": "The tree is beside the path."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:i08:audio",
+          "transcript": "The snowdrop is beside the path."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-31:i08:r1",
+            "targetText": "The snowdrop is beside the path.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i08:r2",
+            "targetText": "The snowdrop is beside the wall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i08:r3",
+            "targetText": "The tree is beside the path.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The snowdrop is beside the path.",
+              "uk": "У записі звучить The snowdrop is beside the path."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The snowdrop is beside the path.",
+              "uk": "У записі звучить The snowdrop is beside the path."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму see після can",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-31:i09:r1",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i09:r2",
+          "text": "sees"
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i09:r3",
+          "text": "seeing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму see після can",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму see после can",
+          "uk": "Виберіть форму see після can"
+        },
+        "gappedTargetPhrase": "We can ___ a snowdrop.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-31:i09:r1",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i09:r2",
+            "text": "sees"
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i09:r3",
+            "text": "seeing"
+          }
+        ],
+        "testedDimension": "Виберіть форму see після can",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму see після can",
+            "feedbackByLocale": {
+              "ru": "После can нужна see без s.",
+              "uk": "Після can потрібна see без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму see після can",
+            "feedbackByLocale": {
+              "ru": "После can нужна базовая форма see.",
+              "uk": "Після can потрібна початкова форма see."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:word:daffodil",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — daffodil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:word:daffodil:audio"
+      ],
+      "accessibilityLabel": "Картка слова — daffodil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:word:daffodil:audio",
+          "transcript": "daffodil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-31:word:daffodil:r1",
+            "targetText": "daffodil",
+            "meaningByLocale": {
+              "ru": "«нарцисс». The daffodil is yellow. — «Нарцисс жёлтый». Весенний цветок с выступающей серединкой; здесь жёлтый нарцисс.",
+              "uk": "«нарцис». The daffodil is yellow. — «Нарцис жовтий». Весняна квітка з виступною серединкою; тут жовтий нарцис."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "daffodil",
+          "definitionByLocale": {
+            "ru": "«нарцисс». The daffodil is yellow. — «Нарцисс жёлтый». Весенний цветок с выступающей серединкой; здесь жёлтый нарцисс.",
+            "uk": "«нарцис». The daffodil is yellow. — «Нарцис жовтий». Весняна квітка з виступною серединкою; тут жовтий нарцис."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На фотографії біля доріжки жовтий нарцис. Назвіть його колір: «Нарцис жовтий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На фотографії біля доріжки жовтий нарцис. Назвіть його колір: «Нарцис жовтий»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The daffodil is yellow.",
+        "localizedMeaning": {
+          "ru": "На фотографии рядом с дорожкой жёлтый нарцисс. Назовите его цвет: «Нарцисс жёлтый»",
+          "uk": "На фотографії біля доріжки жовтий нарцис. Назвіть його колір: «Нарцис жовтий»"
+        },
+        "orderedTokens": [
+          "The",
+          "daffodil",
+          "is",
+          "yellow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-31:i11:r1",
+          "text": "I can see a daffodil."
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i11:r2",
+          "text": "We can see a daffodil."
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i11:r3",
+          "text": "I can see a snowdrop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:i11:audio",
+          "transcript": "I can see a daffodil."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-31:i11:r1",
+            "targetText": "I can see a daffodil.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i11:r2",
+            "targetText": "We can see a daffodil.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i11:r3",
+            "targetText": "I can see a snowdrop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can see a daffodil.",
+              "uk": "У записі звучить I can see a daffodil."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can see a daffodil.",
+              "uk": "У записі звучить I can see a daffodil."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-31:i12:r1",
+          "text": "turns"
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i12:r2",
+          "text": "turn"
+        },
+        {
+          "responseId": "en:lesson-10:session-31:i12:r3",
+          "text": "turning"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете обычное осеннее изменение. Выберите форму turn",
+          "uk": "Ви описуєте звичну осінню зміну. Виберіть форму turn"
+        },
+        "gappedTargetPhrase": "The foliage usually ___ yellow in autumn.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-31:i12:r1",
+            "text": "turns"
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i12:r2",
+            "text": "turn"
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i12:r3",
+            "text": "turning"
+          }
+        ],
+        "testedDimension": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+            "feedbackByLocale": {
+              "ru": "С неисчисляемым foliage нужна turns.",
+              "uk": "З незлічуваним foliage потрібна turns."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+            "feedbackByLocale": {
+              "ru": "Для этой обычной перемены нужна turns.",
+              "uk": "Для цієї звичної зміни потрібна turns."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-31:i13:p1",
+            "target": "blossom",
+            "meaningByLocale": {
+              "ru": "цветы на дереве",
+              "uk": "квіти на дереві"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-31:i13:p2",
+            "target": "foliage",
+            "meaningByLocale": {
+              "ru": "листва",
+              "uk": "листя"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-31:i13:p3",
+            "target": "snowdrop",
+            "meaningByLocale": {
+              "ru": "подснежник",
+              "uk": "підсніжник"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-31:i13:p4",
+            "target": "daffodil",
+            "meaningByLocale": {
+              "ru": "нарцисс",
+              "uk": "нарцис"
+            }
+          }
+        ],
+        "leftColumn": [
+          "blossom",
+          "foliage",
+          "snowdrop",
+          "daffodil"
+        ],
+        "rightColumn": [
+          "квіти на дереві",
+          "листя",
+          "підсніжник",
+          "нарцис"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:i14:audio",
+          "transcript": "The foliage is turning yellow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The foliage is turning yellow.",
+        "orderedTokens": [
+          "The",
+          "foliage",
+          "is",
+          "turning",
+          "yellow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про вашу улюблену пору року. Скажіть: «Весна — моя улюблена пора року»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про вашу улюблену пору року. Скажіть: «Весна — моя улюблена пора року»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:i15:audio",
+          "transcript": "Spring is my favourite season."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Spring is my favourite season.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви показуєте другу дерево у цвіту на фотографії. Скажіть: «Дерево у цвіту»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте другу дерево у цвіту на фотографії. Скажіть: «Дерево у цвіту»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tree is in blossom.",
+        "localizedMeaning": {
+          "ru": "Вы показываете другу цветущее дерево на фотографии. Скажите: «Дерево в цвету»",
+          "uk": "Ви показуєте другу дерево у цвіту на фотографії. Скажіть: «Дерево у цвіту»"
+        },
+        "orderedTokens": [
+          "The",
+          "tree",
+          "is",
+          "in",
+          "blossom"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує про дерева на осінній фотографії. Листя змінює зелений колір на жовтий. Скажіть: «Листя жовтіє»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує про дерева на осінній фотографії. Листя змінює зелений колір на жовтий. Скажіть: «Листя жовтіє»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:i17:audio",
+          "transcript": "The foliage is turning yellow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The foliage is turning yellow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7894171d47bef105f20a38edd35e60c96a78f04c72ad26c2937f8f8b1419c9a7"
+}

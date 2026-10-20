@@ -3745,4 +3745,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour","uk":"I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 31,
+    sourceFingerprint: "10dc6b9e8e219c80a96395c9138bcb2f5ec36da7a40e50b52bdb001b4ffea6a3",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Spring is my favourite season; The tree is in blossom; The foliage is turning yellow","uk":"Spring is my favourite season; The tree is in blossom; The foliage is turning yellow"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 32,
+    sourceFingerprint: "38be04e0865b70cc3682a075ef551099804f89354b4a10cd01e5f20494b0c619",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed","uk":"I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

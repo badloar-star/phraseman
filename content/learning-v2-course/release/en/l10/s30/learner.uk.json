@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-30:word:weekday",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — weekday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:word:weekday:audio"
+      ],
+      "accessibilityLabel": "Картка слова — weekday",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:word:weekday:audio",
+          "transcript": "weekday"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-30:word:weekday:r1",
+            "targetText": "weekday",
+            "meaningByLocale": {
+              "ru": "«будний день». Today is a weekday. — «Сегодня будний день». Один из дней с понедельника по пятницу.",
+              "uk": "«будній день». Today is a weekday. — «Сьогодні будній день». Один із днів із понеділка до п’ятниці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "weekday",
+          "definitionByLocale": {
+            "ru": "«будний день». Today is a weekday. — «Сегодня будний день». Один из дней с понедельника по пятницу.",
+            "uk": "«будній день». Today is a weekday. — «Сьогодні будній день». Один із днів із понеділка до п’ятниці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сьогодні вівторок. Друг запитує, чи це вихідний. Скажіть: «Сьогодні будній день»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сьогодні вівторок. Друг запитує, чи це вихідний. Скажіть: «Сьогодні будній день»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Today is a weekday.",
+        "localizedMeaning": {
+          "ru": "Сегодня вторник. Друг спрашивает, выходной ли это. Скажите: «Сегодня будний день»",
+          "uk": "Сьогодні вівторок. Друг запитує, чи це вихідний. Скажіть: «Сьогодні будній день»"
+        },
+        "orderedTokens": [
+          "Today",
+          "is",
+          "a",
+          "weekday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-30:i02:r1",
+          "text": "I work every weekday."
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i02:r2",
+          "text": "We work every weekday."
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i02:r3",
+          "text": "I walk every weekday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:i02:audio",
+          "transcript": "I work every weekday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-30:i02:r1",
+            "targetText": "I work every weekday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i02:r2",
+            "targetText": "We work every weekday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i02:r3",
+            "targetText": "I walk every weekday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I work every weekday.",
+              "uk": "У записі звучить I work every weekday."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I work every weekday.",
+              "uk": "У записі звучить I work every weekday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть прийменник для «у будні»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-30:i03:r1",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i03:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i03:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть прийменник для «у будні»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите предлог для «по будням»",
+          "uk": "Виберіть прийменник для «у будні»"
+        },
+        "gappedTargetPhrase": "I take the bus ___ weekdays.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-30:i03:r1",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i03:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i03:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Виберіть прийменник для «у будні»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник для «у будні»",
+            "feedbackByLocale": {
+              "ru": "С weekdays используем on.",
+              "uk": "З weekdays використовуємо on."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник для «у будні»",
+            "feedbackByLocale": {
+              "ru": "С weekdays используем on.",
+              "uk": "З weekdays використовуємо on."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:word:commuter",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — commuter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:word:commuter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — commuter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:word:commuter:audio",
+          "transcript": "commuter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-30:word:commuter:r1",
+            "targetText": "commuter",
+            "meaningByLocale": {
+              "ru": "«человек, регулярно ездящий на работу или учёбу». The commuter is waiting. — «Пассажир, который регулярно ездит на работу, ждёт». Здесь человек по дороге на работу.",
+              "uk": "«людина, яка регулярно їздить на роботу або навчання». The commuter is waiting. — «Пасажир, який регулярно їздить на роботу, чекає». Тут людина дорогою на роботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "commuter",
+          "definitionByLocale": {
+            "ru": "«человек, регулярно ездящий на работу или учёбу». The commuter is waiting. — «Пассажир, который регулярно ездит на работу, ждёт». Здесь человек по дороге на работу.",
+            "uk": "«людина, яка регулярно їздить на роботу або навчання». The commuter is waiting. — «Пасажир, який регулярно їздить на роботу, чекає». Тут людина дорогою на роботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви бачите на зупинці знайомого пасажира, який щодня їздить на роботу. Скажіть: «Цей пасажир чекає»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви бачите на зупинці знайомого пасажира, який щодня їздить на роботу. Скажіть: «Цей пасажир чекає»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The commuter is waiting.",
+        "localizedMeaning": {
+          "ru": "Вы видите на остановке знакомого пассажира, который каждый день ездит на работу. Скажите: «Этот пассажир ждёт»",
+          "uk": "Ви бачите на зупинці знайомого пасажира, який щодня їздить на роботу. Скажіть: «Цей пасажир чекає»"
+        },
+        "orderedTokens": [
+          "The",
+          "commuter",
+          "is",
+          "waiting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-30:i05:r1",
+          "text": "The commuter is on the train."
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i05:r2",
+          "text": "The commuter is on the bus."
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i05:r3",
+          "text": "The driver is on the train."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:i05:audio",
+          "transcript": "The commuter is on the train."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-30:i05:r1",
+            "targetText": "The commuter is on the train.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i05:r2",
+            "targetText": "The commuter is on the bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i05:r3",
+            "targetText": "The driver is on the train.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The commuter is on the train.",
+              "uk": "У записі звучить The commuter is on the train."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The commuter is on the train.",
+              "uk": "У записі звучить The commuter is on the train."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-30:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i06:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пассажир ждёт сейчас. Выберите вспомогательный глагол",
+          "uk": "Пасажир чекає зараз. Виберіть допоміжне дієслово"
+        },
+        "gappedTargetPhrase": "The commuter ___ waiting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-30:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i06:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+            "feedbackByLocale": {
+              "ru": "Один commuter: is.",
+              "uk": "Один commuter: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+            "feedbackByLocale": {
+              "ru": "Перед waiting здесь нужно is.",
+              "uk": "Перед waiting тут потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:word:carpool",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — carpool",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:word:carpool:audio"
+      ],
+      "accessibilityLabel": "Картка слова — carpool",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:word:carpool:audio",
+          "transcript": "carpool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-30:word:carpool:r1",
+            "targetText": "carpool",
+            "meaningByLocale": {
+              "ru": "«группа для совместных поездок на машине». Our carpool has four people. — «В нашей группе для совместных поездок четыре человека». Люди договариваются ехать вместе, например на работу.",
+              "uk": "«група для спільних поїздок машиною». Our carpool has four people. — «У нашій групі для спільних поїздок чотири людини». Люди домовляються їхати разом, наприклад на роботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carpool",
+          "definitionByLocale": {
+            "ru": "«группа для совместных поездок на машине». Our carpool has four people. — «В нашей группе для совместных поездок четыре человека». Люди договариваются ехать вместе, например на работу.",
+            "uk": "«група для спільних поїздок машиною». Our carpool has four people. — «У нашій групі для спільних поїздок чотири людини». Люди домовляються їхати разом, наприклад на роботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з колегами їздите на роботу разом. Скажіть другу: «У нашій групі для спільних поїздок чотири людини»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з колегами їздите на роботу разом. Скажіть другу: «У нашій групі для спільних поїздок чотири людини»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our carpool has four people.",
+        "localizedMeaning": {
+          "ru": "Вы с коллегами ездите на работу вместе. Скажите другу: «В нашей группе для совместных поездок четыре человека»",
+          "uk": "Ви з колегами їздите на роботу разом. Скажіть другу: «У нашій групі для спільних поїздок чотири людини»"
+        },
+        "orderedTokens": [
+          "Our",
+          "carpool",
+          "has",
+          "four",
+          "people"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-30:i08:r1",
+          "text": "Our carpool has four people."
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i08:r2",
+          "text": "Our carpool has three people."
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i08:r3",
+          "text": "Their carpool has four people."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:i08:audio",
+          "transcript": "Our carpool has four people."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-30:i08:r1",
+            "targetText": "Our carpool has four people.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i08:r2",
+            "targetText": "Our carpool has three people.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i08:r3",
+            "targetText": "Their carpool has four people.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our carpool has four people.",
+              "uk": "У записі звучить Our carpool has four people."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our carpool has four people.",
+              "uk": "У записі звучить Our carpool has four people."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму have для однієї групи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-30:i09:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i09:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i09:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму have для однієї групи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму have для одной группы",
+          "uk": "Виберіть форму have для однієї групи"
+        },
+        "gappedTargetPhrase": "Our carpool ___ four people.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-30:i09:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i09:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Виберіть форму have для однієї групи",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму have для однієї групи",
+            "feedbackByLocale": {
+              "ru": "Carpool здесь одна группа: has.",
+              "uk": "Carpool тут одна група: has."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму have для однієї групи",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна личная форма has.",
+              "uk": "Тут потрібна особова форма has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:word:rush-hour",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rush hour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:word:rush-hour:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rush hour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:word:rush-hour:audio",
+          "transcript": "rush hour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-30:word:rush-hour:r1",
+            "targetText": "rush hour",
+            "meaningByLocale": {
+              "ru": "«час пик». It is rush hour. — «Сейчас час пик». Период особенно интенсивного движения.",
+              "uk": "«година пік». It is rush hour. — «Зараз година пік». Період особливо інтенсивного руху."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rush hour",
+          "definitionByLocale": {
+            "ru": "«час пик». It is rush hour. — «Сейчас час пик». Период особенно интенсивного движения.",
+            "uk": "«година пік». It is rush hour. — «Зараз година пік». Період особливо інтенсивного руху."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг дивується, чому на дорозі так багато машин. Скажіть: «Зараз година пік»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг дивується, чому на дорозі так багато машин. Скажіть: «Зараз година пік»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is rush hour.",
+        "localizedMeaning": {
+          "ru": "Друг удивляется, почему на дороге так много машин. Скажите: «Сейчас час пик»",
+          "uk": "Друг дивується, чому на дорозі так багато машин. Скажіть: «Зараз година пік»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "rush",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-30:i11:r1",
+          "text": "The buses are busy at rush hour."
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i11:r2",
+          "text": "The trains are busy at rush hour."
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i11:r3",
+          "text": "The buses are quiet at rush hour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:i11:audio",
+          "transcript": "The buses are busy at rush hour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-30:i11:r1",
+            "targetText": "The buses are busy at rush hour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i11:r2",
+            "targetText": "The trains are busy at rush hour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i11:r3",
+            "targetText": "The buses are quiet at rush hour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The buses are busy at rush hour.",
+              "uk": "У записі звучить The buses are busy at rush hour."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The buses are busy at rush hour.",
+              "uk": "У записі звучить The buses are busy at rush hour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви описуєте звичну поїздку. Виберіть форму take",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-30:i12:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i12:r2",
+          "text": "takes"
+        },
+        {
+          "responseId": "en:lesson-10:session-30:i12:r3",
+          "text": "taking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви описуєте звичну поїздку. Виберіть форму take",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете обычную поездку. Выберите форму take",
+          "uk": "Ви описуєте звичну поїздку. Виберіть форму take"
+        },
+        "gappedTargetPhrase": "I usually ___ the bus.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-30:i12:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i12:r2",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i12:r3",
+            "text": "taking"
+          }
+        ],
+        "testedDimension": "Ви описуєте звичну поїздку. Виберіть форму take",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви описуєте звичну поїздку. Виберіть форму take",
+            "feedbackByLocale": {
+              "ru": "С I нужна take без s.",
+              "uk": "З I потрібна take без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви описуєте звичну поїздку. Виберіть форму take",
+            "feedbackByLocale": {
+              "ru": "Для этой привычки нужна take.",
+              "uk": "Для цієї звички потрібна take."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-30:i13:p1",
+            "target": "weekday",
+            "meaningByLocale": {
+              "ru": "будний день",
+              "uk": "будній день"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-30:i13:p2",
+            "target": "commuter",
+            "meaningByLocale": {
+              "ru": "человек, регулярно ездящий на работу или учёбу",
+              "uk": "людина, яка регулярно їздить на роботу або навчання"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-30:i13:p3",
+            "target": "carpool",
+            "meaningByLocale": {
+              "ru": "группа для совместных поездок на машине",
+              "uk": "група для спільних поїздок машиною"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-30:i13:p4",
+            "target": "rush hour",
+            "meaningByLocale": {
+              "ru": "час пик",
+              "uk": "година пік"
+            }
+          }
+        ],
+        "leftColumn": [
+          "weekday",
+          "commuter",
+          "carpool",
+          "rush hour"
+        ],
+        "rightColumn": [
+          "будній день",
+          "людина, яка регулярно їздить на роботу або навчання",
+          "група для спільних поїздок машиною",
+          "година пік"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:i14:audio",
+          "transcript": "I take the bus on weekdays."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I take the bus on weekdays.",
+        "orderedTokens": [
+          "I",
+          "take",
+          "the",
+          "bus",
+          "on",
+          "weekdays"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг телефонує вам на зупинку. Скажіть, що ви з колегою робите зараз: «Ми чекаємо на автобус»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Друг телефонує вам на зупинку. Скажіть, що ви з колегою робите зараз: «Ми чекаємо на автобус»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:i15:audio",
+          "transcript": "We are waiting for a bus."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are waiting for a bus.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг запитує, як ви зазвичай дістаєтеся на роботу в будні. Скажіть: «Я їжджу автобусом у будні». Поставте on weekdays у кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитує, як ви зазвичай дістаєтеся на роботу в будні. Скажіть: «Я їжджу автобусом у будні». Поставте on weekdays у кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I take the bus on weekdays.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, как вы обычно добираетесь на работу по будням. Скажите: «Я езжу на автобусе по будням». Поставьте on weekdays в конце",
+          "uk": "Друг запитує, як ви зазвичай дістаєтеся на роботу в будні. Скажіть: «Я їжджу автобусом у будні». Поставте on weekdays у кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "take",
+          "the",
+          "bus",
+          "on",
+          "weekdays"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чому вранці так багато машин. Ви знаєте, що почався найжвавіший період руху. Скажіть: «Зараз година пік»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чому вранці так багато машин. Ви знаєте, що почався найжвавіший період руху. Скажіть: «Зараз година пік»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:i17:audio",
+          "transcript": "It is rush hour."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is rush hour.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "336a8039e43334816ae8742533030d086b6feb1ad9445b4ec8d049c61b71742f"
+}

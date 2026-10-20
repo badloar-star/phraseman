@@ -3647,4 +3647,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"She usually works upstairs; She is working here this month; She is sitting at her workstation","uk":"She usually works upstairs; She is working here this month; She is sitting at her workstation"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 17,
+    sourceFingerprint: "d0585717f7309da83d110b5afc7e93d54b2ac6bf5a4f1d0277e66d3794c8576d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I admire her courage; He admires her dedication; Do you admire her integrity?","uk":"I admire her courage; He admires her dedication; Do you admire her integrity?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

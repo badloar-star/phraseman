@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-17:word:admire",
+    "correctText": "admire",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i01",
+    "correctText": "I admire her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i02",
+    "correctText": "I admire her.",
+    "correctResponseId": "en:lesson-10:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i03",
+    "correctText": "admires",
+    "correctResponseId": "en:lesson-10:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:word:courage",
+    "correctText": "courage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i04",
+    "correctText": "I admire her courage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i05",
+    "correctText": "He admires her courage.",
+    "correctResponseId": "en:lesson-10:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i06",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-10:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:word:dedication",
+    "correctText": "dedication",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i07",
+    "correctText": "He admires her dedication.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i08",
+    "correctText": "We admire her dedication.",
+    "correctResponseId": "en:lesson-10:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i09",
+    "correctText": "admire",
+    "correctResponseId": "en:lesson-10:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:word:integrity",
+    "correctText": "integrity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i10",
+    "correctText": "I admire her integrity.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i11",
+    "correctText": "Do you admire her integrity?",
+    "correctResponseId": "en:lesson-10:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i12",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-10:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i13",
+    "correctText": "en:lesson-10:session-17:i13:p1=admire\nen:lesson-10:session-17:i13:p2=courage\nen:lesson-10:session-17:i13:p3=dedication\nen:lesson-10:session-17:i13:p4=integrity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i14",
+    "correctText": "Does he admire her dedication?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i15",
+    "correctText": "I admire her courage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i16",
+    "correctText": "I admire her dedication.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-17:i17",
+    "correctText": "I admire her integrity.",
+    "correctResponseId": null
+  }
+]

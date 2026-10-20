@@ -75,8 +75,8 @@ assert.match(
   /if \(!isCurrentAccountGeneration\(input\.account, input\.stableId\)\)[\s\S]{0,300}preparedFileUriByContentHash\.set/,
 );
 
-// зачем (18.10, класс А): выпуск V2 = 441 занятие (уроки 1–8), было 15 (только урок 1 до 16.10).
-assert.equal(LEARNING_V2_RELEASED_SESSION_COUNT_V1, 441);
+// зачем (20.10, класс А): после выпуска L09S40 в V2 доступно 488 занятий.
+assert.equal(LEARNING_V2_RELEASED_SESSION_COUNT_V1, 488);
 const activeSessions = factoryNativeLearningV2AvailabilityV1().sessions.filter(
   (candidate) => candidate.lessonOrdinal >= 1,
 );
@@ -134,7 +134,14 @@ for (const session of activeSessions) {
     );
     assert.ok(interaction);
     const assigned = FACTORY_SINGLE_VOICE_ASSIGNMENTS_V1[interaction.interactionId];
-    assert.ok(assigned, `${interaction.interactionId} must have an explicit single-voice assignment`);
+    if (session.lessonOrdinal === 1 && session.sessionOrdinal <= 5) {
+      assert.ok(assigned, `${interaction.interactionId} launch-seed audio must keep its explicit assignment`);
+    }
+    const taskVoices = (audio.fullPhraseFiles ?? audio.selectables[0]?.files ?? [])
+      .map((file) => file.voiceId);
+    assert.ok(taskVoices.length > 0, `${interaction.interactionId} must resolve recorded task audio`);
+    assert.equal(new Set(taskVoices).size, taskVoices.length);
+    if (assigned) assert.deepEqual(taskVoices, [assigned.voice]);
     const payload = interaction.modePayload;
     if (payload?.family === "sound_contrast") {
       const references = [payload.audioA, payload.audioB];
@@ -144,10 +151,11 @@ for (const session of activeSessions) {
         const reference = references[index];
         assert.ok(reference);
         assert.equal(selectable.audioTargetId, reference.audioTargetId);
-        assert.equal(selectable.files.length, 1);
-        assert.equal(selectable.files[0]?.voiceId, assigned.voice);
+        assert.deepEqual(selectable.files.map((file) => file.voiceId), taskVoices);
         for (const file of selectable.files) {
-          assert.equal(file.contentHash, assigned.clips[reference.transcript]);
+          if (assigned) {
+            assert.equal(file.contentHash, assigned.clips[reference.transcript]);
+          }
           assert.equal(
             file.contentHash,
             learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
@@ -162,11 +170,12 @@ for (const session of activeSessions) {
     const reference = payload && "referenceAudio" in payload ? payload.referenceAudio : null;
     assert.ok(reference);
     assert.ok(audio.fullPhraseFiles);
-    assert.equal(audio.fullPhraseFiles.length, 1);
-    assert.equal(audio.fullPhraseFiles[0]?.voiceId, assigned.voice);
+    assert.deepEqual(audio.fullPhraseFiles.map((file) => file.voiceId), taskVoices);
     assert.deepEqual(audio.selectables, []);
     for (const file of audio.fullPhraseFiles) {
-      assert.equal(file.contentHash, assigned.clips[reference.transcript]);
+      if (assigned) {
+        assert.equal(file.contentHash, assigned.clips[reference.transcript]);
+      }
       assert.equal(
         file.contentHash,
         learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(

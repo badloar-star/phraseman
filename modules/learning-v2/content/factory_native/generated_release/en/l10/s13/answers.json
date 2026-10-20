@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-13:word:ward",
+    "correctText": "ward",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i01",
+    "correctText": "The ward is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i02",
+    "correctText": "She usually works downstairs.",
+    "correctResponseId": "en:lesson-10:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i03",
+    "correctText": "works",
+    "correctResponseId": "en:lesson-10:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:word:bedside",
+    "correctText": "bedside",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i04",
+    "correctText": "She is at the bedside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i05",
+    "correctText": "He is sitting at the bedside.",
+    "correctResponseId": "en:lesson-10:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i06",
+    "correctText": "sitting",
+    "correctResponseId": "en:lesson-10:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:word:call-button",
+    "correctText": "call button",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i07",
+    "correctText": "The call button is near the bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i08",
+    "correctText": "The call button is red.",
+    "correctResponseId": "en:lesson-10:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:word:bedpan",
+    "correctText": "bedpan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i10",
+    "correctText": "The bedpan is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i11",
+    "correctText": "The bedpan is on the shelf.",
+    "correctResponseId": "en:lesson-10:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i13",
+    "correctText": "en:lesson-10:session-13:i13:p1=ward\nen:lesson-10:session-13:i13:p2=bedside\nen:lesson-10:session-13:i13:p3=call button\nen:lesson-10:session-13:i13:p4=bedpan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i14",
+    "correctText": "Is she working here this week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i15",
+    "correctText": "She usually works downstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i16",
+    "correctText": "She is working on this ward this week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-13:i17",
+    "correctText": "She is working on this ward this week.",
+    "correctResponseId": null
+  }
+]

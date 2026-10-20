@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "She usually works downstairs; She is working on this ward this week",
+    "uk": "She usually works downstairs; She is working on this ward this week"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обычное место работы",
+        "uk": "Звичайне місце роботи"
+      },
+      "bodyByLocale": {
+        "ru": "Ваша знакомая — медсестра. Обычно она работает на нижнем этаже больницы. She usually works downstairs — «Обычно она работает внизу». Present Simple описывает обычное место работы. Usually стоит перед works; с she у глагола есть окончание s.",
+        "uk": "Ваша знайома — медсестра. Зазвичай вона працює на нижньому поверсі лікарні. She usually works downstairs — «Зазвичай вона працює внизу». Present Simple описує звичайне місце роботи. Usually стоїть перед works; з she дієслово має закінчення s."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-13:intro1:r1",
+              "text": "She usually works downstairs."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro1:r2",
+              "text": "She usually work downstairs."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro1:r3",
+              "text": "She usually working downstairs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-13:intro1:r1",
+              "text": "She usually works downstairs."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro1:r2",
+              "text": "She usually work downstairs."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro1:r3",
+              "text": "She usually working downstairs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Другое отделение на неделю",
+        "uk": "Інше відділення на тиждень"
+      },
+      "bodyByLocale": {
+        "ru": "Ward — «больничное отделение». Здесь речь об отделении с пациентами, которые остаются в больнице. На этой неделе медсестра временно помогает вашему отделению. She is working on this ward this week — «На этой неделе она работает в этом отделении». В британском английском о работе в отделении говорят work on a ward. Is working описывает временное место работы, даже если у неё сейчас перерыв.",
+        "uk": "Ward — «лікарняне відділення». Тут ідеться про відділення з пацієнтами, які залишаються в лікарні. Цього тижня медсестра тимчасово допомагає вашому відділенню. She is working on this ward this week — «Цього тижня вона працює в цьому відділенні». У британській англійській про роботу у відділенні кажуть work on a ward. Is working описує тимчасове місце роботи, навіть якщо в неї зараз перерва."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-13:intro2:r1",
+              "text": "She is working on this ward this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro2:r2",
+              "text": "She working on this ward this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro2:r3",
+              "text": "She is works on this ward this week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-13:intro2:r1",
+              "text": "She is working on this ward this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro2:r2",
+              "text": "She working on this ward this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro2:r3",
+              "text": "She is works on this ward this week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где она сейчас",
+        "uk": "Де вона зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Bedside — «место у постели». Посетитель ищет медсестру. She is at the bedside — «Она у постели». Здесь is сообщает, где она находится. Это не Present Continuous: после is нет глагола с ing. Сравните: She is working — «Она работает».",
+        "uk": "Bedside — «місце біля ліжка». Відвідувач шукає медсестру. She is at the bedside — «Вона біля ліжка». Тут is повідомляє, де вона перебуває. Це не Present Continuous: після is немає дієслова з ing. Порівняйте: She is working — «Вона працює»."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-13:intro3:r1",
+              "text": "She is at the bedside."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro3:r2",
+              "text": "She at the bedside."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro3:r3",
+              "text": "She are at the bedside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-13:intro3:r1",
+              "text": "She is at the bedside."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro3:r2",
+              "text": "She at the bedside."
+            },
+            {
+              "responseId": "en:lesson-10:session-13:intro3:r3",
+              "text": "She are at the bedside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "260ea285f7fab6f326343f325cdf65861d11730334c4abd593bc68730a471976"
+}

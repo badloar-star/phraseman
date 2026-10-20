@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-15:intro1:r2": {
+          "ru": "С he нужна works.",
+          "uk": "З he потрібна works."
+        },
+        "en:lesson-10:session-15:intro1:r3": {
+          "ru": "Для обычной работы здесь нужна works.",
+          "uk": "Для звичайної роботи тут потрібна works."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-15:intro2:r2": {
+          "ru": "Перед working нужна is.",
+          "uk": "Перед working потрібна is."
+        },
+        "en:lesson-10:session-15:intro2:r3": {
+          "ru": "После is нужна working.",
+          "uk": "Після is потрібна working."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-15:intro3:r2": {
+          "ru": "После is нужна checking.",
+          "uk": "Після is потрібна checking."
+        },
+        "en:lesson-10:session-15:intro3:r3": {
+          "ru": "Перед checking нужна is.",
+          "uk": "Перед checking потрібна is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "50216daab6ad3b27a3da145eb27363457d76ecb387bbdd8014a1a4860900b246"
+}

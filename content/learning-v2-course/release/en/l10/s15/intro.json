@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "He usually works in the main office; He is working here this week",
+    "uk": "He usually works in the main office; He is working here this week"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Работа с документами",
+        "uk": "Робота з документами"
+      },
+      "bodyByLocale": {
+        "ru": "Clerk — «служащий»: здесь сотрудник офиса, который ведёт документы и записи. He usually works in the main office — «Обычно он работает в главном офисе». Present Simple описывает обычное место работы. Usually стоит перед works; с he у глагола есть окончание s.",
+        "uk": "Clerk — «службовець»: тут працівник офісу, який веде документи й записи. He usually works in the main office — «Зазвичай він працює в головному офісі». Present Simple описує звичайне місце роботи. Usually стоїть перед works; з he дієслово має закінчення s."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-15:intro1:r1",
+              "text": "He usually works in the main office."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro1:r2",
+              "text": "He usually work in the main office."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro1:r3",
+              "text": "He usually working in the main office."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-15:intro1:r1",
+              "text": "He usually works in the main office."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro1:r2",
+              "text": "He usually work in the main office."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro1:r3",
+              "text": "He usually working in the main office."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Помощь на эту неделю",
+        "uk": "Допомога на цей тиждень"
+      },
+      "bodyByLocale": {
+        "ru": "На этой неделе служащий временно помогает вашему офису. Затем он вернётся в главный офис. He is working here this week — «На этой неделе он работает здесь». Is working описывает временную работу. Фраза относится ко всей неделе, а не только к моменту, когда он сидит за столом.",
+        "uk": "Цього тижня службовець тимчасово допомагає вашому офісу. Потім він повернеться до головного офісу. He is working here this week — «Цього тижня він працює тут». Is working описує тимчасову роботу. Фраза стосується всього тижня, а не лише моменту, коли він сидить за столом."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-15:intro2:r1",
+              "text": "He is working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro2:r2",
+              "text": "He working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro2:r3",
+              "text": "He is works here this week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-15:intro2:r1",
+              "text": "He is working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro2:r2",
+              "text": "He working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro2:r3",
+              "text": "He is works here this week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверка записей сейчас",
+        "uk": "Перевірка записів зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Ledger — «книга учёта»: здесь книга с финансовыми записями. Коллега видит, что служащий сверяет записи. He is checking the ledger — «Он проверяет книгу учёта». Здесь is checking описывает действие прямо сейчас. Временное место работы и действие в данный момент — два значения Present Continuous, которые различаются по контексту.",
+        "uk": "Ledger — «облікова книга»: тут книга з фінансовими записами. Колега бачить, що службовець звіряє записи. He is checking the ledger — «Він перевіряє облікову книгу». Тут is checking описує дію просто зараз. Тимчасове місце роботи й дія в цей момент — два значення Present Continuous, які розрізняються за контекстом."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-15:intro3:r1",
+              "text": "He is checking the ledger."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro3:r2",
+              "text": "He is check the ledger."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro3:r3",
+              "text": "He checking the ledger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-15:intro3:r1",
+              "text": "He is checking the ledger."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro3:r2",
+              "text": "He is check the ledger."
+            },
+            {
+              "responseId": "en:lesson-10:session-15:intro3:r3",
+              "text": "He checking the ledger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d725294a78c8a1407a9156cf9534693261398fb90531ee00483c71e2db8dada1"
+}

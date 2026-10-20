@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-15:word:clerk",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — clerk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:word:clerk:audio"
+      ],
+      "accessibilityLabel": "Картка слова — clerk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:word:clerk:audio",
+          "transcript": "clerk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-15:word:clerk:r1",
+            "targetText": "clerk",
+            "meaningByLocale": {
+              "ru": "«служащий». He is a clerk. — «Он служащий». Здесь офисный сотрудник, который ведёт документы и записи.",
+              "uk": "«службовець». He is a clerk. — «Він службовець». Тут офісний працівник, який веде документи й записи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clerk",
+          "definitionByLocale": {
+            "ru": "«служащий». He is a clerk. — «Он служащий». Здесь офисный сотрудник, который ведёт документы и записи.",
+            "uk": "«службовець». He is a clerk. — «Він службовець». Тут офісний працівник, який веде документи й записи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує про посаду вашого знайомого. Скажіть: «Він службовець»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує про посаду вашого знайомого. Скажіть: «Він службовець»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is a clerk.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает о должности вашего знакомого. Скажите: «Он служащий»",
+          "uk": "Колега запитує про посаду вашого знайомого. Скажіть: «Він службовець»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "a",
+          "clerk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-15:i02:r1",
+          "text": "He usually works in the main office."
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i02:r2",
+          "text": "She usually works in the main office."
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i02:r3",
+          "text": "He usually works in the small office."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:i02:audio",
+          "transcript": "He usually works in the main office."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-15:i02:r1",
+            "targetText": "He usually works in the main office.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i02:r2",
+            "targetText": "She usually works in the main office.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i02:r3",
+            "targetText": "He usually works in the small office.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He usually works in the main office.",
+              "uk": "У записі звучить He usually works in the main office."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He usually works in the main office.",
+              "uk": "У записі звучить He usually works in the main office."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму work для звичайної роботи з he",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-15:i03:r1",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i03:r2",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i03:r3",
+          "text": "working"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму work для звичайної роботи з he",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму work для обычной работы с he",
+          "uk": "Виберіть форму work для звичайної роботи з he"
+        },
+        "gappedTargetPhrase": "He usually ___ in the main office.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-15:i03:r1",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i03:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i03:r3",
+            "text": "working"
+          }
+        ],
+        "testedDimension": "Виберіть форму work для звичайної роботи з he",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму work для звичайної роботи з he",
+            "feedbackByLocale": {
+              "ru": "С he нужна works.",
+              "uk": "З he потрібна works."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму work для звичайної роботи з he",
+            "feedbackByLocale": {
+              "ru": "Для обычной работы здесь нужна works.",
+              "uk": "Для звичайної роботи тут потрібна works."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:word:ledger",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ledger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:word:ledger:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ledger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:word:ledger:audio",
+          "transcript": "ledger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-15:word:ledger:r1",
+            "targetText": "ledger",
+            "meaningByLocale": {
+              "ru": "«книга учёта». He is checking the ledger. — «Он проверяет книгу учёта». Здесь книга финансовых записей.",
+              "uk": "«облікова книга». He is checking the ledger. — «Він перевіряє облікову книгу». Тут книга фінансових записів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ledger",
+          "definitionByLocale": {
+            "ru": "«книга учёта». He is checking the ledger. — «Он проверяет книгу учёта». Здесь книга финансовых записей.",
+            "uk": "«облікова книга». He is checking the ledger. — «Він перевіряє облікову книгу». Тут книга фінансових записів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує, що службовець перевіряє зараз. Скажіть: «Він перевіряє облікову книгу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує, що службовець перевіряє зараз. Скажіть: «Він перевіряє облікову книгу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is checking the ledger.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, что служащий проверяет сейчас. Скажите: «Он проверяет книгу учёта»",
+          "uk": "Колега запитує, що службовець перевіряє зараз. Скажіть: «Він перевіряє облікову книгу»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "checking",
+          "the",
+          "ledger"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-15:i05:r1",
+          "text": "The ledger is on the desk."
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i05:r2",
+          "text": "The ledger is under the desk."
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i05:r3",
+          "text": "The letter is on the desk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:i05:audio",
+          "transcript": "The ledger is on the desk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-15:i05:r1",
+            "targetText": "The ledger is on the desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i05:r2",
+            "targetText": "The ledger is under the desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i05:r3",
+            "targetText": "The letter is on the desk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ledger is on the desk.",
+              "uk": "У записі звучить The ledger is on the desk."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ledger is on the desk.",
+              "uk": "У записі звучить The ledger is on the desk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму check після is",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-15:i06:r1",
+          "text": "checking"
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i06:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i06:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму check після is",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму check после is",
+          "uk": "Виберіть форму check після is"
+        },
+        "gappedTargetPhrase": "He is ___ the ledger.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-15:i06:r1",
+            "text": "checking"
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i06:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i06:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Виберіть форму check після is",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму check після is",
+            "feedbackByLocale": {
+              "ru": "После is нужна checking.",
+              "uk": "Після is потрібна checking."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму check після is",
+            "feedbackByLocale": {
+              "ru": "Checks — Present Simple; здесь нужна checking.",
+              "uk": "Checks — Present Simple; тут потрібна checking."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:word:rubber-stamp",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rubber stamp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:word:rubber-stamp:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rubber stamp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:word:rubber-stamp:audio",
+          "transcript": "rubber stamp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-15:word:rubber-stamp:r1",
+            "targetText": "rubber stamp",
+            "meaningByLocale": {
+              "ru": "«резиновый штамп». The rubber stamp is on the desk. — «Резиновый штамп на столе». Здесь предмет, которым ставят отпечаток на документе.",
+              "uk": "«гумовий штамп». The rubber stamp is on the desk. — «Гумовий штамп на столі». Тут предмет, яким ставлять відбиток на документі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rubber stamp",
+          "definitionByLocale": {
+            "ru": "«резиновый штамп». The rubber stamp is on the desk. — «Резиновый штамп на столе». Здесь предмет, которым ставят отпечаток на документе.",
+            "uk": "«гумовий штамп». The rubber stamp is on the desk. — «Гумовий штамп на столі». Тут предмет, яким ставлять відбиток на документі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега шукає штамп для документів. Скажіть: «Гумовий штамп на столі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега шукає штамп для документів. Скажіть: «Гумовий штамп на столі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The rubber stamp is on the desk.",
+        "localizedMeaning": {
+          "ru": "Коллега ищет штамп для документов. Скажите: «Резиновый штамп на столе»",
+          "uk": "Колега шукає штамп для документів. Скажіть: «Гумовий штамп на столі»"
+        },
+        "orderedTokens": [
+          "The",
+          "rubber",
+          "stamp",
+          "is",
+          "on",
+          "the",
+          "desk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-15:i08:r1",
+          "text": "I am using the rubber stamp."
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i08:r2",
+          "text": "He is using the rubber stamp."
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i08:r3",
+          "text": "I am using the printer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:i08:audio",
+          "transcript": "I am using the rubber stamp."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-15:i08:r1",
+            "targetText": "I am using the rubber stamp.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i08:r2",
+            "targetText": "He is using the rubber stamp.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i08:r3",
+            "targetText": "I am using the printer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am using the rubber stamp.",
+              "uk": "У записі звучить I am using the rubber stamp."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am using the rubber stamp.",
+              "uk": "У записі звучить I am using the rubber stamp."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму use після am",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-15:i09:r1",
+          "text": "using"
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i09:r2",
+          "text": "useing"
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i09:r3",
+          "text": "use"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму use після am",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму use после am",
+          "uk": "Виберіть форму use після am"
+        },
+        "gappedTargetPhrase": "I am ___ the rubber stamp.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-15:i09:r1",
+            "text": "using"
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i09:r2",
+            "text": "useing"
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i09:r3",
+            "text": "use"
+          }
+        ],
+        "testedDimension": "Виберіть форму use після am",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму use після am",
+            "feedbackByLocale": {
+              "ru": "Use теряет конечную e: using.",
+              "uk": "Use втрачає кінцеву e: using."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму use після am",
+            "feedbackByLocale": {
+              "ru": "После am нужна using.",
+              "uk": "Після am потрібна using."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:word:filing-cabinet",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — filing cabinet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:word:filing-cabinet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — filing cabinet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:word:filing-cabinet:audio",
+          "transcript": "filing cabinet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-15:word:filing-cabinet:r1",
+            "targetText": "filing cabinet",
+            "meaningByLocale": {
+              "ru": "«шкаф для документов». The filing cabinet is locked. — «Шкаф для документов заперт». Здесь шкаф с ящиками для хранения документов.",
+              "uk": "«шафа для документів». The filing cabinet is locked. — «Шафа для документів замкнена». Тут шафа із шухлядами для зберігання документів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "filing cabinet",
+          "definitionByLocale": {
+            "ru": "«шкаф для документов». The filing cabinet is locked. — «Шкаф для документов заперт». Здесь шкаф с ящиками для хранения документов.",
+            "uk": "«шафа для документів». The filing cabinet is locked. — «Шафа для документів замкнена». Тут шафа із шухлядами для зберігання документів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує, чому не вдається відкрити шафу. Скажіть: «Шафа для документів замкнена»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує, чому не вдається відкрити шафу. Скажіть: «Шафа для документів замкнена»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The filing cabinet is locked.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, почему не удаётся открыть шкаф. Скажите: «Шкаф для документов заперт»",
+          "uk": "Колега запитує, чому не вдається відкрити шафу. Скажіть: «Шафа для документів замкнена»"
+        },
+        "orderedTokens": [
+          "The",
+          "filing",
+          "cabinet",
+          "is",
+          "locked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-15:i11:r1",
+          "text": "The filing cabinet is grey."
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i11:r2",
+          "text": "The filing cabinet is white."
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i11:r3",
+          "text": "The desk is grey."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:i11:audio",
+          "transcript": "The filing cabinet is grey."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-15:i11:r1",
+            "targetText": "The filing cabinet is grey.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i11:r2",
+            "targetText": "The filing cabinet is white.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i11:r3",
+            "targetText": "The desk is grey.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The filing cabinet is grey.",
+              "uk": "У записі звучить The filing cabinet is grey."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The filing cabinet is grey.",
+              "uk": "У записі звучить The filing cabinet is grey."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку перед working з he для тимчасової роботи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-15:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-15:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку перед working з he для тимчасової роботи",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку перед working с he для временной работы",
+          "uk": "Виберіть зв’язку перед working з he для тимчасової роботи"
+        },
+        "gappedTargetPhrase": "He ___ working here this week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-15:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку перед working з he для тимчасової роботи",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку перед working з he для тимчасової роботи",
+            "feedbackByLocale": {
+              "ru": "С he нужна is.",
+              "uk": "З he потрібна is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку перед working з he для тимчасової роботи",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-15:i13:p1",
+            "target": "clerk",
+            "meaningByLocale": {
+              "ru": "служащий",
+              "uk": "службовець"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-15:i13:p2",
+            "target": "ledger",
+            "meaningByLocale": {
+              "ru": "книга учёта",
+              "uk": "облікова книга"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-15:i13:p3",
+            "target": "rubber stamp",
+            "meaningByLocale": {
+              "ru": "резиновый штамп",
+              "uk": "гумовий штамп"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-15:i13:p4",
+            "target": "filing cabinet",
+            "meaningByLocale": {
+              "ru": "шкаф для документов",
+              "uk": "шафа для документів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clerk",
+          "ledger",
+          "rubber stamp",
+          "filing cabinet"
+        ],
+        "rightColumn": [
+          "службовець",
+          "облікова книга",
+          "гумовий штамп",
+          "шафа для документів"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання; this week поставте наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання; this week поставте наприкінці",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:i14:audio",
+          "transcript": "Is he working here this week?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is he working here this week?",
+        "orderedTokens": [
+          "Is",
+          "he",
+          "working",
+          "here",
+          "this",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Знайома запитує, де ваш колега зазвичай працює. Скажіть: «Зазвичай він працює в головному офісі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Знайома запитує, де ваш колега зазвичай працює. Скажіть: «Зазвичай він працює в головному офісі»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:i15:audio",
+          "transcript": "He usually works in the main office."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He usually works in the main office.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Службовець тимчасово допомагає вашому офісу. Скажіть: «Цього тижня він працює тут». Поставте this week наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Службовець тимчасово допомагає вашому офісу. Скажіть: «Цього тижня він працює тут». Поставте this week наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is working here this week.",
+        "localizedMeaning": {
+          "ru": "Служащий временно помогает вашему офису. Скажите: «На этой неделе он работает здесь». Поставьте this week в конце",
+          "uk": "Службовець тимчасово допомагає вашому офісу. Скажіть: «Цього тижня він працює тут». Поставте this week наприкінці"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "working",
+          "here",
+          "this",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-15:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Службовець зазвичай працює в головному офісі. Він приїхав допомогти вашому офісу лише на тиждень. Відвідувач запитує, чому він тут. Поясніть: «Цього тижня він працює тут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Службовець зазвичай працює в головному офісі. Він приїхав допомогти вашому офісу лише на тиждень. Відвідувач запитує, чому він тут. Поясніть: «Цього тижня він працює тут»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-15:i17:audio",
+          "transcript": "He is working here this week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is working here this week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ff44c9333ab8d949e7816705cf3b09a6333197317ea386921d52fbad580e58e1"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "He deserves recognition; She deserves praise; Does he deserve a reward?",
+    "uk": "He deserves recognition; She deserves praise; Does he deserve a reward?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заслуга, а не действие",
+        "uk": "Заслуга, а не дія"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега нашёл ошибку до отправки заказа и помог команде избежать проблемы. Deserve — «заслуживать», recognition — «признание заслуг». He deserves recognition — «Он заслуживает признания». Здесь deserves выражает оценку его заслуг, а не действие в процессе. Поэтому используем Present Simple, даже если оцениваем поступок сейчас. С he нужна deserves.",
+        "uk": "Колега знайшов помилку до відправлення замовлення й допоміг команді уникнути проблеми. Deserve — «заслуговувати», recognition — «визнання заслуг». He deserves recognition — «Він заслуговує на визнання». Тут deserves виражає оцінку його заслуг, а не дію в процесі. Тому використовуємо Present Simple, навіть якщо оцінюємо вчинок зараз. З he потрібна deserves."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-18:intro1:r1",
+              "text": "He deserves recognition."
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro1:r2",
+              "text": "He deserve recognition."
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro1:r3",
+              "text": "He is deserve recognition."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-18:intro1:r1",
+              "text": "He deserves recognition."
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro1:r2",
+              "text": "He deserve recognition."
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro1:r3",
+              "text": "He is deserve recognition."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слова одобрения",
+        "uk": "Слова схвалення"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудница спокойно объяснила новичку сложную задачу. Praise — «похвала». She deserves praise — «Она заслуживает похвалы». В английском после deserve можно сразу поставить существительное: deserves praise, без предлога. Praise здесь неисчисляемое, поэтому артикль a не нужен.",
+        "uk": "Працівниця спокійно пояснила новачку складне завдання. Praise — «похвала». She deserves praise — «Вона заслуговує на похвалу». В англійській після deserve можна відразу поставити іменник: deserves praise, без прийменника. Praise тут незлічуване, тому артикль a не потрібен."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-18:intro2:r1",
+              "text": "She deserves praise."
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro2:r2",
+              "text": "She deserves to praise."
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro2:r3",
+              "text": "She deserves a praise."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-18:intro2:r1",
+              "text": "She deserves praise."
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro2:r2",
+              "text": "She deserves to praise."
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro2:r3",
+              "text": "She deserves a praise."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Награда за помощь",
+        "uk": "Нагорода за допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудник несколько раз помог команде закончить работу вовремя. Reward — «награда» за помощь или усилия. Вы обсуждаете это с руководителем: Does he deserve a reward? — «Он заслуживает награды?» В вопросе с he используем does, а deserve остаётся без s. Здесь reward — одна возможная награда, поэтому a reward.",
+        "uk": "Працівник кілька разів допоміг команді закінчити роботу вчасно. Reward — «нагорода» за допомогу або зусилля. Ви обговорюєте це з керівником: Does he deserve a reward? — «Він заслуговує на нагороду?» У запитанні з he використовуємо does, а deserve залишається без s. Тут reward — одна можлива нагорода, тому a reward."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-18:intro3:r1",
+              "text": "Does he deserve a reward?"
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro3:r2",
+              "text": "Does he deserves a reward?"
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro3:r3",
+              "text": "Do he deserve a reward?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-18:intro3:r1",
+              "text": "Does he deserve a reward?"
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro3:r2",
+              "text": "Does he deserves a reward?"
+            },
+            {
+              "responseId": "en:lesson-10:session-18:intro3:r3",
+              "text": "Do he deserve a reward?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bf38769fb4ef4dba4bd4844e95ebb61257172fd1c0bdb08c35d3b91ecbb66a96"
+}

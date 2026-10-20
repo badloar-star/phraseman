@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-18:intro1:r2": {
+          "ru": "С he нужна deserves.",
+          "uk": "З he потрібна deserves."
+        },
+        "en:lesson-10:session-18:intro1:r3": {
+          "ru": "Is deserve неверно; оценку выражаем формой deserves.",
+          "uk": "Is deserve неправильно; оцінку виражаємо формою deserves."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-18:intro2:r2": {
+          "ru": "To praise значит «похвалить», а здесь она заслуживает похвалы: deserves praise.",
+          "uk": "To praise означає «похвалити», а тут вона заслуговує на похвалу: deserves praise."
+        },
+        "en:lesson-10:session-18:intro2:r3": {
+          "ru": "Praise здесь неисчисляемое, без a.",
+          "uk": "Praise тут незлічуване, без a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-18:intro3:r2": {
+          "ru": "После does нужна deserve без s.",
+          "uk": "Після does потрібна deserve без s."
+        },
+        "en:lesson-10:session-18:intro3:r3": {
+          "ru": "С he в этом вопросе нужна does.",
+          "uk": "З he у цьому запитанні потрібне does."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aca77e1ce1592f4031c347206b6eafa01a39b457a105718655dc2784a58b2de8"
+}

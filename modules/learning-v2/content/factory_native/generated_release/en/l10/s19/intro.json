@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "I doubt it; She doubts the claim; Do you have any evidence?",
+    "uk": "I doubt it; She doubts the claim; Do you have any evidence?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сомнение — ваше отношение",
+        "uk": "Сумнів — ваше ставлення"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега уверяет, что весь отчёт можно закончить за минуту. Вы в этом сомневаетесь. Doubt — «сомневаться». I doubt it — «Я в этом сомневаюсь». Здесь doubt описывает ваше отношение к сказанному, а не действие в процессе. Для такого сомнения обычно используем Present Simple, даже когда говорим о нём сейчас.",
+        "uk": "Колега запевняє, що весь звіт можна закінчити за хвилину. Ви в цьому сумніваєтеся. Doubt — «сумніватися». I doubt it — «Я в цьому сумніваюся». Тут doubt описує ваше ставлення до сказаного, а не дію в процесі. Для такого сумніву зазвичай використовуємо Present Simple, навіть коли говоримо про нього зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-19:intro1:r1",
+              "text": "I doubt it."
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro1:r2",
+              "text": "I doubts it."
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro1:r3",
+              "text": "I am doubt it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-19:intro1:r1",
+              "text": "I doubt it."
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro1:r2",
+              "text": "I doubts it."
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro1:r3",
+              "text": "I am doubt it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что именно вызывает сомнение",
+        "uk": "Що саме викликає сумнів"
+      },
+      "bodyByLocale": {
+        "ru": "Claim — «утверждение»: здесь слова о том, что нечто верно. В рекламе обещают выполнить большой заказ за час. Ваша коллега сомневается в этом утверждении. She doubts the claim — «Она сомневается в этом утверждении». С she нужна doubts. В английском после doubt можно сразу поставить the claim, без предлога.",
+        "uk": "Claim — «твердження»: тут слова про те, що щось є правдою. У рекламі обіцяють виконати велике замовлення за годину. Ваша колега сумнівається в цьому твердженні. She doubts the claim — «Вона сумнівається в цьому твердженні». З she потрібна doubts. В англійській після doubt можна відразу поставити the claim, без прийменника."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-19:intro2:r1",
+              "text": "She doubts the claim."
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro2:r2",
+              "text": "She doubt the claim."
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro2:r3",
+              "text": "She is doubt the claim."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-19:intro2:r1",
+              "text": "She doubts the claim."
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro2:r2",
+              "text": "She doubt the claim."
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro2:r3",
+              "text": "She is doubt the claim."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Попросить подтверждение",
+        "uk": "Попросити підтвердження"
+      },
+      "bodyByLocale": {
+        "ru": "Evidence — «доказательства»: здесь факты или материалы, которые помогают проверить утверждение. Вы не объявляете сообщение ложным, а просите подтверждение. Do you have any evidence? — «У тебя есть какие-нибудь доказательства?» Evidence в этом значении неисчисляемое: не добавляем s и не ставим a.",
+        "uk": "Evidence — «докази»: тут факти або матеріали, які допомагають перевірити твердження. Ви не оголошуєте повідомлення хибним, а просите підтвердження. Do you have any evidence? — «У тебе є якісь докази?» Evidence у цьому значенні незлічуване: не додаємо s і не ставимо a."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-19:intro3:r1",
+              "text": "Do you have any evidence?"
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro3:r2",
+              "text": "Do you have an evidence?"
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro3:r3",
+              "text": "Do you has any evidence?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-19:intro3:r1",
+              "text": "Do you have any evidence?"
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro3:r2",
+              "text": "Do you have an evidence?"
+            },
+            {
+              "responseId": "en:lesson-10:session-19:intro3:r3",
+              "text": "Do you has any evidence?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d5ddf1e8e1a4fe58bd6f78156e873c8b46da6cc5dc3b67f539c16651aed71979"
+}

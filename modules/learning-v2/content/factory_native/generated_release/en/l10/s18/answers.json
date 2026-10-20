@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-18:word:deserve",
+    "correctText": "deserve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i01",
+    "correctText": "You deserve a break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i02",
+    "correctText": "You deserve a break.",
+    "correctResponseId": "en:lesson-10:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i03",
+    "correctText": "deserves",
+    "correctResponseId": "en:lesson-10:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:word:recognition",
+    "correctText": "recognition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i04",
+    "correctText": "He deserves recognition.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i05",
+    "correctText": "They deserve recognition.",
+    "correctResponseId": "en:lesson-10:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i06",
+    "correctText": "deserve",
+    "correctResponseId": "en:lesson-10:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:word:praise",
+    "correctText": "praise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i07",
+    "correctText": "She deserves praise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i08",
+    "correctText": "We deserve praise.",
+    "correctResponseId": "en:lesson-10:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i09",
+    "correctText": "deserves",
+    "correctResponseId": "en:lesson-10:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:word:reward",
+    "correctText": "reward",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i10",
+    "correctText": "He deserves a reward.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i11",
+    "correctText": "Does she deserve a reward?",
+    "correctResponseId": "en:lesson-10:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i12",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-10:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i13",
+    "correctText": "en:lesson-10:session-18:i13:p1=deserve\nen:lesson-10:session-18:i13:p2=recognition\nen:lesson-10:session-18:i13:p3=praise\nen:lesson-10:session-18:i13:p4=reward",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i14",
+    "correctText": "Does he deserve a reward?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i15",
+    "correctText": "She deserves praise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i16",
+    "correctText": "They deserve recognition.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-18:i17",
+    "correctText": "He deserves recognition.",
+    "correctResponseId": null
+  }
+]

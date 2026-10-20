@@ -3654,4 +3654,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I admire her courage; He admires her dedication; Do you admire her integrity?","uk":"I admire her courage; He admires her dedication; Do you admire her integrity?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 18,
+    sourceFingerprint: "b15aa7bc0eeb36e9220bf1cab284c71045c84185c62492da05c5cd5d5eb5676a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He deserves recognition; She deserves praise; Does he deserve a reward?","uk":"He deserves recognition; She deserves praise; Does he deserve a reward?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 19,
+    sourceFingerprint: "b2b167538af4d7d8142cfa067858c92c581b679de775086d4bae1b50b062daac",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I doubt it; She doubts the claim; Do you have any evidence?","uk":"I doubt it; She doubts the claim; Do you have any evidence?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

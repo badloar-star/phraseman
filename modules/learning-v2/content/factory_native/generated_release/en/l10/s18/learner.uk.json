@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-18:word:deserve",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — deserve",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:word:deserve:audio"
+      ],
+      "accessibilityLabel": "Картка слова — deserve",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:word:deserve:audio",
+          "transcript": "deserve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-18:word:deserve:r1",
+            "targetText": "deserve",
+            "meaningByLocale": {
+              "ru": "«заслуживать». You deserve a break. — «Ты заслуживаешь перерыва». Здесь человек заслуживает отдыха после усилий.",
+              "uk": "«заслуговувати». You deserve a break. — «Ти заслуговуєш на перерву». Тут людина заслуговує на відпочинок після зусиль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deserve",
+          "definitionByLocale": {
+            "ru": "«заслуживать». You deserve a break. — «Ты заслуживаешь перерыва». Здесь человек заслуживает отдыха после усилий.",
+            "uk": "«заслуговувати». You deserve a break. — «Ти заслуговуєш на перерву». Тут людина заслуговує на відпочинок після зусиль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега довго допомагав готувати зустріч. Скажіть: «Ти заслуговуєш на перерву»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега довго допомагав готувати зустріч. Скажіть: «Ти заслуговуєш на перерву»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You deserve a break.",
+        "localizedMeaning": {
+          "ru": "Коллега долго помогал готовить встречу. Скажите: «Ты заслуживаешь перерыва»",
+          "uk": "Колега довго допомагав готувати зустріч. Скажіть: «Ти заслуговуєш на перерву»"
+        },
+        "orderedTokens": [
+          "You",
+          "deserve",
+          "a",
+          "break"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-18:i02:r1",
+          "text": "You deserve a break."
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i02:r2",
+          "text": "We deserve a break."
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i02:r3",
+          "text": "You need a break."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:i02:audio",
+          "transcript": "You deserve a break."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-18:i02:r1",
+            "targetText": "You deserve a break.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i02:r2",
+            "targetText": "We deserve a break.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i02:r3",
+            "targetText": "You need a break.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You deserve a break.",
+              "uk": "У записі звучить You deserve a break."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You deserve a break.",
+              "uk": "У записі звучить You deserve a break."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму deserve з he",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-18:i03:r1",
+          "text": "deserves"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i03:r2",
+          "text": "deserve"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i03:r3",
+          "text": "is deserve"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму deserve з he",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму deserve с he",
+          "uk": "Виберіть форму deserve з he"
+        },
+        "gappedTargetPhrase": "He ___ a break.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-18:i03:r1",
+            "text": "deserves"
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i03:r2",
+            "text": "deserve"
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i03:r3",
+            "text": "is deserve"
+          }
+        ],
+        "testedDimension": "Виберіть форму deserve з he",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму deserve з he",
+            "feedbackByLocale": {
+              "ru": "С he нужна deserves.",
+              "uk": "З he потрібна deserves."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму deserve з he",
+            "feedbackByLocale": {
+              "ru": "Is deserve неверно; здесь нужна deserves.",
+              "uk": "Is deserve неправильно; тут потрібна deserves."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:word:recognition",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — recognition",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:word:recognition:audio"
+      ],
+      "accessibilityLabel": "Картка слова — recognition",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:word:recognition:audio",
+          "transcript": "recognition"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-18:word:recognition:r1",
+            "targetText": "recognition",
+            "meaningByLocale": {
+              "ru": "«признание заслуг». He deserves recognition. — «Он заслуживает признания». Здесь признание вклада человека.",
+              "uk": "«визнання заслуг». He deserves recognition. — «Він заслуговує на визнання». Тут визнання внеску людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recognition",
+          "definitionByLocale": {
+            "ru": "«признание заслуг». He deserves recognition. — «Он заслуживает признания». Здесь признание вклада человека.",
+            "uk": "«визнання заслуг». He deserves recognition. — «Він заслуговує на визнання». Тут визнання внеску людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега вчасно знайшов помилку й допоміг команді. Скажіть: «Він заслуговує на визнання»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега вчасно знайшов помилку й допоміг команді. Скажіть: «Він заслуговує на визнання»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He deserves recognition.",
+        "localizedMeaning": {
+          "ru": "Коллега вовремя нашёл ошибку и помог команде. Скажите: «Он заслуживает признания»",
+          "uk": "Колега вчасно знайшов помилку й допоміг команді. Скажіть: «Він заслуговує на визнання»"
+        },
+        "orderedTokens": [
+          "He",
+          "deserves",
+          "recognition"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-18:i05:r1",
+          "text": "They deserve recognition."
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i05:r2",
+          "text": "We deserve recognition."
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i05:r3",
+          "text": "They deserve a break."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:i05:audio",
+          "transcript": "They deserve recognition."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-18:i05:r1",
+            "targetText": "They deserve recognition.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i05:r2",
+            "targetText": "We deserve recognition.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i05:r3",
+            "targetText": "They deserve a break.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They deserve recognition.",
+              "uk": "У записі звучить They deserve recognition."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They deserve recognition.",
+              "uk": "У записі звучить They deserve recognition."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму deserve після does",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-18:i06:r1",
+          "text": "deserve"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i06:r2",
+          "text": "deserves"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i06:r3",
+          "text": "deserving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму deserve після does",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму deserve после does",
+          "uk": "Виберіть форму deserve після does"
+        },
+        "gappedTargetPhrase": "Does he ___ recognition?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-18:i06:r1",
+            "text": "deserve"
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i06:r2",
+            "text": "deserves"
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i06:r3",
+            "text": "deserving"
+          }
+        ],
+        "testedDimension": "Виберіть форму deserve після does",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму deserve після does",
+            "feedbackByLocale": {
+              "ru": "После does глагол без s: deserve.",
+              "uk": "Після does дієслово без s: deserve."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму deserve після does",
+            "feedbackByLocale": {
+              "ru": "После does нужна базовая форма deserve.",
+              "uk": "Після does потрібна початкова форма deserve."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:word:praise",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — praise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:word:praise:audio"
+      ],
+      "accessibilityLabel": "Картка слова — praise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:word:praise:audio",
+          "transcript": "praise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-18:word:praise:r1",
+            "targetText": "praise",
+            "meaningByLocale": {
+              "ru": "«похвала». She deserves praise. — «Она заслуживает похвалы». Здесь слова одобрения, без артикля a.",
+              "uk": "«похвала». She deserves praise. — «Вона заслуговує на похвалу». Тут слова схвалення, без артикля a."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "praise",
+          "definitionByLocale": {
+            "ru": "«похвала». She deserves praise. — «Она заслуживает похвалы». Здесь слова одобрения, без артикля a.",
+            "uk": "«похвала». She deserves praise. — «Вона заслуговує на похвалу». Тут слова схвалення, без артикля a."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працівниця терпляче допомогла новачку розібратися із завданням. Скажіть: «Вона заслуговує на похвалу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівниця терпляче допомогла новачку розібратися із завданням. Скажіть: «Вона заслуговує на похвалу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She deserves praise.",
+        "localizedMeaning": {
+          "ru": "Сотрудница терпеливо помогла новичку разобраться в задаче. Скажите: «Она заслуживает похвалы»",
+          "uk": "Працівниця терпляче допомогла новачку розібратися із завданням. Скажіть: «Вона заслуговує на похвалу»"
+        },
+        "orderedTokens": [
+          "She",
+          "deserves",
+          "praise"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-18:i08:r1",
+          "text": "We deserve praise."
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i08:r2",
+          "text": "They deserve praise."
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i08:r3",
+          "text": "We deserve recognition."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:i08:audio",
+          "transcript": "We deserve praise."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-18:i08:r1",
+            "targetText": "We deserve praise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i08:r2",
+            "targetText": "They deserve praise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i08:r3",
+            "targetText": "We deserve recognition.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We deserve praise.",
+              "uk": "У записі звучить We deserve praise."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We deserve praise.",
+              "uk": "У записі звучить We deserve praise."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму deserve з she",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-18:i09:r1",
+          "text": "deserves"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i09:r2",
+          "text": "deserve"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i09:r3",
+          "text": "is deserve"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму deserve з she",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму deserve с she",
+          "uk": "Виберіть форму deserve з she"
+        },
+        "gappedTargetPhrase": "She ___ praise.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-18:i09:r1",
+            "text": "deserves"
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i09:r2",
+            "text": "deserve"
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i09:r3",
+            "text": "is deserve"
+          }
+        ],
+        "testedDimension": "Виберіть форму deserve з she",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму deserve з she",
+            "feedbackByLocale": {
+              "ru": "С she нужна deserves.",
+              "uk": "З she потрібна deserves."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму deserve з she",
+            "feedbackByLocale": {
+              "ru": "Is deserve неверно; оценку выражаем через deserves.",
+              "uk": "Is deserve неправильно; оцінку виражаємо через deserves."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:word:reward",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reward",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:word:reward:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reward",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:word:reward:audio",
+          "transcript": "reward"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-18:word:reward:r1",
+            "targetText": "reward",
+            "meaningByLocale": {
+              "ru": "«награда». He deserves a reward. — «Он заслуживает награды». Здесь награда за помощь или усилия.",
+              "uk": "«нагорода». He deserves a reward. — «Він заслуговує на нагороду». Тут нагорода за допомогу або зусилля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reward",
+          "definitionByLocale": {
+            "ru": "«награда». He deserves a reward. — «Он заслуживает награды». Здесь награда за помощь или усилия.",
+            "uk": "«нагорода». He deserves a reward. — «Він заслуговує на нагороду». Тут нагорода за допомогу або зусилля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега неодноразово допоміг команді закінчити роботу вчасно. Скажіть: «Він заслуговує на нагороду»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега неодноразово допоміг команді закінчити роботу вчасно. Скажіть: «Він заслуговує на нагороду»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He deserves a reward.",
+        "localizedMeaning": {
+          "ru": "Коллега неоднократно помог команде закончить работу вовремя. Скажите: «Он заслуживает награды»",
+          "uk": "Колега неодноразово допоміг команді закінчити роботу вчасно. Скажіть: «Він заслуговує на нагороду»"
+        },
+        "orderedTokens": [
+          "He",
+          "deserves",
+          "a",
+          "reward"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-18:i11:r1",
+          "text": "Does she deserve a reward?"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i11:r2",
+          "text": "Does he deserve a reward?"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i11:r3",
+          "text": "Does she deserve a break?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:i11:audio",
+          "transcript": "Does she deserve a reward?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-18:i11:r1",
+            "targetText": "Does she deserve a reward?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i11:r2",
+            "targetText": "Does he deserve a reward?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i11:r3",
+            "targetText": "Does she deserve a break?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does she deserve a reward?",
+              "uk": "У записі звучить Does she deserve a reward?"
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Does she deserve a reward?",
+              "uk": "У записі звучить Does she deserve a reward?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль для однієї нагороди",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-18:i12:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i12:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-10:session-18:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль для однієї нагороди",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль для одной награды",
+          "uk": "Виберіть артикль для однієї нагороди"
+        },
+        "gappedTargetPhrase": "He deserves ___ reward.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-18:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль для однієї нагороди",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль для однієї нагороди",
+            "feedbackByLocale": {
+              "ru": "Reward начинается с согласного звука: a.",
+              "uk": "Reward починається з приголосного звука: a."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль для однієї нагороди",
+            "feedbackByLocale": {
+              "ru": "Are — глагол; здесь нужен артикль a.",
+              "uk": "Are — дієслово; тут потрібен артикль a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-18:i13:p1",
+            "target": "deserve",
+            "meaningByLocale": {
+              "ru": "заслуживать",
+              "uk": "заслуговувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-18:i13:p2",
+            "target": "recognition",
+            "meaningByLocale": {
+              "ru": "признание заслуг",
+              "uk": "визнання заслуг"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-18:i13:p3",
+            "target": "praise",
+            "meaningByLocale": {
+              "ru": "похвала",
+              "uk": "похвала"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-18:i13:p4",
+            "target": "reward",
+            "meaningByLocale": {
+              "ru": "награда",
+              "uk": "нагорода"
+            }
+          }
+        ],
+        "leftColumn": [
+          "deserve",
+          "recognition",
+          "praise",
+          "reward"
+        ],
+        "rightColumn": [
+          "заслуговувати",
+          "визнання заслуг",
+          "похвала",
+          "нагорода"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:i14:audio",
+          "transcript": "Does he deserve a reward?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does he deserve a reward?",
+        "orderedTokens": [
+          "Does",
+          "he",
+          "deserve",
+          "a",
+          "reward"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Керівник обговорює допомогу працівниці новачку. Скажіть: «Вона заслуговує на похвалу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Керівник обговорює допомогу працівниці новачку. Скажіть: «Вона заслуговує на похвалу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:i15:audio",
+          "transcript": "She deserves praise."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She deserves praise.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує, чи варто відзначити зусилля всієї команди. Скажіть: «Вони заслуговують на визнання»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує, чи варто відзначити зусилля всієї команди. Скажіть: «Вони заслуговують на визнання»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They deserve recognition.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, стоит ли отметить усилия всей команды. Скажите: «Они заслуживают признания»",
+          "uk": "Колега запитує, чи варто відзначити зусилля всієї команди. Скажіть: «Вони заслуговують на визнання»"
+        },
+        "orderedTokens": [
+          "They",
+          "deserve",
+          "recognition"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-18:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Працівник знайшов помилку до відправлення замовлення. Зараз керівник запитує вашу думку про його заслуги. Висловлюючи оцінку, скажіть: «Він заслуговує на визнання»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Працівник знайшов помилку до відправлення замовлення. Зараз керівник запитує вашу думку про його заслуги. Висловлюючи оцінку, скажіть: «Він заслуговує на визнання»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-18:i17:audio",
+          "transcript": "He deserves recognition."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He deserves recognition.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c02d840d93b1145918a366cc29cacad4489c41760fc82996971bea89ae88e25d"
+}

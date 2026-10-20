@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-22:word:recognize",
+    "correctText": "recognize",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i01",
+    "correctText": "I recognize her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i02",
+    "correctText": "I recognize her.",
+    "correctResponseId": "en:lesson-10:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i03",
+    "correctText": "recognizes",
+    "correctResponseId": "en:lesson-10:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:word:handwriting",
+    "correctText": "handwriting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i04",
+    "correctText": "I recognize her handwriting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i05",
+    "correctText": "Her handwriting is clear.",
+    "correctResponseId": "en:lesson-10:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i06",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-10:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:word:signature",
+    "correctText": "signature",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i07",
+    "correctText": "Do you recognize the signature?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i08",
+    "correctText": "The signature is at the bottom.",
+    "correctResponseId": "en:lesson-10:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i09",
+    "correctText": "recognize",
+    "correctResponseId": "en:lesson-10:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:word:accent",
+    "correctText": "accent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i10",
+    "correctText": "I recognize the accent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i11",
+    "correctText": "She recognizes the accent.",
+    "correctResponseId": "en:lesson-10:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i12",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-10:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i13",
+    "correctText": "en:lesson-10:session-22:i13:p1=recognize\nen:lesson-10:session-22:i13:p2=handwriting\nen:lesson-10:session-22:i13:p3=signature\nen:lesson-10:session-22:i13:p4=accent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i14",
+    "correctText": "Does she recognize the signature?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i15",
+    "correctText": "I recognize her handwriting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i16",
+    "correctText": "She recognizes the accent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-22:i17",
+    "correctText": "I recognize her handwriting.",
+    "correctResponseId": null
+  }
+]

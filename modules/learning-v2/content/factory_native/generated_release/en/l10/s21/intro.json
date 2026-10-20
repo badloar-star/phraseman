@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "I imagine she is busy; It is a possibility; We need a better outcome",
+    "uk": "I imagine she is busy; It is a possibility; We need a better outcome"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предположение без уверенности",
+        "uk": "Припущення без упевненості"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега сегодня организует переезд офиса и не отвечает на сообщение. Вы не видите её, но предполагаете, что она занята. I imagine she is busy — «Полагаю, она занята». Imagine может означать «представлять», а здесь — «полагать, предполагать». В этом значении Present Simple выражает ваше мнение, а не действие в процессе.",
+        "uk": "Колега сьогодні організовує переїзд офісу й не відповідає на повідомлення. Ви не бачите її, але припускаєте, що вона зайнята. I imagine she is busy — «Гадаю, вона зайнята». Imagine може означати «уявляти», а тут — «гадати, припускати». У цьому значенні Present Simple виражає вашу думку, а не дію в процесі."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-21:intro1:r1",
+              "text": "I imagine she is busy."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro1:r2",
+              "text": "I imagines she is busy."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro1:r3",
+              "text": "I imagine she are busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-21:intro1:r1",
+              "text": "I imagine she is busy."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro1:r2",
+              "text": "I imagines she is busy."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro1:r3",
+              "text": "I imagine she are busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Возможность, а не принятое решение",
+        "uk": "Можливість, а не ухвалене рішення"
+      },
+      "bodyByLocale": {
+        "ru": "Possibility — «возможность». Вы обсуждаете, перенести ли встречу в соседнюю комнату. Решения ещё нет. It is a possibility — «Это возможный вариант». Эта фраза не обещает, что так обязательно будет. Для одного возможного варианта используем a possibility.",
+        "uk": "Possibility — «можливість». Ви обговорюєте, чи перенести зустріч до сусідньої кімнати. Рішення ще немає. It is a possibility — «Це можливий варіант». Ця фраза не обіцяє, що так обов’язково буде. Для одного можливого варіанта використовуємо a possibility."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-21:intro2:r1",
+              "text": "It is a possibility."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro2:r2",
+              "text": "It are a possibility."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro2:r3",
+              "text": "It is an possibility."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-21:intro2:r1",
+              "text": "It is a possibility."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro2:r2",
+              "text": "It are a possibility."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro2:r3",
+              "text": "It is an possibility."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Разные значения imagine",
+        "uk": "Різні значення imagine"
+      },
+      "bodyByLocale": {
+        "ru": "Scenario — «сценарий»: здесь возможный ход событий. Коллега предлагает представить, как пройдёт переезд. I can imagine that scenario — «Я могу представить такой сценарий». Здесь imagine — создать мысленный образ. Форма I am imagining тоже возможна, когда человек сейчас что-то мысленно представляет. Поэтому не запрещаем Continuous для слова целиком: в I imagine she is busy мы выражали предположение.",
+        "uk": "Scenario — «сценарій»: тут можливий перебіг подій. Колега пропонує уявити, як пройде переїзд. I can imagine that scenario — «Я можу уявити такий сценарій». Тут imagine — створити уявний образ. Форма I am imagining також можлива, коли людина зараз щось уявляє. Тому не забороняємо Continuous для слова загалом: у I imagine she is busy ми висловлювали припущення."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-21:intro3:r1",
+              "text": "I can imagine that scenario."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro3:r2",
+              "text": "I can imagines that scenario."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro3:r3",
+              "text": "I can to imagine that scenario."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-21:intro3:r1",
+              "text": "I can imagine that scenario."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro3:r2",
+              "text": "I can imagines that scenario."
+            },
+            {
+              "responseId": "en:lesson-10:session-21:intro3:r3",
+              "text": "I can to imagine that scenario."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bbec01d9d3b7d752876898330b628d02363a44b0eb49714580deaf1084995ff5"
+}

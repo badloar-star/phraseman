@@ -3675,4 +3675,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I expect the parcel today; She expects confirmation; Do you have the tracking number?","uk":"I expect the parcel today; She expects confirmation; Do you have the tracking number?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 21,
+    sourceFingerprint: "0f9b7a44144610e27827036f7e220ca9c8c8d8e49241594461ca012ad5fcb1bd",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I imagine she is busy; It is a possibility; We need a better outcome","uk":"I imagine she is busy; It is a possibility; We need a better outcome"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 22,
+    sourceFingerprint: "ab7803a25b788ee8c2bc493216a25b80116a82efcba84fd34431cb278056f62b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I recognize her; I recognize her handwriting; Do you recognize the signature?","uk":"I recognize her; I recognize her handwriting; Do you recognize the signature?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

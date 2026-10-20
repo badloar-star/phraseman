@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-22:word:recognize",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — recognize",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:word:recognize:audio"
+      ],
+      "accessibilityLabel": "Картка слова — recognize",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:word:recognize:audio",
+          "transcript": "recognize"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-22:word:recognize:r1",
+            "targetText": "recognize",
+            "meaningByLocale": {
+              "ru": "«узнавать». I recognize her. — «Я узнаю её». Здесь понять, что человек уже вам знаком.",
+              "uk": "«упізнавати». I recognize her. — «Я впізнаю її». Тут зрозуміти, що людина вже вам знайома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recognize",
+          "definitionByLocale": {
+            "ru": "«узнавать». I recognize her. — «Я узнаю её». Здесь понять, что человек уже вам знаком.",
+            "uk": "«упізнавати». I recognize her. — «Я впізнаю її». Тут зрозуміти, що людина вже вам знайома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг показує фотографію колишньої колеги. Скажіть: «Я впізнаю її»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг показує фотографію колишньої колеги. Скажіть: «Я впізнаю її»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I recognize her.",
+        "localizedMeaning": {
+          "ru": "Друг показывает фотографию бывшей коллеги. Скажите: «Я узнаю её»",
+          "uk": "Друг показує фотографію колишньої колеги. Скажіть: «Я впізнаю її»"
+        },
+        "orderedTokens": [
+          "I",
+          "recognize",
+          "her"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-22:i02:r1",
+          "text": "I recognize her."
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i02:r2",
+          "text": "We recognize her."
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i02:r3",
+          "text": "I recognize him."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:i02:audio",
+          "transcript": "I recognize her."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-22:i02:r1",
+            "targetText": "I recognize her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i02:r2",
+            "targetText": "We recognize her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i02:r3",
+            "targetText": "I recognize him.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I recognize her.",
+              "uk": "У записі звучить I recognize her."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I recognize her.",
+              "uk": "У записі звучить I recognize her."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму recognize з he",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-22:i03:r1",
+          "text": "recognizes"
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i03:r2",
+          "text": "recognize"
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i03:r3",
+          "text": "is recognize"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму recognize з he",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму recognize с he",
+          "uk": "Виберіть форму recognize з he"
+        },
+        "gappedTargetPhrase": "He ___ her.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-22:i03:r1",
+            "text": "recognizes"
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i03:r2",
+            "text": "recognize"
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i03:r3",
+            "text": "is recognize"
+          }
+        ],
+        "testedDimension": "Виберіть форму recognize з he",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-22:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму recognize з he",
+            "feedbackByLocale": {
+              "ru": "С he нужна recognizes.",
+              "uk": "З he потрібна recognizes."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму recognize з he",
+            "feedbackByLocale": {
+              "ru": "Is recognize неверно; здесь нужна recognizes.",
+              "uk": "Is recognize неправильно; тут потрібна recognizes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:word:handwriting",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — handwriting",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:word:handwriting:audio"
+      ],
+      "accessibilityLabel": "Картка слова — handwriting",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:word:handwriting:audio",
+          "transcript": "handwriting"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-22:word:handwriting:r1",
+            "targetText": "handwriting",
+            "meaningByLocale": {
+              "ru": "«почерк». I recognize her handwriting. — «Я узнаю её почерк». Манера писать буквы от руки.",
+              "uk": "«почерк». I recognize her handwriting. — «Я впізнаю її почерк». Манера писати літери від руки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "handwriting",
+          "definitionByLocale": {
+            "ru": "«почерк». I recognize her handwriting. — «Я узнаю её почерк». Манера писать буквы от руки.",
+            "uk": "«почерк». I recognize her handwriting. — «Я впізнаю її почерк». Манера писати літери від руки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На столі записка колеги, чиї записи ви часто читаєте. Скажіть: «Я впізнаю її почерк»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столі записка колеги, чиї записи ви часто читаєте. Скажіть: «Я впізнаю її почерк»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I recognize her handwriting.",
+        "localizedMeaning": {
+          "ru": "На столе записка коллеги, чьи записи вы часто читаете. Скажите: «Я узнаю её почерк»",
+          "uk": "На столі записка колеги, чиї записи ви часто читаєте. Скажіть: «Я впізнаю її почерк»"
+        },
+        "orderedTokens": [
+          "I",
+          "recognize",
+          "her",
+          "handwriting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-22:i05:r1",
+          "text": "Her handwriting is clear."
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i05:r2",
+          "text": "His handwriting is clear."
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i05:r3",
+          "text": "Her handwriting is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:i05:audio",
+          "transcript": "Her handwriting is clear."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-22:i05:r1",
+            "targetText": "Her handwriting is clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i05:r2",
+            "targetText": "His handwriting is clear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i05:r3",
+            "targetText": "Her handwriting is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-22:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her handwriting is clear.",
+              "uk": "У записі звучить Her handwriting is clear."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her handwriting is clear.",
+              "uk": "У записі звучить Her handwriting is clear."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово для «її почерк»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-22:i06:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i06:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i06:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово для «її почерк»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово для «её почерк»",
+          "uk": "Виберіть слово для «її почерк»"
+        },
+        "gappedTargetPhrase": "I recognize ___ handwriting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-22:i06:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i06:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i06:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Виберіть слово для «її почерк»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-22:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово для «її почерк»",
+            "feedbackByLocale": {
+              "ru": "Перед handwriting нужно her, не she.",
+              "uk": "Перед handwriting потрібне her, не she."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово для «її почерк»",
+            "feedbackByLocale": {
+              "ru": "Перед существительным используем her; hers стоит самостоятельно.",
+              "uk": "Перед іменником використовуємо her; hers стоїть самостійно."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:word:signature",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — signature",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:word:signature:audio"
+      ],
+      "accessibilityLabel": "Картка слова — signature",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:word:signature:audio",
+          "transcript": "signature"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-22:word:signature:r1",
+            "targetText": "signature",
+            "meaningByLocale": {
+              "ru": "«подпись». Do you recognize the signature? — «Ты узнаёшь эту подпись?» Здесь написанное от руки имя или личный знак на открытке.",
+              "uk": "«підпис». Do you recognize the signature? — «Ти впізнаєш цей підпис?» Тут написане від руки ім’я або особистий знак на листівці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "signature",
+          "definitionByLocale": {
+            "ru": "«подпись». Do you recognize the signature? — «Ты узнаёшь эту подпись?» Здесь написанное от руки имя или личный знак на открытке.",
+            "uk": "«підпис». Do you recognize the signature? — «Ти впізнаєш цей підпис?» Тут написане від руки ім’я або особистий знак на листівці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На спільній листівці підпис, який здається вам знайомим. Запитайте друга: «Ти впізнаєш цей підпис?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На спільній листівці підпис, який здається вам знайомим. Запитайте друга: «Ти впізнаєш цей підпис?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you recognize the signature?",
+        "localizedMeaning": {
+          "ru": "На общей открытке подпись, которая кажется вам знакомой. Спросите друга: «Ты узнаёшь эту подпись?»",
+          "uk": "На спільній листівці підпис, який здається вам знайомим. Запитайте друга: «Ти впізнаєш цей підпис?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "recognize",
+          "the",
+          "signature"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-22:i08:r1",
+          "text": "The signature is at the bottom."
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i08:r2",
+          "text": "The signature is at the top."
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i08:r3",
+          "text": "The date is at the bottom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:i08:audio",
+          "transcript": "The signature is at the bottom."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-22:i08:r1",
+            "targetText": "The signature is at the bottom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i08:r2",
+            "targetText": "The signature is at the top.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i08:r3",
+            "targetText": "The date is at the bottom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The signature is at the bottom.",
+              "uk": "У записі звучить The signature is at the bottom."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The signature is at the bottom.",
+              "uk": "У записі звучить The signature is at the bottom."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму recognize після does",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-22:i09:r1",
+          "text": "recognize"
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i09:r2",
+          "text": "recognizes"
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i09:r3",
+          "text": "recognizing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму recognize після does",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму recognize после does",
+          "uk": "Виберіть форму recognize після does"
+        },
+        "gappedTargetPhrase": "Does she ___ the signature?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-22:i09:r1",
+            "text": "recognize"
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i09:r2",
+            "text": "recognizes"
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i09:r3",
+            "text": "recognizing"
+          }
+        ],
+        "testedDimension": "Виберіть форму recognize після does",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму recognize після does",
+            "feedbackByLocale": {
+              "ru": "После does глагол без s: recognize.",
+              "uk": "Після does дієслово без s: recognize."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму recognize після does",
+            "feedbackByLocale": {
+              "ru": "После does нужна базовая форма recognize.",
+              "uk": "Після does потрібна початкова форма recognize."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:word:accent",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — accent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:word:accent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — accent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:word:accent:audio",
+          "transcript": "accent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-22:word:accent:r1",
+            "targetText": "accent",
+            "meaningByLocale": {
+              "ru": "«акцент». I recognize the accent. — «Я узнаю этот акцент». Здесь знакомые особенности произношения.",
+              "uk": "«акцент». I recognize the accent. — «Я впізнаю цей акцент». Тут знайомі особливості вимови."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "accent",
+          "definitionByLocale": {
+            "ru": "«акцент». I recognize the accent. — «Я узнаю этот акцент». Здесь знакомые особенности произношения.",
+            "uk": "«акцент». I recognize the accent. — «Я впізнаю цей акцент». Тут знайомі особливості вимови."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг вмикає запис із вимовою, яку ви вже чули на заняттях. Скажіть: «Я впізнаю цей акцент»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг вмикає запис із вимовою, яку ви вже чули на заняттях. Скажіть: «Я впізнаю цей акцент»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I recognize the accent.",
+        "localizedMeaning": {
+          "ru": "Друг включает запись с произношением, которое вы уже слышали на занятиях. Скажите: «Я узнаю этот акцент»",
+          "uk": "Друг вмикає запис із вимовою, яку ви вже чули на заняттях. Скажіть: «Я впізнаю цей акцент»"
+        },
+        "orderedTokens": [
+          "I",
+          "recognize",
+          "the",
+          "accent"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-22:i11:r1",
+          "text": "She recognizes the accent."
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i11:r2",
+          "text": "He recognizes the accent."
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i11:r3",
+          "text": "She recognizes the voice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:i11:audio",
+          "transcript": "She recognizes the accent."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-22:i11:r1",
+            "targetText": "She recognizes the accent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i11:r2",
+            "targetText": "He recognizes the accent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i11:r3",
+            "targetText": "She recognizes the voice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-22:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She recognizes the accent.",
+              "uk": "У записі звучить She recognizes the accent."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She recognizes the accent.",
+              "uk": "У записі звучить She recognizes the accent."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть допоміжне дієслово для запитання з you",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-22:i12:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i12:r2",
+          "text": "Does"
+        },
+        {
+          "responseId": "en:lesson-10:session-22:i12:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть допоміжне дієслово для запитання з you",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите вспомогательный глагол для вопроса с you",
+          "uk": "Виберіть допоміжне дієслово для запитання з you"
+        },
+        "gappedTargetPhrase": "___ you recognize the accent?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-22:i12:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i12:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i12:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-22:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+            "feedbackByLocale": {
+              "ru": "С you нужно do.",
+              "uk": "З you потрібне do."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-22:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+            "feedbackByLocale": {
+              "ru": "Для этого вопроса с recognize нужно do.",
+              "uk": "Для цього запитання з recognize потрібне do."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-22:i13:p1",
+            "target": "recognize",
+            "meaningByLocale": {
+              "ru": "узнавать",
+              "uk": "упізнавати"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-22:i13:p2",
+            "target": "handwriting",
+            "meaningByLocale": {
+              "ru": "почерк",
+              "uk": "почерк"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-22:i13:p3",
+            "target": "signature",
+            "meaningByLocale": {
+              "ru": "подпись",
+              "uk": "підпис"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-22:i13:p4",
+            "target": "accent",
+            "meaningByLocale": {
+              "ru": "акцент",
+              "uk": "акцент"
+            }
+          }
+        ],
+        "leftColumn": [
+          "recognize",
+          "handwriting",
+          "signature",
+          "accent"
+        ],
+        "rightColumn": [
+          "упізнавати",
+          "почерк",
+          "підпис",
+          "акцент"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:i14:audio",
+          "transcript": "Does she recognize the signature?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does she recognize the signature?",
+        "orderedTokens": [
+          "Does",
+          "she",
+          "recognize",
+          "the",
+          "signature"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега показує записку людини, чиї записи ви давно знаєте. Скажіть: «Я впізнаю її почерк»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Колега показує записку людини, чиї записи ви давно знаєте. Скажіть: «Я впізнаю її почерк»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:i15:audio",
+          "transcript": "I recognize her handwriting."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I recognize her handwriting.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша колега чує знайому вимову. Друг запитує, чи впізнає вона її. Скажіть: «Вона впізнає цей акцент»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша колега чує знайому вимову. Друг запитує, чи впізнає вона її. Скажіть: «Вона впізнає цей акцент»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She recognizes the accent.",
+        "localizedMeaning": {
+          "ru": "Ваша коллега слышит знакомое произношение. Друг спрашивает, узнаёт ли она его. Скажите: «Она узнаёт этот акцент»",
+          "uk": "Ваша колега чує знайому вимову. Друг запитує, чи впізнає вона її. Скажіть: «Вона впізнає цей акцент»"
+        },
+        "orderedTokens": [
+          "She",
+          "recognizes",
+          "the",
+          "accent"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг показує записку вашої колишньої колеги. Ви відразу розумієте, хто її написав, за знайомими літерами. Повідомте про впізнавання: «Я впізнаю її почерк»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-22:i17:audio"
+      ],
+      "accessibilityLabel": "Друг показує записку вашої колишньої колеги. Ви відразу розумієте, хто її написав, за знайомими літерами. Повідомте про впізнавання: «Я впізнаю її почерк»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-22:i17:audio",
+          "transcript": "I recognize her handwriting."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I recognize her handwriting.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2ec917081a86a4928e56c005ef803314293a069faeb00a33120cc6c0d61f3fa2"
+}

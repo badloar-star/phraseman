@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-25:word:dawn",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dawn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:word:dawn:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dawn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:word:dawn:audio",
+          "transcript": "dawn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-25:word:dawn:r1",
+            "targetText": "dawn",
+            "meaningByLocale": {
+              "ru": "«рассвет». I usually walk at dawn. — «Я обычно гуляю на рассвете». Время, когда утром начинает светать.",
+              "uk": "«світанок». I usually walk at dawn. — «Я зазвичай гуляю на світанку». Час, коли вранці починає світати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dawn",
+          "definitionByLocale": {
+            "ru": "«рассвет». I usually walk at dawn. — «Я обычно гуляю на рассвете». Время, когда утром начинает светать.",
+            "uk": "«світанок». I usually walk at dawn. — «Я зазвичай гуляю на світанку». Час, коли вранці починає світати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает о вашей привычке. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает о вашей привычке. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually walk at dawn.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает о вашей привычке. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
+          "uk": "Друг запитує про вашу звичку. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "walk",
+          "at",
+          "dawn"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-25:i02:r1",
+          "text": "We walk at dawn."
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i02:r2",
+          "text": "I walk at dawn."
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i02:r3",
+          "text": "We run at dawn."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:i02:audio",
+          "transcript": "We walk at dawn."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-25:i02:r1",
+            "targetText": "We walk at dawn.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i02:r2",
+            "targetText": "I walk at dawn.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i02:r3",
+            "targetText": "We run at dawn.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We walk at dawn.",
+              "uk": "У записі звучить We walk at dawn."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We walk at dawn.",
+              "uk": "У записі звучить We walk at dawn."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-25:i03:r1",
+          "text": "am walking"
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i03:r2",
+          "text": "walking"
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i03:r3",
+          "text": "am walk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+          "uk": "Друг телефонує під час вашої прогулянки. Виберіть форму для дії зараз"
+        },
+        "gappedTargetPhrase": "I ___ now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-25:i03:r1",
+            "text": "am walking"
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i03:r2",
+            "text": "walking"
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i03:r3",
+            "text": "am walk"
+          }
+        ],
+        "testedDimension": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+            "feedbackByLocale": {
+              "ru": "Нужно am перед walking.",
+              "uk": "Потрібне am перед walking."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг звонит во время вашей прогулки. Выберите форму для действия сейчас",
+            "feedbackByLocale": {
+              "ru": "После am нужна walking.",
+              "uk": "Після am потрібна walking."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:word:dew",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dew",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:word:dew:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dew",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:word:dew:audio",
+          "transcript": "dew"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-25:word:dew:r1",
+            "targetText": "dew",
+            "meaningByLocale": {
+              "ru": "«роса». There is dew on the grass. — «На траве роса». Маленькие капли воды, которые появляются на прохладной поверхности.",
+              "uk": "«роса». There is dew on the grass. — «На траві роса». Маленькі краплі води, які з’являються на прохолодній поверхні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dew",
+          "definitionByLocale": {
+            "ru": "«роса». There is dew on the grass. — «На траве роса». Маленькие капли воды, которые появляются на прохладной поверхности.",
+            "uk": "«роса». There is dew on the grass. — «На траві роса». Маленькі краплі води, які з’являються на прохолодній поверхні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На утренней прогулке вы замечаете капли на траве. Скажите другу: «На траве роса»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На утренней прогулке вы замечаете капли на траве. Скажите другу: «На траве роса»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is dew on the grass.",
+        "localizedMeaning": {
+          "ru": "На утренней прогулке вы замечаете капли на траве. Скажите другу: «На траве роса»",
+          "uk": "На ранковій прогулянці ви помічаєте краплі на траві. Скажіть другу: «На траві роса»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "dew",
+          "on",
+          "the",
+          "grass"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-25:i05:r1",
+          "text": "There is dew on the leaves."
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i05:r2",
+          "text": "There is dew on the grass."
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i05:r3",
+          "text": "There is water on the leaves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:i05:audio",
+          "transcript": "There is dew on the leaves."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-25:i05:r1",
+            "targetText": "There is dew on the leaves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i05:r2",
+            "targetText": "There is dew on the grass.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i05:r3",
+            "targetText": "There is water on the leaves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is dew on the leaves.",
+              "uk": "У записі звучить There is dew on the leaves."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is dew on the leaves.",
+              "uk": "У записі звучить There is dew on the leaves."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-25:i06:r1",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i06:r2",
+          "text": "walks"
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i06:r3",
+          "text": "walking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+          "uk": "Ви розповідаєте про щоденну звичку. Виберіть форму walk"
+        },
+        "gappedTargetPhrase": "I ___ every morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-25:i06:r1",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i06:r2",
+            "text": "walks"
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i06:r3",
+            "text": "walking"
+          }
+        ],
+        "testedDimension": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+            "feedbackByLocale": {
+              "ru": "С I нужна walk без s.",
+              "uk": "З I потрібна walk без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы рассказываете о ежедневной привычке. Выберите форму walk",
+            "feedbackByLocale": {
+              "ru": "Для этой привычки нужна walk.",
+              "uk": "Для цієї звички потрібна walk."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:word:mist",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:word:mist:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:word:mist:audio",
+          "transcript": "mist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-25:word:mist:r1",
+            "targetText": "mist",
+            "meaningByLocale": {
+              "ru": "«лёгкий туман». There is mist over the river. — «Над рекой лёгкий туман». Здесь тонкая пелена капелек воды в воздухе.",
+              "uk": "«легкий туман». There is mist over the river. — «Над річкою легкий туман». Тут тонка пелена краплин води в повітрі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mist",
+          "definitionByLocale": {
+            "ru": "«лёгкий туман». There is mist over the river. — «Над рекой лёгкий туман». Здесь тонкая пелена капелек воды в воздухе.",
+            "uk": "«легкий туман». There is mist over the river. — «Над річкою легкий туман». Тут тонка пелена краплин води в повітрі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Во время прогулки у реки вы видите лёгкий туман. Скажите: «Над рекой лёгкий туман»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Во время прогулки у реки вы видите лёгкий туман. Скажите: «Над рекой лёгкий туман»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is mist over the river.",
+        "localizedMeaning": {
+          "ru": "Во время прогулки у реки вы видите лёгкий туман. Скажите: «Над рекой лёгкий туман»",
+          "uk": "Під час прогулянки біля річки ви бачите легкий туман. Скажіть: «Над річкою легкий туман»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "mist",
+          "over",
+          "the",
+          "river"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-25:i08:r1",
+          "text": "The mist is clearing."
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i08:r2",
+          "text": "The mist is thick."
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i08:r3",
+          "text": "The sky is clearing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:i08:audio",
+          "transcript": "The mist is clearing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-25:i08:r1",
+            "targetText": "The mist is clearing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i08:r2",
+            "targetText": "The mist is thick.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i08:r3",
+            "targetText": "The sky is clearing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mist is clearing.",
+              "uk": "У записі звучить The mist is clearing."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mist is clearing.",
+              "uk": "У записі звучить The mist is clearing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-25:i09:r1",
+          "text": "is clearing"
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i09:r2",
+          "text": "clearing"
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i09:r3",
+          "text": "is clear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+          "uk": "Туман поступово зникає просто зараз. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The mist ___ now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-25:i09:r1",
+            "text": "is clearing"
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i09:r2",
+            "text": "clearing"
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i09:r3",
+            "text": "is clear"
+          }
+        ],
+        "testedDimension": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Перед clearing нужно is.",
+              "uk": "Перед clearing потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Туман постепенно исчезает прямо сейчас. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для процесса рассеивания здесь нужно is clearing.",
+              "uk": "Для процесу розсіювання тут потрібне is clearing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:word:birdsong",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — birdsong",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:word:birdsong:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — birdsong",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:word:birdsong:audio",
+          "transcript": "birdsong"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-25:word:birdsong:r1",
+            "targetText": "birdsong",
+            "meaningByLocale": {
+              "ru": "«пение птиц». I am listening to birdsong. — «Я слушаю пение птиц». Звуки поющих птиц.",
+              "uk": "«спів птахів». I am listening to birdsong. — «Я слухаю спів птахів». Звуки птахів, які співають."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "birdsong",
+          "definitionByLocale": {
+            "ru": "«пение птиц». I am listening to birdsong. — «Я слушаю пение птиц». Звуки поющих птиц.",
+            "uk": "«спів птахів». I am listening to birdsong. — «Я слухаю спів птахів». Звуки птахів, які співають."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, что вы делаете сейчас в парке. Скажите: «Я слушаю пение птиц»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, что вы делаете сейчас в парке. Скажите: «Я слушаю пение птиц»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am listening to birdsong.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, что вы делаете сейчас в парке. Скажите: «Я слушаю пение птиц»",
+          "uk": "Друг запитує, що ви робите зараз у парку. Скажіть: «Я слухаю спів птахів»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "listening",
+          "to",
+          "birdsong"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-25:i11:r1",
+          "text": "We are listening to birdsong."
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i11:r2",
+          "text": "I am listening to birdsong."
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i11:r3",
+          "text": "We are listening to music."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:i11:audio",
+          "transcript": "We are listening to birdsong."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-25:i11:r1",
+            "targetText": "We are listening to birdsong.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i11:r2",
+            "targetText": "I am listening to birdsong.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i11:r3",
+            "targetText": "We are listening to music.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are listening to birdsong.",
+              "uk": "У записі звучить We are listening to birdsong."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are listening to birdsong.",
+              "uk": "У записі звучить We are listening to birdsong."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы слушаете птиц. Выберите предлог после listening",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-25:i12:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i12:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-10:session-25:i12:r3",
+          "text": "on"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы слушаете птиц. Выберите предлог после listening",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы слушаете птиц. Выберите предлог после listening",
+          "uk": "Ви слухаєте птахів. Виберіть прийменник після listening"
+        },
+        "gappedTargetPhrase": "I am listening ___ birdsong.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-25:i12:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i12:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i12:r3",
+            "text": "on"
+          }
+        ],
+        "testedDimension": "Вы слушаете птиц. Выберите предлог после listening",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы слушаете птиц. Выберите предлог после listening",
+            "feedbackByLocale": {
+              "ru": "Говорим listen to, не listen at.",
+              "uk": "Кажемо listen to, не listen at."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы слушаете птиц. Выберите предлог после listening",
+            "feedbackByLocale": {
+              "ru": "Говорим listen to, не listen on.",
+              "uk": "Кажемо listen to, не listen on."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините новые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините новые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-25:i13:p1",
+            "target": "dawn",
+            "meaningByLocale": {
+              "ru": "рассвет",
+              "uk": "світанок"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-25:i13:p2",
+            "target": "dew",
+            "meaningByLocale": {
+              "ru": "роса",
+              "uk": "роса"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-25:i13:p3",
+            "target": "mist",
+            "meaningByLocale": {
+              "ru": "лёгкий туман",
+              "uk": "легкий туман"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-25:i13:p4",
+            "target": "birdsong",
+            "meaningByLocale": {
+              "ru": "пение птиц",
+              "uk": "спів птахів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dawn",
+          "dew",
+          "mist",
+          "birdsong"
+        ],
+        "rightColumn": [
+          "рассвет",
+          "роса",
+          "лёгкий туман",
+          "пение птиц"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:i14:audio",
+          "transcript": "I am walking now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am walking now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "walking",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, чем вы заняты. Скажите: «Я сейчас слушаю пение птиц»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, чем вы заняты. Скажите: «Я сейчас слушаю пение птиц»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:i15:audio",
+          "transcript": "I am listening to birdsong at the moment."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am listening to birdsong at the moment.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, когда вы обычно гуляете. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, когда вы обычно гуляете. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I usually walk at dawn.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, когда вы обычно гуляете. Скажите: «Я обычно гуляю на рассвете». Поставьте at dawn в конце",
+          "uk": "Друг запитує, коли ви зазвичай гуляєте. Скажіть: «Я зазвичай гуляю на світанку». Поставте at dawn у кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "usually",
+          "walk",
+          "at",
+          "dawn"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг звонит и спрашивает, чем вы заняты прямо сейчас. Вы идёте по парку. Скажите: «Я сейчас гуляю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Друг звонит и спрашивает, чем вы заняты прямо сейчас. Вы идёте по парку. Скажите: «Я сейчас гуляю»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-25:i17:audio",
+          "transcript": "I am walking now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am walking now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f4bb5ff320865e0262ad573d3acd1671fb19553a7eff85e4b80d5a995e7ddb6b"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-40:word:cymbal",
+    "correctText": "cymbal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i01",
+    "correctText": "This is a cymbal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i02",
+    "correctText": "The cymbal is here.",
+    "correctResponseId": "en:lesson-09:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:word:xylophone",
+    "correctText": "xylophone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i04",
+    "correctText": "I am playing the xylophone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i05",
+    "correctText": "Are you playing the xylophone?",
+    "correctResponseId": "en:lesson-09:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i06",
+    "correctText": "playing",
+    "correctResponseId": "en:lesson-09:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i07",
+    "correctText": "I am not playing the xylophone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:word:castanets",
+    "correctText": "castanets",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i08",
+    "correctText": "The castanets are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i10",
+    "correctText": "She is playing the castanets.",
+    "correctResponseId": "en:lesson-09:session-40:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:word:maraca",
+    "correctText": "maraca",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i11",
+    "correctText": "Please don't shake the maraca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i12",
+    "correctText": "shake",
+    "correctResponseId": "en:lesson-09:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i13",
+    "correctText": "en:lesson-09:session-40:i13:p1=cymbal\nen:lesson-09:session-40:i13:p2=xylophone\nen:lesson-09:session-40:i13:p3=castanets\nen:lesson-09:session-40:i13:p4=maraca",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i14",
+    "correctText": "I play the xylophone.",
+    "correctResponseId": "en:lesson-09:session-40:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i15",
+    "correctText": "play",
+    "correctResponseId": "en:lesson-09:session-40:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i16",
+    "correctText": "Are you playing the xylophone?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-40:i17",
+    "correctText": "Please don't shake the maraca.",
+    "correctResponseId": null
+  }
+]

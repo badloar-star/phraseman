@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-39:word:refer",
+    "correctText": "refer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i01",
+    "correctText": "Please refer to the manual.",
+    "correctResponseId": "en:lesson-09:session-39:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i02",
+    "correctText": "referring",
+    "correctResponseId": "en:lesson-09:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i03",
+    "correctText": "I am referring to the manual.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i04",
+    "correctText": "en:lesson-09:session-39:i04:p1=refer\nen:lesson-09:session-39:i04:p2=occur\nen:lesson-09:session-39:i04:p3=admit\nen:lesson-09:session-39:i04:p4=submit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i05",
+    "correctText": "Are you referring to the manual?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:word:appendix",
+    "correctText": "appendix",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i06",
+    "correctText": "The table is in the appendix.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i07",
+    "correctText": "I am referring to the appendix.",
+    "correctResponseId": "en:lesson-09:session-39:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i08",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-09:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:word:footnote",
+    "correctText": "footnote",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i09",
+    "correctText": "It is a footnote.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i10",
+    "correctText": "I am reading the footnote.",
+    "correctResponseId": "en:lesson-09:session-39:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i11",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-09:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:word:index",
+    "correctText": "index",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i12",
+    "correctText": "I am checking the index.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i13",
+    "correctText": "The index is here.",
+    "correctResponseId": "en:lesson-09:session-39:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i14",
+    "correctText": "I am not referring to the index.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i15",
+    "correctText": "Please don't close the book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i16",
+    "correctText": "en:lesson-09:session-39:i16:p1=refer\nen:lesson-09:session-39:i16:p2=appendix\nen:lesson-09:session-39:i16:p3=footnote\nen:lesson-09:session-39:i16:p4=index",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-39:i17",
+    "correctText": "I am checking the index.",
+    "correctResponseId": null
+  }
+]

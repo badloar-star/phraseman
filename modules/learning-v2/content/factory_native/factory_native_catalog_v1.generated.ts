@@ -3409,4 +3409,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"occur → occurring; Errors are occurring; There is a power outage","uk":"occur → occurring; Errors are occurring; There is a power outage"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 39,
+    sourceFingerprint: "ec64be070667d0ec53f5d77c5822e47a5a41b620606e33681f9a6e7904007cab",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"refer to → referring to; in the appendix; It is a footnote","uk":"refer to → referring to; in the appendix; It is a footnote"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 40,
+    sourceFingerprint: "8cfe8d3662c5bf03e4b1634b454734b126606f23128d77001b9ce9792c841599",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"This is a cymbal; I am playing the xylophone; Please don’t shake the maraca","uk":"This is a cymbal; I am playing the xylophone; Please don’t shake the maraca"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

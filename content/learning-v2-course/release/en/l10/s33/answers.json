@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-33:word:headliner",
+    "correctText": "headliner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i01",
+    "correctText": "The headliner is playing now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i02",
+    "correctText": "The headliner is on the stage.",
+    "correctResponseId": "en:lesson-10:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i03",
+    "correctText": "come",
+    "correctResponseId": "en:lesson-10:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:word:lineup",
+    "correctText": "lineup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i04",
+    "correctText": "I like the lineup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i05",
+    "correctText": "The lineup is on the poster.",
+    "correctResponseId": "en:lesson-10:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i06",
+    "correctText": "like",
+    "correctResponseId": "en:lesson-10:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:word:marquee",
+    "correctText": "marquee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i07",
+    "correctText": "The band is in the marquee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i08",
+    "correctText": "The marquee is white.",
+    "correctResponseId": "en:lesson-10:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i09",
+    "correctText": "in",
+    "correctResponseId": "en:lesson-10:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:word:bunting",
+    "correctText": "bunting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i10",
+    "correctText": "The bunting is colourful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i11",
+    "correctText": "The bunting is above the entrance.",
+    "correctResponseId": "en:lesson-10:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i13",
+    "correctText": "en:lesson-10:session-33:i13:p1=headliner\nen:lesson-10:session-33:i13:p2=lineup\nen:lesson-10:session-33:i13:p3=marquee\nen:lesson-10:session-33:i13:p4=bunting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i14",
+    "correctText": "The headliner is playing now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i15",
+    "correctText": "We come here every year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i16",
+    "correctText": "I like the lineup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-33:i17",
+    "correctText": "The headliner is playing now.",
+    "correctResponseId": null
+  }
+]

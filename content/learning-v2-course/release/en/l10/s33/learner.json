@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-33:word:headliner",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — headliner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:word:headliner:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — headliner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:word:headliner:audio",
+          "transcript": "headliner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-33:word:headliner:r1",
+            "targetText": "headliner",
+            "meaningByLocale": {
+              "ru": "«главный участник программы». The headliner is playing now. — «Главный участник сейчас играет». Здесь главный приглашённый музыкант фестиваля.",
+              "uk": "«головний учасник програми». The headliner is playing now. — «Головний учасник зараз грає». Тут головний запрошений музикант фестивалю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "headliner",
+          "definitionByLocale": {
+            "ru": "«главный участник программы». The headliner is playing now. — «Главный участник сейчас играет». Здесь главный приглашённый музыкант фестиваля.",
+            "uk": "«головний учасник програми». The headliner is playing now. — «Головний учасник зараз грає». Тут головний запрошений музикант фестивалю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Главный приглашённый гитарист уже на сцене. Скажите другу: «Главный участник сейчас играет». Поставьте now в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Главный приглашённый гитарист уже на сцене. Скажите другу: «Главный участник сейчас играет». Поставьте now в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The headliner is playing now.",
+        "localizedMeaning": {
+          "ru": "Главный приглашённый гитарист уже на сцене. Скажите другу: «Главный участник сейчас играет». Поставьте now в конце",
+          "uk": "Головний запрошений гітарист уже на сцені. Скажіть другу: «Головний учасник зараз грає». Поставте now у кінці"
+        },
+        "orderedTokens": [
+          "The",
+          "headliner",
+          "is",
+          "playing",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-33:i02:r1",
+          "text": "The headliner is on the stage."
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i02:r2",
+          "text": "The headliner is behind the stage."
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i02:r3",
+          "text": "The singer is on the stage."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:i02:audio",
+          "transcript": "The headliner is on the stage."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-33:i02:r1",
+            "targetText": "The headliner is on the stage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i02:r2",
+            "targetText": "The headliner is behind the stage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i02:r3",
+            "targetText": "The singer is on the stage.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The headliner is on the stage.",
+              "uk": "У записі звучить The headliner is on the stage."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The headliner is on the stage.",
+              "uk": "У записі звучить The headliner is on the stage."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы приезжаете сюда каждый год. Выберите форму come",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-33:i03:r1",
+          "text": "come"
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i03:r2",
+          "text": "comes"
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i03:r3",
+          "text": "coming"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы приезжаете сюда каждый год. Выберите форму come",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы приезжаете сюда каждый год. Выберите форму come",
+          "uk": "Ви приїжджаєте сюди щороку. Виберіть форму come"
+        },
+        "gappedTargetPhrase": "We ___ here every year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-33:i03:r1",
+            "text": "come"
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i03:r2",
+            "text": "comes"
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i03:r3",
+            "text": "coming"
+          }
+        ],
+        "testedDimension": "Вы приезжаете сюда каждый год. Выберите форму come",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы приезжаете сюда каждый год. Выберите форму come",
+            "feedbackByLocale": {
+              "ru": "С we нужна come без s.",
+              "uk": "З we потрібна come без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы приезжаете сюда каждый год. Выберите форму come",
+            "feedbackByLocale": {
+              "ru": "Для этой повторяющейся поездки нужна come.",
+              "uk": "Для цієї повторюваної поїздки потрібна come."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:word:lineup",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lineup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:word:lineup:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lineup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:word:lineup:audio",
+          "transcript": "lineup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-33:word:lineup:r1",
+            "targetText": "lineup",
+            "meaningByLocale": {
+              "ru": "«состав участников». I like the lineup. — «Мне нравится состав участников». Здесь артисты и группы фестиваля.",
+              "uk": "«склад учасників». I like the lineup. — «Мені подобається склад учасників». Тут артисти й гурти фестивалю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lineup",
+          "definitionByLocale": {
+            "ru": "«состав участников». I like the lineup. — «Мне нравится состав участников». Здесь артисты и группы фестиваля.",
+            "uk": "«склад учасників». I like the lineup. — «Мені подобається склад учасників». Тут артисти й гурти фестивалю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг показывает список артистов фестиваля. Вы довольны выбором. Скажите: «Мне нравится состав участников»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг показывает список артистов фестиваля. Вы довольны выбором. Скажите: «Мне нравится состав участников»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the lineup.",
+        "localizedMeaning": {
+          "ru": "Друг показывает список артистов фестиваля. Вы довольны выбором. Скажите: «Мне нравится состав участников»",
+          "uk": "Друг показує список артистів фестивалю. Ви задоволені вибором. Скажіть: «Мені подобається склад учасників»"
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "lineup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-33:i05:r1",
+          "text": "The lineup is on the poster."
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i05:r2",
+          "text": "The lineup is on the website."
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i05:r3",
+          "text": "The date is on the poster."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:i05:audio",
+          "transcript": "The lineup is on the poster."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-33:i05:r1",
+            "targetText": "The lineup is on the poster.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i05:r2",
+            "targetText": "The lineup is on the website.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i05:r3",
+            "targetText": "The date is on the poster.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lineup is on the poster.",
+              "uk": "У записі звучить The lineup is on the poster."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The lineup is on the poster.",
+              "uk": "У записі звучить The lineup is on the poster."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму like с I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-33:i06:r1",
+          "text": "like"
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i06:r2",
+          "text": "likes"
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i06:r3",
+          "text": "am like"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму like с I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму like с I",
+          "uk": "Виберіть форму like з I"
+        },
+        "gappedTargetPhrase": "I ___ the lineup.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-33:i06:r1",
+            "text": "like"
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i06:r2",
+            "text": "likes"
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i06:r3",
+            "text": "am like"
+          }
+        ],
+        "testedDimension": "Выберите форму like с I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму like с I",
+            "feedbackByLocale": {
+              "ru": "С I нужна like без s.",
+              "uk": "З I потрібна like без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму like с I",
+            "feedbackByLocale": {
+              "ru": "Am like неверно; здесь нужна like.",
+              "uk": "Am like неправильно; тут потрібна like."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:word:marquee",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — marquee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:word:marquee:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — marquee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:word:marquee:audio",
+          "transcript": "marquee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-33:word:marquee:r1",
+            "targetText": "marquee",
+            "meaningByLocale": {
+              "ru": "«большой шатёр». The band is in the marquee. — «Группа в большом шатре». Здесь британское значение слова: большой шатёр для мероприятий.",
+              "uk": "«великий намет». The band is in the marquee. — «Гурт у великому наметі». Тут британське значення слова: великий намет для заходів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "marquee",
+          "definitionByLocale": {
+            "ru": "«большой шатёр». The band is in the marquee. — «Группа в большом шатре». Здесь британское значение слова: большой шатёр для мероприятий.",
+            "uk": "«великий намет». The band is in the marquee. — «Гурт у великому наметі». Тут британське значення слова: великий намет для заходів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг ищет другую музыкальную группу. Она находится внутри большого фестивального шатра. Скажите: «Группа в большом шатре»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг ищет другую музыкальную группу. Она находится внутри большого фестивального шатра. Скажите: «Группа в большом шатре»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The band is in the marquee.",
+        "localizedMeaning": {
+          "ru": "Друг ищет другую музыкальную группу. Она находится внутри большого фестивального шатра. Скажите: «Группа в большом шатре»",
+          "uk": "Друг шукає інший музичний гурт. Він перебуває всередині великого фестивального намету. Скажіть: «Гурт у великому наметі»"
+        },
+        "orderedTokens": [
+          "The",
+          "band",
+          "is",
+          "in",
+          "the",
+          "marquee"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-33:i08:r1",
+          "text": "The marquee is white."
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i08:r2",
+          "text": "The marquee is blue."
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i08:r3",
+          "text": "The stage is white."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:i08:audio",
+          "transcript": "The marquee is white."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-33:i08:r1",
+            "targetText": "The marquee is white.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i08:r2",
+            "targetText": "The marquee is blue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i08:r3",
+            "targetText": "The stage is white.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The marquee is white.",
+              "uk": "У записі звучить The marquee is white."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The marquee is white.",
+              "uk": "У записі звучить The marquee is white."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Группа находится внутри шатра. Выберите предлог",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-33:i09:r1",
+          "text": "in"
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i09:r2",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i09:r3",
+          "text": "under"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Группа находится внутри шатра. Выберите предлог",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Группа находится внутри шатра. Выберите предлог",
+          "uk": "Гурт перебуває всередині намету. Виберіть прийменник"
+        },
+        "gappedTargetPhrase": "The band is ___ the marquee.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-33:i09:r1",
+            "text": "in"
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i09:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i09:r3",
+            "text": "under"
+          }
+        ],
+        "testedDimension": "Группа находится внутри шатра. Выберите предлог",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Группа находится внутри шатра. Выберите предлог",
+            "feedbackByLocale": {
+              "ru": "Внутри — in; on означает на поверхности.",
+              "uk": "Усередині — in; on означає на поверхні."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Группа находится внутри шатра. Выберите предлог",
+            "feedbackByLocale": {
+              "ru": "Для нахождения внутри здесь нужно in, не under.",
+              "uk": "Для перебування всередині тут потрібне in, не under."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:word:bunting",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bunting",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:word:bunting:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bunting",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:word:bunting:audio",
+          "transcript": "bunting"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-33:word:bunting:r1",
+            "targetText": "bunting",
+            "meaningByLocale": {
+              "ru": "«гирлянда флажков». The bunting is colourful. — «Гирлянда флажков разноцветная». Декоративные флажки на верёвке; здесь неисчисляемое существительное.",
+              "uk": "«гірлянда прапорців». The bunting is colourful. — «Гірлянда прапорців різнобарвна». Декоративні прапорці на мотузці; тут незлічуваний іменник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bunting",
+          "definitionByLocale": {
+            "ru": "«гирлянда флажков». The bunting is colourful. — «Гирлянда флажков разноцветная». Декоративные флажки на верёвке; здесь неисчисляемое существительное.",
+            "uk": "«гірлянда прапорців». The bunting is colourful. — «Гірлянда прапорців різнобарвна». Декоративні прапорці на мотузці; тут незлічуваний іменник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Над входом висят флажки разных цветов. Скажите другу: «Гирлянда флажков разноцветная»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Над входом висят флажки разных цветов. Скажите другу: «Гирлянда флажков разноцветная»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bunting is colourful.",
+        "localizedMeaning": {
+          "ru": "Над входом висят флажки разных цветов. Скажите другу: «Гирлянда флажков разноцветная»",
+          "uk": "Над входом висять прапорці різних кольорів. Скажіть другу: «Гірлянда прапорців різнобарвна»"
+        },
+        "orderedTokens": [
+          "The",
+          "bunting",
+          "is",
+          "colourful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-33:i11:r1",
+          "text": "The bunting is above the entrance."
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i11:r2",
+          "text": "The bunting is beside the entrance."
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i11:r3",
+          "text": "The sign is above the entrance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:i11:audio",
+          "transcript": "The bunting is above the entrance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-33:i11:r1",
+            "targetText": "The bunting is above the entrance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i11:r2",
+            "targetText": "The bunting is beside the entrance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i11:r3",
+            "targetText": "The sign is above the entrance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bunting is above the entrance.",
+              "uk": "У записі звучить The bunting is above the entrance."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bunting is above the entrance.",
+              "uk": "У записі звучить The bunting is above the entrance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку с неисчисляемым bunting",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-33:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-33:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку с неисчисляемым bunting",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку с неисчисляемым bunting",
+          "uk": "Виберіть зв’язку з незлічуваним bunting"
+        },
+        "gappedTargetPhrase": "The bunting ___ colourful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-33:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите связку с неисчисляемым bunting",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку с неисчисляемым bunting",
+            "feedbackByLocale": {
+              "ru": "С bunting здесь нужно is.",
+              "uk": "З bunting тут потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку с неисчисляемым bunting",
+            "feedbackByLocale": {
+              "ru": "Am используем с I; здесь нужно is.",
+              "uk": "Am використовуємо з I; тут потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините новые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините новые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-33:i13:p1",
+            "target": "headliner",
+            "meaningByLocale": {
+              "ru": "главный участник программы",
+              "uk": "головний учасник програми"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-33:i13:p2",
+            "target": "lineup",
+            "meaningByLocale": {
+              "ru": "состав участников",
+              "uk": "склад учасників"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-33:i13:p3",
+            "target": "marquee",
+            "meaningByLocale": {
+              "ru": "большой шатёр",
+              "uk": "великий намет"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-33:i13:p4",
+            "target": "bunting",
+            "meaningByLocale": {
+              "ru": "гирлянда флажков",
+              "uk": "гірлянда прапорців"
+            }
+          }
+        ],
+        "leftColumn": [
+          "headliner",
+          "lineup",
+          "marquee",
+          "bunting"
+        ],
+        "rightColumn": [
+          "главный участник программы",
+          "состав участников",
+          "большой шатёр",
+          "гирлянда флажков"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:i14:audio",
+          "transcript": "The headliner is playing now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The headliner is playing now.",
+        "orderedTokens": [
+          "The",
+          "headliner",
+          "is",
+          "playing",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, бываете ли вы на этом фестивале регулярно. Скажите: «Мы приезжаем сюда каждый год»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, бываете ли вы на этом фестивале регулярно. Скажите: «Мы приезжаем сюда каждый год»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:i15:audio",
+          "transcript": "We come here every year."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We come here every year.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает ваше мнение об артистах фестиваля. Скажите: «Мне нравится состав участников»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает ваше мнение об артистах фестиваля. Скажите: «Мне нравится состав участников»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the lineup.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает ваше мнение об артистах фестиваля. Скажите: «Мне нравится состав участников»",
+          "uk": "Друг запитує вашу думку про артистів фестивалю. Скажіть: «Мені подобається склад учасників»"
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "lineup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг звонит и спрашивает, что происходит на главной сцене. Приглашённый главный гитарист уже начал выступление. Скажите: «Главный участник сейчас играет»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Друг звонит и спрашивает, что происходит на главной сцене. Приглашённый главный гитарист уже начал выступление. Скажите: «Главный участник сейчас играет»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:i17:audio",
+          "transcript": "The headliner is playing now."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The headliner is playing now.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "48e2fecbdb19f6ea4be4fd1e4553b6e8cd8a2c96a89b98250858879807c39d04"
+}

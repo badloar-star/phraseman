@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed",
+    "uk": "I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обычно по субботам",
+        "uk": "Зазвичай щосуботи"
+      },
+      "bodyByLocale": {
+        "ru": "Вы помогаете в саду каждую субботу: I usually work here on Saturdays — «Я обычно работаю здесь по субботам». Usually ставим перед work. Сейчас друг звонит, пока вы поливаете растения: I am watering the plants — «Я поливаю растения». Привычка — Simple, происходящее действие — Continuous.",
+        "uk": "Ви допомагаєте в саду щосуботи: I usually work here on Saturdays — «Я зазвичай працюю тут щосуботи». Usually ставимо перед work. Зараз друг телефонує, поки ви поливаєте рослини: I am watering the plants — «Я поливаю рослини». Звичка — Simple, дія, що відбувається, — Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-32:intro1:r1",
+              "text": "I usually work here on Saturdays."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro1:r2",
+              "text": "I usually works here on Saturdays."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro1:r3",
+              "text": "I usually working here on Saturdays."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-32:intro1:r1",
+              "text": "I usually work here on Saturdays."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro1:r2",
+              "text": "I usually works here on Saturdays."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro1:r3",
+              "text": "I usually working here on Saturdays."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Временная работа",
+        "uk": "Тимчасова робота"
+      },
+      "bodyByLocale": {
+        "ru": "Другая сотрудница обычно работает в теплице. На этой неделе она помогает в саду: She is working here this week — «Она работает здесь на этой неделе». Continuous подходит для временной ситуации. Для обычного места работы: She works in a greenhouse — «Она работает в теплице».",
+        "uk": "Інша працівниця зазвичай працює в теплиці. Цього тижня вона допомагає в саду: She is working here this week — «Вона працює тут цього тижня». Continuous підходить для тимчасової ситуації. Для звичного місця роботи: She works in a greenhouse — «Вона працює в теплиці»."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-32:intro2:r1",
+              "text": "She is working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro2:r2",
+              "text": "She working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro2:r3",
+              "text": "She are working here this week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-32:intro2:r1",
+              "text": "She is working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro2:r2",
+              "text": "She working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro2:r3",
+              "text": "She are working here this week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Я знаю этот сад",
+        "uk": "Я знаю цей сад"
+      },
+      "bodyByLocale": {
+        "ru": "Вы давно здесь помогаете: I know this garden — «Я знаю этот сад». Know описывает ваше знание, поэтому здесь используем Simple. А для конкретной работы прямо сейчас: We are preparing the soil — «Мы готовим почву». Сначала определяем смысл ситуации, а не выбираем форму только по слову «сейчас».",
+        "uk": "Ви давно тут допомагаєте: I know this garden — «Я знаю цей сад». Know описує ваше знання, тому тут використовуємо Simple. А для конкретної роботи просто зараз: We are preparing the soil — «Ми готуємо ґрунт». Спочатку визначаємо зміст ситуації, а не обираємо форму лише за словом «зараз»."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-32:intro3:r1",
+              "text": "I know this garden."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro3:r2",
+              "text": "I knows this garden."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro3:r3",
+              "text": "I am know this garden."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-32:intro3:r1",
+              "text": "I know this garden."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro3:r2",
+              "text": "I knows this garden."
+            },
+            {
+              "responseId": "en:lesson-10:session-32:intro3:r3",
+              "text": "I am know this garden."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2dc333382fba6408b316e4380462b2a31417caef53d3134f0b8fac1d37cd8957"
+}

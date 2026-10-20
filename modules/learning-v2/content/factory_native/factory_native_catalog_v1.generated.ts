@@ -3521,4 +3521,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He is muttering; The hinge is loose; Please don’t throw away the sandpaper","uk":"He is muttering; The hinge is loose; Please don’t throw away the sandpaper"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 55,
+    sourceFingerprint: "04d43f1c1cb036eebb7d8bc6fdae8fe51fce02c5bc4adec47b842c85c7a5bc81",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am checking the agenda; I am taking minutes; An attendee is nodding","uk":"I am checking the agenda; I am taking minutes; An attendee is nodding"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 56,
+    sourceFingerprint: "5b117eb8d9245569556c12801f937a59f390541749e331134faf5895cc5c23f6",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The steward is helping a visitor; Are you doing a headcount?; Please don't shout","uk":"The steward is helping a visitor; Are you doing a headcount?; Please don't shout"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-55:word:agenda",
+    "correctText": "agenda",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i01",
+    "correctText": "I am checking the agenda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i02",
+    "correctText": "The agenda is on the table.",
+    "correctResponseId": "en:lesson-09:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:word:briefing",
+    "correctText": "briefing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i04",
+    "correctText": "The briefing is starting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i05",
+    "correctText": "The briefing is short.",
+    "correctResponseId": "en:lesson-09:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i06",
+    "correctText": "Please don't interrupt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:word:minutes",
+    "correctText": "minutes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i07",
+    "correctText": "I am taking minutes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i08",
+    "correctText": "Are you taking minutes?",
+    "correctResponseId": "en:lesson-09:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i09",
+    "correctText": "taking",
+    "correctResponseId": "en:lesson-09:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:word:attendee",
+    "correctText": "attendee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i10",
+    "correctText": "An attendee is nodding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i11",
+    "correctText": "The attendee is listening.",
+    "correctResponseId": "en:lesson-09:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i12",
+    "correctText": "nodding",
+    "correctResponseId": "en:lesson-09:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i13",
+    "correctText": "en:lesson-09:session-55:i13:p1=agenda\nen:lesson-09:session-55:i13:p2=briefing\nen:lesson-09:session-55:i13:p3=minutes\nen:lesson-09:session-55:i13:p4=attendee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i14",
+    "correctText": "Is the attendee nodding?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i15",
+    "correctText": "An",
+    "correctResponseId": "en:lesson-09:session-55:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i16",
+    "correctText": "I am not taking minutes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-55:i17",
+    "correctText": "I am taking minutes.",
+    "correctResponseId": null
+  }
+]

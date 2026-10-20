@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-55:intro1:r2": {
+          "ru": "Для действия сейчас с I нужно am.",
+          "uk": "Для дії зараз з I потрібне am."
+        },
+        "en:lesson-09:session-55:intro1:r3": {
+          "ru": "После am нужна форма checking.",
+          "uk": "Після am потрібна форма checking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-55:intro2:r2": {
+          "ru": "После am нужна форма taking.",
+          "uk": "Після am потрібна форма taking."
+        },
+        "en:lesson-09:session-55:intro2:r3": {
+          "ru": "Для действия сейчас с I нужно am.",
+          "uk": "Для дії зараз з I потрібне am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-55:intro3:r2": {
+          "ru": "Первый звук attendee гласный: an attendee.",
+          "uk": "Перший звук attendee голосний: an attendee."
+        },
+        "en:lesson-09:session-55:intro3:r3": {
+          "ru": "В nodding две d.",
+          "uk": "У nodding дві d."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "29f195241e8e9d672cd24b212e5f50a0c53bfb4a74c55a483772cfb9823d074c"
+}

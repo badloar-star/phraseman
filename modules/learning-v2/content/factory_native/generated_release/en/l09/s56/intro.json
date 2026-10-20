@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "The steward is helping a visitor; Are you doing a headcount?; Please don't shout",
+    "uk": "The steward is helping a visitor; Are you doing a headcount?; Please don't shout"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обычная работа и действие сейчас",
+        "uk": "Звичайна робота й дія зараз"
+      },
+      "bodyByLocale": {
+        "ru": "На городском празднике вы помогаете команде. Steward здесь — сотрудник, который помогает посетителям и следит за порядком. The steward helps visitors — «Сотрудник помогает посетителям»: это его обычная работа. The steward is helping a visitor — «Сотрудник сейчас помогает посетителю»: вы описываете то, что видите. Для действия сейчас нужны is и helping.",
+        "uk": "На міському святі ви допомагаєте команді. Steward тут — працівник, який допомагає відвідувачам і стежить за порядком. The steward helps visitors — «Працівник допомагає відвідувачам»: це його звичайна робота. The steward is helping a visitor — «Працівник зараз допомагає відвідувачу»: ви описуєте те, що бачите. Для дії зараз потрібні is і helping."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-56:intro1:r1",
+              "text": "The steward is helping a visitor."
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro1:r2",
+              "text": "The steward helping a visitor."
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro1:r3",
+              "text": "The steward is help a visitor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-56:intro1:r1",
+              "text": "The steward is helping a visitor."
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro1:r2",
+              "text": "The steward helping a visitor."
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro1:r3",
+              "text": "The steward is help a visitor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Связаться с коллегой",
+        "uk": "Зв’язатися з колегою"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега думает, что вы уже передаёте сообщение, но рация пока выключена: вы читаете инструкцию перед первым использованием. I am not using the walkie-talkie — «Я сейчас не пользуюсь рацией». Walkie-talkie — переносная рация для разговора с другим человеком. Not ставим после am. В using конечная e у use исчезает перед -ing.",
+        "uk": "Колега думає, що ви вже передаєте повідомлення, але рація поки вимкнена: ви читаєте інструкцію перед першим використанням. I am not using the walkie-talkie — «Я зараз не користуюся рацією». Walkie-talkie — переносна рація для розмови з іншою людиною. Not ставимо після am. У using кінцева e у use зникає перед -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-56:intro2:r1",
+              "text": "I am not using the walkie-talkie."
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro2:r2",
+              "text": "I not am using the walkie-talkie."
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro2:r3",
+              "text": "I am not useing the walkie-talkie."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-56:intro2:r1",
+              "text": "I am not using the walkie-talkie."
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro2:r2",
+              "text": "I not am using the walkie-talkie."
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro2:r3",
+              "text": "I am not useing the walkie-talkie."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить, что делает команда",
+        "uk": "Уточнити, що робить команда"
+      },
+      "bodyByLocale": {
+        "ru": "Перед выходом группы сотрудник считает людей. Headcount — подсчёт присутствующих. Are you doing a headcount? — «Вы сейчас пересчитываете людей?» В вопросе are стоит перед you; выражение — do a headcount. Пока он считает, коллега громко зовёт посетителей. Please don't shout — «Пожалуйста, не кричите». После don't используем shout без -ing.",
+        "uk": "Перед виходом групи працівник рахує людей. Headcount — підрахунок присутніх. Are you doing a headcount? — «Ви зараз перераховуєте людей?» У запитанні are стоїть перед you; вираз — do a headcount. Поки він рахує, колега голосно кличе відвідувачів. Please don't shout — «Будь ласка, не кричіть». Після don't уживаємо shout без -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-56:intro3:r1",
+              "text": "Are you doing a headcount?"
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro3:r2",
+              "text": "Are you doing headcount?"
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro3:r3",
+              "text": "Are you do a headcount?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-56:intro3:r1",
+              "text": "Are you doing a headcount?"
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro3:r2",
+              "text": "Are you doing headcount?"
+            },
+            {
+              "responseId": "en:lesson-09:session-56:intro3:r3",
+              "text": "Are you do a headcount?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "edf3e3a3e96afcfdad1953cbb917755ffddaa9126186f89daade5f53f4bb41e4"
+}

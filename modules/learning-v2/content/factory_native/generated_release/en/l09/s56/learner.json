@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-56:word:steward",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — steward",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:word:steward:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — steward",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:word:steward:audio",
+          "transcript": "steward"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-56:word:steward:r1",
+            "targetText": "steward",
+            "meaningByLocale": {
+              "ru": "«сотрудник, помогающий посетителям». The steward is helping a visitor. — «Сотрудник сейчас помогает посетителю». Здесь работник на массовом мероприятии.",
+              "uk": "«працівник, який допомагає відвідувачам». The steward is helping a visitor. — «Працівник зараз допомагає відвідувачу». Тут працівник на масовому заході."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "steward",
+          "definitionByLocale": {
+            "ru": "«сотрудник, помогающий посетителям». The steward is helping a visitor. — «Сотрудник сейчас помогает посетителю». Здесь работник на массовом мероприятии.",
+            "uk": "«працівник, який допомагає відвідувачам». The steward is helping a visitor. — «Працівник зараз допомагає відвідувачу». Тут працівник на масовому заході."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Посетитель не знает, куда идти. Сообщите коллеге: «Сотрудник сейчас помогает посетителю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посетитель не знает, куда идти. Сообщите коллеге: «Сотрудник сейчас помогает посетителю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The steward is helping a visitor.",
+        "localizedMeaning": {
+          "ru": "Посетитель не знает, куда идти. Сообщите коллеге: «Сотрудник сейчас помогает посетителю»",
+          "uk": "Відвідувач не знає, куди йти. Повідомте колезі: «Працівник зараз допомагає відвідувачу»"
+        },
+        "orderedTokens": [
+          "The",
+          "steward",
+          "is",
+          "helping",
+          "a",
+          "visitor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-56:i02:r1",
+          "text": "The steward is waiting."
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i02:r2",
+          "text": "The steward is walking."
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i02:r3",
+          "text": "The visitor is waiting."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:i02:audio",
+          "transcript": "The steward is waiting."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-56:i02:r1",
+            "targetText": "The steward is waiting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i02:r2",
+            "targetText": "The steward is walking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i02:r3",
+            "targetText": "The visitor is waiting.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The steward is waiting.",
+              "uk": "У записі звучить The steward is waiting."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The steward is waiting.",
+              "uk": "У записі звучить The steward is waiting."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для обычной работы сотрудника: он помогает посетителям каждый день",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-56:i03:r1",
+          "text": "helps"
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i03:r2",
+          "text": "help"
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i03:r3",
+          "text": "helping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для обычной работы сотрудника: он помогает посетителям каждый день",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для обычной работы сотрудника: он помогает посетителям каждый день",
+          "uk": "Виберіть форму для звичайної роботи працівника: він допомагає відвідувачам щодня"
+        },
+        "gappedTargetPhrase": "The steward ___ visitors every day.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-56:i03:r1",
+            "text": "helps"
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i03:r2",
+            "text": "help"
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i03:r3",
+            "text": "helping"
+          }
+        ],
+        "testedDimension": "Выберите форму для обычной работы сотрудника: он помогает посетителям каждый день",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для обычной работы сотрудника: он помогает посетителям каждый день",
+            "feedbackByLocale": {
+              "ru": "Для the steward в Present Simple нужна helps.",
+              "uk": "Для the steward у Present Simple потрібна helps."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для обычной работы сотрудника: он помогает посетителям каждый день",
+            "feedbackByLocale": {
+              "ru": "Helping без is не образует сказуемое.",
+              "uk": "Helping без is не утворює присудок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:word:walkie-talkie",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — walkie-talkie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:word:walkie-talkie:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — walkie-talkie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:word:walkie-talkie:audio",
+          "transcript": "walkie-talkie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-56:word:walkie-talkie:r1",
+            "targetText": "walkie-talkie",
+            "meaningByLocale": {
+              "ru": "«рация». I am using the walkie-talkie. — «Я пользуюсь рацией». Переносное устройство для разговора с коллегой на расстоянии.",
+              "uk": "«рація». I am using the walkie-talkie. — «Я користуюся рацією». Переносний пристрій для розмови з колегою на відстані."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "walkie-talkie",
+          "definitionByLocale": {
+            "ru": "«рация». I am using the walkie-talkie. — «Я пользуюсь рацией». Переносное устройство для разговора с коллегой на расстоянии.",
+            "uk": "«рація». I am using the walkie-talkie. — «Я користуюся рацією». Переносний пристрій для розмови з колегою на відстані."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега спрашивает, как вы связываетесь с командой сейчас. Скажите: «Я пользуюсь рацией»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега спрашивает, как вы связываетесь с командой сейчас. Скажите: «Я пользуюсь рацией»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am using the walkie-talkie.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, как вы связываетесь с командой сейчас. Скажите: «Я пользуюсь рацией»",
+          "uk": "Колега запитує, як ви зв’язуєтеся з командою зараз. Скажіть: «Я користуюся рацією»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "using",
+          "the",
+          "walkie-talkie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-56:i05:r1",
+          "text": "The walkie-talkie is on the table."
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i05:r2",
+          "text": "The walkie-talkie is under the table."
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i05:r3",
+          "text": "The notebook is on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:i05:audio",
+          "transcript": "The walkie-talkie is on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-56:i05:r1",
+            "targetText": "The walkie-talkie is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i05:r2",
+            "targetText": "The walkie-talkie is under the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i05:r3",
+            "targetText": "The notebook is on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The walkie-talkie is on the table.",
+              "uk": "У записі звучить The walkie-talkie is on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The walkie-talkie is on the table.",
+              "uk": "У записі звучить The walkie-talkie is on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите написание use с -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-56:i06:r1",
+          "text": "using"
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i06:r2",
+          "text": "useing"
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i06:r3",
+          "text": "use"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите написание use с -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите написание use с -ing",
+          "uk": "Виберіть написання use з -ing"
+        },
+        "gappedTargetPhrase": "I am ___ the walkie-talkie.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-56:i06:r1",
+            "text": "using"
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i06:r2",
+            "text": "useing"
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i06:r3",
+            "text": "use"
+          }
+        ],
+        "testedDimension": "Выберите написание use с -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите написание use с -ing",
+            "feedbackByLocale": {
+              "ru": "Конечная e исчезает: using.",
+              "uk": "Кінцева e зникає: using."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите написание use с -ing",
+            "feedbackByLocale": {
+              "ru": "После am нужна форма using.",
+              "uk": "Після am потрібна форма using."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:word:megaphone",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — megaphone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:word:megaphone:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — megaphone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:word:megaphone:audio",
+          "transcript": "megaphone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-56:word:megaphone:r1",
+            "targetText": "megaphone",
+            "meaningByLocale": {
+              "ru": "«мегафон». The megaphone is on the table. — «Мегафон на столе». Переносное устройство, усиливающее голос для окружающих.",
+              "uk": "«мегафон». The megaphone is on the table. — «Мегафон на столі». Переносний пристрій, який підсилює голос для людей навколо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "megaphone",
+          "definitionByLocale": {
+            "ru": "«мегафон». The megaphone is on the table. — «Мегафон на столе». Переносное устройство, усиливающее голос для окружающих.",
+            "uk": "«мегафон». The megaphone is on the table. — «Мегафон на столі». Переносний пристрій, який підсилює голос для людей навколо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сотрудник ищет мегафон. Скажите: «Мегафон на столе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сотрудник ищет мегафон. Скажите: «Мегафон на столе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The megaphone is on the table.",
+        "localizedMeaning": {
+          "ru": "Сотрудник ищет мегафон. Скажите: «Мегафон на столе»",
+          "uk": "Працівник шукає мегафон. Скажіть: «Мегафон на столі»"
+        },
+        "orderedTokens": [
+          "The",
+          "megaphone",
+          "is",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-56:i08:r1",
+          "text": "She is using a megaphone."
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i08:r2",
+          "text": "She is not using a megaphone."
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i08:r3",
+          "text": "He is using a megaphone."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:i08:audio",
+          "transcript": "She is using a megaphone."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-56:i08:r1",
+            "targetText": "She is using a megaphone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i08:r2",
+            "targetText": "She is not using a megaphone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i08:r3",
+            "targetText": "He is using a megaphone.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is using a megaphone.",
+              "uk": "У записі звучить She is using a megaphone."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is using a megaphone.",
+              "uk": "У записі звучить She is using a megaphone."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега громко кричит рядом с вами. Попросите не кричать; начните с Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:i09:audio"
+      ],
+      "accessibilityLabel": "Коллега громко кричит рядом с вами. Попросите не кричать; начните с Please",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:i09:audio",
+          "transcript": "Please don't shout."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don't shout.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:word:headcount",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — headcount",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:word:headcount:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — headcount",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:word:headcount:audio",
+          "transcript": "headcount"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-56:word:headcount:r1",
+            "targetText": "headcount",
+            "meaningByLocale": {
+              "ru": "«подсчёт присутствующих». We are doing a headcount. — «Мы пересчитываем людей». Проверяем количество людей в группе.",
+              "uk": "«підрахунок присутніх». We are doing a headcount. — «Ми перераховуємо людей». Перевіряємо кількість людей у групі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "headcount",
+          "definitionByLocale": {
+            "ru": "«подсчёт присутствующих». We are doing a headcount. — «Мы пересчитываем людей». Проверяем количество людей в группе.",
+            "uk": "«підрахунок присутніх». We are doing a headcount. — «Ми перераховуємо людей». Перевіряємо кількість людей у групі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед выходом вы с коллегой считаете участников группы. Скажите: «Мы пересчитываем людей»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед выходом вы с коллегой считаете участников группы. Скажите: «Мы пересчитываем людей»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are doing a headcount.",
+        "localizedMeaning": {
+          "ru": "Перед выходом вы с коллегой считаете участников группы. Скажите: «Мы пересчитываем людей»",
+          "uk": "Перед виходом ви з колегою рахуєте учасників групи. Скажіть: «Ми перераховуємо людей»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "doing",
+          "a",
+          "headcount"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-56:i11:r1",
+          "text": "Are you doing a headcount?"
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i11:r2",
+          "text": "We are doing a headcount."
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i11:r3",
+          "text": "Is she doing a headcount?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:i11:audio",
+          "transcript": "Are you doing a headcount?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-56:i11:r1",
+            "targetText": "Are you doing a headcount?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i11:r2",
+            "targetText": "We are doing a headcount.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i11:r3",
+            "targetText": "Is she doing a headcount?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you doing a headcount?",
+              "uk": "У записі звучить Are you doing a headcount?"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you doing a headcount?",
+              "uk": "У записі звучить Are you doing a headcount?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку для we при действии сейчас",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-56:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку для we при действии сейчас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для we при действии сейчас",
+          "uk": "Виберіть зв’язку для we під час дії зараз"
+        },
+        "gappedTargetPhrase": "We ___ doing a headcount.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-56:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите связку для we при действии сейчас",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку для we при действии сейчас",
+            "feedbackByLocale": {
+              "ru": "С we употребляется are.",
+              "uk": "З we вживається are."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку для we при действии сейчас",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините новые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините новые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-56:i13:p1",
+            "target": "steward",
+            "meaningByLocale": {
+              "ru": "сотрудник, помогающий посетителям",
+              "uk": "працівник, який допомагає відвідувачам"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-56:i13:p2",
+            "target": "walkie-talkie",
+            "meaningByLocale": {
+              "ru": "рация",
+              "uk": "рація"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-56:i13:p3",
+            "target": "megaphone",
+            "meaningByLocale": {
+              "ru": "мегафон",
+              "uk": "мегафон"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-56:i13:p4",
+            "target": "headcount",
+            "meaningByLocale": {
+              "ru": "подсчёт присутствующих",
+              "uk": "підрахунок присутніх"
+            }
+          }
+        ],
+        "leftColumn": [
+          "steward",
+          "walkie-talkie",
+          "megaphone",
+          "headcount"
+        ],
+        "rightColumn": [
+          "сотрудник, помогающий посетителям",
+          "рация",
+          "мегафон",
+          "подсчёт присутствующих"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос о действии сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос о действии сейчас",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:i14:audio",
+          "transcript": "Are you doing a headcount?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you doing a headcount?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "doing",
+          "a",
+          "headcount"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после don’t в просьбе не кричать",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-56:i15:r1",
+          "text": "shout"
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i15:r2",
+          "text": "shouting"
+        },
+        {
+          "responseId": "en:lesson-09:session-56:i15:r3",
+          "text": "shouts"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после don’t в просьбе не кричать",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после don’t в просьбе не кричать",
+          "uk": "Виберіть форму після don’t у проханні не кричати"
+        },
+        "gappedTargetPhrase": "Please don't ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-56:i15:r1",
+            "text": "shout"
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i15:r2",
+            "text": "shouting"
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i15:r3",
+            "text": "shouts"
+          }
+        ],
+        "testedDimension": "Выберите форму после don’t в просьбе не кричать",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-56:i15:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после don’t в просьбе не кричать",
+            "feedbackByLocale": {
+              "ru": "После don’t нужна начальная форма shout.",
+              "uk": "Після don’t потрібна початкова форма shout."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-56:i15:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после don’t в просьбе не кричать",
+            "feedbackByLocale": {
+              "ru": "После don’t окончание -s не добавляем.",
+              "uk": "Після don’t закінчення -s не додаємо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега думает, что вы говорите по рации. Объясните: «Я сейчас не пользуюсь рацией»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега думает, что вы говорите по рации. Объясните: «Я сейчас не пользуюсь рацией»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not using the walkie-talkie.",
+        "localizedMeaning": {
+          "ru": "Коллега думает, что вы говорите по рации. Объясните: «Я сейчас не пользуюсь рацией»",
+          "uk": "Колега думає, що ви говорите по рації. Поясніть: «Я зараз не користуюся рацією»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "using",
+          "the",
+          "walkie-talkie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с коллегой пересчитываете группу перед выходом. Организатор спрашивает, чем вы заняты. Ответьте: «Мы пересчитываем людей»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Вы с коллегой пересчитываете группу перед выходом. Организатор спрашивает, чем вы заняты. Ответьте: «Мы пересчитываем людей»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-56:i17:audio",
+          "transcript": "We are doing a headcount."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are doing a headcount.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3fa6b4adc97c625491ffab39a0ce643312c5662c9d6140340df75d36cca7cddd"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-56:word:steward",
+    "correctText": "steward",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i01",
+    "correctText": "The steward is helping a visitor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i02",
+    "correctText": "The steward is waiting.",
+    "correctResponseId": "en:lesson-09:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i03",
+    "correctText": "helps",
+    "correctResponseId": "en:lesson-09:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:word:walkie-talkie",
+    "correctText": "walkie-talkie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i04",
+    "correctText": "I am using the walkie-talkie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i05",
+    "correctText": "The walkie-talkie is on the table.",
+    "correctResponseId": "en:lesson-09:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i06",
+    "correctText": "using",
+    "correctResponseId": "en:lesson-09:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:word:megaphone",
+    "correctText": "megaphone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i07",
+    "correctText": "The megaphone is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i08",
+    "correctText": "She is using a megaphone.",
+    "correctResponseId": "en:lesson-09:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i09",
+    "correctText": "Please don't shout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:word:headcount",
+    "correctText": "headcount",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i10",
+    "correctText": "We are doing a headcount.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i11",
+    "correctText": "Are you doing a headcount?",
+    "correctResponseId": "en:lesson-09:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i13",
+    "correctText": "en:lesson-09:session-56:i13:p1=steward\nen:lesson-09:session-56:i13:p2=walkie-talkie\nen:lesson-09:session-56:i13:p3=megaphone\nen:lesson-09:session-56:i13:p4=headcount",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i14",
+    "correctText": "Are you doing a headcount?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i15",
+    "correctText": "shout",
+    "correctResponseId": "en:lesson-09:session-56:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i16",
+    "correctText": "I am not using the walkie-talkie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-56:i17",
+    "correctText": "We are doing a headcount.",
+    "correctResponseId": null
+  }
+]

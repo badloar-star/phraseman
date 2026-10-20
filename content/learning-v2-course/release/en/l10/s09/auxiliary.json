@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-09:intro1:r2": {
+          "ru": "С she в Present Simple нужна works.",
+          "uk": "З she у Present Simple потрібна works."
+        },
+        "en:lesson-10:session-09:intro1:r3": {
+          "ru": "Is work неверно; здесь обычная ситуация She works.",
+          "uk": "Is work неправильно; тут звичайна ситуація She works."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-09:intro2:r2": {
+          "ru": "Для временного периода здесь нужны is working.",
+          "uk": "Для тимчасового періоду тут потрібні is working."
+        },
+        "en:lesson-10:session-09:intro2:r3": {
+          "ru": "После is нужна working, не works.",
+          "uk": "Після is потрібна working."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-09:intro3:r2": {
+          "ru": "Use теряет e: using.",
+          "uk": "Use втрачає e: using."
+        },
+        "en:lesson-10:session-09:intro3:r3": {
+          "ru": "Перед using с she нужна is.",
+          "uk": "Перед using з she потрібна is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1e25467197b57d6fac22e2cd345f272ba39d0f404a9d3bc27afba3ee214c0ed1"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-09:word:sous-chef",
+    "correctText": "sous-chef",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i01",
+    "correctText": "She is a sous-chef.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i02",
+    "correctText": "She works at a hotel.",
+    "correctResponseId": "en:lesson-10:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i03",
+    "correctText": "works",
+    "correctResponseId": "en:lesson-10:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:word:griddle",
+    "correctText": "griddle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i04",
+    "correctText": "She is using a griddle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i05",
+    "correctText": "The griddle is hot.",
+    "correctResponseId": "en:lesson-10:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i06",
+    "correctText": "using",
+    "correctResponseId": "en:lesson-10:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:word:ramekin",
+    "correctText": "ramekin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i07",
+    "correctText": "The ramekin is on the tray.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i08",
+    "correctText": "I am washing the ramekin.",
+    "correctResponseId": "en:lesson-10:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:word:garnish",
+    "correctText": "garnish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i10",
+    "correctText": "The garnish is on the plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i11",
+    "correctText": "The garnish is green.",
+    "correctResponseId": "en:lesson-10:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i13",
+    "correctText": "en:lesson-10:session-09:i13:p1=sous-chef\nen:lesson-10:session-09:i13:p2=griddle\nen:lesson-10:session-09:i13:p3=ramekin\nen:lesson-10:session-09:i13:p4=garnish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i14",
+    "correctText": "Is she working here this week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i15",
+    "correctText": "She works at a hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i16",
+    "correctText": "She is working here this week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-09:i17",
+    "correctText": "She is working here this week.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-27:intro1:r2": {
+          "ru": "С we нужна watch без s.",
+          "uk": "З we потрібна watch без s."
+        },
+        "en:lesson-10:session-27:intro1:r3": {
+          "ru": "Для этой привычки нужна watch.",
+          "uk": "Для цієї звички потрібна watch."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-27:intro2:r2": {
+          "ru": "Перед walking нужно are.",
+          "uk": "Перед walking потрібне are."
+        },
+        "en:lesson-10:session-27:intro2:r3": {
+          "ru": "С we нужно are, не is.",
+          "uk": "З we потрібне are, не is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-27:intro3:r2": {
+          "ru": "После can нужна see без s.",
+          "uk": "Після can потрібна see без s."
+        },
+        "en:lesson-10:session-27:intro3:r3": {
+          "ru": "После can нужна базовая форма see.",
+          "uk": "Після can потрібна початкова форма see."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "86d4cc1299e5cb1cf8b55b586f8aa1811f4a7ffb59f524d1fbbde730629a7d1b"
+}

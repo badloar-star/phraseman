@@ -3717,4 +3717,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We usually eat at noon; She is filling the carafe; The soup is in the tureen","uk":"We usually eat at noon; She is filling the carafe; The soup is in the tureen"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 27,
+    sourceFingerprint: "e4d00ce567e36877fb5c74d7b62006679968364f321ecb4f5fa6b9c8d6397933",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We usually watch the sunrise here; We are walking along the ridge; I can see the headland","uk":"We usually watch the sunrise here; We are walking along the ridge; I can see the headland"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

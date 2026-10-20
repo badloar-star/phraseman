@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-27:word:ridge",
+    "correctText": "ridge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i01",
+    "correctText": "We are walking along the ridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i02",
+    "correctText": "The ridge is above the village.",
+    "correctResponseId": "en:lesson-10:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i03",
+    "correctText": "watch",
+    "correctResponseId": "en:lesson-10:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:word:foothills",
+    "correctText": "foothills",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i04",
+    "correctText": "We are walking through the foothills.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i05",
+    "correctText": "The foothills are green.",
+    "correctResponseId": "en:lesson-10:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-10:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:word:lookout",
+    "correctText": "lookout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i07",
+    "correctText": "We are sitting at the lookout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i08",
+    "correctText": "The lookout is near the village.",
+    "correctResponseId": "en:lesson-10:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i09",
+    "correctText": "sitting",
+    "correctResponseId": "en:lesson-10:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:word:headland",
+    "correctText": "headland",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i10",
+    "correctText": "I can see the headland.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i11",
+    "correctText": "The headland is in the distance.",
+    "correctResponseId": "en:lesson-10:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i12",
+    "correctText": "see",
+    "correctResponseId": "en:lesson-10:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i13",
+    "correctText": "en:lesson-10:session-27:i13:p1=ridge\nen:lesson-10:session-27:i13:p2=foothills\nen:lesson-10:session-27:i13:p3=lookout\nen:lesson-10:session-27:i13:p4=headland",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i14",
+    "correctText": "We are sitting at the lookout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i15",
+    "correctText": "We are watching the sunrise now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i16",
+    "correctText": "We usually watch the sunrise here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-27:i17",
+    "correctText": "I can see the headland.",
+    "correctResponseId": null
+  }
+]

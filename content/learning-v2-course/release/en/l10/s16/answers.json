@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-16:word:trainee",
+    "correctText": "trainee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i01",
+    "correctText": "She is a trainee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i02",
+    "correctText": "She usually works upstairs.",
+    "correctResponseId": "en:lesson-10:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i03",
+    "correctText": "works",
+    "correctResponseId": "en:lesson-10:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:word:supervisor",
+    "correctText": "supervisor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i04",
+    "correctText": "My supervisor is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i05",
+    "correctText": "The supervisor is busy.",
+    "correctResponseId": "en:lesson-10:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:word:placement",
+    "correctText": "placement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i07",
+    "correctText": "She is on a placement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i08",
+    "correctText": "The placement is in London.",
+    "correctResponseId": "en:lesson-10:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i09",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-10:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:word:workstation",
+    "correctText": "workstation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i10",
+    "correctText": "She is sitting at her workstation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i11",
+    "correctText": "The workstation is near the window.",
+    "correctResponseId": "en:lesson-10:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i12",
+    "correctText": "sitting",
+    "correctResponseId": "en:lesson-10:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i13",
+    "correctText": "en:lesson-10:session-16:i13:p1=trainee\nen:lesson-10:session-16:i13:p2=supervisor\nen:lesson-10:session-16:i13:p3=placement\nen:lesson-10:session-16:i13:p4=workstation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i14",
+    "correctText": "Is she working here this month?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i15",
+    "correctText": "She usually works upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i16",
+    "correctText": "She is working here this month.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-16:i17",
+    "correctText": "She is working here this month.",
+    "correctResponseId": null
+  }
+]

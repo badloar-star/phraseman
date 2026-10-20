@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-16",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-16:word:trainee",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — trainee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:word:trainee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — trainee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:word:trainee:audio",
+            "transcript": "trainee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:word:trainee:r1",
+              "targetText": "trainee",
+              "meaningByLocale": {
+                "ru": "«стажёр». She is a trainee. — «Она стажёрка». Человек, который обучается работе.",
+                "uk": "«стажер». She is a trainee. — «Вона стажерка». Людина, яка навчається роботі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trainee",
+            "definitionByLocale": {
+              "ru": "«стажёр». She is a trainee. — «Она стажёрка». Человек, который обучается работе.",
+              "uk": "«стажер». She is a trainee. — «Вона стажерка». Людина, яка навчається роботі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает о роли вашей знакомой в офисе. Скажите: «Она стажёрка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает о роли вашей знакомой в офисе. Скажите: «Она стажёрка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is a trainee.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает о роли вашей знакомой в офисе. Скажите: «Она стажёрка»",
+            "uk": "Колега запитує про роль вашої знайомої в офісі. Скажіть: «Вона стажерка»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "a",
+            "trainee"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i02:r1",
+            "text": "She usually works upstairs."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i02:r2",
+            "text": "He usually works upstairs."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i02:r3",
+            "text": "She usually works downstairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i02:audio",
+            "transcript": "She usually works upstairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:i02:r1",
+              "targetText": "She usually works upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i02:r2",
+              "targetText": "He usually works upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i02:r3",
+              "targetText": "She usually works downstairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She usually works upstairs.",
+                "uk": "У записі звучить She usually works upstairs."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She usually works upstairs.",
+                "uk": "У записі звучить She usually works upstairs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму work для обычной работы с she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i03:r1",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i03:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i03:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму work для обычной работы с she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму work для обычной работы с she",
+            "uk": "Виберіть форму work для звичайної роботи з she"
+          },
+          "gappedTargetPhrase": "She usually ___ upstairs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-16:i03:r1",
+              "text": "works"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i03:r2",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i03:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Выберите форму work для обычной работы с she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму work для обычной работы с she",
+              "feedbackByLocale": {
+                "ru": "С she нужна works.",
+                "uk": "З she потрібна works."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму work для обычной работы с she",
+              "feedbackByLocale": {
+                "ru": "Для обычной работы здесь нужна works.",
+                "uk": "Для звичайної роботи тут потрібна works."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:word:supervisor",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — supervisor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:word:supervisor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — supervisor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:word:supervisor:audio",
+            "transcript": "supervisor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:word:supervisor:r1",
+              "targetText": "supervisor",
+              "meaningByLocale": {
+                "ru": "«руководитель». My supervisor is here. — «Мой руководитель здесь». Здесь человек, который руководит вашей работой.",
+                "uk": "«керівник». My supervisor is here. — «Мій керівник тут». Тут людина, яка керує вашою роботою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "supervisor",
+            "definitionByLocale": {
+              "ru": "«руководитель». My supervisor is here. — «Мой руководитель здесь». Здесь человек, который руководит вашей работой.",
+              "uk": "«керівник». My supervisor is here. — «Мій керівник тут». Тут людина, яка керує вашою роботою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега ищет вашего руководителя. Скажите: «Мой руководитель здесь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега ищет вашего руководителя. Скажите: «Мой руководитель здесь»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My supervisor is here.",
+          "localizedMeaning": {
+            "ru": "Коллега ищет вашего руководителя. Скажите: «Мой руководитель здесь»",
+            "uk": "Колега шукає вашого керівника. Скажіть: «Мій керівник тут»"
+          },
+          "orderedTokens": [
+            "My",
+            "supervisor",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i05:r1",
+            "text": "The supervisor is busy."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i05:r2",
+            "text": "The supervisor is ready."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i05:r3",
+            "text": "The trainee is busy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i05:audio",
+            "transcript": "The supervisor is busy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:i05:r1",
+              "targetText": "The supervisor is busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i05:r2",
+              "targetText": "The supervisor is ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i05:r3",
+              "targetText": "The trainee is busy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The supervisor is busy.",
+                "uk": "У записі звучить The supervisor is busy."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The supervisor is busy.",
+                "uk": "У записі звучить The supervisor is busy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку для одного руководителя",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку для одного руководителя",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одного руководителя",
+            "uk": "Виберіть зв’язку для одного керівника"
+          },
+          "gappedTargetPhrase": "My supervisor ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-16:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку для одного руководителя",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку для одного руководителя",
+              "feedbackByLocale": {
+                "ru": "Один человек: is.",
+                "uk": "Одна людина: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку для одного руководителя",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:word:placement",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — placement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:word:placement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — placement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:word:placement:audio",
+            "transcript": "placement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:word:placement:r1",
+              "targetText": "placement",
+              "meaningByLocale": {
+                "ru": "«практика». She is on a placement. — «Она на практике». Здесь временная работа для получения опыта.",
+                "uk": "«практика». She is on a placement. — «Вона на практиці». Тут тимчасова робота для здобуття досвіду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "placement",
+            "definitionByLocale": {
+              "ru": "«практика». She is on a placement. — «Она на практике». Здесь временная работа для получения опыта.",
+              "uk": "«практика». She is on a placement. — «Вона на практиці». Тут тимчасова робота для здобуття досвіду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает, зачем стажёрка временно приехала в офис. Скажите: «Она на практике»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает, зачем стажёрка временно приехала в офис. Скажите: «Она на практике»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is on a placement.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, зачем стажёрка временно приехала в офис. Скажите: «Она на практике»",
+            "uk": "Колега запитує, навіщо стажерка тимчасово приїхала до офісу. Скажіть: «Вона на практиці»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "on",
+            "a",
+            "placement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i08:r1",
+            "text": "The placement is in London."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i08:r2",
+            "text": "The placement is in Paris."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i08:r3",
+            "text": "The meeting is in London."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i08:audio",
+            "transcript": "The placement is in London."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:i08:r1",
+              "targetText": "The placement is in London.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i08:r2",
+              "targetText": "The placement is in Paris.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i08:r3",
+              "targetText": "The meeting is in London.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The placement is in London.",
+                "uk": "У записі звучить The placement is in London."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The placement is in London.",
+                "uk": "У записі звучить The placement is in London."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите артикль перед placement в выражении on a placement",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i09:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i09:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите артикль перед placement в выражении on a placement",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед placement в выражении on a placement",
+            "uk": "Виберіть артикль перед placement у виразі on a placement"
+          },
+          "gappedTargetPhrase": "She is on ___ placement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-16:i09:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i09:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите артикль перед placement в выражении on a placement",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед placement в выражении on a placement",
+              "feedbackByLocale": {
+                "ru": "Placement начинается с согласного звука: a.",
+                "uk": "Placement починається з приголосного звука: a."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед placement в выражении on a placement",
+              "feedbackByLocale": {
+                "ru": "Are — глагол; здесь нужен артикль a.",
+                "uk": "Are — дієслово; тут потрібен артикль a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:word:workstation",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — workstation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:word:workstation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — workstation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:word:workstation:audio",
+            "transcript": "workstation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:word:workstation:r1",
+              "targetText": "workstation",
+              "meaningByLocale": {
+                "ru": "«рабочее место». She is sitting at her workstation. — «Она сидит на своём рабочем месте». Здесь стол и оборудование для работы.",
+                "uk": "«робоче місце». She is sitting at her workstation. — «Вона сидить на своєму робочому місці». Тут стіл та обладнання для роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "workstation",
+            "definitionByLocale": {
+              "ru": "«рабочее место». She is sitting at her workstation. — «Она сидит на своём рабочем месте». Здесь стол и оборудование для работы.",
+              "uk": "«робоче місце». She is sitting at her workstation. — «Вона сидить на своєму робочому місці». Тут стіл та обладнання для роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает, где стажёрка сидит сейчас. Скажите: «Она сидит на своём рабочем месте»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает, где стажёрка сидит сейчас. Скажите: «Она сидит на своём рабочем месте»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is sitting at her workstation.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, где стажёрка сидит сейчас. Скажите: «Она сидит на своём рабочем месте»",
+            "uk": "Колега запитує, де стажерка сидить зараз. Скажіть: «Вона сидить на своєму робочому місці»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "sitting",
+            "at",
+            "her",
+            "workstation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i11:r1",
+            "text": "The workstation is near the window."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i11:r2",
+            "text": "The workstation is near the door."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i11:r3",
+            "text": "The printer is near the window."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i11:audio",
+            "transcript": "The workstation is near the window."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:i11:r1",
+              "targetText": "The workstation is near the window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i11:r2",
+              "targetText": "The workstation is near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i11:r3",
+              "targetText": "The printer is near the window.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The workstation is near the window.",
+                "uk": "У записі звучить The workstation is near the window."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The workstation is near the window.",
+                "uk": "У записі звучить The workstation is near the window."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму sit после is",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i12:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i12:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i12:r3",
+            "text": "sit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму sit после is",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму sit после is",
+            "uk": "Виберіть форму sit після is"
+          },
+          "gappedTargetPhrase": "She is ___ at her workstation.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-16:i12:r1",
+              "text": "sitting"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i12:r2",
+              "text": "siting"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i12:r3",
+              "text": "sit"
+            }
+          ],
+          "testedDimension": "Выберите форму sit после is",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму sit после is",
+              "feedbackByLocale": {
+                "ru": "Sit удваивает t: sitting.",
+                "uk": "Sit подвоює t: sitting."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму sit после is",
+              "feedbackByLocale": {
+                "ru": "После is нужна sitting.",
+                "uk": "Після is потрібна sitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-16:i13:p1",
+              "target": "trainee",
+              "meaningByLocale": {
+                "ru": "стажёр",
+                "uk": "стажер"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-16:i13:p2",
+              "target": "supervisor",
+              "meaningByLocale": {
+                "ru": "руководитель",
+                "uk": "керівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-16:i13:p3",
+              "target": "placement",
+              "meaningByLocale": {
+                "ru": "практика",
+                "uk": "практика"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-16:i13:p4",
+              "target": "workstation",
+              "meaningByLocale": {
+                "ru": "рабочее место",
+                "uk": "робоче місце"
+              }
+            }
+          ],
+          "leftColumn": [
+            "trainee",
+            "supervisor",
+            "placement",
+            "workstation"
+          ],
+          "rightColumn": [
+            "стажёр",
+            "руководитель",
+            "практика",
+            "рабочее место"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос; this month поставьте в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос; this month поставьте в конце",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i14:audio",
+            "transcript": "Is she working here this month?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is she working here this month?",
+          "orderedTokens": [
+            "Is",
+            "she",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Руководитель спрашивает, где стажёрка обычно работает. Скажите: «Обычно она работает наверху»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Руководитель спрашивает, где стажёрка обычно работает. Скажите: «Обычно она работает наверху»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i15:audio",
+            "transcript": "She usually works upstairs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually works upstairs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Стажёрка временно проходит практику в вашем офисе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стажёрка временно проходит практику в вашем офисе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is working here this month.",
+          "localizedMeaning": {
+            "ru": "Стажёрка временно проходит практику в вашем офисе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
+            "uk": "Стажерка тимчасово проходить практику у вашому офісі. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Стажёрка обычно работает наверху. На один месяц её направили на практику в ваш офис. Сейчас у неё перерыв. Коллега спрашивает о её месте работы в этот период. Ответьте: «В этом месяце она работает здесь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Стажёрка обычно работает наверху. На один месяц её направили на практику в ваш офис. Сейчас у неё перерыв. Коллега спрашивает о её месте работы в этот период. Ответьте: «В этом месяце она работает здесь»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i17:audio",
+            "transcript": "She is working here this month."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is working here this month.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-16:word:trainee",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — trainee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:word:trainee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — trainee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:word:trainee:audio",
+            "transcript": "trainee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:word:trainee:r1",
+              "targetText": "trainee",
+              "meaningByLocale": {
+                "ru": "«стажёр». She is a trainee. — «Она стажёрка». Человек, который обучается работе.",
+                "uk": "«стажер». She is a trainee. — «Вона стажерка». Людина, яка навчається роботі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trainee",
+            "definitionByLocale": {
+              "ru": "«стажёр». She is a trainee. — «Она стажёрка». Человек, который обучается работе.",
+              "uk": "«стажер». She is a trainee. — «Вона стажерка». Людина, яка навчається роботі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує про роль вашої знайомої в офісі. Скажіть: «Вона стажерка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує про роль вашої знайомої в офісі. Скажіть: «Вона стажерка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is a trainee.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает о роли вашей знакомой в офисе. Скажите: «Она стажёрка»",
+            "uk": "Колега запитує про роль вашої знайомої в офісі. Скажіть: «Вона стажерка»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "a",
+            "trainee"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i02:r1",
+            "text": "She usually works upstairs."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i02:r2",
+            "text": "He usually works upstairs."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i02:r3",
+            "text": "She usually works downstairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i02:audio",
+            "transcript": "She usually works upstairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:i02:r1",
+              "targetText": "She usually works upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i02:r2",
+              "targetText": "He usually works upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i02:r3",
+              "targetText": "She usually works downstairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She usually works upstairs.",
+                "uk": "У записі звучить She usually works upstairs."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She usually works upstairs.",
+                "uk": "У записі звучить She usually works upstairs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму work для звичайної роботи з she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i03:r1",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i03:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i03:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму work для звичайної роботи з she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму work для обычной работы с she",
+            "uk": "Виберіть форму work для звичайної роботи з she"
+          },
+          "gappedTargetPhrase": "She usually ___ upstairs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-16:i03:r1",
+              "text": "works"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i03:r2",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i03:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Виберіть форму work для звичайної роботи з she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму work для звичайної роботи з she",
+              "feedbackByLocale": {
+                "ru": "С she нужна works.",
+                "uk": "З she потрібна works."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму work для звичайної роботи з she",
+              "feedbackByLocale": {
+                "ru": "Для обычной работы здесь нужна works.",
+                "uk": "Для звичайної роботи тут потрібна works."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:word:supervisor",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — supervisor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:word:supervisor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — supervisor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:word:supervisor:audio",
+            "transcript": "supervisor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:word:supervisor:r1",
+              "targetText": "supervisor",
+              "meaningByLocale": {
+                "ru": "«руководитель». My supervisor is here. — «Мой руководитель здесь». Здесь человек, который руководит вашей работой.",
+                "uk": "«керівник». My supervisor is here. — «Мій керівник тут». Тут людина, яка керує вашою роботою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "supervisor",
+            "definitionByLocale": {
+              "ru": "«руководитель». My supervisor is here. — «Мой руководитель здесь». Здесь человек, который руководит вашей работой.",
+              "uk": "«керівник». My supervisor is here. — «Мій керівник тут». Тут людина, яка керує вашою роботою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега шукає вашого керівника. Скажіть: «Мій керівник тут»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега шукає вашого керівника. Скажіть: «Мій керівник тут»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My supervisor is here.",
+          "localizedMeaning": {
+            "ru": "Коллега ищет вашего руководителя. Скажите: «Мой руководитель здесь»",
+            "uk": "Колега шукає вашого керівника. Скажіть: «Мій керівник тут»"
+          },
+          "orderedTokens": [
+            "My",
+            "supervisor",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i05:r1",
+            "text": "The supervisor is busy."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i05:r2",
+            "text": "The supervisor is ready."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i05:r3",
+            "text": "The trainee is busy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i05:audio",
+            "transcript": "The supervisor is busy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:i05:r1",
+              "targetText": "The supervisor is busy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i05:r2",
+              "targetText": "The supervisor is ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i05:r3",
+              "targetText": "The trainee is busy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The supervisor is busy.",
+                "uk": "У записі звучить The supervisor is busy."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The supervisor is busy.",
+                "uk": "У записі звучить The supervisor is busy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку для одного керівника",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку для одного керівника",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одного руководителя",
+            "uk": "Виберіть зв’язку для одного керівника"
+          },
+          "gappedTargetPhrase": "My supervisor ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-16:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку для одного керівника",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для одного керівника",
+              "feedbackByLocale": {
+                "ru": "Один человек: is.",
+                "uk": "Одна людина: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для одного керівника",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:word:placement",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — placement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:word:placement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — placement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:word:placement:audio",
+            "transcript": "placement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:word:placement:r1",
+              "targetText": "placement",
+              "meaningByLocale": {
+                "ru": "«практика». She is on a placement. — «Она на практике». Здесь временная работа для получения опыта.",
+                "uk": "«практика». She is on a placement. — «Вона на практиці». Тут тимчасова робота для здобуття досвіду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "placement",
+            "definitionByLocale": {
+              "ru": "«практика». She is on a placement. — «Она на практике». Здесь временная работа для получения опыта.",
+              "uk": "«практика». She is on a placement. — «Вона на практиці». Тут тимчасова робота для здобуття досвіду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує, навіщо стажерка тимчасово приїхала до офісу. Скажіть: «Вона на практиці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує, навіщо стажерка тимчасово приїхала до офісу. Скажіть: «Вона на практиці»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is on a placement.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, зачем стажёрка временно приехала в офис. Скажите: «Она на практике»",
+            "uk": "Колега запитує, навіщо стажерка тимчасово приїхала до офісу. Скажіть: «Вона на практиці»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "on",
+            "a",
+            "placement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i08:r1",
+            "text": "The placement is in London."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i08:r2",
+            "text": "The placement is in Paris."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i08:r3",
+            "text": "The meeting is in London."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i08:audio",
+            "transcript": "The placement is in London."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:i08:r1",
+              "targetText": "The placement is in London.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i08:r2",
+              "targetText": "The placement is in Paris.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i08:r3",
+              "targetText": "The meeting is in London.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The placement is in London.",
+                "uk": "У записі звучить The placement is in London."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The placement is in London.",
+                "uk": "У записі звучить The placement is in London."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть артикль перед placement у виразі on a placement",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i09:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i09:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть артикль перед placement у виразі on a placement",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед placement в выражении on a placement",
+            "uk": "Виберіть артикль перед placement у виразі on a placement"
+          },
+          "gappedTargetPhrase": "She is on ___ placement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-16:i09:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i09:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть артикль перед placement у виразі on a placement",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед placement у виразі on a placement",
+              "feedbackByLocale": {
+                "ru": "Placement начинается с согласного звука: a.",
+                "uk": "Placement починається з приголосного звука: a."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед placement у виразі on a placement",
+              "feedbackByLocale": {
+                "ru": "Are — глагол; здесь нужен артикль a.",
+                "uk": "Are — дієслово; тут потрібен артикль a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:word:workstation",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — workstation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:word:workstation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — workstation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:word:workstation:audio",
+            "transcript": "workstation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:word:workstation:r1",
+              "targetText": "workstation",
+              "meaningByLocale": {
+                "ru": "«рабочее место». She is sitting at her workstation. — «Она сидит на своём рабочем месте». Здесь стол и оборудование для работы.",
+                "uk": "«робоче місце». She is sitting at her workstation. — «Вона сидить на своєму робочому місці». Тут стіл та обладнання для роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "workstation",
+            "definitionByLocale": {
+              "ru": "«рабочее место». She is sitting at her workstation. — «Она сидит на своём рабочем месте». Здесь стол и оборудование для работы.",
+              "uk": "«робоче місце». She is sitting at her workstation. — «Вона сидить на своєму робочому місці». Тут стіл та обладнання для роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує, де стажерка сидить зараз. Скажіть: «Вона сидить на своєму робочому місці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує, де стажерка сидить зараз. Скажіть: «Вона сидить на своєму робочому місці»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is sitting at her workstation.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, где стажёрка сидит сейчас. Скажите: «Она сидит на своём рабочем месте»",
+            "uk": "Колега запитує, де стажерка сидить зараз. Скажіть: «Вона сидить на своєму робочому місці»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "sitting",
+            "at",
+            "her",
+            "workstation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i11:r1",
+            "text": "The workstation is near the window."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i11:r2",
+            "text": "The workstation is near the door."
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i11:r3",
+            "text": "The printer is near the window."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i11:audio",
+            "transcript": "The workstation is near the window."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-16:i11:r1",
+              "targetText": "The workstation is near the window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i11:r2",
+              "targetText": "The workstation is near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i11:r3",
+              "targetText": "The printer is near the window.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The workstation is near the window.",
+                "uk": "У записі звучить The workstation is near the window."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The workstation is near the window.",
+                "uk": "У записі звучить The workstation is near the window."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму sit після is",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-16:i12:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i12:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-10:session-16:i12:r3",
+            "text": "sit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму sit після is",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму sit после is",
+            "uk": "Виберіть форму sit після is"
+          },
+          "gappedTargetPhrase": "She is ___ at her workstation.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-16:i12:r1",
+              "text": "sitting"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i12:r2",
+              "text": "siting"
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i12:r3",
+              "text": "sit"
+            }
+          ],
+          "testedDimension": "Виберіть форму sit після is",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму sit після is",
+              "feedbackByLocale": {
+                "ru": "Sit удваивает t: sitting.",
+                "uk": "Sit подвоює t: sitting."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму sit після is",
+              "feedbackByLocale": {
+                "ru": "После is нужна sitting.",
+                "uk": "Після is потрібна sitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-16:i13:p1",
+              "target": "trainee",
+              "meaningByLocale": {
+                "ru": "стажёр",
+                "uk": "стажер"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-16:i13:p2",
+              "target": "supervisor",
+              "meaningByLocale": {
+                "ru": "руководитель",
+                "uk": "керівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-16:i13:p3",
+              "target": "placement",
+              "meaningByLocale": {
+                "ru": "практика",
+                "uk": "практика"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-16:i13:p4",
+              "target": "workstation",
+              "meaningByLocale": {
+                "ru": "рабочее место",
+                "uk": "робоче місце"
+              }
+            }
+          ],
+          "leftColumn": [
+            "trainee",
+            "supervisor",
+            "placement",
+            "workstation"
+          ],
+          "rightColumn": [
+            "стажер",
+            "керівник",
+            "практика",
+            "робоче місце"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання; this month поставте наприкінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання; this month поставте наприкінці",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i14:audio",
+            "transcript": "Is she working here this month?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is she working here this month?",
+          "orderedTokens": [
+            "Is",
+            "she",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Керівник запитує, де стажерка зазвичай працює. Скажіть: «Зазвичай вона працює нагорі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Керівник запитує, де стажерка зазвичай працює. Скажіть: «Зазвичай вона працює нагорі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i15:audio",
+            "transcript": "She usually works upstairs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually works upstairs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Стажерка тимчасово проходить практику у вашому офісі. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стажерка тимчасово проходить практику у вашому офісі. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is working here this month.",
+          "localizedMeaning": {
+            "ru": "Стажёрка временно проходит практику в вашем офисе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
+            "uk": "Стажерка тимчасово проходить практику у вашому офісі. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-16:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Стажерка зазвичай працює нагорі. На один місяць її направили на практику до вашого офісу. Зараз у неї перерва. Колега запитує про її місце роботи в цей період. Дайте відповідь: «Цього місяця вона працює тут»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Стажерка зазвичай працює нагорі. На один місяць її направили на практику до вашого офісу. Зараз у неї перерва. Колега запитує про її місце роботи в цей період. Дайте відповідь: «Цього місяця вона працює тут»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-16:i17:audio",
+            "transcript": "She is working here this month."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is working here this month.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-16:word:trainee",
+      "correctText": "trainee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i01",
+      "correctText": "She is a trainee.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i02",
+      "correctText": "She usually works upstairs.",
+      "correctResponseId": "en:lesson-10:session-16:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i03",
+      "correctText": "works",
+      "correctResponseId": "en:lesson-10:session-16:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:word:supervisor",
+      "correctText": "supervisor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i04",
+      "correctText": "My supervisor is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i05",
+      "correctText": "The supervisor is busy.",
+      "correctResponseId": "en:lesson-10:session-16:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-16:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:word:placement",
+      "correctText": "placement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i07",
+      "correctText": "She is on a placement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i08",
+      "correctText": "The placement is in London.",
+      "correctResponseId": "en:lesson-10:session-16:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i09",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-10:session-16:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:word:workstation",
+      "correctText": "workstation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i10",
+      "correctText": "She is sitting at her workstation.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i11",
+      "correctText": "The workstation is near the window.",
+      "correctResponseId": "en:lesson-10:session-16:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i12",
+      "correctText": "sitting",
+      "correctResponseId": "en:lesson-10:session-16:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i14",
+      "correctText": "Is she working here this month?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i15",
+      "correctText": "She usually works upstairs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i16",
+      "correctText": "She is working here this month.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-16:i17",
+      "correctText": "She is working here this month.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-15:word:clerk",
+    "correctText": "clerk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i01",
+    "correctText": "He is a clerk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i02",
+    "correctText": "He usually works in the main office.",
+    "correctResponseId": "en:lesson-10:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i03",
+    "correctText": "works",
+    "correctResponseId": "en:lesson-10:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:word:ledger",
+    "correctText": "ledger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i04",
+    "correctText": "He is checking the ledger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i05",
+    "correctText": "The ledger is on the desk.",
+    "correctResponseId": "en:lesson-10:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i06",
+    "correctText": "checking",
+    "correctResponseId": "en:lesson-10:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:word:rubber-stamp",
+    "correctText": "rubber stamp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i07",
+    "correctText": "The rubber stamp is on the desk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i08",
+    "correctText": "I am using the rubber stamp.",
+    "correctResponseId": "en:lesson-10:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i09",
+    "correctText": "using",
+    "correctResponseId": "en:lesson-10:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:word:filing-cabinet",
+    "correctText": "filing cabinet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i10",
+    "correctText": "The filing cabinet is locked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i11",
+    "correctText": "The filing cabinet is grey.",
+    "correctResponseId": "en:lesson-10:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i13",
+    "correctText": "en:lesson-10:session-15:i13:p1=clerk\nen:lesson-10:session-15:i13:p2=ledger\nen:lesson-10:session-15:i13:p3=rubber stamp\nen:lesson-10:session-15:i13:p4=filing cabinet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i14",
+    "correctText": "Is he working here this week?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i15",
+    "correctText": "He usually works in the main office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i16",
+    "correctText": "He is working here this week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-15:i17",
+    "correctText": "He is working here this week.",
+    "correctResponseId": null
+  }
+]

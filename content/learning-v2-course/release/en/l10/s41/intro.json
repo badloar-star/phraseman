@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "We attend this conference every year; The keynote is starting; The panellist is answering a question",
+    "uk": "We attend this conference every year; The keynote is starting; The panellist is answering a question"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Приезжаем каждый год",
+        "uk": "Приїздимо щороку"
+      },
+      "bodyByLocale": {
+        "ru": "Conference — «конференция»: встреча для выступлений и обсуждения общей темы. Вы с коллегой участвуете ежегодно: We attend this conference every year — «Мы посещаем эту конференцию каждый год». Every year показывает повторение: используем Present Simple.",
+        "uk": "Conference — «конференція»: зустріч для виступів і обговорення спільної теми. Ви з колегою берете участь щороку: We attend this conference every year — «Ми відвідуємо цю конференцію щороку». Every year показує повторення: використовуємо Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-41:intro1:r1",
+              "text": "We attend this conference every year."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro1:r2",
+              "text": "We attends this conference every year."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro1:r3",
+              "text": "We attending this conference every year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-41:intro1:r1",
+              "text": "We attend this conference every year."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro1:r2",
+              "text": "We attends this conference every year."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro1:r3",
+              "text": "We attending this conference every year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Начинается главный доклад",
+        "uk": "Починається головна доповідь"
+      },
+      "bodyByLocale": {
+        "ru": "Keynote — «главный доклад»: выступление, которое задаёт основную тему конференции. Докладчик выходит, зал затихает: The keynote is starting — «Главный доклад начинается». Это действие сейчас: is + starting.",
+        "uk": "Keynote — «головна доповідь»: виступ, який задає основну тему конференції. Доповідач виходить, зал затихає: The keynote is starting — «Головна доповідь починається». Це дія зараз: is + starting."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-41:intro2:r1",
+              "text": "The keynote is starting."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro2:r2",
+              "text": "The keynote starting."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro2:r3",
+              "text": "The keynote are starting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-41:intro2:r1",
+              "text": "The keynote is starting."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro2:r2",
+              "text": "The keynote starting."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro2:r3",
+              "text": "The keynote are starting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ на вопрос",
+        "uk": "Відповідь на запитання"
+      },
+      "bodyByLocale": {
+        "ru": "Panellist — «участник панельной дискуссии»: приглашённый человек, который обсуждает тему вместе с другими участниками перед аудиторией. Сейчас он отвечает: The panellist is answering a question — «Участник панельной дискуссии отвечает на вопрос». Используем is + answering. Panellist — британское написание; американское — panelist.",
+        "uk": "Panellist — «учасник панельної дискусії»: запрошена людина, яка обговорює тему разом з іншими учасниками перед аудиторією. Зараз він відповідає: The panellist is answering a question — «Учасник панельної дискусії відповідає на запитання». Використовуємо is + answering. Panellist — британське написання; американське — panelist."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-41:intro3:r1",
+              "text": "The panellist is answering a question."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro3:r2",
+              "text": "The panellist answering a question."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro3:r3",
+              "text": "The panellist is answer a question."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-41:intro3:r1",
+              "text": "The panellist is answering a question."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro3:r2",
+              "text": "The panellist answering a question."
+            },
+            {
+              "responseId": "en:lesson-10:session-41:intro3:r3",
+              "text": "The panellist is answer a question."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f1f5b58dcb641d01d17b3ea2ced16159e6efc9b9c47bdba9a666c0aeb56668c0"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-41:word:conference",
+    "correctText": "conference",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i01",
+    "correctText": "We attend this conference every year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i02",
+    "correctText": "The conference is in London.",
+    "correctResponseId": "en:lesson-10:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i03",
+    "correctText": "attend",
+    "correctResponseId": "en:lesson-10:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:word:keynote",
+    "correctText": "keynote",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i04",
+    "correctText": "The keynote is starting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i05",
+    "correctText": "The keynote is in the main hall.",
+    "correctResponseId": "en:lesson-10:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:word:panellist",
+    "correctText": "panellist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i07",
+    "correctText": "The panellist is answering a question.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i08",
+    "correctText": "The panellist is sitting beside the speaker.",
+    "correctResponseId": "en:lesson-10:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i09",
+    "correctText": "answering",
+    "correctResponseId": "en:lesson-10:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:word:plenary",
+    "correctText": "plenary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i10",
+    "correctText": "The plenary is after lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i11",
+    "correctText": "Everyone is attending the plenary.",
+    "correctResponseId": "en:lesson-10:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i12",
+    "correctText": "after",
+    "correctResponseId": "en:lesson-10:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i13",
+    "correctText": "en:lesson-10:session-41:i13:p1=conference\nen:lesson-10:session-41:i13:p2=keynote\nen:lesson-10:session-41:i13:p3=panellist\nen:lesson-10:session-41:i13:p4=plenary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i14",
+    "correctText": "The keynote is starting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i15",
+    "correctText": "We attend this conference every year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i16",
+    "correctText": "The plenary is after lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-41:i17",
+    "correctText": "The panellist is answering a question.",
+    "correctResponseId": null
+  }
+]

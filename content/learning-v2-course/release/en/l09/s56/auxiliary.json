@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-56:intro1:r2": {
+          "ru": "Для действия сейчас пропущено is.",
+          "uk": "Для дії зараз пропущено is."
+        },
+        "en:lesson-09:session-56:intro1:r3": {
+          "ru": "После is нужна форма helping.",
+          "uk": "Після is потрібна форма helping."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-56:intro2:r2": {
+          "ru": "Порядок слов: I am not using.",
+          "uk": "Порядок слів: I am not using."
+        },
+        "en:lesson-09:session-56:intro2:r3": {
+          "ru": "Правильное написание: using.",
+          "uk": "Правильне написання: using."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-56:intro3:r2": {
+          "ru": "В выражении do a headcount нужен артикль a.",
+          "uk": "У виразі do a headcount потрібний артикль a."
+        },
+        "en:lesson-09:session-56:intro3:r3": {
+          "ru": "После are нужна форма doing.",
+          "uk": "Після are потрібна форма doing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "09a1dcbbd19243b604e357bb10a99a377b73449378f26839997a4ccc12a3569d"
+}

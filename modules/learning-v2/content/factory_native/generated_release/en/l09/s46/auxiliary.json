@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-46:intro1:r2": {
+          "ru": "С we нужно are.",
+          "uk": "З we потрібне are."
+        },
+        "en:lesson-09:session-46:intro1:r3": {
+          "ru": "После are для действия сейчас нужна форма wandering.",
+          "uk": "Після are для дії зараз потрібна форма wandering."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-46:intro2:r2": {
+          "ru": "Для места с I здесь нужна связка am.",
+          "uk": "Для місця з I тут потрібна зв’язка am."
+        },
+        "en:lesson-09:session-46:intro2:r3": {
+          "ru": "С I нужна форма am.",
+          "uk": "З I потрібна форма am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-46:intro3:r2": {
+          "ru": "После don’t нужна базовая форма block.",
+          "uk": "Після don’t потрібна базова форма block."
+        },
+        "en:lesson-09:session-46:intro3:r3": {
+          "ru": "Для этой просьбы нужен don’t перед block.",
+          "uk": "Для цього прохання потрібне don’t перед block."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "349f821875705da82f6eca8b4e9083ccc56360f3511875aba0704f0f51365830"
+}

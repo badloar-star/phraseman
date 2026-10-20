@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-45:word:tremble",
+    "correctText": "tremble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i01",
+    "correctText": "My hands tremble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i02",
+    "correctText": "My hands are trembling.",
+    "correctResponseId": "en:lesson-09:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i03",
+    "correctText": "trembling",
+    "correctResponseId": "en:lesson-09:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:word:lectern",
+    "correctText": "lectern",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i04",
+    "correctText": "The speech is on the lectern.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i05",
+    "correctText": "The book is on the lectern.",
+    "correctResponseId": "en:lesson-09:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:word:spotlight",
+    "correctText": "spotlight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i07",
+    "correctText": "The spotlight is on.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i08",
+    "correctText": "Please turn on the spotlight.",
+    "correctResponseId": "en:lesson-09:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i09",
+    "correctText": "Please don't move the spotlight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:word:podium",
+    "correctText": "podium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i10",
+    "correctText": "She is standing on the podium.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i11",
+    "correctText": "The podium is empty.",
+    "correctResponseId": "en:lesson-09:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i13",
+    "correctText": "en:lesson-09:session-45:i13:p1=tremble\nen:lesson-09:session-45:i13:p2=lectern\nen:lesson-09:session-45:i13:p3=spotlight\nen:lesson-09:session-45:i13:p4=podium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i14",
+    "correctText": "Are your hands trembling?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i15",
+    "correctText": "move",
+    "correctResponseId": "en:lesson-09:session-45:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i16",
+    "correctText": "My hands are not trembling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-45:i17",
+    "correctText": "My hands are trembling.",
+    "correctResponseId": null
+  }
+]

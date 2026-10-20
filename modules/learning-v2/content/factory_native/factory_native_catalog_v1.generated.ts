@@ -3451,4 +3451,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"glance at; I am reading the headline; Please don’t turn off the radio","uk":"glance at; I am reading the headline; Please don’t turn off the radio"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 45,
+    sourceFingerprint: "9b309211c68e40a11394f9ed3fd072ca39a4cac2c486107ccb10c5513b63e927",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"My hands are trembling; on the lectern; Please don’t move the spotlight","uk":"My hands are trembling; on the lectern; Please don’t move the spotlight"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 46,
+    sourceFingerprint: "a100be9bf8fe066737325b3e71dca4c4adcc7f0253023f3cf9c8187ed3e1dbea",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We are wandering; in the courtyard; Please don’t block the archway","uk":"We are wandering; in the courtyard; Please don’t block the archway"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

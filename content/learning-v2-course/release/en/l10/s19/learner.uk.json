@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-19:word:doubt",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — doubt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:word:doubt:audio"
+      ],
+      "accessibilityLabel": "Картка слова — doubt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:word:doubt:audio",
+          "transcript": "doubt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-19:word:doubt:r1",
+            "targetText": "doubt",
+            "meaningByLocale": {
+              "ru": "«сомневаться». I doubt it. — «Я в этом сомневаюсь». Здесь не быть уверенным, что сказанное верно.",
+              "uk": "«сумніватися». I doubt it. — «Я в цьому сумніваюся». Тут не бути впевненим, що сказане є правдою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "doubt",
+          "definitionByLocale": {
+            "ru": "«сомневаться». I doubt it. — «Я в этом сомневаюсь». Здесь не быть уверенным, что сказанное верно.",
+            "uk": "«сумніватися». I doubt it. — «Я в цьому сумніваюся». Тут не бути впевненим, що сказане є правдою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега обіцяє закінчити великий звіт за хвилину. Скажіть: «Я в цьому сумніваюся»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега обіцяє закінчити великий звіт за хвилину. Скажіть: «Я в цьому сумніваюся»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I doubt it.",
+        "localizedMeaning": {
+          "ru": "Коллега обещает закончить большой отчёт за минуту. Скажите: «Я в этом сомневаюсь»",
+          "uk": "Колега обіцяє закінчити великий звіт за хвилину. Скажіть: «Я в цьому сумніваюся»"
+        },
+        "orderedTokens": [
+          "I",
+          "doubt",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-19:i02:r1",
+          "text": "I doubt it."
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i02:r2",
+          "text": "We doubt it."
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i02:r3",
+          "text": "I know it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:i02:audio",
+          "transcript": "I doubt it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-19:i02:r1",
+            "targetText": "I doubt it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i02:r2",
+            "targetText": "We doubt it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i02:r3",
+            "targetText": "I know it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I doubt it.",
+              "uk": "У записі звучить I doubt it."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I doubt it.",
+              "uk": "У записі звучить I doubt it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму doubt з she",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-19:i03:r1",
+          "text": "doubts"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i03:r2",
+          "text": "doubt"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i03:r3",
+          "text": "is doubt"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму doubt з she",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму doubt с she",
+          "uk": "Виберіть форму doubt з she"
+        },
+        "gappedTargetPhrase": "She ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-19:i03:r1",
+            "text": "doubts"
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i03:r2",
+            "text": "doubt"
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i03:r3",
+            "text": "is doubt"
+          }
+        ],
+        "testedDimension": "Виберіть форму doubt з she",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму doubt з she",
+            "feedbackByLocale": {
+              "ru": "С she нужна doubts.",
+              "uk": "З she потрібна doubts."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму doubt з she",
+            "feedbackByLocale": {
+              "ru": "Is doubt неверно; здесь нужна doubts.",
+              "uk": "Is doubt неправильно; тут потрібна doubts."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:word:claim",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — claim",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:word:claim:audio"
+      ],
+      "accessibilityLabel": "Картка слова — claim",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:word:claim:audio",
+          "transcript": "claim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-19:word:claim:r1",
+            "targetText": "claim",
+            "meaningByLocale": {
+              "ru": "«утверждение». She doubts the claim. — «Она сомневается в этом утверждении». Здесь заявление о том, что нечто верно.",
+              "uk": "«твердження». She doubts the claim. — «Вона сумнівається в цьому твердженні». Тут заява про те, що щось є правдою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "claim",
+          "definitionByLocale": {
+            "ru": "«утверждение». She doubts the claim. — «Она сомневается в этом утверждении». Здесь заявление о том, что нечто верно.",
+            "uk": "«твердження». She doubts the claim. — «Вона сумнівається в цьому твердженні». Тут заява про те, що щось є правдою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Реклама обіцяє виконати велике замовлення за годину. Колега сумнівається. Скажіть: «Вона сумнівається в цьому твердженні»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Реклама обіцяє виконати велике замовлення за годину. Колега сумнівається. Скажіть: «Вона сумнівається в цьому твердженні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She doubts the claim.",
+        "localizedMeaning": {
+          "ru": "Реклама обещает выполнить большой заказ за час. Коллега сомневается. Скажите: «Она сомневается в этом утверждении»",
+          "uk": "Реклама обіцяє виконати велике замовлення за годину. Колега сумнівається. Скажіть: «Вона сумнівається в цьому твердженні»"
+        },
+        "orderedTokens": [
+          "She",
+          "doubts",
+          "the",
+          "claim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-19:i05:r1",
+          "text": "Do you doubt the claim?"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i05:r2",
+          "text": "Do they doubt the claim?"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i05:r3",
+          "text": "Do you know the claim?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:i05:audio",
+          "transcript": "Do you doubt the claim?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-19:i05:r1",
+            "targetText": "Do you doubt the claim?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i05:r2",
+            "targetText": "Do they doubt the claim?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i05:r3",
+            "targetText": "Do you know the claim?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-19:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you doubt the claim?",
+              "uk": "У записі звучить Do you doubt the claim?"
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you doubt the claim?",
+              "uk": "У записі звучить Do you doubt the claim?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму doubt після does",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-19:i06:r1",
+          "text": "doubt"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i06:r2",
+          "text": "doubts"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i06:r3",
+          "text": "doubting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму doubt після does",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму doubt после does",
+          "uk": "Виберіть форму doubt після does"
+        },
+        "gappedTargetPhrase": "Does she ___ the claim?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-19:i06:r1",
+            "text": "doubt"
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i06:r2",
+            "text": "doubts"
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i06:r3",
+            "text": "doubting"
+          }
+        ],
+        "testedDimension": "Виберіть форму doubt після does",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-19:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму doubt після does",
+            "feedbackByLocale": {
+              "ru": "После does глагол без s: doubt.",
+              "uk": "Після does дієслово без s: doubt."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму doubt після does",
+            "feedbackByLocale": {
+              "ru": "После does нужна базовая форма doubt.",
+              "uk": "Після does потрібна початкова форма doubt."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:word:evidence",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — evidence",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:word:evidence:audio"
+      ],
+      "accessibilityLabel": "Картка слова — evidence",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:word:evidence:audio",
+          "transcript": "evidence"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-19:word:evidence:r1",
+            "targetText": "evidence",
+            "meaningByLocale": {
+              "ru": "«доказательства». Do you have any evidence? — «У тебя есть какие-нибудь доказательства?» Здесь факты или материалы для проверки утверждения; слово без s.",
+              "uk": "«докази». Do you have any evidence? — «У тебе є якісь докази?» Тут факти або матеріали для перевірки твердження; слово без s."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "evidence",
+          "definitionByLocale": {
+            "ru": "«доказательства». Do you have any evidence? — «У тебя есть какие-нибудь доказательства?» Здесь факты или материалы для проверки утверждения; слово без s.",
+            "uk": "«докази». Do you have any evidence? — «У тебе є якісь докази?» Тут факти або матеріали для перевірки твердження; слово без s."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега повторює непідтверджене твердження. Запитайте: «У тебе є якісь докази?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега повторює непідтверджене твердження. Запитайте: «У тебе є якісь докази?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have any evidence?",
+        "localizedMeaning": {
+          "ru": "Коллега повторяет неподтверждённое утверждение. Спросите: «У тебя есть какие-нибудь доказательства?»",
+          "uk": "Колега повторює непідтверджене твердження. Запитайте: «У тебе є якісь докази?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "any",
+          "evidence"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-19:i08:r1",
+          "text": "We need more evidence."
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i08:r2",
+          "text": "They need more evidence."
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i08:r3",
+          "text": "We need more time."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:i08:audio",
+          "transcript": "We need more evidence."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-19:i08:r1",
+            "targetText": "We need more evidence.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i08:r2",
+            "targetText": "They need more evidence.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i08:r3",
+            "targetText": "We need more time.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need more evidence.",
+              "uk": "У записі звучить We need more evidence."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need more evidence.",
+              "uk": "У записі звучить We need more evidence."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму have після do",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-19:i09:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i09:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i09:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму have після do",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму have после do",
+          "uk": "Виберіть форму have після do"
+        },
+        "gappedTargetPhrase": "Do you ___ any evidence?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-19:i09:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i09:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i09:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Виберіть форму have після do",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму have після do",
+            "feedbackByLocale": {
+              "ru": "После do нужна have.",
+              "uk": "Після do потрібна have."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму have після do",
+            "feedbackByLocale": {
+              "ru": "После do нужна базовая форма have.",
+              "uk": "Після do потрібна початкова форма have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:word:rumour",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rumour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:word:rumour:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rumour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:word:rumour:audio",
+          "transcript": "rumour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-19:word:rumour:r1",
+            "targetText": "rumour",
+            "meaningByLocale": {
+              "ru": "«слух». It is a rumour. — «Это слух». Неподтверждённое сообщение, которое передают друг другу; британское написание rumour.",
+              "uk": "«чутка». It is a rumour. — «Це чутка». Непідтверджене повідомлення, яке передають одне одному; британське написання rumour."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rumour",
+          "definitionByLocale": {
+            "ru": "«слух». It is a rumour. — «Это слух». Неподтверждённое сообщение, которое передают друг другу; британское написание rumour.",
+            "uk": "«чутка». It is a rumour. — «Це чутка». Непідтверджене повідомлення, яке передають одне одному; британське написання rumour."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує, чи підтверджено повідомлення. Ви знаєте лише переказ без підтвердження. Скажіть: «Це чутка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує, чи підтверджено повідомлення. Ви знаєте лише переказ без підтвердження. Скажіть: «Це чутка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a rumour.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, подтверждено ли сообщение. Вы знаете лишь пересказ без подтверждения. Скажите: «Это слух»",
+          "uk": "Колега запитує, чи підтверджено повідомлення. Ви знаєте лише переказ без підтвердження. Скажіть: «Це чутка»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "rumour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-19:i11:r1",
+          "text": "The rumour is about the office."
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i11:r2",
+          "text": "The rumour is about the school."
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i11:r3",
+          "text": "The report is about the office."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:i11:audio",
+          "transcript": "The rumour is about the office."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-19:i11:r1",
+            "targetText": "The rumour is about the office.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i11:r2",
+            "targetText": "The rumour is about the school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i11:r3",
+            "targetText": "The report is about the office.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-19:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rumour is about the office.",
+              "uk": "У записі звучить The rumour is about the office."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rumour is about the office.",
+              "uk": "У записі звучить The rumour is about the office."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль перед rumour",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-19:i12:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i12:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-10:session-19:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль перед rumour",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль перед rumour",
+          "uk": "Виберіть артикль перед rumour"
+        },
+        "gappedTargetPhrase": "It is ___ rumour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-19:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль перед rumour",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-19:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед rumour",
+            "feedbackByLocale": {
+              "ru": "Rumour начинается с согласного звука: a.",
+              "uk": "Rumour починається з приголосного звука: a."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-19:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед rumour",
+            "feedbackByLocale": {
+              "ru": "Are — глагол; здесь нужен артикль a.",
+              "uk": "Are — дієслово; тут потрібен артикль a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-19:i13:p1",
+            "target": "doubt",
+            "meaningByLocale": {
+              "ru": "сомневаться",
+              "uk": "сумніватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-19:i13:p2",
+            "target": "claim",
+            "meaningByLocale": {
+              "ru": "утверждение",
+              "uk": "твердження"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-19:i13:p3",
+            "target": "evidence",
+            "meaningByLocale": {
+              "ru": "доказательства",
+              "uk": "докази"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-19:i13:p4",
+            "target": "rumour",
+            "meaningByLocale": {
+              "ru": "слух",
+              "uk": "чутка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "doubt",
+          "claim",
+          "evidence",
+          "rumour"
+        ],
+        "rightColumn": [
+          "сумніватися",
+          "твердження",
+          "докази",
+          "чутка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:i14:audio",
+          "transcript": "Does she doubt the claim?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does she doubt the claim?",
+        "orderedTokens": [
+          "Does",
+          "she",
+          "doubt",
+          "the",
+          "claim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг переказує непідтверджене повідомлення. Висловлюючи сумнів, скажіть: «Я в цьому сумніваюся»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:i15:audio"
+      ],
+      "accessibilityLabel": "Друг переказує непідтверджене повідомлення. Висловлюючи сумнів, скажіть: «Я в цьому сумніваюся»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:i15:audio",
+          "transcript": "I doubt it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I doubt it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега хоче перевірити твердження, а матеріалів поки мало. Скажіть: «Нам потрібно більше доказів»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега хоче перевірити твердження, а матеріалів поки мало. Скажіть: «Нам потрібно більше доказів»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need more evidence.",
+        "localizedMeaning": {
+          "ru": "Коллега хочет проверить утверждение, а материалов пока мало. Скажите: «Нам нужно больше доказательств»",
+          "uk": "Колега хоче перевірити твердження, а матеріалів поки мало. Скажіть: «Нам потрібно більше доказів»"
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "more",
+          "evidence"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега стверджує, що велике замовлення виконають за хвилину, але не наводить підтвердження. Зараз він запитує вашу думку. Висловлюючи сумнів, скажіть: «Я в цьому сумніваюся»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "Колега стверджує, що велике замовлення виконають за хвилину, але не наводить підтвердження. Зараз він запитує вашу думку. Висловлюючи сумнів, скажіть: «Я в цьому сумніваюся»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:i17:audio",
+          "transcript": "I doubt it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I doubt it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1836dc165e6f96bc5196f4912f7b63fef4c27350956a186a48c292fe40755de2"
+}

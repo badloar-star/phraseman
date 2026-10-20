@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-19:word:doubt",
+    "correctText": "doubt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i01",
+    "correctText": "I doubt it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i02",
+    "correctText": "I doubt it.",
+    "correctResponseId": "en:lesson-10:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i03",
+    "correctText": "doubts",
+    "correctResponseId": "en:lesson-10:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:word:claim",
+    "correctText": "claim",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i04",
+    "correctText": "She doubts the claim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i05",
+    "correctText": "Do you doubt the claim?",
+    "correctResponseId": "en:lesson-10:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i06",
+    "correctText": "doubt",
+    "correctResponseId": "en:lesson-10:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:word:evidence",
+    "correctText": "evidence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i07",
+    "correctText": "Do you have any evidence?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i08",
+    "correctText": "We need more evidence.",
+    "correctResponseId": "en:lesson-10:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i09",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-10:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:word:rumour",
+    "correctText": "rumour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i10",
+    "correctText": "It is a rumour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i11",
+    "correctText": "The rumour is about the office.",
+    "correctResponseId": "en:lesson-10:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i12",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-10:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i13",
+    "correctText": "en:lesson-10:session-19:i13:p1=doubt\nen:lesson-10:session-19:i13:p2=claim\nen:lesson-10:session-19:i13:p3=evidence\nen:lesson-10:session-19:i13:p4=rumour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i14",
+    "correctText": "Does she doubt the claim?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i15",
+    "correctText": "I doubt it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i16",
+    "correctText": "We need more evidence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-19:i17",
+    "correctText": "I doubt it.",
+    "correctResponseId": null
+  }
+]

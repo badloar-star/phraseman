@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-44:word:glance",
+    "correctText": "glance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i01",
+    "correctText": "I glance at the clock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i02",
+    "correctText": "I am glancing at the clock.",
+    "correctResponseId": "en:lesson-09:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i03",
+    "correctText": "at",
+    "correctResponseId": "en:lesson-09:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:word:billboard",
+    "correctText": "billboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i04",
+    "correctText": "This is a billboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i05",
+    "correctText": "The billboard is large.",
+    "correctResponseId": "en:lesson-09:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:word:headline",
+    "correctText": "headline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i07",
+    "correctText": "I am reading the headline.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i08",
+    "correctText": "Are you reading the headline?",
+    "correctResponseId": "en:lesson-09:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i09",
+    "correctText": "reading",
+    "correctResponseId": "en:lesson-09:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:word:bulletin",
+    "correctText": "bulletin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i10",
+    "correctText": "I am listening to the news bulletin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i11",
+    "correctText": "The news bulletin is short.",
+    "correctResponseId": "en:lesson-09:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i12",
+    "correctText": "Please don't turn off the radio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i13",
+    "correctText": "en:lesson-09:session-44:i13:p1=glance\nen:lesson-09:session-44:i13:p2=billboard\nen:lesson-09:session-44:i13:p3=headline\nen:lesson-09:session-44:i13:p4=bulletin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i14",
+    "correctText": "Are you reading the headline?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i15",
+    "correctText": "glancing",
+    "correctResponseId": "en:lesson-09:session-44:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i16",
+    "correctText": "I am not reading the headline.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-44:i17",
+    "correctText": "I am listening to the news bulletin.",
+    "correctResponseId": null
+  }
+]

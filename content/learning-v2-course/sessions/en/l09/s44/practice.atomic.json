@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-44",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-44:word:glance",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — glance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:word:glance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — glance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:word:glance:audio",
+            "transcript": "glance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:word:glance:r1",
+              "targetText": "glance",
+              "meaningByLocale": {
+                "ru": "«бросать взгляд». I glance at the clock. — «Я бросаю взгляд на часы». Быстро посмотреть; glance at + предмет.",
+                "uk": "«кидати погляд». I glance at the clock. — «Я кидаю погляд на годинник». Швидко поглянути; glance at + предмет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "glance",
+            "definitionByLocale": {
+              "ru": "«бросать взгляд». I glance at the clock. — «Я бросаю взгляд на часы». Быстро посмотреть; glance at + предмет.",
+              "uk": "«кидати погляд». I glance at the clock. — «Я кидаю погляд на годинник». Швидко поглянути; glance at + предмет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перед выходом вы обычно на секунду смотрите на часы. Скажите: «Я бросаю взгляд на часы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед выходом вы обычно на секунду смотрите на часы. Скажите: «Я бросаю взгляд на часы»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I glance at the clock.",
+          "localizedMeaning": {
+            "ru": "Перед выходом вы обычно на секунду смотрите на часы. Скажите: «Я бросаю взгляд на часы»",
+            "uk": "Перед виходом ви зазвичай на секунду дивитеся на годинник. Скажіть: «Я кидаю погляд на годинник»"
+          },
+          "orderedTokens": [
+            "I",
+            "glance",
+            "at",
+            "the",
+            "clock"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i02:r1",
+            "text": "I am glancing at the clock."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i02:r2",
+            "text": "I am looking at the door."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i02:r3",
+            "text": "I am not glancing at the clock."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i02:audio",
+            "transcript": "I am glancing at the clock."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:i02:r1",
+              "targetText": "I am glancing at the clock.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i02:r2",
+              "targetText": "I am looking at the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i02:r3",
+              "targetText": "I am not glancing at the clock.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am glancing at the clock.",
+                "uk": "У записі звучить I am glancing at the clock."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am glancing at the clock.",
+                "uk": "У записі звучить I am glancing at the clock."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите предлог после glance",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i03:r1",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i03:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i03:r3",
+            "text": "to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите предлог после glance",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите предлог после glance",
+            "uk": "Виберіть прийменник після glance"
+          },
+          "gappedTargetPhrase": "I glance ___ the clock.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-44:i03:r1",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i03:r2",
+              "text": "on"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i03:r3",
+              "text": "to"
+            }
+          ],
+          "testedDimension": "Выберите предлог после glance",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите предлог после glance",
+              "feedbackByLocale": {
+                "ru": "В выражении glance at нужен at.",
+                "uk": "У виразі glance at потрібне at."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите предлог после glance",
+              "feedbackByLocale": {
+                "ru": "На предмет бросают взгляд: glance at.",
+                "uk": "На предмет кидають погляд: glance at."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:word:billboard",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — billboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:word:billboard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — billboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:word:billboard:audio",
+            "transcript": "billboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:word:billboard:r1",
+              "targetText": "billboard",
+              "meaningByLocale": {
+                "ru": "«рекламный щит». This is a billboard. — «Это рекламный щит». Большой щит с рекламой у дороги или на здании.",
+                "uk": "«рекламний щит». This is a billboard. — «Це рекламний щит». Великий щит із рекламою біля дороги або на будівлі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "billboard",
+            "definitionByLocale": {
+              "ru": "«рекламный щит». This is a billboard. — «Это рекламный щит». Большой щит с рекламой у дороги или на здании.",
+              "uk": "«рекламний щит». This is a billboard. — «Це рекламний щит». Великий щит із рекламою біля дороги або на будівлі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Из окна автобуса ребёнок показывает на большой щит с рекламой. Назовите его",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Из окна автобуса ребёнок показывает на большой щит с рекламой. Назовите его",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a billboard.",
+          "localizedMeaning": {
+            "ru": "Из окна автобуса ребёнок показывает на большой щит с рекламой. Назовите его",
+            "uk": "З вікна автобуса дитина показує на великий щит із рекламою. Назвіть його"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "billboard"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i05:r1",
+            "text": "The billboard is large."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i05:r2",
+            "text": "The billboard is small."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i05:r3",
+            "text": "The window is large."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i05:audio",
+            "transcript": "The billboard is large."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:i05:r1",
+              "targetText": "The billboard is large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i05:r2",
+              "targetText": "The billboard is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i05:r3",
+              "targetText": "The window is large.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The billboard is large.",
+                "uk": "У записі звучить The billboard is large."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The billboard is large.",
+                "uk": "У записі звучить The billboard is large."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку для одного рекламного щита",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку для одного рекламного щита",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одного рекламного щита",
+            "uk": "Виберіть зв’язку для одного рекламного щита"
+          },
+          "gappedTargetPhrase": "The billboard ___ large.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-44:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку для одного рекламного щита",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку для одного рекламного щита",
+              "feedbackByLocale": {
+                "ru": "Один щит: is.",
+                "uk": "Один щит: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку для одного рекламного щита",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am вживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:word:headline",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — headline",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:word:headline:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — headline",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:word:headline:audio",
+            "transcript": "headline"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:word:headline:r1",
+              "targetText": "headline",
+              "meaningByLocale": {
+                "ru": "«заголовок новости». I am reading the headline. — «Я читаю заголовок». Здесь заголовок статьи, не вся статья.",
+                "uk": "«заголовок новини». I am reading the headline. — «Я читаю заголовок». Тут заголовок статті, не вся стаття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headline",
+            "definitionByLocale": {
+              "ru": "«заголовок новости». I am reading the headline. — «Я читаю заголовок». Здесь заголовок статьи, не вся статья.",
+              "uk": "«заголовок новини». I am reading the headline. — «Я читаю заголовок». Тут заголовок статті, не вся стаття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, какую часть статьи вы читаете сейчас. Ответьте: «Я читаю заголовок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, какую часть статьи вы читаете сейчас. Ответьте: «Я читаю заголовок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am reading the headline.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, какую часть статьи вы читаете сейчас. Ответьте: «Я читаю заголовок»",
+            "uk": "Друг запитує, яку частину статті ви читаєте зараз. Дайте відповідь: «Я читаю заголовок»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "reading",
+            "the",
+            "headline"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i08:r1",
+            "text": "Are you reading the headline?"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i08:r2",
+            "text": "You are reading the headline."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i08:r3",
+            "text": "I am reading the headline."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i08:audio",
+            "transcript": "Are you reading the headline?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:i08:r1",
+              "targetText": "Are you reading the headline?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i08:r2",
+              "targetText": "You are reading the headline.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i08:r3",
+              "targetText": "I am reading the headline.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you reading the headline?",
+                "uk": "У записі звучить Are you reading the headline?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you reading the headline?",
+                "uk": "У записі звучить Are you reading the headline?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для действия сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i09:r1",
+            "text": "reading"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i09:r2",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i09:r3",
+            "text": "reads"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для действия сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для действия сейчас",
+            "uk": "Виберіть форму для дії зараз"
+          },
+          "gappedTargetPhrase": "She is ___ the headline.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-44:i09:r1",
+              "text": "reading"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i09:r2",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i09:r3",
+              "text": "reads"
+            }
+          ],
+          "testedDimension": "Выберите форму для действия сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма reading.",
+                "uk": "Після is потрібна форма reading."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "В конструкции is reading окончание -s не добавляем.",
+                "uk": "У конструкції is reading закінчення -s не додаємо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:word:bulletin",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bulletin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:word:bulletin:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bulletin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:word:bulletin:audio",
+            "transcript": "bulletin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:word:bulletin:r1",
+              "targetText": "bulletin",
+              "meaningByLocale": {
+                "ru": "«краткий выпуск новостей». I am listening to the news bulletin. — «Я слушаю выпуск новостей». Короткая передача по радио или телевидению.",
+                "uk": "«короткий випуск новин». I am listening to the news bulletin. — «Я слухаю випуск новин». Коротка передача по радіо або телебаченню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bulletin",
+            "definitionByLocale": {
+              "ru": "«краткий выпуск новостей». I am listening to the news bulletin. — «Я слушаю выпуск новостей». Короткая передача по радио или телевидению.",
+              "uk": "«короткий випуск новин». I am listening to the news bulletin. — «Я слухаю випуск новин». Коротка передача по радіо або телебаченню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед спрашивает, что вы слушаете по радио. Скажите: «Я слушаю выпуск новостей»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает, что вы слушаете по радио. Скажите: «Я слушаю выпуск новостей»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am listening to the news bulletin.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает, что вы слушаете по радио. Скажите: «Я слушаю выпуск новостей»",
+            "uk": "Сусід запитує, що ви слухаєте по радіо. Скажіть: «Я слухаю випуск новин»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "listening",
+            "to",
+            "the",
+            "news",
+            "bulletin"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i11:r1",
+            "text": "The news bulletin is short."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i11:r2",
+            "text": "The headline is short."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i11:r3",
+            "text": "The news bulletin is long."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i11:audio",
+            "transcript": "The news bulletin is short."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:i11:r1",
+              "targetText": "The news bulletin is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i11:r2",
+              "targetText": "The headline is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i11:r3",
+              "targetText": "The news bulletin is long.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The news bulletin is short.",
+                "uk": "У записі звучить The news bulletin is short."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The news bulletin is short.",
+                "uk": "У записі звучить The news bulletin is short."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы слушаете новости. Попросите соседа не выключать радио; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i12:audio"
+        ],
+        "accessibilityLabel": "Вы слушаете новости. Попросите соседа не выключать радио; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i12:audio",
+            "transcript": "Please don't turn off the radio."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't turn off the radio.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-44:i13:p1",
+              "target": "glance",
+              "meaningByLocale": {
+                "ru": "бросать взгляд",
+                "uk": "кидати погляд"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-44:i13:p2",
+              "target": "billboard",
+              "meaningByLocale": {
+                "ru": "рекламный щит",
+                "uk": "рекламний щит"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-44:i13:p3",
+              "target": "headline",
+              "meaningByLocale": {
+                "ru": "заголовок новости",
+                "uk": "заголовок новини"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-44:i13:p4",
+              "target": "bulletin",
+              "meaningByLocale": {
+                "ru": "краткий выпуск новостей",
+                "uk": "короткий випуск новин"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glance",
+            "billboard",
+            "headline",
+            "bulletin"
+          ],
+          "rightColumn": [
+            "бросать взгляд",
+            "рекламный щит",
+            "заголовок новости",
+            "краткий выпуск новостей"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос о чтении заголовка сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос о чтении заголовка сейчас",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i14:audio",
+            "transcript": "Are you reading the headline?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you reading the headline?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "reading",
+            "the",
+            "headline"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму glance с -ing: конечная e уходит",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i15:r1",
+            "text": "glancing"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i15:r2",
+            "text": "glanceing"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i15:r3",
+            "text": "glance"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму glance с -ing: конечная e уходит",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму glance с -ing: конечная e уходит",
+            "uk": "Виберіть форму glance з -ing: кінцева e зникає"
+          },
+          "gappedTargetPhrase": "I am ___ at the clock.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-44:i15:r1",
+              "text": "glancing"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i15:r2",
+              "text": "glanceing"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i15:r3",
+              "text": "glance"
+            }
+          ],
+          "testedDimension": "Выберите форму glance с -ing: конечная e уходит",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму glance с -ing: конечная e уходит",
+              "feedbackByLocale": {
+                "ru": "Перед -ing убираем конечную e: glancing.",
+                "uk": "Перед -ing прибираємо кінцеву e: glancing."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму glance с -ing: конечная e уходит",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма glancing.",
+                "uk": "Після am для дії зараз потрібна форма glancing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра думает, что вы читаете заголовок, но вы уже читаете статью. Скажите: «Я не читаю заголовок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра думает, что вы читаете заголовок, но вы уже читаете статью. Скажите: «Я не читаю заголовок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am not reading the headline.",
+          "localizedMeaning": {
+            "ru": "Сестра думает, что вы читаете заголовок, но вы уже читаете статью. Скажите: «Я не читаю заголовок»",
+            "uk": "Сестра думає, що ви читаєте заголовок, але ви вже читаєте статтю. Скажіть: «Я не читаю заголовок»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "reading",
+            "the",
+            "headline"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На кухне по радио начинается короткая передача новостей. Брат спрашивает, что вы слушаете. Ответьте: «Я слушаю выпуск новостей»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "На кухне по радио начинается короткая передача новостей. Брат спрашивает, что вы слушаете. Ответьте: «Я слушаю выпуск новостей»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i17:audio",
+            "transcript": "I am listening to the news bulletin."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am listening to the news bulletin.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-44:word:glance",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — glance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:word:glance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — glance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:word:glance:audio",
+            "transcript": "glance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:word:glance:r1",
+              "targetText": "glance",
+              "meaningByLocale": {
+                "ru": "«бросать взгляд». I glance at the clock. — «Я бросаю взгляд на часы». Быстро посмотреть; glance at + предмет.",
+                "uk": "«кидати погляд». I glance at the clock. — «Я кидаю погляд на годинник». Швидко поглянути; glance at + предмет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "glance",
+            "definitionByLocale": {
+              "ru": "«бросать взгляд». I glance at the clock. — «Я бросаю взгляд на часы». Быстро посмотреть; glance at + предмет.",
+              "uk": "«кидати погляд». I glance at the clock. — «Я кидаю погляд на годинник». Швидко поглянути; glance at + предмет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перед виходом ви зазвичай на секунду дивитеся на годинник. Скажіть: «Я кидаю погляд на годинник»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед виходом ви зазвичай на секунду дивитеся на годинник. Скажіть: «Я кидаю погляд на годинник»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I glance at the clock.",
+          "localizedMeaning": {
+            "ru": "Перед выходом вы обычно на секунду смотрите на часы. Скажите: «Я бросаю взгляд на часы»",
+            "uk": "Перед виходом ви зазвичай на секунду дивитеся на годинник. Скажіть: «Я кидаю погляд на годинник»"
+          },
+          "orderedTokens": [
+            "I",
+            "glance",
+            "at",
+            "the",
+            "clock"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i02:r1",
+            "text": "I am glancing at the clock."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i02:r2",
+            "text": "I am looking at the door."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i02:r3",
+            "text": "I am not glancing at the clock."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i02:audio",
+            "transcript": "I am glancing at the clock."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:i02:r1",
+              "targetText": "I am glancing at the clock.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i02:r2",
+              "targetText": "I am looking at the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i02:r3",
+              "targetText": "I am not glancing at the clock.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am glancing at the clock.",
+                "uk": "У записі звучить I am glancing at the clock."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am glancing at the clock.",
+                "uk": "У записі звучить I am glancing at the clock."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть прийменник після glance",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i03:r1",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i03:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i03:r3",
+            "text": "to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть прийменник після glance",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите предлог после glance",
+            "uk": "Виберіть прийменник після glance"
+          },
+          "gappedTargetPhrase": "I glance ___ the clock.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-44:i03:r1",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i03:r2",
+              "text": "on"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i03:r3",
+              "text": "to"
+            }
+          ],
+          "testedDimension": "Виберіть прийменник після glance",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть прийменник після glance",
+              "feedbackByLocale": {
+                "ru": "В выражении glance at нужен at.",
+                "uk": "У виразі glance at потрібне at."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть прийменник після glance",
+              "feedbackByLocale": {
+                "ru": "На предмет бросают взгляд: glance at.",
+                "uk": "На предмет кидають погляд: glance at."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:word:billboard",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — billboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:word:billboard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — billboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:word:billboard:audio",
+            "transcript": "billboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:word:billboard:r1",
+              "targetText": "billboard",
+              "meaningByLocale": {
+                "ru": "«рекламный щит». This is a billboard. — «Это рекламный щит». Большой щит с рекламой у дороги или на здании.",
+                "uk": "«рекламний щит». This is a billboard. — «Це рекламний щит». Великий щит із рекламою біля дороги або на будівлі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "billboard",
+            "definitionByLocale": {
+              "ru": "«рекламный щит». This is a billboard. — «Это рекламный щит». Большой щит с рекламой у дороги или на здании.",
+              "uk": "«рекламний щит». This is a billboard. — «Це рекламний щит». Великий щит із рекламою біля дороги або на будівлі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "З вікна автобуса дитина показує на великий щит із рекламою. Назвіть його",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З вікна автобуса дитина показує на великий щит із рекламою. Назвіть його",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a billboard.",
+          "localizedMeaning": {
+            "ru": "Из окна автобуса ребёнок показывает на большой щит с рекламой. Назовите его",
+            "uk": "З вікна автобуса дитина показує на великий щит із рекламою. Назвіть його"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "billboard"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i05:r1",
+            "text": "The billboard is large."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i05:r2",
+            "text": "The billboard is small."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i05:r3",
+            "text": "The window is large."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i05:audio",
+            "transcript": "The billboard is large."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:i05:r1",
+              "targetText": "The billboard is large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i05:r2",
+              "targetText": "The billboard is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i05:r3",
+              "targetText": "The window is large.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The billboard is large.",
+                "uk": "У записі звучить The billboard is large."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The billboard is large.",
+                "uk": "У записі звучить The billboard is large."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку для одного рекламного щита",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку для одного рекламного щита",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одного рекламного щита",
+            "uk": "Виберіть зв’язку для одного рекламного щита"
+          },
+          "gappedTargetPhrase": "The billboard ___ large.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-44:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку для одного рекламного щита",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для одного рекламного щита",
+              "feedbackByLocale": {
+                "ru": "Один щит: is.",
+                "uk": "Один щит: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для одного рекламного щита",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am вживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:word:headline",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — headline",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:word:headline:audio"
+        ],
+        "accessibilityLabel": "Картка слова — headline",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:word:headline:audio",
+            "transcript": "headline"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:word:headline:r1",
+              "targetText": "headline",
+              "meaningByLocale": {
+                "ru": "«заголовок новости». I am reading the headline. — «Я читаю заголовок». Здесь заголовок статьи, не вся статья.",
+                "uk": "«заголовок новини». I am reading the headline. — «Я читаю заголовок». Тут заголовок статті, не вся стаття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headline",
+            "definitionByLocale": {
+              "ru": "«заголовок новости». I am reading the headline. — «Я читаю заголовок». Здесь заголовок статьи, не вся статья.",
+              "uk": "«заголовок новини». I am reading the headline. — «Я читаю заголовок». Тут заголовок статті, не вся стаття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг запитує, яку частину статті ви читаєте зараз. Дайте відповідь: «Я читаю заголовок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитує, яку частину статті ви читаєте зараз. Дайте відповідь: «Я читаю заголовок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am reading the headline.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, какую часть статьи вы читаете сейчас. Ответьте: «Я читаю заголовок»",
+            "uk": "Друг запитує, яку частину статті ви читаєте зараз. Дайте відповідь: «Я читаю заголовок»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "reading",
+            "the",
+            "headline"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i08:r1",
+            "text": "Are you reading the headline?"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i08:r2",
+            "text": "You are reading the headline."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i08:r3",
+            "text": "I am reading the headline."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i08:audio",
+            "transcript": "Are you reading the headline?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:i08:r1",
+              "targetText": "Are you reading the headline?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i08:r2",
+              "targetText": "You are reading the headline.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i08:r3",
+              "targetText": "I am reading the headline.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you reading the headline?",
+                "uk": "У записі звучить Are you reading the headline?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you reading the headline?",
+                "uk": "У записі звучить Are you reading the headline?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для дії зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i09:r1",
+            "text": "reading"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i09:r2",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i09:r3",
+            "text": "reads"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для дії зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для действия сейчас",
+            "uk": "Виберіть форму для дії зараз"
+          },
+          "gappedTargetPhrase": "She is ___ the headline.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-44:i09:r1",
+              "text": "reading"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i09:r2",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i09:r3",
+              "text": "reads"
+            }
+          ],
+          "testedDimension": "Виберіть форму для дії зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для дії зараз",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма reading.",
+                "uk": "Після is потрібна форма reading."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для дії зараз",
+              "feedbackByLocale": {
+                "ru": "В конструкции is reading окончание -s не добавляем.",
+                "uk": "У конструкції is reading закінчення -s не додаємо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:word:bulletin",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bulletin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:word:bulletin:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bulletin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:word:bulletin:audio",
+            "transcript": "bulletin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:word:bulletin:r1",
+              "targetText": "bulletin",
+              "meaningByLocale": {
+                "ru": "«краткий выпуск новостей». I am listening to the news bulletin. — «Я слушаю выпуск новостей». Короткая передача по радио или телевидению.",
+                "uk": "«короткий випуск новин». I am listening to the news bulletin. — «Я слухаю випуск новин». Коротка передача по радіо або телебаченню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bulletin",
+            "definitionByLocale": {
+              "ru": "«краткий выпуск новостей». I am listening to the news bulletin. — «Я слушаю выпуск новостей». Короткая передача по радио или телевидению.",
+              "uk": "«короткий випуск новин». I am listening to the news bulletin. — «Я слухаю випуск новин». Коротка передача по радіо або телебаченню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід запитує, що ви слухаєте по радіо. Скажіть: «Я слухаю випуск новин»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід запитує, що ви слухаєте по радіо. Скажіть: «Я слухаю випуск новин»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am listening to the news bulletin.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает, что вы слушаете по радио. Скажите: «Я слушаю выпуск новостей»",
+            "uk": "Сусід запитує, що ви слухаєте по радіо. Скажіть: «Я слухаю випуск новин»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "listening",
+            "to",
+            "the",
+            "news",
+            "bulletin"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i11:r1",
+            "text": "The news bulletin is short."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i11:r2",
+            "text": "The headline is short."
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i11:r3",
+            "text": "The news bulletin is long."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i11:audio",
+            "transcript": "The news bulletin is short."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-44:i11:r1",
+              "targetText": "The news bulletin is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i11:r2",
+              "targetText": "The headline is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i11:r3",
+              "targetText": "The news bulletin is long.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The news bulletin is short.",
+                "uk": "У записі звучить The news bulletin is short."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The news bulletin is short.",
+                "uk": "У записі звучить The news bulletin is short."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви слухаєте новини. Попросіть сусіда не вимикати радіо; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i12:audio"
+        ],
+        "accessibilityLabel": "Ви слухаєте новини. Попросіть сусіда не вимикати радіо; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i12:audio",
+            "transcript": "Please don't turn off the radio."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't turn off the radio.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-44:i13:p1",
+              "target": "glance",
+              "meaningByLocale": {
+                "ru": "бросать взгляд",
+                "uk": "кидати погляд"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-44:i13:p2",
+              "target": "billboard",
+              "meaningByLocale": {
+                "ru": "рекламный щит",
+                "uk": "рекламний щит"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-44:i13:p3",
+              "target": "headline",
+              "meaningByLocale": {
+                "ru": "заголовок новости",
+                "uk": "заголовок новини"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-44:i13:p4",
+              "target": "bulletin",
+              "meaningByLocale": {
+                "ru": "краткий выпуск новостей",
+                "uk": "короткий випуск новин"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glance",
+            "billboard",
+            "headline",
+            "bulletin"
+          ],
+          "rightColumn": [
+            "кидати погляд",
+            "рекламний щит",
+            "заголовок новини",
+            "короткий випуск новин"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання про читання заголовка зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання про читання заголовка зараз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i14:audio",
+            "transcript": "Are you reading the headline?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you reading the headline?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "reading",
+            "the",
+            "headline"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму glance з -ing: кінцева e зникає",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-44:i15:r1",
+            "text": "glancing"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i15:r2",
+            "text": "glanceing"
+          },
+          {
+            "responseId": "en:lesson-09:session-44:i15:r3",
+            "text": "glance"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму glance з -ing: кінцева e зникає",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму glance с -ing: конечная e уходит",
+            "uk": "Виберіть форму glance з -ing: кінцева e зникає"
+          },
+          "gappedTargetPhrase": "I am ___ at the clock.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-44:i15:r1",
+              "text": "glancing"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i15:r2",
+              "text": "glanceing"
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i15:r3",
+              "text": "glance"
+            }
+          ],
+          "testedDimension": "Виберіть форму glance з -ing: кінцева e зникає",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму glance з -ing: кінцева e зникає",
+              "feedbackByLocale": {
+                "ru": "Перед -ing убираем конечную e: glancing.",
+                "uk": "Перед -ing прибираємо кінцеву e: glancing."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму glance з -ing: кінцева e зникає",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма glancing.",
+                "uk": "Після am для дії зараз потрібна форма glancing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра думає, що ви читаєте заголовок, але ви вже читаєте статтю. Скажіть: «Я не читаю заголовок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра думає, що ви читаєте заголовок, але ви вже читаєте статтю. Скажіть: «Я не читаю заголовок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am not reading the headline.",
+          "localizedMeaning": {
+            "ru": "Сестра думает, что вы читаете заголовок, но вы уже читаете статью. Скажите: «Я не читаю заголовок»",
+            "uk": "Сестра думає, що ви читаєте заголовок, але ви вже читаєте статтю. Скажіть: «Я не читаю заголовок»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "reading",
+            "the",
+            "headline"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На кухні по радіо починається коротка передача новин. Брат запитує, що ви слухаєте. Дайте відповідь: «Я слухаю випуск новин»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "На кухні по радіо починається коротка передача новин. Брат запитує, що ви слухаєте. Дайте відповідь: «Я слухаю випуск новин»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-44:i17:audio",
+            "transcript": "I am listening to the news bulletin."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am listening to the news bulletin.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-44:word:glance",
+      "correctText": "glance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i01",
+      "correctText": "I glance at the clock.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i02",
+      "correctText": "I am glancing at the clock.",
+      "correctResponseId": "en:lesson-09:session-44:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i03",
+      "correctText": "at",
+      "correctResponseId": "en:lesson-09:session-44:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:word:billboard",
+      "correctText": "billboard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i04",
+      "correctText": "This is a billboard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i05",
+      "correctText": "The billboard is large.",
+      "correctResponseId": "en:lesson-09:session-44:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-44:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:word:headline",
+      "correctText": "headline",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i07",
+      "correctText": "I am reading the headline.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i08",
+      "correctText": "Are you reading the headline?",
+      "correctResponseId": "en:lesson-09:session-44:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i09",
+      "correctText": "reading",
+      "correctResponseId": "en:lesson-09:session-44:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:word:bulletin",
+      "correctText": "bulletin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i10",
+      "correctText": "I am listening to the news bulletin.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i11",
+      "correctText": "The news bulletin is short.",
+      "correctResponseId": "en:lesson-09:session-44:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i12",
+      "correctText": "Please don't turn off the radio.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i14",
+      "correctText": "Are you reading the headline?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i15",
+      "correctText": "glancing",
+      "correctResponseId": "en:lesson-09:session-44:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i16",
+      "correctText": "I am not reading the headline.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:i17",
+      "correctText": "I am listening to the news bulletin.",
+      "correctResponseId": null
+    }
+  ]
+}

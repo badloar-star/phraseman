@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "glance at; I am reading the headline; Please don’t turn off the radio",
+    "uk": "glance at; I am reading the headline; Please don’t turn off the radio"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один взгляд на часы",
+        "uk": "Один погляд на годинник"
+      },
+      "bodyByLocale": {
+        "ru": "Каждое утро перед выходом вы на секунду смотрите на часы у двери. Друг спрашивает, зачем вы поворачиваете голову. I glance at the clock — «Я бросаю взгляд на часы». Glance — посмотреть мельком, а не долго рассматривать. После glance перед предметом нужен at. Это привычка, поэтому здесь простая форма glance.",
+        "uk": "Щоранку перед виходом ви на секунду дивитеся на годинник біля дверей. Друг запитує, навіщо ви повертаєте голову. I glance at the clock — «Я кидаю погляд на годинник». Glance — поглянути побіжно, а не довго розглядати. Після glance перед предметом потрібне at. Це звичка, тому тут проста форма glance."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-44:intro1:r1",
+              "text": "I glance at the clock."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro1:r2",
+              "text": "I glance the clock."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro1:r3",
+              "text": "I am glance at the clock."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-44:intro1:r1",
+              "text": "I glance at the clock."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro1:r2",
+              "text": "I glance the clock."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro1:r3",
+              "text": "I am glance at the clock."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Крупная строка над статьёй",
+        "uk": "Великий рядок над статтею"
+      },
+      "bodyByLocale": {
+        "ru": "В кафе друг спрашивает, читаете ли вы всю статью. Вы пока читаете только крупную строку над текстом. I am reading the headline — «Я читаю заголовок». Headline — заголовок новости или статьи. Он может назвать событие, но не заменяет весь текст. Читаете сейчас: am reading.",
+        "uk": "У кафе друг запитує, чи читаєте ви всю статтю. Ви поки читаєте лише великий рядок над текстом. I am reading the headline — «Я читаю заголовок». Headline — заголовок новини чи статті. Він може назвати подію, але не замінює весь текст. Читаєте зараз: am reading."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-44:intro2:r1",
+              "text": "I am reading the headline."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro2:r2",
+              "text": "I reading the headline."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro2:r3",
+              "text": "I am read the headline."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-44:intro2:r1",
+              "text": "I am reading the headline."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro2:r2",
+              "text": "I reading the headline."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro2:r3",
+              "text": "I am read the headline."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дослушать короткий выпуск",
+        "uk": "Дослухати короткий випуск"
+      },
+      "bodyByLocale": {
+        "ru": "По радио идёт короткий выпуск новостей — a news bulletin. Сосед тянется выключить приёмник, а вы хотите дослушать сообщение о погоде. Please don’t turn off the radio — «Пожалуйста, не выключай радио». После don’t оставляем turn без окончания. Bulletin здесь — короткий выпуск новостей, не заголовок отдельной статьи.",
+        "uk": "По радіо йде короткий випуск новин — a news bulletin. Сусід тягнеться вимкнути приймач, а ви хочете дослухати повідомлення про погоду. Please don’t turn off the radio — «Будь ласка, не вимикай радіо». Після don’t залишаємо turn без закінчення. Bulletin тут — короткий випуск новин, не заголовок окремої статті."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-44:intro3:r1",
+              "text": "Please don't turn off the radio."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro3:r2",
+              "text": "Please don't turning off the radio."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro3:r3",
+              "text": "Please not turn off the radio."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-44:intro3:r1",
+              "text": "Please don't turn off the radio."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro3:r2",
+              "text": "Please don't turning off the radio."
+            },
+            {
+              "responseId": "en:lesson-09:session-44:intro3:r3",
+              "text": "Please not turn off the radio."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fbf2d38c49cc299ab4c49e2147d82380a89a9c43a869f97f47333c325a384efa"
+}

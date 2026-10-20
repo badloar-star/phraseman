@@ -3430,4 +3430,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The leaves are whirling; I am near the carousel; This is an eddy","uk":"The leaves are whirling; I am near the carousel; This is an eddy"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 42,
+    sourceFingerprint: "572f5ea6d8514fb48dbda1023ab3578107c1e161dd04056f7d4b6086b727544b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am waiting for my cue; The understudy is rehearsing; Please don’t touch the costume","uk":"I am waiting for my cue; The understudy is rehearsing; Please don’t touch the costume"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 43,
+    sourceFingerprint: "99992d3914125592dd6b6e1f7ce56b92d9b66c1a9f8d9f5a7965352bc3dffd70",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am checking the preview; I am cropping the photo; scanning / cropping","uk":"I am checking the preview; I am cropping the photo; scanning / cropping"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

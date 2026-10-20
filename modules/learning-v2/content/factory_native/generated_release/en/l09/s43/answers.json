@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-43:word:thumbnail",
+    "correctText": "thumbnail",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i01",
+    "correctText": "This is a thumbnail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i02",
+    "correctText": "The thumbnail is small.",
+    "correctResponseId": "en:lesson-09:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i03",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-09:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:word:preview",
+    "correctText": "preview",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i04",
+    "correctText": "I am checking the preview.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i05",
+    "correctText": "Are you checking the preview?",
+    "correctResponseId": "en:lesson-09:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i06",
+    "correctText": "Please don't close the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:word:resolution",
+    "correctText": "resolution",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i07",
+    "correctText": "The resolution is low.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i08",
+    "correctText": "The resolution is high.",
+    "correctResponseId": "en:lesson-09:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:word:crop",
+    "correctText": "crop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i10",
+    "correctText": "Please crop the photo.",
+    "correctResponseId": "en:lesson-09:session-43:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i11",
+    "correctText": "I am cropping the photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i12",
+    "correctText": "cropping",
+    "correctResponseId": "en:lesson-09:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i13",
+    "correctText": "en:lesson-09:session-43:i13:p1=thumbnail\nen:lesson-09:session-43:i13:p2=preview\nen:lesson-09:session-43:i13:p3=resolution\nen:lesson-09:session-43:i13:p4=crop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i14",
+    "correctText": "I am scanning the photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i15",
+    "correctText": "scanning",
+    "correctResponseId": "en:lesson-09:session-43:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i16",
+    "correctText": "I am not cropping the photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-43:i17",
+    "correctText": "I am cropping the photo.",
+    "correctResponseId": null
+  }
+]

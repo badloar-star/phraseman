@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-42:word:cue",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:word:cue:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:word:cue:audio",
+          "transcript": "cue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-42:word:cue:r1",
+            "targetText": "cue",
+            "meaningByLocale": {
+              "ru": "«сигнал к действию». I am waiting for my cue. — «Я жду своего сигнала». В театре это может быть реплика, звук или жест для выхода.",
+              "uk": "«сигнал до дії». I am waiting for my cue. — «Я чекаю свого сигналу». У театрі це може бути репліка, звук або жест для виходу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cue",
+          "definitionByLocale": {
+            "ru": "«сигнал к действию». I am waiting for my cue. — «Я жду своего сигнала». В театре это может быть реплика, звук или жест для выхода.",
+            "uk": "«сигнал до дії». I am waiting for my cue. — «Я чекаю свого сигналу». У театрі це може бути репліка, звук або жест для виходу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть помічникові, що чекаєте свого сигналу до виходу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть помічникові, що чекаєте свого сигналу до виходу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am waiting for my cue.",
+        "localizedMeaning": {
+          "ru": "Объясните помощнику, что ждёте своего сигнала к выходу",
+          "uk": "Поясніть помічникові, що чекаєте свого сигналу до виходу"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "waiting",
+          "for",
+          "my",
+          "cue"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть прийменник після waiting",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-42:i02:r1",
+          "text": "for"
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i02:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i02:r3",
+          "text": "on"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть прийменник після waiting",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите предлог после waiting",
+          "uk": "Виберіть прийменник після waiting"
+        },
+        "gappedTargetPhrase": "I am waiting ___ my cue.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-42:i02:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i02:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i02:r3",
+            "text": "on"
+          }
+        ],
+        "testedDimension": "Виберіть прийменник після waiting",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник після waiting",
+            "feedbackByLocale": {
+              "ru": "В этом значении wait for — ждать чего-либо.",
+              "uk": "У цьому значенні wait for — чекати на щось."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник після waiting",
+            "feedbackByLocale": {
+              "ru": "Здесь нужен for: waiting for my cue.",
+              "uk": "Тут потрібне for: waiting for my cue."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-42:i03:r1",
+          "text": "Are you waiting for your cue?"
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i03:r2",
+          "text": "You are waiting for your cue."
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i03:r3",
+          "text": "I am waiting for my cue."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:i03:audio",
+          "transcript": "Are you waiting for your cue?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-42:i03:r1",
+            "targetText": "Are you waiting for your cue?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i03:r2",
+            "targetText": "You are waiting for your cue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i03:r3",
+            "targetText": "I am waiting for my cue.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you waiting for your cue?",
+              "uk": "У записі звучить Are you waiting for your cue?"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you waiting for your cue?",
+              "uk": "У записі звучить Are you waiting for your cue?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:word:understudy",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — understudy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:word:understudy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — understudy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:word:understudy:audio",
+          "transcript": "understudy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-42:word:understudy:r1",
+            "targetText": "understudy",
+            "meaningByLocale": {
+              "ru": "«дублёр актёра». The understudy is rehearsing. — «Дублёр репетирует». Он готовится заменить основного исполнителя при необходимости.",
+              "uk": "«дублер актора». The understudy is rehearsing. — «Дублер репетирує». Він готується замінити основного виконавця за потреби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "understudy",
+          "definitionByLocale": {
+            "ru": "«дублёр актёра». The understudy is rehearsing. — «Дублёр репетирует». Он готовится заменить основного исполнителя при необходимости.",
+            "uk": "«дублер актора». The understudy is rehearsing. — «Дублер репетирує». Він готується замінити основного виконавця за потреби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть другові, що зараз репетирує дублер",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть другові, що зараз репетирує дублер",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The understudy is rehearsing.",
+        "localizedMeaning": {
+          "ru": "Объясните другу, что сейчас репетирует дублёр",
+          "uk": "Поясніть другові, що зараз репетирує дублер"
+        },
+        "orderedTokens": [
+          "The",
+          "understudy",
+          "is",
+          "rehearsing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильне написання форми rehearse з -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-42:i05:r1",
+          "text": "rehearsing"
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i05:r2",
+          "text": "rehearseing"
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i05:r3",
+          "text": "rehearse"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильне написання форми rehearse з -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы rehearse с -ing",
+          "uk": "Виберіть правильне написання форми rehearse з -ing"
+        },
+        "gappedTargetPhrase": "The understudy is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-42:i05:r1",
+            "text": "rehearsing"
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i05:r2",
+            "text": "rehearseing"
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i05:r3",
+            "text": "rehearse"
+          }
+        ],
+        "testedDimension": "Виберіть правильне написання форми rehearse з -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-42:i05:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильне написання форми rehearse з -ing",
+            "feedbackByLocale": {
+              "ru": "Перед -ing конечную e убираем: rehearsing.",
+              "uk": "Перед -ing кінцеву e прибираємо: rehearsing."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i05:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильне написання форми rehearse з -ing",
+            "feedbackByLocale": {
+              "ru": "После is для действия сейчас нужна форма rehearsing.",
+              "uk": "Після is для дії зараз потрібна форма rehearsing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-42:i06:r1",
+          "text": "The understudy is not rehearsing."
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i06:r2",
+          "text": "The understudy is rehearsing."
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i06:r3",
+          "text": "I am not rehearsing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:i06:audio",
+          "transcript": "The understudy is not rehearsing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-42:i06:r1",
+            "targetText": "The understudy is not rehearsing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i06:r2",
+            "targetText": "The understudy is rehearsing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i06:r3",
+            "targetText": "I am not rehearsing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The understudy is not rehearsing.",
+              "uk": "У записі звучить The understudy is not rehearsing."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The understudy is not rehearsing.",
+              "uk": "У записі звучить The understudy is not rehearsing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:i07:audio",
+          "transcript": "Is the understudy rehearsing?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is the understudy rehearsing?",
+        "orderedTokens": [
+          "Is",
+          "the",
+          "understudy",
+          "rehearsing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:word:costume",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — costume",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:word:costume:audio"
+      ],
+      "accessibilityLabel": "Картка слова — costume",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:word:costume:audio",
+          "transcript": "costume"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-42:word:costume:r1",
+            "targetText": "costume",
+            "meaningByLocale": {
+              "ru": "«сценический или маскарадный костюм». Please don’t touch the costume. — «Пожалуйста, не трогайте костюм». Здесь одежда персонажа спектакля.",
+              "uk": "«сценічний або маскарадний костюм». Please don’t touch the costume. — «Будь ласка, не чіпайте костюм». Тут одяг персонажа вистави."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "costume",
+          "definitionByLocale": {
+            "ru": "«сценический или маскарадный костюм». Please don’t touch the costume. — «Пожалуйста, не трогайте костюм». Здесь одежда персонажа спектакля.",
+            "uk": "«сценічний або маскарадний костюм». Please don’t touch the costume. — «Будь ласка, не чіпайте костюм». Тут одяг персонажа вистави."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Візерунок на костюмі сохне. Попросіть відвідувача не чіпати костюм; почніть із Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Візерунок на костюмі сохне. Попросіть відвідувача не чіпати костюм; почніть із Please",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please don't touch the costume.",
+        "localizedMeaning": {
+          "ru": "Узор на костюме сохнет. Попросите посетителя не трогать костюм; начните с Please",
+          "uk": "Візерунок на костюмі сохне. Попросіть відвідувача не чіпати костюм; почніть із Please"
+        },
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "touch",
+          "the",
+          "costume"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-42:i09:r1",
+          "text": "The costume is ready."
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i09:r2",
+          "text": "The costume is not ready."
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i09:r3",
+          "text": "The understudy is ready."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:i09:audio",
+          "transcript": "The costume is ready."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-42:i09:r1",
+            "targetText": "The costume is ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i09:r2",
+            "targetText": "The costume is not ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i09:r3",
+            "targetText": "The understudy is ready.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The costume is ready.",
+              "uk": "У записі звучить The costume is ready."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The costume is ready.",
+              "uk": "У записі звучить The costume is ready."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дієслова у проханні",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-42:i10:r1",
+          "text": "touch"
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i10:r2",
+          "text": "touching"
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i10:r3",
+          "text": "touches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дієслова у проханні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму глагола в просьбе",
+          "uk": "Виберіть форму дієслова у проханні"
+        },
+        "gappedTargetPhrase": "Please don't ___ the costume.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-42:i10:r1",
+            "text": "touch"
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i10:r2",
+            "text": "touching"
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i10:r3",
+            "text": "touches"
+          }
+        ],
+        "testedDimension": "Виберіть форму дієслова у проханні",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-42:i10:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова у проханні",
+            "feedbackByLocale": {
+              "ru": "После don’t нужна исходная форма touch.",
+              "uk": "Після don’t потрібна початкова форма touch."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i10:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дієслова у проханні",
+            "feedbackByLocale": {
+              "ru": "В просьбе после don’t не добавляем -s.",
+              "uk": "У проханні після don’t не додаємо -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:word:script",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — script",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:word:script:audio"
+      ],
+      "accessibilityLabel": "Картка слова — script",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:word:script:audio",
+          "transcript": "script"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-42:word:script:r1",
+            "targetText": "script",
+            "meaningByLocale": {
+              "ru": "«сценарий; текст пьесы». I am checking the script. — «Я сверяюсь со сценарием». Здесь написанные реплики и указания для спектакля, не программный код.",
+              "uk": "«сценарій; текст п’єси». I am checking the script. — «Я звіряюся зі сценарієм». Тут записані репліки й указівки для вистави, не програмний код."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "script",
+          "definitionByLocale": {
+            "ru": "«сценарий; текст пьесы». I am checking the script. — «Я сверяюсь со сценарием». Здесь написанные реплики и указания для спектакля, не программный код.",
+            "uk": "«сценарій; текст п’єси». I am checking the script. — «Я звіряюся зі сценарієм». Тут записані репліки й указівки для вистави, не програмний код."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви уточнюєте репліку за текстом п’єси. Скажіть: «Я звіряюся зі сценарієм»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви уточнюєте репліку за текстом п’єси. Скажіть: «Я звіряюся зі сценарієм»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am checking the script.",
+        "localizedMeaning": {
+          "ru": "Вы уточняете реплику по тексту пьесы. Скажите: «Я сверяюсь со сценарием»",
+          "uk": "Ви уточнюєте репліку за текстом п’єси. Скажіть: «Я звіряюся зі сценарієм»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "checking",
+          "the",
+          "script"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-42:i12:r1",
+          "text": "The script is here."
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i12:r2",
+          "text": "The costume is here."
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i12:r3",
+          "text": "The understudy is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:i12:audio",
+          "transcript": "The script is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-42:i12:r1",
+            "targetText": "The script is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i12:r2",
+            "targetText": "The costume is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i12:r3",
+            "targetText": "The understudy is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The script is here.",
+              "uk": "У записі звучить The script is here."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The script is here.",
+              "uk": "У записі звучить The script is here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова з їхніми значеннями в театрі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова з їхніми значеннями в театрі",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-42:i13:p1",
+            "target": "cue",
+            "meaningByLocale": {
+              "ru": "сигнал к действию",
+              "uk": "сигнал до дії"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-42:i13:p2",
+            "target": "understudy",
+            "meaningByLocale": {
+              "ru": "дублёр актёра",
+              "uk": "дублер актора"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-42:i13:p3",
+            "target": "costume",
+            "meaningByLocale": {
+              "ru": "сценический костюм",
+              "uk": "сценічний костюм"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-42:i13:p4",
+            "target": "script",
+            "meaningByLocale": {
+              "ru": "текст пьесы",
+              "uk": "текст п’єси"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cue",
+          "understudy",
+          "costume",
+          "script"
+        ],
+        "rightColumn": [
+          "сигнал до дії",
+          "дублер актора",
+          "сценічний костюм",
+          "текст п’єси"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви розповідаєте про звичайний розклад. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-42:i14:r1",
+          "text": "rehearse"
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i14:r2",
+          "text": "are rehearsing"
+        },
+        {
+          "responseId": "en:lesson-09:session-42:i14:r3",
+          "text": "rehearses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви розповідаєте про звичайний розклад. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы рассказываете об обычном расписании. Выберите форму",
+          "uk": "Ви розповідаєте про звичайний розклад. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ every Monday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-42:i14:r1",
+            "text": "rehearse"
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i14:r2",
+            "text": "are rehearsing"
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i14:r3",
+            "text": "rehearses"
+          }
+        ],
+        "testedDimension": "Ви розповідаєте про звичайний розклад. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-42:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви розповідаєте про звичайний розклад. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для обычного расписания здесь используем We rehearse.",
+              "uk": "Для звичайного розкладу тут використовуємо We rehearse."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-42:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви розповідаєте про звичайний розклад. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С we в настоящем простом времени не добавляем -s.",
+              "uk": "З we у теперішньому простому часі не додаємо -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви зараз перевіряєте текст, а не репетируєте. Скажіть: «Я не репетирую»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зараз перевіряєте текст, а не репетируєте. Скажіть: «Я не репетирую»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not rehearsing.",
+        "localizedMeaning": {
+          "ru": "Вы сейчас проверяете текст, а не репетируете. Скажите: «Я не репетирую»",
+          "uk": "Ви зараз перевіряєте текст, а не репетируєте. Скажіть: «Я не репетирую»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "rehearsing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Помічник стоїть за лаштунками поруч із вами. Запитайте, чи чекає він свого сигналу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:i16:audio"
+      ],
+      "accessibilityLabel": "Помічник стоїть за лаштунками поруч із вами. Запитайте, чи чекає він свого сигналу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:i16:audio",
+          "transcript": "Are you waiting for your cue?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you waiting for your cue?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Під час читання п’єси через відеозв’язок ведуча запитує, чому ви дивитеся в книжку. Ви уточнюєте репліку. Поясніть: «Я звіряюся зі сценарієм»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Під час читання п’єси через відеозв’язок ведуча запитує, чому ви дивитеся в книжку. Ви уточнюєте репліку. Поясніть: «Я звіряюся зі сценарієм»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-42:i17:audio",
+          "transcript": "I am checking the script."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am checking the script.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "91bb9504464fb1d924c55b6aca4a96828de09d530bc2019ef379629eddb8af78"
+}

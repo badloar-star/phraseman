@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-42:intro1:r2": {
+          "ru": "После waiting перед my cue нужен for.",
+          "uk": "Після waiting перед my cue потрібне for."
+        },
+        "en:lesson-09:session-42:intro1:r3": {
+          "ru": "После am для действия сейчас нужно waiting.",
+          "uk": "Після am для дії зараз потрібне waiting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-42:intro2:r2": {
+          "ru": "Один дублёр: is.",
+          "uk": "Один дублер: is."
+        },
+        "en:lesson-09:session-42:intro2:r3": {
+          "ru": "В rehearsing убираем конечную e слова rehearse.",
+          "uk": "У rehearsing прибираємо кінцеву e слова rehearse."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-42:intro3:r2": {
+          "ru": "После don’t нужна исходная форма touch.",
+          "uk": "Після don’t потрібна початкова форма touch."
+        },
+        "en:lesson-09:session-42:intro3:r3": {
+          "ru": "Для отрицательной просьбы нужно don’t, не одно not.",
+          "uk": "Для заперечного прохання потрібне don’t, не саме not."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ff0d4c02f1224c0ddac4c398534e6c60e8c1359d82dd86ee72089badeaa43721"
+}

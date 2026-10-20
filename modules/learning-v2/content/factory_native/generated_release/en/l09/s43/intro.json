@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "I am checking the preview; I am cropping the photo; scanning / cropping",
+    "uk": "I am checking the preview; I am cropping the photo; scanning / cropping"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маленькие картинки вместо названий",
+        "uk": "Маленькі картинки замість назв"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете семейную фотографию в папке. Ребёнок показывает на её маленькую копию на экране и спрашивает, что это. This is a thumbnail — «Это миниатюра». Thumbnail здесь — уменьшенное изображение для выбора файла, а не ноготь большого пальца. Перед названием одной миниатюры нужно a.",
+        "uk": "Ви вибираєте сімейну фотографію в папці. Дитина показує на її маленьку копію на екрані й запитує, що це. This is a thumbnail — «Це мініатюра». Thumbnail тут — зменшене зображення для вибору файлу, а не ніготь великого пальця. Перед назвою однієї мініатюри потрібне a."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-43:intro1:r1",
+              "text": "This is a thumbnail."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro1:r2",
+              "text": "This is thumbnail."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro1:r3",
+              "text": "This are a thumbnail."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-43:intro1:r1",
+              "text": "This is a thumbnail."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro1:r2",
+              "text": "This is thumbnail."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro1:r3",
+              "text": "This are a thumbnail."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не закрывайте окно результата",
+        "uk": "Не закривайте вікно результату"
+      },
+      "bodyByLocale": {
+        "ru": "Вы отсканировали старую фотографию. Друг хочет закрыть окно, но вы ещё смотрите, ровно ли лежало фото. I am checking the preview — «Я проверяю изображение в окне предварительного просмотра». Preview — предварительный просмотр результата перед дальнейшей работой. Это не обязательно маленькая картинка: окно может показывать изображение крупно. Проверяете сейчас — am checking.",
+        "uk": "Ви відсканували стару фотографію. Друг хоче закрити вікно, але ви ще дивитеся, чи рівно лежало фото. I am checking the preview — «Я перевіряю зображення у вікні попереднього перегляду». Preview — попередній перегляд результату перед подальшою роботою. Це не обов’язково маленька картинка: вікно може показувати зображення великим. Перевіряєте зараз — am checking."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-43:intro2:r1",
+              "text": "I am checking the preview."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro2:r2",
+              "text": "I checking the preview."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro2:r3",
+              "text": "I am check the preview."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-43:intro2:r1",
+              "text": "I am checking the preview."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro2:r2",
+              "text": "I checking the preview."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro2:r3",
+              "text": "I am check the preview."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Убрать пустую рамку",
+        "uk": "Прибрати порожню рамку"
+      },
+      "bodyByLocale": {
+        "ru": "На цифровой копии вокруг фотографии получились широкие пустые поля. Подруга спрашивает, что вы делаете в редакторе. I am cropping the photo — «Я обрезаю края фотографии». Crop — обрезать изображение, оставляя нужную область. В cropping удваиваем p. Здесь меняем копию на экране, а не режем бумажную фотографию ножницами.",
+        "uk": "На цифровій копії навколо фотографії вийшли широкі порожні поля. Подруга запитує, що ви робите в редакторі. I am cropping the photo — «Я обрізаю краї фотографії». Crop — обрізати зображення, залишаючи потрібну область. У cropping подвоюємо p. Тут змінюємо копію на екрані, а не ріжемо паперову фотографію ножицями."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-43:intro3:r1",
+              "text": "I am cropping the photo."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro3:r2",
+              "text": "I am croping the photo."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro3:r3",
+              "text": "I am crop the photo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-43:intro3:r1",
+              "text": "I am cropping the photo."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro3:r2",
+              "text": "I am croping the photo."
+            },
+            {
+              "responseId": "en:lesson-09:session-43:intro3:r3",
+              "text": "I am crop the photo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "15131dcecc7b962dc84b8f7793fce73c7155ed5ced9cc340f7cc453dc278c8fb"
+}

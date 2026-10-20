@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-40:intro1:r2": {
+          "ru": "С we нужна have.",
+          "uk": "З we потрібна have."
+        },
+        "en:lesson-10:session-40:intro1:r3": {
+          "ru": "Для привычки здесь нужна have.",
+          "uk": "Для звички тут потрібна have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-40:intro2:r2": {
+          "ru": "Alumni — множественное число, нужна are.",
+          "uk": "Alumni — множина, потрібна are."
+        },
+        "en:lesson-10:session-40:intro2:r3": {
+          "ru": "Правильно arriving, без e.",
+          "uk": "Правильно arriving, без e."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-40:intro3:r2": {
+          "ru": "С we нужна are.",
+          "uk": "З we потрібна are."
+        },
+        "en:lesson-10:session-40:intro3:r3": {
+          "ru": "После are нужна celebrating.",
+          "uk": "Після are потрібна celebrating."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e6d32e3e5bc603cfe96260aef53056b3a295278bef00f50b2f7999b416bb352d"
+}

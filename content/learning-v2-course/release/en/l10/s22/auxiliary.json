@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-22:intro1:r2": {
+          "ru": "С I нужна recognize без s.",
+          "uk": "З I потрібна recognize без s."
+        },
+        "en:lesson-10:session-22:intro1:r3": {
+          "ru": "Am recognize неверно; здесь нужна recognize.",
+          "uk": "Am recognize неправильно; тут потрібна recognize."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-22:intro2:r2": {
+          "ru": "Её почерк — her handwriting.",
+          "uk": "Її почерк — her handwriting."
+        },
+        "en:lesson-10:session-22:intro2:r3": {
+          "ru": "С I нужна recognize без s.",
+          "uk": "З I потрібна recognize без s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-22:intro3:r2": {
+          "ru": "После do нужна recognize без s.",
+          "uk": "Після do потрібна recognize без s."
+        },
+        "en:lesson-10:session-22:intro3:r3": {
+          "ru": "Для этого вопроса с recognize нужно do.",
+          "uk": "Для цього запитання з recognize потрібне do."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7acaf21bf57c987207638425a537d8149b3b91438792ceea31d4eabc9589d1b7"
+}

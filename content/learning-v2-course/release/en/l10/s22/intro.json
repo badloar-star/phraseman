@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "I recognize her; I recognize her handwriting; Do you recognize the signature?",
+    "uk": "I recognize her; I recognize her handwriting; Do you recognize the signature?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать знакомого человека",
+        "uk": "Упізнати знайому людину"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает фотографию бывшей коллеги. Recognize — «узнавать», понимать, что вы уже видели человека или предмет раньше. I recognize her — «Я узнаю её». Здесь вы сообщаете об узнавании. Обычно используем Present Simple, даже если смотрим на фотографию сейчас.",
+        "uk": "Друг показує фотографію колишньої колеги. Recognize — «упізнавати», розуміти, що ви вже бачили людину або предмет раніше. I recognize her — «Я впізнаю її». Тут ви повідомляєте про впізнавання. Зазвичай використовуємо Present Simple, навіть якщо дивимося на фотографію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-22:intro1:r1",
+              "text": "I recognize her."
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro1:r2",
+              "text": "I recognizes her."
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro1:r3",
+              "text": "I am recognize her."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-22:intro1:r1",
+              "text": "I recognize her."
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro1:r2",
+              "text": "I recognizes her."
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro1:r3",
+              "text": "I am recognize her."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Знакомые буквы",
+        "uk": "Знайомі літери"
+      },
+      "bodyByLocale": {
+        "ru": "На столе лежит записка. Handwriting — «почерк». Вы много раз читали записки коллеги и узнаёте знакомую манеру письма. I recognize her handwriting — «Я узнаю её почерк». Handwriting здесь неисчисляемое; her указывает, чей это почерк.",
+        "uk": "На столі лежить записка. Handwriting — «почерк». Ви багато разів читали записки колеги й упізнаєте знайому манеру письма. I recognize her handwriting — «Я впізнаю її почерк». Handwriting тут незлічуване; her указує, чий це почерк."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-22:intro2:r1",
+              "text": "I recognize her handwriting."
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro2:r2",
+              "text": "I recognize she handwriting."
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro2:r3",
+              "text": "I recognizes her handwriting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-22:intro2:r1",
+              "text": "I recognize her handwriting."
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro2:r2",
+              "text": "I recognize she handwriting."
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro2:r3",
+              "text": "I recognizes her handwriting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подпись на открытке",
+        "uk": "Підпис на листівці"
+      },
+      "bodyByLocale": {
+        "ru": "Signature — «подпись». На общей открытке стоит подпись, которая кажется знакомой. Вы спрашиваете друга: Do you recognize the signature? — «Ты узнаёшь эту подпись?» В вопросе используем do + you + recognize. Узнать знакомый вид подписи — не то же самое, что проверить подлинность документа.",
+        "uk": "Signature — «підпис». На спільній листівці є підпис, який здається знайомим. Ви запитуєте друга: Do you recognize the signature? — «Ти впізнаєш цей підпис?» У запитанні використовуємо do + you + recognize. Упізнати знайомий вигляд підпису — не те саме, що перевірити справжність документа."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-22:intro3:r1",
+              "text": "Do you recognize the signature?"
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro3:r2",
+              "text": "Do you recognizes the signature?"
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro3:r3",
+              "text": "Are you recognize the signature?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-22:intro3:r1",
+              "text": "Do you recognize the signature?"
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro3:r2",
+              "text": "Do you recognizes the signature?"
+            },
+            {
+              "responseId": "en:lesson-10:session-22:intro3:r3",
+              "text": "Are you recognize the signature?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ef902ea0554ffb4dfa97c3038689ebcdb9dee8833702a7cfd271a8ed540f0b63"
+}

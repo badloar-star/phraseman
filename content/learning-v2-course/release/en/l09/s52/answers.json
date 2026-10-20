@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-52:word:gaze",
+    "correctText": "gaze",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i01",
+    "correctText": "I gaze at the sea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i02",
+    "correctText": "She is gazing at the sea.",
+    "correctResponseId": "en:lesson-09:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i03",
+    "correctText": "gazing",
+    "correctResponseId": "en:lesson-09:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:word:horizon",
+    "correctText": "horizon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i04",
+    "correctText": "The horizon is clear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i05",
+    "correctText": "I am looking at the horizon.",
+    "correctResponseId": "en:lesson-09:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:word:silhouette",
+    "correctText": "silhouette",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i07",
+    "correctText": "This is a silhouette.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i08",
+    "correctText": "The silhouette is dark.",
+    "correctResponseId": "en:lesson-09:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i09",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-09:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:word:sunset",
+    "correctText": "sunset",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i10",
+    "correctText": "She is gazing at the sunset.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i11",
+    "correctText": "Are you watching the sunset?",
+    "correctResponseId": "en:lesson-09:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i12",
+    "correctText": "Please don't block the view.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i13",
+    "correctText": "en:lesson-09:session-52:i13:p1=gaze\nen:lesson-09:session-52:i13:p2=horizon\nen:lesson-09:session-52:i13:p3=silhouette\nen:lesson-09:session-52:i13:p4=sunset",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i14",
+    "correctText": "Is she gazing at the sunset?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i15",
+    "correctText": "at",
+    "correctResponseId": "en:lesson-09:session-52:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i16",
+    "correctText": "I am not taking a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-52:i17",
+    "correctText": "She is gazing at the sunset.",
+    "correctResponseId": null
+  }
+]

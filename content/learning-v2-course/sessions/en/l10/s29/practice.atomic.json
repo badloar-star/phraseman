@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-29",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-29:word:midnight",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — midnight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:word:midnight:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — midnight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:word:midnight:audio",
+            "transcript": "midnight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:word:midnight:r1",
+              "targetText": "midnight",
+              "meaningByLocale": {
+                "ru": "«полночь». It is midnight. — «Сейчас полночь». Двенадцать часов ночи.",
+                "uk": "«північ». It is midnight. — «Зараз північ». Дванадцята година ночі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "midnight",
+            "definitionByLocale": {
+              "ru": "«полночь». It is midnight. — «Сейчас полночь». Двенадцать часов ночи.",
+              "uk": "«північ». It is midnight. — «Зараз північ». Дванадцята година ночі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Часы показывают двенадцать ночи. Скажите другу: «Сейчас полночь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Часы показывают двенадцать ночи. Скажите другу: «Сейчас полночь»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is midnight.",
+          "localizedMeaning": {
+            "ru": "Часы показывают двенадцать ночи. Скажите другу: «Сейчас полночь»",
+            "uk": "Годинник показує дванадцяту ночі. Скажіть другу: «Зараз північ»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "midnight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i02:r1",
+            "text": "We meet at midnight."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i02:r2",
+            "text": "They meet at midnight."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i02:r3",
+            "text": "We leave at midnight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i02:audio",
+            "transcript": "We meet at midnight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:i02:r1",
+              "targetText": "We meet at midnight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i02:r2",
+              "targetText": "They meet at midnight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i02:r3",
+              "targetText": "We leave at midnight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We meet at midnight.",
+                "uk": "У записі звучить We meet at midnight."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We meet at midnight.",
+                "uk": "У записі звучить We meet at midnight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите предлог для «в полночь»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i03:r1",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i03:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i03:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите предлог для «в полночь»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите предлог для «в полночь»",
+            "uk": "Виберіть прийменник для «опівночі»"
+          },
+          "gappedTargetPhrase": "We meet ___ midnight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-29:i03:r1",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i03:r2",
+              "text": "on"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i03:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Выберите предлог для «в полночь»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите предлог для «в полночь»",
+              "feedbackByLocale": {
+                "ru": "Перед midnight нужно at.",
+                "uk": "Перед midnight потрібне at."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите предлог для «в полночь»",
+              "feedbackByLocale": {
+                "ru": "Перед midnight нужно at.",
+                "uk": "Перед midnight потрібне at."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:word:chime",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — chime",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:word:chime:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — chime",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:word:chime:audio",
+            "transcript": "chime"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:word:chime:r1",
+              "targetText": "chime",
+              "meaningByLocale": {
+                "ru": "«мелодичный звон». I can hear a chime. — «Я слышу мелодичный звон». Здесь звук часов.",
+                "uk": "«мелодійний дзвін». I can hear a chime. — «Я чую мелодійний дзвін». Тут звук годинника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chime",
+            "definitionByLocale": {
+              "ru": "«мелодичный звон». I can hear a chime. — «Я слышу мелодичный звон». Здесь звук часов.",
+              "uk": "«мелодійний дзвін». I can hear a chime. — «Я чую мелодійний дзвін». Тут звук годинника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На площади зазвучали часы. Скажите другу: «Я слышу мелодичный звон»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На площади зазвучали часы. Скажите другу: «Я слышу мелодичный звон»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can hear a chime.",
+          "localizedMeaning": {
+            "ru": "На площади зазвучали часы. Скажите другу: «Я слышу мелодичный звон»",
+            "uk": "На площі зазвучав годинник. Скажіть другу: «Я чую мелодійний дзвін»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "hear",
+            "a",
+            "chime"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i05:r1",
+            "text": "The chime is loud."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i05:r2",
+            "text": "The chime is quiet."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i05:r3",
+            "text": "The music is loud."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i05:audio",
+            "transcript": "The chime is loud."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:i05:r1",
+              "targetText": "The chime is loud.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i05:r2",
+              "targetText": "The chime is quiet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i05:r3",
+              "targetText": "The music is loud.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The chime is loud.",
+                "uk": "У записі звучить The chime is loud."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The chime is loud.",
+                "uk": "У записі звучить The chime is loud."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму hear после can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i06:r1",
+            "text": "hear"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i06:r2",
+            "text": "hears"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i06:r3",
+            "text": "hearing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму hear после can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму hear после can",
+            "uk": "Виберіть форму hear після can"
+          },
+          "gappedTargetPhrase": "We can ___ a chime.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-29:i06:r1",
+              "text": "hear"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i06:r2",
+              "text": "hears"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i06:r3",
+              "text": "hearing"
+            }
+          ],
+          "testedDimension": "Выберите форму hear после can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму hear после can",
+              "feedbackByLocale": {
+                "ru": "После can нужна hear без s.",
+                "uk": "Після can потрібна hear без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму hear после can",
+              "feedbackByLocale": {
+                "ru": "После can нужна базовая форма hear.",
+                "uk": "Після can потрібна початкова форма hear."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:word:countdown",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — countdown",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:word:countdown:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — countdown",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:word:countdown:audio",
+            "transcript": "countdown"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:word:countdown:r1",
+              "targetText": "countdown",
+              "meaningByLocale": {
+                "ru": "«обратный отсчёт». The countdown is starting. — «Обратный отсчёт начинается». Счёт секунд в обратном порядке до события.",
+                "uk": "«зворотний відлік». The countdown is starting. — «Зворотний відлік починається». Лічба секунд у зворотному порядку до події."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "countdown",
+            "definitionByLocale": {
+              "ru": "«обратный отсчёт». The countdown is starting. — «Обратный отсчёт начинается». Счёт секунд в обратном порядке до события.",
+              "uk": "«зворотний відлік». The countdown is starting. — «Зворотний відлік починається». Лічба секунд у зворотному порядку до події."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На праздничном экране появились последние секунды до полуночи. Скажите другу: «Обратный отсчёт начинается»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На праздничном экране появились последние секунды до полуночи. Скажите другу: «Обратный отсчёт начинается»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The countdown is starting.",
+          "localizedMeaning": {
+            "ru": "На праздничном экране появились последние секунды до полуночи. Скажите другу: «Обратный отсчёт начинается»",
+            "uk": "На святковому екрані з’явилися останні секунди до півночі. Скажіть другу: «Зворотний відлік починається»"
+          },
+          "orderedTokens": [
+            "The",
+            "countdown",
+            "is",
+            "starting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i08:r1",
+            "text": "We are watching the countdown."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i08:r2",
+            "text": "They are watching the countdown."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i08:r3",
+            "text": "We are watching the clock."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i08:audio",
+            "transcript": "We are watching the countdown."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:i08:r1",
+              "targetText": "We are watching the countdown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i08:r2",
+              "targetText": "They are watching the countdown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i08:r3",
+              "targetText": "We are watching the clock.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are watching the countdown.",
+                "uk": "У записі звучить We are watching the countdown."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are watching the countdown.",
+                "uk": "У записі звучить We are watching the countdown."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Отсчёт начинается сейчас. Выберите вспомогательный глагол",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i09:r3",
+            "text": "does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Отсчёт начинается сейчас. Выберите вспомогательный глагол",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Отсчёт начинается сейчас. Выберите вспомогательный глагол",
+            "uk": "Відлік починається зараз. Виберіть допоміжне дієслово"
+          },
+          "gappedTargetPhrase": "The countdown ___ starting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-29:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i09:r3",
+              "text": "does"
+            }
+          ],
+          "testedDimension": "Отсчёт начинается сейчас. Выберите вспомогательный глагол",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Отсчёт начинается сейчас. Выберите вспомогательный глагол",
+              "feedbackByLocale": {
+                "ru": "С countdown в единственном числе нужно is.",
+                "uk": "З countdown в однині потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Отсчёт начинается сейчас. Выберите вспомогательный глагол",
+              "feedbackByLocale": {
+                "ru": "Перед starting здесь нужно is.",
+                "uk": "Перед starting тут потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:word:sparkler",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sparkler",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:word:sparkler:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sparkler",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:word:sparkler:audio",
+            "transcript": "sparkler"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:word:sparkler:r1",
+              "targetText": "sparkler",
+              "meaningByLocale": {
+                "ru": "«бенгальский огонь». The sparkler is bright. — «Бенгальский огонь яркий». Тонкая палочка, которая при горении даёт яркие искры.",
+                "uk": "«бенгальський вогонь». The sparkler is bright. — «Бенгальський вогонь яскравий». Тонка паличка, яка під час горіння дає яскраві іскри."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sparkler",
+            "definitionByLocale": {
+              "ru": "«бенгальский огонь». The sparkler is bright. — «Бенгальский огонь яркий». Тонкая палочка, которая при горении даёт яркие искры.",
+              "uk": "«бенгальський вогонь». The sparkler is bright. — «Бенгальський вогонь яскравий». Тонка паличка, яка під час горіння дає яскраві іскри."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На праздничной фотографии виден яркий бенгальский огонь. Скажите другу: «Бенгальский огонь яркий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На праздничной фотографии виден яркий бенгальский огонь. Скажите другу: «Бенгальский огонь яркий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sparkler is bright.",
+          "localizedMeaning": {
+            "ru": "На праздничной фотографии виден яркий бенгальский огонь. Скажите другу: «Бенгальский огонь яркий»",
+            "uk": "На святковій фотографії видно яскравий бенгальський вогонь. Скажіть другу: «Бенгальський вогонь яскравий»"
+          },
+          "orderedTokens": [
+            "The",
+            "sparkler",
+            "is",
+            "bright"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i11:r1",
+            "text": "I can see a sparkler."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i11:r2",
+            "text": "We can see a sparkler."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i11:r3",
+            "text": "I can see a candle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i11:audio",
+            "transcript": "I can see a sparkler."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:i11:r1",
+              "targetText": "I can see a sparkler.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i11:r2",
+              "targetText": "We can see a sparkler.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i11:r3",
+              "targetText": "I can see a candle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see a sparkler.",
+                "uk": "У записі звучить I can see a sparkler."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see a sparkler.",
+                "uk": "У записі звучить I can see a sparkler."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы обычно ложитесь спать до полуночи. Выберите форму go",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i12:r1",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i12:r2",
+            "text": "goes"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i12:r3",
+            "text": "going"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы обычно ложитесь спать до полуночи. Выберите форму go",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно ложитесь спать до полуночи. Выберите форму go",
+            "uk": "Ви зазвичай лягаєте спати до півночі. Виберіть форму go"
+          },
+          "gappedTargetPhrase": "I usually ___ to bed before midnight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-29:i12:r1",
+              "text": "go"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i12:r2",
+              "text": "goes"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i12:r3",
+              "text": "going"
+            }
+          ],
+          "testedDimension": "Вы обычно ложитесь спать до полуночи. Выберите форму go",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы обычно ложитесь спать до полуночи. Выберите форму go",
+              "feedbackByLocale": {
+                "ru": "С I нужна go без s.",
+                "uk": "З I потрібна go без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы обычно ложитесь спать до полуночи. Выберите форму go",
+              "feedbackByLocale": {
+                "ru": "Для этой привычки нужна go.",
+                "uk": "Для цієї звички потрібна go."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-29:i13:p1",
+              "target": "midnight",
+              "meaningByLocale": {
+                "ru": "полночь",
+                "uk": "північ"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-29:i13:p2",
+              "target": "chime",
+              "meaningByLocale": {
+                "ru": "мелодичный звон",
+                "uk": "мелодійний дзвін"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-29:i13:p3",
+              "target": "countdown",
+              "meaningByLocale": {
+                "ru": "обратный отсчёт",
+                "uk": "зворотний відлік"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-29:i13:p4",
+              "target": "sparkler",
+              "meaningByLocale": {
+                "ru": "бенгальский огонь",
+                "uk": "бенгальський вогонь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "midnight",
+            "chime",
+            "countdown",
+            "sparkler"
+          ],
+          "rightColumn": [
+            "полночь",
+            "мелодичный звон",
+            "обратный отсчёт",
+            "бенгальский огонь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i14:audio",
+            "transcript": "We are watching the countdown."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are watching the countdown.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "watching",
+            "the",
+            "countdown"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает о вашем обычном времени сна. Скажите: «Я обычно ложусь спать до полуночи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает о вашем обычном времени сна. Скажите: «Я обычно ложусь спать до полуночи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i15:audio",
+            "transcript": "I usually go to bed before midnight."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I usually go to bed before midnight.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы звоните другу с праздника и сообщаете: «Мы смотрим обратный отсчёт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы звоните другу с праздника и сообщаете: «Мы смотрим обратный отсчёт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are watching the countdown.",
+          "localizedMeaning": {
+            "ru": "Вы звоните другу с праздника и сообщаете: «Мы смотрим обратный отсчёт»",
+            "uk": "Ви телефонуєте другу зі свята й повідомляєте: «Ми дивимося зворотний відлік»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "watching",
+            "the",
+            "countdown"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, что происходит на экране. Появились последние секунды до полуночи. Скажите: «Обратный отсчёт начинается»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, что происходит на экране. Появились последние секунды до полуночи. Скажите: «Обратный отсчёт начинается»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i17:audio",
+            "transcript": "The countdown is starting."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The countdown is starting.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-29:word:midnight",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — midnight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:word:midnight:audio"
+        ],
+        "accessibilityLabel": "Картка слова — midnight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:word:midnight:audio",
+            "transcript": "midnight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:word:midnight:r1",
+              "targetText": "midnight",
+              "meaningByLocale": {
+                "ru": "«полночь». It is midnight. — «Сейчас полночь». Двенадцать часов ночи.",
+                "uk": "«північ». It is midnight. — «Зараз північ». Дванадцята година ночі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "midnight",
+            "definitionByLocale": {
+              "ru": "«полночь». It is midnight. — «Сейчас полночь». Двенадцать часов ночи.",
+              "uk": "«північ». It is midnight. — «Зараз північ». Дванадцята година ночі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Годинник показує дванадцяту ночі. Скажіть другу: «Зараз північ»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Годинник показує дванадцяту ночі. Скажіть другу: «Зараз північ»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is midnight.",
+          "localizedMeaning": {
+            "ru": "Часы показывают двенадцать ночи. Скажите другу: «Сейчас полночь»",
+            "uk": "Годинник показує дванадцяту ночі. Скажіть другу: «Зараз північ»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "midnight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i02:r1",
+            "text": "We meet at midnight."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i02:r2",
+            "text": "They meet at midnight."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i02:r3",
+            "text": "We leave at midnight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i02:audio",
+            "transcript": "We meet at midnight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:i02:r1",
+              "targetText": "We meet at midnight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i02:r2",
+              "targetText": "They meet at midnight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i02:r3",
+              "targetText": "We leave at midnight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We meet at midnight.",
+                "uk": "У записі звучить We meet at midnight."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We meet at midnight.",
+                "uk": "У записі звучить We meet at midnight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть прийменник для «опівночі»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i03:r1",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i03:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i03:r3",
+            "text": "in"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть прийменник для «опівночі»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите предлог для «в полночь»",
+            "uk": "Виберіть прийменник для «опівночі»"
+          },
+          "gappedTargetPhrase": "We meet ___ midnight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-29:i03:r1",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i03:r2",
+              "text": "on"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i03:r3",
+              "text": "in"
+            }
+          ],
+          "testedDimension": "Виберіть прийменник для «опівночі»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть прийменник для «опівночі»",
+              "feedbackByLocale": {
+                "ru": "Перед midnight нужно at.",
+                "uk": "Перед midnight потрібне at."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть прийменник для «опівночі»",
+              "feedbackByLocale": {
+                "ru": "Перед midnight нужно at.",
+                "uk": "Перед midnight потрібне at."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:word:chime",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — chime",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:word:chime:audio"
+        ],
+        "accessibilityLabel": "Картка слова — chime",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:word:chime:audio",
+            "transcript": "chime"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:word:chime:r1",
+              "targetText": "chime",
+              "meaningByLocale": {
+                "ru": "«мелодичный звон». I can hear a chime. — «Я слышу мелодичный звон». Здесь звук часов.",
+                "uk": "«мелодійний дзвін». I can hear a chime. — «Я чую мелодійний дзвін». Тут звук годинника."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chime",
+            "definitionByLocale": {
+              "ru": "«мелодичный звон». I can hear a chime. — «Я слышу мелодичный звон». Здесь звук часов.",
+              "uk": "«мелодійний дзвін». I can hear a chime. — «Я чую мелодійний дзвін». Тут звук годинника."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На площі зазвучав годинник. Скажіть другу: «Я чую мелодійний дзвін»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На площі зазвучав годинник. Скажіть другу: «Я чую мелодійний дзвін»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can hear a chime.",
+          "localizedMeaning": {
+            "ru": "На площади зазвучали часы. Скажите другу: «Я слышу мелодичный звон»",
+            "uk": "На площі зазвучав годинник. Скажіть другу: «Я чую мелодійний дзвін»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "hear",
+            "a",
+            "chime"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i05:r1",
+            "text": "The chime is loud."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i05:r2",
+            "text": "The chime is quiet."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i05:r3",
+            "text": "The music is loud."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i05:audio",
+            "transcript": "The chime is loud."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:i05:r1",
+              "targetText": "The chime is loud.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i05:r2",
+              "targetText": "The chime is quiet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i05:r3",
+              "targetText": "The music is loud.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The chime is loud.",
+                "uk": "У записі звучить The chime is loud."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The chime is loud.",
+                "uk": "У записі звучить The chime is loud."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму hear після can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i06:r1",
+            "text": "hear"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i06:r2",
+            "text": "hears"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i06:r3",
+            "text": "hearing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму hear після can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму hear после can",
+            "uk": "Виберіть форму hear після can"
+          },
+          "gappedTargetPhrase": "We can ___ a chime.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-29:i06:r1",
+              "text": "hear"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i06:r2",
+              "text": "hears"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i06:r3",
+              "text": "hearing"
+            }
+          ],
+          "testedDimension": "Виберіть форму hear після can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму hear після can",
+              "feedbackByLocale": {
+                "ru": "После can нужна hear без s.",
+                "uk": "Після can потрібна hear без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму hear після can",
+              "feedbackByLocale": {
+                "ru": "После can нужна базовая форма hear.",
+                "uk": "Після can потрібна початкова форма hear."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:word:countdown",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — countdown",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:word:countdown:audio"
+        ],
+        "accessibilityLabel": "Картка слова — countdown",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:word:countdown:audio",
+            "transcript": "countdown"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:word:countdown:r1",
+              "targetText": "countdown",
+              "meaningByLocale": {
+                "ru": "«обратный отсчёт». The countdown is starting. — «Обратный отсчёт начинается». Счёт секунд в обратном порядке до события.",
+                "uk": "«зворотний відлік». The countdown is starting. — «Зворотний відлік починається». Лічба секунд у зворотному порядку до події."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "countdown",
+            "definitionByLocale": {
+              "ru": "«обратный отсчёт». The countdown is starting. — «Обратный отсчёт начинается». Счёт секунд в обратном порядке до события.",
+              "uk": "«зворотний відлік». The countdown is starting. — «Зворотний відлік починається». Лічба секунд у зворотному порядку до події."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На святковому екрані з’явилися останні секунди до півночі. Скажіть другу: «Зворотний відлік починається»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На святковому екрані з’явилися останні секунди до півночі. Скажіть другу: «Зворотний відлік починається»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The countdown is starting.",
+          "localizedMeaning": {
+            "ru": "На праздничном экране появились последние секунды до полуночи. Скажите другу: «Обратный отсчёт начинается»",
+            "uk": "На святковому екрані з’явилися останні секунди до півночі. Скажіть другу: «Зворотний відлік починається»"
+          },
+          "orderedTokens": [
+            "The",
+            "countdown",
+            "is",
+            "starting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i08:r1",
+            "text": "We are watching the countdown."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i08:r2",
+            "text": "They are watching the countdown."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i08:r3",
+            "text": "We are watching the clock."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i08:audio",
+            "transcript": "We are watching the countdown."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:i08:r1",
+              "targetText": "We are watching the countdown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i08:r2",
+              "targetText": "They are watching the countdown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i08:r3",
+              "targetText": "We are watching the clock.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are watching the countdown.",
+                "uk": "У записі звучить We are watching the countdown."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are watching the countdown.",
+                "uk": "У записі звучить We are watching the countdown."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Відлік починається зараз. Виберіть допоміжне дієслово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i09:r3",
+            "text": "does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Відлік починається зараз. Виберіть допоміжне дієслово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Отсчёт начинается сейчас. Выберите вспомогательный глагол",
+            "uk": "Відлік починається зараз. Виберіть допоміжне дієслово"
+          },
+          "gappedTargetPhrase": "The countdown ___ starting.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-29:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i09:r3",
+              "text": "does"
+            }
+          ],
+          "testedDimension": "Відлік починається зараз. Виберіть допоміжне дієслово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Відлік починається зараз. Виберіть допоміжне дієслово",
+              "feedbackByLocale": {
+                "ru": "С countdown в единственном числе нужно is.",
+                "uk": "З countdown в однині потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Відлік починається зараз. Виберіть допоміжне дієслово",
+              "feedbackByLocale": {
+                "ru": "Перед starting здесь нужно is.",
+                "uk": "Перед starting тут потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:word:sparkler",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sparkler",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:word:sparkler:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sparkler",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:word:sparkler:audio",
+            "transcript": "sparkler"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:word:sparkler:r1",
+              "targetText": "sparkler",
+              "meaningByLocale": {
+                "ru": "«бенгальский огонь». The sparkler is bright. — «Бенгальский огонь яркий». Тонкая палочка, которая при горении даёт яркие искры.",
+                "uk": "«бенгальський вогонь». The sparkler is bright. — «Бенгальський вогонь яскравий». Тонка паличка, яка під час горіння дає яскраві іскри."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sparkler",
+            "definitionByLocale": {
+              "ru": "«бенгальский огонь». The sparkler is bright. — «Бенгальский огонь яркий». Тонкая палочка, которая при горении даёт яркие искры.",
+              "uk": "«бенгальський вогонь». The sparkler is bright. — «Бенгальський вогонь яскравий». Тонка паличка, яка під час горіння дає яскраві іскри."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На святковій фотографії видно яскравий бенгальський вогонь. Скажіть другу: «Бенгальський вогонь яскравий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На святковій фотографії видно яскравий бенгальський вогонь. Скажіть другу: «Бенгальський вогонь яскравий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sparkler is bright.",
+          "localizedMeaning": {
+            "ru": "На праздничной фотографии виден яркий бенгальский огонь. Скажите другу: «Бенгальский огонь яркий»",
+            "uk": "На святковій фотографії видно яскравий бенгальський вогонь. Скажіть другу: «Бенгальський вогонь яскравий»"
+          },
+          "orderedTokens": [
+            "The",
+            "sparkler",
+            "is",
+            "bright"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i11:r1",
+            "text": "I can see a sparkler."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i11:r2",
+            "text": "We can see a sparkler."
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i11:r3",
+            "text": "I can see a candle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i11:audio",
+            "transcript": "I can see a sparkler."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-29:i11:r1",
+              "targetText": "I can see a sparkler.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i11:r2",
+              "targetText": "We can see a sparkler.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i11:r3",
+              "targetText": "I can see a candle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see a sparkler.",
+                "uk": "У записі звучить I can see a sparkler."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see a sparkler.",
+                "uk": "У записі звучить I can see a sparkler."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зазвичай лягаєте спати до півночі. Виберіть форму go",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-29:i12:r1",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i12:r2",
+            "text": "goes"
+          },
+          {
+            "responseId": "en:lesson-10:session-29:i12:r3",
+            "text": "going"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зазвичай лягаєте спати до півночі. Виберіть форму go",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно ложитесь спать до полуночи. Выберите форму go",
+            "uk": "Ви зазвичай лягаєте спати до півночі. Виберіть форму go"
+          },
+          "gappedTargetPhrase": "I usually ___ to bed before midnight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-29:i12:r1",
+              "text": "go"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i12:r2",
+              "text": "goes"
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i12:r3",
+              "text": "going"
+            }
+          ],
+          "testedDimension": "Ви зазвичай лягаєте спати до півночі. Виберіть форму go",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви зазвичай лягаєте спати до півночі. Виберіть форму go",
+              "feedbackByLocale": {
+                "ru": "С I нужна go без s.",
+                "uk": "З I потрібна go без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви зазвичай лягаєте спати до півночі. Виберіть форму go",
+              "feedbackByLocale": {
+                "ru": "Для этой привычки нужна go.",
+                "uk": "Для цієї звички потрібна go."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-29:i13:p1",
+              "target": "midnight",
+              "meaningByLocale": {
+                "ru": "полночь",
+                "uk": "північ"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-29:i13:p2",
+              "target": "chime",
+              "meaningByLocale": {
+                "ru": "мелодичный звон",
+                "uk": "мелодійний дзвін"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-29:i13:p3",
+              "target": "countdown",
+              "meaningByLocale": {
+                "ru": "обратный отсчёт",
+                "uk": "зворотний відлік"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-29:i13:p4",
+              "target": "sparkler",
+              "meaningByLocale": {
+                "ru": "бенгальский огонь",
+                "uk": "бенгальський вогонь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "midnight",
+            "chime",
+            "countdown",
+            "sparkler"
+          ],
+          "rightColumn": [
+            "північ",
+            "мелодійний дзвін",
+            "зворотний відлік",
+            "бенгальський вогонь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i14:audio",
+            "transcript": "We are watching the countdown."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are watching the countdown.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "watching",
+            "the",
+            "countdown"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує про ваш звичний час сну. Скажіть: «Я зазвичай лягаю спати до півночі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Друг запитує про ваш звичний час сну. Скажіть: «Я зазвичай лягаю спати до півночі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i15:audio",
+            "transcript": "I usually go to bed before midnight."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I usually go to bed before midnight.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви телефонуєте другу зі свята й повідомляєте: «Ми дивимося зворотний відлік»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви телефонуєте другу зі свята й повідомляєте: «Ми дивимося зворотний відлік»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are watching the countdown.",
+          "localizedMeaning": {
+            "ru": "Вы звоните другу с праздника и сообщаете: «Мы смотрим обратный отсчёт»",
+            "uk": "Ви телефонуєте другу зі свята й повідомляєте: «Ми дивимося зворотний відлік»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "watching",
+            "the",
+            "countdown"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-29:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, що відбувається на екрані. З’явилися останні секунди до півночі. Скажіть: «Зворотний відлік починається»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, що відбувається на екрані. З’явилися останні секунди до півночі. Скажіть: «Зворотний відлік починається»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-29:i17:audio",
+            "transcript": "The countdown is starting."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The countdown is starting.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-29:word:midnight",
+      "correctText": "midnight",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i01",
+      "correctText": "It is midnight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i02",
+      "correctText": "We meet at midnight.",
+      "correctResponseId": "en:lesson-10:session-29:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i03",
+      "correctText": "at",
+      "correctResponseId": "en:lesson-10:session-29:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:word:chime",
+      "correctText": "chime",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i04",
+      "correctText": "I can hear a chime.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i05",
+      "correctText": "The chime is loud.",
+      "correctResponseId": "en:lesson-10:session-29:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i06",
+      "correctText": "hear",
+      "correctResponseId": "en:lesson-10:session-29:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:word:countdown",
+      "correctText": "countdown",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i07",
+      "correctText": "The countdown is starting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i08",
+      "correctText": "We are watching the countdown.",
+      "correctResponseId": "en:lesson-10:session-29:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-29:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:word:sparkler",
+      "correctText": "sparkler",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i10",
+      "correctText": "The sparkler is bright.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i11",
+      "correctText": "I can see a sparkler.",
+      "correctResponseId": "en:lesson-10:session-29:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i12",
+      "correctText": "go",
+      "correctResponseId": "en:lesson-10:session-29:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i14",
+      "correctText": "We are watching the countdown.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i15",
+      "correctText": "I usually go to bed before midnight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i16",
+      "correctText": "We are watching the countdown.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:i17",
+      "correctText": "The countdown is starting.",
+      "correctResponseId": null
+    }
+  ]
+}

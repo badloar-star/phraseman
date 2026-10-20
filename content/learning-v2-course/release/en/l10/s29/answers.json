@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-29:word:midnight",
+    "correctText": "midnight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i01",
+    "correctText": "It is midnight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i02",
+    "correctText": "We meet at midnight.",
+    "correctResponseId": "en:lesson-10:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i03",
+    "correctText": "at",
+    "correctResponseId": "en:lesson-10:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:word:chime",
+    "correctText": "chime",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i04",
+    "correctText": "I can hear a chime.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i05",
+    "correctText": "The chime is loud.",
+    "correctResponseId": "en:lesson-10:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i06",
+    "correctText": "hear",
+    "correctResponseId": "en:lesson-10:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:word:countdown",
+    "correctText": "countdown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i07",
+    "correctText": "The countdown is starting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i08",
+    "correctText": "We are watching the countdown.",
+    "correctResponseId": "en:lesson-10:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:word:sparkler",
+    "correctText": "sparkler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i10",
+    "correctText": "The sparkler is bright.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i11",
+    "correctText": "I can see a sparkler.",
+    "correctResponseId": "en:lesson-10:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i12",
+    "correctText": "go",
+    "correctResponseId": "en:lesson-10:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i13",
+    "correctText": "en:lesson-10:session-29:i13:p1=midnight\nen:lesson-10:session-29:i13:p2=chime\nen:lesson-10:session-29:i13:p3=countdown\nen:lesson-10:session-29:i13:p4=sparkler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i14",
+    "correctText": "We are watching the countdown.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i15",
+    "correctText": "I usually go to bed before midnight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i16",
+    "correctText": "We are watching the countdown.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-29:i17",
+    "correctText": "The countdown is starting.",
+    "correctResponseId": null
+  }
+]

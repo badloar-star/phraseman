@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-01:word:boathouse",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — boathouse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:word:boathouse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — boathouse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:word:boathouse:audio",
+          "transcript": "boathouse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-01:word:boathouse:r1",
+            "targetText": "boathouse",
+            "meaningByLocale": {
+              "ru": "«лодочный сарай». The boathouse is near the river. — «Лодочный сарай рядом с рекой». Здание для хранения лодок.",
+              "uk": "«човновий сарай». The boathouse is near the river. — «Човновий сарай біля річки». Будівля для зберігання човнів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boathouse",
+          "definitionByLocale": {
+            "ru": "«лодочный сарай». The boathouse is near the river. — «Лодочный сарай рядом с рекой». Здание для хранения лодок.",
+            "uk": "«човновий сарай». The boathouse is near the river. — «Човновий сарай біля річки». Будівля для зберігання човнів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга ищет здание, где хранят лодки. Скажите: «Лодочный сарай рядом с рекой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга ищет здание, где хранят лодки. Скажите: «Лодочный сарай рядом с рекой»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The boathouse is near the river.",
+        "localizedMeaning": {
+          "ru": "Подруга ищет здание, где хранят лодки. Скажите: «Лодочный сарай рядом с рекой»",
+          "uk": "Подруга шукає будівлю, де зберігають човни. Скажіть: «Човновий сарай біля річки»"
+        },
+        "orderedTokens": [
+          "The",
+          "boathouse",
+          "is",
+          "near",
+          "the",
+          "river"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-01:i02:r1",
+          "text": "I row here every Saturday."
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i02:r2",
+          "text": "I run here every Saturday."
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i02:r3",
+          "text": "I row here every Sunday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:i02:audio",
+          "transcript": "I row here every Saturday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-01:i02:r1",
+            "targetText": "I row here every Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i02:r2",
+            "targetText": "I run here every Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i02:r3",
+            "targetText": "I row here every Sunday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I row here every Saturday.",
+              "uk": "У записі звучить I row here every Saturday."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I row here every Saturday.",
+              "uk": "У записі звучить I row here every Saturday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму для привычки с I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-01:i03:r1",
+          "text": "row"
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i03:r2",
+          "text": "rows"
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i03:r3",
+          "text": "rowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму для привычки с I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму для привычки с I",
+          "uk": "Виберіть правильну форму для звички з I"
+        },
+        "gappedTargetPhrase": "I ___ here every Saturday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-01:i03:r1",
+            "text": "row"
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i03:r2",
+            "text": "rows"
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i03:r3",
+            "text": "rowing"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму для привычки с I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму для привычки с I",
+            "feedbackByLocale": {
+              "ru": "С I не добавляем -s.",
+              "uk": "З I не додаємо -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму для привычки с I",
+            "feedbackByLocale": {
+              "ru": "Для этой привычки нужна форма row.",
+              "uk": "Для цієї звички потрібна форма row."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:word:regatta",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — regatta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:word:regatta:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — regatta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:word:regatta:audio",
+          "transcript": "regatta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-01:word:regatta:r1",
+            "targetText": "regatta",
+            "meaningByLocale": {
+              "ru": "«регата». I am watching the regatta. — «Я смотрю регату». Соревнования по гребле или парусному спорту; здесь гребные гонки.",
+              "uk": "«регата». I am watching the regatta. — «Я дивлюся регату». Змагання з веслування чи вітрильного спорту; тут веслувальні перегони."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "regatta",
+          "definitionByLocale": {
+            "ru": "«регата». I am watching the regatta. — «Я смотрю регату». Соревнования по гребле или парусному спорту; здесь гребные гонки.",
+            "uk": "«регата». I am watching the regatta. — «Я дивлюся регату». Змагання з веслування чи вітрильного спорту; тут веслувальні перегони."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы на берегу следите за лодочными гонками. Ответьте другу: «Я смотрю регату»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы на берегу следите за лодочными гонками. Ответьте другу: «Я смотрю регату»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am watching the regatta.",
+        "localizedMeaning": {
+          "ru": "Вы на берегу следите за лодочными гонками. Ответьте другу: «Я смотрю регату»",
+          "uk": "Ви на березі стежите за перегонами човнів. Дайте відповідь другові: «Я дивлюся регату»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "watching",
+          "the",
+          "regatta"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-01:i05:r1",
+          "text": "She is watching the regatta."
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i05:r2",
+          "text": "She is not watching the regatta."
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i05:r3",
+          "text": "He is watching the regatta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:i05:audio",
+          "transcript": "She is watching the regatta."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-01:i05:r1",
+            "targetText": "She is watching the regatta.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i05:r2",
+            "targetText": "She is not watching the regatta.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i05:r3",
+            "targetText": "He is watching the regatta.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is watching the regatta.",
+              "uk": "У записі звучить She is watching the regatta."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is watching the regatta.",
+              "uk": "У записі звучить She is watching the regatta."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму watch после am",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-01:i06:r1",
+          "text": "watching"
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i06:r2",
+          "text": "watch"
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i06:r3",
+          "text": "watches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму watch после am",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму watch после am",
+          "uk": "Виберіть форму watch після am"
+        },
+        "gappedTargetPhrase": "I am ___ the regatta.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-01:i06:r1",
+            "text": "watching"
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i06:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i06:r3",
+            "text": "watches"
+          }
+        ],
+        "testedDimension": "Выберите форму watch после am",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму watch после am",
+            "feedbackByLocale": {
+              "ru": "После am нужна watching.",
+              "uk": "Після am потрібна watching."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму watch после am",
+            "feedbackByLocale": {
+              "ru": "Watches не употребляется после am.",
+              "uk": "Watches не вживається після am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:word:coxswain",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coxswain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:word:coxswain:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coxswain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:word:coxswain:audio",
+          "transcript": "coxswain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-01:word:coxswain:r1",
+            "targetText": "coxswain",
+            "meaningByLocale": {
+              "ru": "«рулевой гребной лодки». The coxswain is waiting. — «Рулевой ждёт». Управляет направлением лодки и координирует гребцов.",
+              "uk": "«стерновий веслувального човна». The coxswain is waiting. — «Стерновий чекає». Керує напрямком човна й координує веслярів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coxswain",
+          "definitionByLocale": {
+            "ru": "«рулевой гребной лодки». The coxswain is waiting. — «Рулевой ждёт». Управляет направлением лодки и координирует гребцов.",
+            "uk": "«стерновий веслувального човна». The coxswain is waiting. — «Стерновий чекає». Керує напрямком човна й координує веслярів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Рулевой ждёт команду у лодки. Скажите: «Рулевой ждёт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рулевой ждёт команду у лодки. Скажите: «Рулевой ждёт»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The coxswain is waiting.",
+        "localizedMeaning": {
+          "ru": "Рулевой ждёт команду у лодки. Скажите: «Рулевой ждёт»",
+          "uk": "Стерновий чекає на команду біля човна. Скажіть: «Стерновий чекає»"
+        },
+        "orderedTokens": [
+          "The",
+          "coxswain",
+          "is",
+          "waiting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-01:i08:r1",
+          "text": "The coxswain is speaking."
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i08:r2",
+          "text": "The coxswain is sleeping."
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i08:r3",
+          "text": "The visitor is speaking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:i08:audio",
+          "transcript": "The coxswain is speaking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-01:i08:r1",
+            "targetText": "The coxswain is speaking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i08:r2",
+            "targetText": "The coxswain is sleeping.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i08:r3",
+            "targetText": "The visitor is speaking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coxswain is speaking.",
+              "uk": "У записі звучить The coxswain is speaking."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The coxswain is speaking.",
+              "uk": "У записі звучить The coxswain is speaking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильную форму check: это обычная задача рулевого в вашей команде",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-01:i09:r1",
+          "text": "checks"
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i09:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i09:r3",
+          "text": "checking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильную форму check: это обычная задача рулевого в вашей команде",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильную форму check: это обычная задача рулевого в вашей команде",
+          "uk": "Виберіть правильну форму check: це звичайне завдання стернового у вашій команді"
+        },
+        "gappedTargetPhrase": "The coxswain usually ___ the boat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-01:i09:r1",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i09:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i09:r3",
+            "text": "checking"
+          }
+        ],
+        "testedDimension": "Выберите правильную форму check: это обычная задача рулевого в вашей команде",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму check: это обычная задача рулевого в вашей команде",
+            "feedbackByLocale": {
+              "ru": "Для одного человека в Present Simple нужно checks.",
+              "uk": "Для однієї людини у Present Simple потрібне checks."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильную форму check: это обычная задача рулевого в вашей команде",
+            "feedbackByLocale": {
+              "ru": "Checking без is не образует сказуемое.",
+              "uk": "Checking без is не утворює присудок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:word:hull",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hull",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:word:hull:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hull",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:word:hull:audio",
+          "transcript": "hull"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-01:word:hull:r1",
+            "targetText": "hull",
+            "meaningByLocale": {
+              "ru": "«корпус лодки». I am checking the hull. — «Я проверяю корпус лодки». Основная часть лодки, которая держится на воде.",
+              "uk": "«корпус човна». I am checking the hull. — «Я перевіряю корпус човна». Основна частина човна, яка тримається на воді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hull",
+          "definitionByLocale": {
+            "ru": "«корпус лодки». I am checking the hull. — «Я проверяю корпус лодки». Основная часть лодки, которая держится на воде.",
+            "uk": "«корпус човна». I am checking the hull. — «Я перевіряю корпус човна». Основна частина човна, яка тримається на воді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы осматриваете корпус лодки перед выходом. Скажите коллеге: «Я проверяю корпус лодки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы осматриваете корпус лодки перед выходом. Скажите коллеге: «Я проверяю корпус лодки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am checking the hull.",
+        "localizedMeaning": {
+          "ru": "Вы осматриваете корпус лодки перед выходом. Скажите коллеге: «Я проверяю корпус лодки»",
+          "uk": "Ви оглядаєте корпус човна перед виходом. Скажіть колезі: «Я перевіряю корпус човна»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "checking",
+          "the",
+          "hull"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-01:i11:r1",
+          "text": "Are you checking the hull?"
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i11:r2",
+          "text": "You are checking the hull."
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i11:r3",
+          "text": "Is she checking the hull?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:i11:audio",
+          "transcript": "Are you checking the hull?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-01:i11:r1",
+            "targetText": "Are you checking the hull?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i11:r2",
+            "targetText": "You are checking the hull.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i11:r3",
+            "targetText": "Is she checking the hull?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you checking the hull?",
+              "uk": "У записі звучить Are you checking the hull?"
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you checking the hull?",
+              "uk": "У записі звучить Are you checking the hull?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку для действия сейчас с I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-01:i12:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-01:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку для действия сейчас с I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для действия сейчас с I",
+          "uk": "Виберіть зв’язку для дії зараз з I"
+        },
+        "gappedTargetPhrase": "I ___ checking the hull.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-01:i12:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите связку для действия сейчас с I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку для действия сейчас с I",
+            "feedbackByLocale": {
+              "ru": "С I нужна am, не is.",
+              "uk": "З I потрібна am, не is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку для действия сейчас с I",
+            "feedbackByLocale": {
+              "ru": "С I нужна am, не are.",
+              "uk": "З I потрібна am, не are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините новые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините новые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-01:i13:p1",
+            "target": "boathouse",
+            "meaningByLocale": {
+              "ru": "лодочный сарай",
+              "uk": "човновий сарай"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-01:i13:p2",
+            "target": "regatta",
+            "meaningByLocale": {
+              "ru": "регата",
+              "uk": "регата"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-01:i13:p3",
+            "target": "coxswain",
+            "meaningByLocale": {
+              "ru": "рулевой гребной лодки",
+              "uk": "стерновий веслувального човна"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-01:i13:p4",
+            "target": "hull",
+            "meaningByLocale": {
+              "ru": "корпус лодки",
+              "uk": "корпус човна"
+            }
+          }
+        ],
+        "leftColumn": [
+          "boathouse",
+          "regatta",
+          "coxswain",
+          "hull"
+        ],
+        "rightColumn": [
+          "лодочный сарай",
+          "регата",
+          "рулевой гребной лодки",
+          "корпус лодки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос о действии сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос о действии сейчас",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:i14:audio",
+          "transcript": "Are you watching the regatta?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you watching the regatta?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "watching",
+          "the",
+          "regatta"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга спрашивает о вашем привычном расписании тренировок. Скажите: «Я гребу здесь каждую субботу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Подруга спрашивает о вашем привычном расписании тренировок. Скажите: «Я гребу здесь каждую субботу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:i15:audio",
+          "transcript": "I row here every Saturday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I row here every Saturday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг думает, что вы сейчас в лодке, но вы на берегу. Скажите: «Я сейчас не гребу». Поставьте now в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг думает, что вы сейчас в лодке, но вы на берегу. Скажите: «Я сейчас не гребу». Поставьте now в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not rowing now.",
+        "localizedMeaning": {
+          "ru": "Друг думает, что вы сейчас в лодке, но вы на берегу. Скажите: «Я сейчас не гребу». Поставьте now в конце",
+          "uk": "Друг думає, що ви зараз у човні, але ви на березі. Скажіть: «Я зараз не веслую». Поставте now наприкінці"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "rowing",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Обычно вы гребёте по субботам. Сегодня вы на берегу и наблюдаете за гонками. Друг звонит: «Чем ты занят?» Ответьте: «Я смотрю регату»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Обычно вы гребёте по субботам. Сегодня вы на берегу и наблюдаете за гонками. Друг звонит: «Чем ты занят?» Ответьте: «Я смотрю регату»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-01:i17:audio",
+          "transcript": "I am watching the regatta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am watching the regatta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "01448f72f32a406ddcc31356072bf87853025c7ceee6e945a57436ea923b267d"
+}

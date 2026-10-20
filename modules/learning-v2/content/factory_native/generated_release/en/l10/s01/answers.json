@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-01:word:boathouse",
+    "correctText": "boathouse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i01",
+    "correctText": "The boathouse is near the river.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i02",
+    "correctText": "I row here every Saturday.",
+    "correctResponseId": "en:lesson-10:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i03",
+    "correctText": "row",
+    "correctResponseId": "en:lesson-10:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:word:regatta",
+    "correctText": "regatta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i04",
+    "correctText": "I am watching the regatta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i05",
+    "correctText": "She is watching the regatta.",
+    "correctResponseId": "en:lesson-10:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i06",
+    "correctText": "watching",
+    "correctResponseId": "en:lesson-10:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:word:coxswain",
+    "correctText": "coxswain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i07",
+    "correctText": "The coxswain is waiting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i08",
+    "correctText": "The coxswain is speaking.",
+    "correctResponseId": "en:lesson-10:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i09",
+    "correctText": "checks",
+    "correctResponseId": "en:lesson-10:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:word:hull",
+    "correctText": "hull",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i10",
+    "correctText": "I am checking the hull.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i11",
+    "correctText": "Are you checking the hull?",
+    "correctResponseId": "en:lesson-10:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i12",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-10:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i13",
+    "correctText": "en:lesson-10:session-01:i13:p1=boathouse\nen:lesson-10:session-01:i13:p2=regatta\nen:lesson-10:session-01:i13:p3=coxswain\nen:lesson-10:session-01:i13:p4=hull",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i14",
+    "correctText": "Are you watching the regatta?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i15",
+    "correctText": "I row here every Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i16",
+    "correctText": "I am not rowing now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-01:i17",
+    "correctText": "I am watching the regatta.",
+    "correctResponseId": null
+  }
+]

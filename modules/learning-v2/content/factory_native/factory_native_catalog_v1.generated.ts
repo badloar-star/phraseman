@@ -3535,4 +3535,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The steward is helping a visitor; Are you doing a headcount?; Please don't shout","uk":"The steward is helping a visitor; Are you doing a headcount?; Please don't shout"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 1,
+    sourceFingerprint: "b3d9f9f8c4c224f90b89c81278112a6d47360c76bde68f0fa32278733b110930",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I row here every Saturday; I am watching the regatta","uk":"I row here every Saturday; I am watching the regatta"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

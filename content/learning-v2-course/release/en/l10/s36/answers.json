@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-36:word:deliverable",
+    "correctText": "deliverable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i01",
+    "correctText": "The report is our main deliverable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i02",
+    "correctText": "The deliverable is ready.",
+    "correctResponseId": "en:lesson-10:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i03",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-10:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:word:submission",
+    "correctText": "submission",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i04",
+    "correctText": "I am checking the submission.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i05",
+    "correctText": "The submission includes a report.",
+    "correctResponseId": "en:lesson-10:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i06",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-10:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:word:timeframe",
+    "correctText": "timeframe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i07",
+    "correctText": "I understand the timeframe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i08",
+    "correctText": "The timeframe is two weeks.",
+    "correctResponseId": "en:lesson-10:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i09",
+    "correctText": "understand",
+    "correctResponseId": "en:lesson-10:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:word:handover",
+    "correctText": "handover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i10",
+    "correctText": "The handover is tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i11",
+    "correctText": "We are preparing for the handover.",
+    "correctResponseId": "en:lesson-10:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i12",
+    "correctText": "preparing",
+    "correctResponseId": "en:lesson-10:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i13",
+    "correctText": "en:lesson-10:session-36:i13:p1=deliverable\nen:lesson-10:session-36:i13:p2=submission\nen:lesson-10:session-36:i13:p3=timeframe\nen:lesson-10:session-36:i13:p4=handover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i14",
+    "correctText": "I am checking the submission.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i15",
+    "correctText": "We check the report every day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i16",
+    "correctText": "I understand the timeframe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-36:i17",
+    "correctText": "I am checking the submission.",
+    "correctResponseId": null
+  }
+]

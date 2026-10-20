@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "We check the report every day; I am checking the submission; The handover is tomorrow",
+    "uk": "We check the report every day; I am checking the submission; The handover is tomorrow"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Регулярная проверка",
+        "uk": "Регулярна перевірка"
+      },
+      "bodyByLocale": {
+        "ru": "Повторим deadline — «крайний срок». До сдачи проекта осталось мало времени. Вы с коллегой проверяете отчёт каждый день: We check the report every day — «Мы проверяем отчёт каждый день». Every day показывает повторение; здесь используем Present Simple.",
+        "uk": "Повторімо deadline — «крайній строк». До здавання проєкту залишилося мало часу. Ви з колегою перевіряєте звіт щодня: We check the report every day — «Ми перевіряємо звіт щодня». Every day показує повторення; тут використовуємо Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-36:intro1:r1",
+              "text": "We check the report every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro1:r2",
+              "text": "We checks the report every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro1:r3",
+              "text": "We checking the report every day."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-36:intro1:r1",
+              "text": "We check the report every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro1:r2",
+              "text": "We checks the report every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro1:r3",
+              "text": "We checking the report every day."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Материалы на проверке",
+        "uk": "Матеріали на перевірці"
+      },
+      "bodyByLocale": {
+        "ru": "Submission — «поданные материалы»: например, отправленный на рассмотрение проект. Коллега уже отправила свою работу, а вы сейчас проверяете её: I am checking the submission — «Я проверяю поданные материалы». Действие идёт сейчас: am + checking. Здесь submission обозначает комплект материалов как одно целое.",
+        "uk": "Submission — «подані матеріали»: наприклад, надісланий на розгляд проєкт. Колега вже надіслала свою роботу, а ви зараз перевіряєте її: I am checking the submission — «Я перевіряю подані матеріали». Дія триває зараз: am + checking. Тут submission позначає комплект матеріалів як одне ціле."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-36:intro2:r1",
+              "text": "I am checking the submission."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro2:r2",
+              "text": "I checking the submission."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro2:r3",
+              "text": "I is checking the submission."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-36:intro2:r1",
+              "text": "I am checking the submission."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro2:r2",
+              "text": "I checking the submission."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro2:r3",
+              "text": "I is checking the submission."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Понимаем отведённое время",
+        "uk": "Розуміємо відведений час"
+      },
+      "bodyByLocale": {
+        "ru": "Timeframe — «временные рамки»: период, отведённый на работу. Это не только конечная дата deadline. Коллега объяснила, сколько у вас времени: I understand the timeframe — «Я понимаю временные рамки». Understand выражает понимание, поэтому здесь используем Present Simple.",
+        "uk": "Timeframe — «часові рамки»: період, відведений на роботу. Це не лише кінцева дата deadline. Колега пояснила, скільки у вас часу: I understand the timeframe — «Я розумію часові рамки». Understand виражає розуміння, тому тут використовуємо Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-36:intro3:r1",
+              "text": "I understand the timeframe."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro3:r2",
+              "text": "I understands the timeframe."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro3:r3",
+              "text": "I am understand the timeframe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-36:intro3:r1",
+              "text": "I understand the timeframe."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro3:r2",
+              "text": "I understands the timeframe."
+            },
+            {
+              "responseId": "en:lesson-10:session-36:intro3:r3",
+              "text": "I am understand the timeframe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "717290786315fdcbb6f5c86a59d495eed335209275a23536c899a6ee23b3c7e0"
+}

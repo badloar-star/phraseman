@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-08:word:exhibitor",
+    "correctText": "exhibitor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i01",
+    "correctText": "The exhibitor is speaking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i02",
+    "correctText": "She usually weaves at home.",
+    "correctResponseId": "en:lesson-10:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i03",
+    "correctText": "weaves",
+    "correctResponseId": "en:lesson-10:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:word:demonstration",
+    "correctText": "demonstration",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i04",
+    "correctText": "I am watching the demonstration.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i05",
+    "correctText": "The demonstration is starting.",
+    "correctResponseId": "en:lesson-10:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i06",
+    "correctText": "watching",
+    "correctResponseId": "en:lesson-10:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:word:showcase",
+    "correctText": "showcase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i07",
+    "correctText": "The figurine is in the showcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i08",
+    "correctText": "The showcase is open.",
+    "correctResponseId": "en:lesson-10:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:word:craftsmanship",
+    "correctText": "craftsmanship",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i10",
+    "correctText": "The craftsmanship is excellent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i11",
+    "correctText": "The craftsmanship is excellent.",
+    "correctResponseId": "en:lesson-10:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i13",
+    "correctText": "en:lesson-10:session-08:i13:p1=exhibitor\nen:lesson-10:session-08:i13:p2=demonstration\nen:lesson-10:session-08:i13:p3=showcase\nen:lesson-10:session-08:i13:p4=craftsmanship",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i14",
+    "correctText": "Are you watching the demonstration?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i15",
+    "correctText": "I carve wooden spoons.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i16",
+    "correctText": "I am not carving a figurine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-08:i17",
+    "correctText": "I am watching the demonstration.",
+    "correctResponseId": null
+  }
+]

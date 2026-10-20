@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "She usually weaves at home; I am watching the demonstration",
+    "uk": "She usually weaves at home; I am watching the demonstration"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Участница выставки",
+        "uk": "Учасниця виставки"
+      },
+      "bodyByLocale": {
+        "ru": "Exhibitor — участник выставки, который представляет свои работы. Друг рассказывает вам о мастерице у стенда: She usually weaves at home — «Она обычно ткёт дома». Сейчас она стоит у стенда и беседует с посетителем: The exhibitor is speaking — «Участница выставки говорит». Usually weaves — привычное занятие; is speaking — действие сейчас.",
+        "uk": "Exhibitor — учасник виставки, який представляє свої роботи. Друг розповідає вам про майстриню біля стенда: She usually weaves at home — «Вона зазвичай тче вдома». Зараз вона стоїть біля стенда й розмовляє з відвідувачем: The exhibitor is speaking — «Учасниця виставки говорить». Usually weaves — звичне заняття; is speaking — дія зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-08:intro1:r1",
+              "text": "The exhibitor is speaking."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro1:r2",
+              "text": "The exhibitor speaking."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro1:r3",
+              "text": "The exhibitor is speak."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-08:intro1:r1",
+              "text": "The exhibitor is speaking."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro1:r2",
+              "text": "The exhibitor speaking."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro1:r3",
+              "text": "The exhibitor is speak."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мастер показывает, как это делается",
+        "uk": "Майстер показує, як це робиться"
+      },
+      "bodyByLocale": {
+        "ru": "Demonstration здесь — «показ процесса работы». Мастер при посетителях вырезает фигурку. Обычно вы сами вырезаете деревянные ложки, но сейчас смотрите на его работу. I am watching the demonstration — «Я смотрю показ». Это не название вашего хобби: вы наблюдаете прямо сейчас, поэтому am watching.",
+        "uk": "Demonstration тут — «показ процесу роботи». Майстер перед відвідувачами вирізьблює фігурку. Зазвичай ви самі вирізьблюєте дерев’яні ложки, але зараз дивитеся на його роботу. I am watching the demonstration — «Я дивлюся показ». Це не назва вашого хобі: ви спостерігаєте просто зараз, тому am watching."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-08:intro2:r1",
+              "text": "I am watching the demonstration."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro2:r2",
+              "text": "I watching the demonstration."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro2:r3",
+              "text": "I am watch the demonstration."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-08:intro2:r1",
+              "text": "I am watching the demonstration."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro2:r2",
+              "text": "I watching the demonstration."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro2:r3",
+              "text": "I am watch the demonstration."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Готовая работа за стеклом",
+        "uk": "Готова робота за склом"
+      },
+      "bodyByLocale": {
+        "ru": "Showcase здесь — «витрина»: стеклянный шкаф для показа предметов. Внутри стоит готовая статуэтка. The figurine is in the showcase — «Статуэтка в витрине». Is здесь сообщает, где предмет находится; это не Present Continuous, потому что действия с -ing нет. Рядом мастер продолжает работать: He is carving — «Он вырезает».",
+        "uk": "Showcase тут — «вітрина»: скляна шафа для показу предметів. Усередині стоїть готова статуетка. The figurine is in the showcase — «Статуетка у вітрині». Is тут повідомляє, де предмет розташований; це не Present Continuous, бо дії з -ing немає. Поруч майстер продовжує працювати: He is carving — «Він вирізьблює»."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-08:intro3:r1",
+              "text": "The figurine is in the showcase."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro3:r2",
+              "text": "The figurine are in the showcase."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro3:r3",
+              "text": "The figurine in the showcase."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-08:intro3:r1",
+              "text": "The figurine is in the showcase."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro3:r2",
+              "text": "The figurine are in the showcase."
+            },
+            {
+              "responseId": "en:lesson-10:session-08:intro3:r3",
+              "text": "The figurine in the showcase."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4260c299a8d90b40978337c6fc459fdae28ec69a2c31e66f43ae4f3f9afd1150"
+}

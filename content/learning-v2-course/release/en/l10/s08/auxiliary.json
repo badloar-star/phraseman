@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-08:intro1:r2": {
+          "ru": "Для действия сейчас пропущено is.",
+          "uk": "Для дії зараз пропущене is."
+        },
+        "en:lesson-10:session-08:intro1:r3": {
+          "ru": "После is нужна speaking.",
+          "uk": "Після is потрібна speaking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-08:intro2:r2": {
+          "ru": "С I перед watching нужно am.",
+          "uk": "З I перед watching потрібне am."
+        },
+        "en:lesson-10:session-08:intro2:r3": {
+          "ru": "После am нужна watching.",
+          "uk": "Після am потрібна watching."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-08:intro3:r2": {
+          "ru": "Figurine одна: is.",
+          "uk": "Figurine одна: is."
+        },
+        "en:lesson-10:session-08:intro3:r3": {
+          "ru": "Для полного предложения нужна is.",
+          "uk": "Для повного речення потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b8055fce933d106d9e54ba739f860414940e56ac2bc6e3704a0671c6a16a2b1f"
+}

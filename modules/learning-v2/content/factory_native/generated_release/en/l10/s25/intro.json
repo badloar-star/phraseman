@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "I usually walk at dawn; I am walking now; I am listening to birdsong at the moment",
+    "uk": "I usually walk at dawn; I am walking now; I am listening to birdsong at the moment"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обычно на рассвете",
+        "uk": "Зазвичай на світанку"
+      },
+      "bodyByLocale": {
+        "ru": "Dawn — «рассвет», время, когда утром начинает светать. Вы рассказываете о привычке: I usually walk at dawn — «Я обычно гуляю на рассвете». Usually показывает, как часто это происходит, и стоит перед walk. Для привычки используем Present Simple. At dawn само по себе называет время суток, а не выбирает грамматическое время.",
+        "uk": "Dawn — «світанок», час, коли вранці починає світати. Ви розповідаєте про звичку: I usually walk at dawn — «Я зазвичай гуляю на світанку». Usually показує, як часто це відбувається, і стоїть перед walk. Для звички використовуємо Present Simple. At dawn саме по собі називає час доби, а не обирає граматичний час."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-25:intro1:r1",
+              "text": "I usually walk at dawn."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro1:r2",
+              "text": "I usually walks at dawn."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro1:r3",
+              "text": "I usually walking at dawn."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-25:intro1:r1",
+              "text": "I usually walk at dawn."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro1:r2",
+              "text": "I usually walks at dawn."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro1:r3",
+              "text": "I usually walking at dawn."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Гуляю прямо сейчас",
+        "uk": "Гуляю просто зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Друг звонит вам во время прогулки. I am walking now — «Я сейчас гуляю». Now указывает на текущий момент. Для действия, которое идёт сейчас, используем am + walking. Сравните: I walk every morning — привычка; I am walking now — действие в момент разговора.",
+        "uk": "Друг телефонує вам під час прогулянки. I am walking now — «Я зараз гуляю». Now указує на поточну мить. Для дії, яка триває зараз, використовуємо am + walking. Порівняйте: I walk every morning — звичка; I am walking now — дія в момент розмови."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-25:intro2:r1",
+              "text": "I am walking now."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro2:r2",
+              "text": "I walking now."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro2:r3",
+              "text": "I am walk now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-25:intro2:r1",
+              "text": "I am walking now."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro2:r2",
+              "text": "I walking now."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro2:r3",
+              "text": "I am walk now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В данный момент",
+        "uk": "Цієї миті"
+      },
+      "bodyByLocale": {
+        "ru": "At the moment — «в данный момент». Birdsong — «пение птиц». Вы остановились послушать птиц: I am listening to birdsong at the moment — «Я сейчас слушаю пение птиц». Listen требует to: listen to birdsong. Слова времени помогают понять ситуацию, но не отменяют смысл глагола: I know the answer now — «Теперь я знаю ответ», со Simple.",
+        "uk": "At the moment — «цієї миті». Birdsong — «спів птахів». Ви зупинилися послухати птахів: I am listening to birdsong at the moment — «Я зараз слухаю спів птахів». Listen потребує to: listen to birdsong. Слова часу допомагають зрозуміти ситуацію, але не скасовують значення дієслова: I know the answer now — «Тепер я знаю відповідь», із Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-25:intro3:r1",
+              "text": "I am listening to birdsong at the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro3:r2",
+              "text": "I am listening birdsong at the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro3:r3",
+              "text": "I am listen to birdsong at the moment."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-25:intro3:r1",
+              "text": "I am listening to birdsong at the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro3:r2",
+              "text": "I am listening birdsong at the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-25:intro3:r3",
+              "text": "I am listen to birdsong at the moment."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ae73ae1c6c98829e73a11e87e53b43c16b016ee57b63bf20d2eb158ed5f6852e"
+}

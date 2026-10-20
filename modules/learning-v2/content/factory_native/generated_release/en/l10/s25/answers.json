@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-25:word:dawn",
+    "correctText": "dawn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i01",
+    "correctText": "I usually walk at dawn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i02",
+    "correctText": "We walk at dawn.",
+    "correctResponseId": "en:lesson-10:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i03",
+    "correctText": "am walking",
+    "correctResponseId": "en:lesson-10:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:word:dew",
+    "correctText": "dew",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i04",
+    "correctText": "There is dew on the grass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i05",
+    "correctText": "There is dew on the leaves.",
+    "correctResponseId": "en:lesson-10:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i06",
+    "correctText": "walk",
+    "correctResponseId": "en:lesson-10:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:word:mist",
+    "correctText": "mist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i07",
+    "correctText": "There is mist over the river.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i08",
+    "correctText": "The mist is clearing.",
+    "correctResponseId": "en:lesson-10:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i09",
+    "correctText": "is clearing",
+    "correctResponseId": "en:lesson-10:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:word:birdsong",
+    "correctText": "birdsong",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i10",
+    "correctText": "I am listening to birdsong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i11",
+    "correctText": "We are listening to birdsong.",
+    "correctResponseId": "en:lesson-10:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i12",
+    "correctText": "to",
+    "correctResponseId": "en:lesson-10:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i13",
+    "correctText": "en:lesson-10:session-25:i13:p1=dawn\nen:lesson-10:session-25:i13:p2=dew\nen:lesson-10:session-25:i13:p3=mist\nen:lesson-10:session-25:i13:p4=birdsong",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i14",
+    "correctText": "I am walking now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i15",
+    "correctText": "I am listening to birdsong at the moment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i16",
+    "correctText": "I usually walk at dawn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-25:i17",
+    "correctText": "I am walking now.",
+    "correctResponseId": null
+  }
+]

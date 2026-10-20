@@ -3703,4 +3703,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He usually works here; He is sitting here now; I trust the concierge","uk":"He usually works here; He is sitting here now; I trust the concierge"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 25,
+    sourceFingerprint: "a68ed075b2bd2b5e6ad6095b81563dd1295c2a45370375b0b3ae08fddae13c74",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I usually walk at dawn; I am walking now; I am listening to birdsong at the moment","uk":"I usually walk at dawn; I am walking now; I am listening to birdsong at the moment"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 26,
+    sourceFingerprint: "c2d184fc93e47399eca683902d8c8e9f4ac9db666920ec6ac2744716a5ad5602",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We usually eat at noon; She is filling the carafe; The soup is in the tureen","uk":"We usually eat at noon; She is filling the carafe; The soup is in the tureen"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

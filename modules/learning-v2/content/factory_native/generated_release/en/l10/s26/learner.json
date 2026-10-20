@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-26:word:noon",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — noon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:word:noon:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — noon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:word:noon:audio",
+          "transcript": "noon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-26:word:noon:r1",
+            "targetText": "noon",
+            "meaningByLocale": {
+              "ru": "«полдень». We usually eat at noon. — «Мы обычно едим в полдень». Двенадцать часов дня.",
+              "uk": "«полудень». We usually eat at noon. — «Ми зазвичай їмо опівдні». Дванадцята година дня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "noon",
+          "definitionByLocale": {
+            "ru": "«полдень». We usually eat at noon. — «Мы обычно едим в полдень». Двенадцать часов дня.",
+            "uk": "«полудень». We usually eat at noon. — «Ми зазвичай їмо опівдні». Дванадцята година дня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает о вашем обычном времени обеда. Скажите: «Мы обычно едим в полдень». Поставьте at noon в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает о вашем обычном времени обеда. Скажите: «Мы обычно едим в полдень». Поставьте at noon в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We usually eat at noon.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает о вашем обычном времени обеда. Скажите: «Мы обычно едим в полдень». Поставьте at noon в конце",
+          "uk": "Друг запитує про ваш звичний час обіду. Скажіть: «Ми зазвичай їмо опівдні». Поставте at noon у кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "usually",
+          "eat",
+          "at",
+          "noon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-26:i02:r1",
+          "text": "We eat at noon."
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i02:r2",
+          "text": "They eat at noon."
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i02:r3",
+          "text": "We meet at noon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:i02:audio",
+          "transcript": "We eat at noon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-26:i02:r1",
+            "targetText": "We eat at noon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i02:r2",
+            "targetText": "They eat at noon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i02:r3",
+            "targetText": "We meet at noon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We eat at noon.",
+              "uk": "У записі звучить We eat at noon."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We eat at noon.",
+              "uk": "У записі звучить We eat at noon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите предлог для «в полдень»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-26:i03:r1",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i03:r2",
+          "text": "on"
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i03:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите предлог для «в полдень»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите предлог для «в полдень»",
+          "uk": "Виберіть прийменник для «опівдні»"
+        },
+        "gappedTargetPhrase": "We eat ___ noon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-26:i03:r1",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i03:r2",
+            "text": "on"
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i03:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Выберите предлог для «в полдень»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите предлог для «в полдень»",
+            "feedbackByLocale": {
+              "ru": "Перед noon нужно at, не on.",
+              "uk": "Перед noon потрібне at, не on."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите предлог для «в полдень»",
+            "feedbackByLocale": {
+              "ru": "Перед noon нужно at, не in.",
+              "uk": "Перед noon потрібне at, не in."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:word:tureen",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tureen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:word:tureen:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tureen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:word:tureen:audio",
+          "transcript": "tureen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-26:word:tureen:r1",
+            "targetText": "tureen",
+            "meaningByLocale": {
+              "ru": "«супница». The soup is in the tureen. — «Суп в супнице». Большая посуда для подачи супа к столу.",
+              "uk": "«супниця». The soup is in the tureen. — «Суп у супниці». Великий посуд для подавання супу до столу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tureen",
+          "definitionByLocale": {
+            "ru": "«супница». The soup is in the tureen. — «Суп в супнице». Большая посуда для подачи супа к столу.",
+            "uk": "«супниця». The soup is in the tureen. — «Суп у супниці». Великий посуд для подавання супу до столу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг ищет суп. Скажите: «Суп в супнице»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг ищет суп. Скажите: «Суп в супнице»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The soup is in the tureen.",
+        "localizedMeaning": {
+          "ru": "Друг ищет суп. Скажите: «Суп в супнице»",
+          "uk": "Друг шукає суп. Скажіть: «Суп у супниці»"
+        },
+        "orderedTokens": [
+          "The",
+          "soup",
+          "is",
+          "in",
+          "the",
+          "tureen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-26:i05:r1",
+          "text": "The tureen is on the table."
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i05:r2",
+          "text": "The tureen is under the table."
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i05:r3",
+          "text": "The spoon is on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:i05:audio",
+          "transcript": "The tureen is on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-26:i05:r1",
+            "targetText": "The tureen is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i05:r2",
+            "targetText": "The tureen is under the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i05:r3",
+            "targetText": "The spoon is on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-26:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tureen is on the table.",
+              "uk": "У записі звучить The tureen is on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tureen is on the table.",
+              "uk": "У записі звучить The tureen is on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы готовите суп прямо сейчас. Выберите форму make",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-26:i06:r1",
+          "text": "making"
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i06:r2",
+          "text": "makeing"
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i06:r3",
+          "text": "make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы готовите суп прямо сейчас. Выберите форму make",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы готовите суп прямо сейчас. Выберите форму make",
+          "uk": "Ви готуєте суп просто зараз. Виберіть форму make"
+        },
+        "gappedTargetPhrase": "I am ___ soup now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-26:i06:r1",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i06:r2",
+            "text": "makeing"
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i06:r3",
+            "text": "make"
+          }
+        ],
+        "testedDimension": "Вы готовите суп прямо сейчас. Выберите форму make",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы готовите суп прямо сейчас. Выберите форму make",
+            "feedbackByLocale": {
+              "ru": "В making конечная e исчезает.",
+              "uk": "У making кінцева e зникає."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы готовите суп прямо сейчас. Выберите форму make",
+            "feedbackByLocale": {
+              "ru": "После am здесь нужна making.",
+              "uk": "Після am тут потрібна making."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:word:carafe",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — carafe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:word:carafe:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — carafe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:word:carafe:audio",
+          "transcript": "carafe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-26:word:carafe:r1",
+            "targetText": "carafe",
+            "meaningByLocale": {
+              "ru": "«графин». She is filling the carafe. — «Она наполняет графин». Сосуд для подачи воды или вина.",
+              "uk": "«карафка». She is filling the carafe. — «Вона наповнює карафку». Посудина для подавання води або вина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carafe",
+          "definitionByLocale": {
+            "ru": "«графин». She is filling the carafe. — «Она наполняет графин». Сосуд для подачи воды или вина.",
+            "uk": "«карафка». She is filling the carafe. — «Вона наповнює карафку». Посудина для подавання води або вина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга наливает воду в графин. Скажите другу: «Она наполняет графин»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга наливает воду в графин. Скажите другу: «Она наполняет графин»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is filling the carafe.",
+        "localizedMeaning": {
+          "ru": "Подруга наливает воду в графин. Скажите другу: «Она наполняет графин»",
+          "uk": "Подруга наливає воду в карафку. Скажіть другу: «Вона наповнює карафку»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "filling",
+          "the",
+          "carafe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-26:i08:r1",
+          "text": "The carafe is full."
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i08:r2",
+          "text": "The carafe is empty."
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i08:r3",
+          "text": "The tureen is full."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:i08:audio",
+          "transcript": "The carafe is full."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-26:i08:r1",
+            "targetText": "The carafe is full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i08:r2",
+            "targetText": "The carafe is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i08:r3",
+            "targetText": "The tureen is full.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-26:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The carafe is full.",
+              "uk": "У записі звучить The carafe is full."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The carafe is full.",
+              "uk": "У записі звучить The carafe is full."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-26:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i09:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+          "uk": "Вона наповнює карафку просто зараз. Виберіть допоміжне дієслово"
+        },
+        "gappedTargetPhrase": "She ___ filling the carafe.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-26:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i09:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+            "feedbackByLocale": {
+              "ru": "С she нужно is, не are.",
+              "uk": "З she потрібне is, не are."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+            "feedbackByLocale": {
+              "ru": "Перед filling здесь нужно is.",
+              "uk": "Перед filling тут потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:word:cruet",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cruet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:word:cruet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cruet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:word:cruet:audio",
+          "transcript": "cruet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-26:word:cruet:r1",
+            "targetText": "cruet",
+            "meaningByLocale": {
+              "ru": "«бутылочка для масла». The oil is in the cruet. — «Масло в бутылочке для масла». Небольшой сосуд для подачи приправ к столу.",
+              "uk": "«пляшечка для олії». The oil is in the cruet. — «Олія у пляшечці для олії». Невелика посудина для подавання приправ до столу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cruet",
+          "definitionByLocale": {
+            "ru": "«бутылочка для масла». The oil is in the cruet. — «Масло в бутылочке для масла». Небольшой сосуд для подачи приправ к столу.",
+            "uk": "«пляшечка для олії». The oil is in the cruet. — «Олія у пляшечці для олії». Невелика посудина для подавання приправ до столу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, где масло для салата. Скажите: «Масло в бутылочке для масла»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, где масло для салата. Скажите: «Масло в бутылочке для масла»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The oil is in the cruet.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, где масло для салата. Скажите: «Масло в бутылочке для масла»",
+          "uk": "Друг запитує, де олія для салату. Скажіть: «Олія у пляшечці для олії»"
+        },
+        "orderedTokens": [
+          "The",
+          "oil",
+          "is",
+          "in",
+          "the",
+          "cruet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-26:i11:r1",
+          "text": "The cruet is beside the plate."
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i11:r2",
+          "text": "The cruet is behind the plate."
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i11:r3",
+          "text": "The carafe is beside the plate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:i11:audio",
+          "transcript": "The cruet is beside the plate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-26:i11:r1",
+            "targetText": "The cruet is beside the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i11:r2",
+            "targetText": "The cruet is behind the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i11:r3",
+            "targetText": "The carafe is beside the plate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cruet is beside the plate.",
+              "uk": "У записі звучить The cruet is beside the plate."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cruet is beside the plate.",
+              "uk": "У записі звучить The cruet is beside the plate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы обычно обедаете дома. Выберите форму eat",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-26:i12:r1",
+          "text": "eat"
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i12:r2",
+          "text": "eats"
+        },
+        {
+          "responseId": "en:lesson-10:session-26:i12:r3",
+          "text": "eating"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы обычно обедаете дома. Выберите форму eat",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обычно обедаете дома. Выберите форму eat",
+          "uk": "Ви зазвичай обідаєте вдома. Виберіть форму eat"
+        },
+        "gappedTargetPhrase": "We usually ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-26:i12:r1",
+            "text": "eat"
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i12:r2",
+            "text": "eats"
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i12:r3",
+            "text": "eating"
+          }
+        ],
+        "testedDimension": "Вы обычно обедаете дома. Выберите форму eat",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-26:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы обычно обедаете дома. Выберите форму eat",
+            "feedbackByLocale": {
+              "ru": "С we нужна eat без s.",
+              "uk": "З we потрібна eat без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-26:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы обычно обедаете дома. Выберите форму eat",
+            "feedbackByLocale": {
+              "ru": "Для этой привычки нужна eat.",
+              "uk": "Для цієї звички потрібна eat."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините новые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините новые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-26:i13:p1",
+            "target": "noon",
+            "meaningByLocale": {
+              "ru": "полдень",
+              "uk": "полудень"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-26:i13:p2",
+            "target": "tureen",
+            "meaningByLocale": {
+              "ru": "супница",
+              "uk": "супниця"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-26:i13:p3",
+            "target": "carafe",
+            "meaningByLocale": {
+              "ru": "графин",
+              "uk": "карафка"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-26:i13:p4",
+            "target": "cruet",
+            "meaningByLocale": {
+              "ru": "бутылочка для масла",
+              "uk": "пляшечка для олії"
+            }
+          }
+        ],
+        "leftColumn": [
+          "noon",
+          "tureen",
+          "carafe",
+          "cruet"
+        ],
+        "rightColumn": [
+          "полдень",
+          "супница",
+          "графин",
+          "бутылочка для масла"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:i14:audio",
+          "transcript": "She is filling the carafe."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is filling the carafe.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "filling",
+          "the",
+          "carafe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, во сколько вы обычно едите. Скажите: «Мы обычно едим в полдень»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:i15:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, во сколько вы обычно едите. Скажите: «Мы обычно едим в полдень»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:i15:audio",
+          "transcript": "We usually eat at noon."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We usually eat at noon.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гость ищет суп. Скажите ему: «Суп в супнице»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гость ищет суп. Скажите ему: «Суп в супнице»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The soup is in the tureen.",
+        "localizedMeaning": {
+          "ru": "Гость ищет суп. Скажите ему: «Суп в супнице»",
+          "uk": "Гість шукає суп. Скажіть йому: «Суп у супниці»"
+        },
+        "orderedTokens": [
+          "The",
+          "soup",
+          "is",
+          "in",
+          "the",
+          "tureen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, что делает ваша подруга. Вы видите, как она наливает воду в графин. Скажите: «Она наполняет графин»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, что делает ваша подруга. Вы видите, как она наливает воду в графин. Скажите: «Она наполняет графин»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-26:i17:audio",
+          "transcript": "She is filling the carafe."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is filling the carafe.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "31268c8664c75802114ba6e00ba482dd2dc558112477db4046c5fa3f9b3d01b6"
+}

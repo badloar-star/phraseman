@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "We usually eat at noon; She is filling the carafe; The soup is in the tureen",
+    "uk": "We usually eat at noon; She is filling the carafe; The soup is in the tureen"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "В полдень",
+        "uk": "Опівдні"
+      },
+      "bodyByLocale": {
+        "ru": "Noon — «полдень», двенадцать часов дня. We usually eat at noon — «Мы обычно едим в полдень». Usually говорит о привычке; для неё используем Present Simple. Перед noon ставим at. Само at noon может относиться и к отдельному событию: сначала выясняем смысл всей ситуации.",
+        "uk": "Noon — «полудень», дванадцята година дня. We usually eat at noon — «Ми зазвичай їмо опівдні». Usually говорить про звичку; для неї використовуємо Present Simple. Перед noon ставимо at. Саме at noon може стосуватися й окремої події: спочатку з’ясовуємо зміст усієї ситуації."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-26:intro1:r1",
+              "text": "We usually eat at noon."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro1:r2",
+              "text": "We usually eats at noon."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro1:r3",
+              "text": "We usually eat on noon."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-26:intro1:r1",
+              "text": "We usually eat at noon."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro1:r2",
+              "text": "We usually eats at noon."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro1:r3",
+              "text": "We usually eat on noon."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Суп уже на столе",
+        "uk": "Суп уже на столі"
+      },
+      "bodyByLocale": {
+        "ru": "Tureen — «супница», большая посуда для подачи супа к столу. Друг ищет суп: The soup is in the tureen — «Суп в супнице». Здесь называем место, поэтому достаточно is. Не нужно добавлять being лишь потому, что речь идёт о текущем моменте.",
+        "uk": "Tureen — «супниця», великий посуд для подавання супу до столу. Друг шукає суп: The soup is in the tureen — «Суп у супниці». Тут називаємо місце, тому достатньо is. Не потрібно додавати being лише тому, що йдеться про поточну мить."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-26:intro2:r1",
+              "text": "The soup is in the tureen."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro2:r2",
+              "text": "The soup in the tureen."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro2:r3",
+              "text": "The soup are in the tureen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-26:intro2:r1",
+              "text": "The soup is in the tureen."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro2:r2",
+              "text": "The soup in the tureen."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro2:r3",
+              "text": "The soup are in the tureen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Наполняет графин сейчас",
+        "uk": "Наповнює карафку зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Carafe — «графин», сосуд для подачи воды или вина. Вы видите, как подруга наливает воду: She is filling the carafe — «Она наполняет графин». Для действия сейчас используем is + filling. Fill уже заканчивается на две l; в filling они сохраняются.",
+        "uk": "Carafe — «карафка», посудина для подавання води або вина. Ви бачите, як подруга наливає воду: She is filling the carafe — «Вона наповнює карафку». Для дії зараз використовуємо is + filling. Fill уже закінчується на дві l; у filling вони зберігаються."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-26:intro3:r1",
+              "text": "She is filling the carafe."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro3:r2",
+              "text": "She filling the carafe."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro3:r3",
+              "text": "She is fill the carafe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-26:intro3:r1",
+              "text": "She is filling the carafe."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro3:r2",
+              "text": "She filling the carafe."
+            },
+            {
+              "responseId": "en:lesson-10:session-26:intro3:r3",
+              "text": "She is fill the carafe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0f393c99db581236798a2cc5d885ba634b0d09bb158649cda86bb04e4ad8b75d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-25:intro1:r2": {
+          "ru": "С I нужна walk без s.",
+          "uk": "З I потрібна walk без s."
+        },
+        "en:lesson-10:session-25:intro1:r3": {
+          "ru": "Для этой привычки нужна walk, не walking.",
+          "uk": "Для цієї звички потрібна walk, не walking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-25:intro2:r2": {
+          "ru": "Перед walking нужно am.",
+          "uk": "Перед walking потрібне am."
+        },
+        "en:lesson-10:session-25:intro2:r3": {
+          "ru": "После am здесь нужна walking.",
+          "uk": "Після am тут потрібна walking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-25:intro3:r2": {
+          "ru": "После listening нужно to.",
+          "uk": "Після listening потрібне to."
+        },
+        "en:lesson-10:session-25:intro3:r3": {
+          "ru": "После am здесь нужна listening.",
+          "uk": "Після am тут потрібна listening."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "340703773f6420e960550b248a9138686f6292478b8cc2667f0aaae4ba788738"
+}

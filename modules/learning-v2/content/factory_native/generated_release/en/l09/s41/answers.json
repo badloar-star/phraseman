@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-41:word:whirl",
+    "correctText": "whirl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i01",
+    "correctText": "Leaves whirl in the wind.",
+    "correctResponseId": "en:lesson-09:session-41:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i02",
+    "correctText": "The leaves are whirling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i03",
+    "correctText": "whirling",
+    "correctResponseId": "en:lesson-09:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i04",
+    "correctText": "Are the leaves whirling?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:word:carousel",
+    "correctText": "carousel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i05",
+    "correctText": "I am near the carousel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i06",
+    "correctText": "The carousel is not moving.",
+    "correctResponseId": "en:lesson-09:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i07",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-41:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:word:stream",
+    "correctText": "stream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i08",
+    "correctText": "We are near the stream.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i09",
+    "correctText": "The leaves are in the stream.",
+    "correctResponseId": "en:lesson-09:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i10",
+    "correctText": "Please don't throw paper in the stream.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:word:eddy",
+    "correctText": "eddy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i11",
+    "correctText": "This is an eddy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i12",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-09:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i13",
+    "correctText": "The leaves are whirling in the eddy.",
+    "correctResponseId": "en:lesson-09:session-41:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i14",
+    "correctText": "en:lesson-09:session-41:i14:p1=whirl\nen:lesson-09:session-41:i14:p2=carousel\nen:lesson-09:session-41:i14:p3=stream\nen:lesson-09:session-41:i14:p4=eddy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i15",
+    "correctText": "The leaves are not whirling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i16",
+    "correctText": "throw",
+    "correctResponseId": "en:lesson-09:session-41:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-41:i17",
+    "correctText": "This is an eddy.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-41:intro1:r2": {
+          "ru": "Leaves — множественное число, нужно are.",
+          "uk": "Leaves — множина, потрібне are."
+        },
+        "en:lesson-09:session-41:intro1:r3": {
+          "ru": "После are для действия сейчас нужна форма whirling.",
+          "uk": "Після are для дії зараз потрібна форма whirling."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-41:intro2:r2": {
+          "ru": "Для сообщения о месте после I здесь нужно am.",
+          "uk": "Для повідомлення про місце після I тут потрібне am."
+        },
+        "en:lesson-09:session-41:intro2:r3": {
+          "ru": "С I нужна форма am.",
+          "uk": "З I потрібна форма am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-41:intro3:r2": {
+          "ru": "Перед гласным звуком в eddy нужен an.",
+          "uk": "Перед голосним звуком в eddy потрібне an."
+        },
+        "en:lesson-09:session-41:intro3:r3": {
+          "ru": "С this для одного явления нужно is.",
+          "uk": "З this для одного явища потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9d6b3bd6d44344d64dd4f4fbebd945c5b8d0d9cc865feebe004ab4bdaa25b54c"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "The leaves are whirling; I am near the carousel; This is an eddy",
+    "uk": "The leaves are whirling; I am near the carousel; This is an eddy"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Листья под аркой",
+        "uk": "Листя під аркою"
+      },
+      "bodyByLocale": {
+        "ru": "Во дворе порыв ветра поднимает сухие листья под аркой. Друг смотрит в другую сторону, и вы описываете движение: The leaves are whirling — «Листья кружатся». Whirl — «кружиться, быстро двигаться по кругу». Здесь листья не закреплены на оси, как пропеллер: ветер гоняет их по кругу. Для leaves используем are; форма действия — whirling.",
+        "uk": "У дворі порив вітру піднімає сухе листя під аркою. Друг дивиться в інший бік, і ви описуєте рух: The leaves are whirling — «Листя кружляє». Whirl — «кружляти, швидко рухатися по колу». Тут листя не закріплене на осі, як пропелер: вітер ганяє його по колу. Англійське leaves — множина, тому are; форма дії — whirling."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-41:intro1:r1",
+              "text": "The leaves are whirling."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro1:r2",
+              "text": "The leaves is whirling."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro1:r3",
+              "text": "The leaves are whirl."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-41:intro1:r1",
+              "text": "The leaves are whirling."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro1:r2",
+              "text": "The leaves is whirling."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro1:r3",
+              "text": "The leaves are whirl."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где встретиться на ярмарке?",
+        "uk": "Де зустрітися на ярмарку?"
+      },
+      "bodyByLocale": {
+        "ru": "На ярмарке подруга не может найти вас среди палаток. Вы стоите около карусели и сообщаете по телефону: I am near the carousel — «Я рядом с каруселью». Carousel — «карусель», вращающийся аттракцион. Near показывает место. В этой фразе am связывает I с местом; добавлять -ing к названию аттракциона не нужно.",
+        "uk": "На ярмарку подруга не може знайти вас серед наметів. Ви стоїте біля каруселі й повідомляєте телефоном: I am near the carousel — «Я біля каруселі». Carousel — «карусель», атракціон, що обертається. Near указує на місце. У цій фразі am пов’язує I з місцем; додавати -ing до назви атракціону не потрібно."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-41:intro2:r1",
+              "text": "I am near the carousel."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro2:r2",
+              "text": "I near the carousel."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro2:r3",
+              "text": "I are near the carousel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-41:intro2:r1",
+              "text": "I am near the carousel."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro2:r2",
+              "text": "I near the carousel."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro2:r3",
+              "text": "I are near the carousel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Круг у камня",
+        "uk": "Коло біля каменя"
+      },
+      "bodyByLocale": {
+        "ru": "На прогулке ребёнок замечает: за камнем вода идёт по маленькому кругу, хотя основной поток движется дальше. Он спрашивает, как это называется. This is an eddy — «Это водоворот». Eddy — небольшое круговое течение, часто у препятствия в воде. Перед eddy нужно an: слово начинается с гласного звука. Вы называете явление, которое наблюдаете с берега.",
+        "uk": "На прогулянці дитина помічає: за каменем вода рухається маленьким колом, хоча основний потік тече далі. Вона запитує, як це називається. This is an eddy — «Це вир». Eddy — невелика кругова течія, часто біля перешкоди у воді. Перед eddy потрібне an: слово починається з голосного звука. Ви називаєте явище, яке спостерігаєте з берега."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-41:intro3:r1",
+              "text": "This is an eddy."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro3:r2",
+              "text": "This is a eddy."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro3:r3",
+              "text": "This are an eddy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-41:intro3:r1",
+              "text": "This is an eddy."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro3:r2",
+              "text": "This is a eddy."
+            },
+            {
+              "responseId": "en:lesson-09:session-41:intro3:r3",
+              "text": "This are an eddy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f4fb862eb8ca839f6de2fc775c8cdc27f16bf540cf2d73e275b3e898f5d6eea6"
+}

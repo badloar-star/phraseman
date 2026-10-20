@@ -3423,4 +3423,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"This is a cymbal; I am playing the xylophone; Please don’t shake the maraca","uk":"This is a cymbal; I am playing the xylophone; Please don’t shake the maraca"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 41,
+    sourceFingerprint: "26fa42401e0f8ca017af5cf336e6b11abcedb3d3bb6714409c037f7a480b03cb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The leaves are whirling; I am near the carousel; This is an eddy","uk":"The leaves are whirling; I am near the carousel; This is an eddy"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

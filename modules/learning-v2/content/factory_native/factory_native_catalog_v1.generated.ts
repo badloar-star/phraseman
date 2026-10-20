@@ -3598,4 +3598,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"She works at a hotel; She is working here this week","uk":"She works at a hotel; She is working here this week"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 10,
+    sourceFingerprint: "c8cea557917520401d7919b47356e18c25efd5820fbac1b18e68692528c1bcb0",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He usually works outside; He is working at a museum this month","uk":"He usually works outside; He is working at a museum this month"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

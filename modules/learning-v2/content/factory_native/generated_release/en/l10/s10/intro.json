@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "He usually works outside; He is working at a museum this month",
+    "uk": "He usually works outside; He is working at a museum this month"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обычная работа",
+        "uk": "Звичайна робота"
+      },
+      "bodyByLocale": {
+        "ru": "Ваш знакомый — гид: обычно он проводит экскурсии по городу. He usually works outside — «Обычно он работает на улице». Present Simple описывает привычную ситуацию. Usually стоит перед смысловым глаголом works. Это не обещание, что работа никогда не изменится.",
+        "uk": "Ваш знайомий — гід: зазвичай він проводить екскурсії містом. He usually works outside — «Зазвичай він працює надворі». Present Simple описує звичну ситуацію. Usually стоїть перед смисловим дієсловом works. Це не обіцянка, що робота ніколи не зміниться."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-10:intro1:r1",
+              "text": "He usually works outside."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro1:r2",
+              "text": "He usually work outside."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro1:r3",
+              "text": "He usually working outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-10:intro1:r1",
+              "text": "He usually works outside."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro1:r2",
+              "text": "He usually work outside."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro1:r3",
+              "text": "He usually working outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Временно в музее",
+        "uk": "Тимчасово в музеї"
+      },
+      "bodyByLocale": {
+        "ru": "В этом месяце гид временно помогает музею, а затем вернётся к городским экскурсиям. He is working at a museum this month — «В этом месяце он работает в музее». Is working описывает временный период; он не обязан проводить экскурсию именно сейчас. В американском музее экскурсовода могут называть docent — «музейный экскурсовод». Здесь речь именно об этом значении, не об университетской должности.",
+        "uk": "Цього місяця гід тимчасово допомагає музею, а потім повернеться до міських екскурсій. He is working at a museum this month — «Цього місяця він працює в музеї». Is working описує тимчасовий період; він не обов’язково проводить екскурсію саме зараз. В американському музеї екскурсовода можуть називати docent — «музейний екскурсовод». Тут ідеться саме про це значення, а не про університетську посаду."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-10:intro2:r1",
+              "text": "He is working at a museum this month."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro2:r2",
+              "text": "He working at a museum this month."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro2:r3",
+              "text": "He is works at a museum this month."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-10:intro2:r1",
+              "text": "He is working at a museum this month."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro2:r2",
+              "text": "He working at a museum this month."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro2:r3",
+              "text": "He is works at a museum this month."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Коллега по музею",
+        "uk": "Колега з музею"
+      },
+      "bodyByLocale": {
+        "ru": "Гид знакомит вас с куратором музейной коллекции. Curator — «куратор коллекции»: специалист, который занимается коллекцией и её представлением. She is a curator — «Она куратор коллекции». Здесь is связывает she с названием профессии; это не Present Continuous. Для действия во временном периоде понадобилось бы, например, is working.",
+        "uk": "Гід знайомить вас із кураторкою музейної колекції. Curator — «куратор колекції»: фахівець, який займається колекцією та її представленням. She is a curator — «Вона кураторка колекції». Тут is поєднує she з назвою професії; це не Present Continuous. Для дії в тимчасовому періоді знадобилося б, наприклад, is working."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-10:intro3:r1",
+              "text": "She is a curator."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro3:r2",
+              "text": "She a curator."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro3:r3",
+              "text": "She is curator."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-10:intro3:r1",
+              "text": "She is a curator."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro3:r2",
+              "text": "She a curator."
+            },
+            {
+              "responseId": "en:lesson-10:session-10:intro3:r3",
+              "text": "She is curator."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "de080f0869a6ab792e1cb1976b4ee4e2159b68ab8220360f0c1b551a512855b0"
+}

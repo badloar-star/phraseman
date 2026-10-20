@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-10:word:docent",
+    "correctText": "docent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i01",
+    "correctText": "He is a docent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i02",
+    "correctText": "He usually works outside.",
+    "correctResponseId": "en:lesson-10:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i03",
+    "correctText": "works",
+    "correctResponseId": "en:lesson-10:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:word:curator",
+    "correctText": "curator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i04",
+    "correctText": "She is a curator.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i05",
+    "correctText": "The curator is here.",
+    "correctResponseId": "en:lesson-10:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i06",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-10:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:word:artifact",
+    "correctText": "artifact",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i07",
+    "correctText": "The artifact is old.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i08",
+    "correctText": "I am looking at the artifact.",
+    "correctResponseId": "en:lesson-10:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:word:diorama",
+    "correctText": "diorama",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i10",
+    "correctText": "The diorama is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i11",
+    "correctText": "We are looking at the diorama.",
+    "correctResponseId": "en:lesson-10:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i13",
+    "correctText": "en:lesson-10:session-10:i13:p1=docent\nen:lesson-10:session-10:i13:p2=curator\nen:lesson-10:session-10:i13:p3=artifact\nen:lesson-10:session-10:i13:p4=diorama",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i14",
+    "correctText": "Is he working here this month?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i15",
+    "correctText": "He usually works outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i16",
+    "correctText": "He is working at a museum this month.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-10:i17",
+    "correctText": "He is working at a museum this month.",
+    "correctResponseId": null
+  }
+]

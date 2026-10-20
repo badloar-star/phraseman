@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-39:word:session",
+    "correctText": "session",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i01",
+    "correctText": "We have a session every Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i02",
+    "correctText": "The session starts at ten.",
+    "correctResponseId": "en:lesson-10:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i03",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-10:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:word:facilitator",
+    "correctText": "facilitator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i04",
+    "correctText": "The facilitator is listening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i05",
+    "correctText": "The facilitator is asking a question.",
+    "correctResponseId": "en:lesson-10:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:word:breakout",
+    "correctText": "breakout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i07",
+    "correctText": "We are in a breakout group.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i08",
+    "correctText": "Our breakout group has four people.",
+    "correctResponseId": "en:lesson-10:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-10:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:word:debrief",
+    "correctText": "debrief",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i10",
+    "correctText": "We are having a debrief.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i11",
+    "correctText": "The debrief is after lunch.",
+    "correctResponseId": "en:lesson-10:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i12",
+    "correctText": "having",
+    "correctResponseId": "en:lesson-10:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i13",
+    "correctText": "en:lesson-10:session-39:i13:p1=session\nen:lesson-10:session-39:i13:p2=facilitator\nen:lesson-10:session-39:i13:p3=breakout\nen:lesson-10:session-39:i13:p4=debrief",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i14",
+    "correctText": "The facilitator is listening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i15",
+    "correctText": "We have a session every Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i16",
+    "correctText": "The facilitator is listening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-39:i17",
+    "correctText": "We are having a debrief.",
+    "correctResponseId": null
+  }
+]

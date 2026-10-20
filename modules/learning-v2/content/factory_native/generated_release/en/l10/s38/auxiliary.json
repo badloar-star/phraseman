@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-38:intro1:r2": {
+          "ru": "С we нужна review без s.",
+          "uk": "З we потрібна review без s."
+        },
+        "en:lesson-10:session-38:intro1:r3": {
+          "ru": "Для регулярного действия здесь нужна review.",
+          "uk": "Для регулярної дії тут потрібна review."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-38:intro2:r2": {
+          "ru": "Перед rising нужен is.",
+          "uk": "Перед rising потрібне is."
+        },
+        "en:lesson-10:session-38:intro2:r3": {
+          "ru": "Правильно rising, без e.",
+          "uk": "Правильно rising, без e."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-38:intro3:r2": {
+          "ru": "Перед checking нужен am.",
+          "uk": "Перед checking потрібне am."
+        },
+        "en:lesson-10:session-38:intro3:r3": {
+          "ru": "С I нужна am, не are.",
+          "uk": "З I потрібна am, не are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a4fd472bd917787e7bbdf2cdb523485e1513c002112aa7a80bf9825083420a8a"
+}

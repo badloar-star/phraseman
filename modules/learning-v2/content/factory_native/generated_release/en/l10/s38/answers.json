@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-38:word:quarter",
+    "correctText": "quarter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i01",
+    "correctText": "We review the figures every quarter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i02",
+    "correctText": "The quarter ends in March.",
+    "correctResponseId": "en:lesson-10:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i03",
+    "correctText": "review",
+    "correctResponseId": "en:lesson-10:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:word:revenue",
+    "correctText": "revenue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i04",
+    "correctText": "Revenue is rising.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i05",
+    "correctText": "Revenue is higher this quarter.",
+    "correctResponseId": "en:lesson-10:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i06",
+    "correctText": "rising",
+    "correctResponseId": "en:lesson-10:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:word:expenditure",
+    "correctText": "expenditure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i07",
+    "correctText": "Expenditure is falling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i08",
+    "correctText": "Expenditure is lower this quarter.",
+    "correctResponseId": "en:lesson-10:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:word:projection",
+    "correctText": "projection",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i10",
+    "correctText": "I am checking the projection.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i11",
+    "correctText": "The projection is in the report.",
+    "correctResponseId": "en:lesson-10:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i12",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-10:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i13",
+    "correctText": "en:lesson-10:session-38:i13:p1=quarter\nen:lesson-10:session-38:i13:p2=revenue\nen:lesson-10:session-38:i13:p3=expenditure\nen:lesson-10:session-38:i13:p4=projection",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i14",
+    "correctText": "Revenue is rising.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i15",
+    "correctText": "We review the figures every quarter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i16",
+    "correctText": "Expenditure is falling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-38:i17",
+    "correctText": "I am checking the projection.",
+    "correctResponseId": null
+  }
+]

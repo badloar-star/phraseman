@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "We have a session every Friday; The facilitator is listening; We are having a debrief",
+    "uk": "We have a session every Friday; The facilitator is listening; We are having a debrief"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Занятие каждую неделю",
+        "uk": "Заняття щотижня"
+      },
+      "bodyByLocale": {
+        "ru": "Session — «занятие», выделенный период для определённой деятельности. У вашей команды занятие каждую пятницу: We have a session every Friday — «У нас занятие каждую пятницу». Every Friday указывает на повторение, поэтому используем Present Simple.",
+        "uk": "Session — «заняття», виділений період для певної діяльності. У вашої команди заняття щоп’ятниці: We have a session every Friday — «У нас заняття щоп’ятниці». Every Friday указує на повторення, тому використовуємо Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-39:intro1:r1",
+              "text": "We have a session every Friday."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro1:r2",
+              "text": "We has a session every Friday."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro1:r3",
+              "text": "We having a session every Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-39:intro1:r1",
+              "text": "We have a session every Friday."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro1:r2",
+              "text": "We has a session every Friday."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro1:r3",
+              "text": "We having a session every Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ведущий слушает",
+        "uk": "Ведучий слухає"
+      },
+      "bodyByLocale": {
+        "ru": "Facilitator — «ведущий групповой работы»: человек, который помогает участникам обсуждать вопросы и работать вместе. Сейчас участница объясняет идею, а ведущий слушает: The facilitator is listening — «Ведущий групповой работы слушает». Это действие сейчас: is + listening.",
+        "uk": "Facilitator — «ведучий групової роботи»: людина, яка допомагає учасникам обговорювати питання й працювати разом. Зараз учасниця пояснює ідею, а ведучий слухає: The facilitator is listening — «Ведучий групової роботи слухає». Це дія зараз: is + listening."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-39:intro2:r1",
+              "text": "The facilitator is listening."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro2:r2",
+              "text": "The facilitator listening."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro2:r3",
+              "text": "The facilitator are listening."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-39:intro2:r1",
+              "text": "The facilitator is listening."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro2:r2",
+              "text": "The facilitator listening."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro2:r3",
+              "text": "The facilitator are listening."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обсуждаем выполненное",
+        "uk": "Обговорюємо виконане"
+      },
+      "bodyByLocale": {
+        "ru": "Debrief — «разбор итогов»: обсуждение того, что произошло во время задания. Упражнение закончено, вы сейчас разбираете результаты: We are having a debrief — «Мы проводим разбор итогов». Здесь have обозначает проведение обсуждения, а не владение вещью. Поэтому are having подходит для текущего действия.",
+        "uk": "Debrief — «розбір підсумків»: обговорення того, що сталося під час завдання. Вправу завершено, ви зараз розбираєте результати: We are having a debrief — «Ми проводимо розбір підсумків». Тут have позначає проведення обговорення, а не володіння річчю. Тому are having підходить для поточної дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-39:intro3:r1",
+              "text": "We are having a debrief."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro3:r2",
+              "text": "We is having a debrief."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro3:r3",
+              "text": "We are have a debrief."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-39:intro3:r1",
+              "text": "We are having a debrief."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro3:r2",
+              "text": "We is having a debrief."
+            },
+            {
+              "responseId": "en:lesson-10:session-39:intro3:r3",
+              "text": "We are have a debrief."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bee3334eb4cf84c006a50a25eeee954fae6b6932ad63bde920a3234352f29919"
+}

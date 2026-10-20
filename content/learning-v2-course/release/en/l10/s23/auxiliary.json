@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-23:intro1:r2": {
+          "ru": "После trust здесь не нужно to.",
+          "uk": "Після trust тут не потрібне to."
+        },
+        "en:lesson-10:session-23:intro1:r3": {
+          "ru": "С I используем trust без s.",
+          "uk": "З I використовуємо trust без s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-23:intro2:r2": {
+          "ru": "Перед reliability нужно her.",
+          "uk": "Перед reliability потрібне her."
+        },
+        "en:lesson-10:session-23:intro2:r3": {
+          "ru": "С I используем value без s.",
+          "uk": "З I використовуємо value без s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-23:intro3:r2": {
+          "ru": "После do используем trust без s.",
+          "uk": "Після do використовуємо trust без s."
+        },
+        "en:lesson-10:session-23:intro3:r3": {
+          "ru": "В этом вопросе нужен do, не are.",
+          "uk": "У цьому запитанні потрібне do, не are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3891e3455ba6faf0452338bd6162ea362b79a14060f67a6998b0757018d981e8"
+}

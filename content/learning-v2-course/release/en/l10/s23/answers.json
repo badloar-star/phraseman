@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-23:word:trust",
+    "correctText": "trust",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i01",
+    "correctText": "I trust her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i02",
+    "correctText": "I trust her.",
+    "correctResponseId": "en:lesson-10:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i03",
+    "correctText": "trusts",
+    "correctResponseId": "en:lesson-10:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:word:reliability",
+    "correctText": "reliability",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i04",
+    "correctText": "I value her reliability.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i05",
+    "correctText": "Her reliability is important.",
+    "correctResponseId": "en:lesson-10:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i06",
+    "correctText": "her",
+    "correctResponseId": "en:lesson-10:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:word:loyalty",
+    "correctText": "loyalty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i07",
+    "correctText": "I value her loyalty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i08",
+    "correctText": "We value your loyalty.",
+    "correctResponseId": "en:lesson-10:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i09",
+    "correctText": "value",
+    "correctResponseId": "en:lesson-10:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:word:judgement",
+    "correctText": "judgement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i10",
+    "correctText": "I trust her judgement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i11",
+    "correctText": "He trusts her judgement.",
+    "correctResponseId": "en:lesson-10:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i12",
+    "correctText": "Do",
+    "correctResponseId": "en:lesson-10:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i13",
+    "correctText": "en:lesson-10:session-23:i13:p1=trust\nen:lesson-10:session-23:i13:p2=reliability\nen:lesson-10:session-23:i13:p3=loyalty\nen:lesson-10:session-23:i13:p4=judgement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i14",
+    "correctText": "Do you trust her judgement?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i15",
+    "correctText": "I value your reliability.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i16",
+    "correctText": "He trusts her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-23:i17",
+    "correctText": "I trust her judgement.",
+    "correctResponseId": null
+  }
+]

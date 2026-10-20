@@ -3605,4 +3605,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He usually works outside; He is working at a museum this month","uk":"He usually works outside; He is working at a museum this month"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 11,
+    sourceFingerprint: "bbf34b3b61d69617b22ac59583d7ee4d71909cbc0cc007e6d8c7b90eef718d5f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"She works for a newspaper; She is working on a book this month","uk":"She works for a newspaper; She is working on a book this month"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 12,
+    sourceFingerprint: "72e79f59e347fd4d50872f16e671e6689b64713a4000d99cfc7fe163ae4fc047",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He usually works near the station; He is working here this week","uk":"He usually works near the station; He is working here this week"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

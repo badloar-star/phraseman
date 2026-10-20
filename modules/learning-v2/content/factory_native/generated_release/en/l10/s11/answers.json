@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-11:word:editor",
+    "correctText": "editor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i01",
+    "correctText": "She is an editor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i02",
+    "correctText": "She works for a newspaper.",
+    "correctResponseId": "en:lesson-10:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i03",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-10:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:word:manuscript",
+    "correctText": "manuscript",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i04",
+    "correctText": "She is reading the manuscript.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i05",
+    "correctText": "The manuscript is long.",
+    "correctResponseId": "en:lesson-10:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i06",
+    "correctText": "reading",
+    "correctResponseId": "en:lesson-10:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:word:proofreader",
+    "correctText": "proofreader",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i07",
+    "correctText": "He is a proofreader.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i08",
+    "correctText": "The proofreader is busy.",
+    "correctResponseId": "en:lesson-10:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:word:byline",
+    "correctText": "byline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i10",
+    "correctText": "The byline is missing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i11",
+    "correctText": "I am checking the byline.",
+    "correctResponseId": "en:lesson-10:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i12",
+    "correctText": "working",
+    "correctResponseId": "en:lesson-10:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i13",
+    "correctText": "en:lesson-10:session-11:i13:p1=editor\nen:lesson-10:session-11:i13:p2=manuscript\nen:lesson-10:session-11:i13:p3=proofreader\nen:lesson-10:session-11:i13:p4=byline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i14",
+    "correctText": "Is she reading the manuscript?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i15",
+    "correctText": "She works for a newspaper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i16",
+    "correctText": "She is working on a book this month.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-11:i17",
+    "correctText": "She is working on a book this month.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-11:word:editor",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — editor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:word:editor:audio"
+      ],
+      "accessibilityLabel": "Картка слова — editor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:word:editor:audio",
+          "transcript": "editor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-11:word:editor:r1",
+            "targetText": "editor",
+            "meaningByLocale": {
+              "ru": "«редактор». She is an editor. — «Она редактор». Человек, который готовит и редактирует материалы для публикации.",
+              "uk": "«редактор». She is an editor. — «Вона редакторка». Людина, яка готує та редагує матеріали для публікації."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "editor",
+          "definitionByLocale": {
+            "ru": "«редактор». She is an editor. — «Она редактор». Человек, который готовит и редактирует материалы для публикации.",
+            "uk": "«редактор». She is an editor. — «Вона редакторка». Людина, яка готує та редагує матеріали для публікації."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг запитує про професію вашої знайомої. Скажіть: «Вона редакторка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитує про професію вашої знайомої. Скажіть: «Вона редакторка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is an editor.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает о профессии вашей знакомой. Скажите: «Она редактор»",
+          "uk": "Друг запитує про професію вашої знайомої. Скажіть: «Вона редакторка»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "an",
+          "editor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-11:i02:r1",
+          "text": "She works for a newspaper."
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i02:r2",
+          "text": "He works for a newspaper."
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i02:r3",
+          "text": "She works for a school."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:i02:audio",
+          "transcript": "She works for a newspaper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-11:i02:r1",
+            "targetText": "She works for a newspaper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i02:r2",
+            "targetText": "He works for a newspaper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i02:r3",
+            "targetText": "She works for a school.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She works for a newspaper.",
+              "uk": "У записі звучить She works for a newspaper."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She works for a newspaper.",
+              "uk": "У записі звучить She works for a newspaper."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль перед editor",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-11:i03:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i03:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль перед editor",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль перед editor",
+          "uk": "Виберіть артикль перед editor"
+        },
+        "gappedTargetPhrase": "She is ___ editor.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-11:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль перед editor",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед editor",
+            "feedbackByLocale": {
+              "ru": "Editor начинается с гласного звука: an.",
+              "uk": "Editor починається з голосного звука: an."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед editor",
+            "feedbackByLocale": {
+              "ru": "Are — глагол; здесь нужен артикль an.",
+              "uk": "Are — дієслово; тут потрібен артикль an."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:word:manuscript",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — manuscript",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:word:manuscript:audio"
+      ],
+      "accessibilityLabel": "Картка слова — manuscript",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:word:manuscript:audio",
+          "transcript": "manuscript"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-11:word:manuscript:r1",
+            "targetText": "manuscript",
+            "meaningByLocale": {
+              "ru": "«рукопись». She is reading the manuscript. — «Она читает рукопись». Здесь текст книги до публикации, в том числе электронный.",
+              "uk": "«рукопис». She is reading the manuscript. — «Вона читає рукопис». Тут текст книжки до публікації, зокрема електронний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "manuscript",
+          "definitionByLocale": {
+            "ru": "«рукопись». She is reading the manuscript. — «Она читает рукопись». Здесь текст книги до публикации, в том числе электронный.",
+            "uk": "«рукопис». She is reading the manuscript. — «Вона читає рукопис». Тут текст книжки до публікації, зокрема електронний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Автор запитує, чим редакторка зайнята зараз. Скажіть: «Вона читає рукопис»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Автор запитує, чим редакторка зайнята зараз. Скажіть: «Вона читає рукопис»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is reading the manuscript.",
+        "localizedMeaning": {
+          "ru": "Автор спрашивает, чем редактор занята сейчас. Скажите: «Она читает рукопись»",
+          "uk": "Автор запитує, чим редакторка зайнята зараз. Скажіть: «Вона читає рукопис»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "reading",
+          "the",
+          "manuscript"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-11:i05:r1",
+          "text": "The manuscript is long."
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i05:r2",
+          "text": "The manuscript is short."
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i05:r3",
+          "text": "The letter is long."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:i05:audio",
+          "transcript": "The manuscript is long."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-11:i05:r1",
+            "targetText": "The manuscript is long.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i05:r2",
+            "targetText": "The manuscript is short.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i05:r3",
+            "targetText": "The letter is long.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The manuscript is long.",
+              "uk": "У записі звучить The manuscript is long."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The manuscript is long.",
+              "uk": "У записі звучить The manuscript is long."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму read після is",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-11:i06:r1",
+          "text": "reading"
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i06:r2",
+          "text": "read"
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i06:r3",
+          "text": "reads"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму read після is",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму read после is",
+          "uk": "Виберіть форму read після is"
+        },
+        "gappedTargetPhrase": "She is ___ the manuscript.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-11:i06:r1",
+            "text": "reading"
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i06:r2",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i06:r3",
+            "text": "reads"
+          }
+        ],
+        "testedDimension": "Виберіть форму read після is",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму read після is",
+            "feedbackByLocale": {
+              "ru": "После is нужна reading.",
+              "uk": "Після is потрібна reading."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму read після is",
+            "feedbackByLocale": {
+              "ru": "Reads — форма Present Simple; после is здесь нужна reading.",
+              "uk": "Reads — форма Present Simple; після is тут потрібна reading."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:word:proofreader",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — proofreader",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:word:proofreader:audio"
+      ],
+      "accessibilityLabel": "Картка слова — proofreader",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:word:proofreader:audio",
+          "transcript": "proofreader"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-11:word:proofreader:r1",
+            "targetText": "proofreader",
+            "meaningByLocale": {
+              "ru": "«корректор». He is a proofreader. — «Он корректор». Здесь специалист, который ищет оставшиеся ошибки перед публикацией.",
+              "uk": "«коректор». He is a proofreader. — «Він коректор». Тут фахівець, який шукає помилки, що залишилися перед публікацією."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "proofreader",
+          "definitionByLocale": {
+            "ru": "«корректор». He is a proofreader. — «Он корректор». Здесь специалист, который ищет оставшиеся ошибки перед публикацией.",
+            "uk": "«коректор». He is a proofreader. — «Він коректор». Тут фахівець, який шукає помилки, що залишилися перед публікацією."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Автор запитує про професію вашого колеги. Скажіть: «Він коректор»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Автор запитує про професію вашого колеги. Скажіть: «Він коректор»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is a proofreader.",
+        "localizedMeaning": {
+          "ru": "Автор спрашивает о профессии вашего коллеги. Скажите: «Он корректор»",
+          "uk": "Автор запитує про професію вашого колеги. Скажіть: «Він коректор»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "a",
+          "proofreader"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-11:i08:r1",
+          "text": "The proofreader is busy."
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i08:r2",
+          "text": "The proofreader is ready."
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i08:r3",
+          "text": "The editor is busy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:i08:audio",
+          "transcript": "The proofreader is busy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-11:i08:r1",
+            "targetText": "The proofreader is busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i08:r2",
+            "targetText": "The proofreader is ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i08:r3",
+            "targetText": "The editor is busy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The proofreader is busy.",
+              "uk": "У записі звучить The proofreader is busy."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The proofreader is busy.",
+              "uk": "У записі звучить The proofreader is busy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку для одного коректора",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-11:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку для одного коректора",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для одного корректора",
+          "uk": "Виберіть зв’язку для одного коректора"
+        },
+        "gappedTargetPhrase": "The proofreader ___ busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-11:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку для одного коректора",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для одного коректора",
+            "feedbackByLocale": {
+              "ru": "Один человек: is.",
+              "uk": "Одна людина: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для одного коректора",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:word:byline",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — byline",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:word:byline:audio"
+      ],
+      "accessibilityLabel": "Картка слова — byline",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:word:byline:audio",
+          "transcript": "byline"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-11:word:byline:r1",
+            "targetText": "byline",
+            "meaningByLocale": {
+              "ru": "«строка с именем автора». The byline is missing. — «Строка с именем автора отсутствует». Здесь указание автора статьи, не её заголовок.",
+              "uk": "«рядок з іменем автора». The byline is missing. — «Рядок з іменем автора відсутній». Тут зазначення автора статті, а не її заголовок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "byline",
+          "definitionByLocale": {
+            "ru": "«строка с именем автора». The byline is missing. — «Строка с именем автора отсутствует». Здесь указание автора статьи, не её заголовок.",
+            "uk": "«рядок з іменем автора». The byline is missing. — «Рядок з іменем автора відсутній». Тут зазначення автора статті, а не її заголовок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Редактор запитує, чого бракує у статті. Скажіть: «Рядок з іменем автора відсутній»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Редактор запитує, чого бракує у статті. Скажіть: «Рядок з іменем автора відсутній»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The byline is missing.",
+        "localizedMeaning": {
+          "ru": "Редактор спрашивает, чего не хватает в статье. Скажите: «Строка с именем автора отсутствует»",
+          "uk": "Редактор запитує, чого бракує у статті. Скажіть: «Рядок з іменем автора відсутній»"
+        },
+        "orderedTokens": [
+          "The",
+          "byline",
+          "is",
+          "missing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-11:i11:r1",
+          "text": "I am checking the byline."
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i11:r2",
+          "text": "I am checking the title."
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i11:r3",
+          "text": "He is checking the byline."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:i11:audio",
+          "transcript": "I am checking the byline."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-11:i11:r1",
+            "targetText": "I am checking the byline.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i11:r2",
+            "targetText": "I am checking the title.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i11:r3",
+            "targetText": "He is checking the byline.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am checking the byline.",
+              "uk": "У записі звучить I am checking the byline."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am checking the byline.",
+              "uk": "У записі звучить I am checking the byline."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму work після is для тимчасового проєкту",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-11:i12:r1",
+          "text": "working"
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i12:r2",
+          "text": "works"
+        },
+        {
+          "responseId": "en:lesson-10:session-11:i12:r3",
+          "text": "work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму work після is для тимчасового проєкту",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму work после is для временного проекта",
+          "uk": "Виберіть форму work після is для тимчасового проєкту"
+        },
+        "gappedTargetPhrase": "She is ___ on a book this month.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-11:i12:r1",
+            "text": "working"
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i12:r2",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i12:r3",
+            "text": "work"
+          }
+        ],
+        "testedDimension": "Виберіть форму work після is для тимчасового проєкту",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму work після is для тимчасового проєкту",
+            "feedbackByLocale": {
+              "ru": "После is нужна working.",
+              "uk": "Після is потрібна working."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму work після is для тимчасового проєкту",
+            "feedbackByLocale": {
+              "ru": "Для Present Continuous нужны is working.",
+              "uk": "Для Present Continuous потрібні is working."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-11:i13:p1",
+            "target": "editor",
+            "meaningByLocale": {
+              "ru": "редактор",
+              "uk": "редактор"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-11:i13:p2",
+            "target": "manuscript",
+            "meaningByLocale": {
+              "ru": "рукопись",
+              "uk": "рукопис"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-11:i13:p3",
+            "target": "proofreader",
+            "meaningByLocale": {
+              "ru": "корректор",
+              "uk": "коректор"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-11:i13:p4",
+            "target": "byline",
+            "meaningByLocale": {
+              "ru": "строка с именем автора",
+              "uk": "рядок з іменем автора"
+            }
+          }
+        ],
+        "leftColumn": [
+          "editor",
+          "manuscript",
+          "proofreader",
+          "byline"
+        ],
+        "rightColumn": [
+          "редактор",
+          "рукопис",
+          "коректор",
+          "рядок з іменем автора"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:i14:audio",
+          "transcript": "Is she reading the manuscript?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is she reading the manuscript?",
+        "orderedTokens": [
+          "Is",
+          "she",
+          "reading",
+          "the",
+          "manuscript"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, на яку організацію працює ваша знайома. Скажіть: «Вона працює в газеті»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, на яку організацію працює ваша знайома. Скажіть: «Вона працює в газеті»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:i15:audio",
+          "transcript": "She works for a newspaper."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She works for a newspaper.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Редакторка тимчасово допомагає автору. Скажіть: «Цього місяця вона працює над книжкою». Поставте this month наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Редакторка тимчасово допомагає автору. Скажіть: «Цього місяця вона працює над книжкою». Поставте this month наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is working on a book this month.",
+        "localizedMeaning": {
+          "ru": "Редактор временно помогает автору. Скажите: «В этом месяце она работает над книгой». Поставьте this month в конце",
+          "uk": "Редакторка тимчасово допомагає автору. Скажіть: «Цього місяця вона працює над книжкою». Поставте this month наприкінці"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "working",
+          "on",
+          "a",
+          "book",
+          "this",
+          "month"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ваша знайома зазвичай працює з газетними статтями, але тимчасово взяла книжковий проєкт на один місяць. Колега запитує, чим вона займається в цей період. Дайте відповідь: «Цього місяця вона працює над книжкою»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Ваша знайома зазвичай працює з газетними статтями, але тимчасово взяла книжковий проєкт на один місяць. Колега запитує, чим вона займається в цей період. Дайте відповідь: «Цього місяця вона працює над книжкою»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:i17:audio",
+          "transcript": "She is working on a book this month."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is working on a book this month.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d6729d6ee51e3220da8161c120a8dcd10399049eea91a95539b73856ee68ca56"
+}

@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-17:word:admire",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — admire",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:word:admire:audio"
+      ],
+      "accessibilityLabel": "Картка слова — admire",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:word:admire:audio",
+          "transcript": "admire"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-17:word:admire:r1",
+            "targetText": "admire",
+            "meaningByLocale": {
+              "ru": "«восхищаться». I admire her. — «Я восхищаюсь ею». Здесь испытывать уважение и восхищение человеком.",
+              "uk": "«захоплюватися». I admire her. — «Я захоплююся нею». Тут відчувати повагу й захоплення людиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "admire",
+          "definitionByLocale": {
+            "ru": "«восхищаться». I admire her. — «Я восхищаюсь ею». Здесь испытывать уважение и восхищение человеком.",
+            "uk": "«захоплюватися». I admire her. — «Я захоплююся нею». Тут відчувати повагу й захоплення людиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга розповідає про колегу, яка допомогла всій команді. Скажіть: «Я захоплююся нею»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга розповідає про колегу, яка допомогла всій команді. Скажіть: «Я захоплююся нею»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I admire her.",
+        "localizedMeaning": {
+          "ru": "Подруга рассказывает о коллеге, которая помогла всей команде. Скажите: «Я восхищаюсь ею»",
+          "uk": "Подруга розповідає про колегу, яка допомогла всій команді. Скажіть: «Я захоплююся нею»"
+        },
+        "orderedTokens": [
+          "I",
+          "admire",
+          "her"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-17:i02:r1",
+          "text": "I admire her."
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i02:r2",
+          "text": "We admire her."
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i02:r3",
+          "text": "I admire him."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:i02:audio",
+          "transcript": "I admire her."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-17:i02:r1",
+            "targetText": "I admire her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i02:r2",
+            "targetText": "We admire her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i02:r3",
+            "targetText": "I admire him.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I admire her.",
+              "uk": "У записі звучить I admire her."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I admire her.",
+              "uk": "У записі звучить I admire her."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму admire з he для ставлення до людини",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-17:i03:r1",
+          "text": "admires"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i03:r2",
+          "text": "admire"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i03:r3",
+          "text": "is admire"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму admire з he для ставлення до людини",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму admire с he для отношения к человеку",
+          "uk": "Виберіть форму admire з he для ставлення до людини"
+        },
+        "gappedTargetPhrase": "He ___ her.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-17:i03:r1",
+            "text": "admires"
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i03:r2",
+            "text": "admire"
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i03:r3",
+            "text": "is admire"
+          }
+        ],
+        "testedDimension": "Виберіть форму admire з he для ставлення до людини",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму admire з he для ставлення до людини",
+            "feedbackByLocale": {
+              "ru": "С he нужна admires.",
+              "uk": "З he потрібна admires."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму admire з he для ставлення до людини",
+            "feedbackByLocale": {
+              "ru": "Is admire не образует правильную форму.",
+              "uk": "Is admire не утворює правильної форми."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:word:courage",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — courage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:word:courage:audio"
+      ],
+      "accessibilityLabel": "Картка слова — courage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:word:courage:audio",
+          "transcript": "courage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-17:word:courage:r1",
+            "targetText": "courage",
+            "meaningByLocale": {
+              "ru": "«смелость». I admire her courage. — «Я восхищаюсь её смелостью». Здесь готовность поступить смело, несмотря на страх.",
+              "uk": "«сміливість». I admire her courage. — «Я захоплююся її сміливістю». Тут готовність діяти сміливо, попри страх."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "courage",
+          "definitionByLocale": {
+            "ru": "«смелость». I admire her courage. — «Я восхищаюсь её смелостью». Здесь готовность поступить смело, несмотря на страх.",
+            "uk": "«сміливість». I admire her courage. — «Я захоплююся її сміливістю». Тут готовність діяти сміливо, попри страх."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега заступилася за несправедливо звинуваченого працівника. Скажіть: «Я захоплююся її сміливістю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега заступилася за несправедливо звинуваченого працівника. Скажіть: «Я захоплююся її сміливістю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I admire her courage.",
+        "localizedMeaning": {
+          "ru": "Коллега заступилась за несправедливо обвинённого сотрудника. Скажите: «Я восхищаюсь её смелостью»",
+          "uk": "Колега заступилася за несправедливо звинуваченого працівника. Скажіть: «Я захоплююся її сміливістю»"
+        },
+        "orderedTokens": [
+          "I",
+          "admire",
+          "her",
+          "courage"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-17:i05:r1",
+          "text": "He admires her courage."
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i05:r2",
+          "text": "She admires her courage."
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i05:r3",
+          "text": "He admires her work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:i05:audio",
+          "transcript": "He admires her courage."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-17:i05:r1",
+            "targetText": "He admires her courage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i05:r2",
+            "targetText": "She admires her courage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i05:r3",
+            "targetText": "He admires her work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-17:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He admires her courage.",
+              "uk": "У записі звучить He admires her courage."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He admires her courage.",
+              "uk": "У записі звучить He admires her courage."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово для «її сміливість»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-17:i06:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i06:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i06:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово для «її сміливість»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово для «её смелость»",
+          "uk": "Виберіть слово для «її сміливість»"
+        },
+        "gappedTargetPhrase": "I admire ___ courage.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-17:i06:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i06:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i06:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Виберіть слово для «її сміливість»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово для «її сміливість»",
+            "feedbackByLocale": {
+              "ru": "Перед courage нужно her, не she.",
+              "uk": "Перед courage потрібне her, не she."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово для «її сміливість»",
+            "feedbackByLocale": {
+              "ru": "Перед существительным используем her; hers стоит самостоятельно.",
+              "uk": "Перед іменником використовуємо her; hers стоїть самостійно."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:word:dedication",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dedication",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:word:dedication:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dedication",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:word:dedication:audio",
+          "transcript": "dedication"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-17:word:dedication:r1",
+            "targetText": "dedication",
+            "meaningByLocale": {
+              "ru": "«преданность делу». He admires her dedication. — «Он восхищается её преданностью делу». Здесь постоянные усилия и забота о работе.",
+              "uk": "«відданість справі». He admires her dedication. — «Він захоплюється її відданістю справі». Тут постійні зусилля й турбота про роботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dedication",
+          "definitionByLocale": {
+            "ru": "«преданность делу». He admires her dedication. — «Он восхищается её преданностью делу». Здесь постоянные усилия и забота о работе.",
+            "uk": "«відданість справі». He admires her dedication. — «Він захоплюється її відданістю справі». Тут постійні зусилля й турбота про роботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Викладачка щотижня допомагає учням. Її колега захоплений. Скажіть: «Він захоплюється її відданістю справі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Викладачка щотижня допомагає учням. Її колега захоплений. Скажіть: «Він захоплюється її відданістю справі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He admires her dedication.",
+        "localizedMeaning": {
+          "ru": "Преподавательница каждую неделю помогает ученикам. Её коллега восхищён. Скажите: «Он восхищается её преданностью делу»",
+          "uk": "Викладачка щотижня допомагає учням. Її колега захоплений. Скажіть: «Він захоплюється її відданістю справі»"
+        },
+        "orderedTokens": [
+          "He",
+          "admires",
+          "her",
+          "dedication"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-17:i08:r1",
+          "text": "We admire her dedication."
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i08:r2",
+          "text": "They admire her dedication."
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i08:r3",
+          "text": "We admire her courage."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:i08:audio",
+          "transcript": "We admire her dedication."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-17:i08:r1",
+            "targetText": "We admire her dedication.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i08:r2",
+            "targetText": "They admire her dedication.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i08:r3",
+            "targetText": "We admire her courage.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-17:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We admire her dedication.",
+              "uk": "У записі звучить We admire her dedication."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We admire her dedication.",
+              "uk": "У записі звучить We admire her dedication."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму admire після does",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-17:i09:r1",
+          "text": "admire"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i09:r2",
+          "text": "admires"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i09:r3",
+          "text": "admiring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму admire після does",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму admire после does",
+          "uk": "Виберіть форму admire після does"
+        },
+        "gappedTargetPhrase": "Does he ___ her dedication?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-17:i09:r1",
+            "text": "admire"
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i09:r2",
+            "text": "admires"
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i09:r3",
+            "text": "admiring"
+          }
+        ],
+        "testedDimension": "Виберіть форму admire після does",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму admire після does",
+            "feedbackByLocale": {
+              "ru": "После does глагол без s: admire.",
+              "uk": "Після does дієслово без s: admire."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму admire після does",
+            "feedbackByLocale": {
+              "ru": "После does нужна базовая форма admire.",
+              "uk": "Після does потрібна початкова форма admire."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:word:integrity",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — integrity",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:word:integrity:audio"
+      ],
+      "accessibilityLabel": "Картка слова — integrity",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:word:integrity:audio",
+          "transcript": "integrity"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-17:word:integrity:r1",
+            "targetText": "integrity",
+            "meaningByLocale": {
+              "ru": "«принципиальность». I admire her integrity. — «Я восхищаюсь её принципиальностью». Здесь честность и верность своим принципам.",
+              "uk": "«принциповість». I admire her integrity. — «Я захоплююся її принциповістю». Тут чесність і вірність своїм принципам."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "integrity",
+          "definitionByLocale": {
+            "ru": "«принципиальность». I admire her integrity. — «Я восхищаюсь её принципиальностью». Здесь честность и верность своим принципам.",
+            "uk": "«принциповість». I admire her integrity. — «Я захоплююся її принциповістю». Тут чесність і вірність своїм принципам."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працівниця помітила помилку, яка була їй вигідна, але попросила усунути її. Скажіть: «Я захоплююся її принциповістю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Працівниця помітила помилку, яка була їй вигідна, але попросила усунути її. Скажіть: «Я захоплююся її принциповістю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I admire her integrity.",
+        "localizedMeaning": {
+          "ru": "Сотрудница заметила ошибку, которая была ей выгодна, но попросила устранить её. Скажите: «Я восхищаюсь её принципиальностью»",
+          "uk": "Працівниця помітила помилку, яка була їй вигідна, але попросила усунути її. Скажіть: «Я захоплююся її принциповістю»"
+        },
+        "orderedTokens": [
+          "I",
+          "admire",
+          "her",
+          "integrity"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-17:i11:r1",
+          "text": "Do you admire her integrity?"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i11:r2",
+          "text": "Do they admire her integrity?"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i11:r3",
+          "text": "Do you admire her courage?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:i11:audio",
+          "transcript": "Do you admire her integrity?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-17:i11:r1",
+            "targetText": "Do you admire her integrity?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i11:r2",
+            "targetText": "Do they admire her integrity?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i11:r3",
+            "targetText": "Do you admire her courage?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-17:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you admire her integrity?",
+              "uk": "У записі звучить Do you admire her integrity?"
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you admire her integrity?",
+              "uk": "У записі звучить Do you admire her integrity?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть допоміжне дієслово для запитання з you",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-17:i12:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i12:r2",
+          "text": "Does"
+        },
+        {
+          "responseId": "en:lesson-10:session-17:i12:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть допоміжне дієслово для запитання з you",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите вспомогательный глагол для вопроса с you",
+          "uk": "Виберіть допоміжне дієслово для запитання з you"
+        },
+        "gappedTargetPhrase": "___ you admire her integrity?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-17:i12:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i12:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i12:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-17:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+            "feedbackByLocale": {
+              "ru": "С you нужно do, не does.",
+              "uk": "З you потрібне do, не does."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-17:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+            "feedbackByLocale": {
+              "ru": "С admire в этом вопросе используем do.",
+              "uk": "З admire в цьому запитанні використовуємо do."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-17:i13:p1",
+            "target": "admire",
+            "meaningByLocale": {
+              "ru": "восхищаться",
+              "uk": "захоплюватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-17:i13:p2",
+            "target": "courage",
+            "meaningByLocale": {
+              "ru": "смелость",
+              "uk": "сміливість"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-17:i13:p3",
+            "target": "dedication",
+            "meaningByLocale": {
+              "ru": "преданность делу",
+              "uk": "відданість справі"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-17:i13:p4",
+            "target": "integrity",
+            "meaningByLocale": {
+              "ru": "принципиальность",
+              "uk": "принциповість"
+            }
+          }
+        ],
+        "leftColumn": [
+          "admire",
+          "courage",
+          "dedication",
+          "integrity"
+        ],
+        "rightColumn": [
+          "захоплюватися",
+          "сміливість",
+          "відданість справі",
+          "принциповість"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:i14:audio",
+          "transcript": "Does he admire her dedication?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does he admire her dedication?",
+        "orderedTokens": [
+          "Does",
+          "he",
+          "admire",
+          "her",
+          "dedication"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, як ви ставитеся до сміливого вчинку колеги. Скажіть: «Я захоплююся її сміливістю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, як ви ставитеся до сміливого вчинку колеги. Скажіть: «Я захоплююся її сміливістю»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:i15:audio",
+          "transcript": "I admire her courage."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I admire her courage.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує про ваше ставлення до викладачки, яка постійно допомагає учням. Скажіть: «Я захоплююся її відданістю справі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує про ваше ставлення до викладачки, яка постійно допомагає учням. Скажіть: «Я захоплююся її відданістю справі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I admire her dedication.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает о вашем отношении к преподавательнице, которая постоянно помогает ученикам. Скажите: «Я восхищаюсь её преданностью делу»",
+          "uk": "Колега запитує про ваше ставлення до викладачки, яка постійно допомагає учням. Скажіть: «Я захоплююся її відданістю справі»"
+        },
+        "orderedTokens": [
+          "I",
+          "admire",
+          "her",
+          "dedication"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ваша колега відмовилася приховати помилку, хоча приховати її було б вигідно. Друг запитує, як ви ставитеся до її принциповості. Висловлюючи своє ставлення, скажіть: «Я захоплююся її принциповістю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Ваша колега відмовилася приховати помилку, хоча приховати її було б вигідно. Друг запитує, як ви ставитеся до її принциповості. Висловлюючи своє ставлення, скажіть: «Я захоплююся її принциповістю»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:i17:audio",
+          "transcript": "I admire her integrity."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I admire her integrity.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9e4c9852dbef4fe5bed15ca2db0b58d48d1467a167add40e428ea8f647734e55"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "I admire her courage; He admires her dedication; Do you admire her integrity?",
+    "uk": "I admire her courage; He admires her dedication; Do you admire her integrity?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Отношение, а не действие",
+        "uk": "Ставлення, а не дія"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега заступилась за сотрудника, которого несправедливо обвинили. Admire — «восхищаться», courage — «смелость». I admire her courage — «Я восхищаюсь её смелостью». Здесь admire выражает ваше отношение, а не действие, которое разворачивается на глазах. В этом значении обычно выбираем Present Simple, даже когда говорим о своём отношении сейчас.",
+        "uk": "Колега заступилася за працівника, якого несправедливо звинуватили. Admire — «захоплюватися», courage — «сміливість». I admire her courage — «Я захоплююся її сміливістю». Тут admire виражає ваше ставлення, а не дію, яка розгортається на очах. У цьому значенні зазвичай вибираємо Present Simple, навіть коли говоримо про своє ставлення зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-17:intro1:r1",
+              "text": "I admire her courage."
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro1:r2",
+              "text": "I admires her courage."
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro1:r3",
+              "text": "I admire she courage."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-17:intro1:r1",
+              "text": "I admire her courage."
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro1:r2",
+              "text": "I admires her courage."
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro1:r3",
+              "text": "I admire she courage."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Преданность делу",
+        "uk": "Відданість справі"
+      },
+      "bodyByLocale": {
+        "ru": "Ваша знакомая каждую неделю помогает ученикам готовиться к экзаменам. Dedication — «преданность делу». Её коллега ценит эту постоянную заботу. He admires her dedication — «Он восхищается её преданностью делу». С he в Present Simple нужна admires. Мы описываем отношение человека к её работе.",
+        "uk": "Ваша знайома щотижня допомагає учням готуватися до іспитів. Dedication — «відданість справі». Її колега цінує цю постійну турботу. He admires her dedication — «Він захоплюється її відданістю справі». З he у Present Simple потрібна admires. Ми описуємо ставлення людини до її роботи."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-17:intro2:r1",
+              "text": "He admires her dedication."
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro2:r2",
+              "text": "He admire her dedication."
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro2:r3",
+              "text": "He is admire her dedication."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-17:intro2:r1",
+              "text": "He admires her dedication."
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro2:r2",
+              "text": "He admire her dedication."
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro2:r3",
+              "text": "He is admire her dedication."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Принципиальность",
+        "uk": "Принциповість"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудница заметила ошибку в свою пользу и попросила её исправить. Integrity — «принципиальность»: здесь честность и верность своим принципам, даже когда это невыгодно. Вы спрашиваете друга: Do you admire her integrity? — «Ты восхищаешься её принципиальностью?» Для вопроса в Present Simple используем do + you + admire.",
+        "uk": "Працівниця помітила помилку на свою користь і попросила її виправити. Integrity — «принциповість»: тут чесність і вірність своїм принципам, навіть коли це невигідно. Ви запитуєте друга: Do you admire her integrity? — «Ти захоплюєшся її принциповістю?» Для запитання в Present Simple використовуємо do + you + admire."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-17:intro3:r1",
+              "text": "Do you admire her integrity?"
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro3:r2",
+              "text": "Do you admires her integrity?"
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro3:r3",
+              "text": "Are you admire her integrity?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-17:intro3:r1",
+              "text": "Do you admire her integrity?"
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro3:r2",
+              "text": "Do you admires her integrity?"
+            },
+            {
+              "responseId": "en:lesson-10:session-17:intro3:r3",
+              "text": "Are you admire her integrity?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c19dc6b44de6dda730bc366cb73aef6fc50882000c89467f25dc5e561970162a"
+}

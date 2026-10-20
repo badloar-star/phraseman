@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "We usually walk at dusk; The afterglow is fading; We are walking along the waterfront",
+    "uk": "We usually walk at dusk; The afterglow is fading; We are walking along the waterfront"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прогулка в сумерках",
+        "uk": "Прогулянка в сутінках"
+      },
+      "bodyByLocale": {
+        "ru": "Sunset — знакомое слово «закат». Dusk — «вечерние сумерки», время, когда после заката темнеет. We usually walk at dusk — «Мы обычно гуляем в сумерках». Usually показывает привычку, поэтому используем Present Simple. At dusk называет время суток; оно само по себе не требует определённого грамматического времени.",
+        "uk": "Sunset — знайоме слово «захід сонця». Dusk — «вечірні сутінки», час, коли після заходу темніє. We usually walk at dusk — «Ми зазвичай гуляємо в сутінках». Usually показує звичку, тому використовуємо Present Simple. At dusk називає час доби; воно саме по собі не вимагає певного граматичного часу."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-28:intro1:r1",
+              "text": "We usually walk at dusk."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro1:r2",
+              "text": "We usually walks at dusk."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro1:r3",
+              "text": "We usually walk on dusk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-28:intro1:r1",
+              "text": "We usually walk at dusk."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro1:r2",
+              "text": "We usually walks at dusk."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro1:r3",
+              "text": "We usually walk on dusk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Небо постепенно темнеет",
+        "uk": "Небо поступово темніє"
+      },
+      "bodyByLocale": {
+        "ru": "Afterglow — «зарево после заката», оставшийся на небе мягкий свет. Вы смотрите, как он постепенно исчезает: The afterglow is fading — «Зарево после заката угасает». Для изменения, которое происходит сейчас, используем is + fading. В fade → fading конечная e исчезает.",
+        "uk": "Afterglow — «заграва після заходу сонця», м’яке світло, що залишилося на небі. Ви дивитеся, як воно поступово зникає: The afterglow is fading — «Заграва після заходу сонця згасає». Для зміни, яка відбувається зараз, використовуємо is + fading. У fade → fading кінцева e зникає."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-28:intro2:r1",
+              "text": "The afterglow is fading."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro2:r2",
+              "text": "The afterglow is fadeing."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro2:r3",
+              "text": "The afterglow fading."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-28:intro2:r1",
+              "text": "The afterglow is fading."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro2:r2",
+              "text": "The afterglow is fadeing."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro2:r3",
+              "text": "The afterglow fading."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где вы сейчас",
+        "uk": "Де ви зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Waterfront — «прибрежная часть города», территория у реки, озера или моря. Друг звонит во время вашей прогулки: We are walking along the waterfront — «Мы идём вдоль городской набережной». Для текущего действия используем are + walking. Сравните привычку: We usually walk here — «Мы обычно гуляем здесь».",
+        "uk": "Waterfront — «прибережна частина міста», територія біля річки, озера або моря. Друг телефонує під час вашої прогулянки: We are walking along the waterfront — «Ми йдемо вздовж міської набережної». Для поточної дії використовуємо are + walking. Порівняйте звичку: We usually walk here — «Ми зазвичай гуляємо тут»."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-28:intro3:r1",
+              "text": "We are walking along the waterfront."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro3:r2",
+              "text": "We walking along the waterfront."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro3:r3",
+              "text": "We is walking along the waterfront."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-28:intro3:r1",
+              "text": "We are walking along the waterfront."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro3:r2",
+              "text": "We walking along the waterfront."
+            },
+            {
+              "responseId": "en:lesson-10:session-28:intro3:r3",
+              "text": "We is walking along the waterfront."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "db59491ba7e3f8238571a7f7e2dc5d4137495b63970302e21bf3cf27217ddd64"
+}

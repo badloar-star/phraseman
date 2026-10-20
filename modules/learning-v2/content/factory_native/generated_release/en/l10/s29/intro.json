@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "I usually go to bed before midnight; The countdown is starting; I can hear a chime",
+    "uk": "I usually go to bed before midnight; The countdown is starting; I can hear a chime"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "До полуночи",
+        "uk": "До півночі"
+      },
+      "bodyByLocale": {
+        "ru": "Midnight — «полночь», двенадцать часов ночи. I usually go to bed before midnight — «Я обычно ложусь спать до полуночи». Usually указывает на привычку, поэтому используем Present Simple. Before midnight — до полуночи; at midnight — ровно в полночь.",
+        "uk": "Midnight — «північ», дванадцята година ночі. I usually go to bed before midnight — «Я зазвичай лягаю спати до півночі». Usually вказує на звичку, тому використовуємо Present Simple. Before midnight — до півночі; at midnight — рівно опівночі."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-29:intro1:r1",
+              "text": "I usually go to bed before midnight."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro1:r2",
+              "text": "I usually goes to bed before midnight."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro1:r3",
+              "text": "I usually going to bed before midnight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-29:intro1:r1",
+              "text": "I usually go to bed before midnight."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro1:r2",
+              "text": "I usually goes to bed before midnight."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro1:r3",
+              "text": "I usually going to bed before midnight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Звон часов",
+        "uk": "Дзвін годинника"
+      },
+      "bodyByLocale": {
+        "ru": "Chime — «мелодичный звон», например звук часов или колокольчика. На праздничной площади вы слышите часы: I can hear a chime — «Я слышу мелодичный звон». После can нужна hear. Хотя звук слышен сейчас, не нужно автоматически ставить Continuous.",
+        "uk": "Chime — «мелодійний дзвін», наприклад звук годинника або дзвіночка. На святковій площі ви чуєте годинник: I can hear a chime — «Я чую мелодійний дзвін». Після can потрібна hear. Хоча звук чути зараз, не потрібно автоматично ставити Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-29:intro2:r1",
+              "text": "I can hear a chime."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro2:r2",
+              "text": "I can hears a chime."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro2:r3",
+              "text": "I can hearing a chime."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-29:intro2:r1",
+              "text": "I can hear a chime."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro2:r2",
+              "text": "I can hears a chime."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro2:r3",
+              "text": "I can hearing a chime."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Начинается обратный отсчёт",
+        "uk": "Починається зворотний відлік"
+      },
+      "bodyByLocale": {
+        "ru": "Countdown — «обратный отсчёт». На экране появляются последние секунды до полуночи. The countdown is starting — «Обратный отсчёт начинается». Для события, начинающегося сейчас, используем is + starting. Слово midnight называет момент времени; грамматическую форму выбираем по смыслу происходящего.",
+        "uk": "Countdown — «зворотний відлік». На екрані з’являються останні секунди до півночі. The countdown is starting — «Зворотний відлік починається». Для події, що починається зараз, використовуємо is + starting. Слово midnight називає момент часу; граматичну форму обираємо за змістом того, що відбувається."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-29:intro3:r1",
+              "text": "The countdown is starting."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro3:r2",
+              "text": "The countdown starting."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro3:r3",
+              "text": "The countdown are starting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-29:intro3:r1",
+              "text": "The countdown is starting."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro3:r2",
+              "text": "The countdown starting."
+            },
+            {
+              "responseId": "en:lesson-10:session-29:intro3:r3",
+              "text": "The countdown are starting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "853527fd856dadf908fe54048ec9ebdc07bb8b81e6bf0e109a3c0dd54f3127ab"
+}

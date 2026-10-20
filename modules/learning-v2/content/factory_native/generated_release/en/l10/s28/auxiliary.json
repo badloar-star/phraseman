@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-28:intro1:r2": {
+          "ru": "С we нужна walk без s.",
+          "uk": "З we потрібна walk без s."
+        },
+        "en:lesson-10:session-28:intro1:r3": {
+          "ru": "Говорим at dusk, не on dusk.",
+          "uk": "Кажемо at dusk, не on dusk."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-28:intro2:r2": {
+          "ru": "Fade → fading, без e.",
+          "uk": "Fade → fading, без e."
+        },
+        "en:lesson-10:session-28:intro2:r3": {
+          "ru": "Перед fading нужен is.",
+          "uk": "Перед fading потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-28:intro3:r2": {
+          "ru": "Перед walking нужно are.",
+          "uk": "Перед walking потрібне are."
+        },
+        "en:lesson-10:session-28:intro3:r3": {
+          "ru": "С we нужно are.",
+          "uk": "З we потрібне are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "67f5c6735e187849c7578ef0c94c13bbfc36667ac599e36ccbac698df81654b1"
+}

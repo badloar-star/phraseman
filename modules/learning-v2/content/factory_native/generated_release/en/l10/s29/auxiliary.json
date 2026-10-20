@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-29:intro1:r2": {
+          "ru": "С I нужна go без s.",
+          "uk": "З I потрібна go без s."
+        },
+        "en:lesson-10:session-29:intro1:r3": {
+          "ru": "Для этой привычки нужна go.",
+          "uk": "Для цієї звички потрібна go."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-29:intro2:r2": {
+          "ru": "После can нужна hear без s.",
+          "uk": "Після can потрібна hear без s."
+        },
+        "en:lesson-10:session-29:intro2:r3": {
+          "ru": "После can нужна базовая форма hear.",
+          "uk": "Після can потрібна початкова форма hear."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-29:intro3:r2": {
+          "ru": "Перед starting нужен is.",
+          "uk": "Перед starting потрібне is."
+        },
+        "en:lesson-10:session-29:intro3:r3": {
+          "ru": "Countdown здесь единственное число: is.",
+          "uk": "Countdown тут однина: is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5115f88d6adeb765ba7cde129a4fc0abed9fe066a5dd26688aa3890f5882b084"
+}

@@ -3724,4 +3724,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We usually watch the sunrise here; We are walking along the ridge; I can see the headland","uk":"We usually watch the sunrise here; We are walking along the ridge; I can see the headland"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 28,
+    sourceFingerprint: "1f6c15299bd45f39d8ced166a1b4d626576dc81f0d7944d9de0f741f67fe9afe",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We usually walk at dusk; The afterglow is fading; We are walking along the waterfront","uk":"We usually walk at dusk; The afterglow is fading; We are walking along the waterfront"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 29,
+    sourceFingerprint: "84afdbe6ec8ebfc334d58d47647764944e3f1872cb4255a608f8a1765e98fc51",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I usually go to bed before midnight; The countdown is starting; I can hear a chime","uk":"I usually go to bed before midnight; The countdown is starting; I can hear a chime"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

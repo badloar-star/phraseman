@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-36:intro1:r2": {
+          "ru": "С we нужна check без s.",
+          "uk": "З we потрібна check без s."
+        },
+        "en:lesson-10:session-36:intro1:r3": {
+          "ru": "Для привычки здесь нужна check.",
+          "uk": "Для звички тут потрібна check."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-36:intro2:r2": {
+          "ru": "Нужен am перед checking.",
+          "uk": "Потрібне am перед checking."
+        },
+        "en:lesson-10:session-36:intro2:r3": {
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-36:intro3:r2": {
+          "ru": "С I нужна understand без s.",
+          "uk": "З I потрібна understand без s."
+        },
+        "en:lesson-10:session-36:intro3:r3": {
+          "ru": "Am understand неверно; нужна understand.",
+          "uk": "Am understand неправильно; потрібна understand."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "de24599e12eb7cf2494a2283e455b33dbaca09830b192c34f64ecbda6234e9d4"
+}

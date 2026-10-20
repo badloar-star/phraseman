@@ -3773,4 +3773,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The ceremony is starting now; We come here every year; She deserves a commendation","uk":"The ceremony is starting now; We come here every year; She deserves a commendation"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 35,
+    sourceFingerprint: "cd54f38a0827c7b7c48b1ea9275accff94d22e25a8246ffbfc142b47329bafd0",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We meet here every year; I am making a scrapbook; We are celebrating the jubilee","uk":"We meet here every year; I am making a scrapbook; We are celebrating the jubilee"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 36,
+    sourceFingerprint: "556e727cdd70bbdac3b6341301154246f0fc4410615864da36a5b0737c0a57fe",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We check the report every day; I am checking the submission; The handover is tomorrow","uk":"We check the report every day; I am checking the submission; The handover is tomorrow"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 37,
+    sourceFingerprint: "2ef80aeb3b546630970a8cbebfd9f0a97dfa1e5da81cb0730691005ed2de85f2",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"This semester is busy; I am reading the syllabus; I usually study in the library","uk":"This semester is busy; I am reading the syllabus; I usually study in the library"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

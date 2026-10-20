@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-35:word:keepsake",
+    "correctText": "keepsake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i01",
+    "correctText": "This badge is a keepsake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i02",
+    "correctText": "I keep this photo as a keepsake.",
+    "correctResponseId": "en:lesson-10:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i03",
+    "correctText": "meet",
+    "correctResponseId": "en:lesson-10:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:word:milestone",
+    "correctText": "milestone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i04",
+    "correctText": "Fifty years is a milestone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i05",
+    "correctText": "This is an important milestone.",
+    "correctResponseId": "en:lesson-10:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:word:scrapbook",
+    "correctText": "scrapbook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i07",
+    "correctText": "I am making a scrapbook.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i08",
+    "correctText": "The scrapbook is on the table.",
+    "correctResponseId": "en:lesson-10:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i09",
+    "correctText": "making",
+    "correctResponseId": "en:lesson-10:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:word:jubilee",
+    "correctText": "jubilee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i10",
+    "correctText": "We are celebrating the jubilee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i11",
+    "correctText": "The jubilee is in June.",
+    "correctResponseId": "en:lesson-10:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i12",
+    "correctText": "celebrating",
+    "correctResponseId": "en:lesson-10:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i13",
+    "correctText": "en:lesson-10:session-35:i13:p1=keepsake\nen:lesson-10:session-35:i13:p2=milestone\nen:lesson-10:session-35:i13:p3=scrapbook\nen:lesson-10:session-35:i13:p4=jubilee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i14",
+    "correctText": "I am making a scrapbook.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i15",
+    "correctText": "We meet here every year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i16",
+    "correctText": "This badge is a keepsake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-35:i17",
+    "correctText": "We are celebrating the jubilee.",
+    "correctResponseId": null
+  }
+]

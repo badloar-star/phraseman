@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-37:word:semester",
+    "correctText": "semester",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i01",
+    "correctText": "This semester is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i02",
+    "correctText": "The semester starts in September.",
+    "correctResponseId": "en:lesson-10:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:word:syllabus",
+    "correctText": "syllabus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i04",
+    "correctText": "I am reading the syllabus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i05",
+    "correctText": "The syllabus is on the website.",
+    "correctResponseId": "en:lesson-10:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i06",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-10:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:word:elective",
+    "correctText": "elective",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i07",
+    "correctText": "Photography is my elective.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i08",
+    "correctText": "This elective is interesting.",
+    "correctResponseId": "en:lesson-10:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i09",
+    "correctText": "study",
+    "correctResponseId": "en:lesson-10:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:word:coursework",
+    "correctText": "coursework",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i10",
+    "correctText": "I am doing my coursework.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i11",
+    "correctText": "My coursework is almost finished.",
+    "correctResponseId": "en:lesson-10:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i13",
+    "correctText": "en:lesson-10:session-37:i13:p1=semester\nen:lesson-10:session-37:i13:p2=syllabus\nen:lesson-10:session-37:i13:p3=elective\nen:lesson-10:session-37:i13:p4=coursework",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i14",
+    "correctText": "I am reading the syllabus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i15",
+    "correctText": "I usually study in the library.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i16",
+    "correctText": "Photography is my elective.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-37:i17",
+    "correctText": "I am doing my coursework.",
+    "correctResponseId": null
+  }
+]

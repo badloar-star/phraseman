@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "This semester is busy; I am reading the syllabus; I usually study in the library",
+    "uk": "This semester is busy; I am reading the syllabus; I usually study in the library"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учебный период",
+        "uk": "Навчальний період"
+      },
+      "bodyByLocale": {
+        "ru": "Semester — «семестр», одна из частей учебного года, обычно одна из двух. В этом семестре у вас много занятий: This semester is busy — «Этот семестр насыщенный». Is описывает, какой этот период. Не каждое предложение о текущем периоде требует Continuous.",
+        "uk": "Semester — «семестр», одна з частин навчального року, зазвичай одна з двох. Цього семестру у вас багато занять: This semester is busy — «Цей семестр насичений». Is описує, який цей період. Не кожне речення про поточний період потребує Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-37:intro1:r1",
+              "text": "This semester is busy."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro1:r2",
+              "text": "This semester are busy."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro1:r3",
+              "text": "This semester busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-37:intro1:r1",
+              "text": "This semester is busy."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro1:r2",
+              "text": "This semester are busy."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro1:r3",
+              "text": "This semester busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Читаем программу",
+        "uk": "Читаємо програму"
+      },
+      "bodyByLocale": {
+        "ru": "Syllabus — «программа курса»: перечень тем и требований. Вы сейчас открыли её: I am reading the syllabus — «Я читаю программу курса». Действие происходит сейчас: am + reading.",
+        "uk": "Syllabus — «програма курсу»: перелік тем і вимог. Ви зараз відкрили її: I am reading the syllabus — «Я читаю програму курсу». Дія відбувається зараз: am + reading."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-37:intro2:r1",
+              "text": "I am reading the syllabus."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro2:r2",
+              "text": "I reading the syllabus."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro2:r3",
+              "text": "I is reading the syllabus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-37:intro2:r1",
+              "text": "I am reading the syllabus."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro2:r2",
+              "text": "I reading the syllabus."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro2:r3",
+              "text": "I is reading the syllabus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обычное место для учёбы",
+        "uk": "Звичне місце для навчання"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обычно занимаетесь в библиотеке: I usually study in the library — «Я обычно занимаюсь в библиотеке». Для привычки используем Present Simple. Usually ставим перед смысловым глаголом study. Сегодня вы работаете дома: I am studying at home today.",
+        "uk": "Ви зазвичай навчаєтеся в бібліотеці: I usually study in the library — «Я зазвичай навчаюся в бібліотеці». Для звички використовуємо Present Simple. Usually ставимо перед смисловим дієсловом study. Сьогодні ви працюєте вдома: I am studying at home today."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-37:intro3:r1",
+              "text": "I usually study in the library."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro3:r2",
+              "text": "I usually studies in the library."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro3:r3",
+              "text": "I usually studying in the library."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-37:intro3:r1",
+              "text": "I usually study in the library."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro3:r2",
+              "text": "I usually studies in the library."
+            },
+            {
+              "responseId": "en:lesson-10:session-37:intro3:r3",
+              "text": "I usually studying in the library."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bced34646e002ab1e2f3d8e61826d487e10fbdb7d0f20027a13ae4b926cda6cb"
+}

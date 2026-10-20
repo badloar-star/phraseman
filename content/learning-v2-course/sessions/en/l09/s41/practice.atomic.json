@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-41:word:whirl",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — whirl",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:word:whirl:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — whirl",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:word:whirl:audio",
+            "transcript": "whirl"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:word:whirl:r1",
+              "targetText": "whirl",
+              "meaningByLocale": {
+                "ru": "«кружиться». Leaves whirl in the wind. — «Листья кружатся на ветру». Быстрое движение по кругу; форма с -ing — whirling.",
+                "uk": "«кружляти». Leaves whirl in the wind. — «Листя кружляє на вітрі». Швидкий рух по колу; форма з -ing — whirling."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "whirl",
+            "definitionByLocale": {
+              "ru": "«кружиться». Leaves whirl in the wind. — «Листья кружатся на ветру». Быстрое движение по кругу; форма с -ing — whirling.",
+              "uk": "«кружляти». Leaves whirl in the wind. — «Листя кружляє на вітрі». Швидкий рух по колу; форма з -ing — whirling."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i01:r1",
+            "text": "Leaves whirl in the wind."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i01:r2",
+            "text": "Leaves fall in the wind."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i01:r3",
+            "text": "Leaves are whirling in the wind."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i01:audio",
+            "transcript": "Leaves whirl in the wind."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:i01:r1",
+              "targetText": "Leaves whirl in the wind.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i01:r2",
+              "targetText": "Leaves fall in the wind.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i01:r3",
+              "targetText": "Leaves are whirling in the wind.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Leaves whirl in the wind.",
+                "uk": "У записі звучить Leaves whirl in the wind."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Leaves whirl in the wind.",
+                "uk": "У записі звучить Leaves whirl in the wind."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишите листья, которые кружатся прямо сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишите листья, которые кружатся прямо сейчас",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The leaves are whirling.",
+          "localizedMeaning": {
+            "ru": "Опишите листья, которые кружатся прямо сейчас",
+            "uk": "Опишіть листя, що кружляє просто зараз"
+          },
+          "orderedTokens": [
+            "The",
+            "leaves",
+            "are",
+            "whirling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после are для движения сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i03:r1",
+            "text": "whirling"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i03:r2",
+            "text": "whirl"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i03:r3",
+            "text": "whirls"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после are для движения сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после are для движения сейчас",
+            "uk": "Виберіть форму після are для руху зараз"
+          },
+          "gappedTargetPhrase": "The leaves are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-41:i03:r1",
+              "text": "whirling"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i03:r2",
+              "text": "whirl"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i03:r3",
+              "text": "whirls"
+            }
+          ],
+          "testedDimension": "Выберите форму после are для движения сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после are для движения сейчас",
+              "feedbackByLocale": {
+                "ru": "После are для движения сейчас нужна форма whirling.",
+                "uk": "Після are для руху зараз потрібна форма whirling."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после are для движения сейчас",
+              "feedbackByLocale": {
+                "ru": "Whirls не подходит после are.",
+                "uk": "Whirls не підходить після are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i04:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i04:audio",
+            "transcript": "Are the leaves whirling?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are the leaves whirling?",
+          "orderedTokens": [
+            "Are",
+            "the",
+            "leaves",
+            "whirling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:word:carousel",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — carousel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:word:carousel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — carousel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:word:carousel:audio",
+            "transcript": "carousel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:word:carousel:r1",
+              "targetText": "carousel",
+              "meaningByLocale": {
+                "ru": "«карусель». I am near the carousel. — «Я рядом с каруселью». Здесь аттракцион на ярмарке.",
+                "uk": "«карусель». I am near the carousel. — «Я біля каруселі». Тут атракціон на ярмарку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carousel",
+            "definitionByLocale": {
+              "ru": "«карусель». I am near the carousel. — «Я рядом с каруселью». Здесь аттракцион на ярмарке.",
+              "uk": "«карусель». I am near the carousel. — «Я біля каруселі». Тут атракціон на ярмарку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет вас на ярмарке. Скажите, что вы рядом с каруселью",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет вас на ярмарке. Скажите, что вы рядом с каруселью",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am near the carousel.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет вас на ярмарке. Скажите, что вы рядом с каруселью",
+            "uk": "Подруга шукає вас на ярмарку. Скажіть, що ви біля каруселі"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "near",
+            "the",
+            "carousel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i06:r1",
+            "text": "The carousel is not moving."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i06:r2",
+            "text": "The carousel is moving."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i06:r3",
+            "text": "I am near the carousel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i06:audio",
+            "transcript": "The carousel is not moving."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:i06:r1",
+              "targetText": "The carousel is not moving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i06:r2",
+              "targetText": "The carousel is moving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i06:r3",
+              "targetText": "I am near the carousel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The carousel is not moving.",
+                "uk": "У записі звучить The carousel is not moving."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The carousel is not moving.",
+                "uk": "У записі звучить The carousel is not moving."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы стоите около карусели. Выберите пропущенную форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i07:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i07:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите около карусели. Выберите пропущенную форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы стоите около карусели. Выберите пропущенную форму",
+            "uk": "Ви стоїте біля каруселі. Виберіть пропущену форму"
+          },
+          "gappedTargetPhrase": "I ___ near the carousel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-41:i07:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i07:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i07:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы стоите около карусели. Выберите пропущенную форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i07:r2",
+              "correct": false,
+              "testedDimension": "Вы стоите около карусели. Выберите пропущенную форму",
+              "feedbackByLocale": {
+                "ru": "С I используем am, не is.",
+                "uk": "З I використовуємо am, не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i07:r3",
+              "correct": false,
+              "testedDimension": "Вы стоите около карусели. Выберите пропущенную форму",
+              "feedbackByLocale": {
+                "ru": "Для I здесь нужно am, не are.",
+                "uk": "Для I тут потрібне am, не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:word:stream",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:word:stream:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:word:stream:audio",
+            "transcript": "stream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:word:stream:r1",
+              "targetText": "stream",
+              "meaningByLocale": {
+                "ru": "«ручей». We are near the stream. — «Мы рядом с ручьём». Небольшой естественный водный поток; здесь не интернет-трансляция.",
+                "uk": "«струмок». We are near the stream. — «Ми біля струмка». Невеликий природний водний потік; тут не інтернет-трансляція."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stream",
+            "definitionByLocale": {
+              "ru": "«ручей». We are near the stream. — «Мы рядом с ручьём». Небольшой естественный водный поток; здесь не интернет-трансляция.",
+              "uk": "«струмок». We are near the stream. — «Ми біля струмка». Невеликий природний водний потік; тут не інтернет-трансляція."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другом остановились у ручья. Скажите, где вы оба",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом остановились у ручья. Скажите, где вы оба",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are near the stream.",
+          "localizedMeaning": {
+            "ru": "Вы с другом остановились у ручья. Скажите, где вы оба",
+            "uk": "Ви з другом зупинилися біля струмка. Скажіть, де ви обоє"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "near",
+            "the",
+            "stream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i09:r1",
+            "text": "The leaves are in the stream."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i09:r2",
+            "text": "The leaves are near the stream."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i09:r3",
+            "text": "We are near the stream."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i09:audio",
+            "transcript": "The leaves are in the stream."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:i09:r1",
+              "targetText": "The leaves are in the stream.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i09:r2",
+              "targetText": "The leaves are near the stream.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i09:r3",
+              "targetText": "We are near the stream.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The leaves are in the stream.",
+                "uk": "У записі звучить The leaves are in the stream."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The leaves are in the stream.",
+                "uk": "У записі звучить The leaves are in the stream."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг собирается бросить бумагу в ручей. Попросите не делать этого; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i10:audio"
+        ],
+        "accessibilityLabel": "Друг собирается бросить бумагу в ручей. Попросите не делать этого; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i10:audio",
+            "transcript": "Please don't throw paper in the stream."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't throw paper in the stream.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:word:eddy",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — eddy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:word:eddy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — eddy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:word:eddy:audio",
+            "transcript": "eddy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:word:eddy:r1",
+              "targetText": "eddy",
+              "meaningByLocale": {
+                "ru": "«небольшой водоворот». This is an eddy. — «Это небольшой водоворот». Круговое течение, например за камнем в ручье.",
+                "uk": "«невеликий вир». This is an eddy. — «Це невеликий вир». Кругова течія, наприклад за каменем у струмку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eddy",
+            "definitionByLocale": {
+              "ru": "«небольшой водоворот». This is an eddy. — «Это небольшой водоворот». Круговое течение, например за камнем в ручье.",
+              "uk": "«невеликий вир». This is an eddy. — «Це невеликий вир». Кругова течія, наприклад за каменем у струмку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ребёнок спрашивает о круговом течении за камнем. Назовите явление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ребёнок спрашивает о круговом течении за камнем. Назовите явление",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is an eddy.",
+          "localizedMeaning": {
+            "ru": "Ребёнок спрашивает о круговом течении за камнем. Назовите явление",
+            "uk": "Дитина запитує про кругову течію за каменем. Назвіть явище"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "an",
+            "eddy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите артикль перед eddy",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i12:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите артикль перед eddy",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед eddy",
+            "uk": "Виберіть артикль перед eddy"
+          },
+          "gappedTargetPhrase": "This is ___ eddy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-41:i12:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите артикль перед eddy",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед eddy",
+              "feedbackByLocale": {
+                "ru": "Перед гласным звуком в eddy нужен an.",
+                "uk": "Перед голосним звуком в eddy потрібне an."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед eddy",
+              "feedbackByLocale": {
+                "ru": "Are — глагол, не артикль перед eddy.",
+                "uk": "Are — дієслово, не артикль перед eddy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i13:r1",
+            "text": "The leaves are whirling in the eddy."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i13:r2",
+            "text": "The leaves are not whirling in the eddy."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i13:r3",
+            "text": "The leaves are near the stream."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i13:audio",
+            "transcript": "The leaves are whirling in the eddy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:i13:r1",
+              "targetText": "The leaves are whirling in the eddy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i13:r2",
+              "targetText": "The leaves are not whirling in the eddy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i13:r3",
+              "targetText": "The leaves are near the stream.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i13:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The leaves are whirling in the eddy.",
+                "uk": "У записі звучить The leaves are whirling in the eddy."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i13:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The leaves are whirling in the eddy.",
+                "uk": "У записі звучить The leaves are whirling in the eddy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с их значениями в этом занятии",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с их значениями в этом занятии",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-41:i14:p1",
+              "target": "whirl",
+              "meaningByLocale": {
+                "ru": "кружиться",
+                "uk": "кружляти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-41:i14:p2",
+              "target": "carousel",
+              "meaningByLocale": {
+                "ru": "карусель",
+                "uk": "карусель"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-41:i14:p3",
+              "target": "stream",
+              "meaningByLocale": {
+                "ru": "ручей",
+                "uk": "струмок"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-41:i14:p4",
+              "target": "eddy",
+              "meaningByLocale": {
+                "ru": "небольшой водоворот",
+                "uk": "невеликий вир"
+              }
+            }
+          ],
+          "leftColumn": [
+            "whirl",
+            "carousel",
+            "stream",
+            "eddy"
+          ],
+          "rightColumn": [
+            "кружиться",
+            "карусель",
+            "ручей",
+            "небольшой водоворот"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ветер стих, листья лежат неподвижно. Скажите, что они не кружатся",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ветер стих, листья лежат неподвижно. Скажите, что они не кружатся",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The leaves are not whirling.",
+          "localizedMeaning": {
+            "ru": "Ветер стих, листья лежат неподвижно. Скажите, что они не кружатся",
+            "uk": "Вітер стих, листя лежить нерухомо. Скажіть, що воно не кружляє"
+          },
+          "orderedTokens": [
+            "The",
+            "leaves",
+            "are",
+            "not",
+            "whirling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В просьбе не бросать бумагу выберите форму после don’t",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i16:r1",
+            "text": "throw"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i16:r2",
+            "text": "throwing"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i16:r3",
+            "text": "throws"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В просьбе не бросать бумагу выберите форму после don’t",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В просьбе не бросать бумагу выберите форму после don’t",
+            "uk": "У проханні не кидати папір виберіть форму після don’t"
+          },
+          "gappedTargetPhrase": "Please don't ___ paper in the stream.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-41:i16:r1",
+              "text": "throw"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i16:r2",
+              "text": "throwing"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i16:r3",
+              "text": "throws"
+            }
+          ],
+          "testedDimension": "В просьбе не бросать бумагу выберите форму после don’t",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i16:r2",
+              "correct": false,
+              "testedDimension": "В просьбе не бросать бумагу выберите форму после don’t",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна исходная форма throw.",
+                "uk": "Після don’t потрібна початкова форма throw."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i16:r3",
+              "correct": false,
+              "testedDimension": "В просьбе не бросать бумагу выберите форму после don’t",
+              "feedbackByLocale": {
+                "ru": "После don’t в просьбе не добавляем -s.",
+                "uk": "Після don’t у проханні не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На фотографии с прогулки друг показывает круговое течение за камнем и спрашивает, что это. Назовите его: «Это небольшой водоворот»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "На фотографии с прогулки друг показывает круговое течение за камнем и спрашивает, что это. Назовите его: «Это небольшой водоворот»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i17:audio",
+            "transcript": "This is an eddy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is an eddy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-41:word:whirl",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — whirl",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:word:whirl:audio"
+        ],
+        "accessibilityLabel": "Картка слова — whirl",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:word:whirl:audio",
+            "transcript": "whirl"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:word:whirl:r1",
+              "targetText": "whirl",
+              "meaningByLocale": {
+                "ru": "«кружиться». Leaves whirl in the wind. — «Листья кружатся на ветру». Быстрое движение по кругу; форма с -ing — whirling.",
+                "uk": "«кружляти». Leaves whirl in the wind. — «Листя кружляє на вітрі». Швидкий рух по колу; форма з -ing — whirling."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "whirl",
+            "definitionByLocale": {
+              "ru": "«кружиться». Leaves whirl in the wind. — «Листья кружатся на ветру». Быстрое движение по кругу; форма с -ing — whirling.",
+              "uk": "«кружляти». Leaves whirl in the wind. — «Листя кружляє на вітрі». Швидкий рух по колу; форма з -ing — whirling."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i01:r1",
+            "text": "Leaves whirl in the wind."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i01:r2",
+            "text": "Leaves fall in the wind."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i01:r3",
+            "text": "Leaves are whirling in the wind."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i01:audio",
+            "transcript": "Leaves whirl in the wind."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:i01:r1",
+              "targetText": "Leaves whirl in the wind.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i01:r2",
+              "targetText": "Leaves fall in the wind.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i01:r3",
+              "targetText": "Leaves are whirling in the wind.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Leaves whirl in the wind.",
+                "uk": "У записі звучить Leaves whirl in the wind."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Leaves whirl in the wind.",
+                "uk": "У записі звучить Leaves whirl in the wind."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишіть листя, що кружляє просто зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишіть листя, що кружляє просто зараз",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The leaves are whirling.",
+          "localizedMeaning": {
+            "ru": "Опишите листья, которые кружатся прямо сейчас",
+            "uk": "Опишіть листя, що кружляє просто зараз"
+          },
+          "orderedTokens": [
+            "The",
+            "leaves",
+            "are",
+            "whirling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після are для руху зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i03:r1",
+            "text": "whirling"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i03:r2",
+            "text": "whirl"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i03:r3",
+            "text": "whirls"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після are для руху зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после are для движения сейчас",
+            "uk": "Виберіть форму після are для руху зараз"
+          },
+          "gappedTargetPhrase": "The leaves are ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-41:i03:r1",
+              "text": "whirling"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i03:r2",
+              "text": "whirl"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i03:r3",
+              "text": "whirls"
+            }
+          ],
+          "testedDimension": "Виберіть форму після are для руху зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після are для руху зараз",
+              "feedbackByLocale": {
+                "ru": "После are для движения сейчас нужна форма whirling.",
+                "uk": "Після are для руху зараз потрібна форма whirling."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після are для руху зараз",
+              "feedbackByLocale": {
+                "ru": "Whirls не подходит после are.",
+                "uk": "Whirls не підходить після are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i04:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i04:audio",
+            "transcript": "Are the leaves whirling?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are the leaves whirling?",
+          "orderedTokens": [
+            "Are",
+            "the",
+            "leaves",
+            "whirling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:word:carousel",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — carousel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:word:carousel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — carousel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:word:carousel:audio",
+            "transcript": "carousel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:word:carousel:r1",
+              "targetText": "carousel",
+              "meaningByLocale": {
+                "ru": "«карусель». I am near the carousel. — «Я рядом с каруселью». Здесь аттракцион на ярмарке.",
+                "uk": "«карусель». I am near the carousel. — «Я біля каруселі». Тут атракціон на ярмарку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carousel",
+            "definitionByLocale": {
+              "ru": "«карусель». I am near the carousel. — «Я рядом с каруселью». Здесь аттракцион на ярмарке.",
+              "uk": "«карусель». I am near the carousel. — «Я біля каруселі». Тут атракціон на ярмарку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає вас на ярмарку. Скажіть, що ви біля каруселі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає вас на ярмарку. Скажіть, що ви біля каруселі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am near the carousel.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет вас на ярмарке. Скажите, что вы рядом с каруселью",
+            "uk": "Подруга шукає вас на ярмарку. Скажіть, що ви біля каруселі"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "near",
+            "the",
+            "carousel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i06:r1",
+            "text": "The carousel is not moving."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i06:r2",
+            "text": "The carousel is moving."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i06:r3",
+            "text": "I am near the carousel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i06:audio",
+            "transcript": "The carousel is not moving."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:i06:r1",
+              "targetText": "The carousel is not moving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i06:r2",
+              "targetText": "The carousel is moving.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i06:r3",
+              "targetText": "I am near the carousel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The carousel is not moving.",
+                "uk": "У записі звучить The carousel is not moving."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The carousel is not moving.",
+                "uk": "У записі звучить The carousel is not moving."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви стоїте біля каруселі. Виберіть пропущену форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i07:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i07:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля каруселі. Виберіть пропущену форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы стоите около карусели. Выберите пропущенную форму",
+            "uk": "Ви стоїте біля каруселі. Виберіть пропущену форму"
+          },
+          "gappedTargetPhrase": "I ___ near the carousel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-41:i07:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i07:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i07:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви стоїте біля каруселі. Виберіть пропущену форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i07:r2",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля каруселі. Виберіть пропущену форму",
+              "feedbackByLocale": {
+                "ru": "С I используем am, не is.",
+                "uk": "З I використовуємо am, не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i07:r3",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля каруселі. Виберіть пропущену форму",
+              "feedbackByLocale": {
+                "ru": "Для I здесь нужно am, не are.",
+                "uk": "Для I тут потрібне am, не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:word:stream",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:word:stream:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:word:stream:audio",
+            "transcript": "stream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:word:stream:r1",
+              "targetText": "stream",
+              "meaningByLocale": {
+                "ru": "«ручей». We are near the stream. — «Мы рядом с ручьём». Небольшой естественный водный поток; здесь не интернет-трансляция.",
+                "uk": "«струмок». We are near the stream. — «Ми біля струмка». Невеликий природний водний потік; тут не інтернет-трансляція."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stream",
+            "definitionByLocale": {
+              "ru": "«ручей». We are near the stream. — «Мы рядом с ручьём». Небольшой естественный водный поток; здесь не интернет-трансляция.",
+              "uk": "«струмок». We are near the stream. — «Ми біля струмка». Невеликий природний водний потік; тут не інтернет-трансляція."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з другом зупинилися біля струмка. Скажіть, де ви обоє",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом зупинилися біля струмка. Скажіть, де ви обоє",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are near the stream.",
+          "localizedMeaning": {
+            "ru": "Вы с другом остановились у ручья. Скажите, где вы оба",
+            "uk": "Ви з другом зупинилися біля струмка. Скажіть, де ви обоє"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "near",
+            "the",
+            "stream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i09:r1",
+            "text": "The leaves are in the stream."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i09:r2",
+            "text": "The leaves are near the stream."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i09:r3",
+            "text": "We are near the stream."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i09:audio",
+            "transcript": "The leaves are in the stream."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:i09:r1",
+              "targetText": "The leaves are in the stream.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i09:r2",
+              "targetText": "The leaves are near the stream.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i09:r3",
+              "targetText": "We are near the stream.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The leaves are in the stream.",
+                "uk": "У записі звучить The leaves are in the stream."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The leaves are in the stream.",
+                "uk": "У записі звучить The leaves are in the stream."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг збирається кинути папір у струмок. Попросіть не робити цього; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i10:audio"
+        ],
+        "accessibilityLabel": "Друг збирається кинути папір у струмок. Попросіть не робити цього; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i10:audio",
+            "transcript": "Please don't throw paper in the stream."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't throw paper in the stream.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:word:eddy",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — eddy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:word:eddy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — eddy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:word:eddy:audio",
+            "transcript": "eddy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:word:eddy:r1",
+              "targetText": "eddy",
+              "meaningByLocale": {
+                "ru": "«небольшой водоворот». This is an eddy. — «Это небольшой водоворот». Круговое течение, например за камнем в ручье.",
+                "uk": "«невеликий вир». This is an eddy. — «Це невеликий вир». Кругова течія, наприклад за каменем у струмку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eddy",
+            "definitionByLocale": {
+              "ru": "«небольшой водоворот». This is an eddy. — «Это небольшой водоворот». Круговое течение, например за камнем в ручье.",
+              "uk": "«невеликий вир». This is an eddy. — «Це невеликий вир». Кругова течія, наприклад за каменем у струмку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дитина запитує про кругову течію за каменем. Назвіть явище",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дитина запитує про кругову течію за каменем. Назвіть явище",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is an eddy.",
+          "localizedMeaning": {
+            "ru": "Ребёнок спрашивает о круговом течении за камнем. Назовите явление",
+            "uk": "Дитина запитує про кругову течію за каменем. Назвіть явище"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "an",
+            "eddy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть артикль перед eddy",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i12:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть артикль перед eddy",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед eddy",
+            "uk": "Виберіть артикль перед eddy"
+          },
+          "gappedTargetPhrase": "This is ___ eddy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-41:i12:r1",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i12:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть артикль перед eddy",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед eddy",
+              "feedbackByLocale": {
+                "ru": "Перед гласным звуком в eddy нужен an.",
+                "uk": "Перед голосним звуком в eddy потрібне an."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед eddy",
+              "feedbackByLocale": {
+                "ru": "Are — глагол, не артикль перед eddy.",
+                "uk": "Are — дієслово, не артикль перед eddy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i13:r1",
+            "text": "The leaves are whirling in the eddy."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i13:r2",
+            "text": "The leaves are not whirling in the eddy."
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i13:r3",
+            "text": "The leaves are near the stream."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i13:audio",
+            "transcript": "The leaves are whirling in the eddy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-41:i13:r1",
+              "targetText": "The leaves are whirling in the eddy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i13:r2",
+              "targetText": "The leaves are not whirling in the eddy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i13:r3",
+              "targetText": "The leaves are near the stream.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i13:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The leaves are whirling in the eddy.",
+                "uk": "У записі звучить The leaves are whirling in the eddy."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i13:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The leaves are whirling in the eddy.",
+                "uk": "У записі звучить The leaves are whirling in the eddy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова з їхніми значеннями в цьому занятті",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова з їхніми значеннями в цьому занятті",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-41:i14:p1",
+              "target": "whirl",
+              "meaningByLocale": {
+                "ru": "кружиться",
+                "uk": "кружляти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-41:i14:p2",
+              "target": "carousel",
+              "meaningByLocale": {
+                "ru": "карусель",
+                "uk": "карусель"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-41:i14:p3",
+              "target": "stream",
+              "meaningByLocale": {
+                "ru": "ручей",
+                "uk": "струмок"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-41:i14:p4",
+              "target": "eddy",
+              "meaningByLocale": {
+                "ru": "небольшой водоворот",
+                "uk": "невеликий вир"
+              }
+            }
+          ],
+          "leftColumn": [
+            "whirl",
+            "carousel",
+            "stream",
+            "eddy"
+          ],
+          "rightColumn": [
+            "кружляти",
+            "карусель",
+            "струмок",
+            "невеликий вир"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вітер стих, листя лежить нерухомо. Скажіть, що воно не кружляє",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вітер стих, листя лежить нерухомо. Скажіть, що воно не кружляє",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The leaves are not whirling.",
+          "localizedMeaning": {
+            "ru": "Ветер стих, листья лежат неподвижно. Скажите, что они не кружатся",
+            "uk": "Вітер стих, листя лежить нерухомо. Скажіть, що воно не кружляє"
+          },
+          "orderedTokens": [
+            "The",
+            "leaves",
+            "are",
+            "not",
+            "whirling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У проханні не кидати папір виберіть форму після don’t",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-41:i16:r1",
+            "text": "throw"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i16:r2",
+            "text": "throwing"
+          },
+          {
+            "responseId": "en:lesson-09:session-41:i16:r3",
+            "text": "throws"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У проханні не кидати папір виберіть форму після don’t",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В просьбе не бросать бумагу выберите форму после don’t",
+            "uk": "У проханні не кидати папір виберіть форму після don’t"
+          },
+          "gappedTargetPhrase": "Please don't ___ paper in the stream.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-41:i16:r1",
+              "text": "throw"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i16:r2",
+              "text": "throwing"
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i16:r3",
+              "text": "throws"
+            }
+          ],
+          "testedDimension": "У проханні не кидати папір виберіть форму після don’t",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-41:i16:r2",
+              "correct": false,
+              "testedDimension": "У проханні не кидати папір виберіть форму після don’t",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна исходная форма throw.",
+                "uk": "Після don’t потрібна початкова форма throw."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-41:i16:r3",
+              "correct": false,
+              "testedDimension": "У проханні не кидати папір виберіть форму після don’t",
+              "feedbackByLocale": {
+                "ru": "После don’t в просьбе не добавляем -s.",
+                "uk": "Після don’t у проханні не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На світлині з прогулянки друг показує кругову течію за каменем і запитує, що це. Назвіть її: «Це невеликий вир»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "На світлині з прогулянки друг показує кругову течію за каменем і запитує, що це. Назвіть її: «Це невеликий вир»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-41:i17:audio",
+            "transcript": "This is an eddy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is an eddy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-41:word:whirl",
+      "correctText": "whirl",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i01",
+      "correctText": "Leaves whirl in the wind.",
+      "correctResponseId": "en:lesson-09:session-41:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i02",
+      "correctText": "The leaves are whirling.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i03",
+      "correctText": "whirling",
+      "correctResponseId": "en:lesson-09:session-41:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i04",
+      "correctText": "Are the leaves whirling?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:word:carousel",
+      "correctText": "carousel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i05",
+      "correctText": "I am near the carousel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i06",
+      "correctText": "The carousel is not moving.",
+      "correctResponseId": "en:lesson-09:session-41:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i07",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-09:session-41:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:word:stream",
+      "correctText": "stream",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i08",
+      "correctText": "We are near the stream.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i09",
+      "correctText": "The leaves are in the stream.",
+      "correctResponseId": "en:lesson-09:session-41:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i10",
+      "correctText": "Please don't throw paper in the stream.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:word:eddy",
+      "correctText": "eddy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i11",
+      "correctText": "This is an eddy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i12",
+      "correctText": "an",
+      "correctResponseId": "en:lesson-09:session-41:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i13",
+      "correctText": "The leaves are whirling in the eddy.",
+      "correctResponseId": "en:lesson-09:session-41:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i14",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i15",
+      "correctText": "The leaves are not whirling.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i16",
+      "correctText": "throw",
+      "correctResponseId": "en:lesson-09:session-41:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-41:i17",
+      "correctText": "This is an eddy.",
+      "correctResponseId": null
+    }
+  ]
+}

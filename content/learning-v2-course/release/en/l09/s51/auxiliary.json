@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-51:intro1:r2": {
+          "ru": "Для действия сейчас с I нужно am.",
+          "uk": "Для дії зараз з I потрібне am."
+        },
+        "en:lesson-09:session-51:intro1:r3": {
+          "ru": "После am нужна форма peering.",
+          "uk": "Після am потрібна форма peering."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-51:intro2:r2": {
+          "ru": "С this для одной детали нужна форма is.",
+          "uk": "З this для однієї деталі потрібна форма is."
+        },
+        "en:lesson-09:session-51:intro2:r3": {
+          "ru": "В английской фразе здесь нужна связка is.",
+          "uk": "В англійській фразі тут потрібна зв’язка is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-51:intro3:r2": {
+          "ru": "После don’t нужна форма move.",
+          "uk": "Після don’t потрібна форма move."
+        },
+        "en:lesson-09:session-51:intro3:r3": {
+          "ru": "Для просьбы не двигать прибор нужен don’t.",
+          "uk": "Для прохання не рухати прилад потрібне don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "753b9f33f1f5888140688f958964e14f860c19b2717c7d154320d0ad9e58aacb"
+}

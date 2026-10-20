@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "I am peering through the telescope; This is the eyepiece; Please don’t move the telescope",
+    "uk": "I am peering through the telescope; This is the eyepiece; Please don’t move the telescope"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пытаюсь разглядеть детали",
+        "uk": "Намагаюся розгледіти деталі"
+      },
+      "bodyByLocale": {
+        "ru": "На вечерней экскурсии вы впервые смотрите в телескоп. Луну видно, но мелкие детали пока трудно различить. Друг спрашивает, чем вы заняты. I am peering through the telescope — «Я внимательно смотрю в телескоп, пытаясь разглядеть детали». Peer — внимательно смотреть, стараясь что-то разглядеть. В отличие от stare, здесь важна попытка увидеть яснее. Through означает, что вы смотрите через прибор.",
+        "uk": "На вечірній екскурсії ви вперше дивитеся в телескоп. Місяць видно, але дрібні деталі поки важко розрізнити. Друг запитує, чим ви зайняті. I am peering through the telescope — «Я уважно дивлюся в телескоп, намагаючись розгледіти деталі». Peer — уважно дивитися, намагаючись щось розгледіти. На відміну від stare, тут важлива спроба побачити чіткіше. Through означає, що ви дивитеся через прилад."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-51:intro1:r1",
+              "text": "I am peering through the telescope."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro1:r2",
+              "text": "I peering through the telescope."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro1:r3",
+              "text": "I am peer through the telescope."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-51:intro1:r1",
+              "text": "I am peering through the telescope."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro1:r2",
+              "text": "I peering through the telescope."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro1:r3",
+              "text": "I am peer through the telescope."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Куда смотреть",
+        "uk": "Куди дивитися"
+      },
+      "bodyByLocale": {
+        "ru": "У телескопа несколько выступающих деталей. Сестра не знает, к какой поднести глаз. Вы показываете ту часть, через которую смотрят. This is the eyepiece — «Это окуляр». Eyepiece — часть оптического прибора у глаза наблюдателя. The здесь указывает на окуляр именно этого телескопа.",
+        "uk": "У телескопа кілька деталей, що виступають. Сестра не знає, до якої піднести око. Ви показуєте ту частину, крізь яку дивляться. This is the eyepiece — «Це окуляр». Eyepiece — частина оптичного приладу біля ока спостерігача. The тут указує на окуляр саме цього телескопа."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-51:intro2:r1",
+              "text": "This is the eyepiece."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro2:r2",
+              "text": "This are the eyepiece."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro2:r3",
+              "text": "This the eyepiece."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-51:intro2:r1",
+              "text": "This is the eyepiece."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro2:r2",
+              "text": "This are the eyepiece."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro2:r3",
+              "text": "This the eyepiece."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не сбить положение прибора",
+        "uk": "Не збити положення приладу"
+      },
+      "bodyByLocale": {
+        "ru": "Телескоп уже направлен на Луну, и сестра смотрит в него. Друг собирается немного повернуть прибор. Попросите его оставить всё как есть: Please don’t move the telescope — «Пожалуйста, не двигай телескоп». После don’t нужна базовая форма move, а не moving.",
+        "uk": "Телескоп уже спрямований на Місяць, і сестра дивиться в нього. Друг збирається трохи повернути прилад. Попросіть його залишити все як є: Please don’t move the telescope — «Будь ласка, не рухай телескоп». Після don’t потрібна базова форма move, а не moving."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-51:intro3:r1",
+              "text": "Please don't move the telescope."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro3:r2",
+              "text": "Please don't moving the telescope."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro3:r3",
+              "text": "Please not move the telescope."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-51:intro3:r1",
+              "text": "Please don't move the telescope."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro3:r2",
+              "text": "Please don't moving the telescope."
+            },
+            {
+              "responseId": "en:lesson-09:session-51:intro3:r3",
+              "text": "Please not move the telescope."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8a08a265789ca05ef342dd165ab7a684976c9265f9bf432aad6021a3794a9e85"
+}

@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-51",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-51:word:peer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — peer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:word:peer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — peer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:word:peer:audio",
+            "transcript": "peer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:word:peer:r1",
+              "targetText": "peer",
+              "meaningByLocale": {
+                "ru": "«вглядываться». I peer through the window. — «Я всматриваюсь в окно». Смотреть внимательно, стараясь разглядеть; peer → peering.",
+                "uk": "«вдивлятися». I peer through the window. — «Я вдивляюся у вікно». Дивитися уважно, намагаючись розгледіти; peer → peering."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "peer",
+            "definitionByLocale": {
+              "ru": "«вглядываться». I peer through the window. — «Я всматриваюсь в окно». Смотреть внимательно, стараясь разглядеть; peer → peering.",
+              "uk": "«вдивлятися». I peer through the window. — «Я вдивляюся у вікно». Дивитися уважно, намагаючись розгледіти; peer → peering."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вечером вы обычно пытаетесь разглядеть, кто пришёл, через окно. Скажите: «Я всматриваюсь в окно»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вечером вы обычно пытаетесь разглядеть, кто пришёл, через окно. Скажите: «Я всматриваюсь в окно»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I peer through the window.",
+          "localizedMeaning": {
+            "ru": "Вечером вы обычно пытаетесь разглядеть, кто пришёл, через окно. Скажите: «Я всматриваюсь в окно»",
+            "uk": "Увечері ви зазвичай намагаєтеся розгледіти, хто прийшов, крізь вікно. Скажіть: «Я вдивляюся у вікно»"
+          },
+          "orderedTokens": [
+            "I",
+            "peer",
+            "through",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i02:r1",
+            "text": "She is peering through the window."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i02:r2",
+            "text": "She is looking at the door."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i02:r3",
+            "text": "She is not peering through the window."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i02:audio",
+            "transcript": "She is peering through the window."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:i02:r1",
+              "targetText": "She is peering through the window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i02:r2",
+              "targetText": "She is looking at the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i02:r3",
+              "targetText": "She is not peering through the window.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is peering through the window.",
+                "uk": "У записі звучить She is peering through the window."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is peering through the window.",
+                "uk": "У записі звучить She is peering through the window."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму peer для действия сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i03:r1",
+            "text": "peering"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i03:r2",
+            "text": "peer"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i03:r3",
+            "text": "peers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму peer для действия сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму peer для действия сейчас",
+            "uk": "Виберіть форму peer для дії зараз"
+          },
+          "gappedTargetPhrase": "She is ___ through the window.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-51:i03:r1",
+              "text": "peering"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i03:r2",
+              "text": "peer"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i03:r3",
+              "text": "peers"
+            }
+          ],
+          "testedDimension": "Выберите форму peer для действия сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму peer для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма peering.",
+                "uk": "Після is потрібна форма peering."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму peer для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "Здесь используем is peering, не peers.",
+                "uk": "Тут використовуємо is peering, не peers."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:word:telescope",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — telescope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:word:telescope:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — telescope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:word:telescope:audio",
+            "transcript": "telescope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:word:telescope:r1",
+              "targetText": "telescope",
+              "meaningByLocale": {
+                "ru": "«телескоп». I am peering through the telescope. — «Я внимательно смотрю в телескоп, пытаясь разглядеть детали». Прибор, через который наблюдают далёкие объекты, например Луну.",
+                "uk": "«телескоп». I am peering through the telescope. — «Я уважно дивлюся в телескоп, намагаючись розгледіти деталі». Прилад, крізь який спостерігають далекі об’єкти, наприклад Місяць."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "telescope",
+            "definitionByLocale": {
+              "ru": "«телескоп». I am peering through the telescope. — «Я внимательно смотрю в телескоп, пытаясь разглядеть детали». Прибор, через который наблюдают далёкие объекты, например Луну.",
+              "uk": "«телескоп». I am peering through the telescope. — «Я уважно дивлюся в телескоп, намагаючись розгледіти деталі». Прилад, крізь який спостерігають далекі об’єкти, наприклад Місяць."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, что вы делаете, пытаясь разглядеть Луну в приборе. Скажите, что внимательно смотрите в телескоп, пытаясь разглядеть детали",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, что вы делаете, пытаясь разглядеть Луну в приборе. Скажите, что внимательно смотрите в телескоп, пытаясь разглядеть детали",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am peering through the telescope.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, что вы делаете, пытаясь разглядеть Луну в приборе. Скажите, что внимательно смотрите в телескоп, пытаясь разглядеть детали",
+            "uk": "Друг запитує, що ви робите, намагаючись розгледіти Місяць у приладі. Скажіть, що уважно дивитеся в телескоп, намагаючись розгледіти деталі"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "peering",
+            "through",
+            "the",
+            "telescope"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i05:r1",
+            "text": "Are you peering through the telescope?"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i05:r2",
+            "text": "You are peering through the telescope."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i05:r3",
+            "text": "I am peering through the telescope."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i05:audio",
+            "transcript": "Are you peering through the telescope?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:i05:r1",
+              "targetText": "Are you peering through the telescope?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i05:r2",
+              "targetText": "You are peering through the telescope.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i05:r3",
+              "targetText": "I am peering through the telescope.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you peering through the telescope?",
+                "uk": "У записі звучить Are you peering through the telescope?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you peering through the telescope?",
+                "uk": "У записі звучить Are you peering through the telescope?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра смотрит на Луну, а друг хочет повернуть прибор. Попросите не двигать телескоп; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i06:audio"
+        ],
+        "accessibilityLabel": "Сестра смотрит на Луну, а друг хочет повернуть прибор. Попросите не двигать телескоп; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i06:audio",
+            "transcript": "Please don't move the telescope."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't move the telescope.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:word:eyepiece",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — eyepiece",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:word:eyepiece:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — eyepiece",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:word:eyepiece:audio",
+            "transcript": "eyepiece"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:word:eyepiece:r1",
+              "targetText": "eyepiece",
+              "meaningByLocale": {
+                "ru": "«окуляр». This is the eyepiece. — «Это окуляр». Часть оптического прибора, через которую смотрят, поднося к ней глаз.",
+                "uk": "«окуляр». This is the eyepiece. — «Це окуляр». Частина оптичного приладу, крізь яку дивляться, підносячи до неї око."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eyepiece",
+            "definitionByLocale": {
+              "ru": "«окуляр». This is the eyepiece. — «Это окуляр». Часть оптического прибора, через которую смотрят, поднося к ней глаз.",
+              "uk": "«окуляр». This is the eyepiece. — «Це окуляр». Частина оптичного приладу, крізь яку дивляться, підносячи до неї око."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра ищет часть телескопа, к которой нужно поднести глаз. Покажите: «Это окуляр»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра ищет часть телескопа, к которой нужно поднести глаз. Покажите: «Это окуляр»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is the eyepiece.",
+          "localizedMeaning": {
+            "ru": "Сестра ищет часть телескопа, к которой нужно поднести глаз. Покажите: «Это окуляр»",
+            "uk": "Сестра шукає частину телескопа, до якої потрібно піднести око. Покажіть: «Це окуляр»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "the",
+            "eyepiece"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i08:r1",
+            "text": "The eyepiece is small."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i08:r2",
+            "text": "The eyepiece is large."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i08:r3",
+            "text": "The telescope is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i08:audio",
+            "transcript": "The eyepiece is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:i08:r1",
+              "targetText": "The eyepiece is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i08:r2",
+              "targetText": "The eyepiece is large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i08:r3",
+              "targetText": "The telescope is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The eyepiece is small.",
+                "uk": "У записі звучить The eyepiece is small."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The eyepiece is small.",
+                "uk": "У записі звучить The eyepiece is small."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку для одного окуляра",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку для одного окуляра",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одного окуляра",
+            "uk": "Виберіть зв’язку для одного окуляра"
+          },
+          "gappedTargetPhrase": "The eyepiece ___ small.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-51:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку для одного окуляра",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку для одного окуляра",
+              "feedbackByLocale": {
+                "ru": "Один окуляр: is.",
+                "uk": "Один окуляр: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку для одного окуляра",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am вживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:word:observatory",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — observatory",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:word:observatory:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — observatory",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:word:observatory:audio",
+            "transcript": "observatory"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:word:observatory:r1",
+              "targetText": "observatory",
+              "meaningByLocale": {
+                "ru": "«обсерватория». We are at the observatory. — «Мы в обсерватории». Место, оборудованное для наблюдения за небом.",
+                "uk": "«обсерваторія». We are at the observatory. — «Ми в обсерваторії». Місце, обладнане для спостереження за небом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "observatory",
+            "definitionByLocale": {
+              "ru": "«обсерватория». We are at the observatory. — «Мы в обсерватории». Место, оборудованное для наблюдения за небом.",
+              "uk": "«обсерваторія». We are at the observatory. — «Ми в обсерваторії». Місце, обладнане для спостереження за небом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Папа звонит и спрашивает, где вы с сестрой проводите вечер. Скажите: «Мы в обсерватории»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Папа звонит и спрашивает, где вы с сестрой проводите вечер. Скажите: «Мы в обсерватории»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are at the observatory.",
+          "localizedMeaning": {
+            "ru": "Папа звонит и спрашивает, где вы с сестрой проводите вечер. Скажите: «Мы в обсерватории»",
+            "uk": "Тато телефонує й запитує, де ви із сестрою проводите вечір. Скажіть: «Ми в обсерваторії»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "at",
+            "the",
+            "observatory"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i11:r1",
+            "text": "The observatory is open."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i11:r2",
+            "text": "The observatory is closed."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i11:r3",
+            "text": "The window is open."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i11:audio",
+            "transcript": "The observatory is open."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:i11:r1",
+              "targetText": "The observatory is open.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i11:r2",
+              "targetText": "The observatory is closed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i11:r3",
+              "targetText": "The window is open.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The observatory is open.",
+                "uk": "У записі звучить The observatory is open."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The observatory is open.",
+                "uk": "У записі звучить The observatory is open."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму be для we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму be для we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму be для we",
+            "uk": "Виберіть форму be для we"
+          },
+          "gappedTargetPhrase": "We ___ at the observatory.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-51:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму be для we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму be для we",
+              "feedbackByLocale": {
+                "ru": "С we нужна форма are.",
+                "uk": "З we потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму be для we",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am вживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-51:i13:p1",
+              "target": "peer",
+              "meaningByLocale": {
+                "ru": "вглядываться",
+                "uk": "вдивлятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-51:i13:p2",
+              "target": "telescope",
+              "meaningByLocale": {
+                "ru": "телескоп",
+                "uk": "телескоп"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-51:i13:p3",
+              "target": "eyepiece",
+              "meaningByLocale": {
+                "ru": "окуляр",
+                "uk": "окуляр"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-51:i13:p4",
+              "target": "observatory",
+              "meaningByLocale": {
+                "ru": "обсерватория",
+                "uk": "обсерваторія"
+              }
+            }
+          ],
+          "leftColumn": [
+            "peer",
+            "telescope",
+            "eyepiece",
+            "observatory"
+          ],
+          "rightColumn": [
+            "вглядываться",
+            "телескоп",
+            "окуляр",
+            "обсерватория"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос о наблюдении сестры сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос о наблюдении сестры сейчас",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i14:audio",
+            "transcript": "Is she peering through the telescope?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is she peering through the telescope?",
+          "orderedTokens": [
+            "Is",
+            "she",
+            "peering",
+            "through",
+            "the",
+            "telescope"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после don’t в просьбе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i15:r1",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i15:r2",
+            "text": "moving"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i15:r3",
+            "text": "moves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после don’t в просьбе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ the telescope.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-51:i15:r1",
+              "text": "move"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i15:r2",
+              "text": "moving"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i15:r3",
+              "text": "moves"
+            }
+          ],
+          "testedDimension": "Выберите форму после don’t в просьбе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i15:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна форма move.",
+                "uk": "Після don’t потрібна форма move."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i15:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "После don’t в просьбе не добавляем -s.",
+                "uk": "Після don’t у проханні не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша очередь смотреть в телескоп ещё не подошла. Друг думает, что вы уже наблюдаете. Скажите: «Я не смотрю в телескоп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша очередь смотреть в телескоп ещё не подошла. Друг думает, что вы уже наблюдаете. Скажите: «Я не смотрю в телескоп»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am not looking through the telescope.",
+          "localizedMeaning": {
+            "ru": "Ваша очередь смотреть в телескоп ещё не подошла. Друг думает, что вы уже наблюдаете. Скажите: «Я не смотрю в телескоп»",
+            "uk": "Ваша черга дивитися в телескоп ще не настала. Друг думає, що ви вже спостерігаєте. Скажіть: «Я не дивлюся в телескоп»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "looking",
+            "through",
+            "the",
+            "telescope"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На экскурсии вы стараетесь разглядеть мелкие детали на Луне. Сестра спрашивает, чем вы заняты. Скажите, что сейчас внимательно смотрите в телескоп, пытаясь разглядеть детали; используйте peer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "На экскурсии вы стараетесь разглядеть мелкие детали на Луне. Сестра спрашивает, чем вы заняты. Скажите, что сейчас внимательно смотрите в телескоп, пытаясь разглядеть детали; используйте peer",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i17:audio",
+            "transcript": "I am peering through the telescope."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am peering through the telescope.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-51:word:peer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — peer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:word:peer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — peer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:word:peer:audio",
+            "transcript": "peer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:word:peer:r1",
+              "targetText": "peer",
+              "meaningByLocale": {
+                "ru": "«вглядываться». I peer through the window. — «Я всматриваюсь в окно». Смотреть внимательно, стараясь разглядеть; peer → peering.",
+                "uk": "«вдивлятися». I peer through the window. — «Я вдивляюся у вікно». Дивитися уважно, намагаючись розгледіти; peer → peering."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "peer",
+            "definitionByLocale": {
+              "ru": "«вглядываться». I peer through the window. — «Я всматриваюсь в окно». Смотреть внимательно, стараясь разглядеть; peer → peering.",
+              "uk": "«вдивлятися». I peer through the window. — «Я вдивляюся у вікно». Дивитися уважно, намагаючись розгледіти; peer → peering."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Увечері ви зазвичай намагаєтеся розгледіти, хто прийшов, крізь вікно. Скажіть: «Я вдивляюся у вікно»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Увечері ви зазвичай намагаєтеся розгледіти, хто прийшов, крізь вікно. Скажіть: «Я вдивляюся у вікно»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I peer through the window.",
+          "localizedMeaning": {
+            "ru": "Вечером вы обычно пытаетесь разглядеть, кто пришёл, через окно. Скажите: «Я всматриваюсь в окно»",
+            "uk": "Увечері ви зазвичай намагаєтеся розгледіти, хто прийшов, крізь вікно. Скажіть: «Я вдивляюся у вікно»"
+          },
+          "orderedTokens": [
+            "I",
+            "peer",
+            "through",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i02:r1",
+            "text": "She is peering through the window."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i02:r2",
+            "text": "She is looking at the door."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i02:r3",
+            "text": "She is not peering through the window."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i02:audio",
+            "transcript": "She is peering through the window."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:i02:r1",
+              "targetText": "She is peering through the window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i02:r2",
+              "targetText": "She is looking at the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i02:r3",
+              "targetText": "She is not peering through the window.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is peering through the window.",
+                "uk": "У записі звучить She is peering through the window."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is peering through the window.",
+                "uk": "У записі звучить She is peering through the window."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму peer для дії зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i03:r1",
+            "text": "peering"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i03:r2",
+            "text": "peer"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i03:r3",
+            "text": "peers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму peer для дії зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму peer для действия сейчас",
+            "uk": "Виберіть форму peer для дії зараз"
+          },
+          "gappedTargetPhrase": "She is ___ through the window.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-51:i03:r1",
+              "text": "peering"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i03:r2",
+              "text": "peer"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i03:r3",
+              "text": "peers"
+            }
+          ],
+          "testedDimension": "Виберіть форму peer для дії зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму peer для дії зараз",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма peering.",
+                "uk": "Після is потрібна форма peering."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму peer для дії зараз",
+              "feedbackByLocale": {
+                "ru": "Здесь используем is peering, не peers.",
+                "uk": "Тут використовуємо is peering, не peers."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:word:telescope",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — telescope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:word:telescope:audio"
+        ],
+        "accessibilityLabel": "Картка слова — telescope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:word:telescope:audio",
+            "transcript": "telescope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:word:telescope:r1",
+              "targetText": "telescope",
+              "meaningByLocale": {
+                "ru": "«телескоп». I am peering through the telescope. — «Я внимательно смотрю в телескоп, пытаясь разглядеть детали». Прибор, через который наблюдают далёкие объекты, например Луну.",
+                "uk": "«телескоп». I am peering through the telescope. — «Я уважно дивлюся в телескоп, намагаючись розгледіти деталі». Прилад, крізь який спостерігають далекі об’єкти, наприклад Місяць."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "telescope",
+            "definitionByLocale": {
+              "ru": "«телескоп». I am peering through the telescope. — «Я внимательно смотрю в телескоп, пытаясь разглядеть детали». Прибор, через который наблюдают далёкие объекты, например Луну.",
+              "uk": "«телескоп». I am peering through the telescope. — «Я уважно дивлюся в телескоп, намагаючись розгледіти деталі». Прилад, крізь який спостерігають далекі об’єкти, наприклад Місяць."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг запитує, що ви робите, намагаючись розгледіти Місяць у приладі. Скажіть, що уважно дивитеся в телескоп, намагаючись розгледіти деталі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитує, що ви робите, намагаючись розгледіти Місяць у приладі. Скажіть, що уважно дивитеся в телескоп, намагаючись розгледіти деталі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am peering through the telescope.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, что вы делаете, пытаясь разглядеть Луну в приборе. Скажите, что внимательно смотрите в телескоп, пытаясь разглядеть детали",
+            "uk": "Друг запитує, що ви робите, намагаючись розгледіти Місяць у приладі. Скажіть, що уважно дивитеся в телескоп, намагаючись розгледіти деталі"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "peering",
+            "through",
+            "the",
+            "telescope"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i05:r1",
+            "text": "Are you peering through the telescope?"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i05:r2",
+            "text": "You are peering through the telescope."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i05:r3",
+            "text": "I am peering through the telescope."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i05:audio",
+            "transcript": "Are you peering through the telescope?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:i05:r1",
+              "targetText": "Are you peering through the telescope?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i05:r2",
+              "targetText": "You are peering through the telescope.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i05:r3",
+              "targetText": "I am peering through the telescope.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you peering through the telescope?",
+                "uk": "У записі звучить Are you peering through the telescope?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you peering through the telescope?",
+                "uk": "У записі звучить Are you peering through the telescope?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра дивиться на Місяць, а друг хоче повернути прилад. Попросіть не рухати телескоп; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i06:audio"
+        ],
+        "accessibilityLabel": "Сестра дивиться на Місяць, а друг хоче повернути прилад. Попросіть не рухати телескоп; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i06:audio",
+            "transcript": "Please don't move the telescope."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't move the telescope.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:word:eyepiece",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — eyepiece",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:word:eyepiece:audio"
+        ],
+        "accessibilityLabel": "Картка слова — eyepiece",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:word:eyepiece:audio",
+            "transcript": "eyepiece"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:word:eyepiece:r1",
+              "targetText": "eyepiece",
+              "meaningByLocale": {
+                "ru": "«окуляр». This is the eyepiece. — «Это окуляр». Часть оптического прибора, через которую смотрят, поднося к ней глаз.",
+                "uk": "«окуляр». This is the eyepiece. — «Це окуляр». Частина оптичного приладу, крізь яку дивляться, підносячи до неї око."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "eyepiece",
+            "definitionByLocale": {
+              "ru": "«окуляр». This is the eyepiece. — «Это окуляр». Часть оптического прибора, через которую смотрят, поднося к ней глаз.",
+              "uk": "«окуляр». This is the eyepiece. — «Це окуляр». Частина оптичного приладу, крізь яку дивляться, підносячи до неї око."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра шукає частину телескопа, до якої потрібно піднести око. Покажіть: «Це окуляр»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра шукає частину телескопа, до якої потрібно піднести око. Покажіть: «Це окуляр»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is the eyepiece.",
+          "localizedMeaning": {
+            "ru": "Сестра ищет часть телескопа, к которой нужно поднести глаз. Покажите: «Это окуляр»",
+            "uk": "Сестра шукає частину телескопа, до якої потрібно піднести око. Покажіть: «Це окуляр»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "the",
+            "eyepiece"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i08:r1",
+            "text": "The eyepiece is small."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i08:r2",
+            "text": "The eyepiece is large."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i08:r3",
+            "text": "The telescope is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i08:audio",
+            "transcript": "The eyepiece is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:i08:r1",
+              "targetText": "The eyepiece is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i08:r2",
+              "targetText": "The eyepiece is large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i08:r3",
+              "targetText": "The telescope is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The eyepiece is small.",
+                "uk": "У записі звучить The eyepiece is small."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The eyepiece is small.",
+                "uk": "У записі звучить The eyepiece is small."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку для одного окуляра",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку для одного окуляра",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одного окуляра",
+            "uk": "Виберіть зв’язку для одного окуляра"
+          },
+          "gappedTargetPhrase": "The eyepiece ___ small.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-51:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку для одного окуляра",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для одного окуляра",
+              "feedbackByLocale": {
+                "ru": "Один окуляр: is.",
+                "uk": "Один окуляр: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для одного окуляра",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am вживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:word:observatory",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — observatory",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:word:observatory:audio"
+        ],
+        "accessibilityLabel": "Картка слова — observatory",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:word:observatory:audio",
+            "transcript": "observatory"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:word:observatory:r1",
+              "targetText": "observatory",
+              "meaningByLocale": {
+                "ru": "«обсерватория». We are at the observatory. — «Мы в обсерватории». Место, оборудованное для наблюдения за небом.",
+                "uk": "«обсерваторія». We are at the observatory. — «Ми в обсерваторії». Місце, обладнане для спостереження за небом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "observatory",
+            "definitionByLocale": {
+              "ru": "«обсерватория». We are at the observatory. — «Мы в обсерватории». Место, оборудованное для наблюдения за небом.",
+              "uk": "«обсерваторія». We are at the observatory. — «Ми в обсерваторії». Місце, обладнане для спостереження за небом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тато телефонує й запитує, де ви із сестрою проводите вечір. Скажіть: «Ми в обсерваторії»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тато телефонує й запитує, де ви із сестрою проводите вечір. Скажіть: «Ми в обсерваторії»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are at the observatory.",
+          "localizedMeaning": {
+            "ru": "Папа звонит и спрашивает, где вы с сестрой проводите вечер. Скажите: «Мы в обсерватории»",
+            "uk": "Тато телефонує й запитує, де ви із сестрою проводите вечір. Скажіть: «Ми в обсерваторії»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "at",
+            "the",
+            "observatory"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i11:r1",
+            "text": "The observatory is open."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i11:r2",
+            "text": "The observatory is closed."
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i11:r3",
+            "text": "The window is open."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i11:audio",
+            "transcript": "The observatory is open."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-51:i11:r1",
+              "targetText": "The observatory is open.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i11:r2",
+              "targetText": "The observatory is closed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i11:r3",
+              "targetText": "The window is open.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The observatory is open.",
+                "uk": "У записі звучить The observatory is open."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The observatory is open.",
+                "uk": "У записі звучить The observatory is open."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму be для we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму be для we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму be для we",
+            "uk": "Виберіть форму be для we"
+          },
+          "gappedTargetPhrase": "We ___ at the observatory.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-51:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму be для we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму be для we",
+              "feedbackByLocale": {
+                "ru": "С we нужна форма are.",
+                "uk": "З we потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму be для we",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am вживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-51:i13:p1",
+              "target": "peer",
+              "meaningByLocale": {
+                "ru": "вглядываться",
+                "uk": "вдивлятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-51:i13:p2",
+              "target": "telescope",
+              "meaningByLocale": {
+                "ru": "телескоп",
+                "uk": "телескоп"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-51:i13:p3",
+              "target": "eyepiece",
+              "meaningByLocale": {
+                "ru": "окуляр",
+                "uk": "окуляр"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-51:i13:p4",
+              "target": "observatory",
+              "meaningByLocale": {
+                "ru": "обсерватория",
+                "uk": "обсерваторія"
+              }
+            }
+          ],
+          "leftColumn": [
+            "peer",
+            "telescope",
+            "eyepiece",
+            "observatory"
+          ],
+          "rightColumn": [
+            "вдивлятися",
+            "телескоп",
+            "окуляр",
+            "обсерваторія"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання про спостереження сестри зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання про спостереження сестри зараз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i14:audio",
+            "transcript": "Is she peering through the telescope?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is she peering through the telescope?",
+          "orderedTokens": [
+            "Is",
+            "she",
+            "peering",
+            "through",
+            "the",
+            "telescope"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після don’t у проханні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-51:i15:r1",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i15:r2",
+            "text": "moving"
+          },
+          {
+            "responseId": "en:lesson-09:session-51:i15:r3",
+            "text": "moves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після don’t у проханні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ the telescope.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-51:i15:r1",
+              "text": "move"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i15:r2",
+              "text": "moving"
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i15:r3",
+              "text": "moves"
+            }
+          ],
+          "testedDimension": "Виберіть форму після don’t у проханні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-51:i15:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна форма move.",
+                "uk": "Після don’t потрібна форма move."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-51:i15:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "После don’t в просьбе не добавляем -s.",
+                "uk": "Після don’t у проханні не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша черга дивитися в телескоп ще не настала. Друг думає, що ви вже спостерігаєте. Скажіть: «Я не дивлюся в телескоп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша черга дивитися в телескоп ще не настала. Друг думає, що ви вже спостерігаєте. Скажіть: «Я не дивлюся в телескоп»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am not looking through the telescope.",
+          "localizedMeaning": {
+            "ru": "Ваша очередь смотреть в телескоп ещё не подошла. Друг думает, что вы уже наблюдаете. Скажите: «Я не смотрю в телескоп»",
+            "uk": "Ваша черга дивитися в телескоп ще не настала. Друг думає, що ви вже спостерігаєте. Скажіть: «Я не дивлюся в телескоп»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "looking",
+            "through",
+            "the",
+            "telescope"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-51:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На екскурсії ви намагаєтеся розгледіти дрібні деталі на Місяці. Сестра запитує, чим ви зайняті. Скажіть, що зараз уважно дивитеся в телескоп, намагаючись розгледіти деталі; використайте peer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-51:i17:audio"
+        ],
+        "accessibilityLabel": "На екскурсії ви намагаєтеся розгледіти дрібні деталі на Місяці. Сестра запитує, чим ви зайняті. Скажіть, що зараз уважно дивитеся в телескоп, намагаючись розгледіти деталі; використайте peer",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-51:i17:audio",
+            "transcript": "I am peering through the telescope."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am peering through the telescope.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-51:word:peer",
+      "correctText": "peer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i01",
+      "correctText": "I peer through the window.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i02",
+      "correctText": "She is peering through the window.",
+      "correctResponseId": "en:lesson-09:session-51:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i03",
+      "correctText": "peering",
+      "correctResponseId": "en:lesson-09:session-51:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:word:telescope",
+      "correctText": "telescope",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i04",
+      "correctText": "I am peering through the telescope.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i05",
+      "correctText": "Are you peering through the telescope?",
+      "correctResponseId": "en:lesson-09:session-51:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i06",
+      "correctText": "Please don't move the telescope.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:word:eyepiece",
+      "correctText": "eyepiece",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i07",
+      "correctText": "This is the eyepiece.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i08",
+      "correctText": "The eyepiece is small.",
+      "correctResponseId": "en:lesson-09:session-51:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-51:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:word:observatory",
+      "correctText": "observatory",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i10",
+      "correctText": "We are at the observatory.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i11",
+      "correctText": "The observatory is open.",
+      "correctResponseId": "en:lesson-09:session-51:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-09:session-51:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i14",
+      "correctText": "Is she peering through the telescope?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i15",
+      "correctText": "move",
+      "correctResponseId": "en:lesson-09:session-51:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i16",
+      "correctText": "I am not looking through the telescope.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-51:i17",
+      "correctText": "I am peering through the telescope.",
+      "correctResponseId": null
+    }
+  ]
+}

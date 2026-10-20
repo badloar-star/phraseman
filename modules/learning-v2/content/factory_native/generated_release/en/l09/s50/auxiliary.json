@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-50:intro1:r2": {
+          "ru": "После stare перед предметом нужен at.",
+          "uk": "Після stare перед предметом потрібне at."
+        },
+        "en:lesson-09:session-50:intro1:r3": {
+          "ru": "После is нужна форма staring.",
+          "uk": "Після is потрібна форма staring."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-50:intro2:r2": {
+          "ru": "Перед not для этого действия нужна форма is.",
+          "uk": "Перед not для цієї дії потрібна форма is."
+        },
+        "en:lesson-09:session-50:intro2:r3": {
+          "ru": "После is not нужна форма moving.",
+          "uk": "Після is not потрібна форма moving."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-50:intro3:r2": {
+          "ru": "Для действия сейчас с I нужно am.",
+          "uk": "Для дії зараз з I потрібне am."
+        },
+        "en:lesson-09:session-50:intro3:r3": {
+          "ru": "После am нужна форма looking.",
+          "uk": "Після am потрібна форма looking."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "26a6c3d08549b795b1e11e660cfd9a94db4f9624997840cc044286d5e7c7ed2a"
+}

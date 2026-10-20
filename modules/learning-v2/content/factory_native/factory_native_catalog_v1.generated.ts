@@ -3479,4 +3479,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The heron is standing in the water; We are crossing the causeway; Please don’t shout","uk":"The heron is standing in the water; We are crossing the causeway; Please don’t shout"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 49,
+    sourceFingerprint: "d8f10db91630d49d6ce455e13d0124140e5a679738c22342bcc03040e3bfffb5",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"She is murmuring to the baby; This is a onesie; Please don’t move the cradle","uk":"She is murmuring to the baby; This is a onesie; Please don’t move the cradle"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 50,
+    sourceFingerprint: "438a336ebfb5ff8ec9e7081c3d4540886168e3e5cc1417a4580008132bb79665",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He is staring at the hologram; The picture is not moving; I am looking at my reflection","uk":"He is staring at the hologram; The picture is not moving; I am looking at my reflection"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

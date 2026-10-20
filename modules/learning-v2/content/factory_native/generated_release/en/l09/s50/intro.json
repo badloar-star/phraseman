@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "He is staring at the hologram; The picture is not moving; I am looking at my reflection",
+    "uk": "He is staring at the hologram; The picture is not moving; I am looking at my reflection"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Долго смотреть на один экспонат",
+        "uk": "Довго дивитися на один експонат"
+      },
+      "bodyByLocale": {
+        "ru": "На выставке брат остановился перед голограммой и долго смотрит на неё, не отводя глаз. Мама спрашивает, почему он отстал. He is staring at the hologram — «Он пристально смотрит на голограмму». Stare — смотреть долго и пристально; это не быстрый glance. Перед предметом взгляда после stare нужно at. Hologram — голограмма, изображение с ощущением объёма.",
+        "uk": "На виставці брат зупинився перед голограмою й довго дивиться на неї, не відводячи очей. Мама запитує, чому він відстав. He is staring at the hologram — «Він пильно дивиться на голограму». Stare — дивитися довго й пильно; це не швидкий glance. Перед предметом погляду після stare потрібне at. Hologram — голограма, зображення з відчуттям об’єму."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-50:intro1:r1",
+              "text": "He is staring at the hologram."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro1:r2",
+              "text": "He is staring the hologram."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro1:r3",
+              "text": "He is stare at the hologram."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-50:intro1:r1",
+              "text": "He is staring at the hologram."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro1:r2",
+              "text": "He is staring the hologram."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro1:r3",
+              "text": "He is stare at the hologram."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Круги напечатаны на бумаге",
+        "uk": "Кола надруковані на папері"
+      },
+      "bodyByLocale": {
+        "ru": "Сестре кажется, что круги на напечатанном рисунке вращаются. Но лист неподвижен, и на нём нет движущихся частей. The picture is not moving — «Картинка не движется». Это зрительная иллюзия — an illusion: впечатление движения есть, а самого движения нет. Not после is помогает сказать, чего сейчас не происходит.",
+        "uk": "Сестрі здається, що кола на надрукованому малюнку обертаються. Але аркуш нерухомий, і на ньому немає рухомих частин. The picture is not moving — «Картинка не рухається». Це зорова ілюзія — an illusion: враження руху є, а самого руху немає. Not після is допомагає сказати, чого зараз не відбувається."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-50:intro2:r1",
+              "text": "The picture is not moving."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro2:r2",
+              "text": "The picture not moving."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro2:r3",
+              "text": "The picture is not move."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-50:intro2:r1",
+              "text": "The picture is not moving."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro2:r2",
+              "text": "The picture not moving."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro2:r3",
+              "text": "The picture is not move."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Это снова вы",
+        "uk": "Це знову ви"
+      },
+      "bodyByLocale": {
+        "ru": "Вы стоите перед изогнутым зеркалом и рассматриваете собственное вытянутое лицо. Друг спрашивает, на что вы смотрите. I am looking at my reflection — «Я смотрю на своё отражение». Reflection здесь — изображение, которое вы видите в зеркале. My показывает, что это ваше отражение, а looking описывает действие сейчас.",
+        "uk": "Ви стоїте перед вигнутим дзеркалом і розглядаєте власне видовжене обличчя. Друг запитує, на що ви дивитеся. I am looking at my reflection — «Я дивлюся на своє відображення». Reflection тут — зображення, яке ви бачите в дзеркалі. My показує, що це ваше відображення, а looking описує дію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-50:intro3:r1",
+              "text": "I am looking at my reflection."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro3:r2",
+              "text": "I looking at my reflection."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro3:r3",
+              "text": "I am look at my reflection."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-50:intro3:r1",
+              "text": "I am looking at my reflection."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro3:r2",
+              "text": "I looking at my reflection."
+            },
+            {
+              "responseId": "en:lesson-09:session-50:intro3:r3",
+              "text": "I am look at my reflection."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "035d5b5642f08c34cd9bb0b428388efe7f8d6224d1d3023482fe542144eb617b"
+}

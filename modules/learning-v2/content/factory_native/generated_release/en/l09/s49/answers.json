@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-49:word:murmur",
+    "correctText": "murmur",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i01",
+    "correctText": "I murmur to the baby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i02",
+    "correctText": "She is murmuring to the baby.",
+    "correctResponseId": "en:lesson-09:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i03",
+    "correctText": "murmuring",
+    "correctResponseId": "en:lesson-09:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:word:pacifier",
+    "correctText": "pacifier",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i04",
+    "correctText": "The pacifier is in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i05",
+    "correctText": "The pacifier is blue.",
+    "correctResponseId": "en:lesson-09:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:word:onesie",
+    "correctText": "onesie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i07",
+    "correctText": "This is a onesie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i08",
+    "correctText": "The onesie is small.",
+    "correctResponseId": "en:lesson-09:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i09",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-09:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:word:cradle",
+    "correctText": "cradle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i10",
+    "correctText": "The cradle is empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i11",
+    "correctText": "Please don't move the cradle.",
+    "correctResponseId": "en:lesson-09:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i12",
+    "correctText": "Please don't move the cradle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i13",
+    "correctText": "en:lesson-09:session-49:i13:p1=murmur\nen:lesson-09:session-49:i13:p2=pacifier\nen:lesson-09:session-49:i13:p3=onesie\nen:lesson-09:session-49:i13:p4=cradle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i14",
+    "correctText": "Is she murmuring to the baby?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i15",
+    "correctText": "move",
+    "correctResponseId": "en:lesson-09:session-49:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i16",
+    "correctText": "She is not singing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-49:i17",
+    "correctText": "She is murmuring to the baby.",
+    "correctResponseId": null
+  }
+]

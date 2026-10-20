@@ -9,7 +9,7 @@
     "app/learning_v2_factory_single_voice_v1.generated.ts": "34671ec54692836bd4160e5f86c396ddc9177ddcc8a161064c68dda8ddd3dc8e",
     "app/learning_v2_factory_production_audio_entries_v1.generated.ts": "e459f3a47cea682ef21be897824fb44b0304138c379c7f23d7b436be80beea75",
     "app/learning_v2_factory_silent_audio_v1.json": "49690bd9cda81478b15f5cfeff58f7a8fe59ffadc4cddbbdcf8ffd169bbf615e",
-    "app/learning_v2_bundle_availability_v1.generated.ts": "1407fcb443e71535b80a4da0109ea191a1d2905af3cf2fe6ecd5339e71665e73",
+    "app/learning_v2_bundle_availability_v1.generated.ts": "fedc5e6e6e9abd15f78948b1832ddf5fb3a661f699a756aa82ebdd56b7a92962",
     "modules/learning-v2/content/factory_native/generated_release/en/l01/s01/answers.json": "9c5bb7b1144c5ce767f47fc3ccec024b73a9ec73ee35e43911e84cb687d549d8",
     "modules/learning-v2/content/factory_native/generated_release/en/l01/s01/auxiliary.json": "cc425899e90789f4e6f96e5a6520f0eff03cd14c7e64f52a4abfe6624b7db314",
     "modules/learning-v2/content/factory_native/generated_release/en/l01/s01/intro.json": "cc86b3b485729a9940951566d5e3e596af0d3fe0b272f7a0da22857a97f5ea0a",
@@ -2499,10 +2499,15 @@
     "modules/learning-v2/content/factory_native/generated_release/en/l09/s50/auxiliary.json": "23ccc7e56d68363628b6425f4f85fbcc03b901656a177093fec2cc2952c24404",
     "modules/learning-v2/content/factory_native/generated_release/en/l09/s50/intro.json": "65dc906ff30bf1e030c517dbb8bc7fcf70cfd0412c0aef48253ae49d8fc89350",
     "modules/learning-v2/content/factory_native/generated_release/en/l09/s50/learner.json": "e7c95047f37d6d3190c6be83edbb8db62041611329444a080f0e27680ddcedb4",
-    "modules/learning-v2/content/factory_native/generated_release/en/l09/s50/learner.uk.json": "de7e2ed978c0ff7f4b60201017cd1a206eac62a05918d54e5bd0f9f9f528ffbc"
+    "modules/learning-v2/content/factory_native/generated_release/en/l09/s50/learner.uk.json": "de7e2ed978c0ff7f4b60201017cd1a206eac62a05918d54e5bd0f9f9f528ffbc",
+    "modules/learning-v2/content/factory_native/generated_release/en/l09/s51/answers.json": "5f6abba71a82e3c883af22c8032085a0e9f44e52938bff9d2b1cc2f79280a07c",
+    "modules/learning-v2/content/factory_native/generated_release/en/l09/s51/auxiliary.json": "7c336a1e4acc4f3346f040f1a18ed0815463048458942bd84e493a7c88179f51",
+    "modules/learning-v2/content/factory_native/generated_release/en/l09/s51/intro.json": "aacab115bc4a26e2dcf3a0b47957ccd13935b227475b6d866de83954e288debe",
+    "modules/learning-v2/content/factory_native/generated_release/en/l09/s51/learner.json": "96cfd7c6e3ea298ce47db7360334f60087f08f2c619d1a0f15b5c8edf8cc4f28",
+    "modules/learning-v2/content/factory_native/generated_release/en/l09/s51/learner.uk.json": "749be77ce9d2a61baab9fbb1e1f6784806a4bcc6e9f000a112e31f0ee86900f7"
   },
-  "ceiling": 498,
-  "builtSessions": 498,
+  "ceiling": 499,
+  "builtSessions": 499,
   "problems": [],
   "problemDetails": [],
   "required": {
@@ -32375,7 +32380,8 @@
       "l09s47",
       "l09s48",
       "l09s49",
-      "l09s50"
+      "l09s50",
+      "l09s51"
     ],
     "b172e0adef3e555c916aa853d021ea97be4fd7a512efa4a383eeaa4cd1ba8d50": [
       "l04s28",

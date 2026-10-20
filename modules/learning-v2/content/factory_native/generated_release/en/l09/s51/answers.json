@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-51:word:peer",
+    "correctText": "peer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i01",
+    "correctText": "I peer through the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i02",
+    "correctText": "She is peering through the window.",
+    "correctResponseId": "en:lesson-09:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i03",
+    "correctText": "peering",
+    "correctResponseId": "en:lesson-09:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:word:telescope",
+    "correctText": "telescope",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i04",
+    "correctText": "I am peering through the telescope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i05",
+    "correctText": "Are you peering through the telescope?",
+    "correctResponseId": "en:lesson-09:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i06",
+    "correctText": "Please don't move the telescope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:word:eyepiece",
+    "correctText": "eyepiece",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i07",
+    "correctText": "This is the eyepiece.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i08",
+    "correctText": "The eyepiece is small.",
+    "correctResponseId": "en:lesson-09:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:word:observatory",
+    "correctText": "observatory",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i10",
+    "correctText": "We are at the observatory.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i11",
+    "correctText": "The observatory is open.",
+    "correctResponseId": "en:lesson-09:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i13",
+    "correctText": "en:lesson-09:session-51:i13:p1=peer\nen:lesson-09:session-51:i13:p2=telescope\nen:lesson-09:session-51:i13:p3=eyepiece\nen:lesson-09:session-51:i13:p4=observatory",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i14",
+    "correctText": "Is she peering through the telescope?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i15",
+    "correctText": "move",
+    "correctResponseId": "en:lesson-09:session-51:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i16",
+    "correctText": "I am not looking through the telescope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-51:i17",
+    "correctText": "I am peering through the telescope.",
+    "correctResponseId": null
+  }
+]

@@ -3493,4 +3493,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He is staring at the hologram; The picture is not moving; I am looking at my reflection","uk":"He is staring at the hologram; The picture is not moving; I am looking at my reflection"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 51,
+    sourceFingerprint: "c9b1065c861a405df0676f43e6826aa69473752c622de76217b663434b1bdcaf",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am peering through the telescope; This is the eyepiece; Please don’t move the telescope","uk":"I am peering through the telescope; This is the eyepiece; Please don’t move the telescope"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

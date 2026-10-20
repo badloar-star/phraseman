@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-41:intro1:r2": {
+          "ru": "С we нужна attend без s.",
+          "uk": "З we потрібна attend без s."
+        },
+        "en:lesson-10:session-41:intro1:r3": {
+          "ru": "Для привычки здесь нужна attend.",
+          "uk": "Для звички тут потрібна attend."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-41:intro2:r2": {
+          "ru": "Перед starting нужен is.",
+          "uk": "Перед starting потрібне is."
+        },
+        "en:lesson-10:session-41:intro2:r3": {
+          "ru": "Один доклад: is.",
+          "uk": "Одна доповідь: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-41:intro3:r2": {
+          "ru": "Перед answering нужен is.",
+          "uk": "Перед answering потрібне is."
+        },
+        "en:lesson-10:session-41:intro3:r3": {
+          "ru": "После is здесь нужна answering.",
+          "uk": "Після is тут потрібна answering."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5cdce483dea6225f11c502ee93c66fba2080571772328d084c9a3a4e14083030"
+}

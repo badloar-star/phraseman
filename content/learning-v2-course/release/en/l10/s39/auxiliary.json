@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-39:intro1:r2": {
+          "ru": "С we нужна have.",
+          "uk": "З we потрібна have."
+        },
+        "en:lesson-10:session-39:intro1:r3": {
+          "ru": "Для регулярного занятия здесь нужна have.",
+          "uk": "Для регулярного заняття тут потрібна have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-39:intro2:r2": {
+          "ru": "Перед listening нужен is.",
+          "uk": "Перед listening потрібне is."
+        },
+        "en:lesson-10:session-39:intro2:r3": {
+          "ru": "Один ведущий: is.",
+          "uk": "Один ведучий: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-39:intro3:r2": {
+          "ru": "С we нужна are.",
+          "uk": "З we потрібна are."
+        },
+        "en:lesson-10:session-39:intro3:r3": {
+          "ru": "После are нужна having.",
+          "uk": "Після are потрібна having."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5a5b0843f3be8dfcc65591622c3f1f469277c2fa65e462467e745715760fcae6"
+}

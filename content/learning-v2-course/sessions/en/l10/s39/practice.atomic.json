@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-39:word:session",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — session",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:word:session:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — session",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:word:session:audio",
+            "transcript": "session"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:word:session:r1",
+              "targetText": "session",
+              "meaningByLocale": {
+                "ru": "«занятие». We have a session every Friday. — «У нас занятие каждую пятницу». Выделенный период для определённой деятельности.",
+                "uk": "«заняття». We have a session every Friday. — «У нас заняття щоп’ятниці». Виділений період для певної діяльності."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "session",
+            "definitionByLocale": {
+              "ru": "«занятие». We have a session every Friday. — «У нас занятие каждую пятницу». Выделенный период для определённой деятельности.",
+              "uk": "«заняття». We have a session every Friday. — «У нас заняття щоп’ятниці». Виділений період для певної діяльності."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Команда занимается по пятницам. Скажите: «У нас занятие каждую пятницу». Поставьте every Friday в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Команда занимается по пятницам. Скажите: «У нас занятие каждую пятницу». Поставьте every Friday в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a session every Friday.",
+          "localizedMeaning": {
+            "ru": "Команда занимается по пятницам. Скажите: «У нас занятие каждую пятницу». Поставьте every Friday в конце",
+            "uk": "Команда займається щоп’ятниці. Скажіть: «У нас заняття щоп’ятниці». Поставте every Friday у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "session",
+            "every",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i02:r1",
+            "text": "The session starts at ten."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i02:r2",
+            "text": "The session starts at nine."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i02:r3",
+            "text": "The meeting starts at ten."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i02:audio",
+            "transcript": "The session starts at ten."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:i02:r1",
+              "targetText": "The session starts at ten.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i02:r2",
+              "targetText": "The session starts at nine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i02:r3",
+              "targetText": "The meeting starts at ten.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The session starts at ten.",
+                "uk": "У записі звучить The session starts at ten."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The session starts at ten.",
+                "uk": "У записі звучить The session starts at ten."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Это регулярное занятие. Выберите форму have",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i03:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Это регулярное занятие. Выберите форму have",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это регулярное занятие. Выберите форму have",
+            "uk": "Це регулярне заняття. Виберіть форму have"
+          },
+          "gappedTargetPhrase": "We ___ a session every Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-39:i03:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i03:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i03:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Это регулярное занятие. Выберите форму have",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Это регулярное занятие. Выберите форму have",
+              "feedbackByLocale": {
+                "ru": "С we нужна have.",
+                "uk": "З we потрібна have."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Это регулярное занятие. Выберите форму have",
+              "feedbackByLocale": {
+                "ru": "Для регулярной ситуации здесь нужна have.",
+                "uk": "Для регулярної ситуації тут потрібна have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:word:facilitator",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — facilitator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:word:facilitator:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — facilitator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:word:facilitator:audio",
+            "transcript": "facilitator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:word:facilitator:r1",
+              "targetText": "facilitator",
+              "meaningByLocale": {
+                "ru": "«ведущий групповой работы». The facilitator is listening. — «Ведущий групповой работы слушает». Он помогает участникам обсуждать вопросы и работать вместе.",
+                "uk": "«ведучий групової роботи». The facilitator is listening. — «Ведучий групової роботи слухає». Він допомагає учасникам обговорювати питання й працювати разом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "facilitator",
+            "definitionByLocale": {
+              "ru": "«ведущий групповой работы». The facilitator is listening. — «Ведущий групповой работы слушает». Он помогает участникам обсуждать вопросы и работать вместе.",
+              "uk": "«ведучий групової роботи». The facilitator is listening. — «Ведучий групової роботи слухає». Він допомагає учасникам обговорювати питання й працювати разом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Участница высказывает идею, ведущий сейчас слушает её. Скажите: «Ведущий групповой работы слушает»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Участница высказывает идею, ведущий сейчас слушает её. Скажите: «Ведущий групповой работы слушает»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The facilitator is listening.",
+          "localizedMeaning": {
+            "ru": "Участница высказывает идею, ведущий сейчас слушает её. Скажите: «Ведущий групповой работы слушает»",
+            "uk": "Учасниця висловлює ідею, ведучий зараз слухає її. Скажіть: «Ведучий групової роботи слухає»"
+          },
+          "orderedTokens": [
+            "The",
+            "facilitator",
+            "is",
+            "listening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i05:r1",
+            "text": "The facilitator is asking a question."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i05:r2",
+            "text": "The facilitator is answering a question."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i05:r3",
+            "text": "The student is asking a question."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i05:audio",
+            "transcript": "The facilitator is asking a question."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:i05:r1",
+              "targetText": "The facilitator is asking a question.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i05:r2",
+              "targetText": "The facilitator is answering a question.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i05:r3",
+              "targetText": "The student is asking a question.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The facilitator is asking a question.",
+                "uk": "У записі звучить The facilitator is asking a question."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The facilitator is asking a question.",
+                "uk": "У записі звучить The facilitator is asking a question."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Один ведущий сейчас слушает участницу. Выберите связку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один ведущий сейчас слушает участницу. Выберите связку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Один ведущий сейчас слушает участницу. Выберите связку",
+            "uk": "Один ведучий зараз слухає учасницю. Виберіть зв’язку"
+          },
+          "gappedTargetPhrase": "The facilitator ___ listening.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-39:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Один ведущий сейчас слушает участницу. Выберите связку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Один ведущий сейчас слушает участницу. Выберите связку",
+              "feedbackByLocale": {
+                "ru": "С одним ведущим нужна is.",
+                "uk": "З одним ведучим потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Один ведущий сейчас слушает участницу. Выберите связку",
+              "feedbackByLocale": {
+                "ru": "Am используется с I; здесь нужна is.",
+                "uk": "Am уживається з I; тут потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:word:breakout",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — breakout",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:word:breakout:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — breakout",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:word:breakout:audio",
+            "transcript": "breakout"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:word:breakout:r1",
+              "targetText": "breakout",
+              "meaningByLocale": {
+                "ru": "«работа в отдельной малой группе». We are in a breakout group. — «Мы в отдельной малой группе». На тренинге участников временно делят на группы для обсуждения; здесь breakout употребляется перед group.",
+                "uk": "«робота в окремій малій групі». We are in a breakout group. — «Ми в окремій малій групі». На тренінгу учасників тимчасово ділять на групи для обговорення; тут breakout уживається перед group."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "breakout",
+            "definitionByLocale": {
+              "ru": "«работа в отдельной малой группе». We are in a breakout group. — «Мы в отдельной малой группе». На тренинге участников временно делят на группы для обсуждения; здесь breakout употребляется перед group.",
+              "uk": "«робота в окремій малій групі». We are in a breakout group. — «Ми в окремій малій групі». На тренінгу учасників тимчасово ділять на групи для обговорення; тут breakout уживається перед group."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Участников разделили для короткого обсуждения. Скажите коллеге: «Мы в отдельной малой группе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Участников разделили для короткого обсуждения. Скажите коллеге: «Мы в отдельной малой группе»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are in a breakout group.",
+          "localizedMeaning": {
+            "ru": "Участников разделили для короткого обсуждения. Скажите коллеге: «Мы в отдельной малой группе»",
+            "uk": "Учасників поділили для короткого обговорення. Скажіть колезі: «Ми в окремій малій групі»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "in",
+            "a",
+            "breakout",
+            "group"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i08:r1",
+            "text": "Our breakout group has four people."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i08:r2",
+            "text": "Our breakout group has five people."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i08:r3",
+            "text": "Your breakout group has four people."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i08:audio",
+            "transcript": "Our breakout group has four people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:i08:r1",
+              "targetText": "Our breakout group has four people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i08:r2",
+              "targetText": "Our breakout group has five people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i08:r3",
+              "targetText": "Your breakout group has four people.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Our breakout group has four people.",
+                "uk": "У записі звучить Our breakout group has four people."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Our breakout group has four people.",
+                "uk": "У записі звучить Our breakout group has four people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+            "uk": "Ви разом із колегами в малій групі. Виберіть зв’язку з we"
+          },
+          "gappedTargetPhrase": "We ___ in a breakout group.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-39:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i09:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+              "feedbackByLocale": {
+                "ru": "С we нужна are.",
+                "uk": "З we потрібна are."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+              "feedbackByLocale": {
+                "ru": "Am используется с I; с we нужна are.",
+                "uk": "Am уживається з I; з we потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:word:debrief",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — debrief",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:word:debrief:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — debrief",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:word:debrief:audio",
+            "transcript": "debrief"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:word:debrief:r1",
+              "targetText": "debrief",
+              "meaningByLocale": {
+                "ru": "«разбор итогов». We are having a debrief. — «Мы проводим разбор итогов». Обсуждение выполненного задания и того, чему удалось научиться.",
+                "uk": "«розбір підсумків». We are having a debrief. — «Ми проводимо розбір підсумків». Обговорення виконаного завдання й того, чого вдалося навчитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "debrief",
+            "definitionByLocale": {
+              "ru": "«разбор итогов». We are having a debrief. — «Мы проводим разбор итогов». Обсуждение выполненного задания и того, чему удалось научиться.",
+              "uk": "«розбір підсумків». We are having a debrief. — «Ми проводимо розбір підсумків». Обговорення виконаного завдання й того, чого вдалося навчитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы закончили упражнение и сейчас обсуждаете, как всё прошло. Скажите: «Мы проводим разбор итогов»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы закончили упражнение и сейчас обсуждаете, как всё прошло. Скажите: «Мы проводим разбор итогов»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are having a debrief.",
+          "localizedMeaning": {
+            "ru": "Вы закончили упражнение и сейчас обсуждаете, как всё прошло. Скажите: «Мы проводим разбор итогов»",
+            "uk": "Ви завершили вправу й зараз обговорюєте, як усе пройшло. Скажіть: «Ми проводимо розбір підсумків»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "having",
+            "a",
+            "debrief"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i11:r1",
+            "text": "The debrief is after lunch."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i11:r2",
+            "text": "The debrief is before lunch."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i11:r3",
+            "text": "The session is after lunch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i11:audio",
+            "transcript": "The debrief is after lunch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:i11:r1",
+              "targetText": "The debrief is after lunch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i11:r2",
+              "targetText": "The debrief is before lunch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i11:r3",
+              "targetText": "The session is after lunch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The debrief is after lunch.",
+                "uk": "У записі звучить The debrief is after lunch."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The debrief is after lunch.",
+                "uk": "У записі звучить The debrief is after lunch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i12:r1",
+            "text": "having"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i12:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+            "uk": "Ви зараз обговорюєте підсумки вправи. Виберіть форму having"
+          },
+          "gappedTargetPhrase": "We are ___ a debrief.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-39:i12:r1",
+              "text": "having"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i12:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+              "feedbackByLocale": {
+                "ru": "После are для текущего обсуждения нужна having.",
+                "uk": "Після are для поточного обговорення потрібна having."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+              "feedbackByLocale": {
+                "ru": "После are нужна having, не has.",
+                "uk": "Після are потрібна having, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-39:i13:p1",
+              "target": "session",
+              "meaningByLocale": {
+                "ru": "занятие",
+                "uk": "заняття"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-39:i13:p2",
+              "target": "facilitator",
+              "meaningByLocale": {
+                "ru": "ведущий групповой работы",
+                "uk": "ведучий групової роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-39:i13:p3",
+              "target": "breakout",
+              "meaningByLocale": {
+                "ru": "работа в отдельной малой группе",
+                "uk": "робота в окремій малій групі"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-39:i13:p4",
+              "target": "debrief",
+              "meaningByLocale": {
+                "ru": "разбор итогов",
+                "uk": "розбір підсумків"
+              }
+            }
+          ],
+          "leftColumn": [
+            "session",
+            "facilitator",
+            "breakout",
+            "debrief"
+          ],
+          "rightColumn": [
+            "занятие",
+            "ведущий групповой работы",
+            "работа в отдельной малой группе",
+            "разбор итогов"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i14:audio",
+            "transcript": "The facilitator is listening."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The facilitator is listening.",
+          "orderedTokens": [
+            "The",
+            "facilitator",
+            "is",
+            "listening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает, как часто команда занимается. Скажите: «У нас занятие каждую пятницу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает, как часто команда занимается. Скажите: «У нас занятие каждую пятницу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i15:audio",
+            "transcript": "We have a session every Friday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have a session every Friday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ведущий молчит и внимательно слушает участника. Скажите: «Ведущий групповой работы слушает»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ведущий молчит и внимательно слушает участника. Скажите: «Ведущий групповой работы слушает»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The facilitator is listening.",
+          "localizedMeaning": {
+            "ru": "Ведущий молчит и внимательно слушает участника. Скажите: «Ведущий групповой работы слушает»",
+            "uk": "Ведучий мовчить і уважно слухає учасника. Скажіть: «Ведучий групової роботи слухає»"
+          },
+          "orderedTokens": [
+            "The",
+            "facilitator",
+            "is",
+            "listening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Упражнение закончено. Вы обсуждаете с командой, что получилось. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Мы проводим разбор итогов»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Упражнение закончено. Вы обсуждаете с командой, что получилось. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Мы проводим разбор итогов»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i17:audio",
+            "transcript": "We are having a debrief."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are having a debrief.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-39:word:session",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — session",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:word:session:audio"
+        ],
+        "accessibilityLabel": "Картка слова — session",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:word:session:audio",
+            "transcript": "session"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:word:session:r1",
+              "targetText": "session",
+              "meaningByLocale": {
+                "ru": "«занятие». We have a session every Friday. — «У нас занятие каждую пятницу». Выделенный период для определённой деятельности.",
+                "uk": "«заняття». We have a session every Friday. — «У нас заняття щоп’ятниці». Виділений період для певної діяльності."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "session",
+            "definitionByLocale": {
+              "ru": "«занятие». We have a session every Friday. — «У нас занятие каждую пятницу». Выделенный период для определённой деятельности.",
+              "uk": "«заняття». We have a session every Friday. — «У нас заняття щоп’ятниці». Виділений період для певної діяльності."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Команда займається щоп’ятниці. Скажіть: «У нас заняття щоп’ятниці». Поставте every Friday у кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Команда займається щоп’ятниці. Скажіть: «У нас заняття щоп’ятниці». Поставте every Friday у кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have a session every Friday.",
+          "localizedMeaning": {
+            "ru": "Команда занимается по пятницам. Скажите: «У нас занятие каждую пятницу». Поставьте every Friday в конце",
+            "uk": "Команда займається щоп’ятниці. Скажіть: «У нас заняття щоп’ятниці». Поставте every Friday у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "a",
+            "session",
+            "every",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i02:r1",
+            "text": "The session starts at ten."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i02:r2",
+            "text": "The session starts at nine."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i02:r3",
+            "text": "The meeting starts at ten."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i02:audio",
+            "transcript": "The session starts at ten."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:i02:r1",
+              "targetText": "The session starts at ten.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i02:r2",
+              "targetText": "The session starts at nine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i02:r3",
+              "targetText": "The meeting starts at ten.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The session starts at ten.",
+                "uk": "У записі звучить The session starts at ten."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The session starts at ten.",
+                "uk": "У записі звучить The session starts at ten."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Це регулярне заняття. Виберіть форму have",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i03:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i03:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i03:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Це регулярне заняття. Виберіть форму have",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это регулярное занятие. Выберите форму have",
+            "uk": "Це регулярне заняття. Виберіть форму have"
+          },
+          "gappedTargetPhrase": "We ___ a session every Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-39:i03:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i03:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i03:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Це регулярне заняття. Виберіть форму have",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Це регулярне заняття. Виберіть форму have",
+              "feedbackByLocale": {
+                "ru": "С we нужна have.",
+                "uk": "З we потрібна have."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Це регулярне заняття. Виберіть форму have",
+              "feedbackByLocale": {
+                "ru": "Для регулярной ситуации здесь нужна have.",
+                "uk": "Для регулярної ситуації тут потрібна have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:word:facilitator",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — facilitator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:word:facilitator:audio"
+        ],
+        "accessibilityLabel": "Картка слова — facilitator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:word:facilitator:audio",
+            "transcript": "facilitator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:word:facilitator:r1",
+              "targetText": "facilitator",
+              "meaningByLocale": {
+                "ru": "«ведущий групповой работы». The facilitator is listening. — «Ведущий групповой работы слушает». Он помогает участникам обсуждать вопросы и работать вместе.",
+                "uk": "«ведучий групової роботи». The facilitator is listening. — «Ведучий групової роботи слухає». Він допомагає учасникам обговорювати питання й працювати разом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "facilitator",
+            "definitionByLocale": {
+              "ru": "«ведущий групповой работы». The facilitator is listening. — «Ведущий групповой работы слушает». Он помогает участникам обсуждать вопросы и работать вместе.",
+              "uk": "«ведучий групової роботи». The facilitator is listening. — «Ведучий групової роботи слухає». Він допомагає учасникам обговорювати питання й працювати разом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Учасниця висловлює ідею, ведучий зараз слухає її. Скажіть: «Ведучий групової роботи слухає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учасниця висловлює ідею, ведучий зараз слухає її. Скажіть: «Ведучий групової роботи слухає»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The facilitator is listening.",
+          "localizedMeaning": {
+            "ru": "Участница высказывает идею, ведущий сейчас слушает её. Скажите: «Ведущий групповой работы слушает»",
+            "uk": "Учасниця висловлює ідею, ведучий зараз слухає її. Скажіть: «Ведучий групової роботи слухає»"
+          },
+          "orderedTokens": [
+            "The",
+            "facilitator",
+            "is",
+            "listening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i05:r1",
+            "text": "The facilitator is asking a question."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i05:r2",
+            "text": "The facilitator is answering a question."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i05:r3",
+            "text": "The student is asking a question."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i05:audio",
+            "transcript": "The facilitator is asking a question."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:i05:r1",
+              "targetText": "The facilitator is asking a question.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i05:r2",
+              "targetText": "The facilitator is answering a question.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i05:r3",
+              "targetText": "The student is asking a question.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The facilitator is asking a question.",
+                "uk": "У записі звучить The facilitator is asking a question."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The facilitator is asking a question.",
+                "uk": "У записі звучить The facilitator is asking a question."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Один ведучий зараз слухає учасницю. Виберіть зв’язку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один ведучий зараз слухає учасницю. Виберіть зв’язку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Один ведущий сейчас слушает участницу. Выберите связку",
+            "uk": "Один ведучий зараз слухає учасницю. Виберіть зв’язку"
+          },
+          "gappedTargetPhrase": "The facilitator ___ listening.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-39:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Один ведучий зараз слухає учасницю. Виберіть зв’язку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Один ведучий зараз слухає учасницю. Виберіть зв’язку",
+              "feedbackByLocale": {
+                "ru": "С одним ведущим нужна is.",
+                "uk": "З одним ведучим потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Один ведучий зараз слухає учасницю. Виберіть зв’язку",
+              "feedbackByLocale": {
+                "ru": "Am используется с I; здесь нужна is.",
+                "uk": "Am уживається з I; тут потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:word:breakout",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — breakout",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:word:breakout:audio"
+        ],
+        "accessibilityLabel": "Картка слова — breakout",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:word:breakout:audio",
+            "transcript": "breakout"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:word:breakout:r1",
+              "targetText": "breakout",
+              "meaningByLocale": {
+                "ru": "«работа в отдельной малой группе». We are in a breakout group. — «Мы в отдельной малой группе». На тренинге участников временно делят на группы для обсуждения; здесь breakout употребляется перед group.",
+                "uk": "«робота в окремій малій групі». We are in a breakout group. — «Ми в окремій малій групі». На тренінгу учасників тимчасово ділять на групи для обговорення; тут breakout уживається перед group."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "breakout",
+            "definitionByLocale": {
+              "ru": "«работа в отдельной малой группе». We are in a breakout group. — «Мы в отдельной малой группе». На тренинге участников временно делят на группы для обсуждения; здесь breakout употребляется перед group.",
+              "uk": "«робота в окремій малій групі». We are in a breakout group. — «Ми в окремій малій групі». На тренінгу учасників тимчасово ділять на групи для обговорення; тут breakout уживається перед group."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Учасників поділили для короткого обговорення. Скажіть колезі: «Ми в окремій малій групі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учасників поділили для короткого обговорення. Скажіть колезі: «Ми в окремій малій групі»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are in a breakout group.",
+          "localizedMeaning": {
+            "ru": "Участников разделили для короткого обсуждения. Скажите коллеге: «Мы в отдельной малой группе»",
+            "uk": "Учасників поділили для короткого обговорення. Скажіть колезі: «Ми в окремій малій групі»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "in",
+            "a",
+            "breakout",
+            "group"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i08:r1",
+            "text": "Our breakout group has four people."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i08:r2",
+            "text": "Our breakout group has five people."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i08:r3",
+            "text": "Your breakout group has four people."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i08:audio",
+            "transcript": "Our breakout group has four people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:i08:r1",
+              "targetText": "Our breakout group has four people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i08:r2",
+              "targetText": "Our breakout group has five people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i08:r3",
+              "targetText": "Your breakout group has four people.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Our breakout group has four people.",
+                "uk": "У записі звучить Our breakout group has four people."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Our breakout group has four people.",
+                "uk": "У записі звучить Our breakout group has four people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви разом із колегами в малій групі. Виберіть зв’язку з we",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви разом із колегами в малій групі. Виберіть зв’язку з we",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы вместе с коллегами в малой группе. Выберите связку с we",
+            "uk": "Ви разом із колегами в малій групі. Виберіть зв’язку з we"
+          },
+          "gappedTargetPhrase": "We ___ in a breakout group.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-39:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i09:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Ви разом із колегами в малій групі. Виберіть зв’язку з we",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви разом із колегами в малій групі. Виберіть зв’язку з we",
+              "feedbackByLocale": {
+                "ru": "С we нужна are.",
+                "uk": "З we потрібна are."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви разом із колегами в малій групі. Виберіть зв’язку з we",
+              "feedbackByLocale": {
+                "ru": "Am используется с I; с we нужна are.",
+                "uk": "Am уживається з I; з we потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:word:debrief",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — debrief",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:word:debrief:audio"
+        ],
+        "accessibilityLabel": "Картка слова — debrief",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:word:debrief:audio",
+            "transcript": "debrief"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:word:debrief:r1",
+              "targetText": "debrief",
+              "meaningByLocale": {
+                "ru": "«разбор итогов». We are having a debrief. — «Мы проводим разбор итогов». Обсуждение выполненного задания и того, чему удалось научиться.",
+                "uk": "«розбір підсумків». We are having a debrief. — «Ми проводимо розбір підсумків». Обговорення виконаного завдання й того, чого вдалося навчитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "debrief",
+            "definitionByLocale": {
+              "ru": "«разбор итогов». We are having a debrief. — «Мы проводим разбор итогов». Обсуждение выполненного задания и того, чему удалось научиться.",
+              "uk": "«розбір підсумків». We are having a debrief. — «Ми проводимо розбір підсумків». Обговорення виконаного завдання й того, чого вдалося навчитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви завершили вправу й зараз обговорюєте, як усе пройшло. Скажіть: «Ми проводимо розбір підсумків»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви завершили вправу й зараз обговорюєте, як усе пройшло. Скажіть: «Ми проводимо розбір підсумків»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are having a debrief.",
+          "localizedMeaning": {
+            "ru": "Вы закончили упражнение и сейчас обсуждаете, как всё прошло. Скажите: «Мы проводим разбор итогов»",
+            "uk": "Ви завершили вправу й зараз обговорюєте, як усе пройшло. Скажіть: «Ми проводимо розбір підсумків»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "having",
+            "a",
+            "debrief"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i11:r1",
+            "text": "The debrief is after lunch."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i11:r2",
+            "text": "The debrief is before lunch."
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i11:r3",
+            "text": "The session is after lunch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i11:audio",
+            "transcript": "The debrief is after lunch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-39:i11:r1",
+              "targetText": "The debrief is after lunch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i11:r2",
+              "targetText": "The debrief is before lunch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i11:r3",
+              "targetText": "The session is after lunch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The debrief is after lunch.",
+                "uk": "У записі звучить The debrief is after lunch."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The debrief is after lunch.",
+                "uk": "У записі звучить The debrief is after lunch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зараз обговорюєте підсумки вправи. Виберіть форму having",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-39:i12:r1",
+            "text": "having"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-10:session-39:i12:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зараз обговорюєте підсумки вправи. Виберіть форму having",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сейчас обсуждаете итоги упражнения. Выберите форму having",
+            "uk": "Ви зараз обговорюєте підсумки вправи. Виберіть форму having"
+          },
+          "gappedTargetPhrase": "We are ___ a debrief.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-39:i12:r1",
+              "text": "having"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i12:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Ви зараз обговорюєте підсумки вправи. Виберіть форму having",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви зараз обговорюєте підсумки вправи. Виберіть форму having",
+              "feedbackByLocale": {
+                "ru": "После are для текущего обсуждения нужна having.",
+                "uk": "Після are для поточного обговорення потрібна having."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви зараз обговорюєте підсумки вправи. Виберіть форму having",
+              "feedbackByLocale": {
+                "ru": "После are нужна having, не has.",
+                "uk": "Після are потрібна having, не has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-39:i13:p1",
+              "target": "session",
+              "meaningByLocale": {
+                "ru": "занятие",
+                "uk": "заняття"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-39:i13:p2",
+              "target": "facilitator",
+              "meaningByLocale": {
+                "ru": "ведущий групповой работы",
+                "uk": "ведучий групової роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-39:i13:p3",
+              "target": "breakout",
+              "meaningByLocale": {
+                "ru": "работа в отдельной малой группе",
+                "uk": "робота в окремій малій групі"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-39:i13:p4",
+              "target": "debrief",
+              "meaningByLocale": {
+                "ru": "разбор итогов",
+                "uk": "розбір підсумків"
+              }
+            }
+          ],
+          "leftColumn": [
+            "session",
+            "facilitator",
+            "breakout",
+            "debrief"
+          ],
+          "rightColumn": [
+            "заняття",
+            "ведучий групової роботи",
+            "робота в окремій малій групі",
+            "розбір підсумків"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i14:audio",
+            "transcript": "The facilitator is listening."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The facilitator is listening.",
+          "orderedTokens": [
+            "The",
+            "facilitator",
+            "is",
+            "listening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега запитує, як часто команда займається. Скажіть: «У нас заняття щоп’ятниці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Колега запитує, як часто команда займається. Скажіть: «У нас заняття щоп’ятниці»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i15:audio",
+            "transcript": "We have a session every Friday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have a session every Friday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ведучий мовчить і уважно слухає учасника. Скажіть: «Ведучий групової роботи слухає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ведучий мовчить і уважно слухає учасника. Скажіть: «Ведучий групової роботи слухає»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The facilitator is listening.",
+          "localizedMeaning": {
+            "ru": "Ведущий молчит и внимательно слушает участника. Скажите: «Ведущий групповой работы слушает»",
+            "uk": "Ведучий мовчить і уважно слухає учасника. Скажіть: «Ведучий групової роботи слухає»"
+          },
+          "orderedTokens": [
+            "The",
+            "facilitator",
+            "is",
+            "listening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-39:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вправу завершено. Ви обговорюєте з командою, що вдалося. Колега запитує, чим ви зараз зайняті. Скажіть: «Ми проводимо розбір підсумків»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Вправу завершено. Ви обговорюєте з командою, що вдалося. Колега запитує, чим ви зараз зайняті. Скажіть: «Ми проводимо розбір підсумків»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-39:i17:audio",
+            "transcript": "We are having a debrief."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are having a debrief.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-39:word:session",
+      "correctText": "session",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i01",
+      "correctText": "We have a session every Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i02",
+      "correctText": "The session starts at ten.",
+      "correctResponseId": "en:lesson-10:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i03",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-10:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:word:facilitator",
+      "correctText": "facilitator",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i04",
+      "correctText": "The facilitator is listening.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i05",
+      "correctText": "The facilitator is asking a question.",
+      "correctResponseId": "en:lesson-10:session-39:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-39:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:word:breakout",
+      "correctText": "breakout",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i07",
+      "correctText": "We are in a breakout group.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i08",
+      "correctText": "Our breakout group has four people.",
+      "correctResponseId": "en:lesson-10:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i09",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-10:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:word:debrief",
+      "correctText": "debrief",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i10",
+      "correctText": "We are having a debrief.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i11",
+      "correctText": "The debrief is after lunch.",
+      "correctResponseId": "en:lesson-10:session-39:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i12",
+      "correctText": "having",
+      "correctResponseId": "en:lesson-10:session-39:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i14",
+      "correctText": "The facilitator is listening.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i15",
+      "correctText": "We have a session every Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i16",
+      "correctText": "The facilitator is listening.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-39:i17",
+      "correctText": "We are having a debrief.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "I usually fish here; I am cleaning the reel; I am sitting by the river",
+    "uk": "I usually fish here; I am cleaning the reel; I am sitting by the river"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обычно ловлю, сейчас чищу",
+        "uk": "Зазвичай ловлю, зараз чищу"
+      },
+      "bodyByLocale": {
+        "ru": "Сосед встречает вас у реки. Обычно вы здесь ловите рыбу: I usually fish here — «Я обычно рыбачу здесь». Usually ставим перед fish. Но сейчас удочка лежит на берегу: вы чистите катушку, на которую наматывается леска. Reel — «рыболовная катушка». I am cleaning the reel — «Я чищу катушку». Привычное занятие — fish, действие сейчас — am cleaning.",
+        "uk": "Сусід зустрічає вас біля річки. Зазвичай ви тут ловите рибу: I usually fish here — «Я зазвичай рибалю тут». Usually ставимо перед fish. Але зараз вудка лежить на березі: ви чистите котушку, на яку намотується волосінь. Reel — «риболовна котушка». I am cleaning the reel — «Я чищу котушку». Звичне заняття — fish, дія зараз — am cleaning."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-02:intro1:r1",
+              "text": "I am cleaning the reel."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro1:r2",
+              "text": "I cleaning the reel."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro1:r3",
+              "text": "I am clean the reel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-02:intro1:r1",
+              "text": "I am cleaning the reel."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro1:r2",
+              "text": "I cleaning the reel."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro1:r3",
+              "text": "I am clean the reel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Собрать снасти",
+        "uk": "Зібрати снасті"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, почему вы ещё дома. Вы проверяете рыболовные снасти — tackle: крючки, леску и другие принадлежности. I am checking the tackle — «Я проверяю снасти». Tackle в этом значении неисчисляемое: не говорим a tackle о наборе снастей. Обычно вы держите их в коробке: I keep my tackle in a box. Обычное место хранения — keep; проверка сейчас — am checking.",
+        "uk": "Друг запитує, чому ви ще вдома. Ви перевіряєте рибальське спорядження — tackle: гачки, волосінь та інше приладдя. I am checking the tackle — «Я перевіряю снасті». Tackle у цьому значенні незлічуване: не кажемо a tackle про набір снастей. Зазвичай ви тримаєте їх у коробці: I keep my tackle in a box. Звичне місце зберігання — keep; перевірка зараз — am checking."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-02:intro2:r1",
+              "text": "I am checking the tackle."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro2:r2",
+              "text": "I am checking a tackle."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro2:r3",
+              "text": "I checking the tackle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-02:intro2:r1",
+              "text": "I am checking the tackle."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro2:r2",
+              "text": "I am checking a tackle."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro2:r3",
+              "text": "I checking the tackle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не каждое посещение — рыбалка",
+        "uk": "Не кожен візит — риболовля"
+      },
+      "bodyByLocale": {
+        "ru": "Сегодня вы пришли к реке без удочки и отдыхаете на берегу. Друг звонит и спрашивает, ловите ли вы рыбу. I am not fishing. I am sitting by the river — «Я не рыбачу. Я сижу у реки». Обычно вы здесь рыбачите, но сейчас просто сидите. В sitting удваиваем t. Отрицание not ставим после am.",
+        "uk": "Сьогодні ви прийшли до річки без вудки й відпочиваєте на березі. Друг телефонує й запитує, чи ловите ви рибу. I am not fishing. I am sitting by the river — «Я не рибалю. Я сиджу біля річки». Зазвичай ви тут рибалите, але зараз просто сидите. У sitting подвоюємо t. Заперечення not ставимо після am."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-02:intro3:r1",
+              "text": "I am sitting by the river."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro3:r2",
+              "text": "I am siting by the river."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro3:r3",
+              "text": "I sitting by the river."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-02:intro3:r1",
+              "text": "I am sitting by the river."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro3:r2",
+              "text": "I am siting by the river."
+            },
+            {
+              "responseId": "en:lesson-10:session-02:intro3:r3",
+              "text": "I sitting by the river."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9d404e7bda6ecfdc2d65fe834c521f7bd63cad950fc6978711ec7f1717b794d3"
+}

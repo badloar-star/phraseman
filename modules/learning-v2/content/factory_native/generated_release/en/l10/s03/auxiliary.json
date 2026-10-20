@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-03:intro1:r2": {
+          "ru": "С I употребляем collect без -s.",
+          "uk": "З I вживаємо collect без -s."
+        },
+        "en:lesson-10:session-03:intro1:r3": {
+          "ru": "Для хобби здесь нужна I collect; am collect неверно.",
+          "uk": "Для хобі тут потрібне I collect; am collect неправильно."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-03:intro2:r2": {
+          "ru": "С I перед opening нужно am.",
+          "uk": "З I перед opening потрібне am."
+        },
+        "en:lesson-10:session-03:intro2:r3": {
+          "ru": "После am нужна форма opening.",
+          "uk": "Після am потрібна форма opening."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-03:intro3:r2": {
+          "ru": "После am нужна форма looking.",
+          "uk": "Після am потрібна форма looking."
+        },
+        "en:lesson-10:session-03:intro3:r3": {
+          "ru": "Перед looking с I нужно am.",
+          "uk": "Перед looking з I потрібне am."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6e6aef1e5caa97ca66c2c15d0da0bd07b0d0e80a461a9e841c93234513aa227f"
+}

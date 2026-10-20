@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-02:word:reel",
+    "correctText": "reel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i01",
+    "correctText": "I am cleaning the reel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i02",
+    "correctText": "I usually fish here.",
+    "correctResponseId": "en:lesson-10:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i03",
+    "correctText": "fish",
+    "correctResponseId": "en:lesson-10:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:word:tackle",
+    "correctText": "tackle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i04",
+    "correctText": "I am checking the tackle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i05",
+    "correctText": "My tackle is in the box.",
+    "correctResponseId": "en:lesson-10:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:word:waders",
+    "correctText": "waders",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i07",
+    "correctText": "My waders are wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i08",
+    "correctText": "He is wearing waders.",
+    "correctResponseId": "en:lesson-10:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-10:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:word:landing-net",
+    "correctText": "landing net",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i10",
+    "correctText": "The landing net is by the river.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i11",
+    "correctText": "I am carrying the landing net.",
+    "correctResponseId": "en:lesson-10:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i12",
+    "correctText": "sitting",
+    "correctResponseId": "en:lesson-10:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i13",
+    "correctText": "en:lesson-10:session-02:i13:p1=reel\nen:lesson-10:session-02:i13:p2=tackle\nen:lesson-10:session-02:i13:p3=waders\nen:lesson-10:session-02:i13:p4=landing net",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i14",
+    "correctText": "Are you cleaning the reel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i15",
+    "correctText": "I usually fish here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i16",
+    "correctText": "I am not fishing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-02:i17",
+    "correctText": "I am sitting by the river.",
+    "correctResponseId": null
+  }
+]

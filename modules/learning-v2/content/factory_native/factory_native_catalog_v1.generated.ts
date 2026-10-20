@@ -3542,4 +3542,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I row here every Saturday; I am watching the regatta","uk":"I row here every Saturday; I am watching the regatta"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 2,
+    sourceFingerprint: "1bbae32a6ecb3c4ce60b17d9137797b638f096006451b7bded676ae1821350d8",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I usually fish here; I am cleaning the reel; I am sitting by the river","uk":"I usually fish here; I am cleaning the reel; I am sitting by the river"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 3,
+    sourceFingerprint: "ea2c36b793347a9f068922c6e9c656ee4c066809767583d5b0a6323b0f85f1b9",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I collect stamps; I am looking at the postmark","uk":"I collect stamps; I am looking at the postmark"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

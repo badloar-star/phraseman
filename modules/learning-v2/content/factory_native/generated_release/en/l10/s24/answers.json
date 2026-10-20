@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-24:word:concierge",
+    "correctText": "concierge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i01",
+    "correctText": "The concierge is helping a guest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i02",
+    "correctText": "The concierge works here.",
+    "correctResponseId": "en:lesson-10:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i03",
+    "correctText": "usually works",
+    "correctResponseId": "en:lesson-10:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:word:pigeonhole",
+    "correctText": "pigeonhole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i04",
+    "correctText": "The letter is in the pigeonhole.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i05",
+    "correctText": "He is checking the pigeonhole.",
+    "correctResponseId": "en:lesson-10:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i06",
+    "correctText": "sitting",
+    "correctResponseId": "en:lesson-10:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:word:keypad",
+    "correctText": "keypad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i07",
+    "correctText": "She is using the keypad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i08",
+    "correctText": "The keypad is beside the door.",
+    "correctResponseId": "en:lesson-10:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i09",
+    "correctText": "making",
+    "correctResponseId": "en:lesson-10:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:word:logbook",
+    "correctText": "logbook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i10",
+    "correctText": "He is checking the logbook.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i11",
+    "correctText": "The logbook is on the desk.",
+    "correctResponseId": "en:lesson-10:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i12",
+    "correctText": "trust",
+    "correctResponseId": "en:lesson-10:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i13",
+    "correctText": "en:lesson-10:session-24:i13:p1=concierge\nen:lesson-10:session-24:i13:p2=pigeonhole\nen:lesson-10:session-24:i13:p3=keypad\nen:lesson-10:session-24:i13:p4=logbook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i14",
+    "correctText": "He is checking the logbook.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i15",
+    "correctText": "I trust the concierge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i16",
+    "correctText": "He is working here this week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-24:i17",
+    "correctText": "The logbook is on the desk.",
+    "correctResponseId": null
+  }
+]

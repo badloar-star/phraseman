@@ -38,10 +38,20 @@ const factoryAudioTables = lazyContent("learning_v2_factory_production_audio", (
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const silentList = require("./learning_v2_factory_silent_audio_v1.json") as { entries: readonly { contentHash: string }[] };
   const silent = new Set(silentList.entries.map((entry) => entry.contentHash));
-  const audible = <T extends { contentHash: string }>(entries: readonly T[]): T[] => entries.filter((entry) => !silent.has(entry.contentHash));
+  // 20.10: старые записи keypad есть только в авторском архиве, но не в bootstrap/Storage.
+  // По поручению владельца для отсутствующих записей используется TTS устройства.
+  // Удалить соответствующий хеш из исключений после проверенной публикации записи.
+  const unpublished = new Set([
+    "46ba7790f6fcb820b4d6cea9bd0f782d5a7c91b47b02512c7fc69a8bec57f7a0",
+    "15ce8e47e793e0b9f9406d69c4d70b4285df8949d96eb8f66bcfad7c034d3395",
+    "7a75456de1711048761249cca920d678e2d6ff1239a9c9368e106608e36f5011",
+    "5ff8be0dd89b46d1fde77a8ff5bf1f9d13e161b47b6e2a22b9d188319d5d98cd",
+  ]);
+  const audible = <T extends { contentHash: string }>(entries: readonly T[]): T[] =>
+    entries.filter((entry) => !silent.has(entry.contentHash) && !unpublished.has(entry.contentHash));
   const productionEntries = audible(FACTORY_PRODUCTION_AUDIO_ENTRIES_V1);
   // зачем: __DEV__ через globalThis — в тестах и в сборке functions имени __DEV__ нет (сторож functions_shared_code_dev_global_guard)
-  if ((globalThis as { __DEV__?: boolean }).__DEV__ === true) console.log(`[V2-AUDIO-SILENT] excluded=${FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.length - productionEntries.length + FACTORY_SINGLE_VOICE_ENTRIES_V1.length - audible(FACTORY_SINGLE_VOICE_ENTRIES_V1).length} listed=${silent.size}`);
+  if ((globalThis as { __DEV__?: boolean }).__DEV__ === true) console.log(`[V2-AUDIO-SILENT] excluded=${FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.length - productionEntries.length + FACTORY_SINGLE_VOICE_ENTRIES_V1.length - audible(FACTORY_SINGLE_VOICE_ENTRIES_V1).length} listed=${silent.size} unpublished=${unpublished.size}`);
   const entryByCoordinate = new Map<string, FactoryProductionAudioEntryV1>(
     productionEntries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry] as const),
   );

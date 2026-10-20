@@ -3696,4 +3696,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I trust her; I value her reliability; Do you trust her judgement?","uk":"I trust her; I value her reliability; Do you trust her judgement?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 24,
+    sourceFingerprint: "9a210b50b65fdfcf0e1b30a0e7634dbb3f1ac1458daaf6ca1d4b3be9d536c260",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He usually works here; He is sitting here now; I trust the concierge","uk":"He usually works here; He is sitting here now; I trust the concierge"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

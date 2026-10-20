@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-48:word:heron",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — heron",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:word:heron:audio"
+      ],
+      "accessibilityLabel": "Картка слова — heron",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:word:heron:audio",
+          "transcript": "heron"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-48:word:heron:r1",
+            "targetText": "heron",
+            "meaningByLocale": {
+              "ru": "«цапля». The heron is standing in the water. — «Цапля стоит в воде». Птица с длинными ногами и шеей, которую можно увидеть у воды.",
+              "uk": "«чапля». The heron is standing in the water. — «Чапля стоїть у воді». Птах із довгими ногами й шиєю, якого можна побачити біля води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heron",
+          "definitionByLocale": {
+            "ru": "«цапля». The heron is standing in the water. — «Цапля стоит в воде». Птица с длинными ногами и шеей, которую можно увидеть у воды.",
+            "uk": "«чапля». The heron is standing in the water. — «Чапля стоїть у воді». Птах із довгими ногами й шиєю, якого можна побачити біля води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Син запитує, що робить чапля. Вона нерухомо стоїть у воді. Дайте відповідь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Син запитує, що робить чапля. Вона нерухомо стоїть у воді. Дайте відповідь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The heron is standing in the water.",
+        "localizedMeaning": {
+          "ru": "Сын спрашивает, что делает цапля. Она неподвижно стоит в воде. Ответьте",
+          "uk": "Син запитує, що робить чапля. Вона нерухомо стоїть у воді. Дайте відповідь"
+        },
+        "orderedTokens": [
+          "The",
+          "heron",
+          "is",
+          "standing",
+          "in",
+          "the",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-48:i02:r1",
+          "text": "The heron is not flying."
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i02:r2",
+          "text": "The heron is flying."
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i02:r3",
+          "text": "The heron is not standing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:i02:audio",
+          "transcript": "The heron is not flying."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-48:i02:r1",
+            "targetText": "The heron is not flying.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i02:r2",
+            "targetText": "The heron is flying.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i02:r3",
+            "targetText": "The heron is not standing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The heron is not flying.",
+              "uk": "У записі звучить The heron is not flying."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The heron is not flying.",
+              "uk": "У записі звучить The heron is not flying."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму be для одного птаха",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-48:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму be для одного птаха",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму be для одной птицы",
+          "uk": "Виберіть форму be для одного птаха"
+        },
+        "gappedTargetPhrase": "The heron ___ standing in the water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-48:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть форму be для одного птаха",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму be для одного птаха",
+            "feedbackByLocale": {
+              "ru": "Одна птица: is.",
+              "uk": "Один птах: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму be для одного птаха",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am вживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:word:marsh",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — marsh",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:word:marsh:audio"
+      ],
+      "accessibilityLabel": "Картка слова — marsh",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:word:marsh:audio",
+          "transcript": "marsh"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-48:word:marsh:r1",
+            "targetText": "marsh",
+            "meaningByLocale": {
+              "ru": "«болотистая местность». The marsh is wet. — «В этой болотистой местности сыро». Участок мокрой земли с травами и тростником, а не лесное болото.",
+              "uk": "«болотиста місцевість». The marsh is wet. — «У цій болотистій місцевості мокро». Ділянка мокрої землі з травами й очеретом, а не лісове болото."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "marsh",
+          "definitionByLocale": {
+            "ru": "«болотистая местность». The marsh is wet. — «В этой болотистой местности сыро». Участок мокрой земли с травами и тростником, а не лесное болото.",
+            "uk": "«болотиста місцевість». The marsh is wet. — «У цій болотистій місцевості мокро». Ділянка мокрої землі з травами й очеретом, а не лісове болото."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На карті позначено відкриту заболочену ділянку. Назвіть її: «Це болотиста місцевість»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На карті позначено відкриту заболочену ділянку. Назвіть її: «Це болотиста місцевість»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a marsh.",
+        "localizedMeaning": {
+          "ru": "На карте отмечен открытый заболоченный участок. Назовите его: «Это болотистая местность»",
+          "uk": "На карті позначено відкриту заболочену ділянку. Назвіть її: «Це болотиста місцевість»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "marsh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-48:i05:r1",
+          "text": "The heron is in the marsh."
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i05:r2",
+          "text": "The heron is in the tree."
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i05:r3",
+          "text": "The heron is near the marsh."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:i05:audio",
+          "transcript": "The heron is in the marsh."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-48:i05:r1",
+            "targetText": "The heron is in the marsh.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i05:r2",
+            "targetText": "The heron is in the tree.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i05:r3",
+            "targetText": "The heron is near the marsh.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-48:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The heron is in the marsh.",
+              "uk": "У записі звучить The heron is in the marsh."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The heron is in the marsh.",
+              "uk": "У записі звучить The heron is in the marsh."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль перед marsh",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-48:i06:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i06:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль перед marsh",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль перед marsh",
+          "uk": "Виберіть артикль перед marsh"
+        },
+        "gappedTargetPhrase": "This is ___ marsh.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-48:i06:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i06:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль перед marsh",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед marsh",
+            "feedbackByLocale": {
+              "ru": "Marsh начинается с согласного звука, нужен a.",
+              "uk": "Marsh починається з приголосного звука, потрібне a."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед marsh",
+            "feedbackByLocale": {
+              "ru": "Are не артикль; здесь нужен a.",
+              "uk": "Are не артикль; тут потрібне a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:word:causeway",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — causeway",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:word:causeway:audio"
+      ],
+      "accessibilityLabel": "Картка слова — causeway",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:word:causeway:audio",
+          "transcript": "causeway"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-48:word:causeway:r1",
+            "targetText": "causeway",
+            "meaningByLocale": {
+              "ru": "«насыпная дорога». We are crossing the causeway. — «Мы идём по насыпной дороге на другой берег». Приподнятая дорога через воду или мокрую низину; здесь идём по ней на другую сторону.",
+              "uk": "«насипна дорога». We are crossing the causeway. — «Ми йдемо насипною дорогою на інший берег». Піднята дорога через воду або мокру низину; тут ідемо нею на інший бік."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "causeway",
+          "definitionByLocale": {
+            "ru": "«насыпная дорога». We are crossing the causeway. — «Мы идём по насыпной дороге на другой берег». Приподнятая дорога через воду или мокрую низину; здесь идём по ней на другую сторону.",
+            "uk": "«насипна дорога». We are crossing the causeway. — «Ми йдемо насипною дорогою на інший берег». Піднята дорога через воду або мокру низину; тут ідемо нею на інший бік."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сестра запитує, що ви зараз робите дорогою на інший берег. Скажіть, що йдете насипною дорогою на інший берег",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра запитує, що ви зараз робите дорогою на інший берег. Скажіть, що йдете насипною дорогою на інший берег",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are crossing the causeway.",
+        "localizedMeaning": {
+          "ru": "Сестра спрашивает, что вы сейчас делаете по пути на другой берег. Скажите, что идёте по насыпной дороге на другой берег",
+          "uk": "Сестра запитує, що ви зараз робите дорогою на інший берег. Скажіть, що йдете насипною дорогою на інший берег"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "crossing",
+          "the",
+          "causeway"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-48:i08:r1",
+          "text": "Are you crossing the causeway?"
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i08:r2",
+          "text": "You are crossing the causeway."
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i08:r3",
+          "text": "We are crossing the causeway."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:i08:audio",
+          "transcript": "Are you crossing the causeway?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-48:i08:r1",
+            "targetText": "Are you crossing the causeway?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i08:r2",
+            "targetText": "You are crossing the causeway.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i08:r3",
+            "targetText": "We are crossing the causeway.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you crossing the causeway?",
+              "uk": "У записі звучить Are you crossing the causeway?"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you crossing the causeway?",
+              "uk": "У записі звучить Are you crossing the causeway?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга хоче голосно покликати інших поруч із птахом. Попросіть не кричати; почніть із Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:i09:audio"
+      ],
+      "accessibilityLabel": "Подруга хоче голосно покликати інших поруч із птахом. Попросіть не кричати; почніть із Please",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:i09:audio",
+          "transcript": "Please don't shout."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don't shout.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:word:dragonfly",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dragonfly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:word:dragonfly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dragonfly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:word:dragonfly:audio",
+          "transcript": "dragonfly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-48:word:dragonfly:r1",
+            "targetText": "dragonfly",
+            "meaningByLocale": {
+              "ru": "«стрекоза». The dragonfly is flying. — «Стрекоза летит». Насекомое с длинным телом и двумя парами крыльев.",
+              "uk": "«бабка». The dragonfly is flying. — «Бабка летить». Комаха з довгим тілом і двома парами крил."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dragonfly",
+          "definitionByLocale": {
+            "ru": "«стрекоза». The dragonfly is flying. — «Стрекоза летит». Насекомое с длинным телом и двумя парами крыльев.",
+            "uk": "«бабка». The dragonfly is flying. — «Бабка летить». Комаха з довгим тілом і двома парами крил."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Брат запитує, що робить бабка над водою. Скажіть: «Бабка летить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат запитує, що робить бабка над водою. Скажіть: «Бабка летить»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The dragonfly is flying.",
+        "localizedMeaning": {
+          "ru": "Брат спрашивает, что делает стрекоза над водой. Скажите: «Стрекоза летит»",
+          "uk": "Брат запитує, що робить бабка над водою. Скажіть: «Бабка летить»"
+        },
+        "orderedTokens": [
+          "The",
+          "dragonfly",
+          "is",
+          "flying"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-48:i11:r1",
+          "text": "The dragonfly is not flying."
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i11:r2",
+          "text": "The dragonfly is flying."
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i11:r3",
+          "text": "The heron is not flying."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:i11:audio",
+          "transcript": "The dragonfly is not flying."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-48:i11:r1",
+            "targetText": "The dragonfly is not flying.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i11:r2",
+            "targetText": "The dragonfly is flying.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i11:r3",
+            "targetText": "The heron is not flying.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dragonfly is not flying.",
+              "uk": "У записі звучить The dragonfly is not flying."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dragonfly is not flying.",
+              "uk": "У записі звучить The dragonfly is not flying."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму fly з -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-48:i12:r1",
+          "text": "flying"
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i12:r2",
+          "text": "fling"
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i12:r3",
+          "text": "fly"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму fly з -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму fly с -ing",
+          "uk": "Виберіть форму fly з -ing"
+        },
+        "gappedTargetPhrase": "The dragonfly is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-48:i12:r1",
+            "text": "flying"
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i12:r2",
+            "text": "fling"
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i12:r3",
+            "text": "fly"
+          }
+        ],
+        "testedDimension": "Виберіть форму fly з -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-48:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму fly з -ing",
+            "feedbackByLocale": {
+              "ru": "В flying сохраняем y.",
+              "uk": "У flying зберігаємо y."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму fly з -ing",
+            "feedbackByLocale": {
+              "ru": "После is для действия сейчас нужна форма flying.",
+              "uk": "Після is для дії зараз потрібна форма flying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-48:i13:p1",
+            "target": "heron",
+            "meaningByLocale": {
+              "ru": "цапля",
+              "uk": "чапля"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-48:i13:p2",
+            "target": "marsh",
+            "meaningByLocale": {
+              "ru": "болотистая местность",
+              "uk": "болотиста місцевість"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-48:i13:p3",
+            "target": "causeway",
+            "meaningByLocale": {
+              "ru": "насыпная дорога",
+              "uk": "насипна дорога"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-48:i13:p4",
+            "target": "dragonfly",
+            "meaningByLocale": {
+              "ru": "стрекоза",
+              "uk": "бабка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "heron",
+          "marsh",
+          "causeway",
+          "dragonfly"
+        ],
+        "rightColumn": [
+          "чапля",
+          "болотиста місцевість",
+          "насипна дорога",
+          "бабка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання про політ бабки зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання про політ бабки зараз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:i14:audio",
+          "transcript": "Is the dragonfly flying?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is the dragonfly flying?",
+        "orderedTokens": [
+          "Is",
+          "the",
+          "dragonfly",
+          "flying"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після don’t у проханні",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-48:i15:r1",
+          "text": "shout"
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i15:r2",
+          "text": "shouting"
+        },
+        {
+          "responseId": "en:lesson-09:session-48:i15:r3",
+          "text": "shouts"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після don’t у проханні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после don’t в просьбе",
+          "uk": "Виберіть форму після don’t у проханні"
+        },
+        "gappedTargetPhrase": "Please don't ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-48:i15:r1",
+            "text": "shout"
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i15:r2",
+            "text": "shouting"
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i15:r3",
+            "text": "shouts"
+          }
+        ],
+        "testedDimension": "Виберіть форму після don’t у проханні",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-48:i15:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після don’t у проханні",
+            "feedbackByLocale": {
+              "ru": "После don’t нужна форма shout.",
+              "uk": "Після don’t потрібна форма shout."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-48:i15:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після don’t у проханні",
+            "feedbackByLocale": {
+              "ru": "В просьбе после don’t не добавляем -s.",
+              "uk": "У проханні після don’t не додаємо -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг думає, що чапля летить. Покажіть на неї у воді й скажіть: «Чапля не летить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг думає, що чапля летить. Покажіть на неї у воді й скажіть: «Чапля не летить»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The heron is not flying.",
+        "localizedMeaning": {
+          "ru": "Друг думает, что цапля летит. Покажите на неё в воде и скажите: «Цапля не летит»",
+          "uk": "Друг думає, що чапля летить. Покажіть на неї у воді й скажіть: «Чапля не летить»"
+        },
+        "orderedTokens": [
+          "The",
+          "heron",
+          "is",
+          "not",
+          "flying"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-48:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви фотографуєте чаплю біля берега. Мама телефоном запитує, що вона зараз робить. Птах стоїть у воді. Дайте відповідь повним реченням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Ви фотографуєте чаплю біля берега. Мама телефоном запитує, що вона зараз робить. Птах стоїть у воді. Дайте відповідь повним реченням",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-48:i17:audio",
+          "transcript": "The heron is standing in the water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The heron is standing in the water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fe016f8e18438f90740fab75577bc52b19cb41f8cb8ec8b96f7ea58840856695"
+}

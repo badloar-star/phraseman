@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "I am hesitating; I am checking the catalogue; Please don’t touch the wallpaper",
+    "uk": "I am hesitating; I am checking the catalogue; Please don’t touch the wallpaper"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маленький образец у окна",
+        "uk": "Маленький зразок біля вікна"
+      },
+      "bodyByLocale": {
+        "ru": "Вы принесли домой небольшой кусочек обоев из магазина. У окна его цвет выглядит иначе, чем при магазинном освещении. Ребёнок спрашивает, что это за кусочек. This is a swatch — «Это образец материала». Swatch — маленький образец ткани, обоев или другого материала для сравнения цвета и вида. Здесь он помогает представить обои в вашей комнате.",
+        "uk": "Ви принесли додому невеликий шматочок шпалер із магазину. Біля вікна його колір виглядає інакше, ніж при магазинному освітленні. Дитина запитує, що це за шматочок. This is a swatch — «Це зразок матеріалу». Swatch — маленький зразок тканини, шпалер чи іншого матеріалу для порівняння кольору й вигляду. Тут він допомагає уявити шпалери у вашій кімнаті."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-47:intro1:r1",
+              "text": "This is a swatch."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro1:r2",
+              "text": "This is swatch."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro1:r3",
+              "text": "This are a swatch."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-47:intro1:r1",
+              "text": "This is a swatch."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro1:r2",
+              "text": "This is swatch."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro1:r3",
+              "text": "This are a swatch."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбор пока не сделан",
+        "uk": "Вибір ще не зроблено"
+      },
+      "bodyByLocale": {
+        "ru": "Партнёр готов заказать обои, но вам нужно ещё посмотреть образец вечером: утром цвет кажется слишком ярким. Он спрашивает, решились ли вы. I am hesitating — «Я пока колеблюсь». Hesitate уже знакомо: здесь повторяем его для действия сейчас. Убираем конечную e перед -ing: hesitating. Это пауза перед решением, а не отказ от покупки.",
+        "uk": "Партнер готовий замовити шпалери, але вам потрібно ще подивитися на зразок увечері: вранці колір здається надто яскравим. Він запитує, чи ви вирішили. I am hesitating — «Я поки вагаюся». Hesitate вже знайоме: тут повторюємо його для дії зараз. Прибираємо кінцеву e перед -ing: hesitating. Це пауза перед рішенням, а не відмова від покупки."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-47:intro2:r1",
+              "text": "I am hesitating."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro2:r2",
+              "text": "I am hesitateing."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro2:r3",
+              "text": "I hesitating."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-47:intro2:r1",
+              "text": "I am hesitating."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro2:r2",
+              "text": "I am hesitateing."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro2:r3",
+              "text": "I hesitating."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Свежая полоса на стене",
+        "uk": "Свіжа смуга на стіні"
+      },
+      "bodyByLocale": {
+        "ru": "В другой комнате мастер только что наклеил полосу обоев. Гость тянется потрогать рисунок, но поверхность ещё влажная. Please don’t touch the wallpaper — «Пожалуйста, не трогай обои». Wallpaper — обои как материал. По-русски это множественное число, а по-английски здесь неисчисляемое существительное: The wallpaper is wet.",
+        "uk": "В іншій кімнаті майстер щойно наклеїв смугу шпалер. Гість тягнеться торкнутися малюнка, але поверхня ще волога. Please don’t touch the wallpaper — «Будь ласка, не торкайся шпалер». Wallpaper — шпалери як матеріал. Українською це множина, а англійською тут незлічуваний іменник: The wallpaper is wet."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-47:intro3:r1",
+              "text": "Please don't touch the wallpaper."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro3:r2",
+              "text": "Please don't touching the wallpaper."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro3:r3",
+              "text": "Please not touch the wallpaper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-47:intro3:r1",
+              "text": "Please don't touch the wallpaper."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro3:r2",
+              "text": "Please don't touching the wallpaper."
+            },
+            {
+              "responseId": "en:lesson-09:session-47:intro3:r3",
+              "text": "Please not touch the wallpaper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7a091929fa8c3c89f3ae53bca931962f95110eb3a3f4af8c3dbe21c1961a8019"
+}

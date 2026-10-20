@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "The heron is standing in the water; We are crossing the causeway; Please don’t shout",
+    "uk": "The heron is standing in the water; We are crossing the causeway; Please don’t shout"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Птица почти не двигается",
+        "uk": "Птах майже не рухається"
+      },
+      "bodyByLocale": {
+        "ru": "На прогулке вы замечаете у воды высокую птицу с длинными ногами и шеей. Это цапля — a heron. Сын думает, что она идёт, но она стоит неподвижно. The heron is standing in the water — «Цапля стоит в воде». Standing описывает, что она делает сейчас, даже если при этом не перемещается.",
+        "uk": "На прогулянці ви помічаєте біля води високого птаха з довгими ногами й шиєю. Це чапля — a heron. Син думає, що вона йде, але вона стоїть нерухомо. The heron is standing in the water — «Чапля стоїть у воді». Standing описує, що вона робить зараз, навіть якщо при цьому не переміщується."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-48:intro1:r1",
+              "text": "The heron is standing in the water."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro1:r2",
+              "text": "The heron are standing in the water."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro1:r3",
+              "text": "The heron is stand in the water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-48:intro1:r1",
+              "text": "The heron is standing in the water."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro1:r2",
+              "text": "The heron are standing in the water."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro1:r3",
+              "text": "The heron is stand in the water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дорога над мокрой землёй",
+        "uk": "Дорога над мокрою землею"
+      },
+      "bodyByLocale": {
+        "ru": "Через болотистый участок проложена дорога по насыпи. Вы с другом идёте по ней к другому берегу. Сестра звонит и спрашивает, где вы. We are crossing the causeway — «Мы идём по насыпной дороге на другой берег». Causeway — приподнятая дорога через воду или мокрую низину. Здесь идём по ней на другую сторону; с we для действия сейчас нужно are crossing.",
+        "uk": "Через болотисту ділянку прокладено дорогу по насипу. Ви з другом ідете нею до іншого берега. Сестра телефонує й запитує, де ви. We are crossing the causeway — «Ми йдемо насипною дорогою на інший берег». Causeway — піднята дорога через воду або мокру низину. Тут ідемо нею на інший бік; з we для дії зараз потрібне are crossing."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-48:intro2:r1",
+              "text": "We are crossing the causeway."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro2:r2",
+              "text": "We is crossing the causeway."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro2:r3",
+              "text": "We are cross the causeway."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-48:intro2:r1",
+              "text": "We are crossing the causeway."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro2:r2",
+              "text": "We is crossing the causeway."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro2:r3",
+              "text": "We are cross the causeway."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Позвать друга тихо",
+        "uk": "Покликати друга тихо"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга заметила цаплю и хочет громко позвать остальных. Вы рядом с птицей и просите говорить тише. Please don’t shout — «Пожалуйста, не кричи». После don’t ставим shout без окончания. Просьба касается громкого голоса; фотографировать или смотреть вы не запрещаете.",
+        "uk": "Подруга помітила чаплю й хоче голосно покликати інших. Ви поруч із птахом і просите говорити тихіше. Please don’t shout — «Будь ласка, не кричи». Після don’t ставимо shout без закінчення. Прохання стосується гучного голосу; фотографувати чи дивитися ви не забороняєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-48:intro3:r1",
+              "text": "Please don't shout."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro3:r2",
+              "text": "Please don't shouting."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro3:r3",
+              "text": "Please not shout."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-48:intro3:r1",
+              "text": "Please don't shout."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro3:r2",
+              "text": "Please don't shouting."
+            },
+            {
+              "responseId": "en:lesson-09:session-48:intro3:r3",
+              "text": "Please not shout."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7f8eed61c726c6244089d96aacf00f0f21ec458a59747c61036839f55c6ef0da"
+}

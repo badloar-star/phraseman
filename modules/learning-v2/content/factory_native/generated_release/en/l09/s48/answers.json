@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-48:word:heron",
+    "correctText": "heron",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i01",
+    "correctText": "The heron is standing in the water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i02",
+    "correctText": "The heron is not flying.",
+    "correctResponseId": "en:lesson-09:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:word:marsh",
+    "correctText": "marsh",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i04",
+    "correctText": "This is a marsh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i05",
+    "correctText": "The heron is in the marsh.",
+    "correctResponseId": "en:lesson-09:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i06",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-09:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:word:causeway",
+    "correctText": "causeway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i07",
+    "correctText": "We are crossing the causeway.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i08",
+    "correctText": "Are you crossing the causeway?",
+    "correctResponseId": "en:lesson-09:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i09",
+    "correctText": "Please don't shout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:word:dragonfly",
+    "correctText": "dragonfly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i10",
+    "correctText": "The dragonfly is flying.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i11",
+    "correctText": "The dragonfly is not flying.",
+    "correctResponseId": "en:lesson-09:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i12",
+    "correctText": "flying",
+    "correctResponseId": "en:lesson-09:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i13",
+    "correctText": "en:lesson-09:session-48:i13:p1=heron\nen:lesson-09:session-48:i13:p2=marsh\nen:lesson-09:session-48:i13:p3=causeway\nen:lesson-09:session-48:i13:p4=dragonfly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i14",
+    "correctText": "Is the dragonfly flying?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i15",
+    "correctText": "shout",
+    "correctResponseId": "en:lesson-09:session-48:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i16",
+    "correctText": "The heron is not flying.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-48:i17",
+    "correctText": "The heron is standing in the water.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-47:word:swatch",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — swatch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:word:swatch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — swatch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:word:swatch:audio",
+          "transcript": "swatch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-47:word:swatch:r1",
+            "targetText": "swatch",
+            "meaningByLocale": {
+              "ru": "«образец материала». This is a swatch. — «Это образец материала». Небольшой кусочек ткани или обоев для сравнения цвета и вида.",
+              "uk": "«зразок матеріалу». This is a swatch. — «Це зразок матеріалу». Невеликий шматочок тканини або шпалер для порівняння кольору й вигляду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swatch",
+          "definitionByLocale": {
+            "ru": "«образец материала». This is a swatch. — «Это образец материала». Небольшой кусочек ткани или обоев для сравнения цвета и вида.",
+            "uk": "«зразок матеріалу». This is a swatch. — «Це зразок матеріалу». Невеликий шматочок тканини або шпалер для порівняння кольору й вигляду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дитина запитує про шматочок шпалер, який ви принесли з магазину. Назвіть його: «Це зразок матеріалу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дитина запитує про шматочок шпалер, який ви принесли з магазину. Назвіть його: «Це зразок матеріалу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a swatch.",
+        "localizedMeaning": {
+          "ru": "Ребёнок спрашивает о кусочке обоев, который вы принесли из магазина. Назовите его: «Это образец материала»",
+          "uk": "Дитина запитує про шматочок шпалер, який ви принесли з магазину. Назвіть його: «Це зразок матеріалу»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "swatch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-47:i02:r1",
+          "text": "The swatch is blue."
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i02:r2",
+          "text": "The swatch is green."
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i02:r3",
+          "text": "The wall is blue."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:i02:audio",
+          "transcript": "The swatch is blue."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-47:i02:r1",
+            "targetText": "The swatch is blue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i02:r2",
+            "targetText": "The swatch is green.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i02:r3",
+            "targetText": "The wall is blue.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The swatch is blue.",
+              "uk": "У записі звучить The swatch is blue."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The swatch is blue.",
+              "uk": "У записі звучить The swatch is blue."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль перед одним зразком",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-47:i03:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i03:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль перед одним зразком",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль перед одним образцом",
+          "uk": "Виберіть артикль перед одним зразком"
+        },
+        "gappedTargetPhrase": "This is ___ swatch.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-47:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль перед одним зразком",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед одним зразком",
+            "feedbackByLocale": {
+              "ru": "Swatch начинается с согласного звука, нужен a.",
+              "uk": "Swatch починається з приголосного звука, потрібне a."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед одним зразком",
+            "feedbackByLocale": {
+              "ru": "Are не артикль; здесь нужен a.",
+              "uk": "Are не артикль; тут потрібне a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:word:wallpaper",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wallpaper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:word:wallpaper:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wallpaper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:word:wallpaper:audio",
+          "transcript": "wallpaper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-47:word:wallpaper:r1",
+            "targetText": "wallpaper",
+            "meaningByLocale": {
+              "ru": "«обои». The wallpaper is wet. — «Обои влажные». Материал для оклеивания стен; в этой фразе с wallpaper используем is.",
+              "uk": "«шпалери». The wallpaper is wet. — «Шпалери вологі». Матеріал для обклеювання стін; у цій фразі з wallpaper використовуємо is."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wallpaper",
+          "definitionByLocale": {
+            "ru": "«обои». The wallpaper is wet. — «Обои влажные». Материал для оклеивания стен; в этой фразе с wallpaper используем is.",
+            "uk": "«шпалери». The wallpaper is wet. — «Шпалери вологі». Матеріал для обклеювання стін; у цій фразі з wallpaper використовуємо is."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гість запитує, чому не можна торкатися стіни. Скажіть: «Шпалери вологі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гість запитує, чому не можна торкатися стіни. Скажіть: «Шпалери вологі»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The wallpaper is wet.",
+        "localizedMeaning": {
+          "ru": "Гость спрашивает, почему нельзя трогать стену. Скажите: «Обои влажные»",
+          "uk": "Гість запитує, чому не можна торкатися стіни. Скажіть: «Шпалери вологі»"
+        },
+        "orderedTokens": [
+          "The",
+          "wallpaper",
+          "is",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-47:i05:r1",
+          "text": "Please don't touch the wallpaper."
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i05:r2",
+          "text": "Please touch the wallpaper."
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i05:r3",
+          "text": "Please don't touch the swatch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:i05:audio",
+          "transcript": "Please don't touch the wallpaper."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-47:i05:r1",
+            "targetText": "Please don't touch the wallpaper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i05:r2",
+            "targetText": "Please touch the wallpaper.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i05:r3",
+            "targetText": "Please don't touch the swatch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please don't touch the wallpaper.",
+              "uk": "У записі звучить Please don't touch the wallpaper."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please don't touch the wallpaper.",
+              "uk": "У записі звучить Please don't touch the wallpaper."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку для wallpaper як матеріалу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-47:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку для wallpaper як матеріалу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для wallpaper как материала",
+          "uk": "Виберіть зв’язку для wallpaper як матеріалу"
+        },
+        "gappedTargetPhrase": "The wallpaper ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-47:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку для wallpaper як матеріалу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для wallpaper як матеріалу",
+            "feedbackByLocale": {
+              "ru": "Wallpaper здесь неисчисляемое, используем is.",
+              "uk": "Wallpaper тут незлічуване, використовуємо is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для wallpaper як матеріалу",
+            "feedbackByLocale": {
+              "ru": "Am используем с I, не с wallpaper.",
+              "uk": "Am використовуємо з I, не з wallpaper."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:word:catalogue",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — catalogue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:word:catalogue:audio"
+      ],
+      "accessibilityLabel": "Картка слова — catalogue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:word:catalogue:audio",
+          "transcript": "catalogue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-47:word:catalogue:r1",
+            "targetText": "catalogue",
+            "meaningByLocale": {
+              "ru": "«каталог». I am checking the catalogue. — «Я проверяю каталог». Здесь книга с товарами и их номерами; американское написание — catalog.",
+              "uk": "«каталог». I am checking the catalogue. — «Я перевіряю каталог». Тут книжка з товарами та їхніми номерами; американське написання — catalog."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "catalogue",
+          "definitionByLocale": {
+            "ru": "«каталог». I am checking the catalogue. — «Я проверяю каталог». Здесь книга с товарами и их номерами; американское написание — catalog.",
+            "uk": "«каталог». I am checking the catalogue. — «Я перевіряю каталог». Тут книжка з товарами та їхніми номерами; американське написання — catalog."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте номер вибраних шпалер у книжці товарів. Поясніть партнерові: «Я перевіряю каталог»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте номер вибраних шпалер у книжці товарів. Поясніть партнерові: «Я перевіряю каталог»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am checking the catalogue.",
+        "localizedMeaning": {
+          "ru": "Вы ищете номер выбранных обоев в книге товаров. Объясните партнёру: «Я проверяю каталог»",
+          "uk": "Ви шукаєте номер вибраних шпалер у книжці товарів. Поясніть партнерові: «Я перевіряю каталог»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "checking",
+          "the",
+          "catalogue"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-47:i08:r1",
+          "text": "Are you checking the catalogue?"
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i08:r2",
+          "text": "You are checking the catalogue."
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i08:r3",
+          "text": "I am checking the catalogue."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:i08:audio",
+          "transcript": "Are you checking the catalogue?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-47:i08:r1",
+            "targetText": "Are you checking the catalogue?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i08:r2",
+            "targetText": "You are checking the catalogue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i08:r3",
+            "targetText": "I am checking the catalogue.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you checking the catalogue?",
+              "uk": "У записі звучить Are you checking the catalogue?"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you checking the catalogue?",
+              "uk": "У записі звучить Are you checking the catalogue?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви ще хочете побачити зразок при вечірньому світлі. Партнер запитує, чи ви вирішили. Скажіть, що поки вагаєтеся",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Ви ще хочете побачити зразок при вечірньому світлі. Партнер запитує, чи ви вирішили. Скажіть, що поки вагаєтеся",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:i09:audio",
+          "transcript": "I am hesitating."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am hesitating.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:word:adhesive",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — adhesive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:word:adhesive:audio"
+      ],
+      "accessibilityLabel": "Картка слова — adhesive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:word:adhesive:audio",
+          "transcript": "adhesive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-47:word:adhesive:r1",
+            "targetText": "adhesive",
+            "meaningByLocale": {
+              "ru": "«клей». The adhesive is dry. — «Клей высох». Здесь вещество для приклеивания обоев; словом adhesive называют клей для разных материалов.",
+              "uk": "«клей». The adhesive is dry. — «Клей висох». Тут речовина для приклеювання шпалер; словом adhesive називають клей для різних матеріалів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "adhesive",
+          "definitionByLocale": {
+            "ru": "«клей». The adhesive is dry. — «Клей высох». Здесь вещество для приклеивания обоев; словом adhesive называют клей для разных материалов.",
+            "uk": "«клей». The adhesive is dry. — «Клей висох». Тут речовина для приклеювання шпалер; словом adhesive називають клей для різних матеріалів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На пробному шматочку клей уже висох. Повідомте майстрові: «Клей висох»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На пробному шматочку клей уже висох. Повідомте майстрові: «Клей висох»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The adhesive is dry.",
+        "localizedMeaning": {
+          "ru": "На пробном кусочке клей уже высох. Сообщите мастеру: «Клей высох»",
+          "uk": "На пробному шматочку клей уже висох. Повідомте майстрові: «Клей висох»"
+        },
+        "orderedTokens": [
+          "The",
+          "adhesive",
+          "is",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-47:i11:r1",
+          "text": "The adhesive is wet."
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i11:r2",
+          "text": "The adhesive is dry."
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i11:r3",
+          "text": "The wallpaper is wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:i11:audio",
+          "transcript": "The adhesive is wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-47:i11:r1",
+            "targetText": "The adhesive is wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i11:r2",
+            "targetText": "The adhesive is dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i11:r3",
+            "targetText": "The wallpaper is wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The adhesive is wet.",
+              "uk": "У записі звучить The adhesive is wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The adhesive is wet.",
+              "uk": "У записі звучить The adhesive is wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку для adhesive як речовини",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-47:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку для adhesive як речовини",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для adhesive как вещества",
+          "uk": "Виберіть зв’язку для adhesive як речовини"
+        },
+        "gappedTargetPhrase": "The adhesive ___ dry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-47:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку для adhesive як речовини",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для adhesive як речовини",
+            "feedbackByLocale": {
+              "ru": "О веществе adhesive здесь говорим is.",
+              "uk": "Про речовину adhesive тут кажемо is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для adhesive як речовини",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am вживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-47:i13:p1",
+            "target": "swatch",
+            "meaningByLocale": {
+              "ru": "образец материала",
+              "uk": "зразок матеріалу"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-47:i13:p2",
+            "target": "wallpaper",
+            "meaningByLocale": {
+              "ru": "обои",
+              "uk": "шпалери"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-47:i13:p3",
+            "target": "catalogue",
+            "meaningByLocale": {
+              "ru": "каталог",
+              "uk": "каталог"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-47:i13:p4",
+            "target": "adhesive",
+            "meaningByLocale": {
+              "ru": "клей",
+              "uk": "клей"
+            }
+          }
+        ],
+        "leftColumn": [
+          "swatch",
+          "wallpaper",
+          "catalogue",
+          "adhesive"
+        ],
+        "rightColumn": [
+          "зразок матеріалу",
+          "шпалери",
+          "каталог",
+          "клей"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання про вагання перед рішенням",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання про вагання перед рішенням",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:i14:audio",
+          "transcript": "Are you hesitating?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you hesitating?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "hesitating"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть написання hesitate з -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-47:i15:r1",
+          "text": "hesitating"
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i15:r2",
+          "text": "hesitateing"
+        },
+        {
+          "responseId": "en:lesson-09:session-47:i15:r3",
+          "text": "hesitate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть написання hesitate з -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите написание hesitate с -ing",
+          "uk": "Виберіть написання hesitate з -ing"
+        },
+        "gappedTargetPhrase": "I am ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-47:i15:r1",
+            "text": "hesitating"
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i15:r2",
+            "text": "hesitateing"
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i15:r3",
+            "text": "hesitate"
+          }
+        ],
+        "testedDimension": "Виберіть написання hesitate з -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-47:i15:r2",
+            "correct": false,
+            "testedDimension": "Виберіть написання hesitate з -ing",
+            "feedbackByLocale": {
+              "ru": "Перед -ing конечная e уходит: hesitating.",
+              "uk": "Перед -ing кінцева e зникає: hesitating."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-47:i15:r3",
+            "correct": false,
+            "testedDimension": "Виберіть написання hesitate з -ing",
+            "feedbackByLocale": {
+              "ru": "После am для действия сейчас нужна форма hesitating.",
+              "uk": "Після am для дії зараз потрібна форма hesitating."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вже вибрали колір. Партнер думає, що ви все ще вагаєтеся. Заперечте: «Я не вагаюся»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже вибрали колір. Партнер думає, що ви все ще вагаєтеся. Заперечте: «Я не вагаюся»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not hesitating.",
+        "localizedMeaning": {
+          "ru": "Вы уже выбрали цвет. Партнёр думает, что вы всё ещё колеблетесь. Возразите: «Я не колеблюсь»",
+          "uk": "Ви вже вибрали колір. Партнер думає, що ви все ще вагаєтеся. Заперечте: «Я не вагаюся»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "hesitating"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Удома перед замовленням шпалер ви звіряєте номер товару в книжці магазину. Сестра запитує, чим ви зайняті. Дайте відповідь: «Я перевіряю каталог»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Удома перед замовленням шпалер ви звіряєте номер товару в книжці магазину. Сестра запитує, чим ви зайняті. Дайте відповідь: «Я перевіряю каталог»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-47:i17:audio",
+          "transcript": "I am checking the catalogue."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am checking the catalogue.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1ca9d6e4ea7d9f11779beae38c89dbf785e77e1e27f86b6378c428b06b3f188f"
+}

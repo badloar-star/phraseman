@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "I am checking the agenda; I am taking minutes; An attendee is nodding",
+    "uk": "I am checking the agenda; I am taking minutes; An attendee is nodding"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "О чём будем говорить",
+        "uk": "Про що говоритимемо"
+      },
+      "bodyByLocale": {
+        "ru": "Перед встречей коллега спрашивает, будут ли обсуждать доставку. Вы просматриваете список тем. I am checking the agenda — «Я проверяю повестку встречи». Agenda — список вопросов, которые планируют обсудить. Это не запись уже принятых решений. Проверяете сейчас: am checking.",
+        "uk": "Перед зустріччю колега запитує, чи обговорюватимуть доставку. Ви переглядаєте список тем. I am checking the agenda — «Я перевіряю порядок денний зустрічі». Agenda — список питань, які планують обговорити. Це не запис уже ухвалених рішень. Перевіряєте зараз: am checking."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-55:intro1:r1",
+              "text": "I am checking the agenda."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro1:r2",
+              "text": "I checking the agenda."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro1:r3",
+              "text": "I am check the agenda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-55:intro1:r1",
+              "text": "I am checking the agenda."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro1:r2",
+              "text": "I checking the agenda."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro1:r3",
+              "text": "I am check the agenda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто записывает решения",
+        "uk": "Хто записує рішення"
+      },
+      "bodyByLocale": {
+        "ru": "На встрече вы записываете, о чём договорилась команда. Коллега видит открытый ноутбук и спрашивает, чем вы заняты. I am taking minutes — «Я веду протокол встречи». Minutes здесь — письменная запись обсуждения и решений, не единицы времени. В выражении take minutes артикль перед minutes не нужен.",
+        "uk": "На зустрічі ви записуєте, про що домовилася команда. Колега бачить відкритий ноутбук і запитує, чим ви зайняті. I am taking minutes — «Я веду протокол зустрічі». Minutes тут — письмовий запис обговорення й рішень, не одиниці часу. У виразі take minutes артикль перед minutes не потрібний."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-55:intro2:r1",
+              "text": "I am taking minutes."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro2:r2",
+              "text": "I am take minutes."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro2:r3",
+              "text": "I taking minutes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-55:intro2:r1",
+              "text": "I am taking minutes."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro2:r2",
+              "text": "I am take minutes."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro2:r3",
+              "text": "I taking minutes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ движением головы",
+        "uk": "Відповідь рухом голови"
+      },
+      "bodyByLocale": {
+        "ru": "Руководитель объясняет, где собраться после перерыва. Один из присутствующих кивает в ответ, показывая, что понял. An attendee is nodding — «Участник встречи кивает». Attendee — человек, присутствующий на встрече или мероприятии. Nod уже знакомо; в nodding удваиваем d. Перед attendee нужен an, потому что первый звук гласный.",
+        "uk": "Керівник пояснює, де зібратися після перерви. Один із присутніх киває у відповідь, показуючи, що зрозумів. An attendee is nodding — «Учасник зустрічі киває». Attendee — людина, присутня на зустрічі чи заході. Nod уже знайоме; у nodding подвоюємо d. Перед attendee потрібне an, тому що перший звук голосний."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-55:intro3:r1",
+              "text": "An attendee is nodding."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro3:r2",
+              "text": "A attendee is nodding."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro3:r3",
+              "text": "An attendee is noding."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-55:intro3:r1",
+              "text": "An attendee is nodding."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro3:r2",
+              "text": "A attendee is nodding."
+            },
+            {
+              "responseId": "en:lesson-09:session-55:intro3:r3",
+              "text": "An attendee is noding."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "490cc109a44b3ddee784849579de055c7550725770d22164303eccafc7891f0c"
+}

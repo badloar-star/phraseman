@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-55:word:agenda",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — agenda",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:word:agenda:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — agenda",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:word:agenda:audio",
+            "transcript": "agenda"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:word:agenda:r1",
+              "targetText": "agenda",
+              "meaningByLocale": {
+                "ru": "«повестка встречи». I am checking the agenda. — «Я проверяю повестку встречи». Список тем для обсуждения.",
+                "uk": "«порядок денний зустрічі». I am checking the agenda. — «Я перевіряю порядок денний зустрічі». Список тем для обговорення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "agenda",
+            "definitionByLocale": {
+              "ru": "«повестка встречи». I am checking the agenda. — «Я проверяю повестку встречи». Список тем для обсуждения.",
+              "uk": "«порядок денний зустрічі». I am checking the agenda. — «Я перевіряю порядок денний зустрічі». Список тем для обговорення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает о темах встречи. Скажите, что сейчас проверяете повестку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает о темах встречи. Скажите, что сейчас проверяете повестку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am checking the agenda.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает о темах встречи. Скажите, что сейчас проверяете повестку",
+            "uk": "Колега запитує про теми зустрічі. Скажіть, що зараз перевіряєте порядок денний"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "checking",
+            "the",
+            "agenda"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i02:r1",
+            "text": "The agenda is on the table."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i02:r2",
+            "text": "The agenda is under the table."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i02:r3",
+            "text": "The notebook is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i02:audio",
+            "transcript": "The agenda is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:i02:r1",
+              "targetText": "The agenda is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i02:r2",
+              "targetText": "The agenda is under the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i02:r3",
+              "targetText": "The notebook is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The agenda is on the table.",
+                "uk": "У записі звучить The agenda is on the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The agenda is on the table.",
+                "uk": "У записі звучить The agenda is on the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку для agenda",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку для agenda",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для agenda",
+            "uk": "Виберіть зв’язку для agenda"
+          },
+          "gappedTargetPhrase": "The agenda ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-55:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку для agenda",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку для agenda",
+              "feedbackByLocale": {
+                "ru": "Agenda здесь в единственном числе: is.",
+                "uk": "Agenda тут в однині: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку для agenda",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:word:briefing",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — briefing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:word:briefing:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — briefing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:word:briefing:audio",
+            "transcript": "briefing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:word:briefing:r1",
+              "targetText": "briefing",
+              "meaningByLocale": {
+                "ru": "«краткий инструктаж». The briefing is starting. — «Инструктаж начинается». Короткая встреча, на которой дают нужную информацию перед работой.",
+                "uk": "«короткий інструктаж». The briefing is starting. — «Інструктаж починається». Коротка зустріч, на якій дають потрібну інформацію перед роботою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "briefing",
+            "definitionByLocale": {
+              "ru": "«краткий инструктаж». The briefing is starting. — «Инструктаж начинается». Короткая встреча, на которой дают нужную информацию перед работой.",
+              "uk": "«короткий інструктаж». The briefing is starting. — «Інструктаж починається». Коротка зустріч, на якій дають потрібну інформацію перед роботою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Руководитель собирает команду перед началом смены. Сообщите коллеге: «Инструктаж начинается»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Руководитель собирает команду перед началом смены. Сообщите коллеге: «Инструктаж начинается»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The briefing is starting.",
+          "localizedMeaning": {
+            "ru": "Руководитель собирает команду перед началом смены. Сообщите коллеге: «Инструктаж начинается»",
+            "uk": "Керівник збирає команду перед початком зміни. Повідомте колезі: «Інструктаж починається»"
+          },
+          "orderedTokens": [
+            "The",
+            "briefing",
+            "is",
+            "starting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i05:r1",
+            "text": "The briefing is short."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i05:r2",
+            "text": "The briefing is long."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i05:r3",
+            "text": "The agenda is short."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i05:audio",
+            "transcript": "The briefing is short."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:i05:r1",
+              "targetText": "The briefing is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i05:r2",
+              "targetText": "The briefing is long.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i05:r3",
+              "targetText": "The agenda is short.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The briefing is short.",
+                "uk": "У записі звучить The briefing is short."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The briefing is short.",
+                "uk": "У записі звучить The briefing is short."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега перебивает ведущего инструктажа. Попросите не перебивать; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i06:audio"
+        ],
+        "accessibilityLabel": "Коллега перебивает ведущего инструктажа. Попросите не перебивать; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i06:audio",
+            "transcript": "Please don't interrupt."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't interrupt.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:word:minutes",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — minutes",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:word:minutes:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — minutes",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:word:minutes:audio",
+            "transcript": "minutes"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:word:minutes:r1",
+              "targetText": "minutes",
+              "meaningByLocale": {
+                "ru": "«протокол встречи». I am taking minutes. — «Я веду протокол встречи». Запись обсуждения и решений; здесь не минуты времени.",
+                "uk": "«протокол зустрічі». I am taking minutes. — «Я веду протокол зустрічі». Запис обговорення й рішень; тут не хвилини часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "minutes",
+            "definitionByLocale": {
+              "ru": "«протокол встречи». I am taking minutes. — «Я веду протокол встречи». Запись обсуждения и решений; здесь не минуты времени.",
+              "uk": "«протокол зустрічі». I am taking minutes. — «Я веду протокол зустрічі». Запис обговорення й рішень; тут не хвилини часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает, что вы записываете во время встречи. Скажите, что ведёте протокол",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает, что вы записываете во время встречи. Скажите, что ведёте протокол",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am taking minutes.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, что вы записываете во время встречи. Скажите, что ведёте протокол",
+            "uk": "Колега запитує, що ви записуєте під час зустрічі. Скажіть, що ведете протокол"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "taking",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i08:r1",
+            "text": "Are you taking minutes?"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i08:r2",
+            "text": "You are taking minutes."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i08:r3",
+            "text": "I am taking minutes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i08:audio",
+            "transcript": "Are you taking minutes?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:i08:r1",
+              "targetText": "Are you taking minutes?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i08:r2",
+              "targetText": "You are taking minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i08:r3",
+              "targetText": "I am taking minutes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you taking minutes?",
+                "uk": "У записі звучить Are you taking minutes?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you taking minutes?",
+                "uk": "У записі звучить Are you taking minutes?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму take для действия сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i09:r1",
+            "text": "taking"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i09:r2",
+            "text": "takeing"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i09:r3",
+            "text": "take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму take для действия сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму take для действия сейчас",
+            "uk": "Виберіть форму take для дії зараз"
+          },
+          "gappedTargetPhrase": "I am ___ minutes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-55:i09:r1",
+              "text": "taking"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i09:r2",
+              "text": "takeing"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i09:r3",
+              "text": "take"
+            }
+          ],
+          "testedDimension": "Выберите форму take для действия сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму take для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "Конечная e уходит перед -ing: taking.",
+                "uk": "Кінцева e зникає перед -ing: taking."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму take для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "После am нужна форма taking.",
+                "uk": "Після am потрібна форма taking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:word:attendee",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — attendee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:word:attendee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — attendee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:word:attendee:audio",
+            "transcript": "attendee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:word:attendee:r1",
+              "targetText": "attendee",
+              "meaningByLocale": {
+                "ru": "«участник встречи». An attendee is nodding. — «Участник встречи кивает». Человек, присутствующий на встрече или мероприятии.",
+                "uk": "«учасник зустрічі». An attendee is nodding. — «Учасник зустрічі киває». Людина, присутня на зустрічі чи заході."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "attendee",
+            "definitionByLocale": {
+              "ru": "«участник встречи». An attendee is nodding. — «Участник встречи кивает». Человек, присутствующий на встрече или мероприятии.",
+              "uk": "«учасник зустрічі». An attendee is nodding. — «Учасник зустрічі киває». Людина, присутня на зустрічі чи заході."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Один из присутствующих кивает, показывая, что понял. Скажите: «Участник встречи кивает»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один из присутствующих кивает, показывая, что понял. Скажите: «Участник встречи кивает»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "An attendee is nodding.",
+          "localizedMeaning": {
+            "ru": "Один из присутствующих кивает, показывая, что понял. Скажите: «Участник встречи кивает»",
+            "uk": "Один із присутніх киває, показуючи, що зрозумів. Скажіть: «Учасник зустрічі киває»"
+          },
+          "orderedTokens": [
+            "An",
+            "attendee",
+            "is",
+            "nodding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i11:r1",
+            "text": "The attendee is listening."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i11:r2",
+            "text": "The attendee is speaking."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i11:r3",
+            "text": "The attendee is not listening."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i11:audio",
+            "transcript": "The attendee is listening."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:i11:r1",
+              "targetText": "The attendee is listening.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i11:r2",
+              "targetText": "The attendee is speaking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i11:r3",
+              "targetText": "The attendee is not listening.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The attendee is listening.",
+                "uk": "У записі звучить The attendee is listening."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The attendee is listening.",
+                "uk": "У записі звучить The attendee is listening."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите написание nod с -ing",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i12:r1",
+            "text": "nodding"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i12:r2",
+            "text": "noding"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i12:r3",
+            "text": "nod"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите написание nod с -ing",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите написание nod с -ing",
+            "uk": "Виберіть написання nod з -ing"
+          },
+          "gappedTargetPhrase": "The attendee is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-55:i12:r1",
+              "text": "nodding"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i12:r2",
+              "text": "noding"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i12:r3",
+              "text": "nod"
+            }
+          ],
+          "testedDimension": "Выберите написание nod с -ing",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите написание nod с -ing",
+              "feedbackByLocale": {
+                "ru": "В nodding удваиваем d.",
+                "uk": "У nodding подвоюємо d."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите написание nod с -ing",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма nodding.",
+                "uk": "Після is потрібна форма nodding."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-55:i13:p1",
+              "target": "agenda",
+              "meaningByLocale": {
+                "ru": "повестка встречи",
+                "uk": "порядок денний зустрічі"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-55:i13:p2",
+              "target": "briefing",
+              "meaningByLocale": {
+                "ru": "краткий инструктаж",
+                "uk": "короткий інструктаж"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-55:i13:p3",
+              "target": "minutes",
+              "meaningByLocale": {
+                "ru": "протокол встречи",
+                "uk": "протокол зустрічі"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-55:i13:p4",
+              "target": "attendee",
+              "meaningByLocale": {
+                "ru": "участник встречи",
+                "uk": "учасник зустрічі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "agenda",
+            "briefing",
+            "minutes",
+            "attendee"
+          ],
+          "rightColumn": [
+            "повестка встречи",
+            "краткий инструктаж",
+            "протокол встречи",
+            "участник встречи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос о кивке участника сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос о кивке участника сейчас",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i14:audio",
+            "transcript": "Is the attendee nodding?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is the attendee nodding?",
+          "orderedTokens": [
+            "Is",
+            "the",
+            "attendee",
+            "nodding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите артикль перед attendee",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i15:r1",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i15:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i15:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите артикль перед attendee",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед attendee",
+            "uk": "Виберіть артикль перед attendee"
+          },
+          "gappedTargetPhrase": "___ attendee is nodding.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-55:i15:r1",
+              "text": "An"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i15:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i15:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Выберите артикль перед attendee",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед attendee",
+              "feedbackByLocale": {
+                "ru": "Первый звук гласный: an attendee.",
+                "uk": "Перший звук голосний: an attendee."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед attendee",
+              "feedbackByLocale": {
+                "ru": "Are не артикль; здесь нужен an.",
+                "uk": "Are не артикль; тут потрібне an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега думает, что вы ведёте протокол, но сегодня вы только слушаете. Скажите: «Я не веду протокол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега думает, что вы ведёте протокол, но сегодня вы только слушаете. Скажите: «Я не веду протокол»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am not taking minutes.",
+          "localizedMeaning": {
+            "ru": "Коллега думает, что вы ведёте протокол, но сегодня вы только слушаете. Скажите: «Я не веду протокол»",
+            "uk": "Колега думає, що ви ведете протокол, але сьогодні ви лише слухаєте. Скажіть: «Я не веду протокол»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "taking",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Команда обсуждает доставку, а вы записываете решения для всех участников. Руководитель спрашивает, чем вы заняты. Скажите: «Я веду протокол встречи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Команда обсуждает доставку, а вы записываете решения для всех участников. Руководитель спрашивает, чем вы заняты. Скажите: «Я веду протокол встречи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i17:audio",
+            "transcript": "I am taking minutes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am taking minutes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-55:word:agenda",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — agenda",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:word:agenda:audio"
+        ],
+        "accessibilityLabel": "Картка слова — agenda",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:word:agenda:audio",
+            "transcript": "agenda"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:word:agenda:r1",
+              "targetText": "agenda",
+              "meaningByLocale": {
+                "ru": "«повестка встречи». I am checking the agenda. — «Я проверяю повестку встречи». Список тем для обсуждения.",
+                "uk": "«порядок денний зустрічі». I am checking the agenda. — «Я перевіряю порядок денний зустрічі». Список тем для обговорення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "agenda",
+            "definitionByLocale": {
+              "ru": "«повестка встречи». I am checking the agenda. — «Я проверяю повестку встречи». Список тем для обсуждения.",
+              "uk": "«порядок денний зустрічі». I am checking the agenda. — «Я перевіряю порядок денний зустрічі». Список тем для обговорення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує про теми зустрічі. Скажіть, що зараз перевіряєте порядок денний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує про теми зустрічі. Скажіть, що зараз перевіряєте порядок денний",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am checking the agenda.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает о темах встречи. Скажите, что сейчас проверяете повестку",
+            "uk": "Колега запитує про теми зустрічі. Скажіть, що зараз перевіряєте порядок денний"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "checking",
+            "the",
+            "agenda"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i02:r1",
+            "text": "The agenda is on the table."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i02:r2",
+            "text": "The agenda is under the table."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i02:r3",
+            "text": "The notebook is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i02:audio",
+            "transcript": "The agenda is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:i02:r1",
+              "targetText": "The agenda is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i02:r2",
+              "targetText": "The agenda is under the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i02:r3",
+              "targetText": "The notebook is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The agenda is on the table.",
+                "uk": "У записі звучить The agenda is on the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The agenda is on the table.",
+                "uk": "У записі звучить The agenda is on the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку для agenda",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку для agenda",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для agenda",
+            "uk": "Виберіть зв’язку для agenda"
+          },
+          "gappedTargetPhrase": "The agenda ___ on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-55:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку для agenda",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для agenda",
+              "feedbackByLocale": {
+                "ru": "Agenda здесь в единственном числе: is.",
+                "uk": "Agenda тут в однині: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для agenda",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:word:briefing",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — briefing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:word:briefing:audio"
+        ],
+        "accessibilityLabel": "Картка слова — briefing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:word:briefing:audio",
+            "transcript": "briefing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:word:briefing:r1",
+              "targetText": "briefing",
+              "meaningByLocale": {
+                "ru": "«краткий инструктаж». The briefing is starting. — «Инструктаж начинается». Короткая встреча, на которой дают нужную информацию перед работой.",
+                "uk": "«короткий інструктаж». The briefing is starting. — «Інструктаж починається». Коротка зустріч, на якій дають потрібну інформацію перед роботою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "briefing",
+            "definitionByLocale": {
+              "ru": "«краткий инструктаж». The briefing is starting. — «Инструктаж начинается». Короткая встреча, на которой дают нужную информацию перед работой.",
+              "uk": "«короткий інструктаж». The briefing is starting. — «Інструктаж починається». Коротка зустріч, на якій дають потрібну інформацію перед роботою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Керівник збирає команду перед початком зміни. Повідомте колезі: «Інструктаж починається»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Керівник збирає команду перед початком зміни. Повідомте колезі: «Інструктаж починається»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The briefing is starting.",
+          "localizedMeaning": {
+            "ru": "Руководитель собирает команду перед началом смены. Сообщите коллеге: «Инструктаж начинается»",
+            "uk": "Керівник збирає команду перед початком зміни. Повідомте колезі: «Інструктаж починається»"
+          },
+          "orderedTokens": [
+            "The",
+            "briefing",
+            "is",
+            "starting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i05:r1",
+            "text": "The briefing is short."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i05:r2",
+            "text": "The briefing is long."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i05:r3",
+            "text": "The agenda is short."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i05:audio",
+            "transcript": "The briefing is short."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:i05:r1",
+              "targetText": "The briefing is short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i05:r2",
+              "targetText": "The briefing is long.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i05:r3",
+              "targetText": "The agenda is short.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The briefing is short.",
+                "uk": "У записі звучить The briefing is short."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The briefing is short.",
+                "uk": "У записі звучить The briefing is short."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега перебиває ведучого інструктажу. Попросіть не перебивати; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i06:audio"
+        ],
+        "accessibilityLabel": "Колега перебиває ведучого інструктажу. Попросіть не перебивати; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i06:audio",
+            "transcript": "Please don't interrupt."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't interrupt.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:word:minutes",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — minutes",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:word:minutes:audio"
+        ],
+        "accessibilityLabel": "Картка слова — minutes",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:word:minutes:audio",
+            "transcript": "minutes"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:word:minutes:r1",
+              "targetText": "minutes",
+              "meaningByLocale": {
+                "ru": "«протокол встречи». I am taking minutes. — «Я веду протокол встречи». Запись обсуждения и решений; здесь не минуты времени.",
+                "uk": "«протокол зустрічі». I am taking minutes. — «Я веду протокол зустрічі». Запис обговорення й рішень; тут не хвилини часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "minutes",
+            "definitionByLocale": {
+              "ru": "«протокол встречи». I am taking minutes. — «Я веду протокол встречи». Запись обсуждения и решений; здесь не минуты времени.",
+              "uk": "«протокол зустрічі». I am taking minutes. — «Я веду протокол зустрічі». Запис обговорення й рішень; тут не хвилини часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує, що ви записуєте під час зустрічі. Скажіть, що ведете протокол",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує, що ви записуєте під час зустрічі. Скажіть, що ведете протокол",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am taking minutes.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, что вы записываете во время встречи. Скажите, что ведёте протокол",
+            "uk": "Колега запитує, що ви записуєте під час зустрічі. Скажіть, що ведете протокол"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "taking",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i08:r1",
+            "text": "Are you taking minutes?"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i08:r2",
+            "text": "You are taking minutes."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i08:r3",
+            "text": "I am taking minutes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i08:audio",
+            "transcript": "Are you taking minutes?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:i08:r1",
+              "targetText": "Are you taking minutes?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i08:r2",
+              "targetText": "You are taking minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i08:r3",
+              "targetText": "I am taking minutes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you taking minutes?",
+                "uk": "У записі звучить Are you taking minutes?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you taking minutes?",
+                "uk": "У записі звучить Are you taking minutes?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму take для дії зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i09:r1",
+            "text": "taking"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i09:r2",
+            "text": "takeing"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i09:r3",
+            "text": "take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму take для дії зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму take для действия сейчас",
+            "uk": "Виберіть форму take для дії зараз"
+          },
+          "gappedTargetPhrase": "I am ___ minutes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-55:i09:r1",
+              "text": "taking"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i09:r2",
+              "text": "takeing"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i09:r3",
+              "text": "take"
+            }
+          ],
+          "testedDimension": "Виберіть форму take для дії зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму take для дії зараз",
+              "feedbackByLocale": {
+                "ru": "Конечная e уходит перед -ing: taking.",
+                "uk": "Кінцева e зникає перед -ing: taking."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму take для дії зараз",
+              "feedbackByLocale": {
+                "ru": "После am нужна форма taking.",
+                "uk": "Після am потрібна форма taking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:word:attendee",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — attendee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:word:attendee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — attendee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:word:attendee:audio",
+            "transcript": "attendee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:word:attendee:r1",
+              "targetText": "attendee",
+              "meaningByLocale": {
+                "ru": "«участник встречи». An attendee is nodding. — «Участник встречи кивает». Человек, присутствующий на встрече или мероприятии.",
+                "uk": "«учасник зустрічі». An attendee is nodding. — «Учасник зустрічі киває». Людина, присутня на зустрічі чи заході."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "attendee",
+            "definitionByLocale": {
+              "ru": "«участник встречи». An attendee is nodding. — «Участник встречи кивает». Человек, присутствующий на встрече или мероприятии.",
+              "uk": "«учасник зустрічі». An attendee is nodding. — «Учасник зустрічі киває». Людина, присутня на зустрічі чи заході."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Один із присутніх киває, показуючи, що зрозумів. Скажіть: «Учасник зустрічі киває»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один із присутніх киває, показуючи, що зрозумів. Скажіть: «Учасник зустрічі киває»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "An attendee is nodding.",
+          "localizedMeaning": {
+            "ru": "Один из присутствующих кивает, показывая, что понял. Скажите: «Участник встречи кивает»",
+            "uk": "Один із присутніх киває, показуючи, що зрозумів. Скажіть: «Учасник зустрічі киває»"
+          },
+          "orderedTokens": [
+            "An",
+            "attendee",
+            "is",
+            "nodding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i11:r1",
+            "text": "The attendee is listening."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i11:r2",
+            "text": "The attendee is speaking."
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i11:r3",
+            "text": "The attendee is not listening."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i11:audio",
+            "transcript": "The attendee is listening."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-55:i11:r1",
+              "targetText": "The attendee is listening.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i11:r2",
+              "targetText": "The attendee is speaking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i11:r3",
+              "targetText": "The attendee is not listening.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The attendee is listening.",
+                "uk": "У записі звучить The attendee is listening."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The attendee is listening.",
+                "uk": "У записі звучить The attendee is listening."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть написання nod з -ing",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i12:r1",
+            "text": "nodding"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i12:r2",
+            "text": "noding"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i12:r3",
+            "text": "nod"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть написання nod з -ing",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите написание nod с -ing",
+            "uk": "Виберіть написання nod з -ing"
+          },
+          "gappedTargetPhrase": "The attendee is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-55:i12:r1",
+              "text": "nodding"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i12:r2",
+              "text": "noding"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i12:r3",
+              "text": "nod"
+            }
+          ],
+          "testedDimension": "Виберіть написання nod з -ing",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть написання nod з -ing",
+              "feedbackByLocale": {
+                "ru": "В nodding удваиваем d.",
+                "uk": "У nodding подвоюємо d."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть написання nod з -ing",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма nodding.",
+                "uk": "Після is потрібна форма nodding."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-55:i13:p1",
+              "target": "agenda",
+              "meaningByLocale": {
+                "ru": "повестка встречи",
+                "uk": "порядок денний зустрічі"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-55:i13:p2",
+              "target": "briefing",
+              "meaningByLocale": {
+                "ru": "краткий инструктаж",
+                "uk": "короткий інструктаж"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-55:i13:p3",
+              "target": "minutes",
+              "meaningByLocale": {
+                "ru": "протокол встречи",
+                "uk": "протокол зустрічі"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-55:i13:p4",
+              "target": "attendee",
+              "meaningByLocale": {
+                "ru": "участник встречи",
+                "uk": "учасник зустрічі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "agenda",
+            "briefing",
+            "minutes",
+            "attendee"
+          ],
+          "rightColumn": [
+            "порядок денний зустрічі",
+            "короткий інструктаж",
+            "протокол зустрічі",
+            "учасник зустрічі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання про кивок учасника зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання про кивок учасника зараз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i14:audio",
+            "transcript": "Is the attendee nodding?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is the attendee nodding?",
+          "orderedTokens": [
+            "Is",
+            "the",
+            "attendee",
+            "nodding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть артикль перед attendee",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-55:i15:r1",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i15:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-09:session-55:i15:r3",
+            "text": "Are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть артикль перед attendee",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед attendee",
+            "uk": "Виберіть артикль перед attendee"
+          },
+          "gappedTargetPhrase": "___ attendee is nodding.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-55:i15:r1",
+              "text": "An"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i15:r2",
+              "text": "A"
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i15:r3",
+              "text": "Are"
+            }
+          ],
+          "testedDimension": "Виберіть артикль перед attendee",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-55:i15:r2",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед attendee",
+              "feedbackByLocale": {
+                "ru": "Первый звук гласный: an attendee.",
+                "uk": "Перший звук голосний: an attendee."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-55:i15:r3",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед attendee",
+              "feedbackByLocale": {
+                "ru": "Are не артикль; здесь нужен an.",
+                "uk": "Are не артикль; тут потрібне an."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега думає, що ви ведете протокол, але сьогодні ви лише слухаєте. Скажіть: «Я не веду протокол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега думає, що ви ведете протокол, але сьогодні ви лише слухаєте. Скажіть: «Я не веду протокол»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am not taking minutes.",
+          "localizedMeaning": {
+            "ru": "Коллега думает, что вы ведёте протокол, но сегодня вы только слушаете. Скажите: «Я не веду протокол»",
+            "uk": "Колега думає, що ви ведете протокол, але сьогодні ви лише слухаєте. Скажіть: «Я не веду протокол»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "taking",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Команда обговорює доставку, а ви записуєте рішення для всіх учасників. Керівник запитує, чим ви зайняті. Скажіть: «Я веду протокол зустрічі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Команда обговорює доставку, а ви записуєте рішення для всіх учасників. Керівник запитує, чим ви зайняті. Скажіть: «Я веду протокол зустрічі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-55:i17:audio",
+            "transcript": "I am taking minutes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am taking minutes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-55:word:agenda",
+      "correctText": "agenda",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i01",
+      "correctText": "I am checking the agenda.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i02",
+      "correctText": "The agenda is on the table.",
+      "correctResponseId": "en:lesson-09:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:word:briefing",
+      "correctText": "briefing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i04",
+      "correctText": "The briefing is starting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i05",
+      "correctText": "The briefing is short.",
+      "correctResponseId": "en:lesson-09:session-55:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i06",
+      "correctText": "Please don't interrupt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:word:minutes",
+      "correctText": "minutes",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i07",
+      "correctText": "I am taking minutes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i08",
+      "correctText": "Are you taking minutes?",
+      "correctResponseId": "en:lesson-09:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i09",
+      "correctText": "taking",
+      "correctResponseId": "en:lesson-09:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:word:attendee",
+      "correctText": "attendee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i10",
+      "correctText": "An attendee is nodding.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i11",
+      "correctText": "The attendee is listening.",
+      "correctResponseId": "en:lesson-09:session-55:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i12",
+      "correctText": "nodding",
+      "correctResponseId": "en:lesson-09:session-55:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i14",
+      "correctText": "Is the attendee nodding?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i15",
+      "correctText": "An",
+      "correctResponseId": "en:lesson-09:session-55:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i16",
+      "correctText": "I am not taking minutes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-55:i17",
+      "correctText": "I am taking minutes.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -3822,4 +3822,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We attend this conference every year; The keynote is starting; The panellist is answering a question","uk":"We attend this conference every year; The keynote is starting; The panellist is answering a question"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 42,
+    sourceFingerprint: "207dce953e70f72a75bd566957a631e5a1ef647819ed04e56d18ee5bd1bc5d9d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We attend a workshop every month; I am completing the worksheet; I understand the tutorial","uk":"We attend a workshop every month; I am completing the worksheet; I understand the tutorial"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

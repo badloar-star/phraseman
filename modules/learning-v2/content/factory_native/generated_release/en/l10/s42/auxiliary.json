@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-42:intro1:r2": {
+          "ru": "С we нужна attend без s.",
+          "uk": "З we потрібна attend без s."
+        },
+        "en:lesson-10:session-42:intro1:r3": {
+          "ru": "Для привычки здесь нужна attend.",
+          "uk": "Для звички тут потрібна attend."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-42:intro2:r2": {
+          "ru": "Перед completing нужен am.",
+          "uk": "Перед completing потрібне am."
+        },
+        "en:lesson-10:session-42:intro2:r3": {
+          "ru": "Правильно completing, без e.",
+          "uk": "Правильно completing, без e."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-42:intro3:r2": {
+          "ru": "С I нужна understand без s.",
+          "uk": "З I потрібна understand без s."
+        },
+        "en:lesson-10:session-42:intro3:r3": {
+          "ru": "Здесь нужна understand без am.",
+          "uk": "Тут потрібна understand без am."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "451aefd8ab077dfa788d90320e842b481a0668d6f2ee48f8f4b0c26c78914259"
+}

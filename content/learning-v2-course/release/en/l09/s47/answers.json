@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-47:word:swatch",
+    "correctText": "swatch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i01",
+    "correctText": "This is a swatch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i02",
+    "correctText": "The swatch is blue.",
+    "correctResponseId": "en:lesson-09:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i03",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-09:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:word:wallpaper",
+    "correctText": "wallpaper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i04",
+    "correctText": "The wallpaper is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i05",
+    "correctText": "Please don't touch the wallpaper.",
+    "correctResponseId": "en:lesson-09:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:word:catalogue",
+    "correctText": "catalogue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i07",
+    "correctText": "I am checking the catalogue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i08",
+    "correctText": "Are you checking the catalogue?",
+    "correctResponseId": "en:lesson-09:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i09",
+    "correctText": "I am hesitating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:word:adhesive",
+    "correctText": "adhesive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i10",
+    "correctText": "The adhesive is dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i11",
+    "correctText": "The adhesive is wet.",
+    "correctResponseId": "en:lesson-09:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i13",
+    "correctText": "en:lesson-09:session-47:i13:p1=swatch\nen:lesson-09:session-47:i13:p2=wallpaper\nen:lesson-09:session-47:i13:p3=catalogue\nen:lesson-09:session-47:i13:p4=adhesive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i14",
+    "correctText": "Are you hesitating?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i15",
+    "correctText": "hesitating",
+    "correctResponseId": "en:lesson-09:session-47:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i16",
+    "correctText": "I am not hesitating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-47:i17",
+    "correctText": "I am checking the catalogue.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-47:intro1:r2": {
+          "ru": "Перед одним образцом здесь нужно a.",
+          "uk": "Перед одним зразком тут потрібне a."
+        },
+        "en:lesson-09:session-47:intro1:r3": {
+          "ru": "С this для одного образца нужно is.",
+          "uk": "З this для одного зразка потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-47:intro2:r2": {
+          "ru": "Конечная e уходит: hesitating.",
+          "uk": "Кінцева e зникає: hesitating."
+        },
+        "en:lesson-09:session-47:intro2:r3": {
+          "ru": "Для действия сейчас с I нужна форма am.",
+          "uk": "Для дії зараз з I потрібна форма am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-47:intro3:r2": {
+          "ru": "После don’t нужна базовая форма touch.",
+          "uk": "Після don’t потрібна базова форма touch."
+        },
+        "en:lesson-09:session-47:intro3:r3": {
+          "ru": "Для такой просьбы используем don’t перед touch.",
+          "uk": "Для такого прохання використовуємо don’t перед touch."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "133c54d2ffceb54af60985357cf80d60fb1a72a222671086be610cb258f2a5a7"
+}

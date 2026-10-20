@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "I weave at home; I am weaving a placemat",
+    "uk": "I weave at home; I am weaving a placemat"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваше увлечение",
+        "uk": "Ваше захоплення"
+      },
+      "bodyByLocale": {
+        "ru": "На занятии в мастерской преподаватель спрашивает, занимаетесь ли вы этим дома. Weave — «ткать; плести», переплетать нити или полоски материала. I weave at home — «Я тку дома». Вы рассказываете об обычном занятии, а не о том, что происходит в эту секунду. Поэтому I weave, без am.",
+        "uk": "На занятті в майстерні викладач запитує, чи займаєтеся ви цим удома. Weave — «ткати; плести», переплітати нитки або смужки матеріалу. I weave at home — «Я тчу вдома». Ви розповідаєте про звичайне заняття, а не про те, що відбувається цієї секунди. Тому I weave, без am."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-05:intro1:r1",
+              "text": "I weave at home."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro1:r2",
+              "text": "I weaves at home."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro1:r3",
+              "text": "I am weave at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-05:intro1:r1",
+              "text": "I weave at home."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro1:r2",
+              "text": "I weaves at home."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro1:r3",
+              "text": "I am weave at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что получается сейчас",
+        "uk": "Що виходить зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Placemat — «подставка под тарелку»: её кладут на стол под одну тарелку. Вы переплетаете нити на небольшой рамке. Сосед спрашивает, что вы делаете. I am weaving a placemat — «Я тку подставку под тарелку». Это действие сейчас: am weaving. В weave перед -ing убираем конечную e.",
+        "uk": "Placemat — «підставка під тарілку»: її кладуть на стіл під одну тарілку. Ви переплітаєте нитки на невеликій рамці. Сусід запитує, що ви робите. I am weaving a placemat — «Я тчу підставку під тарілку». Це дія зараз: am weaving. У weave перед -ing прибираємо кінцеву e."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-05:intro2:r1",
+              "text": "I am weaving a placemat."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro2:r2",
+              "text": "I am weaveing a placemat."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro2:r3",
+              "text": "I weaving a placemat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-05:intro2:r1",
+              "text": "I am weaving a placemat."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro2:r2",
+              "text": "I am weaveing a placemat."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro2:r3",
+              "text": "I weaving a placemat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обычный инструмент и работа сегодня",
+        "uk": "Звичний інструмент і робота сьогодні"
+      },
+      "bodyByLocale": {
+        "ru": "Loom — «ткацкий станок», устройство, которое удерживает нити для ткачества; оно может быть небольшой рамкой. Обычно вы пользуетесь им: I usually use a loom. Но сегодня рамка лежит в стороне, а вы плетёте вручную из волокна рафии — raffia. I am using raffia — «Я использую рафию». Usually use описывает привычку; am using — материал, с которым вы работаете сейчас.",
+        "uk": "Loom — «ткацький верстат», пристрій, який утримує нитки для ткацтва; він може бути невеликою рамкою. Зазвичай ви користуєтеся ним: I usually use a loom. Але сьогодні рамка лежить осторонь, а ви плетете вручну з волокна рафії — raffia. I am using raffia — «Я використовую рафію». Usually use описує звичку; am using — матеріал, з яким ви працюєте зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-05:intro3:r1",
+              "text": "I am using raffia."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro3:r2",
+              "text": "I using raffia."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro3:r3",
+              "text": "I am use raffia."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-05:intro3:r1",
+              "text": "I am using raffia."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro3:r2",
+              "text": "I using raffia."
+            },
+            {
+              "responseId": "en:lesson-10:session-05:intro3:r3",
+              "text": "I am use raffia."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a6806933e4668567f077cf3bffa2846b5a3bde613af15f10724ca375cb9d65fa"
+}

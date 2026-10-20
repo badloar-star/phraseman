@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-05:intro1:r2": {
+          "ru": "С I не добавляем -s.",
+          "uk": "З I не додаємо -s."
+        },
+        "en:lesson-10:session-05:intro1:r3": {
+          "ru": "Для обычного занятия здесь I weave; am weave неверно.",
+          "uk": "Для звичайного заняття тут I weave; am weave неправильно."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-05:intro2:r2": {
+          "ru": "Правильное написание: weaving.",
+          "uk": "Правильне написання: weaving."
+        },
+        "en:lesson-10:session-05:intro2:r3": {
+          "ru": "С I перед weaving нужно am.",
+          "uk": "З I перед weaving потрібне am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-05:intro3:r2": {
+          "ru": "С I перед using нужно am.",
+          "uk": "З I перед using потрібне am."
+        },
+        "en:lesson-10:session-05:intro3:r3": {
+          "ru": "После am нужна using.",
+          "uk": "Після am потрібна using."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "43b69f99e10b522d8be22b8c5478edb8f4476512929dbe44d4e906d92440ab2f"
+}

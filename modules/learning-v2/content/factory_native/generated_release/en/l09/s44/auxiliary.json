@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-44:intro1:r2": {
+          "ru": "Перед clock после glance нужно at.",
+          "uk": "Перед clock після glance потрібне at."
+        },
+        "en:lesson-09:session-44:intro1:r3": {
+          "ru": "Для привычного действия здесь достаточно I glance.",
+          "uk": "Для звичної дії тут достатньо I glance."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-44:intro2:r2": {
+          "ru": "Для действия сейчас с I нужно am.",
+          "uk": "Для дії зараз з I потрібне am."
+        },
+        "en:lesson-09:session-44:intro2:r3": {
+          "ru": "После am нужна форма reading.",
+          "uk": "Після am потрібна форма reading."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-44:intro3:r2": {
+          "ru": "После don’t нужна форма turn.",
+          "uk": "Після don’t потрібна форма turn."
+        },
+        "en:lesson-09:session-44:intro3:r3": {
+          "ru": "Для такой просьбы нужен don’t перед turn.",
+          "uk": "Для такого прохання потрібне don’t перед turn."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "27228ebcbdbd324b49e661592a3345d7a23d47264ef4aadaa88045fe5ba54cfa"
+}

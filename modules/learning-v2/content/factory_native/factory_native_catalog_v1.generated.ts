@@ -3444,4 +3444,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am checking the preview; I am cropping the photo; scanning / cropping","uk":"I am checking the preview; I am cropping the photo; scanning / cropping"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 44,
+    sourceFingerprint: "36ad83506bab696a31a993ec407bbfccaf8b3d65259fbccab3ac2e35415133f3",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"glance at; I am reading the headline; Please don’t turn off the radio","uk":"glance at; I am reading the headline; Please don’t turn off the radio"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

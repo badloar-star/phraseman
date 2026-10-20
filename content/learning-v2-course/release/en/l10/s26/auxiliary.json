@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-26:intro1:r2": {
+          "ru": "С we нужна eat без s.",
+          "uk": "З we потрібна eat без s."
+        },
+        "en:lesson-10:session-26:intro1:r3": {
+          "ru": "Говорим at noon, не on noon.",
+          "uk": "Кажемо at noon, не on noon."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-26:intro2:r2": {
+          "ru": "Перед in нужна связка is.",
+          "uk": "Перед in потрібна зв’язка is."
+        },
+        "en:lesson-10:session-26:intro2:r3": {
+          "ru": "Soup здесь неисчисляемое: is, не are.",
+          "uk": "Soup тут незлічуване: is, не are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-26:intro3:r2": {
+          "ru": "Перед filling нужен is.",
+          "uk": "Перед filling потрібне is."
+        },
+        "en:lesson-10:session-26:intro3:r3": {
+          "ru": "После is здесь нужна filling.",
+          "uk": "Після is тут потрібна filling."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cf2faab49bc5124c223d4253a02bbe906ab605c8c5887f40c5dbdd560c4c56fb"
+}

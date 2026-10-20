@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-26:word:noon",
+    "correctText": "noon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i01",
+    "correctText": "We usually eat at noon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i02",
+    "correctText": "We eat at noon.",
+    "correctResponseId": "en:lesson-10:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i03",
+    "correctText": "at",
+    "correctResponseId": "en:lesson-10:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:word:tureen",
+    "correctText": "tureen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i04",
+    "correctText": "The soup is in the tureen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i05",
+    "correctText": "The tureen is on the table.",
+    "correctResponseId": "en:lesson-10:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i06",
+    "correctText": "making",
+    "correctResponseId": "en:lesson-10:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:word:carafe",
+    "correctText": "carafe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i07",
+    "correctText": "She is filling the carafe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i08",
+    "correctText": "The carafe is full.",
+    "correctResponseId": "en:lesson-10:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:word:cruet",
+    "correctText": "cruet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i10",
+    "correctText": "The oil is in the cruet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i11",
+    "correctText": "The cruet is beside the plate.",
+    "correctResponseId": "en:lesson-10:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i12",
+    "correctText": "eat",
+    "correctResponseId": "en:lesson-10:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i13",
+    "correctText": "en:lesson-10:session-26:i13:p1=noon\nen:lesson-10:session-26:i13:p2=tureen\nen:lesson-10:session-26:i13:p3=carafe\nen:lesson-10:session-26:i13:p4=cruet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i14",
+    "correctText": "She is filling the carafe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i15",
+    "correctText": "We usually eat at noon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i16",
+    "correctText": "The soup is in the tureen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-26:i17",
+    "correctText": "She is filling the carafe.",
+    "correctResponseId": null
+  }
+]

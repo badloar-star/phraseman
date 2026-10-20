@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-04:word:craft",
+    "correctText": "craft",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i01",
+    "correctText": "I craft bags by hand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i02",
+    "correctText": "She crafts bags by hand.",
+    "correctResponseId": "en:lesson-10:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i03",
+    "correctText": "crafts",
+    "correctResponseId": "en:lesson-10:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:word:bobbin",
+    "correctText": "bobbin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i04",
+    "correctText": "I am checking the bobbin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i05",
+    "correctText": "The bobbin is on the table.",
+    "correctResponseId": "en:lesson-10:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:word:pincushion",
+    "correctText": "pincushion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i07",
+    "correctText": "I am making a pincushion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i08",
+    "correctText": "She is making a pincushion.",
+    "correctResponseId": "en:lesson-10:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i09",
+    "correctText": "making",
+    "correctResponseId": "en:lesson-10:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:word:offcut",
+    "correctText": "offcut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i10",
+    "correctText": "I am using an offcut.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i11",
+    "correctText": "The offcut is small.",
+    "correctResponseId": "en:lesson-10:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i12",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-10:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i13",
+    "correctText": "en:lesson-10:session-04:i13:p1=craft\nen:lesson-10:session-04:i13:p2=bobbin\nen:lesson-10:session-04:i13:p3=pincushion\nen:lesson-10:session-04:i13:p4=offcut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i14",
+    "correctText": "Are you making a pincushion?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i15",
+    "correctText": "I craft bags by hand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i16",
+    "correctText": "I am not making a bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-04:i17",
+    "correctText": "I am making a pincushion.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-06:intro1:r2": {
+          "ru": "С I употребляем brew без -s.",
+          "uk": "З I вживаємо brew без -s."
+        },
+        "en:lesson-10:session-06:intro1:r3": {
+          "ru": "Для привычки здесь I brew; am brew неверно.",
+          "uk": "Для звички тут I brew; am brew неправильно."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-06:intro2:r2": {
+          "ru": "Перед brewing с I нужно am.",
+          "uk": "Перед brewing з I потрібне am."
+        },
+        "en:lesson-10:session-06:intro2:r3": {
+          "ru": "После am нужна brewing, не brews.",
+          "uk": "Після am потрібна brewing, не brews."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-06:intro3:r2": {
+          "ru": "Первый звук infuser гласный: an.",
+          "uk": "Перший звук infuser голосний: an."
+        },
+        "en:lesson-10:session-06:intro3:r3": {
+          "ru": "С I перед using нужно am.",
+          "uk": "З I перед using потрібне am."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "06e78208abb993724764fd5662c0f11cd148b97b78a6dd0df03a3b2a2366ec38"
+}

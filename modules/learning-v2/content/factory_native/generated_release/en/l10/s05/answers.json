@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-05:word:weave",
+    "correctText": "weave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i01",
+    "correctText": "I weave at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i02",
+    "correctText": "She weaves at home.",
+    "correctResponseId": "en:lesson-10:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i03",
+    "correctText": "weaves",
+    "correctResponseId": "en:lesson-10:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:word:loom",
+    "correctText": "loom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i04",
+    "correctText": "I am using a loom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i05",
+    "correctText": "The loom is small.",
+    "correctResponseId": "en:lesson-10:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i06",
+    "correctText": "using",
+    "correctResponseId": "en:lesson-10:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:word:placemat",
+    "correctText": "placemat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i07",
+    "correctText": "I am weaving a placemat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i08",
+    "correctText": "She is weaving a placemat.",
+    "correctResponseId": "en:lesson-10:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i09",
+    "correctText": "weaving",
+    "correctResponseId": "en:lesson-10:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:word:raffia",
+    "correctText": "raffia",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i10",
+    "correctText": "I am using raffia.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i11",
+    "correctText": "The raffia is in the box.",
+    "correctResponseId": "en:lesson-10:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i13",
+    "correctText": "en:lesson-10:session-05:i13:p1=weave\nen:lesson-10:session-05:i13:p2=loom\nen:lesson-10:session-05:i13:p3=placemat\nen:lesson-10:session-05:i13:p4=raffia",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i14",
+    "correctText": "Are you weaving a placemat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i15",
+    "correctText": "I usually use a loom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i16",
+    "correctText": "I am not using a loom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-05:i17",
+    "correctText": "I am weaving a placemat.",
+    "correctResponseId": null
+  }
+]

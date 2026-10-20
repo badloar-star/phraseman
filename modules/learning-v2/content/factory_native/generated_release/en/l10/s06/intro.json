@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "I brew coffee every morning; I am brewing chamomile tea",
+    "uk": "I brew coffee every morning; I am brewing chamomile tea"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваше утро",
+        "uk": "Ваш ранок"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега спрашивает, как начинается ваш день. I brew coffee every morning — «Я завариваю кофе каждое утро». Brew — «заваривать», готовить чай или кофе с помощью горячей воды. Вы описываете привычку: I brew. Вы можете рассказывать об этом вечером, не готовя кофе прямо сейчас.",
+        "uk": "Колега запитує, як починається ваш день. I brew coffee every morning — «Я заварюю каву щоранку». Brew — «заварювати», готувати чай або каву за допомогою гарячої води. Ви описуєте звичку: I brew. Ви можете розповідати про це ввечері, не готуючи каву просто зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-06:intro1:r1",
+              "text": "I brew coffee every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro1:r2",
+              "text": "I brews coffee every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro1:r3",
+              "text": "I am brew coffee every morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-06:intro1:r1",
+              "text": "I brew coffee every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro1:r2",
+              "text": "I brews coffee every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro1:r3",
+              "text": "I am brew coffee every morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сегодня гости попросили другой напиток",
+        "uk": "Сьогодні гості попросили інший напій"
+      },
+      "bodyByLocale": {
+        "ru": "Обычно вы завариваете кофе. Сейчас гости попросили ромашковый чай, и вы его готовите. Chamomile — «ромашка». I am brewing chamomile tea — «Я завариваю ромашковый чай». Вы говорите о действии сейчас: am brewing. В brew ничего не убираем и просто добавляем -ing.",
+        "uk": "Зазвичай ви заварюєте каву. Зараз гості попросили ромашковий чай, і ви його готуєте. Chamomile — «ромашка». I am brewing chamomile tea — «Я заварюю ромашковий чай». Ви говорите про дію зараз: am brewing. У brew нічого не прибираємо й просто додаємо -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-06:intro2:r1",
+              "text": "I am brewing chamomile tea."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro2:r2",
+              "text": "I brewing chamomile tea."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro2:r3",
+              "text": "I am brews chamomile tea."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-06:intro2:r1",
+              "text": "I am brewing chamomile tea."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro2:r2",
+              "text": "I brewing chamomile tea."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro2:r3",
+              "text": "I am brews chamomile tea."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заваривать и процеживать",
+        "uk": "Заварювати й проціджувати"
+      },
+      "bodyByLocale": {
+        "ru": "Infuser — заварочное ситечко: чай помещают внутрь и опускают в горячую воду. Strainer — сито для процеживания: через него пропускают напиток, задерживая листья. Сегодня вы завариваете чай в ситечке внутри чашки. I am using an infuser — «Я пользуюсь заварочным ситечком». Перед infuser нужен an: первый звук гласный.",
+        "uk": "Infuser — заварювальне ситечко: чай кладуть усередину й опускають у гарячу воду. Strainer — сито для проціджування: через нього пропускають напій, затримуючи листя. Сьогодні ви заварюєте чай у ситечку всередині чашки. I am using an infuser — «Я користуюся заварювальним ситечком». Перед infuser потрібне an: перший звук голосний."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-06:intro3:r1",
+              "text": "I am using an infuser."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro3:r2",
+              "text": "I am using a infuser."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro3:r3",
+              "text": "I using an infuser."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-06:intro3:r1",
+              "text": "I am using an infuser."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro3:r2",
+              "text": "I am using a infuser."
+            },
+            {
+              "responseId": "en:lesson-10:session-06:intro3:r3",
+              "text": "I using an infuser."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "68d26004ea986b8be5e99c604dcd30e95732735b55fc1f15c2906121e7fffa12"
+}

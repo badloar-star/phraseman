@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-06:word:brew",
+    "correctText": "brew",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i01",
+    "correctText": "I brew coffee every morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i02",
+    "correctText": "She brews coffee every morning.",
+    "correctResponseId": "en:lesson-10:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i03",
+    "correctText": "brews",
+    "correctResponseId": "en:lesson-10:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:word:infuser",
+    "correctText": "infuser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i04",
+    "correctText": "I am using an infuser.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i05",
+    "correctText": "The infuser is in the cup.",
+    "correctResponseId": "en:lesson-10:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i06",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-10:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:word:strainer",
+    "correctText": "strainer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i07",
+    "correctText": "The strainer is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i08",
+    "correctText": "I am washing the strainer.",
+    "correctResponseId": "en:lesson-10:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i09",
+    "correctText": "washing",
+    "correctResponseId": "en:lesson-10:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:word:chamomile",
+    "correctText": "chamomile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i10",
+    "correctText": "I am brewing chamomile tea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i11",
+    "correctText": "The chamomile tea is hot.",
+    "correctResponseId": "en:lesson-10:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i12",
+    "correctText": "brewing",
+    "correctResponseId": "en:lesson-10:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i13",
+    "correctText": "en:lesson-10:session-06:i13:p1=brew\nen:lesson-10:session-06:i13:p2=infuser\nen:lesson-10:session-06:i13:p3=strainer\nen:lesson-10:session-06:i13:p4=chamomile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i14",
+    "correctText": "Are you brewing chamomile tea?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i15",
+    "correctText": "I brew coffee every morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i16",
+    "correctText": "I am not brewing coffee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-06:i17",
+    "correctText": "I am brewing chamomile tea.",
+    "correctResponseId": null
+  }
+]

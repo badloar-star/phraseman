@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-42:word:cue",
+    "correctText": "cue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i01",
+    "correctText": "I am waiting for my cue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i02",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-09:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i03",
+    "correctText": "Are you waiting for your cue?",
+    "correctResponseId": "en:lesson-09:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:word:understudy",
+    "correctText": "understudy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i04",
+    "correctText": "The understudy is rehearsing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i05",
+    "correctText": "rehearsing",
+    "correctResponseId": "en:lesson-09:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i06",
+    "correctText": "The understudy is not rehearsing.",
+    "correctResponseId": "en:lesson-09:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i07",
+    "correctText": "Is the understudy rehearsing?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:word:costume",
+    "correctText": "costume",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i08",
+    "correctText": "Please don't touch the costume.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i09",
+    "correctText": "The costume is ready.",
+    "correctResponseId": "en:lesson-09:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i10",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-09:session-42:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:word:script",
+    "correctText": "script",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i11",
+    "correctText": "I am checking the script.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i12",
+    "correctText": "The script is here.",
+    "correctResponseId": "en:lesson-09:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i13",
+    "correctText": "en:lesson-09:session-42:i13:p1=cue\nen:lesson-09:session-42:i13:p2=understudy\nen:lesson-09:session-42:i13:p3=costume\nen:lesson-09:session-42:i13:p4=script",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i14",
+    "correctText": "rehearse",
+    "correctResponseId": "en:lesson-09:session-42:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i15",
+    "correctText": "I am not rehearsing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i16",
+    "correctText": "Are you waiting for your cue?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-42:i17",
+    "correctText": "I am checking the script.",
+    "correctResponseId": null
+  }
+]

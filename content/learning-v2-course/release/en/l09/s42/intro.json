@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "I am waiting for my cue; The understudy is rehearsing; Please don’t touch the costume",
+    "uk": "I am waiting for my cue; The understudy is rehearsing; Please don’t touch the costume"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Почему вы ещё не выходите?",
+        "uk": "Чому ви ще не виходите?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы стоите за кулисами. Помощник думает, что вы забыли выйти, но вы ждёте условленного сигнала. Объясните: I am waiting for my cue — «Я жду своего сигнала». Cue — сигнал к действию, здесь к выходу на сцену: реплика, звук или жест. После wait перед тем, чего ждём, нужно for. Вы ждёте сейчас, поэтому am waiting.",
+        "uk": "Ви стоїте за лаштунками. Помічник думає, що ви забули вийти, але ви чекаєте умовного сигналу. Поясніть: I am waiting for my cue — «Я чекаю свого сигналу». Cue — сигнал до дії, тут до виходу на сцену: репліка, звук або жест. Після wait перед тим, чого чекаємо, потрібне for. Ви чекаєте зараз, тому am waiting."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-42:intro1:r1",
+              "text": "I am waiting for my cue."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro1:r2",
+              "text": "I am waiting my cue."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro1:r3",
+              "text": "I am wait for my cue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-42:intro1:r1",
+              "text": "I am waiting for my cue."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro1:r2",
+              "text": "I am waiting my cue."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro1:r3",
+              "text": "I am wait for my cue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто сейчас на сцене?",
+        "uk": "Хто зараз на сцені?"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает на репетиции другого актёра в знакомой роли. Вы объясняете: The understudy is rehearsing — «Дублёр репетирует». Understudy — актёр, который разучивает чужую роль, чтобы при необходимости заменить основного исполнителя. Rehearse уже знакомо: перед -ing убираем конечную e, получаем rehearsing. Сейчас репетирует один дублёр, поэтому is.",
+        "uk": "Друг помічає на репетиції іншого актора в знайомій ролі. Ви пояснюєте: The understudy is rehearsing — «Дублер репетирує». Understudy — актор, який розучує чужу роль, щоб за потреби замінити основного виконавця. Rehearse уже знайоме: перед -ing прибираємо кінцеву e, отримуємо rehearsing. Зараз репетирує один дублер, тому is."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-42:intro2:r1",
+              "text": "The understudy is rehearsing."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro2:r2",
+              "text": "The understudy are rehearsing."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro2:r3",
+              "text": "The understudy is rehearseing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-42:intro2:r1",
+              "text": "The understudy is rehearsing."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro2:r2",
+              "text": "The understudy are rehearsing."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro2:r3",
+              "text": "The understudy is rehearseing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Свежая краска на костюме",
+        "uk": "Свіжа фарба на костюмі"
+      },
+      "bodyByLocale": {
+        "ru": "На сценическом костюме ещё сохнет нарисованный узор. Посетитель тянется к ткани. Попросите: Please don’t touch the costume — «Пожалуйста, не трогайте костюм». Costume — сценический или маскарадный костюм; здесь одежда для роли. После don’t в просьбе используем touch без -ing. Вы останавливаете прикосновение, чтобы не испортить рисунок.",
+        "uk": "На сценічному костюмі ще сохне намальований візерунок. Відвідувач тягнеться до тканини. Попросіть: Please don’t touch the costume — «Будь ласка, не чіпайте костюм». Costume — сценічний або маскарадний костюм; тут одяг для ролі. Після don’t у проханні використовуємо touch без -ing. Ви зупиняєте дотик, щоб не зіпсувати малюнок."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-42:intro3:r1",
+              "text": "Please don't touch the costume."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro3:r2",
+              "text": "Please don't touching the costume."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro3:r3",
+              "text": "Please not touch the costume."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-42:intro3:r1",
+              "text": "Please don't touch the costume."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro3:r2",
+              "text": "Please don't touching the costume."
+            },
+            {
+              "responseId": "en:lesson-09:session-42:intro3:r3",
+              "text": "Please not touch the costume."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "10add0244aff9869df8a82cd4860f8e75d31ce9b53d831d75d3bf3e965fe38d5"
+}

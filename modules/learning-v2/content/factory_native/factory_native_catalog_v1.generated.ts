@@ -3668,4 +3668,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I doubt it; She doubts the claim; Do you have any evidence?","uk":"I doubt it; She doubts the claim; Do you have any evidence?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 20,
+    sourceFingerprint: "cab4b1a8d6ec30c80b2ce7caa2c5cf9493ef7c250e59c7720b1708bba080715f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I expect the parcel today; She expects confirmation; Do you have the tracking number?","uk":"I expect the parcel today; She expects confirmation; Do you have the tracking number?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

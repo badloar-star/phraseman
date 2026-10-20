@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "I expect the parcel today; She expects confirmation; Do you have the tracking number?",
+    "uk": "I expect the parcel today; She expects confirmation; Do you have the tracking number?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ожидать — считать вероятным",
+        "uk": "Очікувати — вважати ймовірним"
+      },
+      "bodyByLocale": {
+        "ru": "В сообщении магазина указана сегодняшняя дата доставки. Expect — «ожидать», считать, что что-то произойдёт. I expect the parcel today — «Я ожидаю посылку сегодня». Present Simple здесь выражает ваше ожидание, а не действие с посылкой. Это не значит, что вы всё время сидите у двери. Фраза I am expecting a parcel тоже правильная: с expect форма Continuous возможна, когда речь об ожидаемом прибытии.",
+        "uk": "У повідомленні магазину вказана сьогоднішня дата доставки. Expect — «очікувати», вважати, що щось відбудеться. I expect the parcel today — «Я очікую посилку сьогодні». Present Simple тут виражає ваше очікування, а не дію з посилкою. Це не означає, що ви весь час сидите біля дверей. Фраза I am expecting a parcel також правильна: з expect форма Continuous можлива, коли йдеться про очікуване прибуття."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-20:intro1:r1",
+              "text": "I expect the parcel today."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro1:r2",
+              "text": "I expects the parcel today."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro1:r3",
+              "text": "I am expect the parcel today."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-20:intro1:r1",
+              "text": "I expect the parcel today."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro1:r2",
+              "text": "I expects the parcel today."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro1:r3",
+              "text": "I am expect the parcel today."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ждать подтверждения",
+        "uk": "Очікувати підтвердження"
+      },
+      "bodyByLocale": {
+        "ru": "Confirmation — «подтверждение». Коллега оформила заказ и ожидает письмо о том, что магазин его принял. She expects confirmation — «Она ожидает подтверждения». С she в Present Simple нужна expects. Здесь confirmation — подтверждение как информация, поэтому без a.",
+        "uk": "Confirmation — «підтвердження». Колега оформила замовлення й очікує лист про те, що магазин його прийняв. She expects confirmation — «Вона очікує підтвердження». З she у Present Simple потрібна expects. Тут confirmation — підтвердження як інформація, тому без a."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-20:intro2:r1",
+              "text": "She expects confirmation."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro2:r2",
+              "text": "She expect confirmation."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro2:r3",
+              "text": "She is expect confirmation."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-20:intro2:r1",
+              "text": "She expects confirmation."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro2:r2",
+              "text": "She expect confirmation."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro2:r3",
+              "text": "She is expect confirmation."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отправка ещё не прибытие",
+        "uk": "Відправлення ще не прибуття"
+      },
+      "bodyByLocale": {
+        "ru": "Dispatch — «отправка», arrival — «прибытие». Магазин может сообщить об отправке посылки сегодня, хотя прибытие ожидается завтра. Arrival is tomorrow — «Прибытие завтра». Здесь is связывает событие со временем. Dispatch и arrival обозначают разные этапы: посылку отправили и посылка прибыла.",
+        "uk": "Dispatch — «відправлення», arrival — «прибуття». Магазин може повідомити про відправлення посилки сьогодні, хоча прибуття очікується завтра. Arrival is tomorrow — «Прибуття завтра». Тут is поєднує подію з часом. Dispatch і arrival позначають різні етапи: посилку відправили й посилка прибула."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-20:intro3:r1",
+              "text": "Arrival is tomorrow."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro3:r2",
+              "text": "Arrival are tomorrow."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro3:r3",
+              "text": "Arrival am tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-20:intro3:r1",
+              "text": "Arrival is tomorrow."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro3:r2",
+              "text": "Arrival are tomorrow."
+            },
+            {
+              "responseId": "en:lesson-10:session-20:intro3:r3",
+              "text": "Arrival am tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "74df10fb18c476e9f32d8922c703af1226e9a17cc4ea091667273ec3ebd1071c"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-34:intro1:r2": {
+          "ru": "Нужен is перед starting.",
+          "uk": "Потрібне is перед starting."
+        },
+        "en:lesson-10:session-34:intro1:r3": {
+          "ru": "Одна церемония: is.",
+          "uk": "Одна церемонія: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-34:intro2:r2": {
+          "ru": "С we нужна come.",
+          "uk": "З we потрібна come."
+        },
+        "en:lesson-10:session-34:intro2:r3": {
+          "ru": "Для привычки здесь нужна come.",
+          "uk": "Для звички тут потрібна come."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-34:intro3:r2": {
+          "ru": "С she нужна deserves.",
+          "uk": "З she потрібна deserves."
+        },
+        "en:lesson-10:session-34:intro3:r3": {
+          "ru": "Is перед deserve не нужен.",
+          "uk": "Is перед deserve не потрібне."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5c205c39ef2fcd197974acc42e15f939c9e6fd43daa58bc4181b91f4e84a7519"
+}

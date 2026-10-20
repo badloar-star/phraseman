@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-28:word:dusk",
+    "correctText": "dusk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i01",
+    "correctText": "We usually walk at dusk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i02",
+    "correctText": "We meet at dusk.",
+    "correctResponseId": "en:lesson-10:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i03",
+    "correctText": "at",
+    "correctResponseId": "en:lesson-10:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:word:afterglow",
+    "correctText": "afterglow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i04",
+    "correctText": "The afterglow is fading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i05",
+    "correctText": "The afterglow is orange.",
+    "correctResponseId": "en:lesson-10:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i06",
+    "correctText": "fading",
+    "correctResponseId": "en:lesson-10:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:word:waterfront",
+    "correctText": "waterfront",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i07",
+    "correctText": "We are walking along the waterfront.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i08",
+    "correctText": "The waterfront is busy.",
+    "correctResponseId": "en:lesson-10:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-10:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:word:boardwalk",
+    "correctText": "boardwalk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i10",
+    "correctText": "We are walking on the boardwalk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i11",
+    "correctText": "The boardwalk is long.",
+    "correctResponseId": "en:lesson-10:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i12",
+    "correctText": "walk",
+    "correctResponseId": "en:lesson-10:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i13",
+    "correctText": "en:lesson-10:session-28:i13:p1=dusk\nen:lesson-10:session-28:i13:p2=afterglow\nen:lesson-10:session-28:i13:p3=waterfront\nen:lesson-10:session-28:i13:p4=boardwalk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i14",
+    "correctText": "The afterglow is fading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i15",
+    "correctText": "We are watching the sunset now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i16",
+    "correctText": "We usually walk at dusk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-28:i17",
+    "correctText": "The afterglow is fading.",
+    "correctResponseId": null
+  }
+]

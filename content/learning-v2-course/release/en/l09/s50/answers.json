@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-50:word:stare",
+    "correctText": "stare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i01",
+    "correctText": "Please don't stare at me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i02",
+    "correctText": "He is staring at the picture.",
+    "correctResponseId": "en:lesson-09:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i03",
+    "correctText": "at",
+    "correctResponseId": "en:lesson-09:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:word:hologram",
+    "correctText": "hologram",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i04",
+    "correctText": "This is a hologram.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i05",
+    "correctText": "He is staring at the hologram.",
+    "correctResponseId": "en:lesson-09:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i06",
+    "correctText": "staring",
+    "correctResponseId": "en:lesson-09:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:word:illusion",
+    "correctText": "illusion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i07",
+    "correctText": "This is an illusion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i08",
+    "correctText": "The picture is not moving.",
+    "correctResponseId": "en:lesson-09:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i09",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-09:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:word:reflection",
+    "correctText": "reflection",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i10",
+    "correctText": "I am looking at my reflection.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i11",
+    "correctText": "Are you looking at your reflection?",
+    "correctResponseId": "en:lesson-09:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i12",
+    "correctText": "Please don't touch the mirror.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i13",
+    "correctText": "en:lesson-09:session-50:i13:p1=stare\nen:lesson-09:session-50:i13:p2=hologram\nen:lesson-09:session-50:i13:p3=illusion\nen:lesson-09:session-50:i13:p4=reflection",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i14",
+    "correctText": "Is he staring at the hologram?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i15",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-50:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i16",
+    "correctText": "The picture is not moving.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-50:i17",
+    "correctText": "He is staring at the hologram.",
+    "correctResponseId": null
+  }
+]

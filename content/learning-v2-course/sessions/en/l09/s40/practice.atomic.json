@@ -1,0 +1,2397 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-40",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-40:word:cymbal",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cymbal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:word:cymbal:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cymbal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:word:cymbal:audio",
+            "transcript": "cymbal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:word:cymbal:r1",
+              "targetText": "cymbal",
+              "meaningByLocale": {
+                "ru": "«музыкальная тарелка». This is a cymbal. — «Это музыкальная тарелка». Ударный инструмент, не посуда.",
+                "uk": "«музична тарілка». This is a cymbal. — «Це музична тарілка». Ударний інструмент, не посуд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cymbal",
+            "definitionByLocale": {
+              "ru": "«музыкальная тарелка». This is a cymbal. — «Это музыкальная тарелка». Ударный инструмент, не посуда.",
+              "uk": "«музична тарілка». This is a cymbal. — «Це музична тарілка». Ударний інструмент, не посуд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Назовите металлический музыкальный инструмент: «Это музыкальная тарелка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Назовите металлический музыкальный инструмент: «Это музыкальная тарелка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a cymbal.",
+          "localizedMeaning": {
+            "ru": "Назовите металлический музыкальный инструмент: «Это музыкальная тарелка»",
+            "uk": "Назвіть металевий музичний інструмент: «Це музична тарілка»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "cymbal"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i02:r1",
+            "text": "The cymbal is here."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i02:r2",
+            "text": "The cymbal is not here."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i02:r3",
+            "text": "This is a cymbal."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i02:audio",
+            "transcript": "The cymbal is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:i02:r1",
+              "targetText": "The cymbal is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i02:r2",
+              "targetText": "The cymbal is not here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i02:r3",
+              "targetText": "This is a cymbal.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cymbal is here.",
+                "uk": "У записі звучить The cymbal is here."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cymbal is here.",
+                "uk": "У записі звучить The cymbal is here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите пропущенную форму для одного предмета",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите пропущенную форму для одного предмета",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите пропущенную форму для одного предмета",
+            "uk": "Виберіть пропущену форму для одного предмета"
+          },
+          "gappedTargetPhrase": "This ___ a cymbal.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите пропущенную форму для одного предмета",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите пропущенную форму для одного предмета",
+              "feedbackByLocale": {
+                "ru": "С this для одного предмета нужно is.",
+                "uk": "З this для одного предмета потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите пропущенную форму для одного предмета",
+              "feedbackByLocale": {
+                "ru": "Am используется с I, не с this.",
+                "uk": "Am використовується з I, не з this."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:word:xylophone",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — xylophone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:word:xylophone:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — xylophone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:word:xylophone:audio",
+            "transcript": "xylophone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:word:xylophone:r1",
+              "targetText": "xylophone",
+              "meaningByLocale": {
+                "ru": "«ксилофон». I am playing the xylophone. — «Я играю на ксилофоне». Инструмент с деревянными пластинками, по которым ударяют палочками.",
+                "uk": "«ксилофон». I am playing the xylophone. — «Я граю на ксилофоні». Інструмент із дерев’яними пластинками, по яких ударяють паличками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "xylophone",
+            "definitionByLocale": {
+              "ru": "«ксилофон». I am playing the xylophone. — «Я играю на ксилофоне». Инструмент с деревянными пластинками, по которым ударяют палочками.",
+              "uk": "«ксилофон». I am playing the xylophone. — «Я граю на ксилофоні». Інструмент із дерев’яними пластинками, по яких ударяють паличками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Объясните другу, на каком инструменте вы сейчас играете",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Объясните другу, на каком инструменте вы сейчас играете",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am playing the xylophone.",
+          "localizedMeaning": {
+            "ru": "Объясните другу, на каком инструменте вы сейчас играете",
+            "uk": "Поясніть другові, на якому інструменті ви зараз граєте"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "playing",
+            "the",
+            "xylophone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i05:r1",
+            "text": "Are you playing the xylophone?"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i05:r2",
+            "text": "You are playing the xylophone."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i05:r3",
+            "text": "I am playing the xylophone."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i05:audio",
+            "transcript": "Are you playing the xylophone?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:i05:r1",
+              "targetText": "Are you playing the xylophone?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i05:r2",
+              "targetText": "You are playing the xylophone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i05:r3",
+              "targetText": "I am playing the xylophone.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you playing the xylophone?",
+                "uk": "У записі звучить Are you playing the xylophone?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you playing the xylophone?",
+                "uk": "У записі звучить Are you playing the xylophone?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы играете прямо сейчас. Выберите пропущенную форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i06:r1",
+            "text": "playing"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i06:r2",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i06:r3",
+            "text": "plays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы играете прямо сейчас. Выберите пропущенную форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы играете прямо сейчас. Выберите пропущенную форму",
+            "uk": "Ви граєте просто зараз. Виберіть пропущену форму"
+          },
+          "gappedTargetPhrase": "I am ___ the xylophone.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i06:r1",
+              "text": "playing"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i06:r2",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i06:r3",
+              "text": "plays"
+            }
+          ],
+          "testedDimension": "Вы играете прямо сейчас. Выберите пропущенную форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы играете прямо сейчас. Выберите пропущенную форму",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма playing.",
+                "uk": "Після am для дії зараз потрібна форма playing."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы играете прямо сейчас. Выберите пропущенную форму",
+              "feedbackByLocale": {
+                "ru": "Plays не используется после am.",
+                "uk": "Plays не використовується після am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите отрицание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите отрицание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i07:audio",
+            "transcript": "I am not playing the xylophone."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am not playing the xylophone.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "playing",
+            "the",
+            "xylophone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:word:castanets",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — castanets",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:word:castanets:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — castanets",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:word:castanets:audio",
+            "transcript": "castanets"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:word:castanets:r1",
+              "targetText": "castanets",
+              "meaningByLocale": {
+                "ru": "«кастаньеты». The castanets are here. — «Кастаньеты здесь». Название во множественном числе: castanets are. Небольшие парные пластинки, которыми щёлкают в ладонях.",
+                "uk": "«кастаньєти». The castanets are here. — «Кастаньєти тут». Назва в множині: castanets are. Невеликі парні пластинки, якими клацають у долонях."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "castanets",
+            "definitionByLocale": {
+              "ru": "«кастаньеты». The castanets are here. — «Кастаньеты здесь». Название во множественном числе: castanets are. Небольшие парные пластинки, которыми щёлкают в ладонях.",
+              "uk": "«кастаньєти». The castanets are here. — «Кастаньєти тут». Назва в множині: castanets are. Невеликі парні пластинки, якими клацають у долонях."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет кастаньеты. Скажите, что они здесь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет кастаньеты. Скажите, что они здесь",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The castanets are here.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет кастаньеты. Скажите, что они здесь",
+            "uk": "Подруга шукає кастаньєти. Скажіть, що вони тут"
+          },
+          "orderedTokens": [
+            "The",
+            "castanets",
+            "are",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для castanets",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для castanets",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для castanets",
+            "uk": "Виберіть форму для castanets"
+          },
+          "gappedTargetPhrase": "The castanets ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i09:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму для castanets",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для castanets",
+              "feedbackByLocale": {
+                "ru": "Castanets — множественное число, поэтому are.",
+                "uk": "Castanets — множина, тому are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для castanets",
+              "feedbackByLocale": {
+                "ru": "Am подходит только к I.",
+                "uk": "Am підходить лише до I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i10:r1",
+            "text": "She is playing the castanets."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i10:r2",
+            "text": "She is playing the xylophone."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i10:r3",
+            "text": "She is not playing the castanets."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i10:audio",
+            "transcript": "She is playing the castanets."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:i10:r1",
+              "targetText": "She is playing the castanets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i10:r2",
+              "targetText": "She is playing the xylophone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i10:r3",
+              "targetText": "She is not playing the castanets.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is playing the castanets.",
+                "uk": "У записі звучить She is playing the castanets."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is playing the castanets.",
+                "uk": "У записі звучить She is playing the castanets."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:word:maraca",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — maraca",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:word:maraca:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — maraca",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:word:maraca:audio",
+            "transcript": "maraca"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:word:maraca:r1",
+              "targetText": "maraca",
+              "meaningByLocale": {
+                "ru": "«маракас». Please don’t shake the maraca. — «Пожалуйста, не тряси маракас». Здесь один маракас; несколько — maracas.",
+                "uk": "«маракас». Please don’t shake the maraca. — «Будь ласка, не тряси маракас». Тут один маракас; кілька — maracas."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "maraca",
+            "definitionByLocale": {
+              "ru": "«маракас». Please don’t shake the maraca. — «Пожалуйста, не тряси маракас». Здесь один маракас; несколько — maracas.",
+              "uk": "«маракас». Please don’t shake the maraca. — «Будь ласка, не тряси маракас». Тут один маракас; кілька — maracas."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Идёт запись. Попросите друга не трясти маракас; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Идёт запись. Попросите друга не трясти маракас; начните с Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please don't shake the maraca.",
+          "localizedMeaning": {
+            "ru": "Идёт запись. Попросите друга не трясти маракас; начните с Please",
+            "uk": "Триває запис. Попросіть друга не трясти маракас; почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "shake",
+            "the",
+            "maraca"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после don’t в просьбе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i12:r1",
+            "text": "shake"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i12:r2",
+            "text": "shaking"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i12:r3",
+            "text": "shakes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после don’t в просьбе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ the maraca.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i12:r1",
+              "text": "shake"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i12:r2",
+              "text": "shaking"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i12:r3",
+              "text": "shakes"
+            }
+          ],
+          "testedDimension": "Выберите форму после don’t в просьбе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна исходная форма shake.",
+                "uk": "Після don’t потрібна початкова форма shake."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "В просьбе после don’t не добавляем -s.",
+                "uk": "У проханні після don’t не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините названия инструментов с переводами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините названия инструментов с переводами",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-40:i13:p1",
+              "target": "cymbal",
+              "meaningByLocale": {
+                "ru": "музыкальная тарелка",
+                "uk": "музична тарілка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-40:i13:p2",
+              "target": "xylophone",
+              "meaningByLocale": {
+                "ru": "ксилофон",
+                "uk": "ксилофон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-40:i13:p3",
+              "target": "castanets",
+              "meaningByLocale": {
+                "ru": "кастаньеты",
+                "uk": "кастаньєти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-40:i13:p4",
+              "target": "maraca",
+              "meaningByLocale": {
+                "ru": "маракас",
+                "uk": "маракас"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cymbal",
+            "xylophone",
+            "castanets",
+            "maraca"
+          ],
+          "rightColumn": [
+            "музыкальная тарелка",
+            "ксилофон",
+            "кастаньеты",
+            "маракас"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i14:r1",
+            "text": "I play the xylophone."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i14:r2",
+            "text": "I am playing the xylophone."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i14:r3",
+            "text": "I play the castanets."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i14:audio",
+            "transcript": "I play the xylophone."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:i14:r1",
+              "targetText": "I play the xylophone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i14:r2",
+              "targetText": "I am playing the xylophone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i14:r3",
+              "targetText": "I play the castanets.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i14:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I play the xylophone.",
+                "uk": "У записі звучить I play the xylophone."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i14:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I play the xylophone.",
+                "uk": "У записі звучить I play the xylophone."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы рассказываете о своём обычном занятии по пятницам",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i15:r1",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i15:r2",
+            "text": "am playing"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i15:r3",
+            "text": "plays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете о своём обычном занятии по пятницам",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете о своём обычном занятии по пятницам",
+            "uk": "Ви розповідаєте про своє звичайне заняття щоп’ятниці"
+          },
+          "gappedTargetPhrase": "I ___ the xylophone every Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i15:r1",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i15:r2",
+              "text": "am playing"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i15:r3",
+              "text": "plays"
+            }
+          ],
+          "testedDimension": "Вы рассказываете о своём обычном занятии по пятницам",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i15:r2",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о своём обычном занятии по пятницам",
+              "feedbackByLocale": {
+                "ru": "Здесь обычное занятие по пятницам: I play. Формой am playing сейчас не описываем привычку.",
+                "uk": "Тут звичайне заняття щоп’ятниці: I play. Формою am playing зараз не описуємо звичку."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i15:r3",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о своём обычном занятии по пятницам",
+              "feedbackByLocale": {
+                "ru": "С I в настоящем простом времени нужно play, без -s.",
+                "uk": "З I в теперішньому простому часі потрібне play, без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "За дверью слышен ксилофон. Спросите сестру: «Ты играешь на ксилофоне?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "За дверью слышен ксилофон. Спросите сестру: «Ты играешь на ксилофоне?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i16:audio",
+            "transcript": "Are you playing the xylophone?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you playing the xylophone?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы записываете тихое чтение стихотворения. Брат рядом трясёт маракас. Попросите его не трясти маракас; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Вы записываете тихое чтение стихотворения. Брат рядом трясёт маракас. Попросите его не трясти маракас; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i17:audio",
+            "transcript": "Please don't shake the maraca."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't shake the maraca.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-40:word:cymbal",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cymbal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:word:cymbal:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cymbal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:word:cymbal:audio",
+            "transcript": "cymbal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:word:cymbal:r1",
+              "targetText": "cymbal",
+              "meaningByLocale": {
+                "ru": "«музыкальная тарелка». This is a cymbal. — «Это музыкальная тарелка». Ударный инструмент, не посуда.",
+                "uk": "«музична тарілка». This is a cymbal. — «Це музична тарілка». Ударний інструмент, не посуд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cymbal",
+            "definitionByLocale": {
+              "ru": "«музыкальная тарелка». This is a cymbal. — «Это музыкальная тарелка». Ударный инструмент, не посуда.",
+              "uk": "«музична тарілка». This is a cymbal. — «Це музична тарілка». Ударний інструмент, не посуд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Назвіть металевий музичний інструмент: «Це музична тарілка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Назвіть металевий музичний інструмент: «Це музична тарілка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a cymbal.",
+          "localizedMeaning": {
+            "ru": "Назовите металлический музыкальный инструмент: «Это музыкальная тарелка»",
+            "uk": "Назвіть металевий музичний інструмент: «Це музична тарілка»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "cymbal"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i02:r1",
+            "text": "The cymbal is here."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i02:r2",
+            "text": "The cymbal is not here."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i02:r3",
+            "text": "This is a cymbal."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i02:audio",
+            "transcript": "The cymbal is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:i02:r1",
+              "targetText": "The cymbal is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i02:r2",
+              "targetText": "The cymbal is not here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i02:r3",
+              "targetText": "This is a cymbal.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cymbal is here.",
+                "uk": "У записі звучить The cymbal is here."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cymbal is here.",
+                "uk": "У записі звучить The cymbal is here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть пропущену форму для одного предмета",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть пропущену форму для одного предмета",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите пропущенную форму для одного предмета",
+            "uk": "Виберіть пропущену форму для одного предмета"
+          },
+          "gappedTargetPhrase": "This ___ a cymbal.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть пропущену форму для одного предмета",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть пропущену форму для одного предмета",
+              "feedbackByLocale": {
+                "ru": "С this для одного предмета нужно is.",
+                "uk": "З this для одного предмета потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть пропущену форму для одного предмета",
+              "feedbackByLocale": {
+                "ru": "Am используется с I, не с this.",
+                "uk": "Am використовується з I, не з this."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:word:xylophone",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — xylophone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:word:xylophone:audio"
+        ],
+        "accessibilityLabel": "Картка слова — xylophone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:word:xylophone:audio",
+            "transcript": "xylophone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:word:xylophone:r1",
+              "targetText": "xylophone",
+              "meaningByLocale": {
+                "ru": "«ксилофон». I am playing the xylophone. — «Я играю на ксилофоне». Инструмент с деревянными пластинками, по которым ударяют палочками.",
+                "uk": "«ксилофон». I am playing the xylophone. — «Я граю на ксилофоні». Інструмент із дерев’яними пластинками, по яких ударяють паличками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "xylophone",
+            "definitionByLocale": {
+              "ru": "«ксилофон». I am playing the xylophone. — «Я играю на ксилофоне». Инструмент с деревянными пластинками, по которым ударяют палочками.",
+              "uk": "«ксилофон». I am playing the xylophone. — «Я граю на ксилофоні». Інструмент із дерев’яними пластинками, по яких ударяють паличками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поясніть другові, на якому інструменті ви зараз граєте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поясніть другові, на якому інструменті ви зараз граєте",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am playing the xylophone.",
+          "localizedMeaning": {
+            "ru": "Объясните другу, на каком инструменте вы сейчас играете",
+            "uk": "Поясніть другові, на якому інструменті ви зараз граєте"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "playing",
+            "the",
+            "xylophone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i05:r1",
+            "text": "Are you playing the xylophone?"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i05:r2",
+            "text": "You are playing the xylophone."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i05:r3",
+            "text": "I am playing the xylophone."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i05:audio",
+            "transcript": "Are you playing the xylophone?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:i05:r1",
+              "targetText": "Are you playing the xylophone?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i05:r2",
+              "targetText": "You are playing the xylophone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i05:r3",
+              "targetText": "I am playing the xylophone.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you playing the xylophone?",
+                "uk": "У записі звучить Are you playing the xylophone?"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Are you playing the xylophone?",
+                "uk": "У записі звучить Are you playing the xylophone?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви граєте просто зараз. Виберіть пропущену форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i06:r1",
+            "text": "playing"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i06:r2",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i06:r3",
+            "text": "plays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви граєте просто зараз. Виберіть пропущену форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы играете прямо сейчас. Выберите пропущенную форму",
+            "uk": "Ви граєте просто зараз. Виберіть пропущену форму"
+          },
+          "gappedTargetPhrase": "I am ___ the xylophone.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i06:r1",
+              "text": "playing"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i06:r2",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i06:r3",
+              "text": "plays"
+            }
+          ],
+          "testedDimension": "Ви граєте просто зараз. Виберіть пропущену форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви граєте просто зараз. Виберіть пропущену форму",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма playing.",
+                "uk": "Після am для дії зараз потрібна форма playing."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви граєте просто зараз. Виберіть пропущену форму",
+              "feedbackByLocale": {
+                "ru": "Plays не используется после am.",
+                "uk": "Plays не використовується після am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть заперечення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть заперечення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i07:audio",
+            "transcript": "I am not playing the xylophone."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am not playing the xylophone.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "playing",
+            "the",
+            "xylophone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:word:castanets",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — castanets",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:word:castanets:audio"
+        ],
+        "accessibilityLabel": "Картка слова — castanets",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:word:castanets:audio",
+            "transcript": "castanets"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:word:castanets:r1",
+              "targetText": "castanets",
+              "meaningByLocale": {
+                "ru": "«кастаньеты». The castanets are here. — «Кастаньеты здесь». Название во множественном числе: castanets are. Небольшие парные пластинки, которыми щёлкают в ладонях.",
+                "uk": "«кастаньєти». The castanets are here. — «Кастаньєти тут». Назва в множині: castanets are. Невеликі парні пластинки, якими клацають у долонях."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "castanets",
+            "definitionByLocale": {
+              "ru": "«кастаньеты». The castanets are here. — «Кастаньеты здесь». Название во множественном числе: castanets are. Небольшие парные пластинки, которыми щёлкают в ладонях.",
+              "uk": "«кастаньєти». The castanets are here. — «Кастаньєти тут». Назва в множині: castanets are. Невеликі парні пластинки, якими клацають у долонях."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає кастаньєти. Скажіть, що вони тут",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає кастаньєти. Скажіть, що вони тут",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The castanets are here.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет кастаньеты. Скажите, что они здесь",
+            "uk": "Подруга шукає кастаньєти. Скажіть, що вони тут"
+          },
+          "orderedTokens": [
+            "The",
+            "castanets",
+            "are",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для castanets",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для castanets",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для castanets",
+            "uk": "Виберіть форму для castanets"
+          },
+          "gappedTargetPhrase": "The castanets ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i09:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму для castanets",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для castanets",
+              "feedbackByLocale": {
+                "ru": "Castanets — множественное число, поэтому are.",
+                "uk": "Castanets — множина, тому are."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для castanets",
+              "feedbackByLocale": {
+                "ru": "Am подходит только к I.",
+                "uk": "Am підходить лише до I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i10:r1",
+            "text": "She is playing the castanets."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i10:r2",
+            "text": "She is playing the xylophone."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i10:r3",
+            "text": "She is not playing the castanets."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i10:audio",
+            "transcript": "She is playing the castanets."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:i10:r1",
+              "targetText": "She is playing the castanets.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i10:r2",
+              "targetText": "She is playing the xylophone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i10:r3",
+              "targetText": "She is not playing the castanets.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is playing the castanets.",
+                "uk": "У записі звучить She is playing the castanets."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is playing the castanets.",
+                "uk": "У записі звучить She is playing the castanets."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:word:maraca",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — maraca",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:word:maraca:audio"
+        ],
+        "accessibilityLabel": "Картка слова — maraca",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:word:maraca:audio",
+            "transcript": "maraca"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:word:maraca:r1",
+              "targetText": "maraca",
+              "meaningByLocale": {
+                "ru": "«маракас». Please don’t shake the maraca. — «Пожалуйста, не тряси маракас». Здесь один маракас; несколько — maracas.",
+                "uk": "«маракас». Please don’t shake the maraca. — «Будь ласка, не тряси маракас». Тут один маракас; кілька — maracas."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "maraca",
+            "definitionByLocale": {
+              "ru": "«маракас». Please don’t shake the maraca. — «Пожалуйста, не тряси маракас». Здесь один маракас; несколько — maracas.",
+              "uk": "«маракас». Please don’t shake the maraca. — «Будь ласка, не тряси маракас». Тут один маракас; кілька — maracas."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Триває запис. Попросіть друга не трясти маракас; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Триває запис. Попросіть друга не трясти маракас; почніть із Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please don't shake the maraca.",
+          "localizedMeaning": {
+            "ru": "Идёт запись. Попросите друга не трясти маракас; начните с Please",
+            "uk": "Триває запис. Попросіть друга не трясти маракас; почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "shake",
+            "the",
+            "maraca"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після don’t у проханні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i12:r1",
+            "text": "shake"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i12:r2",
+            "text": "shaking"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i12:r3",
+            "text": "shakes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після don’t у проханні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ the maraca.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i12:r1",
+              "text": "shake"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i12:r2",
+              "text": "shaking"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i12:r3",
+              "text": "shakes"
+            }
+          ],
+          "testedDimension": "Виберіть форму після don’t у проханні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна исходная форма shake.",
+                "uk": "Після don’t потрібна початкова форма shake."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "В просьбе после don’t не добавляем -s.",
+                "uk": "У проханні після don’t не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте назви інструментів із перекладами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте назви інструментів із перекладами",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-40:i13:p1",
+              "target": "cymbal",
+              "meaningByLocale": {
+                "ru": "музыкальная тарелка",
+                "uk": "музична тарілка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-40:i13:p2",
+              "target": "xylophone",
+              "meaningByLocale": {
+                "ru": "ксилофон",
+                "uk": "ксилофон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-40:i13:p3",
+              "target": "castanets",
+              "meaningByLocale": {
+                "ru": "кастаньеты",
+                "uk": "кастаньєти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-40:i13:p4",
+              "target": "maraca",
+              "meaningByLocale": {
+                "ru": "маракас",
+                "uk": "маракас"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cymbal",
+            "xylophone",
+            "castanets",
+            "maraca"
+          ],
+          "rightColumn": [
+            "музична тарілка",
+            "ксилофон",
+            "кастаньєти",
+            "маракас"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i14:r1",
+            "text": "I play the xylophone."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i14:r2",
+            "text": "I am playing the xylophone."
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i14:r3",
+            "text": "I play the castanets."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i14:audio",
+            "transcript": "I play the xylophone."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-40:i14:r1",
+              "targetText": "I play the xylophone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i14:r2",
+              "targetText": "I am playing the xylophone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i14:r3",
+              "targetText": "I play the castanets.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i14:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I play the xylophone.",
+                "uk": "У записі звучить I play the xylophone."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i14:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I play the xylophone.",
+                "uk": "У записі звучить I play the xylophone."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви розповідаєте про своє звичайне заняття щоп’ятниці",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-40:i15:r1",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i15:r2",
+            "text": "am playing"
+          },
+          {
+            "responseId": "en:lesson-09:session-40:i15:r3",
+            "text": "plays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте про своє звичайне заняття щоп’ятниці",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы рассказываете о своём обычном занятии по пятницам",
+            "uk": "Ви розповідаєте про своє звичайне заняття щоп’ятниці"
+          },
+          "gappedTargetPhrase": "I ___ the xylophone every Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-40:i15:r1",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i15:r2",
+              "text": "am playing"
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i15:r3",
+              "text": "plays"
+            }
+          ],
+          "testedDimension": "Ви розповідаєте про своє звичайне заняття щоп’ятниці",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-40:i15:r2",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про своє звичайне заняття щоп’ятниці",
+              "feedbackByLocale": {
+                "ru": "Здесь обычное занятие по пятницам: I play. Формой am playing сейчас не описываем привычку.",
+                "uk": "Тут звичайне заняття щоп’ятниці: I play. Формою am playing зараз не описуємо звичку."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-40:i15:r3",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про своє звичайне заняття щоп’ятниці",
+              "feedbackByLocale": {
+                "ru": "С I в настоящем простом времени нужно play, без -s.",
+                "uk": "З I в теперішньому простому часі потрібне play, без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "За дверима чути ксилофон. Запитайте сестру: «Ти граєш на ксилофоні?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i16:audio"
+        ],
+        "accessibilityLabel": "За дверима чути ксилофон. Запитайте сестру: «Ти граєш на ксилофоні?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i16:audio",
+            "transcript": "Are you playing the xylophone?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Are you playing the xylophone?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-40:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви записуєте тихе читання вірша. Брат поруч трясе маракас. Попросіть його не трясти маракас; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-40:i17:audio"
+        ],
+        "accessibilityLabel": "Ви записуєте тихе читання вірша. Брат поруч трясе маракас. Попросіть його не трясти маракас; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-40:i17:audio",
+            "transcript": "Please don't shake the maraca."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't shake the maraca.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-40:word:cymbal",
+      "correctText": "cymbal",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i01",
+      "correctText": "This is a cymbal.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i02",
+      "correctText": "The cymbal is here.",
+      "correctResponseId": "en:lesson-09:session-40:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-40:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:word:xylophone",
+      "correctText": "xylophone",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i04",
+      "correctText": "I am playing the xylophone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i05",
+      "correctText": "Are you playing the xylophone?",
+      "correctResponseId": "en:lesson-09:session-40:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i06",
+      "correctText": "playing",
+      "correctResponseId": "en:lesson-09:session-40:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i07",
+      "correctText": "I am not playing the xylophone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:word:castanets",
+      "correctText": "castanets",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i08",
+      "correctText": "The castanets are here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i09",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-09:session-40:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i10",
+      "correctText": "She is playing the castanets.",
+      "correctResponseId": "en:lesson-09:session-40:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:word:maraca",
+      "correctText": "maraca",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i11",
+      "correctText": "Please don't shake the maraca.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i12",
+      "correctText": "shake",
+      "correctResponseId": "en:lesson-09:session-40:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i14",
+      "correctText": "I play the xylophone.",
+      "correctResponseId": "en:lesson-09:session-40:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i15",
+      "correctText": "play",
+      "correctResponseId": "en:lesson-09:session-40:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i16",
+      "correctText": "Are you playing the xylophone?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:i17",
+      "correctText": "Please don't shake the maraca.",
+      "correctResponseId": null
+    }
+  ]
+}

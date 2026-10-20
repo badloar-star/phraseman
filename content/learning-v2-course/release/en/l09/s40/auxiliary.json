@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-40:intro1:r2": {
+          "ru": "Перед названием предмета нужна связка is.",
+          "uk": "Перед назвою предмета потрібна зв’язка is."
+        },
+        "en:lesson-09:session-40:intro1:r3": {
+          "ru": "Один предмет: this is.",
+          "uk": "Один предмет: this is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-40:intro2:r2": {
+          "ru": "Для действия сейчас после I нужно am.",
+          "uk": "Для дії зараз після I потрібне am."
+        },
+        "en:lesson-09:session-40:intro2:r3": {
+          "ru": "После am нужна форма playing.",
+          "uk": "Після am потрібна форма playing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-40:intro3:r2": {
+          "ru": "После don’t нужна исходная форма shake.",
+          "uk": "Після don’t потрібна початкова форма shake."
+        },
+        "en:lesson-09:session-40:intro3:r3": {
+          "ru": "Для отрицательной просьбы здесь нужно don’t.",
+          "uk": "Для заперечного прохання тут потрібне don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "57b6d2b155544efa59fbe6a72218724725379f6168d610d16feccb03017ae03e"
+}

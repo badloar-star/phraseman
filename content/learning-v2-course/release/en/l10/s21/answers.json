@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-21:word:imagine",
+    "correctText": "imagine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i01",
+    "correctText": "I imagine she is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i02",
+    "correctText": "I imagine she is busy.",
+    "correctResponseId": "en:lesson-10:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i03",
+    "correctText": "imagine",
+    "correctResponseId": "en:lesson-10:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:word:possibility",
+    "correctText": "possibility",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i04",
+    "correctText": "It is a possibility.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i05",
+    "correctText": "There is another possibility.",
+    "correctResponseId": "en:lesson-10:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i06",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-10:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:word:scenario",
+    "correctText": "scenario",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i07",
+    "correctText": "I can imagine that scenario.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i08",
+    "correctText": "We are discussing the scenario.",
+    "correctResponseId": "en:lesson-10:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i09",
+    "correctText": "imagine",
+    "correctResponseId": "en:lesson-10:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:word:outcome",
+    "correctText": "outcome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i10",
+    "correctText": "We need a better outcome.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i11",
+    "correctText": "The outcome is good.",
+    "correctResponseId": "en:lesson-10:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i13",
+    "correctText": "en:lesson-10:session-21:i13:p1=imagine\nen:lesson-10:session-21:i13:p2=possibility\nen:lesson-10:session-21:i13:p3=scenario\nen:lesson-10:session-21:i13:p4=outcome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i14",
+    "correctText": "I imagine the office is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i15",
+    "correctText": "I imagine she is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i16",
+    "correctText": "There is another possibility.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-21:i17",
+    "correctText": "I imagine the office is busy.",
+    "correctResponseId": null
+  }
+]

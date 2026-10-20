@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-21:intro1:r2": {
+          "ru": "С I нужна imagine без s.",
+          "uk": "З I потрібна imagine без s."
+        },
+        "en:lesson-10:session-21:intro1:r3": {
+          "ru": "С she нужна is.",
+          "uk": "З she потрібна is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-21:intro2:r2": {
+          "ru": "С it нужна is.",
+          "uk": "З it потрібна is."
+        },
+        "en:lesson-10:session-21:intro2:r3": {
+          "ru": "Possibility начинается с согласного звука: a.",
+          "uk": "Possibility починається з приголосного звука: a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-21:intro3:r2": {
+          "ru": "После can нужна imagine без s.",
+          "uk": "Після can потрібна imagine без s."
+        },
+        "en:lesson-10:session-21:intro3:r3": {
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e1130d102bcde9823d90a2c5d335de8ee668957dcf16ceb574bfc452ff8cccce"
+}

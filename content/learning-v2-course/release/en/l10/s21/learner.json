@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-21:word:imagine",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — imagine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:word:imagine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — imagine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:word:imagine:audio",
+          "transcript": "imagine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-21:word:imagine:r1",
+            "targetText": "imagine",
+            "meaningByLocale": {
+              "ru": "«представлять; полагать». I imagine she is busy. — «Полагаю, она занята». Здесь предполагать; в другом контексте — создавать мысленный образ.",
+              "uk": "«уявляти; гадати». I imagine she is busy. — «Гадаю, вона зайнята». Тут припускати; в іншому контексті — створювати уявний образ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "imagine",
+          "definitionByLocale": {
+            "ru": "«представлять; полагать». I imagine she is busy. — «Полагаю, она занята». Здесь предполагать; в другом контексте — создавать мысленный образ.",
+            "uk": "«уявляти; гадати». I imagine she is busy. — «Гадаю, вона зайнята». Тут припускати; в іншому контексті — створювати уявний образ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега занимается переездом офиса и не отвечает. Выскажите предположение: «Полагаю, она занята»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега занимается переездом офиса и не отвечает. Выскажите предположение: «Полагаю, она занята»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I imagine she is busy.",
+        "localizedMeaning": {
+          "ru": "Коллега занимается переездом офиса и не отвечает. Выскажите предположение: «Полагаю, она занята»",
+          "uk": "Колега займається переїздом офісу й не відповідає. Висловіть припущення: «Гадаю, вона зайнята»"
+        },
+        "orderedTokens": [
+          "I",
+          "imagine",
+          "she",
+          "is",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-21:i02:r1",
+          "text": "I imagine she is busy."
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i02:r2",
+          "text": "We imagine she is busy."
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i02:r3",
+          "text": "I imagine he is busy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:i02:audio",
+          "transcript": "I imagine she is busy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-21:i02:r1",
+            "targetText": "I imagine she is busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i02:r2",
+            "targetText": "We imagine she is busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i02:r3",
+            "targetText": "I imagine he is busy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I imagine she is busy.",
+              "uk": "У записі звучить I imagine she is busy."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I imagine she is busy.",
+              "uk": "У записі звучить I imagine she is busy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму imagine с I для предположения",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-21:i03:r1",
+          "text": "imagine"
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i03:r2",
+          "text": "imagines"
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i03:r3",
+          "text": "am imagine"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму imagine с I для предположения",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму imagine с I для предположения",
+          "uk": "Виберіть форму imagine з I для припущення"
+        },
+        "gappedTargetPhrase": "I ___ she is busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-21:i03:r1",
+            "text": "imagine"
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i03:r2",
+            "text": "imagines"
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i03:r3",
+            "text": "am imagine"
+          }
+        ],
+        "testedDimension": "Выберите форму imagine с I для предположения",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму imagine с I для предположения",
+            "feedbackByLocale": {
+              "ru": "С I нужна imagine без s.",
+              "uk": "З I потрібна imagine без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму imagine с I для предположения",
+            "feedbackByLocale": {
+              "ru": "Am imagine неверно; здесь нужна imagine.",
+              "uk": "Am imagine неправильно; тут потрібна imagine."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:word:possibility",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — possibility",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:word:possibility:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — possibility",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:word:possibility:audio",
+          "transcript": "possibility"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-21:word:possibility:r1",
+            "targetText": "possibility",
+            "meaningByLocale": {
+              "ru": "«возможность». It is a possibility. — «Это возможный вариант». Здесь один из вариантов, который может осуществиться.",
+              "uk": "«можливість». It is a possibility. — «Це можливий варіант». Тут один із варіантів, який може здійснитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "possibility",
+          "definitionByLocale": {
+            "ru": "«возможность». It is a possibility. — «Это возможный вариант». Здесь один из вариантов, который может осуществиться.",
+            "uk": "«можливість». It is a possibility. — «Це можливий варіант». Тут один із варіантів, який може здійснитися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега предлагает перенести встречу в другую комнату. Вы пока не решили. Скажите: «Это возможный вариант»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега предлагает перенести встречу в другую комнату. Вы пока не решили. Скажите: «Это возможный вариант»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a possibility.",
+        "localizedMeaning": {
+          "ru": "Коллега предлагает перенести встречу в другую комнату. Вы пока не решили. Скажите: «Это возможный вариант»",
+          "uk": "Колега пропонує перенести зустріч до іншої кімнати. Ви поки не вирішили. Скажіть: «Це можливий варіант»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "possibility"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-21:i05:r1",
+          "text": "There is another possibility."
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i05:r2",
+          "text": "There is another problem."
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i05:r3",
+          "text": "There is another meeting."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:i05:audio",
+          "transcript": "There is another possibility."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-21:i05:r1",
+            "targetText": "There is another possibility.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i05:r2",
+            "targetText": "There is another problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i05:r3",
+            "targetText": "There is another meeting.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is another possibility.",
+              "uk": "У записі звучить There is another possibility."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is another possibility.",
+              "uk": "У записі звучить There is another possibility."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите артикль перед possibility",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-21:i06:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i06:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите артикль перед possibility",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль перед possibility",
+          "uk": "Виберіть артикль перед possibility"
+        },
+        "gappedTargetPhrase": "It is ___ possibility.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-21:i06:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i06:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Выберите артикль перед possibility",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите артикль перед possibility",
+            "feedbackByLocale": {
+              "ru": "Possibility начинается с согласного звука: a.",
+              "uk": "Possibility починається з приголосного звука: a."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите артикль перед possibility",
+            "feedbackByLocale": {
+              "ru": "Are — глагол; здесь нужен артикль a.",
+              "uk": "Are — дієслово; тут потрібен артикль a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:word:scenario",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scenario",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:word:scenario:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scenario",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:word:scenario:audio",
+          "transcript": "scenario"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-21:word:scenario:r1",
+            "targetText": "scenario",
+            "meaningByLocale": {
+              "ru": "«сценарий». I can imagine that scenario. — «Я могу представить такой сценарий». Здесь возможный ход событий, а не текст фильма.",
+              "uk": "«сценарій». I can imagine that scenario. — «Я можу уявити такий сценарій». Тут можливий перебіг подій, а не текст фільму."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scenario",
+          "definitionByLocale": {
+            "ru": "«сценарий». I can imagine that scenario. — «Я могу представить такой сценарий». Здесь возможный ход событий, а не текст фильма.",
+            "uk": "«сценарій». I can imagine that scenario. — «Я можу уявити такий сценарій». Тут можливий перебіг подій, а не текст фільму."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега описывает, как переезд пройдёт без задержек. Скажите: «Я могу представить такой сценарий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега описывает, как переезд пройдёт без задержек. Скажите: «Я могу представить такой сценарий»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can imagine that scenario.",
+        "localizedMeaning": {
+          "ru": "Коллега описывает, как переезд пройдёт без задержек. Скажите: «Я могу представить такой сценарий»",
+          "uk": "Колега описує, як переїзд пройде без затримок. Скажіть: «Я можу уявити такий сценарій»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "imagine",
+          "that",
+          "scenario"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-21:i08:r1",
+          "text": "We are discussing the scenario."
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i08:r2",
+          "text": "They are discussing the scenario."
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i08:r3",
+          "text": "We are discussing the budget."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:i08:audio",
+          "transcript": "We are discussing the scenario."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-21:i08:r1",
+            "targetText": "We are discussing the scenario.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i08:r2",
+            "targetText": "They are discussing the scenario.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i08:r3",
+            "targetText": "We are discussing the budget.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are discussing the scenario.",
+              "uk": "У записі звучить We are discussing the scenario."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are discussing the scenario.",
+              "uk": "У записі звучить We are discussing the scenario."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму imagine после can",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-21:i09:r1",
+          "text": "imagine"
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i09:r2",
+          "text": "imagines"
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i09:r3",
+          "text": "to imagine"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму imagine после can",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму imagine после can",
+          "uk": "Виберіть форму imagine після can"
+        },
+        "gappedTargetPhrase": "I can ___ that scenario.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-21:i09:r1",
+            "text": "imagine"
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i09:r2",
+            "text": "imagines"
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i09:r3",
+            "text": "to imagine"
+          }
+        ],
+        "testedDimension": "Выберите форму imagine после can",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму imagine после can",
+            "feedbackByLocale": {
+              "ru": "После can глагол без s.",
+              "uk": "Після can дієслово без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму imagine после can",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:word:outcome",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — outcome",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:word:outcome:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — outcome",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:word:outcome:audio",
+          "transcript": "outcome"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-21:word:outcome:r1",
+            "targetText": "outcome",
+            "meaningByLocale": {
+              "ru": "«результат». We need a better outcome. — «Нам нужен лучший результат». Здесь итог ситуации или процесса.",
+              "uk": "«результат». We need a better outcome. — «Нам потрібен кращий результат». Тут підсумок ситуації або процесу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "outcome",
+          "definitionByLocale": {
+            "ru": "«результат». We need a better outcome. — «Нам нужен лучший результат». Здесь итог ситуации или процесса.",
+            "uk": "«результат». We need a better outcome. — «Нам потрібен кращий результат». Тут підсумок ситуації або процесу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "При прошлом переезде команда потеряла рабочий день. Коллега обсуждает новый план. Скажите: «Нам нужен лучший результат»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "При прошлом переезде команда потеряла рабочий день. Коллега обсуждает новый план. Скажите: «Нам нужен лучший результат»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need a better outcome.",
+        "localizedMeaning": {
+          "ru": "При прошлом переезде команда потеряла рабочий день. Коллега обсуждает новый план. Скажите: «Нам нужен лучший результат»",
+          "uk": "Під час минулого переїзду команда втратила робочий день. Колега обговорює новий план. Скажіть: «Нам потрібен кращий результат»"
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "a",
+          "better",
+          "outcome"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-21:i11:r1",
+          "text": "The outcome is good."
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i11:r2",
+          "text": "The outcome is bad."
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i11:r3",
+          "text": "The weather is good."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:i11:audio",
+          "transcript": "The outcome is good."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-21:i11:r1",
+            "targetText": "The outcome is good.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i11:r2",
+            "targetText": "The outcome is bad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i11:r3",
+            "targetText": "The weather is good.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The outcome is good.",
+              "uk": "У записі звучить The outcome is good."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The outcome is good.",
+              "uk": "У записі звучить The outcome is good."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку с одним результатом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-21:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-21:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку с одним результатом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку с одним результатом",
+          "uk": "Виберіть зв’язку з одним результатом"
+        },
+        "gappedTargetPhrase": "The outcome ___ good.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-21:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите связку с одним результатом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-21:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку с одним результатом",
+            "feedbackByLocale": {
+              "ru": "Один результат: is.",
+              "uk": "Один результат: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-21:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку с одним результатом",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями в этом занятии",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями в этом занятии",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-21:i13:p1",
+            "target": "imagine",
+            "meaningByLocale": {
+              "ru": "представлять",
+              "uk": "уявляти"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-21:i13:p2",
+            "target": "possibility",
+            "meaningByLocale": {
+              "ru": "возможность",
+              "uk": "можливість"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-21:i13:p3",
+            "target": "scenario",
+            "meaningByLocale": {
+              "ru": "сценарий",
+              "uk": "сценарій"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-21:i13:p4",
+            "target": "outcome",
+            "meaningByLocale": {
+              "ru": "результат",
+              "uk": "результат"
+            }
+          }
+        ],
+        "leftColumn": [
+          "imagine",
+          "possibility",
+          "scenario",
+          "outcome"
+        ],
+        "rightColumn": [
+          "представлять",
+          "возможность",
+          "сценарий",
+          "результат"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:i14:audio",
+          "transcript": "I imagine the office is busy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I imagine the office is busy.",
+        "orderedTokens": [
+          "I",
+          "imagine",
+          "the",
+          "office",
+          "is",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о коллеге, которая сегодня организует переезд. Вы не видите её. Скажите: «Полагаю, она занята»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о коллеге, которая сегодня организует переезд. Вы не видите её. Скажите: «Полагаю, она занята»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:i15:audio",
+          "transcript": "I imagine she is busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I imagine she is busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега предлагает ещё один вариант комнаты для встречи. Скажите: «Есть другая возможность»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега предлагает ещё один вариант комнаты для встречи. Скажите: «Есть другая возможность»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is another possibility.",
+        "localizedMeaning": {
+          "ru": "Коллега предлагает ещё один вариант комнаты для встречи. Скажите: «Есть другая возможность»",
+          "uk": "Колега пропонує ще один варіант кімнати для зустрічі. Скажіть: «Є інша можливість»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "another",
+          "possibility"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-21:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, что сегодня в офисе переезд, но не видите, что там происходит. Друг спрашивает ваше мнение. Выскажите предположение: «Полагаю, в офисе сейчас много работы»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, что сегодня в офисе переезд, но не видите, что там происходит. Друг спрашивает ваше мнение. Выскажите предположение: «Полагаю, в офисе сейчас много работы»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-21:i17:audio",
+          "transcript": "I imagine the office is busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I imagine the office is busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ca7b18cf8ac6df8bca6630067becdaba090e0270fa62a309c3b6fa2d8f6c05d5"
+}

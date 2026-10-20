@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-53:word:gesture",
+    "correctText": "gesture",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i01",
+    "correctText": "I gesture towards the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i02",
+    "correctText": "He is gesturing towards the door.",
+    "correctResponseId": "en:lesson-09:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i03",
+    "correctText": "gesturing",
+    "correctResponseId": "en:lesson-09:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:word:auditorium",
+    "correctText": "auditorium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i04",
+    "correctText": "We are in the auditorium.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i05",
+    "correctText": "The auditorium is empty.",
+    "correctResponseId": "en:lesson-09:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:word:acoustics",
+    "correctText": "acoustics",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i07",
+    "correctText": "The acoustics are good.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i08",
+    "correctText": "The acoustics are poor.",
+    "correctResponseId": "en:lesson-09:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:word:amplifier",
+    "correctText": "amplifier",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i10",
+    "correctText": "The amplifier is on.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i11",
+    "correctText": "Please don't touch the amplifier.",
+    "correctResponseId": "en:lesson-09:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i12",
+    "correctText": "Please don't touch the amplifier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i13",
+    "correctText": "en:lesson-09:session-53:i13:p1=gesture\nen:lesson-09:session-53:i13:p2=auditorium\nen:lesson-09:session-53:i13:p3=acoustics\nen:lesson-09:session-53:i13:p4=amplifier",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i14",
+    "correctText": "Is he gesturing towards the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i15",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-09:session-53:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i16",
+    "correctText": "He is not gesturing towards the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-53:i17",
+    "correctText": "He is gesturing towards the door.",
+    "correctResponseId": null
+  }
+]

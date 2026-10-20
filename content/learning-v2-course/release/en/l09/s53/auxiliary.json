@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-53:intro1:r2": {
+          "ru": "Для действия сейчас с he нужна форма is.",
+          "uk": "Для дії зараз з he потрібна форма is."
+        },
+        "en:lesson-09:session-53:intro1:r3": {
+          "ru": "После is нужна форма gesturing.",
+          "uk": "Після is потрібна форма gesturing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-53:intro2:r2": {
+          "ru": "О звучании помещения acoustics употребляем с are.",
+          "uk": "Про звучання приміщення acoustics уживаємо з are."
+        },
+        "en:lesson-09:session-53:intro2:r3": {
+          "ru": "Am употребляется с I, здесь нужно are.",
+          "uk": "Am уживається з I, тут потрібне are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-53:intro3:r2": {
+          "ru": "После don’t нужна форма touch.",
+          "uk": "Після don’t потрібна форма touch."
+        },
+        "en:lesson-09:session-53:intro3:r3": {
+          "ru": "Для просьбы не трогать устройство нужен don’t.",
+          "uk": "Для прохання не чіпати пристрій потрібне don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3f8a221ca39cbae032122ac368e63203f5473bbcd91f5a1f9fd082cda0b0b076"
+}

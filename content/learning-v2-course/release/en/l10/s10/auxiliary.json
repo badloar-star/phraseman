@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-10:intro1:r2": {
+          "ru": "С he нужна works.",
+          "uk": "З he потрібна works."
+        },
+        "en:lesson-10:session-10:intro1:r3": {
+          "ru": "Для обычной работы здесь нужна works.",
+          "uk": "Для звичайної роботи тут потрібна works."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-10:intro2:r2": {
+          "ru": "Перед working нужна is.",
+          "uk": "Перед working потрібна is."
+        },
+        "en:lesson-10:session-10:intro2:r3": {
+          "ru": "После is нужна working.",
+          "uk": "Після is потрібна working."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-10:intro3:r2": {
+          "ru": "Нужна связка is.",
+          "uk": "Потрібна зв’язка is."
+        },
+        "en:lesson-10:session-10:intro3:r3": {
+          "ru": "Перед названием профессии в единственном числе нужна a.",
+          "uk": "Перед назвою професії в однині потрібен a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7b35349c06149e6e88ed8cbd05961005346cf866f252edb5649f671d747eea5d"
+}

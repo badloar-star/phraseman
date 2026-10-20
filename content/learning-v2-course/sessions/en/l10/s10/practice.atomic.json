@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-10",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-10:word:docent",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — docent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:word:docent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — docent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:word:docent:audio",
+            "transcript": "docent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:word:docent:r1",
+              "targetText": "docent",
+              "meaningByLocale": {
+                "ru": "«музейный экскурсовод». He is a docent. — «Он музейный экскурсовод». Такое значение употребляется в США.",
+                "uk": "«музейний екскурсовод». He is a docent. — «Він музейний екскурсовод». Таке значення вживається у США."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "docent",
+            "definitionByLocale": {
+              "ru": "«музейный экскурсовод». He is a docent. — «Он музейный экскурсовод». Такое значение употребляется в США.",
+              "uk": "«музейний екскурсовод». He is a docent. — «Він музейний екскурсовод». Таке значення вживається у США."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Посетитель американского музея спрашивает о вашем коллеге. Скажите: «Он музейный экскурсовод»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посетитель американского музея спрашивает о вашем коллеге. Скажите: «Он музейный экскурсовод»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is a docent.",
+          "localizedMeaning": {
+            "ru": "Посетитель американского музея спрашивает о вашем коллеге. Скажите: «Он музейный экскурсовод»",
+            "uk": "Відвідувач американського музею запитує про вашого колегу. Скажіть: «Він музейний екскурсовод»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "a",
+            "docent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i02:r1",
+            "text": "He usually works outside."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i02:r2",
+            "text": "She usually works outside."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i02:r3",
+            "text": "He usually works here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i02:audio",
+            "transcript": "He usually works outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:i02:r1",
+              "targetText": "He usually works outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i02:r2",
+              "targetText": "She usually works outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i02:r3",
+              "targetText": "He usually works here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He usually works outside.",
+                "uk": "У записі звучить He usually works outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He usually works outside.",
+                "uk": "У записі звучить He usually works outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму work для обычной работы с he",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i03:r1",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i03:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i03:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму work для обычной работы с he",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму work для обычной работы с he",
+            "uk": "Виберіть форму work для звичайної роботи з he"
+          },
+          "gappedTargetPhrase": "He usually ___ outside.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-10:i03:r1",
+              "text": "works"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i03:r2",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i03:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Выберите форму work для обычной работы с he",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму work для обычной работы с he",
+              "feedbackByLocale": {
+                "ru": "С he нужна works.",
+                "uk": "З he потрібна works."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму work для обычной работы с he",
+              "feedbackByLocale": {
+                "ru": "Здесь обычная работа: works.",
+                "uk": "Тут звичайна робота: works."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:word:curator",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — curator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:word:curator:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — curator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:word:curator:audio",
+            "transcript": "curator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:word:curator:r1",
+              "targetText": "curator",
+              "meaningByLocale": {
+                "ru": "«куратор коллекции». She is a curator. — «Она куратор коллекции». Здесь специалист по музейной коллекции.",
+                "uk": "«куратор колекції». She is a curator. — «Вона кураторка колекції». Тут фахівець із музейної колекції."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curator",
+            "definitionByLocale": {
+              "ru": "«куратор коллекции». She is a curator. — «Она куратор коллекции». Здесь специалист по музейной коллекции.",
+              "uk": "«куратор колекції». She is a curator. — «Вона кураторка колекції». Тут фахівець із музейної колекції."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает о профессии вашей знакомой. Скажите: «Она куратор коллекции»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает о профессии вашей знакомой. Скажите: «Она куратор коллекции»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is a curator.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает о профессии вашей знакомой. Скажите: «Она куратор коллекции»",
+            "uk": "Колега запитує про професію вашої знайомої. Скажіть: «Вона кураторка колекції»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "a",
+            "curator"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i05:r1",
+            "text": "The curator is here."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i05:r2",
+            "text": "The curator is outside."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i05:r3",
+            "text": "The guide is here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i05:audio",
+            "transcript": "The curator is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:i05:r1",
+              "targetText": "The curator is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i05:r2",
+              "targetText": "The curator is outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i05:r3",
+              "targetText": "The guide is here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The curator is here.",
+                "uk": "У записі звучить The curator is here."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The curator is here.",
+                "uk": "У записі звучить The curator is here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите артикль перед названием профессии",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i06:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i06:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите артикль перед названием профессии",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед названием профессии",
+            "uk": "Виберіть артикль перед назвою професії"
+          },
+          "gappedTargetPhrase": "She is ___ curator.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-10:i06:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i06:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите артикль перед названием профессии",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед названием профессии",
+              "feedbackByLocale": {
+                "ru": "Curator начинается с согласного звука: a.",
+                "uk": "Curator починається з приголосного звука: a."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед названием профессии",
+              "feedbackByLocale": {
+                "ru": "Are — глагол, а здесь нужен артикль a.",
+                "uk": "Are — дієслово, а тут потрібен артикль a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:word:artifact",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — artifact",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:word:artifact:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — artifact",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:word:artifact:audio",
+            "transcript": "artifact"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:word:artifact:r1",
+              "targetText": "artifact",
+              "meaningByLocale": {
+                "ru": "«артефакт». The artifact is old. — «Артефакт старый». Здесь предмет, созданный человеком и представляющий исторический интерес.",
+                "uk": "«артефакт». The artifact is old. — «Артефакт старий». Тут предмет, створений людиною, що становить історичний інтерес."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "artifact",
+            "definitionByLocale": {
+              "ru": "«артефакт». The artifact is old. — «Артефакт старый». Здесь предмет, созданный человеком и представляющий исторический интерес.",
+              "uk": "«артефакт». The artifact is old. — «Артефакт старий». Тут предмет, створений людиною, що становить історичний інтерес."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Посетитель спрашивает о возрасте исторического предмета. Скажите: «Артефакт старый»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посетитель спрашивает о возрасте исторического предмета. Скажите: «Артефакт старый»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The artifact is old.",
+          "localizedMeaning": {
+            "ru": "Посетитель спрашивает о возрасте исторического предмета. Скажите: «Артефакт старый»",
+            "uk": "Відвідувач запитує про вік історичного предмета. Скажіть: «Артефакт старий»"
+          },
+          "orderedTokens": [
+            "The",
+            "artifact",
+            "is",
+            "old"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i08:r1",
+            "text": "I am looking at the artifact."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i08:r2",
+            "text": "I am looking at the door."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i08:r3",
+            "text": "She is looking at the artifact."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i08:audio",
+            "transcript": "I am looking at the artifact."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:i08:r1",
+              "targetText": "I am looking at the artifact.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i08:r2",
+              "targetText": "I am looking at the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i08:r3",
+              "targetText": "She is looking at the artifact.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am looking at the artifact.",
+                "uk": "У записі звучить I am looking at the artifact."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am looking at the artifact.",
+                "uk": "У записі звучить I am looking at the artifact."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку для одного артефакта",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку для одного артефакта",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одного артефакта",
+            "uk": "Виберіть зв’язку для одного артефакту"
+          },
+          "gappedTargetPhrase": "The artifact ___ old.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-10:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку для одного артефакта",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку для одного артефакта",
+              "feedbackByLocale": {
+                "ru": "Один предмет: is.",
+                "uk": "Один предмет: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку для одного артефакта",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:word:diorama",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — diorama",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:word:diorama:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — diorama",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:word:diorama:audio",
+            "transcript": "diorama"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:word:diorama:r1",
+              "targetText": "diorama",
+              "meaningByLocale": {
+                "ru": "«диорама». The diorama is small. — «Диорама маленькая». Здесь объёмная модель сцены в музее.",
+                "uk": "«діорама». The diorama is small. — «Діорама маленька». Тут об’ємна модель сцени в музеї."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diorama",
+            "definitionByLocale": {
+              "ru": "«диорама». The diorama is small. — «Диорама маленькая». Здесь объёмная модель сцены в музее.",
+              "uk": "«діорама». The diorama is small. — «Діорама маленька». Тут об’ємна модель сцени в музеї."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает о размере объёмной модели сцены. Скажите: «Диорама маленькая»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает о размере объёмной модели сцены. Скажите: «Диорама маленькая»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The diorama is small.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает о размере объёмной модели сцены. Скажите: «Диорама маленькая»",
+            "uk": "Колега запитує про розмір об’ємної моделі сцени. Скажіть: «Діорама маленька»"
+          },
+          "orderedTokens": [
+            "The",
+            "diorama",
+            "is",
+            "small"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i11:r1",
+            "text": "We are looking at the diorama."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i11:r2",
+            "text": "They are looking at the diorama."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i11:r3",
+            "text": "We are looking at the map."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i11:audio",
+            "transcript": "We are looking at the diorama."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:i11:r1",
+              "targetText": "We are looking at the diorama.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i11:r2",
+              "targetText": "They are looking at the diorama.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i11:r3",
+              "targetText": "We are looking at the map.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are looking at the diorama.",
+                "uk": "У записі звучить We are looking at the diorama."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are looking at the diorama.",
+                "uk": "У записі звучить We are looking at the diorama."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку перед working с he для временной работы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку перед working с he для временной работы",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку перед working с he для временной работы",
+            "uk": "Виберіть зв’язку перед working з he для тимчасової роботи"
+          },
+          "gappedTargetPhrase": "He ___ working here this month.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-10:i12:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i12:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку перед working с he для временной работы",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку перед working с he для временной работы",
+              "feedbackByLocale": {
+                "ru": "С he нужна is.",
+                "uk": "З he потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку перед working с he для временной работы",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-10:i13:p1",
+              "target": "docent",
+              "meaningByLocale": {
+                "ru": "музейный экскурсовод",
+                "uk": "музейний екскурсовод"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-10:i13:p2",
+              "target": "curator",
+              "meaningByLocale": {
+                "ru": "куратор коллекции",
+                "uk": "куратор колекції"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-10:i13:p3",
+              "target": "artifact",
+              "meaningByLocale": {
+                "ru": "артефакт",
+                "uk": "артефакт"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-10:i13:p4",
+              "target": "diorama",
+              "meaningByLocale": {
+                "ru": "диорама",
+                "uk": "діорама"
+              }
+            }
+          ],
+          "leftColumn": [
+            "docent",
+            "curator",
+            "artifact",
+            "diorama"
+          ],
+          "rightColumn": [
+            "музейный экскурсовод",
+            "куратор коллекции",
+            "артефакт",
+            "диорама"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос; this month поставьте в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос; this month поставьте в конце",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i14:audio",
+            "transcript": "Is he working here this month?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is he working here this month?",
+          "orderedTokens": [
+            "Is",
+            "he",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знакомая спрашивает, где гид обычно проводит рабочий день. Скажите: «Обычно он работает на улице»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Знакомая спрашивает, где гид обычно проводит рабочий день. Скажите: «Обычно он работает на улице»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i15:audio",
+            "transcript": "He usually works outside."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually works outside.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гид временно помогает музею. Скажите: «В этом месяце он работает в музее». Поставьте this month в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гид временно помогает музею. Скажите: «В этом месяце он работает в музее». Поставьте this month в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is working at a museum this month.",
+          "localizedMeaning": {
+            "ru": "Гид временно помогает музею. Скажите: «В этом месяце он работает в музее». Поставьте this month в конце",
+            "uk": "Гід тимчасово допомагає музею. Скажіть: «Цього місяця він працює в музеї». Поставте this month наприкінці"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "working",
+            "at",
+            "a",
+            "museum",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ваш знакомый обычно проводит городские экскурсии. Он временно помогает музею один месяц, затем возвращается к прежней работе. Коллега спрашивает, где он работает в этот период. Ответьте: «В этом месяце он работает в музее»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Ваш знакомый обычно проводит городские экскурсии. Он временно помогает музею один месяц, затем возвращается к прежней работе. Коллега спрашивает, где он работает в этот период. Ответьте: «В этом месяце он работает в музее»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i17:audio",
+            "transcript": "He is working at a museum this month."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is working at a museum this month.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-10:word:docent",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — docent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:word:docent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — docent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:word:docent:audio",
+            "transcript": "docent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:word:docent:r1",
+              "targetText": "docent",
+              "meaningByLocale": {
+                "ru": "«музейный экскурсовод». He is a docent. — «Он музейный экскурсовод». Такое значение употребляется в США.",
+                "uk": "«музейний екскурсовод». He is a docent. — «Він музейний екскурсовод». Таке значення вживається у США."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "docent",
+            "definitionByLocale": {
+              "ru": "«музейный экскурсовод». He is a docent. — «Он музейный экскурсовод». Такое значение употребляется в США.",
+              "uk": "«музейний екскурсовод». He is a docent. — «Він музейний екскурсовод». Таке значення вживається у США."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Відвідувач американського музею запитує про вашого колегу. Скажіть: «Він музейний екскурсовод»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Відвідувач американського музею запитує про вашого колегу. Скажіть: «Він музейний екскурсовод»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is a docent.",
+          "localizedMeaning": {
+            "ru": "Посетитель американского музея спрашивает о вашем коллеге. Скажите: «Он музейный экскурсовод»",
+            "uk": "Відвідувач американського музею запитує про вашого колегу. Скажіть: «Він музейний екскурсовод»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "a",
+            "docent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i02:r1",
+            "text": "He usually works outside."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i02:r2",
+            "text": "She usually works outside."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i02:r3",
+            "text": "He usually works here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i02:audio",
+            "transcript": "He usually works outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:i02:r1",
+              "targetText": "He usually works outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i02:r2",
+              "targetText": "She usually works outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i02:r3",
+              "targetText": "He usually works here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He usually works outside.",
+                "uk": "У записі звучить He usually works outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He usually works outside.",
+                "uk": "У записі звучить He usually works outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму work для звичайної роботи з he",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i03:r1",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i03:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i03:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму work для звичайної роботи з he",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму work для обычной работы с he",
+            "uk": "Виберіть форму work для звичайної роботи з he"
+          },
+          "gappedTargetPhrase": "He usually ___ outside.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-10:i03:r1",
+              "text": "works"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i03:r2",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i03:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Виберіть форму work для звичайної роботи з he",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму work для звичайної роботи з he",
+              "feedbackByLocale": {
+                "ru": "С he нужна works.",
+                "uk": "З he потрібна works."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму work для звичайної роботи з he",
+              "feedbackByLocale": {
+                "ru": "Здесь обычная работа: works.",
+                "uk": "Тут звичайна робота: works."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:word:curator",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — curator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:word:curator:audio"
+        ],
+        "accessibilityLabel": "Картка слова — curator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:word:curator:audio",
+            "transcript": "curator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:word:curator:r1",
+              "targetText": "curator",
+              "meaningByLocale": {
+                "ru": "«куратор коллекции». She is a curator. — «Она куратор коллекции». Здесь специалист по музейной коллекции.",
+                "uk": "«куратор колекції». She is a curator. — «Вона кураторка колекції». Тут фахівець із музейної колекції."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curator",
+            "definitionByLocale": {
+              "ru": "«куратор коллекции». She is a curator. — «Она куратор коллекции». Здесь специалист по музейной коллекции.",
+              "uk": "«куратор колекції». She is a curator. — «Вона кураторка колекції». Тут фахівець із музейної колекції."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує про професію вашої знайомої. Скажіть: «Вона кураторка колекції»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує про професію вашої знайомої. Скажіть: «Вона кураторка колекції»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is a curator.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает о профессии вашей знакомой. Скажите: «Она куратор коллекции»",
+            "uk": "Колега запитує про професію вашої знайомої. Скажіть: «Вона кураторка колекції»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "a",
+            "curator"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i05:r1",
+            "text": "The curator is here."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i05:r2",
+            "text": "The curator is outside."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i05:r3",
+            "text": "The guide is here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i05:audio",
+            "transcript": "The curator is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:i05:r1",
+              "targetText": "The curator is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i05:r2",
+              "targetText": "The curator is outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i05:r3",
+              "targetText": "The guide is here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The curator is here.",
+                "uk": "У записі звучить The curator is here."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The curator is here.",
+                "uk": "У записі звучить The curator is here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть артикль перед назвою професії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i06:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i06:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть артикль перед назвою професії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед названием профессии",
+            "uk": "Виберіть артикль перед назвою професії"
+          },
+          "gappedTargetPhrase": "She is ___ curator.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-10:i06:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i06:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть артикль перед назвою професії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед назвою професії",
+              "feedbackByLocale": {
+                "ru": "Curator начинается с согласного звука: a.",
+                "uk": "Curator починається з приголосного звука: a."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед назвою професії",
+              "feedbackByLocale": {
+                "ru": "Are — глагол, а здесь нужен артикль a.",
+                "uk": "Are — дієслово, а тут потрібен артикль a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:word:artifact",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — artifact",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:word:artifact:audio"
+        ],
+        "accessibilityLabel": "Картка слова — artifact",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:word:artifact:audio",
+            "transcript": "artifact"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:word:artifact:r1",
+              "targetText": "artifact",
+              "meaningByLocale": {
+                "ru": "«артефакт». The artifact is old. — «Артефакт старый». Здесь предмет, созданный человеком и представляющий исторический интерес.",
+                "uk": "«артефакт». The artifact is old. — «Артефакт старий». Тут предмет, створений людиною, що становить історичний інтерес."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "artifact",
+            "definitionByLocale": {
+              "ru": "«артефакт». The artifact is old. — «Артефакт старый». Здесь предмет, созданный человеком и представляющий исторический интерес.",
+              "uk": "«артефакт». The artifact is old. — «Артефакт старий». Тут предмет, створений людиною, що становить історичний інтерес."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Відвідувач запитує про вік історичного предмета. Скажіть: «Артефакт старий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Відвідувач запитує про вік історичного предмета. Скажіть: «Артефакт старий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The artifact is old.",
+          "localizedMeaning": {
+            "ru": "Посетитель спрашивает о возрасте исторического предмета. Скажите: «Артефакт старый»",
+            "uk": "Відвідувач запитує про вік історичного предмета. Скажіть: «Артефакт старий»"
+          },
+          "orderedTokens": [
+            "The",
+            "artifact",
+            "is",
+            "old"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i08:r1",
+            "text": "I am looking at the artifact."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i08:r2",
+            "text": "I am looking at the door."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i08:r3",
+            "text": "She is looking at the artifact."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i08:audio",
+            "transcript": "I am looking at the artifact."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:i08:r1",
+              "targetText": "I am looking at the artifact.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i08:r2",
+              "targetText": "I am looking at the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i08:r3",
+              "targetText": "She is looking at the artifact.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am looking at the artifact.",
+                "uk": "У записі звучить I am looking at the artifact."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am looking at the artifact.",
+                "uk": "У записі звучить I am looking at the artifact."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку для одного артефакту",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку для одного артефакту",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одного артефакта",
+            "uk": "Виберіть зв’язку для одного артефакту"
+          },
+          "gappedTargetPhrase": "The artifact ___ old.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-10:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку для одного артефакту",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для одного артефакту",
+              "feedbackByLocale": {
+                "ru": "Один предмет: is.",
+                "uk": "Один предмет: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для одного артефакту",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:word:diorama",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — diorama",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:word:diorama:audio"
+        ],
+        "accessibilityLabel": "Картка слова — diorama",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:word:diorama:audio",
+            "transcript": "diorama"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:word:diorama:r1",
+              "targetText": "diorama",
+              "meaningByLocale": {
+                "ru": "«диорама». The diorama is small. — «Диорама маленькая». Здесь объёмная модель сцены в музее.",
+                "uk": "«діорама». The diorama is small. — «Діорама маленька». Тут об’ємна модель сцени в музеї."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diorama",
+            "definitionByLocale": {
+              "ru": "«диорама». The diorama is small. — «Диорама маленькая». Здесь объёмная модель сцены в музее.",
+              "uk": "«діорама». The diorama is small. — «Діорама маленька». Тут об’ємна модель сцени в музеї."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує про розмір об’ємної моделі сцени. Скажіть: «Діорама маленька»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує про розмір об’ємної моделі сцени. Скажіть: «Діорама маленька»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The diorama is small.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает о размере объёмной модели сцены. Скажите: «Диорама маленькая»",
+            "uk": "Колега запитує про розмір об’ємної моделі сцени. Скажіть: «Діорама маленька»"
+          },
+          "orderedTokens": [
+            "The",
+            "diorama",
+            "is",
+            "small"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i11:r1",
+            "text": "We are looking at the diorama."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i11:r2",
+            "text": "They are looking at the diorama."
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i11:r3",
+            "text": "We are looking at the map."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i11:audio",
+            "transcript": "We are looking at the diorama."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-10:i11:r1",
+              "targetText": "We are looking at the diorama.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i11:r2",
+              "targetText": "They are looking at the diorama.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i11:r3",
+              "targetText": "We are looking at the map.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are looking at the diorama.",
+                "uk": "У записі звучить We are looking at the diorama."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are looking at the diorama.",
+                "uk": "У записі звучить We are looking at the diorama."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку перед working з he для тимчасової роботи",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-10:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-10:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку перед working з he для тимчасової роботи",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку перед working с he для временной работы",
+            "uk": "Виберіть зв’язку перед working з he для тимчасової роботи"
+          },
+          "gappedTargetPhrase": "He ___ working here this month.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-10:i12:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i12:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку перед working з he для тимчасової роботи",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку перед working з he для тимчасової роботи",
+              "feedbackByLocale": {
+                "ru": "С he нужна is.",
+                "uk": "З he потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку перед working з he для тимчасової роботи",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-10:i13:p1",
+              "target": "docent",
+              "meaningByLocale": {
+                "ru": "музейный экскурсовод",
+                "uk": "музейний екскурсовод"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-10:i13:p2",
+              "target": "curator",
+              "meaningByLocale": {
+                "ru": "куратор коллекции",
+                "uk": "куратор колекції"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-10:i13:p3",
+              "target": "artifact",
+              "meaningByLocale": {
+                "ru": "артефакт",
+                "uk": "артефакт"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-10:i13:p4",
+              "target": "diorama",
+              "meaningByLocale": {
+                "ru": "диорама",
+                "uk": "діорама"
+              }
+            }
+          ],
+          "leftColumn": [
+            "docent",
+            "curator",
+            "artifact",
+            "diorama"
+          ],
+          "rightColumn": [
+            "музейний екскурсовод",
+            "куратор колекції",
+            "артефакт",
+            "діорама"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання; this month поставте наприкінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання; this month поставте наприкінці",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i14:audio",
+            "transcript": "Is he working here this month?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is he working here this month?",
+          "orderedTokens": [
+            "Is",
+            "he",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знайома запитує, де гід зазвичай проводить робочий день. Скажіть: «Зазвичай він працює надворі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Знайома запитує, де гід зазвичай проводить робочий день. Скажіть: «Зазвичай він працює надворі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i15:audio",
+            "transcript": "He usually works outside."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually works outside.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гід тимчасово допомагає музею. Скажіть: «Цього місяця він працює в музеї». Поставте this month наприкінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гід тимчасово допомагає музею. Скажіть: «Цього місяця він працює в музеї». Поставте this month наприкінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is working at a museum this month.",
+          "localizedMeaning": {
+            "ru": "Гид временно помогает музею. Скажите: «В этом месяце он работает в музее». Поставьте this month в конце",
+            "uk": "Гід тимчасово допомагає музею. Скажіть: «Цього місяця він працює в музеї». Поставте this month наприкінці"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "working",
+            "at",
+            "a",
+            "museum",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-10:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ваш знайомий зазвичай проводить міські екскурсії. Він тимчасово допомагає музею один місяць, потім повертається до попередньої роботи. Колега запитує, де він працює в цей період. Дайте відповідь: «Цього місяця він працює в музеї»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Ваш знайомий зазвичай проводить міські екскурсії. Він тимчасово допомагає музею один місяць, потім повертається до попередньої роботи. Колега запитує, де він працює в цей період. Дайте відповідь: «Цього місяця він працює в музеї»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-10:i17:audio",
+            "transcript": "He is working at a museum this month."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is working at a museum this month.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-10:word:docent",
+      "correctText": "docent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i01",
+      "correctText": "He is a docent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i02",
+      "correctText": "He usually works outside.",
+      "correctResponseId": "en:lesson-10:session-10:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i03",
+      "correctText": "works",
+      "correctResponseId": "en:lesson-10:session-10:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:word:curator",
+      "correctText": "curator",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i04",
+      "correctText": "She is a curator.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i05",
+      "correctText": "The curator is here.",
+      "correctResponseId": "en:lesson-10:session-10:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i06",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-10:session-10:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:word:artifact",
+      "correctText": "artifact",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i07",
+      "correctText": "The artifact is old.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i08",
+      "correctText": "I am looking at the artifact.",
+      "correctResponseId": "en:lesson-10:session-10:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-10:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:word:diorama",
+      "correctText": "diorama",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i10",
+      "correctText": "The diorama is small.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i11",
+      "correctText": "We are looking at the diorama.",
+      "correctResponseId": "en:lesson-10:session-10:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i12",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-10:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i14",
+      "correctText": "Is he working here this month?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i15",
+      "correctText": "He usually works outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i16",
+      "correctText": "He is working at a museum this month.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i17",
+      "correctText": "He is working at a museum this month.",
+      "correctResponseId": null
+    }
+  ]
+}

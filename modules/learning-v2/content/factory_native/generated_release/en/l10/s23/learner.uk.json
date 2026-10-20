@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-23:word:trust",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trust",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:word:trust:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trust",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:word:trust:audio",
+          "transcript": "trust"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-23:word:trust:r1",
+            "targetText": "trust",
+            "meaningByLocale": {
+              "ru": "«доверять». I trust her. — «Я ей доверяю». Считать человека надёжным.",
+              "uk": "«довіряти». I trust her. — «Я їй довіряю». Вважати людину надійною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trust",
+          "definitionByLocale": {
+            "ru": "«доверять». I trust her. — «Я ей доверяю». Считать человека надёжным.",
+            "uk": "«довіряти». I trust her. — «Я їй довіряю». Вважати людину надійною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега завжди виконує обіцянки. Скажіть: «Я їй довіряю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега завжди виконує обіцянки. Скажіть: «Я їй довіряю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I trust her.",
+        "localizedMeaning": {
+          "ru": "Коллега всегда выполняет обещания. Скажите: «Я ей доверяю»",
+          "uk": "Колега завжди виконує обіцянки. Скажіть: «Я їй довіряю»"
+        },
+        "orderedTokens": [
+          "I",
+          "trust",
+          "her"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-23:i02:r1",
+          "text": "I trust her."
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i02:r2",
+          "text": "We trust her."
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i02:r3",
+          "text": "I trust him."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:i02:audio",
+          "transcript": "I trust her."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-23:i02:r1",
+            "targetText": "I trust her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i02:r2",
+            "targetText": "We trust her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i02:r3",
+            "targetText": "I trust him.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I trust her.",
+              "uk": "У записі звучить I trust her."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I trust her.",
+              "uk": "У записі звучить I trust her."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму trust з he",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-23:i03:r1",
+          "text": "trusts"
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i03:r2",
+          "text": "trust"
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i03:r3",
+          "text": "is trust"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму trust з he",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму trust с he",
+          "uk": "Виберіть форму trust з he"
+        },
+        "gappedTargetPhrase": "He ___ her.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-23:i03:r1",
+            "text": "trusts"
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i03:r2",
+            "text": "trust"
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i03:r3",
+            "text": "is trust"
+          }
+        ],
+        "testedDimension": "Виберіть форму trust з he",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму trust з he",
+            "feedbackByLocale": {
+              "ru": "С he нужна trusts.",
+              "uk": "З he потрібна trusts."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму trust з he",
+            "feedbackByLocale": {
+              "ru": "Is trust неверно; здесь нужна trusts.",
+              "uk": "Is trust неправильно; тут потрібна trusts."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:word:reliability",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reliability",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:word:reliability:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reliability",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:word:reliability:audio",
+          "transcript": "reliability"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-23:word:reliability:r1",
+            "targetText": "reliability",
+            "meaningByLocale": {
+              "ru": "«надёжность». I value her reliability. — «Я ценю её надёжность». На этого человека можно положиться.",
+              "uk": "«надійність». I value her reliability. — «Я ціную її надійність». На цю людину можна покластися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reliability",
+          "definitionByLocale": {
+            "ru": "«надёжность». I value her reliability. — «Я ценю её надёжность». На этого человека можно положиться.",
+            "uk": "«надійність». I value her reliability. — «Я ціную її надійність». На цю людину можна покластися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега виконує роботу в обіцяний термін. Скажіть: «Я ціную її надійність»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега виконує роботу в обіцяний термін. Скажіть: «Я ціную її надійність»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I value her reliability.",
+        "localizedMeaning": {
+          "ru": "Коллега выполняет работу в обещанный срок. Скажите: «Я ценю её надёжность»",
+          "uk": "Колега виконує роботу в обіцяний термін. Скажіть: «Я ціную її надійність»"
+        },
+        "orderedTokens": [
+          "I",
+          "value",
+          "her",
+          "reliability"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-23:i05:r1",
+          "text": "Her reliability is important."
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i05:r2",
+          "text": "His reliability is important."
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i05:r3",
+          "text": "Her reliability is excellent."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:i05:audio",
+          "transcript": "Her reliability is important."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-23:i05:r1",
+            "targetText": "Her reliability is important.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i05:r2",
+            "targetText": "His reliability is important.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i05:r3",
+            "targetText": "Her reliability is excellent.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her reliability is important.",
+              "uk": "У записі звучить Her reliability is important."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Her reliability is important.",
+              "uk": "У записі звучить Her reliability is important."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть слово для «її надійність»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-23:i06:r1",
+          "text": "her"
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i06:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i06:r3",
+          "text": "hers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть слово для «її надійність»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите слово для «её надёжность»",
+          "uk": "Виберіть слово для «її надійність»"
+        },
+        "gappedTargetPhrase": "I value ___ reliability.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-23:i06:r1",
+            "text": "her"
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i06:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i06:r3",
+            "text": "hers"
+          }
+        ],
+        "testedDimension": "Виберіть слово для «її надійність»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть слово для «її надійність»",
+            "feedbackByLocale": {
+              "ru": "Перед существительным нужно her.",
+              "uk": "Перед іменником потрібне her."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть слово для «її надійність»",
+            "feedbackByLocale": {
+              "ru": "Hers стоит самостоятельно; здесь нужно her.",
+              "uk": "Hers стоїть самостійно; тут потрібне her."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:word:loyalty",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — loyalty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:word:loyalty:audio"
+      ],
+      "accessibilityLabel": "Картка слова — loyalty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:word:loyalty:audio",
+          "transcript": "loyalty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-23:word:loyalty:r1",
+            "targetText": "loyalty",
+            "meaningByLocale": {
+              "ru": "«верность». I value her loyalty. — «Я ценю её верность». Здесь готовность поддерживать друзей или команду.",
+              "uk": "«вірність». I value her loyalty. — «Я ціную її вірність». Тут готовність підтримувати друзів або команду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loyalty",
+          "definitionByLocale": {
+            "ru": "«верность». I value her loyalty. — «Я ценю её верность». Здесь готовность поддерживать друзей или команду.",
+            "uk": "«вірність». I value her loyalty. — «Я ціную її вірність». Тут готовність підтримувати друзів або команду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега підтримує вашу команду й у складні дні. Скажіть: «Я ціную її вірність»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега підтримує вашу команду й у складні дні. Скажіть: «Я ціную її вірність»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I value her loyalty.",
+        "localizedMeaning": {
+          "ru": "Коллега поддерживает вашу команду и в трудные дни. Скажите: «Я ценю её верность»",
+          "uk": "Колега підтримує вашу команду й у складні дні. Скажіть: «Я ціную її вірність»"
+        },
+        "orderedTokens": [
+          "I",
+          "value",
+          "her",
+          "loyalty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-23:i08:r1",
+          "text": "We value your loyalty."
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i08:r2",
+          "text": "I value your loyalty."
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i08:r3",
+          "text": "We value her loyalty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:i08:audio",
+          "transcript": "We value your loyalty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-23:i08:r1",
+            "targetText": "We value your loyalty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i08:r2",
+            "targetText": "I value your loyalty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i08:r3",
+            "targetText": "We value her loyalty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We value your loyalty.",
+              "uk": "У записі звучить We value your loyalty."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We value your loyalty.",
+              "uk": "У записі звучить We value your loyalty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму value після does",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-23:i09:r1",
+          "text": "value"
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i09:r2",
+          "text": "values"
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i09:r3",
+          "text": "valuing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму value після does",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму value после does",
+          "uk": "Виберіть форму value після does"
+        },
+        "gappedTargetPhrase": "Does he ___ her loyalty?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-23:i09:r1",
+            "text": "value"
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i09:r2",
+            "text": "values"
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i09:r3",
+            "text": "valuing"
+          }
+        ],
+        "testedDimension": "Виберіть форму value після does",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму value після does",
+            "feedbackByLocale": {
+              "ru": "После does нужна value без s.",
+              "uk": "Після does потрібна value без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму value після does",
+            "feedbackByLocale": {
+              "ru": "После does нужна базовая форма value.",
+              "uk": "Після does потрібна початкова форма value."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:word:judgement",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — judgement",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:word:judgement:audio"
+      ],
+      "accessibilityLabel": "Картка слова — judgement",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:word:judgement:audio",
+          "transcript": "judgement"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-23:word:judgement:r1",
+            "targetText": "judgement",
+            "meaningByLocale": {
+              "ru": "«рассудительность». I trust her judgement. — «Я доверяю её рассудительности». Способность принимать разумные решения.",
+              "uk": "«розсудливість». I trust her judgement. — «Я довіряю її розсудливості». Здатність ухвалювати розумні рішення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "judgement",
+          "definitionByLocale": {
+            "ru": "«рассудительность». I trust her judgement. — «Я доверяю её рассудительности». Способность принимать разумные решения.",
+            "uk": "«розсудливість». I trust her judgement. — «Я довіряю її розсудливості». Здатність ухвалювати розумні рішення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега ретельно обмірковує рішення. Скажіть: «Я довіряю її розсудливості»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега ретельно обмірковує рішення. Скажіть: «Я довіряю її розсудливості»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I trust her judgement.",
+        "localizedMeaning": {
+          "ru": "Коллега тщательно обдумывает решения. Скажите: «Я доверяю её рассудительности»",
+          "uk": "Колега ретельно обмірковує рішення. Скажіть: «Я довіряю її розсудливості»"
+        },
+        "orderedTokens": [
+          "I",
+          "trust",
+          "her",
+          "judgement"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-23:i11:r1",
+          "text": "He trusts her judgement."
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i11:r2",
+          "text": "She trusts her judgement."
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i11:r3",
+          "text": "He trusts your judgement."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:i11:audio",
+          "transcript": "He trusts her judgement."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-23:i11:r1",
+            "targetText": "He trusts her judgement.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i11:r2",
+            "targetText": "She trusts her judgement.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i11:r3",
+            "targetText": "He trusts your judgement.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He trusts her judgement.",
+              "uk": "У записі звучить He trusts her judgement."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He trusts her judgement.",
+              "uk": "У записі звучить He trusts her judgement."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть допоміжне дієслово для запитання з you",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-23:i12:r1",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i12:r2",
+          "text": "Does"
+        },
+        {
+          "responseId": "en:lesson-10:session-23:i12:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть допоміжне дієслово для запитання з you",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите вспомогательный глагол для вопроса с you",
+          "uk": "Виберіть допоміжне дієслово для запитання з you"
+        },
+        "gappedTargetPhrase": "___ you trust her judgement?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-23:i12:r1",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i12:r2",
+            "text": "Does"
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i12:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+            "feedbackByLocale": {
+              "ru": "С you нужно do.",
+              "uk": "З you потрібне do."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+            "feedbackByLocale": {
+              "ru": "Для этого вопроса с trust нужно do.",
+              "uk": "Для цього запитання з trust потрібне do."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-23:i13:p1",
+            "target": "trust",
+            "meaningByLocale": {
+              "ru": "доверять",
+              "uk": "довіряти"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-23:i13:p2",
+            "target": "reliability",
+            "meaningByLocale": {
+              "ru": "надёжность",
+              "uk": "надійність"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-23:i13:p3",
+            "target": "loyalty",
+            "meaningByLocale": {
+              "ru": "верность",
+              "uk": "вірність"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-23:i13:p4",
+            "target": "judgement",
+            "meaningByLocale": {
+              "ru": "рассудительность",
+              "uk": "розсудливість"
+            }
+          }
+        ],
+        "leftColumn": [
+          "trust",
+          "reliability",
+          "loyalty",
+          "judgement"
+        ],
+        "rightColumn": [
+          "довіряти",
+          "надійність",
+          "вірність",
+          "розсудливість"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:i14:audio",
+          "transcript": "Do you trust her judgement?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you trust her judgement?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "trust",
+          "her",
+          "judgement"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега запитує, що ви цінуєте в її роботі. Скажіть: «Я ціную твою надійність»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Колега запитує, що ви цінуєте в її роботі. Скажіть: «Я ціную твою надійність»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:i15:audio",
+          "transcript": "I value your reliability."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I value your reliability.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг сумнівається, чи довіряє ваш брат цій колезі. Скажіть: «Він їй довіряє»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сумнівається, чи довіряє ваш брат цій колезі. Скажіть: «Він їй довіряє»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He trusts her.",
+        "localizedMeaning": {
+          "ru": "Друг сомневается, доверяет ли ваш брат этой коллеге. Скажите: «Он ей доверяет»",
+          "uk": "Друг сумнівається, чи довіряє ваш брат цій колезі. Скажіть: «Він їй довіряє»"
+        },
+        "orderedTokens": [
+          "He",
+          "trusts",
+          "her"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-23:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чому ви погоджуєтеся з рішенням колеги. Вона уважно все обміркувала. Скажіть: «Я довіряю її розсудливості»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чому ви погоджуєтеся з рішенням колеги. Вона уважно все обміркувала. Скажіть: «Я довіряю її розсудливості»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-23:i17:audio",
+          "transcript": "I trust her judgement."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I trust her judgement.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1f0c564296d0fb91ae91381dee67917f2bc0096709ebd41512976f5605159ccb"
+}

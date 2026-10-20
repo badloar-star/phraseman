@@ -75,8 +75,8 @@ assert.match(
   /if \(!isCurrentAccountGeneration\(input\.account, input\.stableId\)\)[\s\S]{0,300}preparedFileUriByContentHash\.set/,
 );
 
-// зачем (20.10, класс А): после выпуска L10S22 в V2 доступно 526 занятий.
-assert.equal(LEARNING_V2_RELEASED_SESSION_COUNT_V1, 526);
+// зачем (20.10, класс А): после выпуска L10S23 в V2 доступно 527 занятий.
+assert.equal(LEARNING_V2_RELEASED_SESSION_COUNT_V1, 527);
 const activeSessions = factoryNativeLearningV2AvailabilityV1().sessions.filter(
   (candidate) => candidate.lessonOrdinal >= 1,
 );

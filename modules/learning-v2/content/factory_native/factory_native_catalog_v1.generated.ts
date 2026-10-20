@@ -3689,4 +3689,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I recognize her; I recognize her handwriting; Do you recognize the signature?","uk":"I recognize her; I recognize her handwriting; Do you recognize the signature?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 23,
+    sourceFingerprint: "7e951b5ce1f7a6cae2ebb76dbe00db6079296087cd6473d304c7061146d821d6",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I trust her; I value her reliability; Do you trust her judgement?","uk":"I trust her; I value her reliability; Do you trust her judgement?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

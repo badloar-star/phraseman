@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "I trust her; I value her reliability; Do you trust her judgement?",
+    "uk": "I trust her; I value her reliability; Do you trust her judgement?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я ей доверяю",
+        "uk": "Я їй довіряю"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега всегда выполняет обещания. Вы говорите: I trust her — «Я ей доверяю». Trust — «доверять». В английском после trust сразу называем человека: trust her, без to. Здесь это ваше устойчивое отношение, поэтому используем Present Simple.",
+        "uk": "Колега завжди виконує обіцянки. Ви кажете: I trust her — «Я їй довіряю». Trust — «довіряти». В англійській після trust відразу називаємо людину: trust her, без to. Тут це ваше стале ставлення, тому використовуємо Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-23:intro1:r1",
+              "text": "I trust her."
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro1:r2",
+              "text": "I trust to her."
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro1:r3",
+              "text": "I trusts her."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-23:intro1:r1",
+              "text": "I trust her."
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro1:r2",
+              "text": "I trust to her."
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro1:r3",
+              "text": "I trusts her."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "На человека можно положиться",
+        "uk": "На людину можна покластися"
+      },
+      "bodyByLocale": {
+        "ru": "Reliability — «надёжность». Коллега приходит вовремя и делает то, что обещала. I value her reliability — «Я ценю её надёжность». Здесь reliability — качество человека, неисчисляемое существительное. Her показывает, чью надёжность вы цените.",
+        "uk": "Reliability — «надійність». Колега приходить вчасно й робить те, що обіцяла. I value her reliability — «Я ціную її надійність». Тут reliability — риса людини, незлічуваний іменник. Her показує, чию надійність ви цінуєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-23:intro2:r1",
+              "text": "I value her reliability."
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro2:r2",
+              "text": "I value she reliability."
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro2:r3",
+              "text": "I values her reliability."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-23:intro2:r1",
+              "text": "I value her reliability."
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro2:r2",
+              "text": "I value she reliability."
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro2:r3",
+              "text": "I values her reliability."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Доверять рассудительности",
+        "uk": "Довіряти розсудливості"
+      },
+      "bodyByLocale": {
+        "ru": "Judgement — «рассудительность», способность взвешивать обстоятельства и принимать разумные решения. Друг спрашивает о вашей коллеге: Do you trust her judgement? — «Ты доверяешь её рассудительности?» После do нужна базовая форма trust. Написание judgment тоже встречается; здесь используем judgement.",
+        "uk": "Judgement — «розсудливість», здатність зважувати обставини й ухвалювати розумні рішення. Друг запитує про вашу колегу: Do you trust her judgement? — «Ти довіряєш її розсудливості?» Після do потрібна початкова форма trust. Написання judgment теж трапляється; тут використовуємо judgement."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-23:intro3:r1",
+              "text": "Do you trust her judgement?"
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro3:r2",
+              "text": "Do you trusts her judgement?"
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro3:r3",
+              "text": "Are you trust her judgement?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-23:intro3:r1",
+              "text": "Do you trust her judgement?"
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro3:r2",
+              "text": "Do you trusts her judgement?"
+            },
+            {
+              "responseId": "en:lesson-10:session-23:intro3:r3",
+              "text": "Are you trust her judgement?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7aeb8e1987a5483ca76fb1c805924d019aa83217ccc97f09a91c8b8c1ec89e4f"
+}

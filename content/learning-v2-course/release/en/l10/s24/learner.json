@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-24",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-24:word:concierge",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — concierge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:word:concierge:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — concierge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:word:concierge:audio",
+          "transcript": "concierge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-24:word:concierge:r1",
+            "targetText": "concierge",
+            "meaningByLocale": {
+              "ru": "«консьерж». The concierge is helping a guest. — «Консьерж помогает гостю». Здесь сотрудник отеля, который помогает гостям с их просьбами.",
+              "uk": "«консьєрж». The concierge is helping a guest. — «Консьєрж допомагає гостю». Тут працівник готелю, який допомагає гостям із їхніми проханнями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "concierge",
+          "definitionByLocale": {
+            "ru": "«консьерж». The concierge is helping a guest. — «Консьерж помогает гостю». Здесь сотрудник отеля, который помогает гостям с их просьбами.",
+            "uk": "«консьєрж». The concierge is helping a guest. — «Консьєрж допомагає гостю». Тут працівник готелю, який допомагає гостям із їхніми проханнями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг ищет сотрудника отеля. Вы видите, что тот помогает гостю. Скажите: «Консьерж помогает гостю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг ищет сотрудника отеля. Вы видите, что тот помогает гостю. Скажите: «Консьерж помогает гостю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The concierge is helping a guest.",
+        "localizedMeaning": {
+          "ru": "Друг ищет сотрудника отеля. Вы видите, что тот помогает гостю. Скажите: «Консьерж помогает гостю»",
+          "uk": "Друг шукає працівника готелю. Ви бачите, що той допомагає гостю. Скажіть: «Консьєрж допомагає гостю»"
+        },
+        "orderedTokens": [
+          "The",
+          "concierge",
+          "is",
+          "helping",
+          "a",
+          "guest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-24:i02:r1",
+          "text": "The concierge works here."
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i02:r2",
+          "text": "The concierge lives here."
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i02:r3",
+          "text": "The concierge works there."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:i02:audio",
+          "transcript": "The concierge works here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-24:i02:r1",
+            "targetText": "The concierge works here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i02:r2",
+            "targetText": "The concierge lives here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i02:r3",
+            "targetText": "The concierge works there.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The concierge works here.",
+              "uk": "У записі звучить The concierge works here."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The concierge works here.",
+              "uk": "У записі звучить The concierge works here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите фразу о привычной работе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-24:i03:r1",
+          "text": "usually works"
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i03:r2",
+          "text": "usually work"
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i03:r3",
+          "text": "is usually work"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите фразу о привычной работе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите фразу о привычной работе",
+          "uk": "Виберіть фразу про звичну роботу"
+        },
+        "gappedTargetPhrase": "He ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-24:i03:r1",
+            "text": "usually works"
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i03:r2",
+            "text": "usually work"
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i03:r3",
+            "text": "is usually work"
+          }
+        ],
+        "testedDimension": "Выберите фразу о привычной работе",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-24:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите фразу о привычной работе",
+            "feedbackByLocale": {
+              "ru": "С he нужна works.",
+              "uk": "З he потрібна works."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите фразу о привычной работе",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна usually works, без is.",
+              "uk": "Тут потрібна usually works, без is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:word:pigeonhole",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pigeonhole",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:word:pigeonhole:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pigeonhole",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:word:pigeonhole:audio",
+          "transcript": "pigeonhole"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-24:word:pigeonhole:r1",
+            "targetText": "pigeonhole",
+            "meaningByLocale": {
+              "ru": "«ячейка для писем». The letter is in the pigeonhole. — «Письмо в ячейке для писем». Здесь небольшое открытое отделение для сортировки почты.",
+              "uk": "«комірка для листів». The letter is in the pigeonhole. — «Лист у комірці для листів». Тут невелике відкрите відділення для сортування пошти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pigeonhole",
+          "definitionByLocale": {
+            "ru": "«ячейка для писем». The letter is in the pigeonhole. — «Письмо в ячейке для писем». Здесь небольшое открытое отделение для сортировки почты.",
+            "uk": "«комірка для листів». The letter is in the pigeonhole. — «Лист у комірці для листів». Тут невелике відкрите відділення для сортування пошти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Консьерж положил ваше письмо в отдельную ячейку. Скажите другу: «Письмо в ячейке для писем»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Консьерж положил ваше письмо в отдельную ячейку. Скажите другу: «Письмо в ячейке для писем»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The letter is in the pigeonhole.",
+        "localizedMeaning": {
+          "ru": "Консьерж положил ваше письмо в отдельную ячейку. Скажите другу: «Письмо в ячейке для писем»",
+          "uk": "Консьєрж поклав ваш лист в окрему комірку. Скажіть другу: «Лист у комірці для листів»"
+        },
+        "orderedTokens": [
+          "The",
+          "letter",
+          "is",
+          "in",
+          "the",
+          "pigeonhole"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-24:i05:r1",
+          "text": "He is checking the pigeonhole."
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i05:r2",
+          "text": "She is checking the pigeonhole."
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i05:r3",
+          "text": "He is checking the letter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:i05:audio",
+          "transcript": "He is checking the pigeonhole."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-24:i05:r1",
+            "targetText": "He is checking the pigeonhole.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i05:r2",
+            "targetText": "She is checking the pigeonhole.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i05:r3",
+            "targetText": "He is checking the letter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-24:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is checking the pigeonhole.",
+              "uk": "У записі звучить He is checking the pigeonhole."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is checking the pigeonhole.",
+              "uk": "У записі звучить He is checking the pigeonhole."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Он сидит здесь сейчас. Выберите правильное написание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-24:i06:r1",
+          "text": "sitting"
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i06:r2",
+          "text": "siting"
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i06:r3",
+          "text": "sit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Он сидит здесь сейчас. Выберите правильное написание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Он сидит здесь сейчас. Выберите правильное написание",
+          "uk": "Він сидить тут зараз. Виберіть правильне написання"
+        },
+        "gappedTargetPhrase": "He is ___ here now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-24:i06:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i06:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i06:r3",
+            "text": "sit"
+          }
+        ],
+        "testedDimension": "Он сидит здесь сейчас. Выберите правильное написание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-24:i06:r2",
+            "correct": false,
+            "testedDimension": "Он сидит здесь сейчас. Выберите правильное написание",
+            "feedbackByLocale": {
+              "ru": "В sitting удваиваем t.",
+              "uk": "У sitting подвоюємо t."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i06:r3",
+            "correct": false,
+            "testedDimension": "Он сидит здесь сейчас. Выберите правильное написание",
+            "feedbackByLocale": {
+              "ru": "Для действия сейчас нужна форма sitting после is.",
+              "uk": "Для дії зараз потрібна форма sitting після is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:word:keypad",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keypad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:word:keypad:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keypad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:word:keypad:audio",
+          "transcript": "keypad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-24:word:keypad:r1",
+            "targetText": "keypad",
+            "meaningByLocale": {
+              "ru": "«цифровая клавиатура». She is using the keypad. — «Она пользуется цифровой клавиатурой». Здесь небольшая панель с кнопками для ввода цифр.",
+              "uk": "«цифрова клавіатура». She is using the keypad. — «Вона користується цифровою клавіатурою». Тут невелика панель із кнопками для введення цифр."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keypad",
+          "definitionByLocale": {
+            "ru": "«цифровая клавиатура». She is using the keypad. — «Она пользуется цифровой клавиатурой». Здесь небольшая панель с кнопками для ввода цифр.",
+            "uk": "«цифрова клавіатура». She is using the keypad. — «Вона користується цифровою клавіатурою». Тут невелика панель із кнопками для введення цифр."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, что делает ваша коллега. Она нажимает кнопки цифровой клавиатуры. Скажите: «Она пользуется цифровой клавиатурой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, что делает ваша коллега. Она нажимает кнопки цифровой клавиатуры. Скажите: «Она пользуется цифровой клавиатурой»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is using the keypad.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, что делает ваша коллега. Она нажимает кнопки цифровой клавиатуры. Скажите: «Она пользуется цифровой клавиатурой»",
+          "uk": "Друг запитує, що робить ваша колега. Вона натискає кнопки цифрової клавіатури. Скажіть: «Вона користується цифровою клавіатурою»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "using",
+          "the",
+          "keypad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-24:i08:r1",
+          "text": "The keypad is beside the door."
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i08:r2",
+          "text": "The keypad is behind the door."
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i08:r3",
+          "text": "The keypad is beside the desk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:i08:audio",
+          "transcript": "The keypad is beside the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-24:i08:r1",
+            "targetText": "The keypad is beside the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i08:r2",
+            "targetText": "The keypad is behind the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i08:r3",
+            "targetText": "The keypad is beside the desk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The keypad is beside the door.",
+              "uk": "У записі звучить The keypad is beside the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The keypad is beside the door.",
+              "uk": "У записі звучить The keypad is beside the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Он сейчас составляет список. Выберите форму make",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-24:i09:r1",
+          "text": "making"
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i09:r2",
+          "text": "makeing"
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i09:r3",
+          "text": "make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Он сейчас составляет список. Выберите форму make",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Он сейчас составляет список. Выберите форму make",
+          "uk": "Він зараз складає список. Виберіть форму make"
+        },
+        "gappedTargetPhrase": "He is ___ a list.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-24:i09:r1",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i09:r2",
+            "text": "makeing"
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i09:r3",
+            "text": "make"
+          }
+        ],
+        "testedDimension": "Он сейчас составляет список. Выберите форму make",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Он сейчас составляет список. Выберите форму make",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем конечную e: making.",
+              "uk": "Перед ing прибираємо кінцеву e: making."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Он сейчас составляет список. Выберите форму make",
+            "feedbackByLocale": {
+              "ru": "После is для действия сейчас нужна making.",
+              "uk": "Після is для дії зараз потрібна making."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:word:logbook",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — logbook",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:word:logbook:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — logbook",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:word:logbook:audio",
+          "transcript": "logbook"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-24:word:logbook:r1",
+            "targetText": "logbook",
+            "meaningByLocale": {
+              "ru": "«журнал записей». He is checking the logbook. — «Он проверяет журнал записей». Книга, в которой регулярно отмечают события или выполненную работу.",
+              "uk": "«журнал записів». He is checking the logbook. — «Він перевіряє журнал записів». Книга, у якій регулярно зазначають події або виконану роботу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "logbook",
+          "definitionByLocale": {
+            "ru": "«журнал записей». He is checking the logbook. — «Он проверяет журнал записей». Книга, в которой регулярно отмечают события или выполненную работу.",
+            "uk": "«журнал записів». He is checking the logbook. — «Він перевіряє журнал записів». Книга, у якій регулярно зазначають події або виконану роботу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Консьерж сверяет записи о доставках. Скажите другу: «Он проверяет журнал записей»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Консьерж сверяет записи о доставках. Скажите другу: «Он проверяет журнал записей»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is checking the logbook.",
+        "localizedMeaning": {
+          "ru": "Консьерж сверяет записи о доставках. Скажите другу: «Он проверяет журнал записей»",
+          "uk": "Консьєрж звіряє записи про доставки. Скажіть другу: «Він перевіряє журнал записів»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "checking",
+          "the",
+          "logbook"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-24:i11:r1",
+          "text": "The logbook is on the desk."
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i11:r2",
+          "text": "The logbook is under the desk."
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i11:r3",
+          "text": "The letter is on the desk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:i11:audio",
+          "transcript": "The logbook is on the desk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-24:i11:r1",
+            "targetText": "The logbook is on the desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i11:r2",
+            "targetText": "The logbook is under the desk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i11:r3",
+            "targetText": "The letter is on the desk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The logbook is on the desk.",
+              "uk": "У записі звучить The logbook is on the desk."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The logbook is on the desk.",
+              "uk": "У записі звучить The logbook is on the desk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы давно считаете консьержа надёжным. Выберите форму для «Я доверяю»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-24:i12:r1",
+          "text": "trust"
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i12:r2",
+          "text": "trusts"
+        },
+        {
+          "responseId": "en:lesson-10:session-24:i12:r3",
+          "text": "am trust"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы давно считаете консьержа надёжным. Выберите форму для «Я доверяю»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы давно считаете консьержа надёжным. Выберите форму для «Я доверяю»",
+          "uk": "Ви давно вважаєте консьєржа надійним. Виберіть форму для «Я довіряю»"
+        },
+        "gappedTargetPhrase": "I ___ the concierge.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-24:i12:r1",
+            "text": "trust"
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i12:r2",
+            "text": "trusts"
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i12:r3",
+            "text": "am trust"
+          }
+        ],
+        "testedDimension": "Вы давно считаете консьержа надёжным. Выберите форму для «Я доверяю»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-24:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы давно считаете консьержа надёжным. Выберите форму для «Я доверяю»",
+            "feedbackByLocale": {
+              "ru": "С I нужна trust без s.",
+              "uk": "З I потрібна trust без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-24:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы давно считаете консьержа надёжным. Выберите форму для «Я доверяю»",
+            "feedbackByLocale": {
+              "ru": "Am trust неверно; здесь нужна trust.",
+              "uk": "Am trust неправильно; тут потрібна trust."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините новые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините новые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-24:i13:p1",
+            "target": "concierge",
+            "meaningByLocale": {
+              "ru": "консьерж",
+              "uk": "консьєрж"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-24:i13:p2",
+            "target": "pigeonhole",
+            "meaningByLocale": {
+              "ru": "ячейка для писем",
+              "uk": "комірка для листів"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-24:i13:p3",
+            "target": "keypad",
+            "meaningByLocale": {
+              "ru": "цифровая клавиатура",
+              "uk": "цифрова клавіатура"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-24:i13:p4",
+            "target": "logbook",
+            "meaningByLocale": {
+              "ru": "журнал записей",
+              "uk": "журнал записів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "concierge",
+          "pigeonhole",
+          "keypad",
+          "logbook"
+        ],
+        "rightColumn": [
+          "консьерж",
+          "ячейка для писем",
+          "цифровая клавиатура",
+          "журнал записей"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:i14:audio",
+          "transcript": "He is checking the logbook."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is checking the logbook.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "checking",
+          "the",
+          "logbook"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, можно ли положиться на сотрудника отеля. Скажите: «Я доверяю консьержу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:i15:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, можно ли положиться на сотрудника отеля. Скажите: «Я доверяю консьержу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:i15:audio",
+          "transcript": "I trust the concierge."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I trust the concierge.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега временно работает в этом отеле. Скажите: «Он работает здесь на этой неделе». Поставьте this week в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега временно работает в этом отеле. Скажите: «Он работает здесь на этой неделе». Поставьте this week в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is working here this week.",
+        "localizedMeaning": {
+          "ru": "Коллега временно работает в этом отеле. Скажите: «Он работает здесь на этой неделе». Поставьте this week в конце",
+          "uk": "Колега тимчасово працює в цьому готелі. Скажіть: «Він працює тут цього тижня». Поставте this week у кінці"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "working",
+          "here",
+          "this",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг ищет журнал доставок. Вы видите его на столе. Сообщите: «Журнал записей на столе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Друг ищет журнал доставок. Вы видите его на столе. Сообщите: «Журнал записей на столе»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:i17:audio",
+          "transcript": "The logbook is on the desk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The logbook is on the desk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "05a6c74cf4478e7dfac9525b052d2ed683614125c9c9af6b463df0765f2480f4"
+}

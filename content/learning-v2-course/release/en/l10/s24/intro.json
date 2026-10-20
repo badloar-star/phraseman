@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "He usually works here; He is sitting here now; I trust the concierge",
+    "uk": "He usually works here; He is sitting here now; I trust the concierge"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обычно и сейчас",
+        "uk": "Зазвичай і зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Concierge — «консьерж», сотрудник отеля, который помогает гостям, например заказывает такси. He usually works here — «Он обычно работает здесь». Обычно — usually — ставим перед works. Сейчас он помогает гостю: He is helping a guest now. Для действия в данный момент используем is + helping.",
+        "uk": "Concierge — «консьєрж», працівник готелю, який допомагає гостям, наприклад замовляє таксі. He usually works here — «Він зазвичай працює тут». Зазвичай — usually — ставимо перед works. Зараз він допомагає гостю: He is helping a guest now. Для дії цієї миті використовуємо is + helping."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-24:intro1:r1",
+              "text": "He usually works here."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro1:r2",
+              "text": "He usually work here."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro1:r3",
+              "text": "He is usually work here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-24:intro1:r1",
+              "text": "He usually works here."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro1:r2",
+              "text": "He usually work here."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro1:r3",
+              "text": "He is usually work here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Постоянная работа и временная смена",
+        "uk": "Постійна робота й тимчасова зміна"
+      },
+      "bodyByLocale": {
+        "ru": "Другой сотрудник обычно работает в другом отеле. На этой неделе он временно помогает здесь: He is working here this week — «Он работает здесь на этой неделе». Для временной ситуации используем Present Continuous. Сравните постоянное место работы: He works at a hotel — «Он работает в отеле».",
+        "uk": "Інший працівник зазвичай працює в іншому готелі. Цього тижня він тимчасово допомагає тут: He is working here this week — «Він працює тут цього тижня». Для тимчасової ситуації використовуємо Present Continuous. Порівняйте постійне місце роботи: He works at a hotel — «Він працює в готелі»."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-24:intro2:r1",
+              "text": "He is working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro2:r2",
+              "text": "He working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro2:r3",
+              "text": "He is work here this week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-24:intro2:r1",
+              "text": "He is working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro2:r2",
+              "text": "He working here this week."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro2:r3",
+              "text": "He is work here this week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сидит сейчас, доверяю вообще",
+        "uk": "Сидить зараз, довіряю загалом"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите консьержа за столом: He is sitting here now — «Он сейчас сидит здесь». В sit → sitting удваиваем t. В make → making убираем конечную e. Но доверие — ваше отношение: I trust the concierge — «Я доверяю консьержу». Для этого значения здесь используем Simple, даже если говорим сейчас.",
+        "uk": "Ви бачите консьєржа за столом: He is sitting here now — «Він зараз сидить тут». У sit → sitting подвоюємо t. У make → making прибираємо кінцеву e. Але довіра — ваше ставлення: I trust the concierge — «Я довіряю консьєржу». Для цього значення тут використовуємо Simple, навіть якщо говоримо зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-24:intro3:r1",
+              "text": "He is sitting here now."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro3:r2",
+              "text": "He is siting here now."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro3:r3",
+              "text": "He sitting here now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-24:intro3:r1",
+              "text": "He is sitting here now."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro3:r2",
+              "text": "He is siting here now."
+            },
+            {
+              "responseId": "en:lesson-10:session-24:intro3:r3",
+              "text": "He sitting here now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a52972e0c46d26617760d034c297bb6c6b48dd874a3ed063e955d4e165340f21"
+}

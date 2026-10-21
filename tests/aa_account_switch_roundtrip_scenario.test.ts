@@ -261,6 +261,7 @@ import { __tryRestoreAccountSwitchBackupForTests, signOutAndWipeForAccountSwitch
 import { restoreFromCloudDetailed, wipeLocalAccountData } from '../app/cloud_sync';
 // eslint-disable-next-line import/first
 import {
+  isReplaceableServerOnlyCoinProjection,
   restoreAccountSwitchEmergencyBackupIfSafe,
   shelvesAllowedForPostAuthStage,
 } from '../app/account_switch_backup_restore';
@@ -381,6 +382,10 @@ type SignInRace = Readonly<{
   readCoinsBeforeBackup?: boolean;
   /** Серверный кошелёк вливается после долива копии — тем же порядком, что scheduleSameStablePostAuthRefresh. */
   adoptServerStarsAfterBackup?: boolean;
+  /** Ревизор к 3c3764f72, п.1–2: тихий повтор восстановления / холодный старт вливают сервер РАНЬШЕ долива копии. */
+  adoptServerStarsBeforeBackup?: boolean;
+  /** users/{A}.stars перед возвратом A (серверный кошелёк журнала). */
+  serverStars?: Readonly<{ balance: number; earnedTotal: number; seq: number }>;
 }>;
 
 async function signInOnThisPhone(account: Account, race: SignInRace = {}): Promise<SignInTrace> {
@@ -393,11 +398,15 @@ async function signInOnThisPhone(account: Account, race: SignInRace = {}): Promi
   const generation = captureAccountGeneration();
   const isCurrent = () => isCurrentAccountGeneration(generation, account.stable);
   let serverStars: unknown = undefined;
+  const wantsServerStars = race.adoptServerStarsAfterBackup || race.adoptServerStarsBeforeBackup;
   const restore = await restoreFromCloudDetailed(
-    race.adoptServerStarsAfterBackup ? { onServerStars: (stars) => { serverStars = stars; } } : {},
+    wantsServerStars ? { onServerStars: (stars) => { serverStars = stars; } } : {},
   );
   const afterCloud = await dumpStorage();
   if (race.readCoinsBeforeBackup) await readUnifiedLevelSpinStars(generation);
+  if (race.adoptServerStarsBeforeBackup) {
+    expect(await adoptServerWalletFromUserDoc(generation, serverStars, 'scenario_before_backup')).toBe('merged');
+  }
   const backup = await restoreAccountSwitchEmergencyBackupIfSafe(isCurrent);
   if (race.adoptServerStarsAfterBackup) await adoptServerWalletFromUserDoc(generation, serverStars, 'scenario');
   const afterBackup = await dumpStorage();
@@ -612,6 +621,10 @@ async function runScenario(withB: boolean, aReturnRace: SignInRace = {}): Promis
   const backupOwnerBeforeAReturn = rootRaw ? (JSON.parse(rootRaw) as { stableId: string }).stableId : null;
 
   // 4. Вход A на том же телефоне.
+  if (aReturnRace.serverStars) {
+    const docKey = `users/${A.stable}`;
+    mockCloud.docs.set(docKey, { ...(mockCloud.docs.get(docKey) ?? {}), stars: { ...aReturnRace.serverStars } });
+  }
   const a = await signInOnThisPhone(A, aReturnRace);
   const keysAfterAReturn = await AsyncStorage.getAllKeys();
   const shelvedAfterAReturn = keysAfterAReturn.filter((key) => key.startsWith(SHELVED_PREFIX));
@@ -735,7 +748,11 @@ const LV2_PREFIX = 'learning-v2:course-local-progress:v1:';
 describe('AA + гонка 21.10: A → Б → A, Главная читает монеты до долива копии', () => {
   let raced: ScenarioResult;
   beforeAll(async () => {
-    raced = await runScenario(true, { readCoinsBeforeBackup: true, adoptServerStarsAfterBackup: true });
+    raced = await runScenario(true, {
+      readCoinsBeforeBackup: true,
+      adoptServerStarsAfterBackup: true,
+      serverStars: { balance: 350, earnedTotal: 400, seq: 3 },
+    });
   });
 
   test('монеты A после возврата равны исходным (350 сервер + 5 ожидающих), а не 0', () => {
@@ -750,6 +767,52 @@ describe('AA + гонка 21.10: A → Б → A, Главная читает м�
 
   test('повторный долив ничего не меняет и не удваивает', () => {
     expect(raced.coinsAfterSecondRestore).toBe(355);
+  });
+});
+
+// зачем (Ревизор к 3c3764f72, 🔴 п.1–2): тихий повтор восстановления на старте и холодный старт с копией на диске
+// вливали сервер РАНЬШЕ долива — занятый ключ проекции копия пропускала и удаляла (теряются подтверждения, разница,
+// свёрнутые траты). «Чисто серверную» проекцию долив теперь считает отсутствующей.
+describe('AA + гонка 21.10: сервер влит раньше долива копии (тихий повтор / холодный старт)', () => {
+  let early: ScenarioResult;
+  beforeAll(async () => {
+    early = await runScenario(true, {
+      adoptServerStarsBeforeBackup: true,
+      adoptServerStarsAfterBackup: true,
+      serverStars: { balance: 350, earnedTotal: 400, seq: 3 },
+    });
+  });
+
+  test('копия вытеснила «чисто серверную» проекцию: монеты A = 355, с ожидающим начислением', () => {
+    expect(early.coinsAfterAReturn).toBe(355);
+  });
+
+  test('проекция A — ровно из копии (операции и подтверждения на месте)', () => {
+    const projection = row(early, 'level_spin_star_projection_v1:');
+    expect(projection.atAReturn).toBe(projection.seeded);
+  });
+
+  test('повторный долив ничего не меняет', () => {
+    expect(early.coinsAfterSecondRestore).toBe(355);
+  });
+});
+
+describe('isReplaceableServerOnlyCoinProjection', () => {
+  const key = 'level_spin_star_projection_v1:stable-A';
+  const base = { schemaVersion: 'client-level-spin-star-projection.v3', ownerStableId: 'stable-A', serverBalance: 900, serverEarnedTotal: 900, serverSeq: 7 };
+  test('только серверные числа — заменяема', () => {
+    expect(isReplaceableServerOnlyCoinProjection(key, JSON.stringify({ ...base, operations: [], acknowledged: {} }))).toBe(true);
+  });
+  test('есть локальное (операция, подтверждение, разница, свёрнутая трата, метка сверки) — не трогаем', () => {
+    expect(isReplaceableServerOnlyCoinProjection(key, A_PROJECTION)).toBe(false);
+    expect(isReplaceableServerOnlyCoinProjection(key, JSON.stringify({ ...base, operations: [], acknowledged: { x: 'f' } }))).toBe(false);
+    expect(isReplaceableServerOnlyCoinProjection(key, JSON.stringify({ ...base, operations: [], acknowledged: {}, unconfirmedLocalLift: 5 }))).toBe(false);
+    expect(isReplaceableServerOnlyCoinProjection(key, JSON.stringify({ ...base, operations: [], acknowledged: {}, compactedSpendTotal: -30 }))).toBe(false);
+    expect(isReplaceableServerOnlyCoinProjection(key, JSON.stringify({ ...base, operations: [], acknowledged: {}, coinReconcileV1Applied: true }))).toBe(false);
+  });
+  test('другой ключ или битое значение — не трогаем', () => {
+    expect(isReplaceableServerOnlyCoinProjection('coin_rank_v1:stable-A', JSON.stringify({ operations: [], acknowledged: {} }))).toBe(false);
+    expect(isReplaceableServerOnlyCoinProjection(key, '{oops')).toBe(false);
   });
 });
 

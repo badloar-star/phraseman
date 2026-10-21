@@ -124,6 +124,50 @@ const isLearningV2SpoolGraphKey = (key: string): boolean =>
   key.startsWith('v2:required-session-completion-scheduler:') ||
   key.startsWith('v2:outbox:');
 
+const COIN_PROJECTION_PREFIX = 'level_spin_star_projection_v1:';
+
+/**
+ * «Чисто серверная» проекция монет: в ней только серверные числа (balance/earned/seq) — ни операций, ни подтверждений,
+ * ни локальной разницы, ни свёрнутых трат, ни метки сверки. Такой ключ долив копии считает ОТСУТСТВУЮЩИМ.
+ * зачем (владелец 21.10, №1 «монеты 0 после смены»; Ревизор к 3c3764f72, п.1–2): экраны, тихий повтор восстановления и
+ * вливание сервера на старте занимали ключ раньше долива — копия пропускала его и удалялась, локальные подтверждения,
+ * разница и свёрнутые траты терялись. Всё в такой проекции можно получить с сервера заново: следующее вливание вернёт
+ * его по правилам «только новее seq».
+ */
+export function isReplaceableServerOnlyCoinProjection(key: string, value: string | null): boolean {
+  if (value == null || !key.startsWith(COIN_PROJECTION_PREFIX)) return false;
+  let parsed: Record<string, unknown>;
+  try {
+    const raw = JSON.parse(value) as unknown;
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return false;
+    parsed = raw as Record<string, unknown>;
+  } catch (error) {
+    console.warn(`[ACC-MUT] backup:projection_unparsable reason=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+    return false;
+  }
+  const operations = parsed.operations;
+  const acknowledged = parsed.acknowledged;
+  return Array.isArray(operations) && operations.length === 0
+    && !!acknowledged && typeof acknowledged === 'object' && Object.keys(acknowledged as object).length === 0
+    && !(Number(parsed.unconfirmedLocalLift ?? 0) > 0)
+    && !(Number(parsed.compactedSpendTotal ?? 0) < 0)
+    && parsed.coinReconcileV1Applied !== true;
+}
+
+/** Существующие ключи, которые долив НЕ перезаписывает (всё, кроме «чисто серверной» проекции монет). */
+function keysToKeep(current: readonly (readonly [string, string | null])[]): Set<string> {
+  const kept = new Set<string>();
+  for (const [key, value] of current) {
+    if (value == null) continue;
+    if (isReplaceableServerOnlyCoinProjection(key, value)) {
+      console.log('[ACC-MUT] backup:projection_server_only_replaced reason=no_local_data_in_existing'); // guard-ok: ветка решения, без uid
+      continue;
+    }
+    kept.add(key);
+  }
+  return kept;
+}
+
 const restoreDependencyRank = (key: string): 0 | 1 | 2 => {
   if (key.startsWith('v2:outbox:') ||
     (key.startsWith('v2:required-session-local-commit-index:') &&
@@ -764,7 +808,7 @@ async function restoreFromRoot(
             isLearningV2SpoolGraphKey(key) && value !== backedValues.get(key))) {
             throw new Error('account_switch_backup_restore_indeterminate');
           }
-          const existing = new Set(current.filter(([, value]) => value != null).map(([key]) => key));
+          const existing = keysToKeep(current);
           const missing = rankedPairs.filter(([key]) => !existing.has(key)) as [string, string][];
           if (missing.length > 0) {
             const finishSettingsMutation = missing.some(([key]) => key === 'user_settings')
@@ -863,7 +907,7 @@ async function restoreFromRoot(
           value !== backedValues.get(key))) {
           throw new Error('account_switch_backup_restore_indeterminate');
         }
-        const existing = new Set(current.filter(([, value]) => value != null).map(([key]) => key));
+        const existing = keysToKeep(current);
         const missing = chunk.filter(([key]) => !existing.has(key));
         if (missing.length > 0) {
           const finishSettingsMutation = missing.some(([key]) => key === 'user_settings')

@@ -176,8 +176,7 @@ test('another account starts without a compacted spend total — nothing leaks b
   beginAccountGeneration('account-b');
   const other = await readUnifiedLevelSpinStars(captureAccountGeneration());
   expect(other.balance).toBe(0);
-  // зачем (владелец 21.10, №1 A2): пустая проекция нового аккаунта на диск не пишется — у B нет ни ключа, ни свёрнутых трат A
-  expect(storage[levelSpinStarProjectionKey('account-b')]).toBeUndefined();
+  expect(projectionOf('account-b').compactedSpendTotal).toBeUndefined();
 
   beginAccountGeneration(OWNER);
   expect((await readUnifiedLevelSpinStars(captureAccountGeneration())).balance).toBe(80);

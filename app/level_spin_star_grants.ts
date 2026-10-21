@@ -526,18 +526,6 @@ function emptyProjection(ownerStableId: string): LevelSpinStarProjection {
   });
 }
 
-/** Ничего не известно: ни операций, ни подтверждений, ни серверной базы, ни разницы, ни свёрнутых трат (A2, 21.10). */
-function isUntouchedEmptyProjection(projection: LevelSpinStarProjection): boolean {
-  return projection.operations.length === 0
-    && Object.keys(projection.acknowledged).length === 0
-    && projection.serverBalance === 0
-    && projection.serverEarnedTotal === 0
-    && projection.serverSeq === 0
-    && unconfirmedLiftOf(projection) === 0
-    && compactedSpendTotalOf(projection) === 0
-    && (projection as { coinReconcileV1Applied?: unknown }).coinReconcileV1Applied !== true;
-}
-
 function parseProjection(raw: string | null, ownerStableId: string): LevelSpinStarProjection {
   if (raw === null) return emptyProjection(ownerStableId);
   try {
@@ -1479,16 +1467,10 @@ async function recoverProjection(
     // пишутся как раньше.
     const projectionJson = JSON.stringify(projection);
     const outboxJson = JSON.stringify([...pending.values()]);
-    // зачем (владелец 21.10, №1 «монеты 0 после смены», A2): экраны читают монеты сразу после входа, раньше долива
-    // аварийной копии. Пустая проекция, записанная здесь, занимала ключ — долив копии пропускал существующий ключ и
-    // удалял копию, настоящий баланс терялся. Если проекции не было и записывать нечего — на диск не пишем.
-    const emptyNotPersisted = projectionRaw === null && isUntouchedEmptyProjection(projection);
-    if (emptyNotPersisted) {
-      DebugLogger.info('[COIN-DIVERGENCE] recover:empty_not_persisted', JSON.stringify({
-        owner: ownerStableId.slice(0, 8), reason: 'absent_and_empty_keep_key_free_for_backup',
-      }));
-    }
-    const projectionUnchanged = emptyNotPersisted || (projectionRaw !== null && projectionRaw === projectionJson);
+    // зачем (владелец 21.10, №1; Ревизор к 3c3764f72): пустая проекция снова пишется (иначе прочерк монет у гостя на
+    // каждом холодном старте) — ключ с ней долив аварийной копии считает отсутствующим
+    // (account_switch_backup_restore.isReplaceableServerOnlyCoinProjection), копия больше не теряется.
+    const projectionUnchanged = projectionRaw !== null && projectionRaw === projectionJson;
     const outboxUnchanged = outboxRaw !== null && outboxRaw === outboxJson;
     const writes: [string, string][] = [
       ...recoveredPracticeJournalWrites,
@@ -1759,6 +1741,7 @@ export async function mergeLevelSpinServerStars(
 
 export type ServerWalletAdoptOutcome =
   | 'merged'
+  | 'skip_not_newer'
   | 'skip_no_stars_field'
   | 'skip_invalid_stars'
   | 'skip_stale_generation'
@@ -1780,9 +1763,9 @@ export async function adoptServerWalletFromUserDoc(
   stars: unknown,
   source: string,
 ): Promise<ServerWalletAdoptOutcome> {
-  const owner = token.stableId?.trim().slice(0, 8) ?? null;
+  // зачем (Ревизор к 3c3764f72, п.5): в журнал — только исходы и числа, без префикса владельца.
   if (stars === undefined || stars === null) {
-    DebugLogger.info('[COIN-DIVERGENCE] server_wallet:skip', JSON.stringify({ source, owner, reason: 'no_stars_field' }));
+    DebugLogger.info('[COIN-DIVERGENCE] server_wallet:skip', JSON.stringify({ source, reason: 'no_stars_field' }));
     return 'skip_no_stars_field';
   }
   const record = typeof stars === 'object' ? stars as Record<string, unknown> : null;
@@ -1791,28 +1774,35 @@ export async function adoptServerWalletFromUserDoc(
   const seq = Number(record?.seq);
   if (!record || !Number.isSafeInteger(balance) || balance < 0 || !Number.isSafeInteger(seq) || seq < 0) {
     DebugLogger.warn('[COIN-DIVERGENCE] server_wallet:skip', JSON.stringify({
-      source, owner, reason: 'invalid_stars', balanceType: typeof record?.balance, seqType: typeof record?.seq,
+      source, reason: 'invalid_stars', balanceType: typeof record?.balance, seqType: typeof record?.seq,
     }));
     return 'skip_invalid_stars';
   }
   const ownerStableId = token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
-    DebugLogger.info('[COIN-DIVERGENCE] server_wallet:skip', JSON.stringify({ source, owner, reason: 'stale_generation' }));
+    DebugLogger.info('[COIN-DIVERGENCE] server_wallet:skip', JSON.stringify({ source, reason: 'stale_generation' }));
     return 'skip_stale_generation';
   }
   try {
+    // зачем (Ревизор к 3c3764f72, п.5): не новый seq — честный исход и НИ ОДНОЙ записи (merge пишет проекцию всегда).
+    const storedRaw = await AsyncStorage.getItem(levelSpinStarProjectionKey(ownerStableId));
+    const storedSeq = storedRaw === null ? null : parseProjection(storedRaw, ownerStableId).serverSeq;
+    if (storedSeq !== null && seq <= storedSeq) {
+      DebugLogger.info('[COIN-DIVERGENCE] server_wallet:skip', JSON.stringify({ source, reason: 'not_newer', serverSeq: seq, storedSeq }));
+      return 'skip_not_newer';
+    }
     const visible = await mergeLevelSpinServerStars(token, {
       stars: balance,
       starsEarnedTotal: Number.isSafeInteger(earnedTotal) && earnedTotal >= 0 ? earnedTotal : undefined,
       starsSeq: seq,
     });
     DebugLogger.info('[COIN-DIVERGENCE] server_wallet:merged', JSON.stringify({
-      source, owner, serverBalance: balance, serverSeq: seq, visibleBalance: visible.balance,
+      source, serverBalance: balance, serverSeq: seq, storedSeq, visibleBalance: visible.balance,
     }));
     return 'merged';
   } catch (error: unknown) {
     DebugLogger.warn('[COIN-DIVERGENCE] server_wallet:failed', JSON.stringify({
-      source, owner, reason: error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120),
+      source, reason: error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120),
     }));
     return 'failed';
   }

@@ -309,24 +309,10 @@ describe('Q-COIN (a): first server observation keeps the larger of server and un
   });
 });
 
-// зачем (владелец 21.10, №1 «монеты 0 после смены аккаунта», решение «сервер — главный»): A2 — пустая проекция не
-// занимает ключ (иначе долив аварийной копии её пропускал); A1 — серверный кошелёк users/{uid}.stars вливается
-// только более новым seq и не трогает базу при неподтверждённых начислениях.
-describe('A1/A2 (21.10): server wallet adoption and the empty projection', () => {
-  test('A2: reading coins with no projection on disk does not write an empty projection', async () => {
-    progress = { stars: 0, starsEarnedTotal: 0 };
-    expect((await readUnifiedLevelSpinStars(captureAccountGeneration())).balance).toBe(0);
-    await recoverAndHydrateLevelSpinStarGrants(captureAccountGeneration(), { syncNow: false });
-    expect(storage[levelSpinStarProjectionKey(OWNER)]).toBeUndefined();
-  });
-
-  test('A2 control: a projection that already exists on disk is still rewritten as before', async () => {
-    storeProjection(0, 0);
-    progress = { stars: 0, starsEarnedTotal: 0 };
-    await recoverAndHydrateLevelSpinStarGrants(captureAccountGeneration(), { syncNow: false });
-    expect(storage[levelSpinStarProjectionKey(OWNER)]).toBeDefined();
-  });
-
+// зачем (владелец 21.10, №1 «монеты 0 после смены аккаунта», решение «сервер — главный»): A1 — серверный кошелёк
+// users/{uid}.stars вливается только более новым seq и не трогает базу при неподтверждённых начислениях. Пустую
+// проекцию, которую экраны пишут раньше долива копии, долив вытесняет (сценарий в aa_account_switch_roundtrip_scenario).
+describe('A1 (21.10): server wallet adoption', () => {
   test('A1: server wallet over an absent projection becomes the visible balance', async () => {
     progress = { stars: 0, starsEarnedTotal: 0 };
     const { adoptServerWalletFromUserDoc } = await import('../app/level_spin_star_grants');
@@ -334,8 +320,11 @@ describe('A1/A2 (21.10): server wallet adoption and the empty projection', () =>
     expect(await adoptServerWalletFromUserDoc(token, { balance: 900, earnedTotal: 1200, seq: 7 }, 'test')).toBe('merged');
     expect(progress.stars).toBe(900);
     expect(storedProjection()).toMatchObject({ serverBalance: 900, serverSeq: 7 });
-    // более старый seq ничего не меняет (поздний ответ, другое устройство)
-    expect(await adoptServerWalletFromUserDoc(token, { balance: 100, earnedTotal: 100, seq: 5 }, 'test')).toBe('merged');
+    // более старый или тот же seq: честный исход и ни одной записи (поздний ответ, другое устройство, повторный старт)
+    const writesBefore = (AsyncStorage.setItem as jest.Mock).mock.calls.length + (AsyncStorage.multiSet as jest.Mock).mock.calls.length;
+    expect(await adoptServerWalletFromUserDoc(token, { balance: 100, earnedTotal: 100, seq: 5 }, 'test')).toBe('skip_not_newer');
+    expect(await adoptServerWalletFromUserDoc(token, { balance: 900, earnedTotal: 1200, seq: 7 }, 'test')).toBe('skip_not_newer');
+    expect((AsyncStorage.setItem as jest.Mock).mock.calls.length + (AsyncStorage.multiSet as jest.Mock).mock.calls.length).toBe(writesBefore);
     expect(progress.stars).toBe(900);
     expect((await readUnifiedLevelSpinStars(token)).balance).toBe(900);
   });

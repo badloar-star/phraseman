@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-07:intro1:r2": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        },
+        "en:lesson-11:session-07:intro1:r3": {
+          "ru": "Перед Sunday здесь нужна on.",
+          "uk": "Перед Sunday тут потрібна on."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-07:intro2:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-11:session-07:intro2:r3": {
+          "ru": "Easter — Пасха. Здесь речь о Christmas.",
+          "uk": "Easter — Великдень. Тут ідеться про Christmas."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-07:intro3:r2": {
+          "ru": "С they нужна were.",
+          "uk": "З they потрібна were."
+        },
+        "en:lesson-11:session-07:intro3:r3": {
+          "ru": "Am относится к I в настоящем. Здесь were.",
+          "uk": "Am стосується I в теперішньому. Тут were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fba26182db83826b755315d6cc0eac6e8e445b0a389f3b89fb4eb08da3ed011a"
+}

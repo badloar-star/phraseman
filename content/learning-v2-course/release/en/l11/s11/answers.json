@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-11:word:health-centre",
+    "correctText": "health centre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i01",
+    "correctText": "Was the health centre open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i02",
+    "correctText": "The health centre was not open.",
+    "correctResponseId": "en:lesson-11:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i03",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-11:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:word:receptionist",
+    "correctText": "receptionist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i04",
+    "correctText": "Was the receptionist friendly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i05",
+    "correctText": "The receptionist was helpful.",
+    "correctResponseId": "en:lesson-11:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:word:waiting-room",
+    "correctText": "waiting room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i07",
+    "correctText": "Was the waiting room crowded?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i08",
+    "correctText": "The waiting room was empty.",
+    "correctResponseId": "en:lesson-11:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i09",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-11:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:word:check-up",
+    "correctText": "check-up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i10",
+    "correctText": "The check-up was not quick.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i11",
+    "correctText": "Was your check-up quick?",
+    "correctResponseId": "en:lesson-11:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i12",
+    "correctText": "weren't",
+    "correctResponseId": "en:lesson-11:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i13",
+    "correctText": "en:lesson-11:session-11:i13:p1=health centre\nen:lesson-11:session-11:i13:p2=receptionist\nen:lesson-11:session-11:i13:p3=waiting room\nen:lesson-11:session-11:i13:p4=check-up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i14",
+    "correctText": "Please don't hurry me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i15",
+    "correctText": "The health centre is open right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i16",
+    "correctText": "The waiting room was not crowded yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-11:i17",
+    "correctText": "Was the receptionist busy on Monday?",
+    "correctResponseId": null
+  }
+]

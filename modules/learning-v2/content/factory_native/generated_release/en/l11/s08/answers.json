@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-08:word:May",
+    "correctText": "May",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i01",
+    "correctText": "It was warm in May.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i02",
+    "correctText": "She was in London in May.",
+    "correctResponseId": "en:lesson-11:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:word:September",
+    "correctText": "September",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i04",
+    "correctText": "I was busy in September.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i05",
+    "correctText": "We were in Paris in September.",
+    "correctResponseId": "en:lesson-11:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:word:December",
+    "correctText": "December",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i07",
+    "correctText": "The shop was crowded in December.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i08",
+    "correctText": "It was cold in December.",
+    "correctResponseId": "en:lesson-11:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:word:summer",
+    "correctText": "summer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i10",
+    "correctText": "The park was busy in summer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i11",
+    "correctText": "The children were happy in summer.",
+    "correctResponseId": "en:lesson-11:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i13",
+    "correctText": "en:lesson-11:session-08:i13:p1=May\nen:lesson-11:session-08:i13:p2=September\nen:lesson-11:session-08:i13:p3=December\nen:lesson-11:session-08:i13:p4=summer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i14",
+    "correctText": "Please don't shout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i15",
+    "correctText": "The park is quiet right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i16",
+    "correctText": "They were in a cafe in May.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-08:i17",
+    "correctText": "The cafe was closed in summer.",
+    "correctResponseId": null
+  }
+]

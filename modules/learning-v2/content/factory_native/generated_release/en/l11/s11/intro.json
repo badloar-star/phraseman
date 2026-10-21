@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "Was…? Were…? was not; were not",
+    "uk": "Was…? Were…? was not; were not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Был ли центр открыт?",
+        "uk": "Чи був центр відчинений?"
+      },
+      "bodyByLocale": {
+        "ru": "Health centre — «медицинский центр». Об обычном визите можно спросить: Was the health centre open? — «Медицинский центр был открыт?» Was ставим перед the health centre. Чтобы сказать, что центр был закрыт, можно использовать отрицание: It was not open.",
+        "uk": "Health centre — «медичний центр». Про звичайний візит можна запитати: Was the health centre open? — «Медичний центр був відчинений?» Was ставимо перед the health centre. Щоб сказати, що центр був зачинений, можна використати заперечення: It was not open."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-11:intro1:r1",
+              "text": "Was the health centre open?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro1:r2",
+              "text": "Were the health centre open?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro1:r3",
+              "text": "Did the health centre was open?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-11:intro1:r1",
+              "text": "Was the health centre open?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro1:r2",
+              "text": "Were the health centre open?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro1:r3",
+              "text": "Did the health centre was open?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сотрудник и зал ожидания",
+        "uk": "Працівник і зала очікування"
+      },
+      "bodyByLocale": {
+        "ru": "Receptionist — «сотрудник на стойке приёма», здесь в регистратуре. Waiting room — «зал ожидания». Друг спрашивает о сотруднике: Was the receptionist helpful? — «Сотрудник помогал, был готов помочь?» Вы можете ответить Yes, she was или Yes, he was, в зависимости от того, о ком говорите. Выберите вопрос о сотруднике.",
+        "uk": "Receptionist — «працівник за стійкою прийому», тут у реєстратурі. Waiting room — «зала очікування». Друг запитує про працівника: Was the receptionist helpful? — «Працівник допомагав, був готовий допомогти?» Ви можете відповісти Yes, she was або Yes, he was, залежно від того, про кого говорите. Виберіть запитання про працівника."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-11:intro2:r1",
+              "text": "Was the receptionist helpful?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro2:r2",
+              "text": "Were the receptionist helpful?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro2:r3",
+              "text": "Was the waiting room crowded?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-11:intro2:r1",
+              "text": "Was the receptionist helpful?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro2:r2",
+              "text": "Were the receptionist helpful?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro2:r3",
+              "text": "Was the waiting room crowded?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обычный осмотр",
+        "uk": "Звичайний огляд"
+      },
+      "bodyByLocale": {
+        "ru": "Check-up — «профилактический осмотр». Друг спрашивает о вашем обычном осмотре у врача. Was your check-up quick? — «Осмотр был быстрым?» Если он занял время: It was not quick. А когда друг хочет торопить ваш рассказ, можно сказать Please don’t hurry me — «Пожалуйста, не торопи меня». Выберите его вопрос о скорости осмотра.",
+        "uk": "Check-up — «профілактичний огляд». Друг запитує про ваш звичайний огляд у лікаря. Was your check-up quick? — «Огляд був швидким?» Якщо він забрав час: It was not quick. А коли друг хоче квапити вашу розповідь, можна сказати Please don’t hurry me — «Будь ласка, не квап мене». Виберіть його запитання про швидкість огляду."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-11:intro3:r1",
+              "text": "Was your check-up quick?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro3:r2",
+              "text": "Were your check-up quick?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro3:r3",
+              "text": "Did your check-up was quick?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-11:intro3:r1",
+              "text": "Was your check-up quick?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro3:r2",
+              "text": "Were your check-up quick?"
+            },
+            {
+              "responseId": "en:lesson-11:session-11:intro3:r3",
+              "text": "Did your check-up was quick?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f01107855b028766422b0ea740ff4ca5fddf3181d0a96042438a74245ca8fb9b"
+}

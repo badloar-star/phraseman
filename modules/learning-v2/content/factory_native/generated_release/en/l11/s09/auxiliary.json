@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-09:intro1:r2": {
+          "ru": "С it нужна was.",
+          "uk": "З it потрібна was."
+        },
+        "en:lesson-11:session-09:intro1:r3": {
+          "ru": "Вопрос с was уже строится без did: Was it…?",
+          "uk": "Запитання з was вже будується без did: Was it…?"
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-09:intro2:r2": {
+          "ru": "С you нужна were.",
+          "uk": "З you потрібна were."
+        },
+        "en:lesson-11:session-09:intro2:r3": {
+          "ru": "Did не добавляем к вопросу с were.",
+          "uk": "Did не додаємо до запитання з were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-09:intro3:r2": {
+          "ru": "Not ставим после was.",
+          "uk": "Not ставимо після was."
+        },
+        "en:lesson-11:session-09:intro3:r3": {
+          "ru": "С it нужна was.",
+          "uk": "З it потрібна was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ca63e8c76e79790ebb0f84054c2628d8fe040e797f9e8cda5a6d6fcf6ce2a7eb"
+}

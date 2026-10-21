@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-07:word:Sunday",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Sunday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:word:Sunday:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Sunday",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:word:Sunday:audio",
+          "transcript": "Sunday"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-07:word:Sunday:r1",
+            "targetText": "Sunday",
+            "meaningByLocale": {
+              "ru": "воскресенье. On Sunday — в воскресенье.",
+              "uk": "неділя. On Sunday — у неділю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Sunday",
+          "definitionByLocale": {
+            "ru": "воскресенье. On Sunday — в воскресенье.",
+            "uk": "неділя. On Sunday — у неділю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В воскресенье она была дома. Начните с She, on Sunday поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В воскресенье она была дома. Начните с She, on Sunday поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was at home on Sunday.",
+        "localizedMeaning": {
+          "ru": "В воскресенье она была дома. Начните с She, on Sunday поставьте в конце",
+          "uk": "У неділю вона була вдома. Почніть з She, on Sunday поставте в кінці"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "at",
+          "home",
+          "on",
+          "Sunday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-07:i02:r1",
+          "text": "He was busy on Sunday."
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i02:r2",
+          "text": "He was free on Sunday."
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i02:r3",
+          "text": "He was tired on Sunday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:i02:audio",
+          "transcript": "He was busy on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-07:i02:r1",
+            "targetText": "He was busy on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i02:r2",
+            "targetText": "He was free on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i02:r3",
+            "targetText": "He was tired on Sunday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was busy on Sunday.",
+              "uk": "У записі звучить He was busy on Sunday."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was busy on Sunday.",
+              "uk": "У записі звучить He was busy on Sunday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите о прошедшем воскресенье",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-07:i03:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i03:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о прошедшем воскресенье",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите о прошедшем воскресенье",
+          "uk": "Розкажіть про минулу неділю"
+        },
+        "gappedTargetPhrase": "We ___ at the sports centre on Sunday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-07:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Расскажите о прошедшем воскресенье",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Расскажите о прошедшем воскресенье",
+            "feedbackByLocale": {
+              "ru": "С we нужна were.",
+              "uk": "З we потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Расскажите о прошедшем воскресенье",
+            "feedbackByLocale": {
+              "ru": "Am относится к I. Здесь were.",
+              "uk": "Am стосується I. Тут were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:word:Christmas",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Christmas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:word:Christmas:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Christmas",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:word:Christmas:audio",
+          "transcript": "Christmas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-07:word:Christmas:r1",
+            "targetText": "Christmas",
+            "meaningByLocale": {
+              "ru": "Рождество. At Christmas — на Рождество, в рождественские праздники.",
+              "uk": "Різдво. At Christmas — на Різдво, у різдвяні свята."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Christmas",
+          "definitionByLocale": {
+            "ru": "Рождество. At Christmas — на Рождество, в рождественские праздники.",
+            "uk": "Різдво. At Christmas — на Різдво, у різдвяні свята."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На Рождество вы были вместе. Начните с We, at Christmas поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На Рождество вы были вместе. Начните с We, at Christmas поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were together at Christmas.",
+        "localizedMeaning": {
+          "ru": "На Рождество вы были вместе. Начните с We, at Christmas поставьте в конце",
+          "uk": "На Різдво ви були разом. Почніть з We, at Christmas поставте в кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "together",
+          "at",
+          "Christmas"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-07:i05:r1",
+          "text": "The children were happy at Christmas."
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i05:r2",
+          "text": "The children were tired at Christmas."
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i05:r3",
+          "text": "The children were quiet at Christmas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:i05:audio",
+          "transcript": "The children were happy at Christmas."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-07:i05:r1",
+            "targetText": "The children were happy at Christmas.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i05:r2",
+            "targetText": "The children were tired at Christmas.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i05:r3",
+            "targetText": "The children were quiet at Christmas.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The children were happy at Christmas.",
+              "uk": "У записі звучить The children were happy at Christmas."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The children were happy at Christmas.",
+              "uk": "У записі звучить The children were happy at Christmas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите, где был друг на Рождество",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-07:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите, где был друг на Рождество",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите, где был друг на Рождество",
+          "uk": "Розкажіть, де був друг на Різдво"
+        },
+        "gappedTargetPhrase": "He ___ in London at Christmas.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-07:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Расскажите, где был друг на Рождество",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "Расскажите, где был друг на Рождество",
+            "feedbackByLocale": {
+              "ru": "С he нужна was.",
+              "uk": "З he потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i06:r3",
+            "correct": false,
+            "testedDimension": "Расскажите, где был друг на Рождество",
+            "feedbackByLocale": {
+              "ru": "С he в прошлом нужна was.",
+              "uk": "З he у минулому потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:word:Easter",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Easter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:word:Easter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Easter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:word:Easter:audio",
+          "transcript": "Easter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-07:word:Easter:r1",
+            "targetText": "Easter",
+            "meaningByLocale": {
+              "ru": "Пасха. At Easter — на Пасху, в пасхальные праздники.",
+              "uk": "Великдень. At Easter — на Великдень, у великодні свята."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Easter",
+          "definitionByLocale": {
+            "ru": "Пасха. At Easter — на Пасху, в пасхальные праздники.",
+            "uk": "Великдень. At Easter — на Великдень, у великодні свята."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На Пасху они были дома. Начните с They, at Easter поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На Пасху они были дома. Начните с They, at Easter поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were at home at Easter.",
+        "localizedMeaning": {
+          "ru": "На Пасху они были дома. Начните с They, at Easter поставьте в конце",
+          "uk": "На Великдень вони були вдома. Почніть з They, at Easter поставте в кінці"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "at",
+          "home",
+          "at",
+          "Easter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-07:i08:r1",
+          "text": "She was in Paris at Easter."
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i08:r2",
+          "text": "She was in London at Easter."
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i08:r3",
+          "text": "She was in Rome at Easter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:i08:audio",
+          "transcript": "She was in Paris at Easter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-07:i08:r1",
+            "targetText": "She was in Paris at Easter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i08:r2",
+            "targetText": "She was in London at Easter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i08:r3",
+            "targetText": "She was in Rome at Easter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was in Paris at Easter.",
+              "uk": "У записі звучить She was in Paris at Easter."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was in Paris at Easter.",
+              "uk": "У записі звучить She was in Paris at Easter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите, каким было кафе на Пасху",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-07:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите, каким было кафе на Пасху",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите, каким было кафе на Пасху",
+          "uk": "Розкажіть, яким було кафе на Великдень"
+        },
+        "gappedTargetPhrase": "The cafe ___ busy at Easter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-07:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Расскажите, каким было кафе на Пасху",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Расскажите, каким было кафе на Пасху",
+            "feedbackByLocale": {
+              "ru": "Одно кафе: was.",
+              "uk": "Одне кафе: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Расскажите, каким было кафе на Пасху",
+            "feedbackByLocale": {
+              "ru": "Am относится к I. Здесь was.",
+              "uk": "Am стосується I. Тут was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:word:New-Year",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — New Year",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:word:New-Year:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — New Year",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:word:New-Year:audio",
+          "transcript": "New Year"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-07:word:New-Year:r1",
+            "targetText": "New Year",
+            "meaningByLocale": {
+              "ru": "Новый год. Здесь at New Year — в новогодние праздники.",
+              "uk": "Новий рік. Тут at New Year — у новорічні свята."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "New Year",
+          "definitionByLocale": {
+            "ru": "Новый год. Здесь at New Year — в новогодние праздники.",
+            "uk": "Новий рік. Тут at New Year — у новорічні свята."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На Новый год вы были в Лондоне. Начните с I, at New Year поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На Новый год вы были в Лондоне. Начните с I, at New Year поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was in London at New Year.",
+        "localizedMeaning": {
+          "ru": "На Новый год вы были в Лондоне. Начните с I, at New Year поставьте в конце",
+          "uk": "На Новий рік ви були в Лондоні. Почніть з I, at New Year поставте в кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "in",
+          "London",
+          "at",
+          "New",
+          "Year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-07:i11:r1",
+          "text": "We were at home at New Year."
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i11:r2",
+          "text": "We were at home at Christmas."
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i11:r3",
+          "text": "We were at home at Easter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:i11:audio",
+          "transcript": "We were at home at New Year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-07:i11:r1",
+            "targetText": "We were at home at New Year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i11:r2",
+            "targetText": "We were at home at Christmas.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i11:r3",
+            "targetText": "We were at home at Easter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-07:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were at home at New Year.",
+              "uk": "У записі звучить We were at home at New Year."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were at home at New Year.",
+              "uk": "У записі звучить We were at home at New Year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните новогоднюю поездку друзей",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-07:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-07:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните новогоднюю поездку друзей",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните новогоднюю поездку друзей",
+          "uk": "Згадайте новорічну поїздку друзів"
+        },
+        "gappedTargetPhrase": "They ___ in Paris at New Year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-07:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вспомните новогоднюю поездку друзей",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Вспомните новогоднюю поездку друзей",
+            "feedbackByLocale": {
+              "ru": "С they нужна were.",
+              "uk": "З they потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Вспомните новогоднюю поездку друзей",
+            "feedbackByLocale": {
+              "ru": "Am относится к I. Здесь were.",
+              "uk": "Am стосується I. Тут were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-07:i13:p1",
+            "target": "Sunday",
+            "meaningByLocale": {
+              "ru": "воскресенье",
+              "uk": "неділя"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-07:i13:p2",
+            "target": "Christmas",
+            "meaningByLocale": {
+              "ru": "Рождество",
+              "uk": "Різдво"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-07:i13:p3",
+            "target": "Easter",
+            "meaningByLocale": {
+              "ru": "Пасха",
+              "uk": "Великдень"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-07:i13:p4",
+            "target": "New Year",
+            "meaningByLocale": {
+              "ru": "Новый год",
+              "uk": "Новий рік"
+            }
+          }
+        ],
+        "leftColumn": [
+          "Sunday",
+          "Christmas",
+          "Easter",
+          "New Year"
+        ],
+        "rightColumn": [
+          "воскресенье",
+          "Рождество",
+          "Пасха",
+          "Новый год"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:i14:audio",
+          "transcript": "Please don't interrupt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't interrupt.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "interrupt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:i15:audio",
+          "transcript": "I am busy right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am busy right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "busy",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что в воскресенье магазин был закрыт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что в воскресенье магазин был закрыт",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:i16:audio",
+          "transcript": "The shop was closed on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The shop was closed on Sunday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-07:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что на Рождество вы были в гостях у друзей: в их доме",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что на Рождество вы были в гостях у друзей: в их доме",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-07:i17:audio",
+          "transcript": "I was at my friends’ house at Christmas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was at my friends’ house at Christmas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "850f11f6877a19a37e9cc2a33c771bdff83a302e9e5fa5b5238a6c4519a9218a"
+}

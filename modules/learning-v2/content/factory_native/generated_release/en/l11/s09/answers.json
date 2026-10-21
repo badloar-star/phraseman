@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-09:word:spring",
+    "correctText": "spring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i01",
+    "correctText": "Was it warm in spring?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i02",
+    "correctText": "Was she here in spring?",
+    "correctResponseId": "en:lesson-11:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i03",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-11:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:word:autumn",
+    "correctText": "autumn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i04",
+    "correctText": "Were you at home in autumn?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i05",
+    "correctText": "They were not here in autumn.",
+    "correctResponseId": "en:lesson-11:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i06",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-11:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:word:weekday",
+    "correctText": "weekday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i07",
+    "correctText": "Was it a weekday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i08",
+    "correctText": "It was a weekday.",
+    "correctResponseId": "en:lesson-11:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:word:day-off",
+    "correctText": "day off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i10",
+    "correctText": "It was not my day off.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i11",
+    "correctText": "Was it your day off?",
+    "correctResponseId": "en:lesson-11:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i12",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i13",
+    "correctText": "en:lesson-11:session-09:i13:p1=spring\nen:lesson-11:session-09:i13:p2=autumn\nen:lesson-11:session-09:i13:p3=weekday\nen:lesson-11:session-09:i13:p4=day off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i14",
+    "correctText": "Were they at home yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i15",
+    "correctText": "We were not at work yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i16",
+    "correctText": "I was not busy in spring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-09:i17",
+    "correctText": "Was it your day off yesterday?",
+    "correctResponseId": null
+  }
+]

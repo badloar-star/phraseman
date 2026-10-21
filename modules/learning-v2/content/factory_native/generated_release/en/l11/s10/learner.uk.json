@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-10:word:fever",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fever",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:word:fever:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fever",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:word:fever:audio",
+          "transcript": "fever"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-10:word:fever:r1",
+            "targetText": "fever",
+            "meaningByLocale": {
+              "ru": "повышенная температура, жар.",
+              "uk": "підвищена температура, гарячка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fever",
+          "definitionByLocale": {
+            "ru": "повышенная температура, жар.",
+            "uk": "підвищена температура, гарячка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була в друга висока температура",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була в друга висока температура",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was your fever high?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли у друга высокая температура",
+          "uk": "Запитайте, чи була в друга висока температура"
+        },
+        "orderedTokens": [
+          "Was",
+          "your",
+          "fever",
+          "high"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-10:i02:r1",
+          "text": "My fever was high yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i02:r2",
+          "text": "Her fever was high yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i02:r3",
+          "text": "His fever was high yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:i02:audio",
+          "transcript": "My fever was high yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-10:i02:r1",
+            "targetText": "My fever was high yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i02:r2",
+            "targetText": "Her fever was high yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i02:r3",
+            "targetText": "His fever was high yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My fever was high yesterday.",
+              "uk": "У записі звучить My fever was high yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My fever was high yesterday.",
+              "uk": "У записі звучить My fever was high yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про вчорашню температуру",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-10:i03:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i03:r2",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i03:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про вчорашню температуру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о вчерашней температуре",
+          "uk": "Запитайте про вчорашню температуру"
+        },
+        "gappedTargetPhrase": "___ your fever high yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-10:i03:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i03:r2",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Запитайте про вчорашню температуру",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про вчорашню температуру",
+            "feedbackByLocale": {
+              "ru": "С fever нужна was.",
+              "uk": "Із fever потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про вчорашню температуру",
+            "feedbackByLocale": {
+              "ru": "Вопрос с be начинается с was, без did.",
+              "uk": "Запитання з be починається з was, без did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:word:runny-nose",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — runny nose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:word:runny-nose:audio"
+      ],
+      "accessibilityLabel": "Картка слова — runny nose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:word:runny-nose:audio",
+          "transcript": "runny nose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-10:word:runny-nose:r1",
+            "targetText": "runny nose",
+            "meaningByLocale": {
+              "ru": "насморк. Учим выражение целиком.",
+              "uk": "нежить. Вчимо вираз цілком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "runny nose",
+          "definitionByLocale": {
+            "ru": "насморк. Учим выражение целиком.",
+            "uk": "нежить. Вчимо вираз цілком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи дошкуляв другові нежить",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи дошкуляв другові нежить",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was your runny nose annoying?",
+        "localizedMeaning": {
+          "ru": "Спросите, досаждал ли другу насморк",
+          "uk": "Запитайте, чи дошкуляв другові нежить"
+        },
+        "orderedTokens": [
+          "Was",
+          "your",
+          "runny",
+          "nose",
+          "annoying"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-10:i05:r1",
+          "text": "My runny nose was annoying."
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i05:r2",
+          "text": "Her runny nose was annoying."
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i05:r3",
+          "text": "His runny nose was annoying."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:i05:audio",
+          "transcript": "My runny nose was annoying."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-10:i05:r1",
+            "targetText": "My runny nose was annoying.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i05:r2",
+            "targetText": "Her runny nose was annoying.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i05:r3",
+            "targetText": "His runny nose was annoying.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My runny nose was annoying.",
+              "uk": "У записі звучить My runny nose was annoying."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My runny nose was annoying.",
+              "uk": "У записі звучить My runny nose was annoying."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що вчора нежить був не сильний",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-10:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i06:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вчора нежить був не сильний",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что вчера насморк был не сильным",
+          "uk": "Скажіть, що вчора нежить був не сильний"
+        },
+        "gappedTargetPhrase": "My runny nose ___ not bad yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-10:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i06:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Скажіть, що вчора нежить був не сильний",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що вчора нежить був не сильний",
+            "feedbackByLocale": {
+              "ru": "С runny nose нужна was.",
+              "uk": "Із runny nose потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що вчора нежить був не сильний",
+            "feedbackByLocale": {
+              "ru": "Отрицание с be: was not.",
+              "uk": "Заперечення з be: was not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:word:stomach-ache",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stomach ache",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:word:stomach-ache:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stomach ache",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:word:stomach-ache:audio",
+          "transcript": "stomach ache"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-10:word:stomach-ache:r1",
+            "targetText": "stomach ache",
+            "meaningByLocale": {
+              "ru": "боль в животе. Учим выражение целиком.",
+              "uk": "біль у животі. Вчимо вираз цілком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stomach ache",
+          "definitionByLocale": {
+            "ru": "боль в животе. Учим выражение целиком.",
+            "uk": "біль у животі. Вчимо вираз цілком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що живіт болів не сильно. Використайте was not",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що живіт болів не сильно. Використайте was not",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My stomach ache was not bad.",
+        "localizedMeaning": {
+          "ru": "Скажите, что живот болел не сильно. Используйте was not",
+          "uk": "Скажіть, що живіт болів не сильно. Використайте was not"
+        },
+        "orderedTokens": [
+          "My",
+          "stomach",
+          "ache",
+          "was",
+          "not",
+          "bad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-10:i08:r1",
+          "text": "Was her stomach ache bad?"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i08:r2",
+          "text": "Was his stomach ache bad?"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i08:r3",
+          "text": "Was your stomach ache bad?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:i08:audio",
+          "transcript": "Was her stomach ache bad?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-10:i08:r1",
+            "targetText": "Was her stomach ache bad?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i08:r2",
+            "targetText": "Was his stomach ache bad?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i08:r3",
+            "targetText": "Was your stomach ache bad?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was her stomach ache bad?",
+              "uk": "У записі звучить Was her stomach ache bad?"
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was her stomach ache bad?",
+              "uk": "У записі звучить Was her stomach ache bad?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про біль у животі вчора",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-10:i09:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i09:r2",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i09:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про біль у животі вчора",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о боли в животе вчера",
+          "uk": "Запитайте про біль у животі вчора"
+        },
+        "gappedTargetPhrase": "___ your stomach ache bad yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-10:i09:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i09:r2",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i09:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Запитайте про біль у животі вчора",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про біль у животі вчора",
+            "feedbackByLocale": {
+              "ru": "С stomach ache нужна was.",
+              "uk": "Із stomach ache потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про біль у животі вчора",
+            "feedbackByLocale": {
+              "ru": "Вопрос с was не требует did.",
+              "uk": "Запитання з was не потребує did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:word:pain",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:word:pain:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:word:pain:audio",
+          "transcript": "pain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-10:word:pain:r1",
+            "targetText": "pain",
+            "meaningByLocale": {
+              "ru": "боль. Общее слово, не указывает часть тела.",
+              "uk": "біль. Загальне слово, не вказує на частину тіла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pain",
+          "definitionByLocale": {
+            "ru": "боль. Общее слово, не указывает часть тела.",
+            "uk": "біль. Загальне слово, не вказує на частину тіла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був біль сильний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був біль сильний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the pain bad?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли боль сильной",
+          "uk": "Запитайте, чи був біль сильний"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "pain",
+          "bad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-10:i11:r1",
+          "text": "The pain was not bad."
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i11:r2",
+          "text": "The pain was bad."
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i11:r3",
+          "text": "Was the pain bad?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:i11:audio",
+          "transcript": "The pain was not bad."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-10:i11:r1",
+            "targetText": "The pain was not bad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i11:r2",
+            "targetText": "The pain was bad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i11:r3",
+            "targetText": "Was the pain bad?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pain was not bad.",
+              "uk": "У записі звучить The pain was not bad."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pain was not bad.",
+              "uk": "У записі звучить The pain was not bad."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що ви з другом учора не хворіли",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-10:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-10:i12:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що ви з другом учора не хворіли",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что вы с другом вчера не болели",
+          "uk": "Скажіть, що ви з другом учора не хворіли"
+        },
+        "gappedTargetPhrase": "We ___ not ill yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-10:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i12:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Скажіть, що ви з другом учора не хворіли",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що ви з другом учора не хворіли",
+            "feedbackByLocale": {
+              "ru": "С we нужна were.",
+              "uk": "З we потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що ви з другом учора не хворіли",
+            "feedbackByLocale": {
+              "ru": "Отрицание с be: were not.",
+              "uk": "Заперечення з be: were not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-10:i13:p1",
+            "target": "fever",
+            "meaningByLocale": {
+              "ru": "повышенная температура",
+              "uk": "підвищена температура"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-10:i13:p2",
+            "target": "runny nose",
+            "meaningByLocale": {
+              "ru": "насморк",
+              "uk": "нежить"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-10:i13:p3",
+            "target": "stomach ache",
+            "meaningByLocale": {
+              "ru": "боль в животе",
+              "uk": "біль у животі"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-10:i13:p4",
+            "target": "pain",
+            "meaningByLocale": {
+              "ru": "боль",
+              "uk": "біль"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fever",
+          "runny nose",
+          "stomach ache",
+          "pain"
+        ],
+        "rightColumn": [
+          "підвищена температура",
+          "нежить",
+          "біль у животі",
+          "біль"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:i14:audio",
+          "transcript": "Please don't shout."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't shout.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "shout"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:i15:audio",
+          "transcript": "I am fine right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am fine right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "fine",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вчора температура не була високою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вчора температура не була високою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:i16:audio",
+          "transcript": "My fever was not high yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My fever was not high yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи був біль сильний минулої ночі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи був біль сильний минулої ночі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-10:i17:audio",
+          "transcript": "Was the pain bad last night?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the pain bad last night?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "50b5f8690128c3db8028799dd6003f1ff6cea3bda904a2ff8b11399d7fd9bbc1"
+}

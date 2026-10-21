@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-10:intro1:r2": {
+          "ru": "Fever здесь единственное число: was.",
+          "uk": "Fever тут однина: was."
+        },
+        "en:lesson-11:session-10:intro1:r3": {
+          "ru": "Вопрос с was строится без did.",
+          "uk": "Запитання з was будується без did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-10:intro2:r2": {
+          "ru": "Одна боль, единственное число: was.",
+          "uk": "Один біль, однина: was."
+        },
+        "en:lesson-11:session-10:intro2:r3": {
+          "ru": "Этот вопрос о насморке. Здесь нужен stomach ache.",
+          "uk": "Це запитання про нежить. Тут потрібне stomach ache."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-10:intro3:r2": {
+          "ru": "Not ставим после was.",
+          "uk": "Not ставимо після was."
+        },
+        "en:lesson-11:session-10:intro3:r3": {
+          "ru": "С pain здесь нужна was.",
+          "uk": "Із pain тут потрібна was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5bb6a0a081ce47f8c646ce4cfd31873a0448d578e00d6a01f0a0b728f0a876f9"
+}

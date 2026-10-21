@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-11:intro1:r2": {
+          "ru": "Один центр: was.",
+          "uk": "Один центр: was."
+        },
+        "en:lesson-11:session-11:intro1:r3": {
+          "ru": "Вопрос с was не требует did.",
+          "uk": "Запитання з was не потребує did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-11:intro2:r2": {
+          "ru": "Один сотрудник: was.",
+          "uk": "Один працівник: was."
+        },
+        "en:lesson-11:session-11:intro2:r3": {
+          "ru": "Этот вопрос о зале ожидания, а не о сотруднике.",
+          "uk": "Це запитання про залу очікування, а не про працівника."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-11:intro3:r2": {
+          "ru": "Один осмотр: was.",
+          "uk": "Один огляд: was."
+        },
+        "en:lesson-11:session-11:intro3:r3": {
+          "ru": "В вопросе с was не добавляем did.",
+          "uk": "У запитанні з was не додаємо did."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "97157d4c7d6b38dca62a9ce4dd008d39be42d79979b9ce82403aab2b252daa71"
+}

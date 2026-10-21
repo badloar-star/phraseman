@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-10:word:fever",
+    "correctText": "fever",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i01",
+    "correctText": "Was your fever high?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i02",
+    "correctText": "My fever was high yesterday.",
+    "correctResponseId": "en:lesson-11:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i03",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-11:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:word:runny-nose",
+    "correctText": "runny nose",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i04",
+    "correctText": "Was your runny nose annoying?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i05",
+    "correctText": "My runny nose was annoying.",
+    "correctResponseId": "en:lesson-11:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:word:stomach-ache",
+    "correctText": "stomach ache",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i07",
+    "correctText": "My stomach ache was not bad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i08",
+    "correctText": "Was her stomach ache bad?",
+    "correctResponseId": "en:lesson-11:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i09",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-11:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:word:pain",
+    "correctText": "pain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i10",
+    "correctText": "Was the pain bad?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i11",
+    "correctText": "The pain was not bad.",
+    "correctResponseId": "en:lesson-11:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i13",
+    "correctText": "en:lesson-11:session-10:i13:p1=fever\nen:lesson-11:session-10:i13:p2=runny nose\nen:lesson-11:session-10:i13:p3=stomach ache\nen:lesson-11:session-10:i13:p4=pain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i14",
+    "correctText": "Please don't shout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i15",
+    "correctText": "I am fine right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i16",
+    "correctText": "My fever was not high yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-10:i17",
+    "correctText": "Was the pain bad last night?",
+    "correctResponseId": null
+  }
+]

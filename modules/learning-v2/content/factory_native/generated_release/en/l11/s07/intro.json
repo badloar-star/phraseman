@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; on Sunday; at Christmas; at Easter; at New Year",
+    "uk": "was/were; on Sunday; at Christmas; at Easter; at New Year"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "В воскресенье",
+        "uk": "У неділю"
+      },
+      "bodyByLocale": {
+        "ru": "Sunday — «воскресенье». Как и с другими днями недели, используем on: I was at home on Sunday. Вы рассказываете о прошедшем воскресенье: были дома. Сейчас вы на работе: I am at work right now. Выберите фразу о воскресенье.",
+        "uk": "Sunday — «неділя». Як і з іншими днями тижня, використовуємо on: I was at home on Sunday. Ви розповідаєте про минулу неділю: були вдома. Зараз ви на роботі: I am at work right now. Виберіть фразу про неділю."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-07:intro1:r1",
+              "text": "I was at home on Sunday."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro1:r2",
+              "text": "I were at home on Sunday."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro1:r3",
+              "text": "I was at home in Sunday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-07:intro1:r1",
+              "text": "I was at home on Sunday."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro1:r2",
+              "text": "I were at home on Sunday."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro1:r3",
+              "text": "I was at home in Sunday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рождество и Пасха",
+        "uk": "Різдво й Великдень"
+      },
+      "bodyByLocale": {
+        "ru": "Christmas — «Рождество», Easter — «Пасха». Когда говорим о праздничном периоде в целом, используем at Christmas и at Easter. Друг рассказывает о своей семье: We were together at Christmas — «Мы были вместе на Рождество». Эти названия пишем с заглавной буквы. Выберите его фразу о Рождестве.",
+        "uk": "Christmas — «Різдво», Easter — «Великдень». Коли говоримо про святковий період загалом, використовуємо at Christmas і at Easter. Друг розповідає про свою сім’ю: We were together at Christmas — «Ми були разом на Різдво». Ці назви пишемо з великої літери. Виберіть його фразу про Різдво."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-07:intro2:r1",
+              "text": "We were together at Christmas."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro2:r2",
+              "text": "We was together at Christmas."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro2:r3",
+              "text": "We were together at Easter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-07:intro2:r1",
+              "text": "We were together at Christmas."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro2:r2",
+              "text": "We was together at Christmas."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro2:r3",
+              "text": "We were together at Easter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "На Новый год",
+        "uk": "На Новий рік"
+      },
+      "bodyByLocale": {
+        "ru": "New Year — «Новый год». О новогодних праздниках можно сказать at New Year: They were in London at New Year — «Они были в Лондоне на Новый год». Здесь они рассказывают о прошлой поездке, поэтому were. Пока друг вспоминает подробности, попросите другого собеседника: Please don’t interrupt — «Пожалуйста, не перебивай». Выберите фразу о поездке.",
+        "uk": "New Year — «Новий рік». Про новорічні свята можна сказати at New Year: They were in London at New Year — «Вони були в Лондоні на Новий рік». Тут вони розповідають про минулу поїздку, тому were. Поки друг згадує подробиці, попросіть іншого співрозмовника: Please don’t interrupt — «Будь ласка, не перебивай». Виберіть фразу про поїздку."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-07:intro3:r1",
+              "text": "They were in London at New Year."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro3:r2",
+              "text": "They was in London at New Year."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro3:r3",
+              "text": "They am in London at New Year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-07:intro3:r1",
+              "text": "They were in London at New Year."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro3:r2",
+              "text": "They was in London at New Year."
+            },
+            {
+              "responseId": "en:lesson-11:session-07:intro3:r3",
+              "text": "They am in London at New Year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b6f1fd954932f689d5c4622a4ef223a0b641cc6d6287f5827b6788f020412057"
+}

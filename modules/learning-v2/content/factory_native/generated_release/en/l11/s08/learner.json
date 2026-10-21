@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-08:word:May",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — May",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:word:May:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — May",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:word:May:audio",
+          "transcript": "May"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-08:word:May:r1",
+            "targetText": "May",
+            "meaningByLocale": {
+              "ru": "май. Название месяца с заглавной буквы.",
+              "uk": "травень. Назва місяця з великої літери."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "May",
+          "definitionByLocale": {
+            "ru": "май. Название месяца с заглавной буквы.",
+            "uk": "травень. Назва місяця з великої літери."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В мае было тепло. Начните с It, in May поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В мае было тепло. Начните с It, in May поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It was warm in May.",
+        "localizedMeaning": {
+          "ru": "В мае было тепло. Начните с It, in May поставьте в конце",
+          "uk": "У травні було тепло. Почніть з It, in May поставте в кінці"
+        },
+        "orderedTokens": [
+          "It",
+          "was",
+          "warm",
+          "in",
+          "May"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-08:i02:r1",
+          "text": "She was in London in May."
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i02:r2",
+          "text": "She was in Paris in May."
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i02:r3",
+          "text": "She was in Rome in May."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:i02:audio",
+          "transcript": "She was in London in May."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-08:i02:r1",
+            "targetText": "She was in London in May.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i02:r2",
+            "targetText": "She was in Paris in May.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i02:r3",
+            "targetText": "She was in Rome in May.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was in London in May.",
+              "uk": "У записі звучить She was in London in May."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She was in London in May.",
+              "uk": "У записі звучить She was in London in May."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите о погоде в мае",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-08:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о погоде в мае",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите о погоде в мае",
+          "uk": "Розкажіть про погоду у травні"
+        },
+        "gappedTargetPhrase": "It ___ sunny in May.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-08:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Расскажите о погоде в мае",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Расскажите о погоде в мае",
+            "feedbackByLocale": {
+              "ru": "С it нужна was.",
+              "uk": "З it потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Расскажите о погоде в мае",
+            "feedbackByLocale": {
+              "ru": "Am относится к I. Здесь was.",
+              "uk": "Am стосується I. Тут was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:word:September",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — September",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:word:September:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — September",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:word:September:audio",
+          "transcript": "September"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-08:word:September:r1",
+            "targetText": "September",
+            "meaningByLocale": {
+              "ru": "сентябрь. In September — в сентябре.",
+              "uk": "вересень. In September — у вересні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "September",
+          "definitionByLocale": {
+            "ru": "сентябрь. In September — в сентябре.",
+            "uk": "вересень. In September — у вересні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В сентябре вы были заняты. Начните с I, in September поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В сентябре вы были заняты. Начните с I, in September поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was busy in September.",
+        "localizedMeaning": {
+          "ru": "В сентябре вы были заняты. Начните с I, in September поставьте в конце",
+          "uk": "У вересні ви були зайняті. Почніть з I, in September поставте в кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "busy",
+          "in",
+          "September"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-08:i05:r1",
+          "text": "We were in Paris in September."
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i05:r2",
+          "text": "We were in Paris in May."
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i05:r3",
+          "text": "We were in London in September."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:i05:audio",
+          "transcript": "We were in Paris in September."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-08:i05:r1",
+            "targetText": "We were in Paris in September.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i05:r2",
+            "targetText": "We were in Paris in May.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i05:r3",
+            "targetText": "We were in London in September.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were in Paris in September.",
+              "uk": "У записі звучить We were in Paris in September."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were in Paris in September.",
+              "uk": "У записі звучить We were in Paris in September."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, где друзья были в сентябре",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-08:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, где друзья были в сентябре",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, где друзья были в сентябре",
+          "uk": "Згадайте, де друзі були у вересні"
+        },
+        "gappedTargetPhrase": "They ___ at home in September.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-08:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вспомните, где друзья были в сентябре",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, где друзья были в сентябре",
+            "feedbackByLocale": {
+              "ru": "С they нужна were.",
+              "uk": "З they потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, где друзья были в сентябре",
+            "feedbackByLocale": {
+              "ru": "Am относится к I. Здесь were.",
+              "uk": "Am стосується I. Тут were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:word:December",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — December",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:word:December:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — December",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:word:December:audio",
+          "transcript": "December"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-08:word:December:r1",
+            "targetText": "December",
+            "meaningByLocale": {
+              "ru": "декабрь. In December — в декабре.",
+              "uk": "грудень. In December — у грудні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "December",
+          "definitionByLocale": {
+            "ru": "декабрь. In December — в декабре.",
+            "uk": "грудень. In December — у грудні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В декабре магазин был переполнен. Начните с The shop, in December поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В декабре магазин был переполнен. Начните с The shop, in December поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shop was crowded in December.",
+        "localizedMeaning": {
+          "ru": "В декабре магазин был переполнен. Начните с The shop, in December поставьте в конце",
+          "uk": "У грудні магазин був переповнений. Почніть з The shop, in December поставте в кінці"
+        },
+        "orderedTokens": [
+          "The",
+          "shop",
+          "was",
+          "crowded",
+          "in",
+          "December"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-08:i08:r1",
+          "text": "It was cold in December."
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i08:r2",
+          "text": "It was warm in December."
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i08:r3",
+          "text": "It was sunny in December."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:i08:audio",
+          "transcript": "It was cold in December."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-08:i08:r1",
+            "targetText": "It was cold in December.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i08:r2",
+            "targetText": "It was warm in December.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i08:r3",
+            "targetText": "It was sunny in December.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was cold in December.",
+              "uk": "У записі звучить It was cold in December."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was cold in December.",
+              "uk": "У записі звучить It was cold in December."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите, где ваша семья была в декабре",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-08:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите, где ваша семья была в декабре",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите, где ваша семья была в декабре",
+          "uk": "Розкажіть, де ваша сім’я була у грудні"
+        },
+        "gappedTargetPhrase": "We ___ at home in December.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-08:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Расскажите, где ваша семья была в декабре",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Расскажите, где ваша семья была в декабре",
+            "feedbackByLocale": {
+              "ru": "С we нужна were.",
+              "uk": "З we потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Расскажите, где ваша семья была в декабре",
+            "feedbackByLocale": {
+              "ru": "В прошлом с we нужна were.",
+              "uk": "У минулому з we потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:word:summer",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — summer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:word:summer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — summer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:word:summer:audio",
+          "transcript": "summer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-08:word:summer:r1",
+            "targetText": "summer",
+            "meaningByLocale": {
+              "ru": "лето. In summer — летом.",
+              "uk": "літо. In summer — улітку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "summer",
+          "definitionByLocale": {
+            "ru": "лето. In summer — летом.",
+            "uk": "літо. In summer — улітку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Летом парк был полон людей. Начните с The park, in summer поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Летом парк был полон людей. Начните с The park, in summer поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The park was busy in summer.",
+        "localizedMeaning": {
+          "ru": "Летом парк был полон людей. Начните с The park, in summer поставьте в конце",
+          "uk": "Улітку парк був повний людей. Почніть з The park, in summer поставте в кінці"
+        },
+        "orderedTokens": [
+          "The",
+          "park",
+          "was",
+          "busy",
+          "in",
+          "summer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-08:i11:r1",
+          "text": "The children were happy in summer."
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i11:r2",
+          "text": "The children were tired in summer."
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i11:r3",
+          "text": "The children were busy in summer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:i11:audio",
+          "transcript": "The children were happy in summer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-08:i11:r1",
+            "targetText": "The children were happy in summer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i11:r2",
+            "targetText": "The children were tired in summer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i11:r3",
+            "targetText": "The children were busy in summer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The children were happy in summer.",
+              "uk": "У записі звучить The children were happy in summer."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The children were happy in summer.",
+              "uk": "У записі звучить The children were happy in summer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, где вы были летом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-08:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i12:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-08:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, где вы были летом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, где вы были летом",
+          "uk": "Згадайте, де ви були влітку"
+        },
+        "gappedTargetPhrase": "I ___ in London in summer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-08:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вспомните, где вы были летом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, где вы были летом",
+            "feedbackByLocale": {
+              "ru": "С I в прошлом нужна was.",
+              "uk": "З I у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, где вы были летом",
+            "feedbackByLocale": {
+              "ru": "Вы вспоминаете прошлое: was, не am.",
+              "uk": "Ви згадуєте минуле: was, не am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-08:i13:p1",
+            "target": "May",
+            "meaningByLocale": {
+              "ru": "май",
+              "uk": "травень"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-08:i13:p2",
+            "target": "September",
+            "meaningByLocale": {
+              "ru": "сентябрь",
+              "uk": "вересень"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-08:i13:p3",
+            "target": "December",
+            "meaningByLocale": {
+              "ru": "декабрь",
+              "uk": "грудень"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-08:i13:p4",
+            "target": "summer",
+            "meaningByLocale": {
+              "ru": "лето",
+              "uk": "літо"
+            }
+          }
+        ],
+        "leftColumn": [
+          "May",
+          "September",
+          "December",
+          "summer"
+        ],
+        "rightColumn": [
+          "май",
+          "сентябрь",
+          "декабрь",
+          "лето"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:i14:audio",
+          "transcript": "Please don't shout."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't shout.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "shout"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:i15:audio",
+          "transcript": "The park is quiet right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The park is quiet right now.",
+        "orderedTokens": [
+          "The",
+          "park",
+          "is",
+          "quiet",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что в мае друзья были в кафе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что в мае друзья были в кафе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:i16:audio",
+          "transcript": "They were in a cafe in May."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They were in a cafe in May.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что летом кафе было закрыто",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что летом кафе было закрыто",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-08:i17:audio",
+          "transcript": "The cafe was closed in summer."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The cafe was closed in summer.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9a262a1c76576775348afc112c5e7d155b1ff01005a2791bdd150c8560523e93"
+}

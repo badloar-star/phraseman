@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-07:word:Sunday",
+    "correctText": "Sunday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i01",
+    "correctText": "She was at home on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i02",
+    "correctText": "He was busy on Sunday.",
+    "correctResponseId": "en:lesson-11:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:word:Christmas",
+    "correctText": "Christmas",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i04",
+    "correctText": "We were together at Christmas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i05",
+    "correctText": "The children were happy at Christmas.",
+    "correctResponseId": "en:lesson-11:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:word:Easter",
+    "correctText": "Easter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i07",
+    "correctText": "They were at home at Easter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i08",
+    "correctText": "She was in Paris at Easter.",
+    "correctResponseId": "en:lesson-11:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:word:New-Year",
+    "correctText": "New Year",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i10",
+    "correctText": "I was in London at New Year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i11",
+    "correctText": "We were at home at New Year.",
+    "correctResponseId": "en:lesson-11:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i13",
+    "correctText": "en:lesson-11:session-07:i13:p1=Sunday\nen:lesson-11:session-07:i13:p2=Christmas\nen:lesson-11:session-07:i13:p3=Easter\nen:lesson-11:session-07:i13:p4=New Year",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i14",
+    "correctText": "Please don't interrupt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i15",
+    "correctText": "I am busy right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i16",
+    "correctText": "The shop was closed on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-07:i17",
+    "correctText": "I was at my friends’ house at Christmas.",
+    "correctResponseId": null
+  }
+]

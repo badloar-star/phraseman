@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "Was it…? was not; were not; yesterday / right now",
+    "uk": "Was it…? was not; were not; yesterday / right now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Температура",
+        "uk": "Температура"
+      },
+      "bodyByLocale": {
+        "ru": "Fever — «повышенная температура, жар». В знакомой ситуации можно спросить: Was your fever high? — «У тебя была высокая температура?» Прилагательное high описывает температуру. Was выносим перед your fever. Не добавляем did.",
+        "uk": "Fever — «підвищена температура, гарячка». У знайомій ситуації можна запитати: Was your fever high? — «У тебе була висока температура?» Прикметник high описує температуру. Was виносимо перед your fever. Не додаємо did."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-10:intro1:r1",
+              "text": "Was your fever high?"
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro1:r2",
+              "text": "Were your fever high?"
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro1:r3",
+              "text": "Did your fever was high?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-10:intro1:r1",
+              "text": "Was your fever high?"
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro1:r2",
+              "text": "Were your fever high?"
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro1:r3",
+              "text": "Did your fever was high?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Насморк и боль в животе",
+        "uk": "Нежить і біль у животі"
+      },
+      "bodyByLocale": {
+        "ru": "Runny nose — «насморк», stomach ache — «боль в животе». Учим оба названия целиком. My runny nose was annoying — «Насморк мне досаждал». My stomach ache was bad — «Живот сильно болел». Bad в этом контексте описывает сильную боль. Выберите вопрос о том, сильно ли болел живот.",
+        "uk": "Runny nose — «нежить», stomach ache — «біль у животі». Вчимо обидві назви цілком. My runny nose was annoying — «Нежить мені дошкуляв». My stomach ache was bad — «Живіт сильно болів». Bad у цьому контексті описує сильний біль. Виберіть запитання про те, чи сильно болів живіт."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-10:intro2:r1",
+              "text": "Was your stomach ache bad?"
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro2:r2",
+              "text": "Were your stomach ache bad?"
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro2:r3",
+              "text": "Was your runny nose annoying?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-10:intro2:r1",
+              "text": "Was your stomach ache bad?"
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro2:r2",
+              "text": "Were your stomach ache bad?"
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro2:r3",
+              "text": "Was your runny nose annoying?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Боль не была сильной",
+        "uk": "Біль не був сильним"
+      },
+      "bodyByLocale": {
+        "ru": "Pain — «боль», общее слово без указания части тела. The pain was not bad — «Боль была несильной». Not ставим после was. Сейчас вам лучше: I am fine right now. Если друг хочет шуметь, можно попросить Please don’t shout — «Пожалуйста, не кричи». Выберите фразу о несильной боли в прошлом.",
+        "uk": "Pain — «біль», загальне слово без зазначення частини тіла. The pain was not bad — «Біль був несильним». Not ставимо після was. Зараз вам краще: I am fine right now. Якщо друг хоче галасувати, можна попросити Please don’t shout — «Будь ласка, не кричи». Виберіть фразу про несильний біль у минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-10:intro3:r1",
+              "text": "The pain was not bad."
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro3:r2",
+              "text": "The pain not was bad."
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro3:r3",
+              "text": "The pain were not bad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-10:intro3:r1",
+              "text": "The pain was not bad."
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro3:r2",
+              "text": "The pain not was bad."
+            },
+            {
+              "responseId": "en:lesson-11:session-10:intro3:r3",
+              "text": "The pain were not bad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7de3c5f3d645bf6c21a1e639979cdd2333cf71f7c5120d6c708180a0ad61c476"
+}

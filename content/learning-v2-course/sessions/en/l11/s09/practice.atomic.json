@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-09",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-09:word:spring",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — spring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:word:spring:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — spring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:word:spring:audio",
+            "transcript": "spring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:word:spring:r1",
+              "targetText": "spring",
+              "meaningByLocale": {
+                "ru": "весна. In spring — весной.",
+                "uk": "весна. In spring — навесні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spring",
+            "definitionByLocale": {
+              "ru": "весна. In spring — весной.",
+              "uk": "весна. In spring — навесні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, было ли тепло весной. Начните с Was, in spring поставьте в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, было ли тепло весной. Начните с Was, in spring поставьте в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was it warm in spring?",
+          "localizedMeaning": {
+            "ru": "Спросите, было ли тепло весной. Начните с Was, in spring поставьте в конце",
+            "uk": "Запитайте, чи було тепло навесні. Почніть з Was, in spring поставте в кінці"
+          },
+          "orderedTokens": [
+            "Was",
+            "it",
+            "warm",
+            "in",
+            "spring"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i02:r1",
+            "text": "Was she here in spring?"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i02:r2",
+            "text": "Was she here in summer?"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i02:r3",
+            "text": "Was she here in May?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i02:audio",
+            "transcript": "Was she here in spring?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:i02:r1",
+              "targetText": "Was she here in spring?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i02:r2",
+              "targetText": "Was she here in summer?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i02:r3",
+              "targetText": "Was she here in May?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was she here in spring?",
+                "uk": "У записі звучить Was she here in spring?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was she here in spring?",
+                "uk": "У записі звучить Was she here in spring?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите о погоде прошлой весной",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i03:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i03:r2",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите о погоде прошлой весной",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите о погоде прошлой весной",
+            "uk": "Запитайте про погоду минулої весни"
+          },
+          "gappedTargetPhrase": "___ it cold in spring?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-09:i03:r1",
+              "text": "Was"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i03:r2",
+              "text": "Were"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i03:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Спросите о погоде прошлой весной",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Спросите о погоде прошлой весной",
+              "feedbackByLocale": {
+                "ru": "С it нужна was.",
+                "uk": "З it потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Спросите о погоде прошлой весной",
+              "feedbackByLocale": {
+                "ru": "С be вопрос начинается с was, без did.",
+                "uk": "З be запитання починається з was, без did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:word:autumn",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — autumn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:word:autumn:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — autumn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:word:autumn:audio",
+            "transcript": "autumn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:word:autumn:r1",
+              "targetText": "autumn",
+              "meaningByLocale": {
+                "ru": "осень. In autumn — осенью.",
+                "uk": "осінь. In autumn — восени."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "autumn",
+            "definitionByLocale": {
+              "ru": "осень. In autumn — осенью.",
+              "uk": "осінь. In autumn — восени."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите друга, был ли он дома осенью. Начните с Were, in autumn поставьте в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите друга, был ли он дома осенью. Начните с Were, in autumn поставьте в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Were you at home in autumn?",
+          "localizedMeaning": {
+            "ru": "Спросите друга, был ли он дома осенью. Начните с Were, in autumn поставьте в конце",
+            "uk": "Запитайте друга, чи був він удома восени. Почніть з Were, in autumn поставте в кінці"
+          },
+          "orderedTokens": [
+            "Were",
+            "you",
+            "at",
+            "home",
+            "in",
+            "autumn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i05:r1",
+            "text": "They were not here in autumn."
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i05:r2",
+            "text": "They were not here in spring."
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i05:r3",
+            "text": "They were not here in summer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i05:audio",
+            "transcript": "They were not here in autumn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:i05:r1",
+              "targetText": "They were not here in autumn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i05:r2",
+              "targetText": "They were not here in spring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i05:r3",
+              "targetText": "They were not here in summer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They were not here in autumn.",
+                "uk": "У записі звучить They were not here in autumn."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They were not here in autumn.",
+                "uk": "У записі звучить They were not here in autumn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спросите, были ли друзья заняты осенью",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i06:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i06:r2",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, были ли друзья заняты осенью",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите, были ли друзья заняты осенью",
+            "uk": "Запитайте, чи були друзі зайняті восени"
+          },
+          "gappedTargetPhrase": "___ they busy in autumn?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-09:i06:r1",
+              "text": "Were"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i06:r2",
+              "text": "Was"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i06:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Спросите, были ли друзья заняты осенью",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Спросите, были ли друзья заняты осенью",
+              "feedbackByLocale": {
+                "ru": "С they нужна were.",
+                "uk": "З they потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Спросите, были ли друзья заняты осенью",
+              "feedbackByLocale": {
+                "ru": "В вопросе с be не добавляем did.",
+                "uk": "У запитанні з be не додаємо did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:word:weekday",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — weekday",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:word:weekday:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — weekday",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:word:weekday:audio",
+            "transcript": "weekday"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:word:weekday:r1",
+              "targetText": "weekday",
+              "meaningByLocale": {
+                "ru": "будний день. Обычно день с понедельника по пятницу.",
+                "uk": "будній день. Зазвичай день із понеділка по п’ятницю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weekday",
+            "definitionByLocale": {
+              "ru": "будний день. Обычно день с понедельника по пятницу.",
+              "uk": "будній день. Зазвичай день із понеділка по п’ятницю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите: это был будний день?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите: это был будний день?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was it a weekday?",
+          "localizedMeaning": {
+            "ru": "Спросите: это был будний день?",
+            "uk": "Запитайте: це був будній день?"
+          },
+          "orderedTokens": [
+            "Was",
+            "it",
+            "a",
+            "weekday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i08:r1",
+            "text": "It was a weekday."
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i08:r2",
+            "text": "It was a holiday."
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i08:r3",
+            "text": "It was Sunday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i08:audio",
+            "transcript": "It was a weekday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:i08:r1",
+              "targetText": "It was a weekday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i08:r2",
+              "targetText": "It was a holiday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i08:r3",
+              "targetText": "It was Sunday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It was a weekday.",
+                "uk": "У записі звучить It was a weekday."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It was a weekday.",
+                "uk": "У записі звучить It was a weekday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните отрицание: это был не будний день",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i09:r3",
+            "text": "did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните отрицание: это был не будний день",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните отрицание: это был не будний день",
+            "uk": "Доповніть заперечення: це був не будній день"
+          },
+          "gappedTargetPhrase": "It ___ not a weekday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-09:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i09:r3",
+              "text": "did"
+            }
+          ],
+          "testedDimension": "Дополните отрицание: это был не будний день",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните отрицание: это был не будний день",
+              "feedbackByLocale": {
+                "ru": "С it нужна was.",
+                "uk": "З it потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните отрицание: это был не будний день",
+              "feedbackByLocale": {
+                "ru": "Отрицание с be: was not, без did.",
+                "uk": "Заперечення з be: was not, без did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:word:day-off",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — day off",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:word:day-off:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — day off",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:word:day-off:audio",
+            "transcript": "day off"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:word:day-off:r1",
+              "targetText": "day off",
+              "meaningByLocale": {
+                "ru": "выходной от работы день. Он может приходиться и на будни.",
+                "uk": "вихідний від роботи день. Він може припадати й на будні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "day off",
+            "definitionByLocale": {
+              "ru": "выходной от работы день. Он может приходиться и на будни.",
+              "uk": "вихідний від роботи день. Він може припадати й на будні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: это был не мой выходной. Используйте полную форму was not",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: это был не мой выходной. Используйте полную форму was not",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It was not my day off.",
+          "localizedMeaning": {
+            "ru": "Скажите: это был не мой выходной. Используйте полную форму was not",
+            "uk": "Скажіть: це був не мій вихідний. Використайте повну форму was not"
+          },
+          "orderedTokens": [
+            "It",
+            "was",
+            "not",
+            "my",
+            "day",
+            "off"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i11:r1",
+            "text": "Was it your day off?"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i11:r2",
+            "text": "Was it her day off?"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i11:r3",
+            "text": "Was it his day off?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i11:audio",
+            "transcript": "Was it your day off?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:i11:r1",
+              "targetText": "Was it your day off?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i11:r2",
+              "targetText": "Was it her day off?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i11:r3",
+              "targetText": "Was it his day off?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was it your day off?",
+                "uk": "У записі звучить Was it your day off?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was it your day off?",
+                "uk": "У записі звучить Was it your day off?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спросил Were you at work? У вас был выходной. Ответьте отрицательно о себе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i12:r3",
+            "text": "don't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спросил Were you at work? У вас был выходной. Ответьте отрицательно о себе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Were you at work? У вас был выходной. Ответьте отрицательно о себе",
+            "uk": "Друг запитав Were you at work? Ви мали вихідний. Дайте заперечну відповідь про себе"
+          },
+          "gappedTargetPhrase": "No, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-09:i12:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i12:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i12:r3",
+              "text": "don't"
+            }
+          ],
+          "testedDimension": "Друг спросил Were you at work? У вас был выходной. Ответьте отрицательно о себе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг спросил Were you at work? У вас был выходной. Ответьте отрицательно о себе",
+              "feedbackByLocale": {
+                "ru": "В ответе с I нужна wasn’t.",
+                "uk": "У відповіді з I потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг спросил Were you at work? У вас был выходной. Ответьте отрицательно о себе",
+              "feedbackByLocale": {
+                "ru": "На вопрос с were отвечаем формой be: I wasn’t.",
+                "uk": "На запитання з were відповідаємо формою be: I wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-09:i13:p1",
+              "target": "spring",
+              "meaningByLocale": {
+                "ru": "весна",
+                "uk": "весна"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-09:i13:p2",
+              "target": "autumn",
+              "meaningByLocale": {
+                "ru": "осень",
+                "uk": "осінь"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-09:i13:p3",
+              "target": "weekday",
+              "meaningByLocale": {
+                "ru": "будний день",
+                "uk": "будній день"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-09:i13:p4",
+              "target": "day off",
+              "meaningByLocale": {
+                "ru": "выходной от работы день",
+                "uk": "вихідний від роботи день"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spring",
+            "autumn",
+            "weekday",
+            "day off"
+          ],
+          "rightColumn": [
+            "весна",
+            "осень",
+            "будний день",
+            "выходной от работы день"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i14:audio",
+            "transcript": "Were they at home yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Were they at home yesterday?",
+          "orderedTokens": [
+            "Were",
+            "they",
+            "at",
+            "home",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное отрицание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное отрицание",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i15:audio",
+            "transcript": "We were not at work yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We were not at work yesterday.",
+          "orderedTokens": [
+            "We",
+            "were",
+            "not",
+            "at",
+            "work",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что весной вы не были заняты",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что весной вы не были заняты",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i16:audio",
+            "transcript": "I was not busy in spring."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was not busy in spring.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите друга, был ли вчера у него выходной",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите друга, был ли вчера у него выходной",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i17:audio",
+            "transcript": "Was it your day off yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was it your day off yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-09:word:spring",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — spring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:word:spring:audio"
+        ],
+        "accessibilityLabel": "Картка слова — spring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:word:spring:audio",
+            "transcript": "spring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:word:spring:r1",
+              "targetText": "spring",
+              "meaningByLocale": {
+                "ru": "весна. In spring — весной.",
+                "uk": "весна. In spring — навесні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spring",
+            "definitionByLocale": {
+              "ru": "весна. In spring — весной.",
+              "uk": "весна. In spring — навесні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи було тепло навесні. Почніть з Was, in spring поставте в кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи було тепло навесні. Почніть з Was, in spring поставте в кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was it warm in spring?",
+          "localizedMeaning": {
+            "ru": "Спросите, было ли тепло весной. Начните с Was, in spring поставьте в конце",
+            "uk": "Запитайте, чи було тепло навесні. Почніть з Was, in spring поставте в кінці"
+          },
+          "orderedTokens": [
+            "Was",
+            "it",
+            "warm",
+            "in",
+            "spring"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i02:r1",
+            "text": "Was she here in spring?"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i02:r2",
+            "text": "Was she here in summer?"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i02:r3",
+            "text": "Was she here in May?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i02:audio",
+            "transcript": "Was she here in spring?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:i02:r1",
+              "targetText": "Was she here in spring?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i02:r2",
+              "targetText": "Was she here in summer?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i02:r3",
+              "targetText": "Was she here in May?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was she here in spring?",
+                "uk": "У записі звучить Was she here in spring?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was she here in spring?",
+                "uk": "У записі звучить Was she here in spring?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитайте про погоду минулої весни",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i03:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i03:r2",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте про погоду минулої весни",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите о погоде прошлой весной",
+            "uk": "Запитайте про погоду минулої весни"
+          },
+          "gappedTargetPhrase": "___ it cold in spring?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-09:i03:r1",
+              "text": "Was"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i03:r2",
+              "text": "Were"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i03:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Запитайте про погоду минулої весни",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитайте про погоду минулої весни",
+              "feedbackByLocale": {
+                "ru": "С it нужна was.",
+                "uk": "З it потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитайте про погоду минулої весни",
+              "feedbackByLocale": {
+                "ru": "С be вопрос начинается с was, без did.",
+                "uk": "З be запитання починається з was, без did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:word:autumn",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — autumn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:word:autumn:audio"
+        ],
+        "accessibilityLabel": "Картка слова — autumn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:word:autumn:audio",
+            "transcript": "autumn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:word:autumn:r1",
+              "targetText": "autumn",
+              "meaningByLocale": {
+                "ru": "осень. In autumn — осенью.",
+                "uk": "осінь. In autumn — восени."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "autumn",
+            "definitionByLocale": {
+              "ru": "осень. In autumn — осенью.",
+              "uk": "осінь. In autumn — восени."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте друга, чи був він удома восени. Почніть з Were, in autumn поставте в кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте друга, чи був він удома восени. Почніть з Were, in autumn поставте в кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Were you at home in autumn?",
+          "localizedMeaning": {
+            "ru": "Спросите друга, был ли он дома осенью. Начните с Were, in autumn поставьте в конце",
+            "uk": "Запитайте друга, чи був він удома восени. Почніть з Were, in autumn поставте в кінці"
+          },
+          "orderedTokens": [
+            "Were",
+            "you",
+            "at",
+            "home",
+            "in",
+            "autumn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i05:r1",
+            "text": "They were not here in autumn."
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i05:r2",
+            "text": "They were not here in spring."
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i05:r3",
+            "text": "They were not here in summer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i05:audio",
+            "transcript": "They were not here in autumn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:i05:r1",
+              "targetText": "They were not here in autumn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i05:r2",
+              "targetText": "They were not here in spring.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i05:r3",
+              "targetText": "They were not here in summer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They were not here in autumn.",
+                "uk": "У записі звучить They were not here in autumn."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They were not here in autumn.",
+                "uk": "У записі звучить They were not here in autumn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитайте, чи були друзі зайняті восени",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i06:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i06:r2",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи були друзі зайняті восени",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спросите, были ли друзья заняты осенью",
+            "uk": "Запитайте, чи були друзі зайняті восени"
+          },
+          "gappedTargetPhrase": "___ they busy in autumn?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-09:i06:r1",
+              "text": "Were"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i06:r2",
+              "text": "Was"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i06:r3",
+              "text": "Did"
+            }
+          ],
+          "testedDimension": "Запитайте, чи були друзі зайняті восени",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитайте, чи були друзі зайняті восени",
+              "feedbackByLocale": {
+                "ru": "С they нужна were.",
+                "uk": "З they потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитайте, чи були друзі зайняті восени",
+              "feedbackByLocale": {
+                "ru": "В вопросе с be не добавляем did.",
+                "uk": "У запитанні з be не додаємо did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:word:weekday",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — weekday",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:word:weekday:audio"
+        ],
+        "accessibilityLabel": "Картка слова — weekday",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:word:weekday:audio",
+            "transcript": "weekday"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:word:weekday:r1",
+              "targetText": "weekday",
+              "meaningByLocale": {
+                "ru": "будний день. Обычно день с понедельника по пятницу.",
+                "uk": "будній день. Зазвичай день із понеділка по п’ятницю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weekday",
+            "definitionByLocale": {
+              "ru": "будний день. Обычно день с понедельника по пятницу.",
+              "uk": "будній день. Зазвичай день із понеділка по п’ятницю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте: це був будній день?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте: це був будній день?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was it a weekday?",
+          "localizedMeaning": {
+            "ru": "Спросите: это был будний день?",
+            "uk": "Запитайте: це був будній день?"
+          },
+          "orderedTokens": [
+            "Was",
+            "it",
+            "a",
+            "weekday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i08:r1",
+            "text": "It was a weekday."
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i08:r2",
+            "text": "It was a holiday."
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i08:r3",
+            "text": "It was Sunday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i08:audio",
+            "transcript": "It was a weekday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:i08:r1",
+              "targetText": "It was a weekday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i08:r2",
+              "targetText": "It was a holiday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i08:r3",
+              "targetText": "It was Sunday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It was a weekday.",
+                "uk": "У записі звучить It was a weekday."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It was a weekday.",
+                "uk": "У записі звучить It was a weekday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть заперечення: це був не будній день",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i09:r3",
+            "text": "did"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть заперечення: це був не будній день",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните отрицание: это был не будний день",
+            "uk": "Доповніть заперечення: це був не будній день"
+          },
+          "gappedTargetPhrase": "It ___ not a weekday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-09:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i09:r3",
+              "text": "did"
+            }
+          ],
+          "testedDimension": "Доповніть заперечення: це був не будній день",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть заперечення: це був не будній день",
+              "feedbackByLocale": {
+                "ru": "С it нужна was.",
+                "uk": "З it потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть заперечення: це був не будній день",
+              "feedbackByLocale": {
+                "ru": "Отрицание с be: was not, без did.",
+                "uk": "Заперечення з be: was not, без did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:word:day-off",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — day off",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:word:day-off:audio"
+        ],
+        "accessibilityLabel": "Картка слова — day off",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:word:day-off:audio",
+            "transcript": "day off"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:word:day-off:r1",
+              "targetText": "day off",
+              "meaningByLocale": {
+                "ru": "выходной от работы день. Он может приходиться и на будни.",
+                "uk": "вихідний від роботи день. Він може припадати й на будні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "day off",
+            "definitionByLocale": {
+              "ru": "выходной от работы день. Он может приходиться и на будни.",
+              "uk": "вихідний від роботи день. Він може припадати й на будні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: це був не мій вихідний. Використайте повну форму was not",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: це був не мій вихідний. Використайте повну форму was not",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It was not my day off.",
+          "localizedMeaning": {
+            "ru": "Скажите: это был не мой выходной. Используйте полную форму was not",
+            "uk": "Скажіть: це був не мій вихідний. Використайте повну форму was not"
+          },
+          "orderedTokens": [
+            "It",
+            "was",
+            "not",
+            "my",
+            "day",
+            "off"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i11:r1",
+            "text": "Was it your day off?"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i11:r2",
+            "text": "Was it her day off?"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i11:r3",
+            "text": "Was it his day off?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i11:audio",
+            "transcript": "Was it your day off?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-09:i11:r1",
+              "targetText": "Was it your day off?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i11:r2",
+              "targetText": "Was it her day off?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i11:r3",
+              "targetText": "Was it his day off?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was it your day off?",
+                "uk": "У записі звучить Was it your day off?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was it your day off?",
+                "uk": "У записі звучить Was it your day off?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг запитав Were you at work? Ви мали вихідний. Дайте заперечну відповідь про себе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-09:i12:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i12:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-09:i12:r3",
+            "text": "don't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитав Were you at work? Ви мали вихідний. Дайте заперечну відповідь про себе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Were you at work? У вас был выходной. Ответьте отрицательно о себе",
+            "uk": "Друг запитав Were you at work? Ви мали вихідний. Дайте заперечну відповідь про себе"
+          },
+          "gappedTargetPhrase": "No, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-09:i12:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i12:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i12:r3",
+              "text": "don't"
+            }
+          ],
+          "testedDimension": "Друг запитав Were you at work? Ви мали вихідний. Дайте заперечну відповідь про себе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Друг запитав Were you at work? Ви мали вихідний. Дайте заперечну відповідь про себе",
+              "feedbackByLocale": {
+                "ru": "В ответе с I нужна wasn’t.",
+                "uk": "У відповіді з I потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Друг запитав Were you at work? Ви мали вихідний. Дайте заперечну відповідь про себе",
+              "feedbackByLocale": {
+                "ru": "На вопрос с were отвечаем формой be: I wasn’t.",
+                "uk": "На запитання з were відповідаємо формою be: I wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-09:i13:p1",
+              "target": "spring",
+              "meaningByLocale": {
+                "ru": "весна",
+                "uk": "весна"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-09:i13:p2",
+              "target": "autumn",
+              "meaningByLocale": {
+                "ru": "осень",
+                "uk": "осінь"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-09:i13:p3",
+              "target": "weekday",
+              "meaningByLocale": {
+                "ru": "будний день",
+                "uk": "будній день"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-09:i13:p4",
+              "target": "day off",
+              "meaningByLocale": {
+                "ru": "выходной от работы день",
+                "uk": "вихідний від роботи день"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spring",
+            "autumn",
+            "weekday",
+            "day off"
+          ],
+          "rightColumn": [
+            "весна",
+            "осінь",
+            "будній день",
+            "вихідний від роботи день"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i14:audio",
+            "transcript": "Were they at home yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Were they at home yesterday?",
+          "orderedTokens": [
+            "Were",
+            "they",
+            "at",
+            "home",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте заперечення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте заперечення",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i15:audio",
+            "transcript": "We were not at work yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We were not at work yesterday.",
+          "orderedTokens": [
+            "We",
+            "were",
+            "not",
+            "at",
+            "work",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що навесні ви не були зайняті",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що навесні ви не були зайняті",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i16:audio",
+            "transcript": "I was not busy in spring."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was not busy in spring.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте друга, чи був учора в нього вихідний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте друга, чи був учора в нього вихідний",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-09:i17:audio",
+            "transcript": "Was it your day off yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was it your day off yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-09:word:spring",
+      "correctText": "spring",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i01",
+      "correctText": "Was it warm in spring?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i02",
+      "correctText": "Was she here in spring?",
+      "correctResponseId": "en:lesson-11:session-09:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i03",
+      "correctText": "Was",
+      "correctResponseId": "en:lesson-11:session-09:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:word:autumn",
+      "correctText": "autumn",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i04",
+      "correctText": "Were you at home in autumn?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i05",
+      "correctText": "They were not here in autumn.",
+      "correctResponseId": "en:lesson-11:session-09:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i06",
+      "correctText": "Were",
+      "correctResponseId": "en:lesson-11:session-09:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:word:weekday",
+      "correctText": "weekday",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i07",
+      "correctText": "Was it a weekday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i08",
+      "correctText": "It was a weekday.",
+      "correctResponseId": "en:lesson-11:session-09:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-09:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:word:day-off",
+      "correctText": "day off",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i10",
+      "correctText": "It was not my day off.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i11",
+      "correctText": "Was it your day off?",
+      "correctResponseId": "en:lesson-11:session-09:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i12",
+      "correctText": "wasn't",
+      "correctResponseId": "en:lesson-11:session-09:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i14",
+      "correctText": "Were they at home yesterday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i15",
+      "correctText": "We were not at work yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i16",
+      "correctText": "I was not busy in spring.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-09:i17",
+      "correctText": "Was it your day off yesterday?",
+      "correctResponseId": null
+    }
+  ]
+}

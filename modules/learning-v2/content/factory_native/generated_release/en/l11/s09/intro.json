@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "Was it…? Were you…? was not; were not",
+    "uk": "Was it…? Were you…? was not; were not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Было ли тепло?",
+        "uk": "Чи було тепло?"
+      },
+      "bodyByLocale": {
+        "ru": "Spring — «весна», autumn — «осень». Чтобы спросить о прошлом с be, ставим was или were перед тем, о ком говорим: It was warm → Was it warm? Вы спрашиваете о погоде прошлой весной: Was it warm in spring? Для такого вопроса не нужен did.",
+        "uk": "Spring — «весна», autumn — «осінь». Щоб запитати про минуле з be, ставимо was або were перед тим, про кого говоримо: It was warm → Was it warm? Ви запитуєте про погоду минулої весни: Was it warm in spring? Для такого запитання не потрібен did."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-09:intro1:r1",
+              "text": "Was it warm in spring?"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro1:r2",
+              "text": "Were it warm in spring?"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro1:r3",
+              "text": "Did it was warm in spring?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-09:intro1:r1",
+              "text": "Was it warm in spring?"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro1:r2",
+              "text": "Were it warm in spring?"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro1:r3",
+              "text": "Did it was warm in spring?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ты был дома?",
+        "uk": "Ти був удома?"
+      },
+      "bodyByLocale": {
+        "ru": "С you, we, they вопрос начинается с were: Were you at home in autumn? — «Ты был дома осенью?» Коротко ответить можно Yes, I was или No, I wasn’t. В ответе о себе используем I was, хотя вопрос к you начинался с were. Выберите вопрос к другу о прошлой осени.",
+        "uk": "З you, we, they запитання починається з were: Were you at home in autumn? — «Ти був удома восени?» Коротко відповісти можна Yes, I was або No, I wasn’t. У відповіді про себе використовуємо I was, хоча запитання до you починалося з were. Виберіть запитання до друга про минулу осінь."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-09:intro2:r1",
+              "text": "Were you at home in autumn?"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro2:r2",
+              "text": "Was you at home in autumn?"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro2:r3",
+              "text": "Did you were at home in autumn?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-09:intro2:r1",
+              "text": "Were you at home in autumn?"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro2:r2",
+              "text": "Was you at home in autumn?"
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro2:r3",
+              "text": "Did you were at home in autumn?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Будний день или выходной",
+        "uk": "Будній день чи вихідний"
+      },
+      "bodyByLocale": {
+        "ru": "Weekday — «будний день», обычно с понедельника по пятницу. Day off — «свободный от работы день»: у конкретного человека он может быть и в будни. It was my day off — «Это был мой выходной». Для отрицания добавляем not после was/were: It was not my day off. Можно сократить was not до wasn’t, were not до weren’t. Вчера вы работали: выберите «Это не был мой выходной».",
+        "uk": "Weekday — «будній день», зазвичай із понеділка по п’ятницю. Day off — «вільний від роботи день»: у конкретної людини він може бути й у будні. It was my day off — «Це був мій вихідний». Для заперечення додаємо not після was/were: It was not my day off. Можна скоротити was not до wasn’t, were not до weren’t. Учора ви працювали: виберіть «Це не був мій вихідний»."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-09:intro3:r1",
+              "text": "It was not my day off."
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro3:r2",
+              "text": "It not was my day off."
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro3:r3",
+              "text": "It were not my day off."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-09:intro3:r1",
+              "text": "It was not my day off."
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro3:r2",
+              "text": "It not was my day off."
+            },
+            {
+              "responseId": "en:lesson-11:session-09:intro3:r3",
+              "text": "It were not my day off."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4d2a4fc38dcbfb3c3f5cdb53da8500954a08d291b87dbe1fc71802f455c20ce2"
+}

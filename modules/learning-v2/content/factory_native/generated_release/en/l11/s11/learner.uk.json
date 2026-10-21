@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-11:word:health-centre",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — health centre",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:word:health-centre:audio"
+      ],
+      "accessibilityLabel": "Картка слова — health centre",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:word:health-centre:audio",
+          "transcript": "health centre"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-11:word:health-centre:r1",
+            "targetText": "health centre",
+            "meaningByLocale": {
+              "ru": "медицинский центр.",
+              "uk": "медичний центр."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "health centre",
+          "definitionByLocale": {
+            "ru": "медицинский центр.",
+            "uk": "медичний центр."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був медичний центр відчинений",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був медичний центр відчинений",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the health centre open?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли медицинский центр открыт",
+          "uk": "Запитайте, чи був медичний центр відчинений"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "health",
+          "centre",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-11:i02:r1",
+          "text": "The health centre was not open."
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i02:r2",
+          "text": "The health centre was open."
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i02:r3",
+          "text": "Was the health centre open?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:i02:audio",
+          "transcript": "The health centre was not open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-11:i02:r1",
+            "targetText": "The health centre was not open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i02:r2",
+            "targetText": "The health centre was open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i02:r3",
+            "targetText": "Was the health centre open?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The health centre was not open.",
+              "uk": "У записі звучить The health centre was not open."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The health centre was not open.",
+              "uk": "У записі звучить The health centre was not open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте про вчорашню роботу центру",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-11:i03:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i03:r2",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i03:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте про вчорашню роботу центру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите о вчерашней работе центра",
+          "uk": "Запитайте про вчорашню роботу центру"
+        },
+        "gappedTargetPhrase": "___ the health centre open yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-11:i03:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i03:r2",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Запитайте про вчорашню роботу центру",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитайте про вчорашню роботу центру",
+            "feedbackByLocale": {
+              "ru": "Один центр: was.",
+              "uk": "Один центр: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитайте про вчорашню роботу центру",
+            "feedbackByLocale": {
+              "ru": "Вопрос с be начинается с was.",
+              "uk": "Запитання з be починається з was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:word:receptionist",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — receptionist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:word:receptionist:audio"
+      ],
+      "accessibilityLabel": "Картка слова — receptionist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:word:receptionist:audio",
+          "transcript": "receptionist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-11:word:receptionist:r1",
+            "targetText": "receptionist",
+            "meaningByLocale": {
+              "ru": "сотрудник на стойке приёма, например в регистратуре или отеле.",
+              "uk": "працівник за стійкою прийому, наприклад у реєстратурі або готелі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "receptionist",
+          "definitionByLocale": {
+            "ru": "сотрудник на стойке приёма, например в регистратуре или отеле.",
+            "uk": "працівник за стійкою прийому, наприклад у реєстратурі або готелі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був працівник привітний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був працівник привітний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the receptionist friendly?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли сотрудник приветливым",
+          "uk": "Запитайте, чи був працівник привітний"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "receptionist",
+          "friendly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-11:i05:r1",
+          "text": "The receptionist was helpful."
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i05:r2",
+          "text": "The receptionist was busy."
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i05:r3",
+          "text": "The receptionist was tired."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:i05:audio",
+          "transcript": "The receptionist was helpful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-11:i05:r1",
+            "targetText": "The receptionist was helpful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i05:r2",
+            "targetText": "The receptionist was busy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i05:r3",
+            "targetText": "The receptionist was tired.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The receptionist was helpful.",
+              "uk": "У записі звучить The receptionist was helpful."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The receptionist was helpful.",
+              "uk": "У записі звучить The receptionist was helpful."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажіть, що працівник учора не був зайнятий",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-11:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i06:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що працівник учора не був зайнятий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что сотрудник вчера не был занят",
+          "uk": "Скажіть, що працівник учора не був зайнятий"
+        },
+        "gappedTargetPhrase": "The receptionist ___ not busy yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-11:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i06:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Скажіть, що працівник учора не був зайнятий",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Скажіть, що працівник учора не був зайнятий",
+            "feedbackByLocale": {
+              "ru": "Один сотрудник: was.",
+              "uk": "Один працівник: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Скажіть, що працівник учора не був зайнятий",
+            "feedbackByLocale": {
+              "ru": "Отрицание с be: was not.",
+              "uk": "Заперечення з be: was not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:word:waiting-room",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — waiting room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:word:waiting-room:audio"
+      ],
+      "accessibilityLabel": "Картка слова — waiting room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:word:waiting-room:audio",
+          "transcript": "waiting room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-11:word:waiting-room:r1",
+            "targetText": "waiting room",
+            "meaningByLocale": {
+              "ru": "зал ожидания.",
+              "uk": "зала очікування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "waiting room",
+          "definitionByLocale": {
+            "ru": "зал ожидания.",
+            "uk": "зала очікування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи була зала очікування переповнена",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи була зала очікування переповнена",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the waiting room crowded?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли зал ожидания переполнен",
+          "uk": "Запитайте, чи була зала очікування переповнена"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "waiting",
+          "room",
+          "crowded"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-11:i08:r1",
+          "text": "The waiting room was empty."
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i08:r2",
+          "text": "The waiting room was crowded."
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i08:r3",
+          "text": "The waiting room was quiet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:i08:audio",
+          "transcript": "The waiting room was empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-11:i08:r1",
+            "targetText": "The waiting room was empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i08:r2",
+            "targetText": "The waiting room was crowded.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i08:r3",
+            "targetText": "The waiting room was quiet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The waiting room was empty.",
+              "uk": "У записі звучить The waiting room was empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The waiting room was empty.",
+              "uk": "У записі звучить The waiting room was empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте друзів, чи були вони в залі очікування",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-11:i09:r1",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i09:r2",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i09:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте друзів, чи були вони в залі очікування",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите друзей, были ли они в зале ожидания",
+          "uk": "Запитайте друзів, чи були вони в залі очікування"
+        },
+        "gappedTargetPhrase": "___ you in the waiting room?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-11:i09:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i09:r2",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i09:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Запитайте друзів, чи були вони в залі очікування",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитайте друзів, чи були вони в залі очікування",
+            "feedbackByLocale": {
+              "ru": "С you нужна were.",
+              "uk": "З you потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитайте друзів, чи були вони в залі очікування",
+            "feedbackByLocale": {
+              "ru": "Вопрос с were не требует did.",
+              "uk": "Запитання з were не потребує did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:word:check-up",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — check-up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:word:check-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — check-up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:word:check-up:audio",
+          "transcript": "check-up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-11:word:check-up:r1",
+            "targetText": "check-up",
+            "meaningByLocale": {
+              "ru": "профилактический осмотр у врача.",
+              "uk": "профілактичний огляд у лікаря."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "check-up",
+          "definitionByLocale": {
+            "ru": "профилактический осмотр у врача.",
+            "uk": "профілактичний огляд у лікаря."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що огляд не був швидким. Використайте was not",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що огляд не був швидким. Використайте was not",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The check-up was not quick.",
+        "localizedMeaning": {
+          "ru": "Скажите, что осмотр не был быстрым. Используйте was not",
+          "uk": "Скажіть, що огляд не був швидким. Використайте was not"
+        },
+        "orderedTokens": [
+          "The",
+          "check-up",
+          "was",
+          "not",
+          "quick"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-11:i11:r1",
+          "text": "Was your check-up quick?"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i11:r2",
+          "text": "Was her check-up quick?"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i11:r3",
+          "text": "Was his check-up quick?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:i11:audio",
+          "transcript": "Was your check-up quick?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-11:i11:r1",
+            "targetText": "Was your check-up quick?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i11:r2",
+            "targetText": "Was her check-up quick?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i11:r3",
+            "targetText": "Was his check-up quick?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was your check-up quick?",
+              "uk": "У записі звучить Was your check-up quick?"
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was your check-up quick?",
+              "uk": "У записі звучить Was your check-up quick?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав Were you in the waiting room? Дайте відповідь за себе й сестру: ні",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-11:i12:r1",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i12:r2",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-11:i12:r3",
+          "text": "don't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав Were you in the waiting room? Дайте відповідь за себе й сестру: ні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Were you in the waiting room? Ответьте за себя и сестру: нет",
+          "uk": "Друг запитав Were you in the waiting room? Дайте відповідь за себе й сестру: ні"
+        },
+        "gappedTargetPhrase": "No, we ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-11:i12:r1",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i12:r2",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i12:r3",
+            "text": "don't"
+          }
+        ],
+        "testedDimension": "Друг запитав Were you in the waiting room? Дайте відповідь за себе й сестру: ні",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав Were you in the waiting room? Дайте відповідь за себе й сестру: ні",
+            "feedbackByLocale": {
+              "ru": "С we нужна weren’t.",
+              "uk": "З we потрібна weren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав Were you in the waiting room? Дайте відповідь за себе й сестру: ні",
+            "feedbackByLocale": {
+              "ru": "На вопрос с were отвечаем were/weren’t.",
+              "uk": "На запитання з were відповідаємо were/weren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте назви з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте назви з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-11:i13:p1",
+            "target": "health centre",
+            "meaningByLocale": {
+              "ru": "медицинский центр",
+              "uk": "медичний центр"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-11:i13:p2",
+            "target": "receptionist",
+            "meaningByLocale": {
+              "ru": "сотрудник на стойке приёма",
+              "uk": "працівник за стійкою прийому"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-11:i13:p3",
+            "target": "waiting room",
+            "meaningByLocale": {
+              "ru": "зал ожидания",
+              "uk": "зала очікування"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-11:i13:p4",
+            "target": "check-up",
+            "meaningByLocale": {
+              "ru": "профилактический осмотр",
+              "uk": "профілактичний огляд"
+            }
+          }
+        ],
+        "leftColumn": [
+          "health centre",
+          "receptionist",
+          "waiting room",
+          "check-up"
+        ],
+        "rightColumn": [
+          "медичний центр",
+          "працівник за стійкою прийому",
+          "зала очікування",
+          "профілактичний огляд"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:i14:audio",
+          "transcript": "Please don't hurry me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't hurry me.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "hurry",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:i15:audio",
+          "transcript": "The health centre is open right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The health centre is open right now.",
+        "orderedTokens": [
+          "The",
+          "health",
+          "centre",
+          "is",
+          "open",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вчора зала очікування не була переповнена",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вчора зала очікування не була переповнена",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:i16:audio",
+          "transcript": "The waiting room was not crowded yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The waiting room was not crowded yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-11:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи був працівник зайнятий у понеділок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи був працівник зайнятий у понеділок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-11:i17:audio",
+          "transcript": "Was the receptionist busy on Monday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the receptionist busy on Monday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b3c372849ce87dae50fcc74904140e281daf7436f6cbb2f1eceae4f94b6ef140"
+}

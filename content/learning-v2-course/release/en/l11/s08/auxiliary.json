@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-08:intro1:r2": {
+          "ru": "С it нужна was.",
+          "uk": "З it потрібна was."
+        },
+        "en:lesson-11:session-08:intro1:r3": {
+          "ru": "Перед названием месяца нужна in.",
+          "uk": "Перед назвою місяця потрібна in."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-08:intro2:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-11:session-08:intro2:r3": {
+          "ru": "Эта фраза о сентябре. Нужна фраза о December.",
+          "uk": "Ця фраза про вересень. Потрібна фраза про December."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-08:intro3:r2": {
+          "ru": "Один парк: was.",
+          "uk": "Один парк: was."
+        },
+        "en:lesson-11:session-08:intro3:r3": {
+          "ru": "С summer здесь нужна in.",
+          "uk": "Із summer тут потрібна in."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fb56b128a17d6d1f1cd54539b78ef0ae4cbf42ba50abe87c09e4506d4bf54954"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; in May; in September; in December; in summer",
+    "uk": "was/were; in May; in September; in December; in summer"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "В мае",
+        "uk": "У травні"
+      },
+      "bodyByLocale": {
+        "ru": "May — «май». Название месяца пишем с заглавной буквы. Перед месяцем используем in: It was warm in May — «В мае было тепло». Вы вспоминаете прошлый май, поэтому was. Это описание вашей поездки, а не обещание одинаковой погоды каждый год.",
+        "uk": "May — «травень». Назву місяця пишемо з великої літери. Перед місяцем використовуємо in: It was warm in May — «У травні було тепло». Ви згадуєте минулий травень, тому was. Це опис вашої поїздки, а не обіцянка однакової погоди щороку."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-08:intro1:r1",
+              "text": "It was warm in May."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro1:r2",
+              "text": "It were warm in May."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro1:r3",
+              "text": "It was warm on May."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-08:intro1:r1",
+              "text": "It was warm in May."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro1:r2",
+              "text": "It were warm in May."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro1:r3",
+              "text": "It was warm on May."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сентябрь и декабрь",
+        "uk": "Вересень і грудень"
+      },
+      "bodyByLocale": {
+        "ru": "September — «сентябрь», December — «декабрь». В сентябре вы с другом были в Париже: We were in Paris in September. В декабре были дома: We were at home in December. Обе фразы описывают прошлый год. Выберите фразу о декабре.",
+        "uk": "September — «вересень», December — «грудень». У вересні ви з другом були в Парижі: We were in Paris in September. У грудні були вдома: We were at home in December. Обидві фрази описують минулий рік. Виберіть фразу про грудень."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-08:intro2:r1",
+              "text": "We were at home in December."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro2:r2",
+              "text": "We was at home in December."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro2:r3",
+              "text": "We were in Paris in September."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-08:intro2:r1",
+              "text": "We were at home in December."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro2:r2",
+              "text": "We was at home in December."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro2:r3",
+              "text": "We were in Paris in September."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Летом",
+        "uk": "Улітку"
+      },
+      "bodyByLocale": {
+        "ru": "Summer — «лето». Можно сказать in summer — «летом»: The park was busy in summer. Вы вспоминаете, что летом в парке было много людей. Сейчас там тихо: The park is quiet right now. Вспомните и просьбу: Please don’t shout — «Пожалуйста, не кричи». Выберите фразу о парке прошлым летом.",
+        "uk": "Summer — «літо». Можна сказати in summer — «улітку»: The park was busy in summer. Ви згадуєте, що влітку в парку було багато людей. Зараз там тихо: The park is quiet right now. Згадайте й прохання: Please don’t shout — «Будь ласка, не кричи». Виберіть фразу про парк минулого літа."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-08:intro3:r1",
+              "text": "The park was busy in summer."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro3:r2",
+              "text": "The park were busy in summer."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro3:r3",
+              "text": "The park was busy on summer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-08:intro3:r1",
+              "text": "The park was busy in summer."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro3:r2",
+              "text": "The park were busy in summer."
+            },
+            {
+              "responseId": "en:lesson-11:session-08:intro3:r3",
+              "text": "The park was busy on summer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "63e75a69690f29792773abcbe1c4fa24f05f7727d7882e23c051e23ad56d6f7d"
+}

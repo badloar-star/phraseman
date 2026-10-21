@@ -15,8 +15,8 @@
         "uk": "Один предмет або людина"
       },
       "bodyByLocale": {
-        "ru": "bead — бусина. Это исчисляемое слово: один — a bead. A ставим перед согласным звуком, an — перед гласным.",
-        "uk": "bead — намистина. Це злічуване слово: один — a bead. A ставимо перед приголосним звуком, an — перед голосним."
+        "ru": "errand — небольшое дело вне дома: например, забрать посылку. Это исчисляемое слово: один — an errand. A ставим перед согласным звуком, an — перед гласным.",
+        "uk": "errand — невелика справа поза домом: наприклад, забрати посилку. Це злічуване слово: один — an errand. A ставимо перед приголосним звуком, an — перед голосним."
       },
       "question": {
         "interactionId": "en:lesson-17:session-06:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-17:session-06:intro1:r1",
-              "text": "This is a bead."
+              "text": "This is an errand."
             },
             {
               "responseId": "en:lesson-17:session-06:intro1:r2",
-              "text": "This is an bead."
+              "text": "This is a errand."
             },
             {
               "responseId": "en:lesson-17:session-06:intro1:r3",
-              "text": "This is bead."
+              "text": "This is errand."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-17:session-06:intro1:r1",
-              "text": "This is a bead."
+              "text": "This is an errand."
             },
             {
               "responseId": "en:lesson-17:session-06:intro1:r2",
-              "text": "This is an bead."
+              "text": "This is a errand."
             },
             {
               "responseId": "en:lesson-17:session-06:intro1:r3",
-              "text": "This is bead."
+              "text": "This is errand."
             }
           ]
         },
@@ -69,8 +69,8 @@
         "uk": "Рахуємо декілька"
       },
       "bodyByLocale": {
-        "ru": "sequin — пайетка, маленький блестящий кружок для украшения ткани. Один: a sequin. Два: two sequins. После two нужно множественное sequins.",
-        "uk": "sequin — паєтка, маленький блискучий кружечок для оздоблення тканини. Один: a sequin. Два: two sequins. Після two потрібна множина sequins."
+        "ru": "replacement — замена, вещь взамен прежней. Один: a replacement. Два: two replacements. После two нужно множественное replacements.",
+        "uk": "replacement — заміна, річ замість попередньої. Один: a replacement. Два: two replacements. Після two потрібна множина replacements."
       },
       "question": {
         "interactionId": "en:lesson-17:session-06:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-17:session-06:intro2:r1",
-              "text": "There are two sequins on the fabric."
+              "text": "There are two replacements in the shop."
             },
             {
               "responseId": "en:lesson-17:session-06:intro2:r2",
-              "text": "There are two sequin on the fabric."
+              "text": "There are two replacement in the shop."
             },
             {
               "responseId": "en:lesson-17:session-06:intro2:r3",
-              "text": "There are a two sequins on the fabric."
+              "text": "There are a two replacements in the shop."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-17:session-06:intro2:r1",
-              "text": "There are two sequins on the fabric."
+              "text": "There are two replacements in the shop."
             },
             {
               "responseId": "en:lesson-17:session-06:intro2:r2",
-              "text": "There are two sequin on the fabric."
+              "text": "There are two replacement in the shop."
             },
             {
               "responseId": "en:lesson-17:session-06:intro2:r3",
-              "text": "There are a two sequins on the fabric."
+              "text": "There are a two replacements in the shop."
             }
           ]
         },
@@ -123,8 +123,8 @@
         "uk": "Загальна назва без a"
       },
       "bodyByLocale": {
-        "ru": "glitter — декоративные блёстки, блестящий порошок. Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки». embroidery — вышивка, искусство вышивания. Embroidery как занятие — неисчисляемое: без an и без множественного -s. Отдельные предметы или события можно назвать другими исчисляемыми словами; здесь тренируем общие названия.",
-        "uk": "glitter — декоративні блискітки, блискучий порошок. Glitter як матеріал — незлічуване слово: is, навіть якщо українською «блискітки». embroidery — вишивка, мистецтво вишивання. Embroidery як заняття — незлічуване: без an та без множинного -s. Окремі предмети або події можна назвати іншими злічуваними словами; тут тренуємо загальні назви."
+        "ru": "housework — домашние дела: уборка, стирка и другая работа по дому. Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s. public transport — общественный транспорт. Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет. Отдельные предметы или события можно назвать другими исчисляемыми словами; здесь тренируем общие названия.",
+        "uk": "housework — хатні справи: прибирання, прання та інша робота вдома. Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s. public transport — громадський транспорт. Public transport — загальна незлічувана назва: без a. Окремий автобус можна порахувати, транспорт загалом — ні. Окремі предмети або події можна назвати іншими злічуваними словами; тут тренуємо загальні назви."
       },
       "question": {
         "interactionId": "en:lesson-17:session-06:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-17:session-06:intro3:r1",
-              "text": "This glitter is blue."
+              "text": "This housework is tiring."
             },
             {
               "responseId": "en:lesson-17:session-06:intro3:r2",
-              "text": "This glitter are blue."
+              "text": "This housework are tiring."
             },
             {
               "responseId": "en:lesson-17:session-06:intro3:r3",
-              "text": "These glitters are blue."
+              "text": "These houseworks are tiring."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-17:session-06:intro3:r1",
-              "text": "This glitter is blue."
+              "text": "This housework is tiring."
             },
             {
               "responseId": "en:lesson-17:session-06:intro3:r2",
-              "text": "This glitter are blue."
+              "text": "This housework are tiring."
             },
             {
               "responseId": "en:lesson-17:session-06:intro3:r3",
-              "text": "These glitters are blue."
+              "text": "These houseworks are tiring."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b7f056c5274c170ec643408be40f82fb04913165b007ba504236197c01f7f17a"
+  "introFingerprint": "2b65b866ba5eefc83047e40c9effd844c9d455e30f4401182af4a26372394587"
 }

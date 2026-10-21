@@ -1,21 +1,21 @@
-# Английский · Урок 17 · Занятие 6 — Вещи для рукоделия
+# Английский · Урок 17 · Занятие 6 — Повседневные дела
 
-**Ситуация.** Вы выбираете украшения и материалы для рукоделия.
+**Ситуация.** Вы планируете домашние дела и поездку за заменой сломанной вещи.
 
 **Что вы освоите:** count nouns / non-count nouns: a, an, plural forms
-**Новые слова:** bead, sequin, glitter, embroidery
+**Новые слова:** errand, replacement, housework, public transport
 
 ## Интро 1
 
 ### Один предмет или человек
 
-bead — бусина. Это исчисляемое слово: один — a bead. A ставим перед согласным звуком, an — перед гласным.
+errand — небольшое дело вне дома: например, забрать посылку. Это исчисляемое слово: один — an errand. A ставим перед согласным звуком, an — перед гласным.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **This is a bead.**
-- ❌ This is an bead. — *Bead начинается с согласного звука: a bead.*
-- ❌ This is bead. — *Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.*
+- ✅ **This is an errand.**
+- ❌ This is a errand. — *Errand начинается с гласного звука: an errand.*
+- ❌ This is errand. — *Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.*
 
 ---
 
@@ -23,13 +23,13 @@ bead — бусина. Это исчисляемое слово: один — a 
 
 ### Считаем несколько
 
-sequin — пайетка, маленький блестящий кружок для украшения ткани. Один: a sequin. Два: two sequins. После two нужно множественное sequins.
+replacement — замена, вещь взамен прежней. Один: a replacement. Два: two replacements. После two нужно множественное replacements.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **There are two sequins on the fabric.**
-- ❌ There are two sequin on the fabric. — *После two нужно множественное sequins.*
-- ❌ There are a two sequins on the fabric. — *Не ставьте a перед two.*
+- ✅ **There are two replacements in the shop.**
+- ❌ There are two replacement in the shop. — *После two нужно множественное replacements.*
+- ❌ There are a two replacements in the shop. — *Не ставьте a перед two.*
 
 ---
 
@@ -37,115 +37,115 @@ sequin — пайетка, маленький блестящий кружок д
 
 ### Общее название без a
 
-glitter — декоративные блёстки, блестящий порошок. Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки». embroidery — вышивка, искусство вышивания. Embroidery как занятие — неисчисляемое: без an и без множественного -s. Отдельные предметы или события можно назвать другими исчисляемыми словами; здесь тренируем общие названия.
+housework — домашние дела: уборка, стирка и другая работа по дому. Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s. public transport — общественный транспорт. Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет. Отдельные предметы или события можно назвать другими исчисляемыми словами; здесь тренируем общие названия.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **This glitter is blue.**
-- ❌ This glitter are blue. — *Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки».*
-- ❌ These glitters are blue. — *В этом значении у слова нет множественного -s.*
+- ✅ **This housework is tiring.**
+- ❌ This housework are tiring. — *Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.*
+- ❌ These houseworks are tiring. — *В этом значении у слова нет множественного -s.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — bead**
-<!-- interaction_id: en:lesson-17:session-06:word:bead; family: word_card -->
-> **bead** — бусина.
+**1 · Карточка слова — errand**
+<!-- interaction_id: en:lesson-17:session-06:word:errand; family: word_card -->
+> **errand** — небольшое дело вне дома: например, забрать посылку.
 
-**2 · Скажите: «Это бусина». **
+**2 · Скажите: «Это небольшое дело вне дома». **
 <!-- interaction_id: en:lesson-17:session-06:i01; family: phrase_builder -->
-Плитки: `bead` `a` `is` `This` → **This is a bead.**
+Плитки: `errand` `an` `is` `This` → **This is an errand.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-17:session-06:i02; family: listen_choose -->
-🔊 *This is a bead.* → **This is a bead.** · This is an bead. · This is bead.
-- This is an bead. — *В записи звучит This is a bead.*
-- This is bead. — *В записи звучит This is a bead.*
+🔊 *This is an errand.* → **This is an errand.** · This is a errand. · This is errand.
+- This is a errand. — *В записи звучит This is an errand.*
+- This is errand. — *В записи звучит This is an errand.*
 
 **4 · Выберите форму для указанного количества или общего названия.**
 <!-- interaction_id: en:lesson-17:session-06:i03; family: context_gap_grammar -->
-This is ___ bead. → **a** · an · the two
-- an — *Bead начинается с согласного звука: a bead.*
-- the two — *Bead начинается с согласного звука: a bead.*
+This is ___ errand. → **an** · a · the two
+- a — *Errand начинается с гласного звука: an errand.*
+- the two — *Errand начинается с гласного звука: an errand.*
 
-**5 · Карточка слова — sequin**
-<!-- interaction_id: en:lesson-17:session-06:word:sequin; family: word_card -->
-> **sequin** — пайетка, маленький блестящий кружок для украшения ткани.
+**5 · Карточка слова — replacement**
+<!-- interaction_id: en:lesson-17:session-06:word:replacement; family: word_card -->
+> **replacement** — замена, вещь взамен прежней.
 
-**6 · Скажите: «На ткани две пайетки». У sequin множественное число — sequins.**
+**6 · Скажите: «В магазине есть две вещи на замену». У replacement множественное число — replacements.**
 <!-- interaction_id: en:lesson-17:session-06:i04; family: phrase_builder -->
-Плитки: `fabric` `the` `on` `sequins` `two` `are` `There` → **There are two sequins on the fabric.**
+Плитки: `shop` `the` `in` `replacements` `two` `are` `There` → **There are two replacements in the shop.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-17:session-06:i05; family: listen_choose -->
-🔊 *There are two sequins on the fabric.* → **There are two sequins on the fabric.** · There are two sequin on the fabric. · There are a two sequins on the fabric.
-- There are two sequin on the fabric. — *В записи звучит There are two sequins on the fabric.*
-- There are a two sequins on the fabric. — *В записи звучит There are two sequins on the fabric.*
+🔊 *There are two replacements in the shop.* → **There are two replacements in the shop.** · There are two replacement in the shop. · There are a two replacements in the shop.
+- There are two replacement in the shop. — *В записи звучит There are two replacements in the shop.*
+- There are a two replacements in the shop. — *В записи звучит There are two replacements in the shop.*
 
 **8 · Выберите форму для указанного количества или общего названия.**
 <!-- interaction_id: en:lesson-17:session-06:i06; family: context_gap_grammar -->
-There are two ___ on the fabric. → **sequins** · sequin · a sequin
-- sequin — *После two нужно множественное sequins.*
-- a sequin — *После two нужно множественное sequins.*
+There are two ___ in the shop. → **replacements** · replacement · a replacement
+- replacement — *После two нужно множественное replacements.*
+- a replacement — *После two нужно множественное replacements.*
 
-**9 · Карточка слова — glitter**
-<!-- interaction_id: en:lesson-17:session-06:word:glitter; family: word_card -->
-> **glitter** — декоративные блёстки, блестящий порошок.
+**9 · Карточка слова — housework**
+<!-- interaction_id: en:lesson-17:session-06:word:housework; family: word_card -->
+> **housework** — домашние дела: уборка, стирка и другая работа по дому.
 
-**10 · Скажите: «Эти блёстки синие». **
+**10 · Скажите: «Эта работа по дому утомительна». **
 <!-- interaction_id: en:lesson-17:session-06:i07; family: phrase_builder -->
-Плитки: `blue` `is` `glitter` `This` → **This glitter is blue.**
+Плитки: `tiring` `is` `housework` `This` → **This housework is tiring.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-17:session-06:i08; family: listen_choose -->
-🔊 *This glitter is blue.* → **This glitter is blue.** · This glitter are blue. · These glitters are blue.
-- This glitter are blue. — *В записи звучит This glitter is blue.*
-- These glitters are blue. — *В записи звучит This glitter is blue.*
+🔊 *This housework is tiring.* → **This housework is tiring.** · This housework are tiring. · These houseworks are tiring.
+- This housework are tiring. — *В записи звучит This housework is tiring.*
+- These houseworks are tiring. — *В записи звучит This housework is tiring.*
 
 **12 · Выберите форму для указанного количества или общего названия.**
 <!-- interaction_id: en:lesson-17:session-06:i09; family: context_gap_grammar -->
-This glitter ___ blue. → **is** · are · am
-- are — *Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки».*
-- am — *Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки».*
+This housework ___ tiring. → **is** · are · am
+- are — *Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.*
+- am — *Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.*
 
-**13 · Карточка слова — embroidery**
-<!-- interaction_id: en:lesson-17:session-06:word:embroidery; family: word_card -->
-> **embroidery** — вышивка, искусство вышивания.
+**13 · Карточка слова — public transport**
+<!-- interaction_id: en:lesson-17:session-06:word:public-transport; family: word_card -->
+> **public transport** — общественный транспорт.
 
-**14 · Скажите: «Нам нравится вышивание». **
+**14 · Скажите: «Мы пользуемся общественным транспортом». **
 <!-- interaction_id: en:lesson-17:session-06:i10; family: phrase_builder -->
-Плитки: `embroidery` `enjoy` `We` → **We enjoy embroidery.**
+Плитки: `transport` `public` `use` `We` → **We use public transport.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-17:session-06:i11; family: listen_choose -->
-🔊 *We enjoy embroidery.* → **We enjoy embroidery.** · We enjoy an embroidery. · We enjoy embroiderys.
-- We enjoy an embroidery. — *В записи звучит We enjoy embroidery.*
-- We enjoy embroiderys. — *В записи звучит We enjoy embroidery.*
+🔊 *We use public transport.* → **We use public transport.** · We use a public transport. · We use public transports.
+- We use a public transport. — *В записи звучит We use public transport.*
+- We use public transports. — *В записи звучит We use public transport.*
 
 **16 · Выберите форму для указанного количества или общего названия.**
 <!-- interaction_id: en:lesson-17:session-06:i12; family: context_gap_grammar -->
-We enjoy ___. → **embroidery** · an embroidery · embroiderys
-- an embroidery — *Embroidery как занятие — неисчисляемое: без an и без множественного -s.*
-- embroiderys — *Embroidery как занятие — неисчисляемое: без an и без множественного -s.*
+We use ___. → **public transport** · a public transport · public transports
+- a public transport — *Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.*
+- public transports — *Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-06:i13; family: speed_match -->
-bead — бусина · sequin — пайетка, маленький блестящий кружок для украшения ткани · glitter — декоративные блёстки, блестящий порошок · embroidery — вышивка, искусство вышивания
+errand — небольшое дело вне дома: например, забрать посылку · replacement — замена, вещь взамен прежней · housework — домашние дела: уборка, стирка и другая работа по дому · public transport — общественный транспорт
 
 **18 · Соберите услышанную фразу с исчисляемым словом**
 <!-- interaction_id: en:lesson-17:session-06:i14; family: listen_build_dictation -->
-🔊 *This is a bead.* Плитки: `bead` `a` `is` `This` → **This is a bead.**
+🔊 *This is an errand.* Плитки: `errand` `an` `is` `This` → **This is an errand.**
 
 **19 · Соберите услышанную фразу с общим названием**
 <!-- interaction_id: en:lesson-17:session-06:i15; family: listen_build_dictation -->
-🔊 *This glitter is blue.* Плитки: `blue` `is` `glitter` `This` → **This glitter is blue.**
+🔊 *This housework is tiring.* Плитки: `tiring` `is` `housework` `This` → **This housework is tiring.**
 
 **20 · Скажите фразу с неисчисляемым словом**
 <!-- interaction_id: en:lesson-17:session-06:i16; family: scripted_repeat_compare -->
-🎙 **We enjoy embroidery.**
+🎙 **We use public transport.**
 
 **21 · Скажите фразу о количестве**
 <!-- interaction_id: en:lesson-17:session-06:i17; family: scripted_repeat_compare -->
-🎙 **There are two sequins on the fabric.**
+🎙 **There are two replacements in the shop.**
 

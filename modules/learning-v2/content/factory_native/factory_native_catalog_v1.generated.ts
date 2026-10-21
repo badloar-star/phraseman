@@ -6316,7 +6316,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 17, sessionOrdinal: 6,
-    sourceFingerprint: "869d9f152bda99cc0dae28332c43e91b8e30228291eeef9328972a04aa272147",
+    sourceFingerprint: "10e286714b61176946c63d6e1339e65173905b0fd5400d3ce26283cd9c7582a9",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"count nouns / non-count nouns: a, an, plural forms","uk":"count nouns / non-count nouns: a, an, plural forms"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 17","uk":"Англійська · Урок 17"}),

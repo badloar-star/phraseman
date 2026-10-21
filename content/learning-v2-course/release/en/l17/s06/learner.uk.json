@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-17:session-06:word:bead",
+      "interactionId": "en:lesson-17:session-06:word:errand",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — bead",
+      "prompt": "Картка слова — errand",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-17:session-06:word:bead:audio"
+        "en:lesson-17:session-06:word:errand:audio"
       ],
-      "accessibilityLabel": "Картка слова — bead",
+      "accessibilityLabel": "Картка слова — errand",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-17:session-06:word:bead:audio",
-          "transcript": "bead"
+          "audioTargetId": "en:lesson-17:session-06:word:errand:audio",
+          "transcript": "errand"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-17:session-06:word:bead:r1",
-            "targetText": "bead",
+            "responseId": "en:lesson-17:session-06:word:errand:r1",
+            "targetText": "errand",
             "meaningByLocale": {
-              "ru": "бусина.",
-              "uk": "намистина."
+              "ru": "небольшое дело вне дома: например, забрать посылку.",
+              "uk": "невелика справа поза домом: наприклад, забрати посилку."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "bead",
+          "word": "errand",
           "definitionByLocale": {
-            "ru": "бусина.",
-            "uk": "намистина."
+            "ru": "небольшое дело вне дома: например, забрать посылку.",
+            "uk": "невелика справа поза домом: наприклад, забрати посилку."
           }
         }
       },
@@ -52,23 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Це намистина».",
+      "prompt": "Скажіть: «Це невелика справа поза домом».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Це намистина».",
+      "accessibilityLabel": "Скажіть: «Це невелика справа поза домом».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This is a bead.",
+        "targetPhrase": "This is an errand.",
         "localizedMeaning": {
-          "ru": "Скажите: «Это бусина».",
-          "uk": "Скажіть: «Це намистина»."
+          "ru": "Скажите: «Это небольшое дело вне дома».",
+          "uk": "Скажіть: «Це невелика справа поза домом»."
         },
         "orderedTokens": [
           "This",
           "is",
-          "a",
-          "bead"
+          "an",
+          "errand"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i02:r1",
-          "text": "This is a bead."
+          "text": "This is an errand."
         },
         {
           "responseId": "en:lesson-17:session-06:i02:r2",
-          "text": "This is an bead."
+          "text": "This is a errand."
         },
         {
           "responseId": "en:lesson-17:session-06:i02:r3",
-          "text": "This is bead."
+          "text": "This is errand."
         }
       ],
       "mediaIds": [],
@@ -109,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-17:session-06:i02:audio",
-          "transcript": "This is a bead."
+          "transcript": "This is an errand."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-17:session-06:i02:r1",
-            "targetText": "This is a bead.",
+            "targetText": "This is an errand.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-17:session-06:i02:r2",
-            "targetText": "This is an bead.",
+            "targetText": "This is a errand.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-17:session-06:i02:r3",
-            "targetText": "This is bead.",
+            "targetText": "This is errand.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит This is a bead.",
-              "uk": "У записі звучить This is a bead."
+              "ru": "В записи звучит This is an errand.",
+              "uk": "У записі звучить This is an errand."
             }
           },
           {
@@ -145,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит This is a bead.",
-              "uk": "У записі звучить This is a bead."
+              "ru": "В записи звучит This is an errand.",
+              "uk": "У записі звучить This is an errand."
             }
           }
         ],
@@ -165,11 +165,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i03:r1",
-          "text": "a"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-17:session-06:i03:r2",
-          "text": "an"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-17:session-06:i03:r3",
@@ -185,15 +185,15 @@
           "ru": "Выберите форму для указанного количества или общего названия.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
-        "gappedTargetPhrase": "This is ___ bead.",
+        "gappedTargetPhrase": "This is ___ errand.",
         "gapOptions": [
           {
             "responseId": "en:lesson-17:session-06:i03:r1",
-            "text": "a"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-17:session-06:i03:r2",
-            "text": "an"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-17:session-06:i03:r3",
@@ -207,8 +207,8 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Bead начинается с согласного звука: a bead.",
-              "uk": "Bead починається з приголосного звука: a bead."
+              "ru": "Errand начинается с гласного звука: an errand.",
+              "uk": "Errand починається з голосного звука: an errand."
             }
           },
           {
@@ -216,8 +216,8 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Bead начинается с согласного звука: a bead.",
-              "uk": "Bead починається з приголосного звука: a bead."
+              "ru": "Errand начинается с гласного звука: an errand.",
+              "uk": "Errand починається з голосного звука: an errand."
             }
           }
         ]
@@ -225,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-17:session-06:word:sequin",
+      "interactionId": "en:lesson-17:session-06:word:replacement",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — sequin",
+      "prompt": "Картка слова — replacement",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-17:session-06:word:sequin:audio"
+        "en:lesson-17:session-06:word:replacement:audio"
       ],
-      "accessibilityLabel": "Картка слова — sequin",
+      "accessibilityLabel": "Картка слова — replacement",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-17:session-06:word:sequin:audio",
-          "transcript": "sequin"
+          "audioTargetId": "en:lesson-17:session-06:word:replacement:audio",
+          "transcript": "replacement"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-17:session-06:word:sequin:r1",
-            "targetText": "sequin",
+            "responseId": "en:lesson-17:session-06:word:replacement:r1",
+            "targetText": "replacement",
             "meaningByLocale": {
-              "ru": "пайетка, маленький блестящий кружок для украшения ткани.",
-              "uk": "паєтка, маленький блискучий кружечок для оздоблення тканини."
+              "ru": "замена, вещь взамен прежней.",
+              "uk": "заміна, річ замість попередньої."
             }
           }
         ],
@@ -258,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "sequin",
+          "word": "replacement",
           "definitionByLocale": {
-            "ru": "пайетка, маленький блестящий кружок для украшения ткани.",
-            "uk": "паєтка, маленький блискучий кружечок для оздоблення тканини."
+            "ru": "замена, вещь взамен прежней.",
+            "uk": "заміна, річ замість попередньої."
           }
         }
       },
@@ -273,26 +273,26 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «На тканині дві паєтки». У sequin множина — sequins.",
+      "prompt": "Скажіть: «У магазині є дві речі на заміну». У replacement множина — replacements.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «На тканині дві паєтки». У sequin множина — sequins.",
+      "accessibilityLabel": "Скажіть: «У магазині є дві речі на заміну». У replacement множина — replacements.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "There are two sequins on the fabric.",
+        "targetPhrase": "There are two replacements in the shop.",
         "localizedMeaning": {
-          "ru": "Скажите: «На ткани две пайетки». У sequin множественное число — sequins.",
-          "uk": "Скажіть: «На тканині дві паєтки». У sequin множина — sequins."
+          "ru": "Скажите: «В магазине есть две вещи на замену». У replacement множественное число — replacements.",
+          "uk": "Скажіть: «У магазині є дві речі на заміну». У replacement множина — replacements."
         },
         "orderedTokens": [
           "There",
           "are",
           "two",
-          "sequins",
-          "on",
+          "replacements",
+          "in",
           "the",
-          "fabric"
+          "shop"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -313,15 +313,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i05:r1",
-          "text": "There are two sequins on the fabric."
+          "text": "There are two replacements in the shop."
         },
         {
           "responseId": "en:lesson-17:session-06:i05:r2",
-          "text": "There are two sequin on the fabric."
+          "text": "There are two replacement in the shop."
         },
         {
           "responseId": "en:lesson-17:session-06:i05:r3",
-          "text": "There are a two sequins on the fabric."
+          "text": "There are a two replacements in the shop."
         }
       ],
       "mediaIds": [],
@@ -333,23 +333,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-17:session-06:i05:audio",
-          "transcript": "There are two sequins on the fabric."
+          "transcript": "There are two replacements in the shop."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-17:session-06:i05:r1",
-            "targetText": "There are two sequins on the fabric.",
+            "targetText": "There are two replacements in the shop.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-17:session-06:i05:r2",
-            "targetText": "There are two sequin on the fabric.",
+            "targetText": "There are two replacement in the shop.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-17:session-06:i05:r3",
-            "targetText": "There are a two sequins on the fabric.",
+            "targetText": "There are a two replacements in the shop.",
             "meaningByLocale": null
           }
         ],
@@ -360,8 +360,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит There are two sequins on the fabric.",
-              "uk": "У записі звучить There are two sequins on the fabric."
+              "ru": "В записи звучит There are two replacements in the shop.",
+              "uk": "У записі звучить There are two replacements in the shop."
             }
           },
           {
@@ -369,8 +369,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит There are two sequins on the fabric.",
-              "uk": "У записі звучить There are two sequins on the fabric."
+              "ru": "В записи звучит There are two replacements in the shop.",
+              "uk": "У записі звучить There are two replacements in the shop."
             }
           }
         ],
@@ -389,15 +389,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i06:r1",
-          "text": "sequins"
+          "text": "replacements"
         },
         {
           "responseId": "en:lesson-17:session-06:i06:r2",
-          "text": "sequin"
+          "text": "replacement"
         },
         {
           "responseId": "en:lesson-17:session-06:i06:r3",
-          "text": "a sequin"
+          "text": "a replacement"
         }
       ],
       "mediaIds": [],
@@ -409,19 +409,19 @@
           "ru": "Выберите форму для указанного количества или общего названия.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
-        "gappedTargetPhrase": "There are two ___ on the fabric.",
+        "gappedTargetPhrase": "There are two ___ in the shop.",
         "gapOptions": [
           {
             "responseId": "en:lesson-17:session-06:i06:r1",
-            "text": "sequins"
+            "text": "replacements"
           },
           {
             "responseId": "en:lesson-17:session-06:i06:r2",
-            "text": "sequin"
+            "text": "replacement"
           },
           {
             "responseId": "en:lesson-17:session-06:i06:r3",
-            "text": "a sequin"
+            "text": "a replacement"
           }
         ],
         "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
@@ -431,8 +431,8 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное sequins.",
-              "uk": "Після two потрібна множина sequins."
+              "ru": "После two нужно множественное replacements.",
+              "uk": "Після two потрібна множина replacements."
             }
           },
           {
@@ -440,8 +440,8 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное sequins.",
-              "uk": "Після two потрібна множина sequins."
+              "ru": "После two нужно множественное replacements.",
+              "uk": "Після two потрібна множина replacements."
             }
           }
         ]
@@ -449,32 +449,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-17:session-06:word:glitter",
+      "interactionId": "en:lesson-17:session-06:word:housework",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — glitter",
+      "prompt": "Картка слова — housework",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-17:session-06:word:glitter:audio"
+        "en:lesson-17:session-06:word:housework:audio"
       ],
-      "accessibilityLabel": "Картка слова — glitter",
+      "accessibilityLabel": "Картка слова — housework",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-17:session-06:word:glitter:audio",
-          "transcript": "glitter"
+          "audioTargetId": "en:lesson-17:session-06:word:housework:audio",
+          "transcript": "housework"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-17:session-06:word:glitter:r1",
-            "targetText": "glitter",
+            "responseId": "en:lesson-17:session-06:word:housework:r1",
+            "targetText": "housework",
             "meaningByLocale": {
-              "ru": "декоративные блёстки, блестящий порошок.",
-              "uk": "декоративні блискітки, блискучий порошок."
+              "ru": "домашние дела: уборка, стирка и другая работа по дому.",
+              "uk": "хатні справи: прибирання, прання та інша робота вдома."
             }
           }
         ],
@@ -482,10 +482,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "glitter",
+          "word": "housework",
           "definitionByLocale": {
-            "ru": "декоративные блёстки, блестящий порошок.",
-            "uk": "декоративні блискітки, блискучий порошок."
+            "ru": "домашние дела: уборка, стирка и другая работа по дому.",
+            "uk": "хатні справи: прибирання, прання та інша робота вдома."
           }
         }
       },
@@ -497,23 +497,23 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Ці блискітки сині».",
+      "prompt": "Скажіть: «Ця хатня робота виснажлива».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Ці блискітки сині».",
+      "accessibilityLabel": "Скажіть: «Ця хатня робота виснажлива».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This glitter is blue.",
+        "targetPhrase": "This housework is tiring.",
         "localizedMeaning": {
-          "ru": "Скажите: «Эти блёстки синие».",
-          "uk": "Скажіть: «Ці блискітки сині»."
+          "ru": "Скажите: «Эта работа по дому утомительна».",
+          "uk": "Скажіть: «Ця хатня робота виснажлива»."
         },
         "orderedTokens": [
           "This",
-          "glitter",
+          "housework",
           "is",
-          "blue"
+          "tiring"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +534,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i08:r1",
-          "text": "This glitter is blue."
+          "text": "This housework is tiring."
         },
         {
           "responseId": "en:lesson-17:session-06:i08:r2",
-          "text": "This glitter are blue."
+          "text": "This housework are tiring."
         },
         {
           "responseId": "en:lesson-17:session-06:i08:r3",
-          "text": "These glitters are blue."
+          "text": "These houseworks are tiring."
         }
       ],
       "mediaIds": [],
@@ -554,23 +554,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-17:session-06:i08:audio",
-          "transcript": "This glitter is blue."
+          "transcript": "This housework is tiring."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-17:session-06:i08:r1",
-            "targetText": "This glitter is blue.",
+            "targetText": "This housework is tiring.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-17:session-06:i08:r2",
-            "targetText": "This glitter are blue.",
+            "targetText": "This housework are tiring.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-17:session-06:i08:r3",
-            "targetText": "These glitters are blue.",
+            "targetText": "These houseworks are tiring.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +581,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит This glitter is blue.",
-              "uk": "У записі звучить This glitter is blue."
+              "ru": "В записи звучит This housework is tiring.",
+              "uk": "У записі звучить This housework is tiring."
             }
           },
           {
@@ -590,8 +590,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит This glitter is blue.",
-              "uk": "У записі звучить This glitter is blue."
+              "ru": "В записи звучит This housework is tiring.",
+              "uk": "У записі звучить This housework is tiring."
             }
           }
         ],
@@ -630,7 +630,7 @@
           "ru": "Выберите форму для указанного количества или общего названия.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
-        "gappedTargetPhrase": "This glitter ___ blue.",
+        "gappedTargetPhrase": "This housework ___ tiring.",
         "gapOptions": [
           {
             "responseId": "en:lesson-17:session-06:i09:r1",
@@ -652,8 +652,8 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки».",
-              "uk": "Glitter як матеріал — незлічуване слово: is, навіть якщо українською «блискітки»."
+              "ru": "Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.",
+              "uk": "Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s."
             }
           },
           {
@@ -661,8 +661,8 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки».",
-              "uk": "Glitter як матеріал — незлічуване слово: is, навіть якщо українською «блискітки»."
+              "ru": "Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.",
+              "uk": "Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s."
             }
           }
         ]
@@ -670,32 +670,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-17:session-06:word:embroidery",
+      "interactionId": "en:lesson-17:session-06:word:public-transport",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — embroidery",
+      "prompt": "Картка слова — public transport",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-17:session-06:word:embroidery:audio"
+        "en:lesson-17:session-06:word:public-transport:audio"
       ],
-      "accessibilityLabel": "Картка слова — embroidery",
+      "accessibilityLabel": "Картка слова — public transport",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-17:session-06:word:embroidery:audio",
-          "transcript": "embroidery"
+          "audioTargetId": "en:lesson-17:session-06:word:public-transport:audio",
+          "transcript": "public transport"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-17:session-06:word:embroidery:r1",
-            "targetText": "embroidery",
+            "responseId": "en:lesson-17:session-06:word:public-transport:r1",
+            "targetText": "public transport",
             "meaningByLocale": {
-              "ru": "вышивка, искусство вышивания.",
-              "uk": "вишивка, мистецтво вишивання."
+              "ru": "общественный транспорт.",
+              "uk": "громадський транспорт."
             }
           }
         ],
@@ -703,10 +703,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "embroidery",
+          "word": "public transport",
           "definitionByLocale": {
-            "ru": "вышивка, искусство вышивания.",
-            "uk": "вишивка, мистецтво вишивання."
+            "ru": "общественный транспорт.",
+            "uk": "громадський транспорт."
           }
         }
       },
@@ -718,22 +718,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Нам подобається вишивання».",
+      "prompt": "Скажіть: «Ми користуємося громадським транспортом».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Нам подобається вишивання».",
+      "accessibilityLabel": "Скажіть: «Ми користуємося громадським транспортом».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We enjoy embroidery.",
+        "targetPhrase": "We use public transport.",
         "localizedMeaning": {
-          "ru": "Скажите: «Нам нравится вышивание».",
-          "uk": "Скажіть: «Нам подобається вишивання»."
+          "ru": "Скажите: «Мы пользуемся общественным транспортом».",
+          "uk": "Скажіть: «Ми користуємося громадським транспортом»."
         },
         "orderedTokens": [
           "We",
-          "enjoy",
-          "embroidery"
+          "use",
+          "public",
+          "transport"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -754,15 +755,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i11:r1",
-          "text": "We enjoy embroidery."
+          "text": "We use public transport."
         },
         {
           "responseId": "en:lesson-17:session-06:i11:r2",
-          "text": "We enjoy an embroidery."
+          "text": "We use a public transport."
         },
         {
           "responseId": "en:lesson-17:session-06:i11:r3",
-          "text": "We enjoy embroiderys."
+          "text": "We use public transports."
         }
       ],
       "mediaIds": [],
@@ -774,23 +775,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-17:session-06:i11:audio",
-          "transcript": "We enjoy embroidery."
+          "transcript": "We use public transport."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-17:session-06:i11:r1",
-            "targetText": "We enjoy embroidery.",
+            "targetText": "We use public transport.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-17:session-06:i11:r2",
-            "targetText": "We enjoy an embroidery.",
+            "targetText": "We use a public transport.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-17:session-06:i11:r3",
-            "targetText": "We enjoy embroiderys.",
+            "targetText": "We use public transports.",
             "meaningByLocale": null
           }
         ],
@@ -801,8 +802,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We enjoy embroidery.",
-              "uk": "У записі звучить We enjoy embroidery."
+              "ru": "В записи звучит We use public transport.",
+              "uk": "У записі звучить We use public transport."
             }
           },
           {
@@ -810,8 +811,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We enjoy embroidery.",
-              "uk": "У записі звучить We enjoy embroidery."
+              "ru": "В записи звучит We use public transport.",
+              "uk": "У записі звучить We use public transport."
             }
           }
         ],
@@ -830,15 +831,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i12:r1",
-          "text": "embroidery"
+          "text": "public transport"
         },
         {
           "responseId": "en:lesson-17:session-06:i12:r2",
-          "text": "an embroidery"
+          "text": "a public transport"
         },
         {
           "responseId": "en:lesson-17:session-06:i12:r3",
-          "text": "embroiderys"
+          "text": "public transports"
         }
       ],
       "mediaIds": [],
@@ -850,19 +851,19 @@
           "ru": "Выберите форму для указанного количества или общего названия.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
-        "gappedTargetPhrase": "We enjoy ___.",
+        "gappedTargetPhrase": "We use ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-17:session-06:i12:r1",
-            "text": "embroidery"
+            "text": "public transport"
           },
           {
             "responseId": "en:lesson-17:session-06:i12:r2",
-            "text": "an embroidery"
+            "text": "a public transport"
           },
           {
             "responseId": "en:lesson-17:session-06:i12:r3",
-            "text": "embroiderys"
+            "text": "public transports"
           }
         ],
         "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
@@ -872,8 +873,8 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Embroidery как занятие — неисчисляемое: без an и без множественного -s.",
-              "uk": "Embroidery як заняття — незлічуване: без an та без множинного -s."
+              "ru": "Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.",
+              "uk": "Public transport — загальна незлічувана назва: без a. Окремий автобус можна порахувати, транспорт загалом — ні."
             }
           },
           {
@@ -881,8 +882,8 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Embroidery как занятие — неисчисляемое: без an и без множественного -s.",
-              "uk": "Embroidery як заняття — незлічуване: без an та без множинного -s."
+              "ru": "Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.",
+              "uk": "Public transport — загальна незлічувана назва: без a. Окремий автобус можна порахувати, транспорт загалом — ні."
             }
           }
         ]
@@ -905,48 +906,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-17:session-06:i13:p1",
-            "target": "bead",
+            "target": "errand",
             "meaningByLocale": {
-              "ru": "бусина",
-              "uk": "намистина"
+              "ru": "небольшое дело вне дома: например, забрать посылку",
+              "uk": "невелика справа поза домом: наприклад, забрати посилку"
             }
           },
           {
             "pairId": "en:lesson-17:session-06:i13:p2",
-            "target": "sequin",
+            "target": "replacement",
             "meaningByLocale": {
-              "ru": "пайетка, маленький блестящий кружок для украшения ткани",
-              "uk": "паєтка, маленький блискучий кружечок для оздоблення тканини"
+              "ru": "замена, вещь взамен прежней",
+              "uk": "заміна, річ замість попередньої"
             }
           },
           {
             "pairId": "en:lesson-17:session-06:i13:p3",
-            "target": "glitter",
+            "target": "housework",
             "meaningByLocale": {
-              "ru": "декоративные блёстки, блестящий порошок",
-              "uk": "декоративні блискітки, блискучий порошок"
+              "ru": "домашние дела: уборка, стирка и другая работа по дому",
+              "uk": "хатні справи: прибирання, прання та інша робота вдома"
             }
           },
           {
             "pairId": "en:lesson-17:session-06:i13:p4",
-            "target": "embroidery",
+            "target": "public transport",
             "meaningByLocale": {
-              "ru": "вышивка, искусство вышивания",
-              "uk": "вишивка, мистецтво вишивання"
+              "ru": "общественный транспорт",
+              "uk": "громадський транспорт"
             }
           }
         ],
         "leftColumn": [
-          "bead",
-          "sequin",
-          "glitter",
-          "embroidery"
+          "errand",
+          "replacement",
+          "housework",
+          "public transport"
         ],
         "rightColumn": [
-          "намистина",
-          "паєтка, маленький блискучий кружечок для оздоблення тканини",
-          "декоративні блискітки, блискучий порошок",
-          "вишивка, мистецтво вишивання"
+          "невелика справа поза домом: наприклад, забрати посилку",
+          "заміна, річ замість попередньої",
+          "хатні справи: прибирання, прання та інша робота вдома",
+          "громадський транспорт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -979,15 +980,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-17:session-06:i14:audio",
-          "transcript": "This is a bead."
+          "transcript": "This is an errand."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a bead.",
+        "hiddenTargetPhrase": "This is an errand.",
         "orderedTokens": [
           "This",
           "is",
-          "a",
-          "bead"
+          "an",
+          "errand"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1015,15 +1016,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-17:session-06:i15:audio",
-          "transcript": "This glitter is blue."
+          "transcript": "This housework is tiring."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This glitter is blue.",
+        "hiddenTargetPhrase": "This housework is tiring.",
         "orderedTokens": [
           "This",
-          "glitter",
+          "housework",
           "is",
-          "blue"
+          "tiring"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1051,10 +1052,10 @@
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-17:session-06:i16:audio",
-          "transcript": "We enjoy embroidery."
+          "transcript": "We use public transport."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We enjoy embroidery.",
+        "targetPhrase": "We use public transport.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1084,10 +1085,10 @@
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-17:session-06:i17:audio",
-          "transcript": "There are two sequins on the fabric."
+          "transcript": "There are two replacements in the shop."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There are two sequins on the fabric.",
+        "targetPhrase": "There are two replacements in the shop.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1107,5 +1108,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3069b4adc67adb07be0c443e664a9a92742fd17fd9c0c503829a6008055941a8"
+  "learnerFingerprint": "a29bab51ce2ccc7fe1f2b8b10b4789c0a798e65591356affea1d90bb6d29769e"
 }

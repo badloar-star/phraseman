@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-17:session-06:intro1:q",
       "responseFeedbackById": {
         "en:lesson-17:session-06:intro1:r2": {
-          "ru": "Bead начинается с согласного звука: a bead.",
-          "uk": "Bead починається з приголосного звука: a bead."
+          "ru": "Errand начинается с гласного звука: an errand.",
+          "uk": "Errand починається з голосного звука: an errand."
         },
         "en:lesson-17:session-06:intro1:r3": {
           "ru": "Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-17:session-06:intro2:q",
       "responseFeedbackById": {
         "en:lesson-17:session-06:intro2:r2": {
-          "ru": "После two нужно множественное sequins.",
-          "uk": "Після two потрібна множина sequins."
+          "ru": "После two нужно множественное replacements.",
+          "uk": "Після two потрібна множина replacements."
         },
         "en:lesson-17:session-06:intro2:r3": {
           "ru": "Не ставьте a перед two.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-17:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-17:session-06:intro3:r2": {
-          "ru": "Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки».",
-          "uk": "Glitter як матеріал — незлічуване слово: is, навіть якщо українською «блискітки»."
+          "ru": "Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.",
+          "uk": "Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s."
         },
         "en:lesson-17:session-06:intro3:r3": {
           "ru": "В этом значении у слова нет множественного -s.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "79ab710b0b023d2e6ab75828972cc94cc5b68ddc24e33b740f21889ed17d8708"
+  "auxiliaryFingerprint": "528f10a0ae1c7d0f6b48da1c11e98b80f9bbcece69b4c3ce93a5aad4ec3291d3"
 }

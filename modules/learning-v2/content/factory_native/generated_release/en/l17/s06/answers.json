@@ -1,57 +1,57 @@
 [
   {
-    "interactionId": "en:lesson-17:session-06:word:bead",
-    "correctText": "bead",
+    "interactionId": "en:lesson-17:session-06:word:errand",
+    "correctText": "errand",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i01",
-    "correctText": "This is a bead.",
+    "correctText": "This is an errand.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i02",
-    "correctText": "This is a bead.",
+    "correctText": "This is an errand.",
     "correctResponseId": "en:lesson-17:session-06:i02:r1"
   },
   {
     "interactionId": "en:lesson-17:session-06:i03",
-    "correctText": "a",
+    "correctText": "an",
     "correctResponseId": "en:lesson-17:session-06:i03:r1"
   },
   {
-    "interactionId": "en:lesson-17:session-06:word:sequin",
-    "correctText": "sequin",
+    "interactionId": "en:lesson-17:session-06:word:replacement",
+    "correctText": "replacement",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i04",
-    "correctText": "There are two sequins on the fabric.",
+    "correctText": "There are two replacements in the shop.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i05",
-    "correctText": "There are two sequins on the fabric.",
+    "correctText": "There are two replacements in the shop.",
     "correctResponseId": "en:lesson-17:session-06:i05:r1"
   },
   {
     "interactionId": "en:lesson-17:session-06:i06",
-    "correctText": "sequins",
+    "correctText": "replacements",
     "correctResponseId": "en:lesson-17:session-06:i06:r1"
   },
   {
-    "interactionId": "en:lesson-17:session-06:word:glitter",
-    "correctText": "glitter",
+    "interactionId": "en:lesson-17:session-06:word:housework",
+    "correctText": "housework",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i07",
-    "correctText": "This glitter is blue.",
+    "correctText": "This housework is tiring.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i08",
-    "correctText": "This glitter is blue.",
+    "correctText": "This housework is tiring.",
     "correctResponseId": "en:lesson-17:session-06:i08:r1"
   },
   {
@@ -60,48 +60,48 @@
     "correctResponseId": "en:lesson-17:session-06:i09:r1"
   },
   {
-    "interactionId": "en:lesson-17:session-06:word:embroidery",
-    "correctText": "embroidery",
+    "interactionId": "en:lesson-17:session-06:word:public-transport",
+    "correctText": "public transport",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i10",
-    "correctText": "We enjoy embroidery.",
+    "correctText": "We use public transport.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i11",
-    "correctText": "We enjoy embroidery.",
+    "correctText": "We use public transport.",
     "correctResponseId": "en:lesson-17:session-06:i11:r1"
   },
   {
     "interactionId": "en:lesson-17:session-06:i12",
-    "correctText": "embroidery",
+    "correctText": "public transport",
     "correctResponseId": "en:lesson-17:session-06:i12:r1"
   },
   {
     "interactionId": "en:lesson-17:session-06:i13",
-    "correctText": "en:lesson-17:session-06:i13:p1=bead\nen:lesson-17:session-06:i13:p2=sequin\nen:lesson-17:session-06:i13:p3=glitter\nen:lesson-17:session-06:i13:p4=embroidery",
+    "correctText": "en:lesson-17:session-06:i13:p1=errand\nen:lesson-17:session-06:i13:p2=replacement\nen:lesson-17:session-06:i13:p3=housework\nen:lesson-17:session-06:i13:p4=public transport",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i14",
-    "correctText": "This is a bead.",
+    "correctText": "This is an errand.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i15",
-    "correctText": "This glitter is blue.",
+    "correctText": "This housework is tiring.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i16",
-    "correctText": "We enjoy embroidery.",
+    "correctText": "We use public transport.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-17:session-06:i17",
-    "correctText": "There are two sequins on the fabric.",
+    "correctText": "There are two replacements in the shop.",
     "correctResponseId": null
   }
 ]

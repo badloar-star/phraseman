@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 24 — У стойки в отеле
+# Английский · Урок 10 · Занятие 24 — Выбрать номер
 
-**Ситуация.** Рассказать о привычной работе сотрудника отеля и о том, что он делает сейчас.
+**Ситуация.** Выбрать подходящий номер в отеле и позвонить, чтобы заказать еду в номер.
 
-**Что вы освоите:** He usually works here; He is sitting here now; I trust the concierge
-**Новые слова:** concierge, pigeonhole, keypad, logbook
+**Что вы освоите:** I would like a single room; Do you have a double room?; We need a twin room; I am calling room service
+**Новые слова:** single room, double room, twin room, room service
 
 ## Интро 1
 
-### Обычно и сейчас
+### Для одного или с двуспальной кроватью
 
-Concierge — «консьерж», сотрудник отеля, который помогает гостям, например заказывает такси. He usually works here — «Он обычно работает здесь». Обычно — usually — ставим перед works. Сейчас он помогает гостю: He is helping a guest now. Для действия в данный момент используем is + helping.
+Вы путешествуете один. Single room — «одноместный номер»: I would like a single room — «Я бы хотел одноместный номер». Если вы вдвоём и хотите одну двуспальную кровать, спросите: Do you have a double room? — «У вас есть номер с двуспальной кроватью?» Double room здесь — номер на двоих с одной двуспальной кроватью.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He usually works here.**
-- ❌ He usually work here. — *С he нужна works.*
-- ❌ He is usually work here. — *Для привычной работы здесь нужна works, без is.*
+- ✅ **I would like a single room.**
+- ❌ I would likes a single room. — *После would нужна like без s.*
+- ❌ I would liking a single room. — *После would нужна like.*
 
 ---
 
 ## Интро 2
 
-### Постоянная работа и временная смена
+### Две отдельные кровати
 
-Другой сотрудник обычно работает в другом отеле. На этой неделе он временно помогает здесь: He is working here this week — «Он работает здесь на этой неделе». Для временной ситуации используем Present Continuous. Сравните постоянное место работы: He works at a hotel — «Он работает в отеле».
+Вы приехали с другом и хотите отдельные кровати. Twin room — «номер с двумя отдельными кроватями»: We need a twin room — «Нам нужен номер с двумя отдельными кроватями». Здесь twin уточняет устройство номера. С we нужна need без s.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He is working here this week.**
-- ❌ He working here this week. — *Перед working нужен is.*
-- ❌ He is work here this week. — *После is здесь нужна форма working.*
+- ✅ **We need a twin room.**
+- ❌ We needs a twin room. — *С we нужна need без s.*
+- ❌ We are need a twin room. — *Здесь need без are.*
 
 ---
 
 ## Интро 3
 
-### Сидит сейчас, доверяю вообще
+### Еда в номер
 
-Вы видите консьержа за столом: He is sitting here now — «Он сейчас сидит здесь». В sit → sitting удваиваем t. В make → making убираем конечную e. Но доверие — ваше отношение: I trust the concierge — «Я доверяю консьержу». Для этого значения здесь используем Simple, даже если говорим сейчас.
+Вы уже заселились и звоните, чтобы заказать ужин в номер. Room service — «обслуживание в номере, доставка еды в номер»: I am calling room service — «Я звоню в службу обслуживания номеров». Вы звоните сейчас: am calling. В этой фразе room service — название услуги, без a.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He is sitting here now.**
-- ❌ He is siting here now. — *Sit → sitting: две t.*
-- ❌ He sitting here now. — *Перед sitting нужен is.*
+- ✅ **I am calling room service.**
+- ❌ I calling room service. — *Перед calling нужна am.*
+- ❌ I am call room service. — *После am нужна calling.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — concierge**
-<!-- interaction_id: en:lesson-10:session-24:word:concierge; family: word_card -->
-> **concierge** — «консьерж». The concierge is helping a guest. — «Консьерж помогает гостю». Здесь сотрудник отеля, который помогает гостям с их просьбами.
+**1 · Карточка слова — single room**
+<!-- interaction_id: en:lesson-10:session-24:word:single-room; family: word_card -->
+> **single room** — «одноместный номер». I would like a single room. — «Я бы хотел одноместный номер».
 
-**2 · Друг ищет сотрудника отеля. Вы видите, что тот помогает гостю. Скажите: «Консьерж помогает гостю»**
+**2 · Вы путешествуете один. Попросите одноместный номер**
 <!-- interaction_id: en:lesson-10:session-24:i01; family: phrase_builder -->
-Плитки: `guest` `a` `helping` `is` `concierge` `The` → **The concierge is helping a guest.**
+Плитки: `room` `single` `a` `like` `would` `I` → **I would like a single room.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-24:i02; family: listen_choose -->
-🔊 *The concierge works here.* → **The concierge works here.** · The concierge lives here. · The concierge works there.
-- The concierge lives here. — *В записи звучит The concierge works here.*
-- The concierge works there. — *В записи звучит The concierge works here.*
+🔊 *She would like a single room.* → **She would like a single room.** · He would like a single room. · I would like a single room.
+- He would like a single room. — *В записи звучит She would like a single room.*
+- I would like a single room. — *В записи звучит She would like a single room.*
 
-**4 · Выберите фразу о привычной работе**
+**4 · Выберите форму like после would**
 <!-- interaction_id: en:lesson-10:session-24:i03; family: context_gap_grammar -->
-He ___ here. → **usually works** · usually work · is usually work
-- usually work — *С he нужна works.*
-- is usually work — *Здесь нужна usually works, без is.*
+I would ___ a single room. → **like** · likes · liking
+- likes — *После would нужна like.*
+- liking — *После would нужна like, не liking.*
 
-**5 · Карточка слова — pigeonhole**
-<!-- interaction_id: en:lesson-10:session-24:word:pigeonhole; family: word_card -->
-> **pigeonhole** — «ячейка для писем». The letter is in the pigeonhole. — «Письмо в ячейке для писем». Здесь небольшое открытое отделение для сортировки почты.
+**5 · Карточка слова — double room**
+<!-- interaction_id: en:lesson-10:session-24:word:double-room; family: word_card -->
+> **double room** — «номер с двуспальной кроватью». Do you have a double room? — «У вас есть номер с двуспальной кроватью?»
 
-**6 · Консьерж положил ваше письмо в отдельную ячейку. Скажите другу: «Письмо в ячейке для писем»**
+**6 · Вам нужна одна двуспальная кровать. Спросите, есть ли такой номер**
 <!-- interaction_id: en:lesson-10:session-24:i04; family: phrase_builder -->
-Плитки: `pigeonhole` `the` `in` `is` `letter` `The` → **The letter is in the pigeonhole.**
+Плитки: `room` `double` `a` `have` `you` `Do` → **Do you have a double room?**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-24:i05; family: listen_choose -->
-🔊 *He is checking the pigeonhole.* → **He is checking the pigeonhole.** · She is checking the pigeonhole. · He is checking the letter.
-- She is checking the pigeonhole. — *В записи звучит He is checking the pigeonhole.*
-- He is checking the letter. — *В записи звучит He is checking the pigeonhole.*
+🔊 *Do you have a double room?* → **Do you have a double room?** · Do you have a single room? · We have a double room.
+- Do you have a single room? — *В записи звучит Do you have a double room?*
+- We have a double room. — *В записи звучит Do you have a double room?*
 
-**8 · Он сидит здесь сейчас. Выберите правильное написание**
+**8 · Выберите вспомогательный глагол с you**
 <!-- interaction_id: en:lesson-10:session-24:i06; family: context_gap_grammar -->
-He is ___ here now. → **sitting** · siting · sit
-- siting — *В sitting удваиваем t.*
-- sit — *Для действия сейчас нужна форма sitting после is.*
+___ you have a double room? → **Do** · Does · Is
+- Does — *С you нужен Do.*
+- Is — *Вопрос с have здесь строим через Do.*
 
-**9 · Карточка слова — keypad**
-<!-- interaction_id: en:lesson-10:session-24:word:keypad; family: word_card -->
-> **keypad** — «цифровая клавиатура». She is using the keypad. — «Она пользуется цифровой клавиатурой». Здесь небольшая панель с кнопками для ввода цифр.
+**9 · Карточка слова — twin room**
+<!-- interaction_id: en:lesson-10:session-24:word:twin-room; family: word_card -->
+> **twin room** — «номер с двумя отдельными кроватями». We need a twin room. — «Нам нужен номер с двумя отдельными кроватями».
 
-**10 · Друг спрашивает, что делает ваша коллега. Она нажимает кнопки цифровой клавиатуры. Скажите: «Она пользуется цифровой клавиатурой»**
+**10 · Вы с другом хотите две отдельные кровати. Скажите, какой номер вам нужен**
 <!-- interaction_id: en:lesson-10:session-24:i07; family: phrase_builder -->
-Плитки: `keypad` `the` `using` `is` `She` → **She is using the keypad.**
+Плитки: `room` `twin` `a` `need` `We` → **We need a twin room.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-24:i08; family: listen_choose -->
-🔊 *The keypad is beside the door.* → **The keypad is beside the door.** · The keypad is behind the door. · The keypad is beside the desk.
-- The keypad is behind the door. — *В записи звучит The keypad is beside the door.*
-- The keypad is beside the desk. — *В записи звучит The keypad is beside the door.*
+🔊 *They need a twin room.* → **They need a twin room.** · We need a twin room. · They need a double room.
+- We need a twin room. — *В записи звучит They need a twin room.*
+- They need a double room. — *В записи звучит They need a twin room.*
 
-**12 · Он сейчас составляет список. Выберите форму make**
+**12 · Выберите форму need с we**
 <!-- interaction_id: en:lesson-10:session-24:i09; family: context_gap_grammar -->
-He is ___ a list. → **making** · makeing · make
-- makeing — *Перед ing убираем конечную e: making.*
-- make — *После is для действия сейчас нужна making.*
+We ___ a twin room. → **need** · needs · needing
+- needs — *С we нужна need без s.*
+- needing — *Здесь нужна need.*
 
-**13 · Карточка слова — logbook**
-<!-- interaction_id: en:lesson-10:session-24:word:logbook; family: word_card -->
-> **logbook** — «журнал записей». He is checking the logbook. — «Он проверяет журнал записей». Книга, в которой регулярно отмечают события или выполненную работу.
+**13 · Карточка слова — room service**
+<!-- interaction_id: en:lesson-10:session-24:word:room-service; family: word_card -->
+> **room service** — «обслуживание в номере, доставка еды в номер». I am calling room service. — «Я звоню в службу обслуживания номеров».
 
-**14 · Консьерж сверяет записи о доставках. Скажите другу: «Он проверяет журнал записей»**
+**14 · Вы звоните заказать ужин в номер. Скажите, что звоните в room service**
 <!-- interaction_id: en:lesson-10:session-24:i10; family: phrase_builder -->
-Плитки: `logbook` `the` `checking` `is` `He` → **He is checking the logbook.**
+Плитки: `service` `room` `calling` `am` `I` → **I am calling room service.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-24:i11; family: listen_choose -->
-🔊 *The logbook is on the desk.* → **The logbook is on the desk.** · The logbook is under the desk. · The letter is on the desk.
-- The logbook is under the desk. — *В записи звучит The logbook is on the desk.*
-- The letter is on the desk. — *В записи звучит The logbook is on the desk.*
+🔊 *She is calling room service.* → **She is calling room service.** · He is calling room service. · We are calling room service.
+- He is calling room service. — *В записи звучит She is calling room service.*
+- We are calling room service. — *В записи звучит She is calling room service.*
 
-**16 · Вы давно считаете консьержа надёжным. Выберите форму для «Я доверяю»**
+**16 · Выберите форму call после am**
 <!-- interaction_id: en:lesson-10:session-24:i12; family: context_gap_grammar -->
-I ___ the concierge. → **trust** · trusts · am trust
-- trusts — *С I нужна trust без s.*
-- am trust — *Am trust неверно; здесь нужна trust.*
+I am ___ room service. → **calling** · call · calls
+- call — *После am нужна calling.*
+- calls — *После am нужна calling, не calls.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-10:session-24:i13; family: speed_match -->
-concierge — консьерж · pigeonhole — ячейка для писем · keypad — цифровая клавиатура · logbook — журнал записей
+single room — одноместный номер · double room — номер с двуспальной кроватью · twin room — номер с двумя отдельными кроватями · room service — доставка еды в номер
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-24:i14; family: listen_build_dictation -->
-🔊 *He is checking the logbook.* Плитки: `logbook` `the` `checking` `is` `He` → **He is checking the logbook.**
+🔊 *We need a twin room.* Плитки: `room` `twin` `a` `need` `We` → **We need a twin room.**
 
-**19 · Друг спрашивает, можно ли положиться на сотрудника отеля. Скажите: «Я доверяю консьержу»**
-<!-- interaction_id: en:lesson-10:session-24:i15; family: scripted_repeat_compare -->
-🎙 **I trust the concierge.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-24:i15; family: listen_build_dictation -->
+🔊 *I am calling room service.* Плитки: `service` `room` `calling` `am` `I` → **I am calling room service.**
 
-**20 · Коллега временно работает в этом отеле. Скажите: «Он работает здесь на этой неделе». Поставьте this week в конце**
-<!-- interaction_id: en:lesson-10:session-24:i16; family: phrase_builder -->
-Плитки: `week` `this` `here` `working` `is` `He` → **He is working here this week.**
+**20 · Скажите, что вам нужен одноместный номер**
+<!-- interaction_id: en:lesson-10:session-24:i16; family: scripted_repeat_compare -->
+🎙 **I need a single room.**
 
-**21 · Друг ищет журнал доставок. Вы видите его на столе. Сообщите: «Журнал записей на столе»**
-<!-- interaction_id: en:lesson-10:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The logbook is on the desk.**
+**21 · Вежливо попросите номер с двуспальной кроватью**
+<!-- interaction_id: en:lesson-10:session-24:i17; family: scripted_repeat_compare -->
+🎙 **I would like a double room.**
 

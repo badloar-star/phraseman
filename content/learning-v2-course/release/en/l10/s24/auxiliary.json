@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-24:intro1:r2": {
-          "ru": "С he нужна works.",
-          "uk": "З he потрібна works."
+          "ru": "После would нужна like без s.",
+          "uk": "Після would потрібна like без s."
         },
         "en:lesson-10:session-24:intro1:r3": {
-          "ru": "Для привычной работы здесь нужна works, без is.",
-          "uk": "Для звичної роботи тут потрібна works, без is."
+          "ru": "После would нужна like.",
+          "uk": "Після would потрібна like."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-24:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-24:intro2:r2": {
-          "ru": "Перед working нужен is.",
-          "uk": "Перед working потрібне is."
+          "ru": "С we нужна need без s.",
+          "uk": "З we потрібна need без s."
         },
         "en:lesson-10:session-24:intro2:r3": {
-          "ru": "После is здесь нужна форма working.",
-          "uk": "Після is тут потрібна форма working."
+          "ru": "Здесь need без are.",
+          "uk": "Тут need без are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-24:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-24:intro3:r2": {
-          "ru": "Sit → sitting: две t.",
-          "uk": "Sit → sitting: дві t."
+          "ru": "Перед calling нужна am.",
+          "uk": "Перед calling потрібна am."
         },
         "en:lesson-10:session-24:intro3:r3": {
-          "ru": "Перед sitting нужен is.",
-          "uk": "Перед sitting потрібне is."
+          "ru": "После am нужна calling.",
+          "uk": "Після am потрібна calling."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c82011c5331eda949cee2e98676d9773baae2914002c43119a43ddc941265882"
+  "auxiliaryFingerprint": "ee63c5e52bd8b6e9d746f5faef1c7ebbe3ba084a13882b737e5c6ba42292f363"
 }

@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-26:word:noon",
-    "correctText": "noon",
+    "interactionId": "en:lesson-10:session-26:word:starter",
+    "correctText": "starter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i01",
-    "correctText": "We usually eat at noon.",
+    "correctText": "I would like a starter.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i02",
-    "correctText": "We eat at noon.",
+    "correctText": "She would like a starter.",
     "correctResponseId": "en:lesson-10:session-26:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-26:i03",
-    "correctText": "at",
+    "correctText": "like",
     "correctResponseId": "en:lesson-10:session-26:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-26:word:tureen",
-    "correctText": "tureen",
+    "interactionId": "en:lesson-10:session-26:word:main-course",
+    "correctText": "main course",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i04",
-    "correctText": "The soup is in the tureen.",
+    "correctText": "I am choosing a main course.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i05",
-    "correctText": "The tureen is on the table.",
+    "correctText": "He is choosing a main course.",
     "correctResponseId": "en:lesson-10:session-26:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-26:i06",
-    "correctText": "making",
+    "correctText": "choosing",
     "correctResponseId": "en:lesson-10:session-26:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-26:word:carafe",
-    "correctText": "carafe",
+    "interactionId": "en:lesson-10:session-26:word:side-dish",
+    "correctText": "side dish",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i07",
-    "correctText": "She is filling the carafe.",
+    "correctText": "We need a side dish.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i08",
-    "correctText": "The carafe is full.",
+    "correctText": "They need a side dish.",
     "correctResponseId": "en:lesson-10:session-26:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-26:i09",
-    "correctText": "is",
+    "correctText": "need",
     "correctResponseId": "en:lesson-10:session-26:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-26:word:cruet",
-    "correctText": "cruet",
+    "interactionId": "en:lesson-10:session-26:word:portion",
+    "correctText": "portion",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i10",
-    "correctText": "The oil is in the cruet.",
+    "correctText": "This portion is small.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i11",
-    "correctText": "The cruet is beside the plate.",
+    "correctText": "This portion is large.",
     "correctResponseId": "en:lesson-10:session-26:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-26:i12",
-    "correctText": "eat",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-26:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-26:i13",
-    "correctText": "en:lesson-10:session-26:i13:p1=noon\nen:lesson-10:session-26:i13:p2=tureen\nen:lesson-10:session-26:i13:p3=carafe\nen:lesson-10:session-26:i13:p4=cruet",
+    "correctText": "en:lesson-10:session-26:i13:p1=starter\nen:lesson-10:session-26:i13:p2=main course\nen:lesson-10:session-26:i13:p3=side dish\nen:lesson-10:session-26:i13:p4=portion",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i14",
-    "correctText": "She is filling the carafe.",
+    "correctText": "I am choosing a main course.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i15",
-    "correctText": "We usually eat at noon.",
+    "correctText": "This portion is small.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i16",
-    "correctText": "The soup is in the tureen.",
+    "correctText": "I would like a side dish.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-26:i17",
-    "correctText": "She is filling the carafe.",
+    "correctText": "This portion is large.",
     "correctResponseId": null
   }
 ]

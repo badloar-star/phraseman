@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-26",
   "learningOutcomeByLocale": {
-    "ru": "We usually eat at noon; She is filling the carafe; The soup is in the tureen",
-    "uk": "We usually eat at noon; She is filling the carafe; The soup is in the tureen"
+    "ru": "I would like a starter; I am choosing a main course; We need a side dish; This portion is small",
+    "uk": "I would like a starter; I am choosing a main course; We need a side dish; This portion is small"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "В полдень",
-        "uk": "Опівдні"
+        "ru": "С чего начать обед",
+        "uk": "З чого почати обід"
       },
       "bodyByLocale": {
-        "ru": "Noon — «полдень», двенадцать часов дня. We usually eat at noon — «Мы обычно едим в полдень». Usually говорит о привычке; для неё используем Present Simple. Перед noon ставим at. Само at noon может относиться и к отдельному событию: сначала выясняем смысл всей ситуации.",
-        "uk": "Noon — «полудень», дванадцята година дня. We usually eat at noon — «Ми зазвичай їмо опівдні». Usually говорить про звичку; для неї використовуємо Present Simple. Перед noon ставимо at. Саме at noon може стосуватися й окремої події: спочатку з’ясовуємо зміст усієї ситуації."
+        "ru": "В меню вы выбираете небольшое блюдо перед основным. Starter — «закуска, первое небольшое блюдо»: I would like a starter — «Я бы хотел закуску». Это вежливая просьба: would like. После would нужна like без s.",
+        "uk": "У меню ви вибираєте невелику страву перед основною. Starter — «закуска, перша невелика страва»: I would like a starter — «Я хотів би закуску». Це ввічливе прохання: would like. Після would потрібна like без s."
       },
       "question": {
         "interactionId": "en:lesson-10:session-26:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-26:intro1:r1",
-              "text": "We usually eat at noon."
+              "text": "I would like a starter."
             },
             {
               "responseId": "en:lesson-10:session-26:intro1:r2",
-              "text": "We usually eats at noon."
+              "text": "I would likes a starter."
             },
             {
               "responseId": "en:lesson-10:session-26:intro1:r3",
-              "text": "We usually eat on noon."
+              "text": "I would liking a starter."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-26:intro1:r1",
-              "text": "We usually eat at noon."
+              "text": "I would like a starter."
             },
             {
               "responseId": "en:lesson-10:session-26:intro1:r2",
-              "text": "We usually eats at noon."
+              "text": "I would likes a starter."
             },
             {
               "responseId": "en:lesson-10:session-26:intro1:r3",
-              "text": "We usually eat on noon."
+              "text": "I would liking a starter."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Суп уже на столе",
-        "uk": "Суп уже на столі"
+        "ru": "Основное блюдо и дополнение",
+        "uk": "Основна страва й доповнення"
       },
       "bodyByLocale": {
-        "ru": "Tureen — «супница», большая посуда для подачи супа к столу. Друг ищет суп: The soup is in the tureen — «Суп в супнице». Здесь называем место, поэтому достаточно is. Не нужно добавлять being лишь потому, что речь идёт о текущем моменте.",
-        "uk": "Tureen — «супниця», великий посуд для подавання супу до столу. Друг шукає суп: The soup is in the tureen — «Суп у супниці». Тут називаємо місце, тому достатньо is. Не потрібно додавати being лише тому, що йдеться про поточну мить."
+        "ru": "Вы ещё читаете меню. Main course — «основное блюдо»: I am choosing a main course — «Я выбираю основное блюдо». Вы выбираете сейчас: am choosing; в choose убираем последнюю e. Side dish — «гарнир, отдельное дополнение к основному блюду»: We need a side dish — «Нам нужен гарнир». Например, к рыбе можно заказать отдельную порцию овощей.",
+        "uk": "Ви ще читаєте меню. Main course — «основна страва»: I am choosing a main course — «Я вибираю основну страву». Ви вибираєте зараз: am choosing; у choose прибираємо останню e. Side dish — «гарнір, окреме доповнення до основної страви»: We need a side dish — «Нам потрібен гарнір». Наприклад, до риби можна замовити окрему порцію овочів."
       },
       "question": {
         "interactionId": "en:lesson-10:session-26:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-26:intro2:r1",
-              "text": "The soup is in the tureen."
+              "text": "I am choosing a main course."
             },
             {
               "responseId": "en:lesson-10:session-26:intro2:r2",
-              "text": "The soup in the tureen."
+              "text": "I choosing a main course."
             },
             {
               "responseId": "en:lesson-10:session-26:intro2:r3",
-              "text": "The soup are in the tureen."
+              "text": "I am choose a main course."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-26:intro2:r1",
-              "text": "The soup is in the tureen."
+              "text": "I am choosing a main course."
             },
             {
               "responseId": "en:lesson-10:session-26:intro2:r2",
-              "text": "The soup in the tureen."
+              "text": "I choosing a main course."
             },
             {
               "responseId": "en:lesson-10:session-26:intro2:r3",
-              "text": "The soup are in the tureen."
+              "text": "I am choose a main course."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Наполняет графин сейчас",
-        "uk": "Наповнює карафку зараз"
+        "ru": "Большая или маленькая порция",
+        "uk": "Велика або маленька порція"
       },
       "bodyByLocale": {
-        "ru": "Carafe — «графин», сосуд для подачи воды или вина. Вы видите, как подруга наливает воду: She is filling the carafe — «Она наполняет графин». Для действия сейчас используем is + filling. Fill уже заканчивается на две l; в filling они сохраняются.",
-        "uk": "Carafe — «карафка», посудина для подавання води або вина. Ви бачите, як подруга наливає воду: She is filling the carafe — «Вона наповнює карафку». Для дії зараз використовуємо is + filling. Fill уже закінчується на дві l; у filling вони зберігаються."
+        "ru": "Вам принесли заказ, и еды на тарелке немного. Portion — «порция»: This portion is small — «Эта порция маленькая». Вы описываете размер, поэтому is связывает portion со small. Это описание, а не действие с ing.",
+        "uk": "Вам принесли замовлення, і їжі на тарілці небагато. Portion — «порція»: This portion is small — «Ця порція маленька». Ви описуєте розмір, тому is пов’язує portion зі small. Це опис, а не дія з ing."
       },
       "question": {
         "interactionId": "en:lesson-10:session-26:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-26:intro3:r1",
-              "text": "She is filling the carafe."
+              "text": "This portion is small."
             },
             {
               "responseId": "en:lesson-10:session-26:intro3:r2",
-              "text": "She filling the carafe."
+              "text": "This portion are small."
             },
             {
               "responseId": "en:lesson-10:session-26:intro3:r3",
-              "text": "She is fill the carafe."
+              "text": "This portion small."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-26:intro3:r1",
-              "text": "She is filling the carafe."
+              "text": "This portion is small."
             },
             {
               "responseId": "en:lesson-10:session-26:intro3:r2",
-              "text": "She filling the carafe."
+              "text": "This portion are small."
             },
             {
               "responseId": "en:lesson-10:session-26:intro3:r3",
-              "text": "She is fill the carafe."
+              "text": "This portion small."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0f393c99db581236798a2cc5d885ba634b0d09bb158649cda86bb04e4ad8b75d"
+  "introFingerprint": "480c6e8426f9dd2cf9152b1dff67321276ac5ebcea338329c2be28911cdbb6e8"
 }

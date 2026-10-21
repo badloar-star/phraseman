@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-21:word:imagine",
+        "interactionId": "en:lesson-10:session-21:word:also",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — imagine",
+        "prompt": "Карточка слова — also",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-21:word:imagine:audio"
+          "en:lesson-10:session-21:word:also:audio"
         ],
-        "accessibilityLabel": "Карточка слова — imagine",
+        "accessibilityLabel": "Карточка слова — also",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:word:imagine:audio",
-            "transcript": "imagine"
+            "audioTargetId": "en:lesson-10:session-21:word:also:audio",
+            "transcript": "also"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-21:word:imagine:r1",
-              "targetText": "imagine",
+              "responseId": "en:lesson-10:session-21:word:also:r1",
+              "targetText": "also",
               "meaningByLocale": {
-                "ru": "«представлять; полагать». I imagine she is busy. — «Полагаю, она занята». Здесь предполагать; в другом контексте — создавать мысленный образ.",
-                "uk": "«уявляти; гадати». I imagine she is busy. — «Гадаю, вона зайнята». Тут припускати; в іншому контексті — створювати уявний образ."
+                "ru": "«также». I also need bread. — «Мне также нужен хлеб».",
+                "uk": "«також». I also need bread. — «Мені також потрібен хліб»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "imagine",
+            "word": "also",
             "definitionByLocale": {
-              "ru": "«представлять; полагать». I imagine she is busy. — «Полагаю, она занята». Здесь предполагать; в другом контексте — создавать мысленный образ.",
-              "uk": "«уявляти; гадати». I imagine she is busy. — «Гадаю, вона зайнята». Тут припускати; в іншому контексті — створювати уявний образ."
+              "ru": "«также». I also need bread. — «Мне также нужен хлеб».",
+              "uk": "«також». I also need bread. — «Мені також потрібен хліб»."
             }
           }
         },
@@ -52,24 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега занимается переездом офиса и не отвечает. Выскажите предположение: «Полагаю, она занята»",
+        "prompt": "Добавьте, что вам также нужен хлеб. Also поставьте перед need",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега занимается переездом офиса и не отвечает. Выскажите предположение: «Полагаю, она занята»",
+        "accessibilityLabel": "Добавьте, что вам также нужен хлеб. Also поставьте перед need",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I imagine she is busy.",
+          "targetPhrase": "I also need bread.",
           "localizedMeaning": {
-            "ru": "Коллега занимается переездом офиса и не отвечает. Выскажите предположение: «Полагаю, она занята»",
-            "uk": "Колега займається переїздом офісу й не відповідає. Висловіть припущення: «Гадаю, вона зайнята»"
+            "ru": "Добавьте, что вам также нужен хлеб. Also поставьте перед need",
+            "uk": "Додайте, що вам також потрібен хліб. Also поставте перед need"
           },
           "orderedTokens": [
             "I",
-            "imagine",
-            "she",
-            "is",
-            "busy"
+            "also",
+            "need",
+            "bread"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -90,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i02:r1",
-            "text": "I imagine she is busy."
+            "text": "We also need bread."
           },
           {
             "responseId": "en:lesson-10:session-21:i02:r2",
-            "text": "We imagine she is busy."
+            "text": "I also need bread."
           },
           {
             "responseId": "en:lesson-10:session-21:i02:r3",
-            "text": "I imagine he is busy."
+            "text": "We also need milk."
           }
         ],
         "mediaIds": [],
@@ -110,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i02:audio",
-            "transcript": "I imagine she is busy."
+            "transcript": "We also need bread."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-21:i02:r1",
-              "targetText": "I imagine she is busy.",
+              "targetText": "We also need bread.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i02:r2",
-              "targetText": "We imagine she is busy.",
+              "targetText": "I also need bread.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i02:r3",
-              "targetText": "I imagine he is busy.",
+              "targetText": "We also need milk.",
               "meaningByLocale": null
             }
           ],
@@ -137,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I imagine she is busy.",
-                "uk": "У записі звучить I imagine she is busy."
+                "ru": "В записи звучит We also need bread.",
+                "uk": "У записі звучить We also need bread."
               }
             },
             {
@@ -146,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I imagine she is busy.",
-                "uk": "У записі звучить I imagine she is busy."
+                "ru": "В записи звучит We also need bread.",
+                "uk": "У записі звучить We also need bread."
               }
             }
           ],
@@ -162,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму imagine с I для предположения",
+        "prompt": "Выберите форму need с I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i03:r1",
-            "text": "imagine"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-21:i03:r2",
-            "text": "imagines"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-21:i03:r3",
-            "text": "am imagine"
+            "text": "needing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму imagine с I для предположения",
+        "accessibilityLabel": "Выберите форму need с I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму imagine с I для предположения",
-            "uk": "Виберіть форму imagine з I для припущення"
+            "ru": "Выберите форму need с I",
+            "uk": "Виберіть форму need з I"
           },
-          "gappedTargetPhrase": "I ___ she is busy.",
+          "gappedTargetPhrase": "I also ___ bread.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-21:i03:r1",
-              "text": "imagine"
+              "text": "need"
             },
             {
               "responseId": "en:lesson-10:session-21:i03:r2",
-              "text": "imagines"
+              "text": "needs"
             },
             {
               "responseId": "en:lesson-10:session-21:i03:r3",
-              "text": "am imagine"
+              "text": "needing"
             }
           ],
-          "testedDimension": "Выберите форму imagine с I для предположения",
+          "testedDimension": "Выберите форму need с I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-21:i03:r2",
               "correct": false,
-              "testedDimension": "Выберите форму imagine с I для предположения",
+              "testedDimension": "Выберите форму need с I",
               "feedbackByLocale": {
-                "ru": "С I нужна imagine без s.",
-                "uk": "З I потрібна imagine без s."
+                "ru": "С I нужна need.",
+                "uk": "З I потрібна need."
               }
             },
             {
               "responseId": "en:lesson-10:session-21:i03:r3",
               "correct": false,
-              "testedDimension": "Выберите форму imagine с I для предположения",
+              "testedDimension": "Выберите форму need с I",
               "feedbackByLocale": {
-                "ru": "Am imagine неверно; здесь нужна imagine.",
-                "uk": "Am imagine неправильно; тут потрібна imagine."
+                "ru": "Здесь нужна need.",
+                "uk": "Тут потрібна need."
               }
             }
           ]
@@ -226,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-21:word:possibility",
+        "interactionId": "en:lesson-10:session-21:word:even",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — possibility",
+        "prompt": "Карточка слова — even",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-21:word:possibility:audio"
+          "en:lesson-10:session-21:word:even:audio"
         ],
-        "accessibilityLabel": "Карточка слова — possibility",
+        "accessibilityLabel": "Карточка слова — even",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:word:possibility:audio",
-            "transcript": "possibility"
+            "audioTargetId": "en:lesson-10:session-21:word:even:audio",
+            "transcript": "even"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-21:word:possibility:r1",
-              "targetText": "possibility",
+              "responseId": "en:lesson-10:session-21:word:even:r1",
+              "targetText": "even",
               "meaningByLocale": {
-                "ru": "«возможность». It is a possibility. — «Это возможный вариант». Здесь один из вариантов, который может осуществиться.",
-                "uk": "«можливість». It is a possibility. — «Це можливий варіант». Тут один із варіантів, який може здійснитися."
+                "ru": "«даже». Even Tom is here. — «Даже Том здесь».",
+                "uk": "«навіть». Even Tom is here. — «Навіть Том тут»."
               }
             }
           ],
@@ -259,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "possibility",
+            "word": "even",
             "definitionByLocale": {
-              "ru": "«возможность». It is a possibility. — «Это возможный вариант». Здесь один из вариантов, который может осуществиться.",
-              "uk": "«можливість». It is a possibility. — «Це можливий варіант». Тут один із варіантів, який може здійснитися."
+              "ru": "«даже». Even Tom is here. — «Даже Том здесь».",
+              "uk": "«навіть». Even Tom is here. — «Навіть Том тут»."
             }
           }
         },
@@ -274,23 +273,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега предлагает перенести встречу в другую комнату. Вы пока не решили. Скажите: «Это возможный вариант»",
+        "prompt": "Том обычно не приходит, но сегодня он здесь. Скажите: «Даже Том здесь», начав с Even Tom",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега предлагает перенести встречу в другую комнату. Вы пока не решили. Скажите: «Это возможный вариант»",
+        "accessibilityLabel": "Том обычно не приходит, но сегодня он здесь. Скажите: «Даже Том здесь», начав с Even Tom",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "It is a possibility.",
+          "targetPhrase": "Even Tom is here.",
           "localizedMeaning": {
-            "ru": "Коллега предлагает перенести встречу в другую комнату. Вы пока не решили. Скажите: «Это возможный вариант»",
-            "uk": "Колега пропонує перенести зустріч до іншої кімнати. Ви поки не вирішили. Скажіть: «Це можливий варіант»"
+            "ru": "Том обычно не приходит, но сегодня он здесь. Скажите: «Даже Том здесь», начав с Even Tom",
+            "uk": "Том зазвичай не приходить, але сьогодні він тут. Скажіть: «Навіть Том тут», почавши з Even Tom"
           },
           "orderedTokens": [
-            "It",
+            "Even",
+            "Tom",
             "is",
-            "a",
-            "possibility"
+            "here"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -311,15 +310,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i05:r1",
-            "text": "There is another possibility."
+            "text": "Even Tom is here."
           },
           {
             "responseId": "en:lesson-10:session-21:i05:r2",
-            "text": "There is another problem."
+            "text": "Even Tom is late."
           },
           {
             "responseId": "en:lesson-10:session-21:i05:r3",
-            "text": "There is another meeting."
+            "text": "Even Tom is ready."
           }
         ],
         "mediaIds": [],
@@ -331,23 +330,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i05:audio",
-            "transcript": "There is another possibility."
+            "transcript": "Even Tom is here."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-21:i05:r1",
-              "targetText": "There is another possibility.",
+              "targetText": "Even Tom is here.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i05:r2",
-              "targetText": "There is another problem.",
+              "targetText": "Even Tom is late.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i05:r3",
-              "targetText": "There is another meeting.",
+              "targetText": "Even Tom is ready.",
               "meaningByLocale": null
             }
           ],
@@ -358,8 +357,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит There is another possibility.",
-                "uk": "У записі звучить There is another possibility."
+                "ru": "В записи звучит Even Tom is here.",
+                "uk": "У записі звучить Even Tom is here."
               }
             },
             {
@@ -367,8 +366,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит There is another possibility.",
-                "uk": "У записі звучить There is another possibility."
+                "ru": "В записи звучит Even Tom is here.",
+                "uk": "У записі звучить Even Tom is here."
               }
             }
           ],
@@ -383,63 +382,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите артикль перед possibility",
+        "prompt": "Выберите связку с одним человеком, Tom",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i06:r1",
-            "text": "a"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-21:i06:r2",
-            "text": "an"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-21:i06:r3",
-            "text": "are"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите артикль перед possibility",
+        "accessibilityLabel": "Выберите связку с одним человеком, Tom",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед possibility",
-            "uk": "Виберіть артикль перед possibility"
+            "ru": "Выберите связку с одним человеком, Tom",
+            "uk": "Виберіть зв’язку з однією людиною, Tom"
           },
-          "gappedTargetPhrase": "It is ___ possibility.",
+          "gappedTargetPhrase": "Even Tom ___ here.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-21:i06:r1",
-              "text": "a"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-21:i06:r2",
-              "text": "an"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-21:i06:r3",
-              "text": "are"
+              "text": "am"
             }
           ],
-          "testedDimension": "Выберите артикль перед possibility",
+          "testedDimension": "Выберите связку с одним человеком, Tom",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-21:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите артикль перед possibility",
+              "testedDimension": "Выберите связку с одним человеком, Tom",
               "feedbackByLocale": {
-                "ru": "Possibility начинается с согласного звука: a.",
-                "uk": "Possibility починається з приголосного звука: a."
+                "ru": "С Tom нужна is.",
+                "uk": "З Tom потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-21:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите артикль перед possibility",
+              "testedDimension": "Выберите связку с одним человеком, Tom",
               "feedbackByLocale": {
-                "ru": "Are — глагол; здесь нужен артикль a.",
-                "uk": "Are — дієслово; тут потрібен артикль a."
+                "ru": "Am употребляем с I, здесь is.",
+                "uk": "Am вживаємо з I, тут is."
               }
             }
           ]
@@ -447,32 +446,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-21:word:scenario",
+        "interactionId": "en:lesson-10:session-21:word:just",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — scenario",
+        "prompt": "Карточка слова — just",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-21:word:scenario:audio"
+          "en:lesson-10:session-21:word:just:audio"
         ],
-        "accessibilityLabel": "Карточка слова — scenario",
+        "accessibilityLabel": "Карточка слова — just",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:word:scenario:audio",
-            "transcript": "scenario"
+            "audioTargetId": "en:lesson-10:session-21:word:just:audio",
+            "transcript": "just"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-21:word:scenario:r1",
-              "targetText": "scenario",
+              "responseId": "en:lesson-10:session-21:word:just:r1",
+              "targetText": "just",
               "meaningByLocale": {
-                "ru": "«сценарий». I can imagine that scenario. — «Я могу представить такой сценарий». Здесь возможный ход событий, а не текст фильма.",
-                "uk": "«сценарій». I can imagine that scenario. — «Я можу уявити такий сценарій». Тут можливий перебіг подій, а не текст фільму."
+                "ru": "«просто, только» в этой фразе. I am just looking. — «Я просто смотрю».",
+                "uk": "«просто, лише» в цій фразі. I am just looking. — «Я просто дивлюся»."
               }
             }
           ],
@@ -480,10 +479,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "scenario",
+            "word": "just",
             "definitionByLocale": {
-              "ru": "«сценарий». I can imagine that scenario. — «Я могу представить такой сценарий». Здесь возможный ход событий, а не текст фильма.",
-              "uk": "«сценарій». I can imagine that scenario. — «Я можу уявити такий сценарій». Тут можливий перебіг подій, а не текст фільму."
+              "ru": "«просто, только» в этой фразе. I am just looking. — «Я просто смотрю».",
+              "uk": "«просто, лише» в цій фразі. I am just looking. — «Я просто дивлюся»."
             }
           }
         },
@@ -495,24 +494,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега описывает, как переезд пройдёт без задержек. Скажите: «Я могу представить такой сценарий»",
+        "prompt": "Ответьте продавцу, что просто смотрите. Just поставьте между am и looking",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега описывает, как переезд пройдёт без задержек. Скажите: «Я могу представить такой сценарий»",
+        "accessibilityLabel": "Ответьте продавцу, что просто смотрите. Just поставьте между am и looking",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I can imagine that scenario.",
+          "targetPhrase": "I am just looking.",
           "localizedMeaning": {
-            "ru": "Коллега описывает, как переезд пройдёт без задержек. Скажите: «Я могу представить такой сценарий»",
-            "uk": "Колега описує, як переїзд пройде без затримок. Скажіть: «Я можу уявити такий сценарій»"
+            "ru": "Ответьте продавцу, что просто смотрите. Just поставьте между am и looking",
+            "uk": "Дайте відповідь продавцю, що просто дивитеся. Just поставте між am і looking"
           },
           "orderedTokens": [
             "I",
-            "can",
-            "imagine",
-            "that",
-            "scenario"
+            "am",
+            "just",
+            "looking"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -533,15 +531,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i08:r1",
-            "text": "We are discussing the scenario."
+            "text": "We are just looking."
           },
           {
             "responseId": "en:lesson-10:session-21:i08:r2",
-            "text": "They are discussing the scenario."
+            "text": "I am just looking."
           },
           {
             "responseId": "en:lesson-10:session-21:i08:r3",
-            "text": "We are discussing the budget."
+            "text": "They are just looking."
           }
         ],
         "mediaIds": [],
@@ -553,23 +551,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i08:audio",
-            "transcript": "We are discussing the scenario."
+            "transcript": "We are just looking."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-21:i08:r1",
-              "targetText": "We are discussing the scenario.",
+              "targetText": "We are just looking.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i08:r2",
-              "targetText": "They are discussing the scenario.",
+              "targetText": "I am just looking.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i08:r3",
-              "targetText": "We are discussing the budget.",
+              "targetText": "They are just looking.",
               "meaningByLocale": null
             }
           ],
@@ -580,8 +578,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are discussing the scenario.",
-                "uk": "У записі звучить We are discussing the scenario."
+                "ru": "В записи звучит We are just looking.",
+                "uk": "У записі звучить We are just looking."
               }
             },
             {
@@ -589,8 +587,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are discussing the scenario.",
-                "uk": "У записі звучить We are discussing the scenario."
+                "ru": "В записи звучит We are just looking.",
+                "uk": "У записі звучить We are just looking."
               }
             }
           ],
@@ -605,63 +603,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму imagine после can",
+        "prompt": "Выберите форму look после am",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i09:r1",
-            "text": "imagine"
+            "text": "looking"
           },
           {
             "responseId": "en:lesson-10:session-21:i09:r2",
-            "text": "imagines"
+            "text": "look"
           },
           {
             "responseId": "en:lesson-10:session-21:i09:r3",
-            "text": "to imagine"
+            "text": "looks"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму imagine после can",
+        "accessibilityLabel": "Выберите форму look после am",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму imagine после can",
-            "uk": "Виберіть форму imagine після can"
+            "ru": "Выберите форму look после am",
+            "uk": "Виберіть форму look після am"
           },
-          "gappedTargetPhrase": "I can ___ that scenario.",
+          "gappedTargetPhrase": "I am just ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-21:i09:r1",
-              "text": "imagine"
+              "text": "looking"
             },
             {
               "responseId": "en:lesson-10:session-21:i09:r2",
-              "text": "imagines"
+              "text": "look"
             },
             {
               "responseId": "en:lesson-10:session-21:i09:r3",
-              "text": "to imagine"
+              "text": "looks"
             }
           ],
-          "testedDimension": "Выберите форму imagine после can",
+          "testedDimension": "Выберите форму look после am",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-21:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите форму imagine после can",
+              "testedDimension": "Выберите форму look после am",
               "feedbackByLocale": {
-                "ru": "После can глагол без s.",
-                "uk": "Після can дієслово без s."
+                "ru": "После am нужна looking.",
+                "uk": "Після am потрібна looking."
               }
             },
             {
               "responseId": "en:lesson-10:session-21:i09:r3",
               "correct": false,
-              "testedDimension": "Выберите форму imagine после can",
+              "testedDimension": "Выберите форму look после am",
               "feedbackByLocale": {
-                "ru": "После can не нужно to.",
-                "uk": "Після can не потрібне to."
+                "ru": "После am нужна looking, не looks.",
+                "uk": "Після am потрібна looking, не looks."
               }
             }
           ]
@@ -669,32 +667,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-21:word:outcome",
+        "interactionId": "en:lesson-10:session-21:word:almost",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — outcome",
+        "prompt": "Карточка слова — almost",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-21:word:outcome:audio"
+          "en:lesson-10:session-21:word:almost:audio"
         ],
-        "accessibilityLabel": "Карточка слова — outcome",
+        "accessibilityLabel": "Карточка слова — almost",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:word:outcome:audio",
-            "transcript": "outcome"
+            "audioTargetId": "en:lesson-10:session-21:word:almost:audio",
+            "transcript": "almost"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-21:word:outcome:r1",
-              "targetText": "outcome",
+              "responseId": "en:lesson-10:session-21:word:almost:r1",
+              "targetText": "almost",
               "meaningByLocale": {
-                "ru": "«результат». We need a better outcome. — «Нам нужен лучший результат». Здесь итог ситуации или процесса.",
-                "uk": "«результат». We need a better outcome. — «Нам потрібен кращий результат». Тут підсумок ситуації або процесу."
+                "ru": "«почти». It is almost ready. — «Это почти готово».",
+                "uk": "«майже». It is almost ready. — «Це майже готове»."
               }
             }
           ],
@@ -702,10 +700,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "outcome",
+            "word": "almost",
             "definitionByLocale": {
-              "ru": "«результат». We need a better outcome. — «Нам нужен лучший результат». Здесь итог ситуации или процесса.",
-              "uk": "«результат». We need a better outcome. — «Нам потрібен кращий результат». Тут підсумок ситуації або процесу."
+              "ru": "«почти». It is almost ready. — «Это почти готово».",
+              "uk": "«майже». It is almost ready. — «Це майже готове»."
             }
           }
         },
@@ -717,24 +715,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "При прошлом переезде команда потеряла рабочий день. Коллега обсуждает новый план. Скажите: «Нам нужен лучший результат»",
+        "prompt": "Ужин почти готов. Скажите это, поставив almost перед ready",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "При прошлом переезде команда потеряла рабочий день. Коллега обсуждает новый план. Скажите: «Нам нужен лучший результат»",
+        "accessibilityLabel": "Ужин почти готов. Скажите это, поставив almost перед ready",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We need a better outcome.",
+          "targetPhrase": "It is almost ready.",
           "localizedMeaning": {
-            "ru": "При прошлом переезде команда потеряла рабочий день. Коллега обсуждает новый план. Скажите: «Нам нужен лучший результат»",
-            "uk": "Під час минулого переїзду команда втратила робочий день. Колега обговорює новий план. Скажіть: «Нам потрібен кращий результат»"
+            "ru": "Ужин почти готов. Скажите это, поставив almost перед ready",
+            "uk": "Вечеря майже готова. Скажіть це, поставивши almost перед ready"
           },
           "orderedTokens": [
-            "We",
-            "need",
-            "a",
-            "better",
-            "outcome"
+            "It",
+            "is",
+            "almost",
+            "ready"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,15 +752,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i11:r1",
-            "text": "The outcome is good."
+            "text": "She is almost ready."
           },
           {
             "responseId": "en:lesson-10:session-21:i11:r2",
-            "text": "The outcome is bad."
+            "text": "He is almost ready."
           },
           {
             "responseId": "en:lesson-10:session-21:i11:r3",
-            "text": "The weather is good."
+            "text": "We are almost ready."
           }
         ],
         "mediaIds": [],
@@ -775,23 +772,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i11:audio",
-            "transcript": "The outcome is good."
+            "transcript": "She is almost ready."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-21:i11:r1",
-              "targetText": "The outcome is good.",
+              "targetText": "She is almost ready.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i11:r2",
-              "targetText": "The outcome is bad.",
+              "targetText": "He is almost ready.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i11:r3",
-              "targetText": "The weather is good.",
+              "targetText": "We are almost ready.",
               "meaningByLocale": null
             }
           ],
@@ -802,8 +799,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The outcome is good.",
-                "uk": "У записі звучить The outcome is good."
+                "ru": "В записи звучит She is almost ready.",
+                "uk": "У записі звучить She is almost ready."
               }
             },
             {
@@ -811,8 +808,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The outcome is good.",
-                "uk": "У записі звучить The outcome is good."
+                "ru": "В записи звучит She is almost ready.",
+                "uk": "У записі звучить She is almost ready."
               }
             }
           ],
@@ -827,7 +824,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с одним результатом",
+        "prompt": "Выберите связку с it",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i12:r1",
@@ -844,14 +841,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с одним результатом",
+        "accessibilityLabel": "Выберите связку с it",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с одним результатом",
-            "uk": "Виберіть зв’язку з одним результатом"
+            "ru": "Выберите связку с it",
+            "uk": "Виберіть зв’язку з it"
           },
-          "gappedTargetPhrase": "The outcome ___ good.",
+          "gappedTargetPhrase": "It ___ almost ready.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-21:i12:r1",
@@ -866,24 +863,24 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Выберите связку с одним результатом",
+          "testedDimension": "Выберите связку с it",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-21:i12:r2",
               "correct": false,
-              "testedDimension": "Выберите связку с одним результатом",
+              "testedDimension": "Выберите связку с it",
               "feedbackByLocale": {
-                "ru": "Один результат: is.",
-                "uk": "Один результат: is."
+                "ru": "С it нужна is.",
+                "uk": "З it потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-21:i12:r3",
               "correct": false,
-              "testedDimension": "Выберите связку с одним результатом",
+              "testedDimension": "Выберите связку с it",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Am употребляем с I, здесь is.",
+                "uk": "Am вживаємо з I, тут is."
               }
             }
           ]
@@ -896,58 +893,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями в этом занятии",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями в этом занятии",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-21:i13:p1",
-              "target": "imagine",
+              "target": "also",
               "meaningByLocale": {
-                "ru": "представлять",
-                "uk": "уявляти"
+                "ru": "также",
+                "uk": "також"
               }
             },
             {
               "pairId": "en:lesson-10:session-21:i13:p2",
-              "target": "possibility",
+              "target": "even",
               "meaningByLocale": {
-                "ru": "возможность",
-                "uk": "можливість"
+                "ru": "даже",
+                "uk": "навіть"
               }
             },
             {
               "pairId": "en:lesson-10:session-21:i13:p3",
-              "target": "scenario",
+              "target": "just",
               "meaningByLocale": {
-                "ru": "сценарий",
-                "uk": "сценарій"
+                "ru": "просто",
+                "uk": "просто"
               }
             },
             {
               "pairId": "en:lesson-10:session-21:i13:p4",
-              "target": "outcome",
+              "target": "almost",
               "meaningByLocale": {
-                "ru": "результат",
-                "uk": "результат"
+                "ru": "почти",
+                "uk": "майже"
               }
             }
           ],
           "leftColumn": [
-            "imagine",
-            "possibility",
-            "scenario",
-            "outcome"
+            "also",
+            "even",
+            "just",
+            "almost"
           ],
           "rightColumn": [
-            "представлять",
-            "возможность",
-            "сценарий",
-            "результат"
+            "также",
+            "даже",
+            "просто",
+            "почти"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -969,28 +966,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-21:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i14:audio",
-            "transcript": "I imagine the office is busy."
+            "transcript": "I am just looking."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I imagine the office is busy.",
+          "hiddenTargetPhrase": "I am just looking.",
           "orderedTokens": [
             "I",
-            "imagine",
-            "the",
-            "office",
-            "is",
-            "busy"
+            "am",
+            "just",
+            "looking"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1004,24 +999,60 @@
       {
         "interactionId": "en:lesson-10:session-21:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг спрашивает о коллеге, которая сегодня организует переезд. Вы не видите её. Скажите: «Полагаю, она занята»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-21:i15:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает о коллеге, которая сегодня организует переезд. Вы не видите её. Скажите: «Полагаю, она занята»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-21:i15:audio",
+            "transcript": "It is almost ready."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is almost ready.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "almost",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-21:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вам также нужна вода",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-21:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вам также нужна вода",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:i15:audio",
-            "transcript": "I imagine she is busy."
+            "audioTargetId": "en:lesson-10:session-21:i16:audio",
+            "transcript": "I also need water."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I imagine she is busy.",
+          "targetPhrase": "I also need water.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1035,70 +1066,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-21:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Коллега предлагает ещё один вариант комнаты для встречи. Скажите: «Есть другая возможность»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Коллега предлагает ещё один вариант комнаты для встречи. Скажите: «Есть другая возможность»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "There is another possibility.",
-          "localizedMeaning": {
-            "ru": "Коллега предлагает ещё один вариант комнаты для встречи. Скажите: «Есть другая возможность»",
-            "uk": "Колега пропонує ще один варіант кімнати для зустрічі. Скажіть: «Є інша можливість»"
-          },
-          "orderedTokens": [
-            "There",
-            "is",
-            "another",
-            "possibility"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-21:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Вы знаете, что сегодня в офисе переезд, но не видите, что там происходит. Друг спрашивает ваше мнение. Выскажите предположение: «Полагаю, в офисе сейчас много работы»",
+        "prompt": "Друг ждёт вас. Скажите: «Я почти готов»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-21:i17:audio"
         ],
-        "accessibilityLabel": "Вы знаете, что сегодня в офисе переезд, но не видите, что там происходит. Друг спрашивает ваше мнение. Выскажите предположение: «Полагаю, в офисе сейчас много работы»",
+        "accessibilityLabel": "Друг ждёт вас. Скажите: «Я почти готов»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i17:audio",
-            "transcript": "I imagine the office is busy."
+            "transcript": "I am almost ready."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I imagine the office is busy.",
+          "targetPhrase": "I am almost ready.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1111,32 +1101,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-21:word:imagine",
+        "interactionId": "en:lesson-10:session-21:word:also",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — imagine",
+        "prompt": "Картка слова — also",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-21:word:imagine:audio"
+          "en:lesson-10:session-21:word:also:audio"
         ],
-        "accessibilityLabel": "Картка слова — imagine",
+        "accessibilityLabel": "Картка слова — also",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:word:imagine:audio",
-            "transcript": "imagine"
+            "audioTargetId": "en:lesson-10:session-21:word:also:audio",
+            "transcript": "also"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-21:word:imagine:r1",
-              "targetText": "imagine",
+              "responseId": "en:lesson-10:session-21:word:also:r1",
+              "targetText": "also",
               "meaningByLocale": {
-                "ru": "«представлять; полагать». I imagine she is busy. — «Полагаю, она занята». Здесь предполагать; в другом контексте — создавать мысленный образ.",
-                "uk": "«уявляти; гадати». I imagine she is busy. — «Гадаю, вона зайнята». Тут припускати; в іншому контексті — створювати уявний образ."
+                "ru": "«также». I also need bread. — «Мне также нужен хлеб».",
+                "uk": "«також». I also need bread. — «Мені також потрібен хліб»."
               }
             }
           ],
@@ -1144,10 +1134,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "imagine",
+            "word": "also",
             "definitionByLocale": {
-              "ru": "«представлять; полагать». I imagine she is busy. — «Полагаю, она занята». Здесь предполагать; в другом контексте — создавать мысленный образ.",
-              "uk": "«уявляти; гадати». I imagine she is busy. — «Гадаю, вона зайнята». Тут припускати; в іншому контексті — створювати уявний образ."
+              "ru": "«также». I also need bread. — «Мне также нужен хлеб».",
+              "uk": "«також». I also need bread. — «Мені також потрібен хліб»."
             }
           }
         },
@@ -1159,24 +1149,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега займається переїздом офісу й не відповідає. Висловіть припущення: «Гадаю, вона зайнята»",
+        "prompt": "Додайте, що вам також потрібен хліб. Also поставте перед need",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега займається переїздом офісу й не відповідає. Висловіть припущення: «Гадаю, вона зайнята»",
+        "accessibilityLabel": "Додайте, що вам також потрібен хліб. Also поставте перед need",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I imagine she is busy.",
+          "targetPhrase": "I also need bread.",
           "localizedMeaning": {
-            "ru": "Коллега занимается переездом офиса и не отвечает. Выскажите предположение: «Полагаю, она занята»",
-            "uk": "Колега займається переїздом офісу й не відповідає. Висловіть припущення: «Гадаю, вона зайнята»"
+            "ru": "Добавьте, что вам также нужен хлеб. Also поставьте перед need",
+            "uk": "Додайте, що вам також потрібен хліб. Also поставте перед need"
           },
           "orderedTokens": [
             "I",
-            "imagine",
-            "she",
-            "is",
-            "busy"
+            "also",
+            "need",
+            "bread"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1197,15 +1186,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i02:r1",
-            "text": "I imagine she is busy."
+            "text": "We also need bread."
           },
           {
             "responseId": "en:lesson-10:session-21:i02:r2",
-            "text": "We imagine she is busy."
+            "text": "I also need bread."
           },
           {
             "responseId": "en:lesson-10:session-21:i02:r3",
-            "text": "I imagine he is busy."
+            "text": "We also need milk."
           }
         ],
         "mediaIds": [],
@@ -1217,23 +1206,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i02:audio",
-            "transcript": "I imagine she is busy."
+            "transcript": "We also need bread."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-21:i02:r1",
-              "targetText": "I imagine she is busy.",
+              "targetText": "We also need bread.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i02:r2",
-              "targetText": "We imagine she is busy.",
+              "targetText": "I also need bread.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i02:r3",
-              "targetText": "I imagine he is busy.",
+              "targetText": "We also need milk.",
               "meaningByLocale": null
             }
           ],
@@ -1244,8 +1233,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I imagine she is busy.",
-                "uk": "У записі звучить I imagine she is busy."
+                "ru": "В записи звучит We also need bread.",
+                "uk": "У записі звучить We also need bread."
               }
             },
             {
@@ -1253,8 +1242,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I imagine she is busy.",
-                "uk": "У записі звучить I imagine she is busy."
+                "ru": "В записи звучит We also need bread.",
+                "uk": "У записі звучить We also need bread."
               }
             }
           ],
@@ -1269,63 +1258,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму imagine з I для припущення",
+        "prompt": "Виберіть форму need з I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i03:r1",
-            "text": "imagine"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-21:i03:r2",
-            "text": "imagines"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-21:i03:r3",
-            "text": "am imagine"
+            "text": "needing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму imagine з I для припущення",
+        "accessibilityLabel": "Виберіть форму need з I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму imagine с I для предположения",
-            "uk": "Виберіть форму imagine з I для припущення"
+            "ru": "Выберите форму need с I",
+            "uk": "Виберіть форму need з I"
           },
-          "gappedTargetPhrase": "I ___ she is busy.",
+          "gappedTargetPhrase": "I also ___ bread.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-21:i03:r1",
-              "text": "imagine"
+              "text": "need"
             },
             {
               "responseId": "en:lesson-10:session-21:i03:r2",
-              "text": "imagines"
+              "text": "needs"
             },
             {
               "responseId": "en:lesson-10:session-21:i03:r3",
-              "text": "am imagine"
+              "text": "needing"
             }
           ],
-          "testedDimension": "Виберіть форму imagine з I для припущення",
+          "testedDimension": "Виберіть форму need з I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-21:i03:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму imagine з I для припущення",
+              "testedDimension": "Виберіть форму need з I",
               "feedbackByLocale": {
-                "ru": "С I нужна imagine без s.",
-                "uk": "З I потрібна imagine без s."
+                "ru": "С I нужна need.",
+                "uk": "З I потрібна need."
               }
             },
             {
               "responseId": "en:lesson-10:session-21:i03:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму imagine з I для припущення",
+              "testedDimension": "Виберіть форму need з I",
               "feedbackByLocale": {
-                "ru": "Am imagine неверно; здесь нужна imagine.",
-                "uk": "Am imagine неправильно; тут потрібна imagine."
+                "ru": "Здесь нужна need.",
+                "uk": "Тут потрібна need."
               }
             }
           ]
@@ -1333,32 +1322,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-21:word:possibility",
+        "interactionId": "en:lesson-10:session-21:word:even",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — possibility",
+        "prompt": "Картка слова — even",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-21:word:possibility:audio"
+          "en:lesson-10:session-21:word:even:audio"
         ],
-        "accessibilityLabel": "Картка слова — possibility",
+        "accessibilityLabel": "Картка слова — even",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:word:possibility:audio",
-            "transcript": "possibility"
+            "audioTargetId": "en:lesson-10:session-21:word:even:audio",
+            "transcript": "even"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-21:word:possibility:r1",
-              "targetText": "possibility",
+              "responseId": "en:lesson-10:session-21:word:even:r1",
+              "targetText": "even",
               "meaningByLocale": {
-                "ru": "«возможность». It is a possibility. — «Это возможный вариант». Здесь один из вариантов, который может осуществиться.",
-                "uk": "«можливість». It is a possibility. — «Це можливий варіант». Тут один із варіантів, який може здійснитися."
+                "ru": "«даже». Even Tom is here. — «Даже Том здесь».",
+                "uk": "«навіть». Even Tom is here. — «Навіть Том тут»."
               }
             }
           ],
@@ -1366,10 +1355,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "possibility",
+            "word": "even",
             "definitionByLocale": {
-              "ru": "«возможность». It is a possibility. — «Это возможный вариант». Здесь один из вариантов, который может осуществиться.",
-              "uk": "«можливість». It is a possibility. — «Це можливий варіант». Тут один із варіантів, який може здійснитися."
+              "ru": "«даже». Even Tom is here. — «Даже Том здесь».",
+              "uk": "«навіть». Even Tom is here. — «Навіть Том тут»."
             }
           }
         },
@@ -1381,23 +1370,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега пропонує перенести зустріч до іншої кімнати. Ви поки не вирішили. Скажіть: «Це можливий варіант»",
+        "prompt": "Том зазвичай не приходить, але сьогодні він тут. Скажіть: «Навіть Том тут», почавши з Even Tom",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега пропонує перенести зустріч до іншої кімнати. Ви поки не вирішили. Скажіть: «Це можливий варіант»",
+        "accessibilityLabel": "Том зазвичай не приходить, але сьогодні він тут. Скажіть: «Навіть Том тут», почавши з Even Tom",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "It is a possibility.",
+          "targetPhrase": "Even Tom is here.",
           "localizedMeaning": {
-            "ru": "Коллега предлагает перенести встречу в другую комнату. Вы пока не решили. Скажите: «Это возможный вариант»",
-            "uk": "Колега пропонує перенести зустріч до іншої кімнати. Ви поки не вирішили. Скажіть: «Це можливий варіант»"
+            "ru": "Том обычно не приходит, но сегодня он здесь. Скажите: «Даже Том здесь», начав с Even Tom",
+            "uk": "Том зазвичай не приходить, але сьогодні він тут. Скажіть: «Навіть Том тут», почавши з Even Tom"
           },
           "orderedTokens": [
-            "It",
+            "Even",
+            "Tom",
             "is",
-            "a",
-            "possibility"
+            "here"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1418,15 +1407,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i05:r1",
-            "text": "There is another possibility."
+            "text": "Even Tom is here."
           },
           {
             "responseId": "en:lesson-10:session-21:i05:r2",
-            "text": "There is another problem."
+            "text": "Even Tom is late."
           },
           {
             "responseId": "en:lesson-10:session-21:i05:r3",
-            "text": "There is another meeting."
+            "text": "Even Tom is ready."
           }
         ],
         "mediaIds": [],
@@ -1438,23 +1427,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i05:audio",
-            "transcript": "There is another possibility."
+            "transcript": "Even Tom is here."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-21:i05:r1",
-              "targetText": "There is another possibility.",
+              "targetText": "Even Tom is here.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i05:r2",
-              "targetText": "There is another problem.",
+              "targetText": "Even Tom is late.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i05:r3",
-              "targetText": "There is another meeting.",
+              "targetText": "Even Tom is ready.",
               "meaningByLocale": null
             }
           ],
@@ -1465,8 +1454,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит There is another possibility.",
-                "uk": "У записі звучить There is another possibility."
+                "ru": "В записи звучит Even Tom is here.",
+                "uk": "У записі звучить Even Tom is here."
               }
             },
             {
@@ -1474,8 +1463,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит There is another possibility.",
-                "uk": "У записі звучить There is another possibility."
+                "ru": "В записи звучит Even Tom is here.",
+                "uk": "У записі звучить Even Tom is here."
               }
             }
           ],
@@ -1490,63 +1479,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть артикль перед possibility",
+        "prompt": "Виберіть зв’язку з однією людиною, Tom",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i06:r1",
-            "text": "a"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-21:i06:r2",
-            "text": "an"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-21:i06:r3",
-            "text": "are"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть артикль перед possibility",
+        "accessibilityLabel": "Виберіть зв’язку з однією людиною, Tom",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите артикль перед possibility",
-            "uk": "Виберіть артикль перед possibility"
+            "ru": "Выберите связку с одним человеком, Tom",
+            "uk": "Виберіть зв’язку з однією людиною, Tom"
           },
-          "gappedTargetPhrase": "It is ___ possibility.",
+          "gappedTargetPhrase": "Even Tom ___ here.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-21:i06:r1",
-              "text": "a"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-21:i06:r2",
-              "text": "an"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-21:i06:r3",
-              "text": "are"
+              "text": "am"
             }
           ],
-          "testedDimension": "Виберіть артикль перед possibility",
+          "testedDimension": "Виберіть зв’язку з однією людиною, Tom",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-21:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть артикль перед possibility",
+              "testedDimension": "Виберіть зв’язку з однією людиною, Tom",
               "feedbackByLocale": {
-                "ru": "Possibility начинается с согласного звука: a.",
-                "uk": "Possibility починається з приголосного звука: a."
+                "ru": "С Tom нужна is.",
+                "uk": "З Tom потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-21:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть артикль перед possibility",
+              "testedDimension": "Виберіть зв’язку з однією людиною, Tom",
               "feedbackByLocale": {
-                "ru": "Are — глагол; здесь нужен артикль a.",
-                "uk": "Are — дієслово; тут потрібен артикль a."
+                "ru": "Am употребляем с I, здесь is.",
+                "uk": "Am вживаємо з I, тут is."
               }
             }
           ]
@@ -1554,32 +1543,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-21:word:scenario",
+        "interactionId": "en:lesson-10:session-21:word:just",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — scenario",
+        "prompt": "Картка слова — just",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-21:word:scenario:audio"
+          "en:lesson-10:session-21:word:just:audio"
         ],
-        "accessibilityLabel": "Картка слова — scenario",
+        "accessibilityLabel": "Картка слова — just",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:word:scenario:audio",
-            "transcript": "scenario"
+            "audioTargetId": "en:lesson-10:session-21:word:just:audio",
+            "transcript": "just"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-21:word:scenario:r1",
-              "targetText": "scenario",
+              "responseId": "en:lesson-10:session-21:word:just:r1",
+              "targetText": "just",
               "meaningByLocale": {
-                "ru": "«сценарий». I can imagine that scenario. — «Я могу представить такой сценарий». Здесь возможный ход событий, а не текст фильма.",
-                "uk": "«сценарій». I can imagine that scenario. — «Я можу уявити такий сценарій». Тут можливий перебіг подій, а не текст фільму."
+                "ru": "«просто, только» в этой фразе. I am just looking. — «Я просто смотрю».",
+                "uk": "«просто, лише» в цій фразі. I am just looking. — «Я просто дивлюся»."
               }
             }
           ],
@@ -1587,10 +1576,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "scenario",
+            "word": "just",
             "definitionByLocale": {
-              "ru": "«сценарий». I can imagine that scenario. — «Я могу представить такой сценарий». Здесь возможный ход событий, а не текст фильма.",
-              "uk": "«сценарій». I can imagine that scenario. — «Я можу уявити такий сценарій». Тут можливий перебіг подій, а не текст фільму."
+              "ru": "«просто, только» в этой фразе. I am just looking. — «Я просто смотрю».",
+              "uk": "«просто, лише» в цій фразі. I am just looking. — «Я просто дивлюся»."
             }
           }
         },
@@ -1602,24 +1591,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега описує, як переїзд пройде без затримок. Скажіть: «Я можу уявити такий сценарій»",
+        "prompt": "Дайте відповідь продавцю, що просто дивитеся. Just поставте між am і looking",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега описує, як переїзд пройде без затримок. Скажіть: «Я можу уявити такий сценарій»",
+        "accessibilityLabel": "Дайте відповідь продавцю, що просто дивитеся. Just поставте між am і looking",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I can imagine that scenario.",
+          "targetPhrase": "I am just looking.",
           "localizedMeaning": {
-            "ru": "Коллега описывает, как переезд пройдёт без задержек. Скажите: «Я могу представить такой сценарий»",
-            "uk": "Колега описує, як переїзд пройде без затримок. Скажіть: «Я можу уявити такий сценарій»"
+            "ru": "Ответьте продавцу, что просто смотрите. Just поставьте между am и looking",
+            "uk": "Дайте відповідь продавцю, що просто дивитеся. Just поставте між am і looking"
           },
           "orderedTokens": [
             "I",
-            "can",
-            "imagine",
-            "that",
-            "scenario"
+            "am",
+            "just",
+            "looking"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1640,15 +1628,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i08:r1",
-            "text": "We are discussing the scenario."
+            "text": "We are just looking."
           },
           {
             "responseId": "en:lesson-10:session-21:i08:r2",
-            "text": "They are discussing the scenario."
+            "text": "I am just looking."
           },
           {
             "responseId": "en:lesson-10:session-21:i08:r3",
-            "text": "We are discussing the budget."
+            "text": "They are just looking."
           }
         ],
         "mediaIds": [],
@@ -1660,23 +1648,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i08:audio",
-            "transcript": "We are discussing the scenario."
+            "transcript": "We are just looking."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-21:i08:r1",
-              "targetText": "We are discussing the scenario.",
+              "targetText": "We are just looking.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i08:r2",
-              "targetText": "They are discussing the scenario.",
+              "targetText": "I am just looking.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i08:r3",
-              "targetText": "We are discussing the budget.",
+              "targetText": "They are just looking.",
               "meaningByLocale": null
             }
           ],
@@ -1687,8 +1675,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are discussing the scenario.",
-                "uk": "У записі звучить We are discussing the scenario."
+                "ru": "В записи звучит We are just looking.",
+                "uk": "У записі звучить We are just looking."
               }
             },
             {
@@ -1696,8 +1684,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We are discussing the scenario.",
-                "uk": "У записі звучить We are discussing the scenario."
+                "ru": "В записи звучит We are just looking.",
+                "uk": "У записі звучить We are just looking."
               }
             }
           ],
@@ -1712,63 +1700,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму imagine після can",
+        "prompt": "Виберіть форму look після am",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i09:r1",
-            "text": "imagine"
+            "text": "looking"
           },
           {
             "responseId": "en:lesson-10:session-21:i09:r2",
-            "text": "imagines"
+            "text": "look"
           },
           {
             "responseId": "en:lesson-10:session-21:i09:r3",
-            "text": "to imagine"
+            "text": "looks"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму imagine після can",
+        "accessibilityLabel": "Виберіть форму look після am",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму imagine после can",
-            "uk": "Виберіть форму imagine після can"
+            "ru": "Выберите форму look после am",
+            "uk": "Виберіть форму look після am"
           },
-          "gappedTargetPhrase": "I can ___ that scenario.",
+          "gappedTargetPhrase": "I am just ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-21:i09:r1",
-              "text": "imagine"
+              "text": "looking"
             },
             {
               "responseId": "en:lesson-10:session-21:i09:r2",
-              "text": "imagines"
+              "text": "look"
             },
             {
               "responseId": "en:lesson-10:session-21:i09:r3",
-              "text": "to imagine"
+              "text": "looks"
             }
           ],
-          "testedDimension": "Виберіть форму imagine після can",
+          "testedDimension": "Виберіть форму look після am",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-21:i09:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму imagine після can",
+              "testedDimension": "Виберіть форму look після am",
               "feedbackByLocale": {
-                "ru": "После can глагол без s.",
-                "uk": "Після can дієслово без s."
+                "ru": "После am нужна looking.",
+                "uk": "Після am потрібна looking."
               }
             },
             {
               "responseId": "en:lesson-10:session-21:i09:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму imagine після can",
+              "testedDimension": "Виберіть форму look після am",
               "feedbackByLocale": {
-                "ru": "После can не нужно to.",
-                "uk": "Після can не потрібне to."
+                "ru": "После am нужна looking, не looks.",
+                "uk": "Після am потрібна looking, не looks."
               }
             }
           ]
@@ -1776,32 +1764,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-21:word:outcome",
+        "interactionId": "en:lesson-10:session-21:word:almost",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — outcome",
+        "prompt": "Картка слова — almost",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-21:word:outcome:audio"
+          "en:lesson-10:session-21:word:almost:audio"
         ],
-        "accessibilityLabel": "Картка слова — outcome",
+        "accessibilityLabel": "Картка слова — almost",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:word:outcome:audio",
-            "transcript": "outcome"
+            "audioTargetId": "en:lesson-10:session-21:word:almost:audio",
+            "transcript": "almost"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-21:word:outcome:r1",
-              "targetText": "outcome",
+              "responseId": "en:lesson-10:session-21:word:almost:r1",
+              "targetText": "almost",
               "meaningByLocale": {
-                "ru": "«результат». We need a better outcome. — «Нам нужен лучший результат». Здесь итог ситуации или процесса.",
-                "uk": "«результат». We need a better outcome. — «Нам потрібен кращий результат». Тут підсумок ситуації або процесу."
+                "ru": "«почти». It is almost ready. — «Это почти готово».",
+                "uk": "«майже». It is almost ready. — «Це майже готове»."
               }
             }
           ],
@@ -1809,10 +1797,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "outcome",
+            "word": "almost",
             "definitionByLocale": {
-              "ru": "«результат». We need a better outcome. — «Нам нужен лучший результат». Здесь итог ситуации или процесса.",
-              "uk": "«результат». We need a better outcome. — «Нам потрібен кращий результат». Тут підсумок ситуації або процесу."
+              "ru": "«почти». It is almost ready. — «Это почти готово».",
+              "uk": "«майже». It is almost ready. — «Це майже готове»."
             }
           }
         },
@@ -1824,24 +1812,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Під час минулого переїзду команда втратила робочий день. Колега обговорює новий план. Скажіть: «Нам потрібен кращий результат»",
+        "prompt": "Вечеря майже готова. Скажіть це, поставивши almost перед ready",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Під час минулого переїзду команда втратила робочий день. Колега обговорює новий план. Скажіть: «Нам потрібен кращий результат»",
+        "accessibilityLabel": "Вечеря майже готова. Скажіть це, поставивши almost перед ready",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We need a better outcome.",
+          "targetPhrase": "It is almost ready.",
           "localizedMeaning": {
-            "ru": "При прошлом переезде команда потеряла рабочий день. Коллега обсуждает новый план. Скажите: «Нам нужен лучший результат»",
-            "uk": "Під час минулого переїзду команда втратила робочий день. Колега обговорює новий план. Скажіть: «Нам потрібен кращий результат»"
+            "ru": "Ужин почти готов. Скажите это, поставив almost перед ready",
+            "uk": "Вечеря майже готова. Скажіть це, поставивши almost перед ready"
           },
           "orderedTokens": [
-            "We",
-            "need",
-            "a",
-            "better",
-            "outcome"
+            "It",
+            "is",
+            "almost",
+            "ready"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1862,15 +1849,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i11:r1",
-            "text": "The outcome is good."
+            "text": "She is almost ready."
           },
           {
             "responseId": "en:lesson-10:session-21:i11:r2",
-            "text": "The outcome is bad."
+            "text": "He is almost ready."
           },
           {
             "responseId": "en:lesson-10:session-21:i11:r3",
-            "text": "The weather is good."
+            "text": "We are almost ready."
           }
         ],
         "mediaIds": [],
@@ -1882,23 +1869,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i11:audio",
-            "transcript": "The outcome is good."
+            "transcript": "She is almost ready."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-21:i11:r1",
-              "targetText": "The outcome is good.",
+              "targetText": "She is almost ready.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i11:r2",
-              "targetText": "The outcome is bad.",
+              "targetText": "He is almost ready.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-21:i11:r3",
-              "targetText": "The weather is good.",
+              "targetText": "We are almost ready.",
               "meaningByLocale": null
             }
           ],
@@ -1909,8 +1896,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The outcome is good.",
-                "uk": "У записі звучить The outcome is good."
+                "ru": "В записи звучит She is almost ready.",
+                "uk": "У записі звучить She is almost ready."
               }
             },
             {
@@ -1918,8 +1905,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The outcome is good.",
-                "uk": "У записі звучить The outcome is good."
+                "ru": "В записи звучит She is almost ready.",
+                "uk": "У записі звучить She is almost ready."
               }
             }
           ],
@@ -1934,7 +1921,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з одним результатом",
+        "prompt": "Виберіть зв’язку з it",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-21:i12:r1",
@@ -1951,14 +1938,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з одним результатом",
+        "accessibilityLabel": "Виберіть зв’язку з it",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с одним результатом",
-            "uk": "Виберіть зв’язку з одним результатом"
+            "ru": "Выберите связку с it",
+            "uk": "Виберіть зв’язку з it"
           },
-          "gappedTargetPhrase": "The outcome ___ good.",
+          "gappedTargetPhrase": "It ___ almost ready.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-21:i12:r1",
@@ -1973,24 +1960,24 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Виберіть зв’язку з одним результатом",
+          "testedDimension": "Виберіть зв’язку з it",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-21:i12:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку з одним результатом",
+              "testedDimension": "Виберіть зв’язку з it",
               "feedbackByLocale": {
-                "ru": "Один результат: is.",
-                "uk": "Один результат: is."
+                "ru": "С it нужна is.",
+                "uk": "З it потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-21:i12:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку з одним результатом",
+              "testedDimension": "Виберіть зв’язку з it",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Am употребляем с I, здесь is.",
+                "uk": "Am вживаємо з I, тут is."
               }
             }
           ]
@@ -2003,58 +1990,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями в цьому занятті",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями в цьому занятті",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-21:i13:p1",
-              "target": "imagine",
+              "target": "also",
               "meaningByLocale": {
-                "ru": "представлять",
-                "uk": "уявляти"
+                "ru": "также",
+                "uk": "також"
               }
             },
             {
               "pairId": "en:lesson-10:session-21:i13:p2",
-              "target": "possibility",
+              "target": "even",
               "meaningByLocale": {
-                "ru": "возможность",
-                "uk": "можливість"
+                "ru": "даже",
+                "uk": "навіть"
               }
             },
             {
               "pairId": "en:lesson-10:session-21:i13:p3",
-              "target": "scenario",
+              "target": "just",
               "meaningByLocale": {
-                "ru": "сценарий",
-                "uk": "сценарій"
+                "ru": "просто",
+                "uk": "просто"
               }
             },
             {
               "pairId": "en:lesson-10:session-21:i13:p4",
-              "target": "outcome",
+              "target": "almost",
               "meaningByLocale": {
-                "ru": "результат",
-                "uk": "результат"
+                "ru": "почти",
+                "uk": "майже"
               }
             }
           ],
           "leftColumn": [
-            "imagine",
-            "possibility",
-            "scenario",
-            "outcome"
+            "also",
+            "even",
+            "just",
+            "almost"
           ],
           "rightColumn": [
-            "уявляти",
-            "можливість",
-            "сценарій",
-            "результат"
+            "також",
+            "навіть",
+            "просто",
+            "майже"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2076,28 +2063,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-21:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i14:audio",
-            "transcript": "I imagine the office is busy."
+            "transcript": "I am just looking."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I imagine the office is busy.",
+          "hiddenTargetPhrase": "I am just looking.",
           "orderedTokens": [
             "I",
-            "imagine",
-            "the",
-            "office",
-            "is",
-            "busy"
+            "am",
+            "just",
+            "looking"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2111,24 +2096,60 @@
       {
         "interactionId": "en:lesson-10:session-21:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг запитує про колегу, яка сьогодні організовує переїзд. Ви не бачите її. Скажіть: «Гадаю, вона зайнята»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-21:i15:audio"
         ],
-        "accessibilityLabel": "Друг запитує про колегу, яка сьогодні організовує переїзд. Ви не бачите її. Скажіть: «Гадаю, вона зайнята»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-21:i15:audio",
+            "transcript": "It is almost ready."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is almost ready.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "almost",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-21:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вам також потрібна вода",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-21:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вам також потрібна вода",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-21:i15:audio",
-            "transcript": "I imagine she is busy."
+            "audioTargetId": "en:lesson-10:session-21:i16:audio",
+            "transcript": "I also need water."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I imagine she is busy.",
+          "targetPhrase": "I also need water.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2142,70 +2163,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-21:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Колега пропонує ще один варіант кімнати для зустрічі. Скажіть: «Є інша можливість»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Колега пропонує ще один варіант кімнати для зустрічі. Скажіть: «Є інша можливість»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "There is another possibility.",
-          "localizedMeaning": {
-            "ru": "Коллега предлагает ещё один вариант комнаты для встречи. Скажите: «Есть другая возможность»",
-            "uk": "Колега пропонує ще один варіант кімнати для зустрічі. Скажіть: «Є інша можливість»"
-          },
-          "orderedTokens": [
-            "There",
-            "is",
-            "another",
-            "possibility"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-21:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ви знаєте, що сьогодні в офісі переїзд, але не бачите, що там відбувається. Друг запитує вашу думку. Висловіть припущення: «Гадаю, в офісі зараз багато роботи»",
+        "prompt": "Друг чекає на вас. Скажіть: «Я майже готовий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-21:i17:audio"
         ],
-        "accessibilityLabel": "Ви знаєте, що сьогодні в офісі переїзд, але не бачите, що там відбувається. Друг запитує вашу думку. Висловіть припущення: «Гадаю, в офісі зараз багато роботи»",
+        "accessibilityLabel": "Друг чекає на вас. Скажіть: «Я майже готовий»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-21:i17:audio",
-            "transcript": "I imagine the office is busy."
+            "transcript": "I am almost ready."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I imagine the office is busy.",
+          "targetPhrase": "I am almost ready.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2219,78 +2199,78 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-21:word:imagine",
-      "correctText": "imagine",
+      "interactionId": "en:lesson-10:session-21:word:also",
+      "correctText": "also",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i01",
-      "correctText": "I imagine she is busy.",
+      "correctText": "I also need bread.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i02",
-      "correctText": "I imagine she is busy.",
+      "correctText": "We also need bread.",
       "correctResponseId": "en:lesson-10:session-21:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-21:i03",
-      "correctText": "imagine",
+      "correctText": "need",
       "correctResponseId": "en:lesson-10:session-21:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-21:word:possibility",
-      "correctText": "possibility",
+      "interactionId": "en:lesson-10:session-21:word:even",
+      "correctText": "even",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i04",
-      "correctText": "It is a possibility.",
+      "correctText": "Even Tom is here.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i05",
-      "correctText": "There is another possibility.",
+      "correctText": "Even Tom is here.",
       "correctResponseId": "en:lesson-10:session-21:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-21:i06",
-      "correctText": "a",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-21:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-21:word:scenario",
-      "correctText": "scenario",
+      "interactionId": "en:lesson-10:session-21:word:just",
+      "correctText": "just",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i07",
-      "correctText": "I can imagine that scenario.",
+      "correctText": "I am just looking.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i08",
-      "correctText": "We are discussing the scenario.",
+      "correctText": "We are just looking.",
       "correctResponseId": "en:lesson-10:session-21:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-21:i09",
-      "correctText": "imagine",
+      "correctText": "looking",
       "correctResponseId": "en:lesson-10:session-21:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-21:word:outcome",
-      "correctText": "outcome",
+      "interactionId": "en:lesson-10:session-21:word:almost",
+      "correctText": "almost",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i10",
-      "correctText": "We need a better outcome.",
+      "correctText": "It is almost ready.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i11",
-      "correctText": "The outcome is good.",
+      "correctText": "She is almost ready.",
       "correctResponseId": "en:lesson-10:session-21:i11:r1"
     },
     {
@@ -2305,22 +2285,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-21:i14",
-      "correctText": "I imagine the office is busy.",
+      "correctText": "I am just looking.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i15",
-      "correctText": "I imagine she is busy.",
+      "correctText": "It is almost ready.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i16",
-      "correctText": "There is another possibility.",
+      "correctText": "I also need water.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-21:i17",
-      "correctText": "I imagine the office is busy.",
+      "correctText": "I am almost ready.",
       "correctResponseId": null
     }
   ]

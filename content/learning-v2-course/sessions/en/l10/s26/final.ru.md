@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 26 — Обед в полдень
+# Английский · Урок 10 · Занятие 26 — Заказать обед
 
-**Ситуация.** Рассказать об обычном времени обеда и о подготовке стола сейчас.
+**Ситуация.** Выбрать блюда по меню и сказать о размере порции.
 
-**Что вы освоите:** We usually eat at noon; She is filling the carafe; The soup is in the tureen
-**Новые слова:** noon, tureen, carafe, cruet
+**Что вы освоите:** I would like a starter; I am choosing a main course; We need a side dish; This portion is small
+**Новые слова:** starter, main course, side dish, portion
 
 ## Интро 1
 
-### В полдень
+### С чего начать обед
 
-Noon — «полдень», двенадцать часов дня. We usually eat at noon — «Мы обычно едим в полдень». Usually говорит о привычке; для неё используем Present Simple. Перед noon ставим at. Само at noon может относиться и к отдельному событию: сначала выясняем смысл всей ситуации.
+В меню вы выбираете небольшое блюдо перед основным. Starter — «закуска, первое небольшое блюдо»: I would like a starter — «Я бы хотел закуску». Это вежливая просьба: would like. После would нужна like без s.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We usually eat at noon.**
-- ❌ We usually eats at noon. — *С we нужна eat без s.*
-- ❌ We usually eat on noon. — *Говорим at noon, не on noon.*
+- ✅ **I would like a starter.**
+- ❌ I would likes a starter. — *После would нужна like без s.*
+- ❌ I would liking a starter. — *После would нужна like.*
 
 ---
 
 ## Интро 2
 
-### Суп уже на столе
+### Основное блюдо и дополнение
 
-Tureen — «супница», большая посуда для подачи супа к столу. Друг ищет суп: The soup is in the tureen — «Суп в супнице». Здесь называем место, поэтому достаточно is. Не нужно добавлять being лишь потому, что речь идёт о текущем моменте.
+Вы ещё читаете меню. Main course — «основное блюдо»: I am choosing a main course — «Я выбираю основное блюдо». Вы выбираете сейчас: am choosing; в choose убираем последнюю e. Side dish — «гарнир, отдельное дополнение к основному блюду»: We need a side dish — «Нам нужен гарнир». Например, к рыбе можно заказать отдельную порцию овощей.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The soup is in the tureen.**
-- ❌ The soup in the tureen. — *Перед in нужна связка is.*
-- ❌ The soup are in the tureen. — *Soup здесь неисчисляемое: is, не are.*
+- ✅ **I am choosing a main course.**
+- ❌ I choosing a main course. — *Перед choosing нужна am.*
+- ❌ I am choose a main course. — *После am нужна choosing.*
 
 ---
 
 ## Интро 3
 
-### Наполняет графин сейчас
+### Большая или маленькая порция
 
-Carafe — «графин», сосуд для подачи воды или вина. Вы видите, как подруга наливает воду: She is filling the carafe — «Она наполняет графин». Для действия сейчас используем is + filling. Fill уже заканчивается на две l; в filling они сохраняются.
+Вам принесли заказ, и еды на тарелке немного. Portion — «порция»: This portion is small — «Эта порция маленькая». Вы описываете размер, поэтому is связывает portion со small. Это описание, а не действие с ing.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She is filling the carafe.**
-- ❌ She filling the carafe. — *Перед filling нужен is.*
-- ❌ She is fill the carafe. — *После is здесь нужна filling.*
+- ✅ **This portion is small.**
+- ❌ This portion are small. — *Одна порция: is.*
+- ❌ This portion small. — *Перед small нужна is.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — noon**
-<!-- interaction_id: en:lesson-10:session-26:word:noon; family: word_card -->
-> **noon** — «полдень». We usually eat at noon. — «Мы обычно едим в полдень». Двенадцать часов дня.
+**1 · Карточка слова — starter**
+<!-- interaction_id: en:lesson-10:session-26:word:starter; family: word_card -->
+> **starter** — «закуска перед основным блюдом». I would like a starter. — «Я бы хотел закуску».
 
-**2 · Друг спрашивает о вашем обычном времени обеда. Скажите: «Мы обычно едим в полдень». Поставьте at noon в конце**
+**2 · Попросите закуску перед основным блюдом**
 <!-- interaction_id: en:lesson-10:session-26:i01; family: phrase_builder -->
-Плитки: `noon` `at` `eat` `usually` `We` → **We usually eat at noon.**
+Плитки: `starter` `a` `like` `would` `I` → **I would like a starter.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-26:i02; family: listen_choose -->
-🔊 *We eat at noon.* → **We eat at noon.** · They eat at noon. · We meet at noon.
-- They eat at noon. — *В записи звучит We eat at noon.*
-- We meet at noon. — *В записи звучит We eat at noon.*
+🔊 *She would like a starter.* → **She would like a starter.** · He would like a starter. · We would like a starter.
+- He would like a starter. — *В записи звучит She would like a starter.*
+- We would like a starter. — *В записи звучит She would like a starter.*
 
-**4 · Выберите предлог для «в полдень»**
+**4 · Выберите форму like после would**
 <!-- interaction_id: en:lesson-10:session-26:i03; family: context_gap_grammar -->
-We eat ___ noon. → **at** · on · in
-- on — *Перед noon нужно at, не on.*
-- in — *Перед noon нужно at, не in.*
+I would ___ a starter. → **like** · likes · liking
+- likes — *После would нужна like.*
+- liking — *После would нужна like, не liking.*
 
-**5 · Карточка слова — tureen**
-<!-- interaction_id: en:lesson-10:session-26:word:tureen; family: word_card -->
-> **tureen** — «супница». The soup is in the tureen. — «Суп в супнице». Большая посуда для подачи супа к столу.
+**5 · Карточка слова — main course**
+<!-- interaction_id: en:lesson-10:session-26:word:main-course; family: word_card -->
+> **main course** — «основное блюдо». I am choosing a main course. — «Я выбираю основное блюдо».
 
-**6 · Друг ищет суп. Скажите: «Суп в супнице»**
+**6 · Вы читаете меню. Скажите, что выбираете основное блюдо**
 <!-- interaction_id: en:lesson-10:session-26:i04; family: phrase_builder -->
-Плитки: `tureen` `the` `in` `is` `soup` `The` → **The soup is in the tureen.**
+Плитки: `course` `main` `a` `choosing` `am` `I` → **I am choosing a main course.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-26:i05; family: listen_choose -->
-🔊 *The tureen is on the table.* → **The tureen is on the table.** · The tureen is under the table. · The spoon is on the table.
-- The tureen is under the table. — *В записи звучит The tureen is on the table.*
-- The spoon is on the table. — *В записи звучит The tureen is on the table.*
+🔊 *He is choosing a main course.* → **He is choosing a main course.** · She is choosing a main course. · He is eating a main course.
+- She is choosing a main course. — *В записи звучит He is choosing a main course.*
+- He is eating a main course. — *В записи звучит He is choosing a main course.*
 
-**8 · Вы готовите суп прямо сейчас. Выберите форму make**
+**8 · Выберите форму choose после am**
 <!-- interaction_id: en:lesson-10:session-26:i06; family: context_gap_grammar -->
-I am ___ soup now. → **making** · makeing · make
-- makeing — *В making конечная e исчезает.*
-- make — *После am здесь нужна making.*
+I am ___ a main course. → **choosing** · choose · chooses
+- choose — *После am нужна choosing.*
+- chooses — *После am нужна choosing, не chooses.*
 
-**9 · Карточка слова — carafe**
-<!-- interaction_id: en:lesson-10:session-26:word:carafe; family: word_card -->
-> **carafe** — «графин». She is filling the carafe. — «Она наполняет графин». Сосуд для подачи воды или вина.
+**9 · Карточка слова — side dish**
+<!-- interaction_id: en:lesson-10:session-26:word:side-dish; family: word_card -->
+> **side dish** — «гарнир, отдельное дополнение к основному блюду». We need a side dish. — «Нам нужен гарнир».
 
-**10 · Подруга наливает воду в графин. Скажите другу: «Она наполняет графин»**
+**10 · К рыбе вы с другом хотите гарнир. Скажите: «Нам нужен гарнир»**
 <!-- interaction_id: en:lesson-10:session-26:i07; family: phrase_builder -->
-Плитки: `carafe` `the` `filling` `is` `She` → **She is filling the carafe.**
+Плитки: `dish` `side` `a` `need` `We` → **We need a side dish.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-26:i08; family: listen_choose -->
-🔊 *The carafe is full.* → **The carafe is full.** · The carafe is empty. · The tureen is full.
-- The carafe is empty. — *В записи звучит The carafe is full.*
-- The tureen is full. — *В записи звучит The carafe is full.*
+🔊 *They need a side dish.* → **They need a side dish.** · We need a side dish. · They have a side dish.
+- We need a side dish. — *В записи звучит They need a side dish.*
+- They have a side dish. — *В записи звучит They need a side dish.*
 
-**12 · Она наполняет графин прямо сейчас. Выберите вспомогательный глагол**
+**12 · Выберите форму need с we**
 <!-- interaction_id: en:lesson-10:session-26:i09; family: context_gap_grammar -->
-She ___ filling the carafe. → **is** · are · does
-- are — *С she нужно is, не are.*
-- does — *Перед filling здесь нужно is.*
+We ___ a side dish. → **need** · needs · needing
+- needs — *С we нужна need без s.*
+- needing — *Здесь нужна need.*
 
-**13 · Карточка слова — cruet**
-<!-- interaction_id: en:lesson-10:session-26:word:cruet; family: word_card -->
-> **cruet** — «бутылочка для масла». The oil is in the cruet. — «Масло в бутылочке для масла». Небольшой сосуд для подачи приправ к столу.
+**13 · Карточка слова — portion**
+<!-- interaction_id: en:lesson-10:session-26:word:portion; family: word_card -->
+> **portion** — «порция». This portion is small. — «Эта порция маленькая».
 
-**14 · Друг спрашивает, где масло для салата. Скажите: «Масло в бутылочке для масла»**
+**14 · Еды на тарелке немного. Скажите, что эта порция маленькая**
 <!-- interaction_id: en:lesson-10:session-26:i10; family: phrase_builder -->
-Плитки: `cruet` `the` `in` `is` `oil` `The` → **The oil is in the cruet.**
+Плитки: `small` `is` `portion` `This` → **This portion is small.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-26:i11; family: listen_choose -->
-🔊 *The cruet is beside the plate.* → **The cruet is beside the plate.** · The cruet is behind the plate. · The carafe is beside the plate.
-- The cruet is behind the plate. — *В записи звучит The cruet is beside the plate.*
-- The carafe is beside the plate. — *В записи звучит The cruet is beside the plate.*
+🔊 *This portion is large.* → **This portion is large.** · This portion is small. · That portion is large.
+- This portion is small. — *В записи звучит This portion is large.*
+- That portion is large. — *В записи звучит This portion is large.*
 
-**16 · Вы обычно обедаете дома. Выберите форму eat**
+**16 · Выберите связку для одной порции**
 <!-- interaction_id: en:lesson-10:session-26:i12; family: context_gap_grammar -->
-We usually ___ at home. → **eat** · eats · eating
-- eats — *С we нужна eat без s.*
-- eating — *Для этой привычки нужна eat.*
+This portion ___ small. → **is** · are · am
+- are — *Одна порция: is.*
+- am — *Am употребляем с I, здесь is.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-26:i13; family: speed_match -->
-noon — полдень · tureen — супница · carafe — графин · cruet — бутылочка для масла
+starter — закуска · main course — основное блюдо · side dish — гарнир · portion — порция
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-26:i14; family: listen_build_dictation -->
-🔊 *She is filling the carafe.* Плитки: `carafe` `the` `filling` `is` `She` → **She is filling the carafe.**
+🔊 *I am choosing a main course.* Плитки: `course` `main` `a` `choosing` `am` `I` → **I am choosing a main course.**
 
-**19 · Друг спрашивает, во сколько вы обычно едите. Скажите: «Мы обычно едим в полдень»**
-<!-- interaction_id: en:lesson-10:session-26:i15; family: scripted_repeat_compare -->
-🎙 **We usually eat at noon.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-26:i15; family: listen_build_dictation -->
+🔊 *This portion is small.* Плитки: `small` `is` `portion` `This` → **This portion is small.**
 
-**20 · Гость ищет суп. Скажите ему: «Суп в супнице»**
-<!-- interaction_id: en:lesson-10:session-26:i16; family: phrase_builder -->
-Плитки: `tureen` `the` `in` `is` `soup` `The` → **The soup is in the tureen.**
+**20 · Вежливо попросите гарнир**
+<!-- interaction_id: en:lesson-10:session-26:i16; family: scripted_repeat_compare -->
+🎙 **I would like a side dish.**
 
-**21 · Друг спрашивает, что делает ваша подруга. Вы видите, как она наливает воду в графин. Скажите: «Она наполняет графин»**
-<!-- interaction_id: en:lesson-10:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She is filling the carafe.**
+**21 · На тарелке много еды. Скажите: «Эта порция большая»**
+<!-- interaction_id: en:lesson-10:session-26:i17; family: scripted_repeat_compare -->
+🎙 **This portion is large.**
 

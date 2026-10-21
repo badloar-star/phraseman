@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-26:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-26:intro1:r2": {
-          "ru": "С we нужна eat без s.",
-          "uk": "З we потрібна eat без s."
+          "ru": "После would нужна like без s.",
+          "uk": "Після would потрібна like без s."
         },
         "en:lesson-10:session-26:intro1:r3": {
-          "ru": "Говорим at noon, не on noon.",
-          "uk": "Кажемо at noon, не on noon."
+          "ru": "После would нужна like.",
+          "uk": "Після would потрібна like."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-26:intro2:r2": {
-          "ru": "Перед in нужна связка is.",
-          "uk": "Перед in потрібна зв’язка is."
+          "ru": "Перед choosing нужна am.",
+          "uk": "Перед choosing потрібна am."
         },
         "en:lesson-10:session-26:intro2:r3": {
-          "ru": "Soup здесь неисчисляемое: is, не are.",
-          "uk": "Soup тут незлічуване: is, не are."
+          "ru": "После am нужна choosing.",
+          "uk": "Після am потрібна choosing."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-26:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-26:intro3:r2": {
-          "ru": "Перед filling нужен is.",
-          "uk": "Перед filling потрібне is."
+          "ru": "Одна порция: is.",
+          "uk": "Одна порція: is."
         },
         "en:lesson-10:session-26:intro3:r3": {
-          "ru": "После is здесь нужна filling.",
-          "uk": "Після is тут потрібна filling."
+          "ru": "Перед small нужна is.",
+          "uk": "Перед small потрібна is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "cf2faab49bc5124c223d4253a02bbe906ab605c8c5887f40c5dbdd560c4c56fb"
+  "auxiliaryFingerprint": "2fec109d410dcf9d13764d1702ff71c1039d4ae13e02590156cfa8ade589e4f5"
 }

@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-24:word:concierge",
+      "interactionId": "en:lesson-10:session-24:word:single-room",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — concierge",
+      "prompt": "Картка слова — single room",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-24:word:concierge:audio"
+        "en:lesson-10:session-24:word:single-room:audio"
       ],
-      "accessibilityLabel": "Картка слова — concierge",
+      "accessibilityLabel": "Картка слова — single room",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-24:word:concierge:audio",
-          "transcript": "concierge"
+          "audioTargetId": "en:lesson-10:session-24:word:single-room:audio",
+          "transcript": "single room"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-24:word:concierge:r1",
-            "targetText": "concierge",
+            "responseId": "en:lesson-10:session-24:word:single-room:r1",
+            "targetText": "single room",
             "meaningByLocale": {
-              "ru": "«консьерж». The concierge is helping a guest. — «Консьерж помогает гостю». Здесь сотрудник отеля, который помогает гостям с их просьбами.",
-              "uk": "«консьєрж». The concierge is helping a guest. — «Консьєрж допомагає гостю». Тут працівник готелю, який допомагає гостям із їхніми проханнями."
+              "ru": "«одноместный номер». I would like a single room. — «Я бы хотел одноместный номер».",
+              "uk": "«одномісний номер». I would like a single room. — «Я хотів би одномісний номер»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "concierge",
+          "word": "single room",
           "definitionByLocale": {
-            "ru": "«консьерж». The concierge is helping a guest. — «Консьерж помогает гостю». Здесь сотрудник отеля, который помогает гостям с их просьбами.",
-            "uk": "«консьєрж». The concierge is helping a guest. — «Консьєрж допомагає гостю». Тут працівник готелю, який допомагає гостям із їхніми проханнями."
+            "ru": "«одноместный номер». I would like a single room. — «Я бы хотел одноместный номер».",
+            "uk": "«одномісний номер». I would like a single room. — «Я хотів би одномісний номер»."
           }
         }
       },
@@ -52,25 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг шукає працівника готелю. Ви бачите, що той допомагає гостю. Скажіть: «Консьєрж допомагає гостю»",
+      "prompt": "Ви подорожуєте самі. Попросіть одномісний номер",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг шукає працівника готелю. Ви бачите, що той допомагає гостю. Скажіть: «Консьєрж допомагає гостю»",
+      "accessibilityLabel": "Ви подорожуєте самі. Попросіть одномісний номер",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The concierge is helping a guest.",
+        "targetPhrase": "I would like a single room.",
         "localizedMeaning": {
-          "ru": "Друг ищет сотрудника отеля. Вы видите, что тот помогает гостю. Скажите: «Консьерж помогает гостю»",
-          "uk": "Друг шукає працівника готелю. Ви бачите, що той допомагає гостю. Скажіть: «Консьєрж допомагає гостю»"
+          "ru": "Вы путешествуете один. Попросите одноместный номер",
+          "uk": "Ви подорожуєте самі. Попросіть одномісний номер"
         },
         "orderedTokens": [
-          "The",
-          "concierge",
-          "is",
-          "helping",
+          "I",
+          "would",
+          "like",
           "a",
-          "guest"
+          "single",
+          "room"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -91,15 +91,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-24:i02:r1",
-          "text": "The concierge works here."
+          "text": "She would like a single room."
         },
         {
           "responseId": "en:lesson-10:session-24:i02:r2",
-          "text": "The concierge lives here."
+          "text": "He would like a single room."
         },
         {
           "responseId": "en:lesson-10:session-24:i02:r3",
-          "text": "The concierge works there."
+          "text": "I would like a single room."
         }
       ],
       "mediaIds": [],
@@ -111,23 +111,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-24:i02:audio",
-          "transcript": "The concierge works here."
+          "transcript": "She would like a single room."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-24:i02:r1",
-            "targetText": "The concierge works here.",
+            "targetText": "She would like a single room.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-24:i02:r2",
-            "targetText": "The concierge lives here.",
+            "targetText": "He would like a single room.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-24:i02:r3",
-            "targetText": "The concierge works there.",
+            "targetText": "I would like a single room.",
             "meaningByLocale": null
           }
         ],
@@ -138,8 +138,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The concierge works here.",
-              "uk": "У записі звучить The concierge works here."
+              "ru": "В записи звучит She would like a single room.",
+              "uk": "У записі звучить She would like a single room."
             }
           },
           {
@@ -147,8 +147,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The concierge works here.",
-              "uk": "У записі звучить The concierge works here."
+              "ru": "В записи звучит She would like a single room.",
+              "uk": "У записі звучить She would like a single room."
             }
           }
         ],
@@ -163,63 +163,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть фразу про звичну роботу",
+      "prompt": "Виберіть форму like після would",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-24:i03:r1",
-          "text": "usually works"
+          "text": "like"
         },
         {
           "responseId": "en:lesson-10:session-24:i03:r2",
-          "text": "usually work"
+          "text": "likes"
         },
         {
           "responseId": "en:lesson-10:session-24:i03:r3",
-          "text": "is usually work"
+          "text": "liking"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть фразу про звичну роботу",
+      "accessibilityLabel": "Виберіть форму like після would",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите фразу о привычной работе",
-          "uk": "Виберіть фразу про звичну роботу"
+          "ru": "Выберите форму like после would",
+          "uk": "Виберіть форму like після would"
         },
-        "gappedTargetPhrase": "He ___ here.",
+        "gappedTargetPhrase": "I would ___ a single room.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-24:i03:r1",
-            "text": "usually works"
+            "text": "like"
           },
           {
             "responseId": "en:lesson-10:session-24:i03:r2",
-            "text": "usually work"
+            "text": "likes"
           },
           {
             "responseId": "en:lesson-10:session-24:i03:r3",
-            "text": "is usually work"
+            "text": "liking"
           }
         ],
-        "testedDimension": "Виберіть фразу про звичну роботу",
+        "testedDimension": "Виберіть форму like після would",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-24:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть фразу про звичну роботу",
+            "testedDimension": "Виберіть форму like після would",
             "feedbackByLocale": {
-              "ru": "С he нужна works.",
-              "uk": "З he потрібна works."
+              "ru": "После would нужна like.",
+              "uk": "Після would потрібна like."
             }
           },
           {
             "responseId": "en:lesson-10:session-24:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть фразу про звичну роботу",
+            "testedDimension": "Виберіть форму like після would",
             "feedbackByLocale": {
-              "ru": "Здесь нужна usually works, без is.",
-              "uk": "Тут потрібна usually works, без is."
+              "ru": "После would нужна like, не liking.",
+              "uk": "Після would потрібна like, не liking."
             }
           }
         ]
@@ -227,32 +227,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-24:word:pigeonhole",
+      "interactionId": "en:lesson-10:session-24:word:double-room",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — pigeonhole",
+      "prompt": "Картка слова — double room",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-24:word:pigeonhole:audio"
+        "en:lesson-10:session-24:word:double-room:audio"
       ],
-      "accessibilityLabel": "Картка слова — pigeonhole",
+      "accessibilityLabel": "Картка слова — double room",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-24:word:pigeonhole:audio",
-          "transcript": "pigeonhole"
+          "audioTargetId": "en:lesson-10:session-24:word:double-room:audio",
+          "transcript": "double room"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-24:word:pigeonhole:r1",
-            "targetText": "pigeonhole",
+            "responseId": "en:lesson-10:session-24:word:double-room:r1",
+            "targetText": "double room",
             "meaningByLocale": {
-              "ru": "«ячейка для писем». The letter is in the pigeonhole. — «Письмо в ячейке для писем». Здесь небольшое открытое отделение для сортировки почты.",
-              "uk": "«комірка для листів». The letter is in the pigeonhole. — «Лист у комірці для листів». Тут невелике відкрите відділення для сортування пошти."
+              "ru": "«номер с двуспальной кроватью». Do you have a double room? — «У вас есть номер с двуспальной кроватью?»",
+              "uk": "«номер із двоспальним ліжком». Do you have a double room? — «У вас є номер із двоспальним ліжком?»"
             }
           }
         ],
@@ -260,10 +260,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "pigeonhole",
+          "word": "double room",
           "definitionByLocale": {
-            "ru": "«ячейка для писем». The letter is in the pigeonhole. — «Письмо в ячейке для писем». Здесь небольшое открытое отделение для сортировки почты.",
-            "uk": "«комірка для листів». The letter is in the pigeonhole. — «Лист у комірці для листів». Тут невелике відкрите відділення для сортування пошти."
+            "ru": "«номер с двуспальной кроватью». Do you have a double room? — «У вас есть номер с двуспальной кроватью?»",
+            "uk": "«номер із двоспальним ліжком». Do you have a double room? — «У вас є номер із двоспальним ліжком?»"
           }
         }
       },
@@ -275,25 +275,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Консьєрж поклав ваш лист в окрему комірку. Скажіть другу: «Лист у комірці для листів»",
+      "prompt": "Вам потрібне одне двоспальне ліжко. Запитайте, чи є такий номер",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Консьєрж поклав ваш лист в окрему комірку. Скажіть другу: «Лист у комірці для листів»",
+      "accessibilityLabel": "Вам потрібне одне двоспальне ліжко. Запитайте, чи є такий номер",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The letter is in the pigeonhole.",
+        "targetPhrase": "Do you have a double room?",
         "localizedMeaning": {
-          "ru": "Консьерж положил ваше письмо в отдельную ячейку. Скажите другу: «Письмо в ячейке для писем»",
-          "uk": "Консьєрж поклав ваш лист в окрему комірку. Скажіть другу: «Лист у комірці для листів»"
+          "ru": "Вам нужна одна двуспальная кровать. Спросите, есть ли такой номер",
+          "uk": "Вам потрібне одне двоспальне ліжко. Запитайте, чи є такий номер"
         },
         "orderedTokens": [
-          "The",
-          "letter",
-          "is",
-          "in",
-          "the",
-          "pigeonhole"
+          "Do",
+          "you",
+          "have",
+          "a",
+          "double",
+          "room"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -314,15 +314,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-24:i05:r1",
-          "text": "He is checking the pigeonhole."
+          "text": "Do you have a double room?"
         },
         {
           "responseId": "en:lesson-10:session-24:i05:r2",
-          "text": "She is checking the pigeonhole."
+          "text": "Do you have a single room?"
         },
         {
           "responseId": "en:lesson-10:session-24:i05:r3",
-          "text": "He is checking the letter."
+          "text": "We have a double room."
         }
       ],
       "mediaIds": [],
@@ -334,23 +334,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-24:i05:audio",
-          "transcript": "He is checking the pigeonhole."
+          "transcript": "Do you have a double room?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-24:i05:r1",
-            "targetText": "He is checking the pigeonhole.",
+            "targetText": "Do you have a double room?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-24:i05:r2",
-            "targetText": "She is checking the pigeonhole.",
+            "targetText": "Do you have a single room?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-24:i05:r3",
-            "targetText": "He is checking the letter.",
+            "targetText": "We have a double room.",
             "meaningByLocale": null
           }
         ],
@@ -361,8 +361,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He is checking the pigeonhole.",
-              "uk": "У записі звучить He is checking the pigeonhole."
+              "ru": "В записи звучит Do you have a double room?",
+              "uk": "У записі звучить Do you have a double room?"
             }
           },
           {
@@ -370,8 +370,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He is checking the pigeonhole.",
-              "uk": "У записі звучить He is checking the pigeonhole."
+              "ru": "В записи звучит Do you have a double room?",
+              "uk": "У записі звучить Do you have a double room?"
             }
           }
         ],
@@ -386,63 +386,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Він сидить тут зараз. Виберіть правильне написання",
+      "prompt": "Виберіть допоміжне дієслово з you",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-24:i06:r1",
-          "text": "sitting"
+          "text": "Do"
         },
         {
           "responseId": "en:lesson-10:session-24:i06:r2",
-          "text": "siting"
+          "text": "Does"
         },
         {
           "responseId": "en:lesson-10:session-24:i06:r3",
-          "text": "sit"
+          "text": "Is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Він сидить тут зараз. Виберіть правильне написання",
+      "accessibilityLabel": "Виберіть допоміжне дієслово з you",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Он сидит здесь сейчас. Выберите правильное написание",
-          "uk": "Він сидить тут зараз. Виберіть правильне написання"
+          "ru": "Выберите вспомогательный глагол с you",
+          "uk": "Виберіть допоміжне дієслово з you"
         },
-        "gappedTargetPhrase": "He is ___ here now.",
+        "gappedTargetPhrase": "___ you have a double room?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-24:i06:r1",
-            "text": "sitting"
+            "text": "Do"
           },
           {
             "responseId": "en:lesson-10:session-24:i06:r2",
-            "text": "siting"
+            "text": "Does"
           },
           {
             "responseId": "en:lesson-10:session-24:i06:r3",
-            "text": "sit"
+            "text": "Is"
           }
         ],
-        "testedDimension": "Він сидить тут зараз. Виберіть правильне написання",
+        "testedDimension": "Виберіть допоміжне дієслово з you",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-24:i06:r2",
             "correct": false,
-            "testedDimension": "Він сидить тут зараз. Виберіть правильне написання",
+            "testedDimension": "Виберіть допоміжне дієслово з you",
             "feedbackByLocale": {
-              "ru": "В sitting удваиваем t.",
-              "uk": "У sitting подвоюємо t."
+              "ru": "С you нужен Do.",
+              "uk": "З you потрібне Do."
             }
           },
           {
             "responseId": "en:lesson-10:session-24:i06:r3",
             "correct": false,
-            "testedDimension": "Він сидить тут зараз. Виберіть правильне написання",
+            "testedDimension": "Виберіть допоміжне дієслово з you",
             "feedbackByLocale": {
-              "ru": "Для действия сейчас нужна форма sitting после is.",
-              "uk": "Для дії зараз потрібна форма sitting після is."
+              "ru": "Вопрос с have здесь строим через Do.",
+              "uk": "Запитання з have тут будуємо через Do."
             }
           }
         ]
@@ -450,32 +450,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-24:word:keypad",
+      "interactionId": "en:lesson-10:session-24:word:twin-room",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — keypad",
+      "prompt": "Картка слова — twin room",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-24:word:keypad:audio"
+        "en:lesson-10:session-24:word:twin-room:audio"
       ],
-      "accessibilityLabel": "Картка слова — keypad",
+      "accessibilityLabel": "Картка слова — twin room",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-24:word:keypad:audio",
-          "transcript": "keypad"
+          "audioTargetId": "en:lesson-10:session-24:word:twin-room:audio",
+          "transcript": "twin room"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-24:word:keypad:r1",
-            "targetText": "keypad",
+            "responseId": "en:lesson-10:session-24:word:twin-room:r1",
+            "targetText": "twin room",
             "meaningByLocale": {
-              "ru": "«цифровая клавиатура». She is using the keypad. — «Она пользуется цифровой клавиатурой». Здесь небольшая панель с кнопками для ввода цифр.",
-              "uk": "«цифрова клавіатура». She is using the keypad. — «Вона користується цифровою клавіатурою». Тут невелика панель із кнопками для введення цифр."
+              "ru": "«номер с двумя отдельными кроватями». We need a twin room. — «Нам нужен номер с двумя отдельными кроватями».",
+              "uk": "«номер із двома окремими ліжками». We need a twin room. — «Нам потрібен номер із двома окремими ліжками»."
             }
           }
         ],
@@ -483,10 +483,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "keypad",
+          "word": "twin room",
           "definitionByLocale": {
-            "ru": "«цифровая клавиатура». She is using the keypad. — «Она пользуется цифровой клавиатурой». Здесь небольшая панель с кнопками для ввода цифр.",
-            "uk": "«цифрова клавіатура». She is using the keypad. — «Вона користується цифровою клавіатурою». Тут невелика панель із кнопками для введення цифр."
+            "ru": "«номер с двумя отдельными кроватями». We need a twin room. — «Нам нужен номер с двумя отдельными кроватями».",
+            "uk": "«номер із двома окремими ліжками». We need a twin room. — «Нам потрібен номер із двома окремими ліжками»."
           }
         }
       },
@@ -498,24 +498,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг запитує, що робить ваша колега. Вона натискає кнопки цифрової клавіатури. Скажіть: «Вона користується цифровою клавіатурою»",
+      "prompt": "Ви з другом хочете два окремі ліжка. Скажіть, який номер вам потрібен",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг запитує, що робить ваша колега. Вона натискає кнопки цифрової клавіатури. Скажіть: «Вона користується цифровою клавіатурою»",
+      "accessibilityLabel": "Ви з другом хочете два окремі ліжка. Скажіть, який номер вам потрібен",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is using the keypad.",
+        "targetPhrase": "We need a twin room.",
         "localizedMeaning": {
-          "ru": "Друг спрашивает, что делает ваша коллега. Она нажимает кнопки цифровой клавиатуры. Скажите: «Она пользуется цифровой клавиатурой»",
-          "uk": "Друг запитує, що робить ваша колега. Вона натискає кнопки цифрової клавіатури. Скажіть: «Вона користується цифровою клавіатурою»"
+          "ru": "Вы с другом хотите две отдельные кровати. Скажите, какой номер вам нужен",
+          "uk": "Ви з другом хочете два окремі ліжка. Скажіть, який номер вам потрібен"
         },
         "orderedTokens": [
-          "She",
-          "is",
-          "using",
-          "the",
-          "keypad"
+          "We",
+          "need",
+          "a",
+          "twin",
+          "room"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -536,15 +536,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-24:i08:r1",
-          "text": "The keypad is beside the door."
+          "text": "They need a twin room."
         },
         {
           "responseId": "en:lesson-10:session-24:i08:r2",
-          "text": "The keypad is behind the door."
+          "text": "We need a twin room."
         },
         {
           "responseId": "en:lesson-10:session-24:i08:r3",
-          "text": "The keypad is beside the desk."
+          "text": "They need a double room."
         }
       ],
       "mediaIds": [],
@@ -556,23 +556,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-24:i08:audio",
-          "transcript": "The keypad is beside the door."
+          "transcript": "They need a twin room."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-24:i08:r1",
-            "targetText": "The keypad is beside the door.",
+            "targetText": "They need a twin room.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-24:i08:r2",
-            "targetText": "The keypad is behind the door.",
+            "targetText": "We need a twin room.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-24:i08:r3",
-            "targetText": "The keypad is beside the desk.",
+            "targetText": "They need a double room.",
             "meaningByLocale": null
           }
         ],
@@ -583,8 +583,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The keypad is beside the door.",
-              "uk": "У записі звучить The keypad is beside the door."
+              "ru": "В записи звучит They need a twin room.",
+              "uk": "У записі звучить They need a twin room."
             }
           },
           {
@@ -592,8 +592,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The keypad is beside the door.",
-              "uk": "У записі звучить The keypad is beside the door."
+              "ru": "В записи звучит They need a twin room.",
+              "uk": "У записі звучить They need a twin room."
             }
           }
         ],
@@ -608,63 +608,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Він зараз складає список. Виберіть форму make",
+      "prompt": "Виберіть форму need з we",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-24:i09:r1",
-          "text": "making"
+          "text": "need"
         },
         {
           "responseId": "en:lesson-10:session-24:i09:r2",
-          "text": "makeing"
+          "text": "needs"
         },
         {
           "responseId": "en:lesson-10:session-24:i09:r3",
-          "text": "make"
+          "text": "needing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Він зараз складає список. Виберіть форму make",
+      "accessibilityLabel": "Виберіть форму need з we",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Он сейчас составляет список. Выберите форму make",
-          "uk": "Він зараз складає список. Виберіть форму make"
+          "ru": "Выберите форму need с we",
+          "uk": "Виберіть форму need з we"
         },
-        "gappedTargetPhrase": "He is ___ a list.",
+        "gappedTargetPhrase": "We ___ a twin room.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-24:i09:r1",
-            "text": "making"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-24:i09:r2",
-            "text": "makeing"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-24:i09:r3",
-            "text": "make"
+            "text": "needing"
           }
         ],
-        "testedDimension": "Він зараз складає список. Виберіть форму make",
+        "testedDimension": "Виберіть форму need з we",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-24:i09:r2",
             "correct": false,
-            "testedDimension": "Він зараз складає список. Виберіть форму make",
+            "testedDimension": "Виберіть форму need з we",
             "feedbackByLocale": {
-              "ru": "Перед ing убираем конечную e: making.",
-              "uk": "Перед ing прибираємо кінцеву e: making."
+              "ru": "С we нужна need без s.",
+              "uk": "З we потрібна need без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-24:i09:r3",
             "correct": false,
-            "testedDimension": "Він зараз складає список. Виберіть форму make",
+            "testedDimension": "Виберіть форму need з we",
             "feedbackByLocale": {
-              "ru": "После is для действия сейчас нужна making.",
-              "uk": "Після is для дії зараз потрібна making."
+              "ru": "Здесь нужна need.",
+              "uk": "Тут потрібна need."
             }
           }
         ]
@@ -672,32 +672,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-24:word:logbook",
+      "interactionId": "en:lesson-10:session-24:word:room-service",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — logbook",
+      "prompt": "Картка слова — room service",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-24:word:logbook:audio"
+        "en:lesson-10:session-24:word:room-service:audio"
       ],
-      "accessibilityLabel": "Картка слова — logbook",
+      "accessibilityLabel": "Картка слова — room service",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-24:word:logbook:audio",
-          "transcript": "logbook"
+          "audioTargetId": "en:lesson-10:session-24:word:room-service:audio",
+          "transcript": "room service"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-24:word:logbook:r1",
-            "targetText": "logbook",
+            "responseId": "en:lesson-10:session-24:word:room-service:r1",
+            "targetText": "room service",
             "meaningByLocale": {
-              "ru": "«журнал записей». He is checking the logbook. — «Он проверяет журнал записей». Книга, в которой регулярно отмечают события или выполненную работу.",
-              "uk": "«журнал записів». He is checking the logbook. — «Він перевіряє журнал записів». Книга, у якій регулярно зазначають події або виконану роботу."
+              "ru": "«обслуживание в номере, доставка еды в номер». I am calling room service. — «Я звоню в службу обслуживания номеров».",
+              "uk": "«обслуговування в номері, доставка їжі в номер». I am calling room service. — «Я телефоную до служби обслуговування номерів»."
             }
           }
         ],
@@ -705,10 +705,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "logbook",
+          "word": "room service",
           "definitionByLocale": {
-            "ru": "«журнал записей». He is checking the logbook. — «Он проверяет журнал записей». Книга, в которой регулярно отмечают события или выполненную работу.",
-            "uk": "«журнал записів». He is checking the logbook. — «Він перевіряє журнал записів». Книга, у якій регулярно зазначають події або виконану роботу."
+            "ru": "«обслуживание в номере, доставка еды в номер». I am calling room service. — «Я звоню в службу обслуживания номеров».",
+            "uk": "«обслуговування в номері, доставка їжі в номер». I am calling room service. — «Я телефоную до служби обслуговування номерів»."
           }
         }
       },
@@ -720,24 +720,24 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Консьєрж звіряє записи про доставки. Скажіть другу: «Він перевіряє журнал записів»",
+      "prompt": "Ви телефонуєте замовити вечерю в номер. Скажіть, що телефонуєте до room service",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Консьєрж звіряє записи про доставки. Скажіть другу: «Він перевіряє журнал записів»",
+      "accessibilityLabel": "Ви телефонуєте замовити вечерю в номер. Скажіть, що телефонуєте до room service",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He is checking the logbook.",
+        "targetPhrase": "I am calling room service.",
         "localizedMeaning": {
-          "ru": "Консьерж сверяет записи о доставках. Скажите другу: «Он проверяет журнал записей»",
-          "uk": "Консьєрж звіряє записи про доставки. Скажіть другу: «Він перевіряє журнал записів»"
+          "ru": "Вы звоните заказать ужин в номер. Скажите, что звоните в room service",
+          "uk": "Ви телефонуєте замовити вечерю в номер. Скажіть, що телефонуєте до room service"
         },
         "orderedTokens": [
-          "He",
-          "is",
-          "checking",
-          "the",
-          "logbook"
+          "I",
+          "am",
+          "calling",
+          "room",
+          "service"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -758,15 +758,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-24:i11:r1",
-          "text": "The logbook is on the desk."
+          "text": "She is calling room service."
         },
         {
           "responseId": "en:lesson-10:session-24:i11:r2",
-          "text": "The logbook is under the desk."
+          "text": "He is calling room service."
         },
         {
           "responseId": "en:lesson-10:session-24:i11:r3",
-          "text": "The letter is on the desk."
+          "text": "We are calling room service."
         }
       ],
       "mediaIds": [],
@@ -778,23 +778,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-24:i11:audio",
-          "transcript": "The logbook is on the desk."
+          "transcript": "She is calling room service."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-24:i11:r1",
-            "targetText": "The logbook is on the desk.",
+            "targetText": "She is calling room service.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-24:i11:r2",
-            "targetText": "The logbook is under the desk.",
+            "targetText": "He is calling room service.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-24:i11:r3",
-            "targetText": "The letter is on the desk.",
+            "targetText": "We are calling room service.",
             "meaningByLocale": null
           }
         ],
@@ -805,8 +805,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The logbook is on the desk.",
-              "uk": "У записі звучить The logbook is on the desk."
+              "ru": "В записи звучит She is calling room service.",
+              "uk": "У записі звучить She is calling room service."
             }
           },
           {
@@ -814,8 +814,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The logbook is on the desk.",
-              "uk": "У записі звучить The logbook is on the desk."
+              "ru": "В записи звучит She is calling room service.",
+              "uk": "У записі звучить She is calling room service."
             }
           }
         ],
@@ -830,63 +830,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви давно вважаєте консьєржа надійним. Виберіть форму для «Я довіряю»",
+      "prompt": "Виберіть форму call після am",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-24:i12:r1",
-          "text": "trust"
+          "text": "calling"
         },
         {
           "responseId": "en:lesson-10:session-24:i12:r2",
-          "text": "trusts"
+          "text": "call"
         },
         {
           "responseId": "en:lesson-10:session-24:i12:r3",
-          "text": "am trust"
+          "text": "calls"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви давно вважаєте консьєржа надійним. Виберіть форму для «Я довіряю»",
+      "accessibilityLabel": "Виберіть форму call після am",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы давно считаете консьержа надёжным. Выберите форму для «Я доверяю»",
-          "uk": "Ви давно вважаєте консьєржа надійним. Виберіть форму для «Я довіряю»"
+          "ru": "Выберите форму call после am",
+          "uk": "Виберіть форму call після am"
         },
-        "gappedTargetPhrase": "I ___ the concierge.",
+        "gappedTargetPhrase": "I am ___ room service.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-24:i12:r1",
-            "text": "trust"
+            "text": "calling"
           },
           {
             "responseId": "en:lesson-10:session-24:i12:r2",
-            "text": "trusts"
+            "text": "call"
           },
           {
             "responseId": "en:lesson-10:session-24:i12:r3",
-            "text": "am trust"
+            "text": "calls"
           }
         ],
-        "testedDimension": "Ви давно вважаєте консьєржа надійним. Виберіть форму для «Я довіряю»",
+        "testedDimension": "Виберіть форму call після am",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-24:i12:r2",
             "correct": false,
-            "testedDimension": "Ви давно вважаєте консьєржа надійним. Виберіть форму для «Я довіряю»",
+            "testedDimension": "Виберіть форму call після am",
             "feedbackByLocale": {
-              "ru": "С I нужна trust без s.",
-              "uk": "З I потрібна trust без s."
+              "ru": "После am нужна calling.",
+              "uk": "Після am потрібна calling."
             }
           },
           {
             "responseId": "en:lesson-10:session-24:i12:r3",
             "correct": false,
-            "testedDimension": "Ви давно вважаєте консьєржа надійним. Виберіть форму для «Я довіряю»",
+            "testedDimension": "Виберіть форму call після am",
             "feedbackByLocale": {
-              "ru": "Am trust неверно; здесь нужна trust.",
-              "uk": "Am trust неправильно; тут потрібна trust."
+              "ru": "После am нужна calling, не calls.",
+              "uk": "Після am потрібна calling, не calls."
             }
           }
         ]
@@ -899,58 +899,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте вислови з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-24:i13:p1",
-            "target": "concierge",
+            "target": "single room",
             "meaningByLocale": {
-              "ru": "консьерж",
-              "uk": "консьєрж"
+              "ru": "одноместный номер",
+              "uk": "одномісний номер"
             }
           },
           {
             "pairId": "en:lesson-10:session-24:i13:p2",
-            "target": "pigeonhole",
+            "target": "double room",
             "meaningByLocale": {
-              "ru": "ячейка для писем",
-              "uk": "комірка для листів"
+              "ru": "номер с двуспальной кроватью",
+              "uk": "номер із двоспальним ліжком"
             }
           },
           {
             "pairId": "en:lesson-10:session-24:i13:p3",
-            "target": "keypad",
+            "target": "twin room",
             "meaningByLocale": {
-              "ru": "цифровая клавиатура",
-              "uk": "цифрова клавіатура"
+              "ru": "номер с двумя отдельными кроватями",
+              "uk": "номер із двома окремими ліжками"
             }
           },
           {
             "pairId": "en:lesson-10:session-24:i13:p4",
-            "target": "logbook",
+            "target": "room service",
             "meaningByLocale": {
-              "ru": "журнал записей",
-              "uk": "журнал записів"
+              "ru": "доставка еды в номер",
+              "uk": "доставка їжі в номер"
             }
           }
         ],
         "leftColumn": [
-          "concierge",
-          "pigeonhole",
-          "keypad",
-          "logbook"
+          "single room",
+          "double room",
+          "twin room",
+          "room service"
         ],
         "rightColumn": [
-          "консьєрж",
-          "комірка для листів",
-          "цифрова клавіатура",
-          "журнал записів"
+          "одномісний номер",
+          "номер із двоспальним ліжком",
+          "номер із двома окремими ліжками",
+          "доставка їжі в номер"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -972,27 +972,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-24:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-24:i14:audio",
-          "transcript": "He is checking the logbook."
+          "transcript": "We need a twin room."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "He is checking the logbook.",
+        "hiddenTargetPhrase": "We need a twin room.",
         "orderedTokens": [
-          "He",
-          "is",
-          "checking",
-          "the",
-          "logbook"
+          "We",
+          "need",
+          "a",
+          "twin",
+          "room"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1006,24 +1006,61 @@
     {
       "interactionId": "en:lesson-10:session-24:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, чи можна покластися на працівника готелю. Скажіть: «Я довіряю консьєржу»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-24:i15:audio"
       ],
-      "accessibilityLabel": "Друг запитує, чи можна покластися на працівника готелю. Скажіть: «Я довіряю консьєржу»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-24:i15:audio",
+          "transcript": "I am calling room service."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am calling room service.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "calling",
+          "room",
+          "service"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-24:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вам потрібен одномісний номер",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-24:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вам потрібен одномісний номер",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-24:i15:audio",
-          "transcript": "I trust the concierge."
+          "audioTargetId": "en:lesson-10:session-24:i16:audio",
+          "transcript": "I need a single room."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I trust the concierge.",
+        "targetPhrase": "I need a single room.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1037,72 +1074,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-24:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Колега тимчасово працює в цьому готелі. Скажіть: «Він працює тут цього тижня». Поставте this week у кінці",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Колега тимчасово працює в цьому готелі. Скажіть: «Він працює тут цього тижня». Поставте this week у кінці",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is working here this week.",
-        "localizedMeaning": {
-          "ru": "Коллега временно работает в этом отеле. Скажите: «Он работает здесь на этой неделе». Поставьте this week в конце",
-          "uk": "Колега тимчасово працює в цьому готелі. Скажіть: «Він працює тут цього тижня». Поставте this week у кінці"
-        },
-        "orderedTokens": [
-          "He",
-          "is",
-          "working",
-          "here",
-          "this",
-          "week"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-24:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг шукає журнал доставок. Ви бачите його на столі. Повідомте: «Журнал записів на столі»",
+      "prompt": "Ввічливо попросіть номер із двоспальним ліжком",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-24:i17:audio"
       ],
-      "accessibilityLabel": "Друг шукає журнал доставок. Ви бачите його на столі. Повідомте: «Журнал записів на столі»",
+      "accessibilityLabel": "Ввічливо попросіть номер із двоспальним ліжком",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-24:i17:audio",
-          "transcript": "The logbook is on the desk."
+          "transcript": "I would like a double room."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The logbook is on the desk.",
+        "targetPhrase": "I would like a double room.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1119,5 +1113,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "80db97809416bcf146723ad4dd6ba337dbb2557c6272cfba179215a8cb17f1b6"
+  "learnerFingerprint": "9ac8a7c8f4da8b72107a842b180c550e0d18649ef8e483522e038b03209e202b"
 }

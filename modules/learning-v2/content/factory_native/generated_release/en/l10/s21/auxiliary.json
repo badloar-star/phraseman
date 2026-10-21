@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-21:intro1:r2": {
-          "ru": "С I нужна imagine без s.",
-          "uk": "З I потрібна imagine без s."
+          "ru": "С I нужна need без s.",
+          "uk": "З I потрібна need без s."
         },
         "en:lesson-10:session-21:intro1:r3": {
-          "ru": "С she нужна is.",
-          "uk": "З she потрібна is."
+          "ru": "Здесь need без am.",
+          "uk": "Тут need без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-21:intro2:r2": {
-          "ru": "С it нужна is.",
-          "uk": "З it потрібна is."
+          "ru": "Перед looking нужна am.",
+          "uk": "Перед looking потрібна am."
         },
         "en:lesson-10:session-21:intro2:r3": {
-          "ru": "Possibility начинается с согласного звука: a.",
-          "uk": "Possibility починається з приголосного звука: a."
+          "ru": "После am нужна looking.",
+          "uk": "Після am потрібна looking."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-21:intro3:r2": {
-          "ru": "После can нужна imagine без s.",
-          "uk": "Після can потрібна imagine без s."
+          "ru": "С it нужна is.",
+          "uk": "З it потрібна is."
         },
         "en:lesson-10:session-21:intro3:r3": {
-          "ru": "После can не нужно to.",
-          "uk": "Після can не потрібне to."
+          "ru": "После it нужна is.",
+          "uk": "Після it потрібна is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e1130d102bcde9823d90a2c5d335de8ee668957dcf16ceb574bfc452ff8cccce"
+  "auxiliaryFingerprint": "69ed17257b717c9727f4a087dd55f02d44051506f88df776d26d57533ab18f71"
 }

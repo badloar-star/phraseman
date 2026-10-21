@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-24:word:concierge",
-    "correctText": "concierge",
+    "interactionId": "en:lesson-10:session-24:word:single-room",
+    "correctText": "single room",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i01",
-    "correctText": "The concierge is helping a guest.",
+    "correctText": "I would like a single room.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i02",
-    "correctText": "The concierge works here.",
+    "correctText": "She would like a single room.",
     "correctResponseId": "en:lesson-10:session-24:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-24:i03",
-    "correctText": "usually works",
+    "correctText": "like",
     "correctResponseId": "en:lesson-10:session-24:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-24:word:pigeonhole",
-    "correctText": "pigeonhole",
+    "interactionId": "en:lesson-10:session-24:word:double-room",
+    "correctText": "double room",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i04",
-    "correctText": "The letter is in the pigeonhole.",
+    "correctText": "Do you have a double room?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i05",
-    "correctText": "He is checking the pigeonhole.",
+    "correctText": "Do you have a double room?",
     "correctResponseId": "en:lesson-10:session-24:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-24:i06",
-    "correctText": "sitting",
+    "correctText": "Do",
     "correctResponseId": "en:lesson-10:session-24:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-24:word:keypad",
-    "correctText": "keypad",
+    "interactionId": "en:lesson-10:session-24:word:twin-room",
+    "correctText": "twin room",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i07",
-    "correctText": "She is using the keypad.",
+    "correctText": "We need a twin room.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i08",
-    "correctText": "The keypad is beside the door.",
+    "correctText": "They need a twin room.",
     "correctResponseId": "en:lesson-10:session-24:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-24:i09",
-    "correctText": "making",
+    "correctText": "need",
     "correctResponseId": "en:lesson-10:session-24:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-24:word:logbook",
-    "correctText": "logbook",
+    "interactionId": "en:lesson-10:session-24:word:room-service",
+    "correctText": "room service",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i10",
-    "correctText": "He is checking the logbook.",
+    "correctText": "I am calling room service.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i11",
-    "correctText": "The logbook is on the desk.",
+    "correctText": "She is calling room service.",
     "correctResponseId": "en:lesson-10:session-24:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-24:i12",
-    "correctText": "trust",
+    "correctText": "calling",
     "correctResponseId": "en:lesson-10:session-24:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-24:i13",
-    "correctText": "en:lesson-10:session-24:i13:p1=concierge\nen:lesson-10:session-24:i13:p2=pigeonhole\nen:lesson-10:session-24:i13:p3=keypad\nen:lesson-10:session-24:i13:p4=logbook",
+    "correctText": "en:lesson-10:session-24:i13:p1=single room\nen:lesson-10:session-24:i13:p2=double room\nen:lesson-10:session-24:i13:p3=twin room\nen:lesson-10:session-24:i13:p4=room service",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i14",
-    "correctText": "He is checking the logbook.",
+    "correctText": "We need a twin room.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i15",
-    "correctText": "I trust the concierge.",
+    "correctText": "I am calling room service.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i16",
-    "correctText": "He is working here this week.",
+    "correctText": "I need a single room.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-24:i17",
-    "correctText": "The logbook is on the desk.",
+    "correctText": "I would like a double room.",
     "correctResponseId": null
   }
 ]

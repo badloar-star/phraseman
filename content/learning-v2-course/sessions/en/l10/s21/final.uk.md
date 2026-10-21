@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 21 — Припустити, як ідуть справи
+# Англійська · Урок 10 · Заняття 21 — Уточнити просту думку
 
-**Ситуація.** Висловити припущення про роботу офісу й обговорити можливий результат переїзду.
+**Ситуація.** Додати покупку до списку, здивуватися гостю й сказати, що ви поки лише дивитеся.
 
-**Що ви опануєте:** I imagine she is busy; It is a possibility; We need a better outcome
-**Нові слова:** imagine, possibility, scenario, outcome
+**Що ви опануєте:** I also need bread; Even Tom is here; I am just looking; It is almost ready
+**Нові слова:** also, even, just, almost
 
 ## Інтро 1
 
-### Припущення без упевненості
+### Додати й здивуватися
 
-Колега сьогодні організовує переїзд офісу й не відповідає на повідомлення. Ви не бачите її, але припускаєте, що вона зайнята. I imagine she is busy — «Гадаю, вона зайнята». Imagine може означати «уявляти», а тут — «гадати, припускати». У цьому значенні Present Simple виражає вашу думку, а не дію в процесі.
+Молоко вже в списку, але потрібен ще хліб: I also need bread — «Мені також потрібен хліб». Also — «також». Тут also стоїть перед need. А на зустріч прийшли всі, включно з Томом, який рідко приходить: Even Tom is here — «Навіть Том тут». Even — «навіть»: ви виділяєте неочікуваного гостя. У цій фразі even стоїть перед Tom.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I imagine she is busy.**
-- ❌ I imagines she is busy. — *З I потрібна imagine без s.*
-- ❌ I imagine she are busy. — *З she потрібна is.*
+- ✅ **I also need bread.**
+- ❌ I also needs bread. — *З I потрібна need без s.*
+- ❌ I am also need bread. — *Тут need без am.*
 
 ---
 
 ## Інтро 2
 
-### Можливість, а не ухвалене рішення
+### Поки лише дивлюся
 
-Possibility — «можливість». Ви обговорюєте, чи перенести зустріч до сусідньої кімнати. Рішення ще немає. It is a possibility — «Це можливий варіант». Ця фраза не обіцяє, що так обов’язково буде. Для одного можливого варіанта використовуємо a possibility.
+Продавець пропонує допомогу, але ви поки не вибираєте покупку: I am just looking — «Я просто дивлюся». Just тут — «просто, лише», без іншої дії. Ви дивитеся зараз: am looking. Just ставимо між am і looking.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **It is a possibility.**
-- ❌ It are a possibility. — *З it потрібна is.*
-- ❌ It is an possibility. — *Possibility починається з приголосного звука: a.*
+- ✅ **I am just looking.**
+- ❌ I just looking. — *Перед looking потрібна am.*
+- ❌ I am just look. — *Після am потрібна looking.*
 
 ---
 
 ## Інтро 3
 
-### Різні значення imagine
+### Майже готово
 
-Scenario — «сценарій»: тут можливий перебіг подій. Колега пропонує уявити, як пройде переїзд. I can imagine that scenario — «Я можу уявити такий сценарій». Тут imagine — створити уявний образ. Форма I am imagining також можлива, коли людина зараз щось уявляє. Тому не забороняємо Continuous для слова загалом: у I imagine she is busy ми висловлювали припущення.
+Друг запитує, чи готова вечеря. Залишилося почекати зовсім трохи: It is almost ready — «Вона майже готова». Almost — «майже»: готовність близька, але ще не повна. Almost стоїть перед ready. Is пов’язує вечерю з її станом.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I can imagine that scenario.**
-- ❌ I can imagines that scenario. — *Після can потрібна imagine без s.*
-- ❌ I can to imagine that scenario. — *Після can не потрібне to.*
+- ✅ **It is almost ready.**
+- ❌ It are almost ready. — *З it потрібна is.*
+- ❌ It almost ready. — *Після it потрібна is.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — imagine**
-<!-- interaction_id: en:lesson-10:session-21:word:imagine; family: word_card -->
-> **imagine** — «уявляти; гадати». I imagine she is busy. — «Гадаю, вона зайнята». Тут припускати; в іншому контексті — створювати уявний образ.
+**1 · Картка слова — also**
+<!-- interaction_id: en:lesson-10:session-21:word:also; family: word_card -->
+> **also** — «також». I also need bread. — «Мені також потрібен хліб».
 
-**2 · Колега займається переїздом офісу й не відповідає. Висловіть припущення: «Гадаю, вона зайнята»**
+**2 · Додайте, що вам також потрібен хліб. Also поставте перед need**
 <!-- interaction_id: en:lesson-10:session-21:i01; family: phrase_builder -->
-Плитки: `busy` `is` `she` `imagine` `I` → **I imagine she is busy.**
+Плитки: `bread` `need` `also` `I` → **I also need bread.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-21:i02; family: listen_choose -->
-🔊 *I imagine she is busy.* → **I imagine she is busy.** · We imagine she is busy. · I imagine he is busy.
-- We imagine she is busy. — *У записі звучить I imagine she is busy.*
-- I imagine he is busy. — *У записі звучить I imagine she is busy.*
+🔊 *We also need bread.* → **We also need bread.** · I also need bread. · We also need milk.
+- I also need bread. — *У записі звучить We also need bread.*
+- We also need milk. — *У записі звучить We also need bread.*
 
-**4 · Виберіть форму imagine з I для припущення**
+**4 · Виберіть форму need з I**
 <!-- interaction_id: en:lesson-10:session-21:i03; family: context_gap_grammar -->
-I ___ she is busy. → **imagine** · imagines · am imagine
-- imagines — *З I потрібна imagine без s.*
-- am imagine — *Am imagine неправильно; тут потрібна imagine.*
+I also ___ bread. → **need** · needs · needing
+- needs — *З I потрібна need.*
+- needing — *Тут потрібна need.*
 
-**5 · Картка слова — possibility**
-<!-- interaction_id: en:lesson-10:session-21:word:possibility; family: word_card -->
-> **possibility** — «можливість». It is a possibility. — «Це можливий варіант». Тут один із варіантів, який може здійснитися.
+**5 · Картка слова — even**
+<!-- interaction_id: en:lesson-10:session-21:word:even; family: word_card -->
+> **even** — «навіть». Even Tom is here. — «Навіть Том тут».
 
-**6 · Колега пропонує перенести зустріч до іншої кімнати. Ви поки не вирішили. Скажіть: «Це можливий варіант»**
+**6 · Том зазвичай не приходить, але сьогодні він тут. Скажіть: «Навіть Том тут», почавши з Even Tom**
 <!-- interaction_id: en:lesson-10:session-21:i04; family: phrase_builder -->
-Плитки: `possibility` `a` `is` `It` → **It is a possibility.**
+Плитки: `here` `is` `Tom` `Even` → **Even Tom is here.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-21:i05; family: listen_choose -->
-🔊 *There is another possibility.* → **There is another possibility.** · There is another problem. · There is another meeting.
-- There is another problem. — *У записі звучить There is another possibility.*
-- There is another meeting. — *У записі звучить There is another possibility.*
+🔊 *Even Tom is here.* → **Even Tom is here.** · Even Tom is late. · Even Tom is ready.
+- Even Tom is late. — *У записі звучить Even Tom is here.*
+- Even Tom is ready. — *У записі звучить Even Tom is here.*
 
-**8 · Виберіть артикль перед possibility**
+**8 · Виберіть зв’язку з однією людиною, Tom**
 <!-- interaction_id: en:lesson-10:session-21:i06; family: context_gap_grammar -->
-It is ___ possibility. → **a** · an · are
-- an — *Possibility починається з приголосного звука: a.*
-- are — *Are — дієслово; тут потрібен артикль a.*
+Even Tom ___ here. → **is** · are · am
+- are — *З Tom потрібна is.*
+- am — *Am вживаємо з I, тут is.*
 
-**9 · Картка слова — scenario**
-<!-- interaction_id: en:lesson-10:session-21:word:scenario; family: word_card -->
-> **scenario** — «сценарій». I can imagine that scenario. — «Я можу уявити такий сценарій». Тут можливий перебіг подій, а не текст фільму.
+**9 · Картка слова — just**
+<!-- interaction_id: en:lesson-10:session-21:word:just; family: word_card -->
+> **just** — «просто, лише» в цій фразі. I am just looking. — «Я просто дивлюся».
 
-**10 · Колега описує, як переїзд пройде без затримок. Скажіть: «Я можу уявити такий сценарій»**
+**10 · Дайте відповідь продавцю, що просто дивитеся. Just поставте між am і looking**
 <!-- interaction_id: en:lesson-10:session-21:i07; family: phrase_builder -->
-Плитки: `scenario` `that` `imagine` `can` `I` → **I can imagine that scenario.**
+Плитки: `looking` `just` `am` `I` → **I am just looking.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-21:i08; family: listen_choose -->
-🔊 *We are discussing the scenario.* → **We are discussing the scenario.** · They are discussing the scenario. · We are discussing the budget.
-- They are discussing the scenario. — *У записі звучить We are discussing the scenario.*
-- We are discussing the budget. — *У записі звучить We are discussing the scenario.*
+🔊 *We are just looking.* → **We are just looking.** · I am just looking. · They are just looking.
+- I am just looking. — *У записі звучить We are just looking.*
+- They are just looking. — *У записі звучить We are just looking.*
 
-**12 · Виберіть форму imagine після can**
+**12 · Виберіть форму look після am**
 <!-- interaction_id: en:lesson-10:session-21:i09; family: context_gap_grammar -->
-I can ___ that scenario. → **imagine** · imagines · to imagine
-- imagines — *Після can дієслово без s.*
-- to imagine — *Після can не потрібне to.*
+I am just ___. → **looking** · look · looks
+- look — *Після am потрібна looking.*
+- looks — *Після am потрібна looking, не looks.*
 
-**13 · Картка слова — outcome**
-<!-- interaction_id: en:lesson-10:session-21:word:outcome; family: word_card -->
-> **outcome** — «результат». We need a better outcome. — «Нам потрібен кращий результат». Тут підсумок ситуації або процесу.
+**13 · Картка слова — almost**
+<!-- interaction_id: en:lesson-10:session-21:word:almost; family: word_card -->
+> **almost** — «майже». It is almost ready. — «Це майже готове».
 
-**14 · Під час минулого переїзду команда втратила робочий день. Колега обговорює новий план. Скажіть: «Нам потрібен кращий результат»**
+**14 · Вечеря майже готова. Скажіть це, поставивши almost перед ready**
 <!-- interaction_id: en:lesson-10:session-21:i10; family: phrase_builder -->
-Плитки: `outcome` `better` `a` `need` `We` → **We need a better outcome.**
+Плитки: `ready` `almost` `is` `It` → **It is almost ready.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-21:i11; family: listen_choose -->
-🔊 *The outcome is good.* → **The outcome is good.** · The outcome is bad. · The weather is good.
-- The outcome is bad. — *У записі звучить The outcome is good.*
-- The weather is good. — *У записі звучить The outcome is good.*
+🔊 *She is almost ready.* → **She is almost ready.** · He is almost ready. · We are almost ready.
+- He is almost ready. — *У записі звучить She is almost ready.*
+- We are almost ready. — *У записі звучить She is almost ready.*
 
-**16 · Виберіть зв’язку з одним результатом**
+**16 · Виберіть зв’язку з it**
 <!-- interaction_id: en:lesson-10:session-21:i12; family: context_gap_grammar -->
-The outcome ___ good. → **is** · are · am
-- are — *Один результат: is.*
-- am — *Am уживається з I.*
+It ___ almost ready. → **is** · are · am
+- are — *З it потрібна is.*
+- am — *Am вживаємо з I, тут is.*
 
-**17 · З’єднайте слова зі значеннями в цьому занятті**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-21:i13; family: speed_match -->
-imagine — уявляти · possibility — можливість · scenario — сценарій · outcome — результат
+also — також · even — навіть · just — просто · almost — майже
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-21:i14; family: listen_build_dictation -->
-🔊 *I imagine the office is busy.* Плитки: `busy` `is` `office` `the` `imagine` `I` → **I imagine the office is busy.**
+🔊 *I am just looking.* Плитки: `looking` `just` `am` `I` → **I am just looking.**
 
-**19 · Друг запитує про колегу, яка сьогодні організовує переїзд. Ви не бачите її. Скажіть: «Гадаю, вона зайнята»**
-<!-- interaction_id: en:lesson-10:session-21:i15; family: scripted_repeat_compare -->
-🎙 **I imagine she is busy.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-21:i15; family: listen_build_dictation -->
+🔊 *It is almost ready.* Плитки: `ready` `almost` `is` `It` → **It is almost ready.**
 
-**20 · Колега пропонує ще один варіант кімнати для зустрічі. Скажіть: «Є інша можливість»**
-<!-- interaction_id: en:lesson-10:session-21:i16; family: phrase_builder -->
-Плитки: `possibility` `another` `is` `There` → **There is another possibility.**
+**20 · Скажіть, що вам також потрібна вода**
+<!-- interaction_id: en:lesson-10:session-21:i16; family: scripted_repeat_compare -->
+🎙 **I also need water.**
 
-**21 · Ви знаєте, що сьогодні в офісі переїзд, але не бачите, що там відбувається. Друг запитує вашу думку. Висловіть припущення: «Гадаю, в офісі зараз багато роботи»**
-<!-- interaction_id: en:lesson-10:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I imagine the office is busy.**
+**21 · Друг чекає на вас. Скажіть: «Я майже готовий»**
+<!-- interaction_id: en:lesson-10:session-21:i17; family: scripted_repeat_compare -->
+🎙 **I am almost ready.**
 

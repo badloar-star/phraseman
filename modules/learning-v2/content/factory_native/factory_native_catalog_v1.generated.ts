@@ -3677,9 +3677,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 21,
-    sourceFingerprint: "0f9b7a44144610e27827036f7e220ca9c8c8d8e49241594461ca012ad5fcb1bd",
+    sourceFingerprint: "ac23f50f898f2d6deaedf760a99db66ffbeb0d943720e830690dbae346509f29",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I imagine she is busy; It is a possibility; We need a better outcome","uk":"I imagine she is busy; It is a possibility; We need a better outcome"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I also need bread; Even Tom is here; I am just looking; It is almost ready","uk":"I also need bread; Even Tom is here; I am just looking; It is almost ready"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3698,9 +3698,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 24,
-    sourceFingerprint: "9a210b50b65fdfcf0e1b30a0e7634dbb3f1ac1458daaf6ca1d4b3be9d536c260",
+    sourceFingerprint: "4cebccdea70378b4a442011edd72e4c6f54b7845ce98de7746bef15c918092b7",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He usually works here; He is sitting here now; I trust the concierge","uk":"He usually works here; He is sitting here now; I trust the concierge"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I would like a single room; Do you have a double room?; We need a twin room; I am calling room service","uk":"I would like a single room; Do you have a double room?; We need a twin room; I am calling room service"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3712,9 +3712,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 26,
-    sourceFingerprint: "c2d184fc93e47399eca683902d8c8e9f4ac9db666920ec6ac2744716a5ad5602",
+    sourceFingerprint: "5690be984e98b57366f12eda7a979961148c4bee5ac884f3f4dd8da8e0764175",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We usually eat at noon; She is filling the carafe; The soup is in the tureen","uk":"We usually eat at noon; She is filling the carafe; The soup is in the tureen"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I would like a starter; I am choosing a main course; We need a side dish; This portion is small","uk":"I would like a starter; I am choosing a main course; We need a side dish; This portion is small"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

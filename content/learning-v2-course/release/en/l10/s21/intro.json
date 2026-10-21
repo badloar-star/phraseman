@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-21",
   "learningOutcomeByLocale": {
-    "ru": "I imagine she is busy; It is a possibility; We need a better outcome",
-    "uk": "I imagine she is busy; It is a possibility; We need a better outcome"
+    "ru": "I also need bread; Even Tom is here; I am just looking; It is almost ready",
+    "uk": "I also need bread; Even Tom is here; I am just looking; It is almost ready"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Предположение без уверенности",
-        "uk": "Припущення без упевненості"
+        "ru": "Добавить и удивиться",
+        "uk": "Додати й здивуватися"
       },
       "bodyByLocale": {
-        "ru": "Коллега сегодня организует переезд офиса и не отвечает на сообщение. Вы не видите её, но предполагаете, что она занята. I imagine she is busy — «Полагаю, она занята». Imagine может означать «представлять», а здесь — «полагать, предполагать». В этом значении Present Simple выражает ваше мнение, а не действие в процессе.",
-        "uk": "Колега сьогодні організовує переїзд офісу й не відповідає на повідомлення. Ви не бачите її, але припускаєте, що вона зайнята. I imagine she is busy — «Гадаю, вона зайнята». Imagine може означати «уявляти», а тут — «гадати, припускати». У цьому значенні Present Simple виражає вашу думку, а не дію в процесі."
+        "ru": "Молоко уже в списке, но нужен ещё хлеб: I also need bread — «Мне также нужен хлеб». Also — «также». Здесь also стоит перед need. А на встречу пришли все, включая Тома, который редко приходит: Even Tom is here — «Даже Том здесь». Even — «даже»: вы выделяете неожиданного гостя. В этой фразе even стоит перед Tom.",
+        "uk": "Молоко вже в списку, але потрібен ще хліб: I also need bread — «Мені також потрібен хліб». Also — «також». Тут also стоїть перед need. А на зустріч прийшли всі, включно з Томом, який рідко приходить: Even Tom is here — «Навіть Том тут». Even — «навіть»: ви виділяєте неочікуваного гостя. У цій фразі even стоїть перед Tom."
       },
       "question": {
         "interactionId": "en:lesson-10:session-21:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-21:intro1:r1",
-              "text": "I imagine she is busy."
+              "text": "I also need bread."
             },
             {
               "responseId": "en:lesson-10:session-21:intro1:r2",
-              "text": "I imagines she is busy."
+              "text": "I also needs bread."
             },
             {
               "responseId": "en:lesson-10:session-21:intro1:r3",
-              "text": "I imagine she are busy."
+              "text": "I am also need bread."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-21:intro1:r1",
-              "text": "I imagine she is busy."
+              "text": "I also need bread."
             },
             {
               "responseId": "en:lesson-10:session-21:intro1:r2",
-              "text": "I imagines she is busy."
+              "text": "I also needs bread."
             },
             {
               "responseId": "en:lesson-10:session-21:intro1:r3",
-              "text": "I imagine she are busy."
+              "text": "I am also need bread."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Возможность, а не принятое решение",
-        "uk": "Можливість, а не ухвалене рішення"
+        "ru": "Пока только смотрю",
+        "uk": "Поки лише дивлюся"
       },
       "bodyByLocale": {
-        "ru": "Possibility — «возможность». Вы обсуждаете, перенести ли встречу в соседнюю комнату. Решения ещё нет. It is a possibility — «Это возможный вариант». Эта фраза не обещает, что так обязательно будет. Для одного возможного варианта используем a possibility.",
-        "uk": "Possibility — «можливість». Ви обговорюєте, чи перенести зустріч до сусідньої кімнати. Рішення ще немає. It is a possibility — «Це можливий варіант». Ця фраза не обіцяє, що так обов’язково буде. Для одного можливого варіанта використовуємо a possibility."
+        "ru": "Продавец предлагает помощь, но вы пока не выбираете покупку: I am just looking — «Я просто смотрю». Just здесь — «просто, только», без другого действия. Вы смотрите сейчас: am looking. Just ставим между am и looking.",
+        "uk": "Продавець пропонує допомогу, але ви поки не вибираєте покупку: I am just looking — «Я просто дивлюся». Just тут — «просто, лише», без іншої дії. Ви дивитеся зараз: am looking. Just ставимо між am і looking."
       },
       "question": {
         "interactionId": "en:lesson-10:session-21:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-21:intro2:r1",
-              "text": "It is a possibility."
+              "text": "I am just looking."
             },
             {
               "responseId": "en:lesson-10:session-21:intro2:r2",
-              "text": "It are a possibility."
+              "text": "I just looking."
             },
             {
               "responseId": "en:lesson-10:session-21:intro2:r3",
-              "text": "It is an possibility."
+              "text": "I am just look."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-21:intro2:r1",
-              "text": "It is a possibility."
+              "text": "I am just looking."
             },
             {
               "responseId": "en:lesson-10:session-21:intro2:r2",
-              "text": "It are a possibility."
+              "text": "I just looking."
             },
             {
               "responseId": "en:lesson-10:session-21:intro2:r3",
-              "text": "It is an possibility."
+              "text": "I am just look."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Разные значения imagine",
-        "uk": "Різні значення imagine"
+        "ru": "Почти готово",
+        "uk": "Майже готово"
       },
       "bodyByLocale": {
-        "ru": "Scenario — «сценарий»: здесь возможный ход событий. Коллега предлагает представить, как пройдёт переезд. I can imagine that scenario — «Я могу представить такой сценарий». Здесь imagine — создать мысленный образ. Форма I am imagining тоже возможна, когда человек сейчас что-то мысленно представляет. Поэтому не запрещаем Continuous для слова целиком: в I imagine she is busy мы выражали предположение.",
-        "uk": "Scenario — «сценарій»: тут можливий перебіг подій. Колега пропонує уявити, як пройде переїзд. I can imagine that scenario — «Я можу уявити такий сценарій». Тут imagine — створити уявний образ. Форма I am imagining також можлива, коли людина зараз щось уявляє. Тому не забороняємо Continuous для слова загалом: у I imagine she is busy ми висловлювали припущення."
+        "ru": "Друг спрашивает, готов ли ужин. Осталось подождать совсем немного: It is almost ready — «Он почти готов». Almost — «почти»: готовность близка, но ещё не полная. Almost стоит перед ready. Is связывает ужин с его состоянием.",
+        "uk": "Друг запитує, чи готова вечеря. Залишилося почекати зовсім трохи: It is almost ready — «Вона майже готова». Almost — «майже»: готовність близька, але ще не повна. Almost стоїть перед ready. Is пов’язує вечерю з її станом."
       },
       "question": {
         "interactionId": "en:lesson-10:session-21:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-21:intro3:r1",
-              "text": "I can imagine that scenario."
+              "text": "It is almost ready."
             },
             {
               "responseId": "en:lesson-10:session-21:intro3:r2",
-              "text": "I can imagines that scenario."
+              "text": "It are almost ready."
             },
             {
               "responseId": "en:lesson-10:session-21:intro3:r3",
-              "text": "I can to imagine that scenario."
+              "text": "It almost ready."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-21:intro3:r1",
-              "text": "I can imagine that scenario."
+              "text": "It is almost ready."
             },
             {
               "responseId": "en:lesson-10:session-21:intro3:r2",
-              "text": "I can imagines that scenario."
+              "text": "It are almost ready."
             },
             {
               "responseId": "en:lesson-10:session-21:intro3:r3",
-              "text": "I can to imagine that scenario."
+              "text": "It almost ready."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bbec01d9d3b7d752876898330b628d02363a44b0eb49714580deaf1084995ff5"
+  "introFingerprint": "0c6f6ebd119f2c6bf432469ec724027f25db411bf266df6bd8b8124c64a64b4c"
 }

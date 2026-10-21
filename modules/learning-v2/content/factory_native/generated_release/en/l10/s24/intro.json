@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-24",
   "learningOutcomeByLocale": {
-    "ru": "He usually works here; He is sitting here now; I trust the concierge",
-    "uk": "He usually works here; He is sitting here now; I trust the concierge"
+    "ru": "I would like a single room; Do you have a double room?; We need a twin room; I am calling room service",
+    "uk": "I would like a single room; Do you have a double room?; We need a twin room; I am calling room service"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обычно и сейчас",
-        "uk": "Зазвичай і зараз"
+        "ru": "Для одного или с двуспальной кроватью",
+        "uk": "Для одного або з двоспальним ліжком"
       },
       "bodyByLocale": {
-        "ru": "Concierge — «консьерж», сотрудник отеля, который помогает гостям, например заказывает такси. He usually works here — «Он обычно работает здесь». Обычно — usually — ставим перед works. Сейчас он помогает гостю: He is helping a guest now. Для действия в данный момент используем is + helping.",
-        "uk": "Concierge — «консьєрж», працівник готелю, який допомагає гостям, наприклад замовляє таксі. He usually works here — «Він зазвичай працює тут». Зазвичай — usually — ставимо перед works. Зараз він допомагає гостю: He is helping a guest now. Для дії цієї миті використовуємо is + helping."
+        "ru": "Вы путешествуете один. Single room — «одноместный номер»: I would like a single room — «Я бы хотел одноместный номер». Если вы вдвоём и хотите одну двуспальную кровать, спросите: Do you have a double room? — «У вас есть номер с двуспальной кроватью?» Double room здесь — номер на двоих с одной двуспальной кроватью.",
+        "uk": "Ви подорожуєте самі. Single room — «одномісний номер»: I would like a single room — «Я хотів би одномісний номер». Якщо ви вдвох і хочете одне двоспальне ліжко, запитайте: Do you have a double room? — «У вас є номер із двоспальним ліжком?» Double room тут — номер на двох з одним двоспальним ліжком."
       },
       "question": {
         "interactionId": "en:lesson-10:session-24:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-24:intro1:r1",
-              "text": "He usually works here."
+              "text": "I would like a single room."
             },
             {
               "responseId": "en:lesson-10:session-24:intro1:r2",
-              "text": "He usually work here."
+              "text": "I would likes a single room."
             },
             {
               "responseId": "en:lesson-10:session-24:intro1:r3",
-              "text": "He is usually work here."
+              "text": "I would liking a single room."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-24:intro1:r1",
-              "text": "He usually works here."
+              "text": "I would like a single room."
             },
             {
               "responseId": "en:lesson-10:session-24:intro1:r2",
-              "text": "He usually work here."
+              "text": "I would likes a single room."
             },
             {
               "responseId": "en:lesson-10:session-24:intro1:r3",
-              "text": "He is usually work here."
+              "text": "I would liking a single room."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Постоянная работа и временная смена",
-        "uk": "Постійна робота й тимчасова зміна"
+        "ru": "Две отдельные кровати",
+        "uk": "Два окремі ліжка"
       },
       "bodyByLocale": {
-        "ru": "Другой сотрудник обычно работает в другом отеле. На этой неделе он временно помогает здесь: He is working here this week — «Он работает здесь на этой неделе». Для временной ситуации используем Present Continuous. Сравните постоянное место работы: He works at a hotel — «Он работает в отеле».",
-        "uk": "Інший працівник зазвичай працює в іншому готелі. Цього тижня він тимчасово допомагає тут: He is working here this week — «Він працює тут цього тижня». Для тимчасової ситуації використовуємо Present Continuous. Порівняйте постійне місце роботи: He works at a hotel — «Він працює в готелі»."
+        "ru": "Вы приехали с другом и хотите отдельные кровати. Twin room — «номер с двумя отдельными кроватями»: We need a twin room — «Нам нужен номер с двумя отдельными кроватями». Здесь twin уточняет устройство номера. С we нужна need без s.",
+        "uk": "Ви приїхали з другом і хочете окремі ліжка. Twin room — «номер із двома окремими ліжками»: We need a twin room — «Нам потрібен номер із двома окремими ліжками». Тут twin уточнює облаштування номера. З we потрібна need без s."
       },
       "question": {
         "interactionId": "en:lesson-10:session-24:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-24:intro2:r1",
-              "text": "He is working here this week."
+              "text": "We need a twin room."
             },
             {
               "responseId": "en:lesson-10:session-24:intro2:r2",
-              "text": "He working here this week."
+              "text": "We needs a twin room."
             },
             {
               "responseId": "en:lesson-10:session-24:intro2:r3",
-              "text": "He is work here this week."
+              "text": "We are need a twin room."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-24:intro2:r1",
-              "text": "He is working here this week."
+              "text": "We need a twin room."
             },
             {
               "responseId": "en:lesson-10:session-24:intro2:r2",
-              "text": "He working here this week."
+              "text": "We needs a twin room."
             },
             {
               "responseId": "en:lesson-10:session-24:intro2:r3",
-              "text": "He is work here this week."
+              "text": "We are need a twin room."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сидит сейчас, доверяю вообще",
-        "uk": "Сидить зараз, довіряю загалом"
+        "ru": "Еда в номер",
+        "uk": "Їжа в номер"
       },
       "bodyByLocale": {
-        "ru": "Вы видите консьержа за столом: He is sitting here now — «Он сейчас сидит здесь». В sit → sitting удваиваем t. В make → making убираем конечную e. Но доверие — ваше отношение: I trust the concierge — «Я доверяю консьержу». Для этого значения здесь используем Simple, даже если говорим сейчас.",
-        "uk": "Ви бачите консьєржа за столом: He is sitting here now — «Він зараз сидить тут». У sit → sitting подвоюємо t. У make → making прибираємо кінцеву e. Але довіра — ваше ставлення: I trust the concierge — «Я довіряю консьєржу». Для цього значення тут використовуємо Simple, навіть якщо говоримо зараз."
+        "ru": "Вы уже заселились и звоните, чтобы заказать ужин в номер. Room service — «обслуживание в номере, доставка еды в номер»: I am calling room service — «Я звоню в службу обслуживания номеров». Вы звоните сейчас: am calling. В этой фразе room service — название услуги, без a.",
+        "uk": "Ви вже заселилися й телефонуєте, щоб замовити вечерю в номер. Room service — «обслуговування в номері, доставка їжі в номер»: I am calling room service — «Я телефоную до служби обслуговування номерів». Ви телефонуєте зараз: am calling. У цій фразі room service — назва послуги, без a."
       },
       "question": {
         "interactionId": "en:lesson-10:session-24:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-24:intro3:r1",
-              "text": "He is sitting here now."
+              "text": "I am calling room service."
             },
             {
               "responseId": "en:lesson-10:session-24:intro3:r2",
-              "text": "He is siting here now."
+              "text": "I calling room service."
             },
             {
               "responseId": "en:lesson-10:session-24:intro3:r3",
-              "text": "He sitting here now."
+              "text": "I am call room service."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-24:intro3:r1",
-              "text": "He is sitting here now."
+              "text": "I am calling room service."
             },
             {
               "responseId": "en:lesson-10:session-24:intro3:r2",
-              "text": "He is siting here now."
+              "text": "I calling room service."
             },
             {
               "responseId": "en:lesson-10:session-24:intro3:r3",
-              "text": "He sitting here now."
+              "text": "I am call room service."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a52972e0c46d26617760d034c297bb6c6b48dd874a3ed063e955d4e165340f21"
+  "introFingerprint": "ca6d9157056b7aeaabf9e6d8bf21434031a6009090095856e1d3a177d1d04c48"
 }

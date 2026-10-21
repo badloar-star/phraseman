@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-26:word:noon",
+        "interactionId": "en:lesson-10:session-26:word:starter",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — noon",
+        "prompt": "Карточка слова — starter",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-26:word:noon:audio"
+          "en:lesson-10:session-26:word:starter:audio"
         ],
-        "accessibilityLabel": "Карточка слова — noon",
+        "accessibilityLabel": "Карточка слова — starter",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:word:noon:audio",
-            "transcript": "noon"
+            "audioTargetId": "en:lesson-10:session-26:word:starter:audio",
+            "transcript": "starter"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-26:word:noon:r1",
-              "targetText": "noon",
+              "responseId": "en:lesson-10:session-26:word:starter:r1",
+              "targetText": "starter",
               "meaningByLocale": {
-                "ru": "«полдень». We usually eat at noon. — «Мы обычно едим в полдень». Двенадцать часов дня.",
-                "uk": "«полудень». We usually eat at noon. — «Ми зазвичай їмо опівдні». Дванадцята година дня."
+                "ru": "«закуска перед основным блюдом». I would like a starter. — «Я бы хотел закуску».",
+                "uk": "«закуска перед основною стравою». I would like a starter. — «Я хотів би закуску»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "noon",
+            "word": "starter",
             "definitionByLocale": {
-              "ru": "«полдень». We usually eat at noon. — «Мы обычно едим в полдень». Двенадцать часов дня.",
-              "uk": "«полудень». We usually eat at noon. — «Ми зазвичай їмо опівдні». Дванадцята година дня."
+              "ru": "«закуска перед основным блюдом». I would like a starter. — «Я бы хотел закуску».",
+              "uk": "«закуска перед основною стравою». I would like a starter. — «Я хотів би закуску»."
             }
           }
         },
@@ -52,24 +52,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает о вашем обычном времени обеда. Скажите: «Мы обычно едим в полдень». Поставьте at noon в конце",
+        "prompt": "Попросите закуску перед основным блюдом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает о вашем обычном времени обеда. Скажите: «Мы обычно едим в полдень». Поставьте at noon в конце",
+        "accessibilityLabel": "Попросите закуску перед основным блюдом",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We usually eat at noon.",
+          "targetPhrase": "I would like a starter.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о вашем обычном времени обеда. Скажите: «Мы обычно едим в полдень». Поставьте at noon в конце",
-            "uk": "Друг запитує про ваш звичний час обіду. Скажіть: «Ми зазвичай їмо опівдні». Поставте at noon у кінці"
+            "ru": "Попросите закуску перед основным блюдом",
+            "uk": "Попросіть закуску перед основною стравою"
           },
           "orderedTokens": [
-            "We",
-            "usually",
-            "eat",
-            "at",
-            "noon"
+            "I",
+            "would",
+            "like",
+            "a",
+            "starter"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -90,15 +90,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i02:r1",
-            "text": "We eat at noon."
+            "text": "She would like a starter."
           },
           {
             "responseId": "en:lesson-10:session-26:i02:r2",
-            "text": "They eat at noon."
+            "text": "He would like a starter."
           },
           {
             "responseId": "en:lesson-10:session-26:i02:r3",
-            "text": "We meet at noon."
+            "text": "We would like a starter."
           }
         ],
         "mediaIds": [],
@@ -110,23 +110,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i02:audio",
-            "transcript": "We eat at noon."
+            "transcript": "She would like a starter."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-26:i02:r1",
-              "targetText": "We eat at noon.",
+              "targetText": "She would like a starter.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i02:r2",
-              "targetText": "They eat at noon.",
+              "targetText": "He would like a starter.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i02:r3",
-              "targetText": "We meet at noon.",
+              "targetText": "We would like a starter.",
               "meaningByLocale": null
             }
           ],
@@ -137,8 +137,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We eat at noon.",
-                "uk": "У записі звучить We eat at noon."
+                "ru": "В записи звучит She would like a starter.",
+                "uk": "У записі звучить She would like a starter."
               }
             },
             {
@@ -146,8 +146,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We eat at noon.",
-                "uk": "У записі звучить We eat at noon."
+                "ru": "В записи звучит She would like a starter.",
+                "uk": "У записі звучить She would like a starter."
               }
             }
           ],
@@ -162,63 +162,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите предлог для «в полдень»",
+        "prompt": "Выберите форму like после would",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i03:r1",
-            "text": "at"
+            "text": "like"
           },
           {
             "responseId": "en:lesson-10:session-26:i03:r2",
-            "text": "on"
+            "text": "likes"
           },
           {
             "responseId": "en:lesson-10:session-26:i03:r3",
-            "text": "in"
+            "text": "liking"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите предлог для «в полдень»",
+        "accessibilityLabel": "Выберите форму like после would",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите предлог для «в полдень»",
-            "uk": "Виберіть прийменник для «опівдні»"
+            "ru": "Выберите форму like после would",
+            "uk": "Виберіть форму like після would"
           },
-          "gappedTargetPhrase": "We eat ___ noon.",
+          "gappedTargetPhrase": "I would ___ a starter.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-26:i03:r1",
-              "text": "at"
+              "text": "like"
             },
             {
               "responseId": "en:lesson-10:session-26:i03:r2",
-              "text": "on"
+              "text": "likes"
             },
             {
               "responseId": "en:lesson-10:session-26:i03:r3",
-              "text": "in"
+              "text": "liking"
             }
           ],
-          "testedDimension": "Выберите предлог для «в полдень»",
+          "testedDimension": "Выберите форму like после would",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-26:i03:r2",
               "correct": false,
-              "testedDimension": "Выберите предлог для «в полдень»",
+              "testedDimension": "Выберите форму like после would",
               "feedbackByLocale": {
-                "ru": "Перед noon нужно at, не on.",
-                "uk": "Перед noon потрібне at, не on."
+                "ru": "После would нужна like.",
+                "uk": "Після would потрібна like."
               }
             },
             {
               "responseId": "en:lesson-10:session-26:i03:r3",
               "correct": false,
-              "testedDimension": "Выберите предлог для «в полдень»",
+              "testedDimension": "Выберите форму like после would",
               "feedbackByLocale": {
-                "ru": "Перед noon нужно at, не in.",
-                "uk": "Перед noon потрібне at, не in."
+                "ru": "После would нужна like, не liking.",
+                "uk": "Після would потрібна like, не liking."
               }
             }
           ]
@@ -226,32 +226,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-26:word:tureen",
+        "interactionId": "en:lesson-10:session-26:word:main-course",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — tureen",
+        "prompt": "Карточка слова — main course",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-26:word:tureen:audio"
+          "en:lesson-10:session-26:word:main-course:audio"
         ],
-        "accessibilityLabel": "Карточка слова — tureen",
+        "accessibilityLabel": "Карточка слова — main course",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:word:tureen:audio",
-            "transcript": "tureen"
+            "audioTargetId": "en:lesson-10:session-26:word:main-course:audio",
+            "transcript": "main course"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-26:word:tureen:r1",
-              "targetText": "tureen",
+              "responseId": "en:lesson-10:session-26:word:main-course:r1",
+              "targetText": "main course",
               "meaningByLocale": {
-                "ru": "«супница». The soup is in the tureen. — «Суп в супнице». Большая посуда для подачи супа к столу.",
-                "uk": "«супниця». The soup is in the tureen. — «Суп у супниці». Великий посуд для подавання супу до столу."
+                "ru": "«основное блюдо». I am choosing a main course. — «Я выбираю основное блюдо».",
+                "uk": "«основна страва». I am choosing a main course. — «Я вибираю основну страву»."
               }
             }
           ],
@@ -259,10 +259,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "tureen",
+            "word": "main course",
             "definitionByLocale": {
-              "ru": "«супница». The soup is in the tureen. — «Суп в супнице». Большая посуда для подачи супа к столу.",
-              "uk": "«супниця». The soup is in the tureen. — «Суп у супниці». Великий посуд для подавання супу до столу."
+              "ru": "«основное блюдо». I am choosing a main course. — «Я выбираю основное блюдо».",
+              "uk": "«основна страва». I am choosing a main course. — «Я вибираю основну страву»."
             }
           }
         },
@@ -274,25 +274,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг ищет суп. Скажите: «Суп в супнице»",
+        "prompt": "Вы читаете меню. Скажите, что выбираете основное блюдо",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг ищет суп. Скажите: «Суп в супнице»",
+        "accessibilityLabel": "Вы читаете меню. Скажите, что выбираете основное блюдо",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The soup is in the tureen.",
+          "targetPhrase": "I am choosing a main course.",
           "localizedMeaning": {
-            "ru": "Друг ищет суп. Скажите: «Суп в супнице»",
-            "uk": "Друг шукає суп. Скажіть: «Суп у супниці»"
+            "ru": "Вы читаете меню. Скажите, что выбираете основное блюдо",
+            "uk": "Ви читаєте меню. Скажіть, що вибираєте основну страву"
           },
           "orderedTokens": [
-            "The",
-            "soup",
-            "is",
-            "in",
-            "the",
-            "tureen"
+            "I",
+            "am",
+            "choosing",
+            "a",
+            "main",
+            "course"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -313,15 +313,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i05:r1",
-            "text": "The tureen is on the table."
+            "text": "He is choosing a main course."
           },
           {
             "responseId": "en:lesson-10:session-26:i05:r2",
-            "text": "The tureen is under the table."
+            "text": "She is choosing a main course."
           },
           {
             "responseId": "en:lesson-10:session-26:i05:r3",
-            "text": "The spoon is on the table."
+            "text": "He is eating a main course."
           }
         ],
         "mediaIds": [],
@@ -333,23 +333,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i05:audio",
-            "transcript": "The tureen is on the table."
+            "transcript": "He is choosing a main course."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-26:i05:r1",
-              "targetText": "The tureen is on the table.",
+              "targetText": "He is choosing a main course.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i05:r2",
-              "targetText": "The tureen is under the table.",
+              "targetText": "She is choosing a main course.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i05:r3",
-              "targetText": "The spoon is on the table.",
+              "targetText": "He is eating a main course.",
               "meaningByLocale": null
             }
           ],
@@ -360,8 +360,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The tureen is on the table.",
-                "uk": "У записі звучить The tureen is on the table."
+                "ru": "В записи звучит He is choosing a main course.",
+                "uk": "У записі звучить He is choosing a main course."
               }
             },
             {
@@ -369,8 +369,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The tureen is on the table.",
-                "uk": "У записі звучить The tureen is on the table."
+                "ru": "В записи звучит He is choosing a main course.",
+                "uk": "У записі звучить He is choosing a main course."
               }
             }
           ],
@@ -385,63 +385,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы готовите суп прямо сейчас. Выберите форму make",
+        "prompt": "Выберите форму choose после am",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i06:r1",
-            "text": "making"
+            "text": "choosing"
           },
           {
             "responseId": "en:lesson-10:session-26:i06:r2",
-            "text": "makeing"
+            "text": "choose"
           },
           {
             "responseId": "en:lesson-10:session-26:i06:r3",
-            "text": "make"
+            "text": "chooses"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы готовите суп прямо сейчас. Выберите форму make",
+        "accessibilityLabel": "Выберите форму choose после am",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы готовите суп прямо сейчас. Выберите форму make",
-            "uk": "Ви готуєте суп просто зараз. Виберіть форму make"
+            "ru": "Выберите форму choose после am",
+            "uk": "Виберіть форму choose після am"
           },
-          "gappedTargetPhrase": "I am ___ soup now.",
+          "gappedTargetPhrase": "I am ___ a main course.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-26:i06:r1",
-              "text": "making"
+              "text": "choosing"
             },
             {
               "responseId": "en:lesson-10:session-26:i06:r2",
-              "text": "makeing"
+              "text": "choose"
             },
             {
               "responseId": "en:lesson-10:session-26:i06:r3",
-              "text": "make"
+              "text": "chooses"
             }
           ],
-          "testedDimension": "Вы готовите суп прямо сейчас. Выберите форму make",
+          "testedDimension": "Выберите форму choose после am",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-26:i06:r2",
               "correct": false,
-              "testedDimension": "Вы готовите суп прямо сейчас. Выберите форму make",
+              "testedDimension": "Выберите форму choose после am",
               "feedbackByLocale": {
-                "ru": "В making конечная e исчезает.",
-                "uk": "У making кінцева e зникає."
+                "ru": "После am нужна choosing.",
+                "uk": "Після am потрібна choosing."
               }
             },
             {
               "responseId": "en:lesson-10:session-26:i06:r3",
               "correct": false,
-              "testedDimension": "Вы готовите суп прямо сейчас. Выберите форму make",
+              "testedDimension": "Выберите форму choose после am",
               "feedbackByLocale": {
-                "ru": "После am здесь нужна making.",
-                "uk": "Після am тут потрібна making."
+                "ru": "После am нужна choosing, не chooses.",
+                "uk": "Після am потрібна choosing, не chooses."
               }
             }
           ]
@@ -449,32 +449,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-26:word:carafe",
+        "interactionId": "en:lesson-10:session-26:word:side-dish",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — carafe",
+        "prompt": "Карточка слова — side dish",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-26:word:carafe:audio"
+          "en:lesson-10:session-26:word:side-dish:audio"
         ],
-        "accessibilityLabel": "Карточка слова — carafe",
+        "accessibilityLabel": "Карточка слова — side dish",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:word:carafe:audio",
-            "transcript": "carafe"
+            "audioTargetId": "en:lesson-10:session-26:word:side-dish:audio",
+            "transcript": "side dish"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-26:word:carafe:r1",
-              "targetText": "carafe",
+              "responseId": "en:lesson-10:session-26:word:side-dish:r1",
+              "targetText": "side dish",
               "meaningByLocale": {
-                "ru": "«графин». She is filling the carafe. — «Она наполняет графин». Сосуд для подачи воды или вина.",
-                "uk": "«карафка». She is filling the carafe. — «Вона наповнює карафку». Посудина для подавання води або вина."
+                "ru": "«гарнир, отдельное дополнение к основному блюду». We need a side dish. — «Нам нужен гарнир».",
+                "uk": "«гарнір, окреме доповнення до основної страви». We need a side dish. — «Нам потрібен гарнір»."
               }
             }
           ],
@@ -482,10 +482,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "carafe",
+            "word": "side dish",
             "definitionByLocale": {
-              "ru": "«графин». She is filling the carafe. — «Она наполняет графин». Сосуд для подачи воды или вина.",
-              "uk": "«карафка». She is filling the carafe. — «Вона наповнює карафку». Посудина для подавання води або вина."
+              "ru": "«гарнир, отдельное дополнение к основному блюду». We need a side dish. — «Нам нужен гарнир».",
+              "uk": "«гарнір, окреме доповнення до основної страви». We need a side dish. — «Нам потрібен гарнір»."
             }
           }
         },
@@ -497,24 +497,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга наливает воду в графин. Скажите другу: «Она наполняет графин»",
+        "prompt": "К рыбе вы с другом хотите гарнир. Скажите: «Нам нужен гарнир»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга наливает воду в графин. Скажите другу: «Она наполняет графин»",
+        "accessibilityLabel": "К рыбе вы с другом хотите гарнир. Скажите: «Нам нужен гарнир»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is filling the carafe.",
+          "targetPhrase": "We need a side dish.",
           "localizedMeaning": {
-            "ru": "Подруга наливает воду в графин. Скажите другу: «Она наполняет графин»",
-            "uk": "Подруга наливає воду в карафку. Скажіть другу: «Вона наповнює карафку»"
+            "ru": "К рыбе вы с другом хотите гарнир. Скажите: «Нам нужен гарнир»",
+            "uk": "До риби ви з другом хочете гарнір. Скажіть: «Нам потрібен гарнір»"
           },
           "orderedTokens": [
-            "She",
-            "is",
-            "filling",
-            "the",
-            "carafe"
+            "We",
+            "need",
+            "a",
+            "side",
+            "dish"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -535,15 +535,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i08:r1",
-            "text": "The carafe is full."
+            "text": "They need a side dish."
           },
           {
             "responseId": "en:lesson-10:session-26:i08:r2",
-            "text": "The carafe is empty."
+            "text": "We need a side dish."
           },
           {
             "responseId": "en:lesson-10:session-26:i08:r3",
-            "text": "The tureen is full."
+            "text": "They have a side dish."
           }
         ],
         "mediaIds": [],
@@ -555,23 +555,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i08:audio",
-            "transcript": "The carafe is full."
+            "transcript": "They need a side dish."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-26:i08:r1",
-              "targetText": "The carafe is full.",
+              "targetText": "They need a side dish.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i08:r2",
-              "targetText": "The carafe is empty.",
+              "targetText": "We need a side dish.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i08:r3",
-              "targetText": "The tureen is full.",
+              "targetText": "They have a side dish.",
               "meaningByLocale": null
             }
           ],
@@ -582,8 +582,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The carafe is full.",
-                "uk": "У записі звучить The carafe is full."
+                "ru": "В записи звучит They need a side dish.",
+                "uk": "У записі звучить They need a side dish."
               }
             },
             {
@@ -591,8 +591,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The carafe is full.",
-                "uk": "У записі звучить The carafe is full."
+                "ru": "В записи звучит They need a side dish.",
+                "uk": "У записі звучить They need a side dish."
               }
             }
           ],
@@ -607,63 +607,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+        "prompt": "Выберите форму need с we",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i09:r1",
-            "text": "is"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-26:i09:r2",
-            "text": "are"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-26:i09:r3",
-            "text": "does"
+            "text": "needing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+        "accessibilityLabel": "Выберите форму need с we",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
-            "uk": "Вона наповнює карафку просто зараз. Виберіть допоміжне дієслово"
+            "ru": "Выберите форму need с we",
+            "uk": "Виберіть форму need з we"
           },
-          "gappedTargetPhrase": "She ___ filling the carafe.",
+          "gappedTargetPhrase": "We ___ a side dish.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-26:i09:r1",
-              "text": "is"
+              "text": "need"
             },
             {
               "responseId": "en:lesson-10:session-26:i09:r2",
-              "text": "are"
+              "text": "needs"
             },
             {
               "responseId": "en:lesson-10:session-26:i09:r3",
-              "text": "does"
+              "text": "needing"
             }
           ],
-          "testedDimension": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+          "testedDimension": "Выберите форму need с we",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-26:i09:r2",
               "correct": false,
-              "testedDimension": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+              "testedDimension": "Выберите форму need с we",
               "feedbackByLocale": {
-                "ru": "С she нужно is, не are.",
-                "uk": "З she потрібне is, не are."
+                "ru": "С we нужна need без s.",
+                "uk": "З we потрібна need без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-26:i09:r3",
               "correct": false,
-              "testedDimension": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
+              "testedDimension": "Выберите форму need с we",
               "feedbackByLocale": {
-                "ru": "Перед filling здесь нужно is.",
-                "uk": "Перед filling тут потрібне is."
+                "ru": "Здесь нужна need.",
+                "uk": "Тут потрібна need."
               }
             }
           ]
@@ -671,32 +671,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-26:word:cruet",
+        "interactionId": "en:lesson-10:session-26:word:portion",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — cruet",
+        "prompt": "Карточка слова — portion",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-26:word:cruet:audio"
+          "en:lesson-10:session-26:word:portion:audio"
         ],
-        "accessibilityLabel": "Карточка слова — cruet",
+        "accessibilityLabel": "Карточка слова — portion",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:word:cruet:audio",
-            "transcript": "cruet"
+            "audioTargetId": "en:lesson-10:session-26:word:portion:audio",
+            "transcript": "portion"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-26:word:cruet:r1",
-              "targetText": "cruet",
+              "responseId": "en:lesson-10:session-26:word:portion:r1",
+              "targetText": "portion",
               "meaningByLocale": {
-                "ru": "«бутылочка для масла». The oil is in the cruet. — «Масло в бутылочке для масла». Небольшой сосуд для подачи приправ к столу.",
-                "uk": "«пляшечка для олії». The oil is in the cruet. — «Олія у пляшечці для олії». Невелика посудина для подавання приправ до столу."
+                "ru": "«порция». This portion is small. — «Эта порция маленькая».",
+                "uk": "«порція». This portion is small. — «Ця порція маленька»."
               }
             }
           ],
@@ -704,10 +704,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "cruet",
+            "word": "portion",
             "definitionByLocale": {
-              "ru": "«бутылочка для масла». The oil is in the cruet. — «Масло в бутылочке для масла». Небольшой сосуд для подачи приправ к столу.",
-              "uk": "«пляшечка для олії». The oil is in the cruet. — «Олія у пляшечці для олії». Невелика посудина для подавання приправ до столу."
+              "ru": "«порция». This portion is small. — «Эта порция маленькая».",
+              "uk": "«порція». This portion is small. — «Ця порція маленька»."
             }
           }
         },
@@ -719,25 +719,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает, где масло для салата. Скажите: «Масло в бутылочке для масла»",
+        "prompt": "Еды на тарелке немного. Скажите, что эта порция маленькая",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает, где масло для салата. Скажите: «Масло в бутылочке для масла»",
+        "accessibilityLabel": "Еды на тарелке немного. Скажите, что эта порция маленькая",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The oil is in the cruet.",
+          "targetPhrase": "This portion is small.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, где масло для салата. Скажите: «Масло в бутылочке для масла»",
-            "uk": "Друг запитує, де олія для салату. Скажіть: «Олія у пляшечці для олії»"
+            "ru": "Еды на тарелке немного. Скажите, что эта порция маленькая",
+            "uk": "Їжі на тарілці небагато. Скажіть, що ця порція маленька"
           },
           "orderedTokens": [
-            "The",
-            "oil",
+            "This",
+            "portion",
             "is",
-            "in",
-            "the",
-            "cruet"
+            "small"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -758,15 +756,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i11:r1",
-            "text": "The cruet is beside the plate."
+            "text": "This portion is large."
           },
           {
             "responseId": "en:lesson-10:session-26:i11:r2",
-            "text": "The cruet is behind the plate."
+            "text": "This portion is small."
           },
           {
             "responseId": "en:lesson-10:session-26:i11:r3",
-            "text": "The carafe is beside the plate."
+            "text": "That portion is large."
           }
         ],
         "mediaIds": [],
@@ -778,23 +776,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i11:audio",
-            "transcript": "The cruet is beside the plate."
+            "transcript": "This portion is large."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-26:i11:r1",
-              "targetText": "The cruet is beside the plate.",
+              "targetText": "This portion is large.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i11:r2",
-              "targetText": "The cruet is behind the plate.",
+              "targetText": "This portion is small.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i11:r3",
-              "targetText": "The carafe is beside the plate.",
+              "targetText": "That portion is large.",
               "meaningByLocale": null
             }
           ],
@@ -805,8 +803,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The cruet is beside the plate.",
-                "uk": "У записі звучить The cruet is beside the plate."
+                "ru": "В записи звучит This portion is large.",
+                "uk": "У записі звучить This portion is large."
               }
             },
             {
@@ -814,8 +812,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The cruet is beside the plate.",
-                "uk": "У записі звучить The cruet is beside the plate."
+                "ru": "В записи звучит This portion is large.",
+                "uk": "У записі звучить This portion is large."
               }
             }
           ],
@@ -830,63 +828,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы обычно обедаете дома. Выберите форму eat",
+        "prompt": "Выберите связку для одной порции",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i12:r1",
-            "text": "eat"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-26:i12:r2",
-            "text": "eats"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-26:i12:r3",
-            "text": "eating"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы обычно обедаете дома. Выберите форму eat",
+        "accessibilityLabel": "Выберите связку для одной порции",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы обычно обедаете дома. Выберите форму eat",
-            "uk": "Ви зазвичай обідаєте вдома. Виберіть форму eat"
+            "ru": "Выберите связку для одной порции",
+            "uk": "Виберіть зв’язку для однієї порції"
           },
-          "gappedTargetPhrase": "We usually ___ at home.",
+          "gappedTargetPhrase": "This portion ___ small.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-26:i12:r1",
-              "text": "eat"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-26:i12:r2",
-              "text": "eats"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-26:i12:r3",
-              "text": "eating"
+              "text": "am"
             }
           ],
-          "testedDimension": "Вы обычно обедаете дома. Выберите форму eat",
+          "testedDimension": "Выберите связку для одной порции",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-26:i12:r2",
               "correct": false,
-              "testedDimension": "Вы обычно обедаете дома. Выберите форму eat",
+              "testedDimension": "Выберите связку для одной порции",
               "feedbackByLocale": {
-                "ru": "С we нужна eat без s.",
-                "uk": "З we потрібна eat без s."
+                "ru": "Одна порция: is.",
+                "uk": "Одна порція: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-26:i12:r3",
               "correct": false,
-              "testedDimension": "Вы обычно обедаете дома. Выберите форму eat",
+              "testedDimension": "Выберите связку для одной порции",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна eat.",
-                "uk": "Для цієї звички потрібна eat."
+                "ru": "Am употребляем с I, здесь is.",
+                "uk": "Am вживаємо з I, тут is."
               }
             }
           ]
@@ -899,58 +897,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините новые слова со значениями",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините новые слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-26:i13:p1",
-              "target": "noon",
+              "target": "starter",
               "meaningByLocale": {
-                "ru": "полдень",
-                "uk": "полудень"
+                "ru": "закуска",
+                "uk": "закуска"
               }
             },
             {
               "pairId": "en:lesson-10:session-26:i13:p2",
-              "target": "tureen",
+              "target": "main course",
               "meaningByLocale": {
-                "ru": "супница",
-                "uk": "супниця"
+                "ru": "основное блюдо",
+                "uk": "основна страва"
               }
             },
             {
               "pairId": "en:lesson-10:session-26:i13:p3",
-              "target": "carafe",
+              "target": "side dish",
               "meaningByLocale": {
-                "ru": "графин",
-                "uk": "карафка"
+                "ru": "гарнир",
+                "uk": "гарнір"
               }
             },
             {
               "pairId": "en:lesson-10:session-26:i13:p4",
-              "target": "cruet",
+              "target": "portion",
               "meaningByLocale": {
-                "ru": "бутылочка для масла",
-                "uk": "пляшечка для олії"
+                "ru": "порция",
+                "uk": "порція"
               }
             }
           ],
           "leftColumn": [
-            "noon",
-            "tureen",
-            "carafe",
-            "cruet"
+            "starter",
+            "main course",
+            "side dish",
+            "portion"
           ],
           "rightColumn": [
-            "полдень",
-            "супница",
-            "графин",
-            "бутылочка для масла"
+            "закуска",
+            "основное блюдо",
+            "гарнир",
+            "порция"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -972,27 +970,28 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-26:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i14:audio",
-            "transcript": "She is filling the carafe."
+            "transcript": "I am choosing a main course."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She is filling the carafe.",
+          "hiddenTargetPhrase": "I am choosing a main course.",
           "orderedTokens": [
-            "She",
-            "is",
-            "filling",
-            "the",
-            "carafe"
+            "I",
+            "am",
+            "choosing",
+            "a",
+            "main",
+            "course"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1006,24 +1005,60 @@
       {
         "interactionId": "en:lesson-10:session-26:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг спрашивает, во сколько вы обычно едите. Скажите: «Мы обычно едим в полдень»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-26:i15:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает, во сколько вы обычно едите. Скажите: «Мы обычно едим в полдень»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-26:i15:audio",
+            "transcript": "This portion is small."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This portion is small.",
+          "orderedTokens": [
+            "This",
+            "portion",
+            "is",
+            "small"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вежливо попросите гарнир",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Вежливо попросите гарнир",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:i15:audio",
-            "transcript": "We usually eat at noon."
+            "audioTargetId": "en:lesson-10:session-26:i16:audio",
+            "transcript": "I would like a side dish."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We usually eat at noon.",
+          "targetPhrase": "I would like a side dish.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1037,72 +1072,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-26:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Гость ищет суп. Скажите ему: «Суп в супнице»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Гость ищет суп. Скажите ему: «Суп в супнице»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "The soup is in the tureen.",
-          "localizedMeaning": {
-            "ru": "Гость ищет суп. Скажите ему: «Суп в супнице»",
-            "uk": "Гість шукає суп. Скажіть йому: «Суп у супниці»"
-          },
-          "orderedTokens": [
-            "The",
-            "soup",
-            "is",
-            "in",
-            "the",
-            "tureen"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-26:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг спрашивает, что делает ваша подруга. Вы видите, как она наливает воду в графин. Скажите: «Она наполняет графин»",
+        "prompt": "На тарелке много еды. Скажите: «Эта порция большая»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-26:i17:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает, что делает ваша подруга. Вы видите, как она наливает воду в графин. Скажите: «Она наполняет графин»",
+        "accessibilityLabel": "На тарелке много еды. Скажите: «Эта порция большая»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i17:audio",
-            "transcript": "She is filling the carafe."
+            "transcript": "This portion is large."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She is filling the carafe.",
+          "targetPhrase": "This portion is large.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1115,32 +1107,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-26:word:noon",
+        "interactionId": "en:lesson-10:session-26:word:starter",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — noon",
+        "prompt": "Картка слова — starter",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-26:word:noon:audio"
+          "en:lesson-10:session-26:word:starter:audio"
         ],
-        "accessibilityLabel": "Картка слова — noon",
+        "accessibilityLabel": "Картка слова — starter",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:word:noon:audio",
-            "transcript": "noon"
+            "audioTargetId": "en:lesson-10:session-26:word:starter:audio",
+            "transcript": "starter"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-26:word:noon:r1",
-              "targetText": "noon",
+              "responseId": "en:lesson-10:session-26:word:starter:r1",
+              "targetText": "starter",
               "meaningByLocale": {
-                "ru": "«полдень». We usually eat at noon. — «Мы обычно едим в полдень». Двенадцать часов дня.",
-                "uk": "«полудень». We usually eat at noon. — «Ми зазвичай їмо опівдні». Дванадцята година дня."
+                "ru": "«закуска перед основным блюдом». I would like a starter. — «Я бы хотел закуску».",
+                "uk": "«закуска перед основною стравою». I would like a starter. — «Я хотів би закуску»."
               }
             }
           ],
@@ -1148,10 +1140,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "noon",
+            "word": "starter",
             "definitionByLocale": {
-              "ru": "«полдень». We usually eat at noon. — «Мы обычно едим в полдень». Двенадцать часов дня.",
-              "uk": "«полудень». We usually eat at noon. — «Ми зазвичай їмо опівдні». Дванадцята година дня."
+              "ru": "«закуска перед основным блюдом». I would like a starter. — «Я бы хотел закуску».",
+              "uk": "«закуска перед основною стравою». I would like a starter. — «Я хотів би закуску»."
             }
           }
         },
@@ -1163,24 +1155,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг запитує про ваш звичний час обіду. Скажіть: «Ми зазвичай їмо опівдні». Поставте at noon у кінці",
+        "prompt": "Попросіть закуску перед основною стравою",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг запитує про ваш звичний час обіду. Скажіть: «Ми зазвичай їмо опівдні». Поставте at noon у кінці",
+        "accessibilityLabel": "Попросіть закуску перед основною стравою",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We usually eat at noon.",
+          "targetPhrase": "I would like a starter.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о вашем обычном времени обеда. Скажите: «Мы обычно едим в полдень». Поставьте at noon в конце",
-            "uk": "Друг запитує про ваш звичний час обіду. Скажіть: «Ми зазвичай їмо опівдні». Поставте at noon у кінці"
+            "ru": "Попросите закуску перед основным блюдом",
+            "uk": "Попросіть закуску перед основною стравою"
           },
           "orderedTokens": [
-            "We",
-            "usually",
-            "eat",
-            "at",
-            "noon"
+            "I",
+            "would",
+            "like",
+            "a",
+            "starter"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1201,15 +1193,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i02:r1",
-            "text": "We eat at noon."
+            "text": "She would like a starter."
           },
           {
             "responseId": "en:lesson-10:session-26:i02:r2",
-            "text": "They eat at noon."
+            "text": "He would like a starter."
           },
           {
             "responseId": "en:lesson-10:session-26:i02:r3",
-            "text": "We meet at noon."
+            "text": "We would like a starter."
           }
         ],
         "mediaIds": [],
@@ -1221,23 +1213,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i02:audio",
-            "transcript": "We eat at noon."
+            "transcript": "She would like a starter."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-26:i02:r1",
-              "targetText": "We eat at noon.",
+              "targetText": "She would like a starter.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i02:r2",
-              "targetText": "They eat at noon.",
+              "targetText": "He would like a starter.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i02:r3",
-              "targetText": "We meet at noon.",
+              "targetText": "We would like a starter.",
               "meaningByLocale": null
             }
           ],
@@ -1248,8 +1240,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We eat at noon.",
-                "uk": "У записі звучить We eat at noon."
+                "ru": "В записи звучит She would like a starter.",
+                "uk": "У записі звучить She would like a starter."
               }
             },
             {
@@ -1257,8 +1249,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We eat at noon.",
-                "uk": "У записі звучить We eat at noon."
+                "ru": "В записи звучит She would like a starter.",
+                "uk": "У записі звучить She would like a starter."
               }
             }
           ],
@@ -1273,63 +1265,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть прийменник для «опівдні»",
+        "prompt": "Виберіть форму like після would",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i03:r1",
-            "text": "at"
+            "text": "like"
           },
           {
             "responseId": "en:lesson-10:session-26:i03:r2",
-            "text": "on"
+            "text": "likes"
           },
           {
             "responseId": "en:lesson-10:session-26:i03:r3",
-            "text": "in"
+            "text": "liking"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть прийменник для «опівдні»",
+        "accessibilityLabel": "Виберіть форму like після would",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите предлог для «в полдень»",
-            "uk": "Виберіть прийменник для «опівдні»"
+            "ru": "Выберите форму like после would",
+            "uk": "Виберіть форму like після would"
           },
-          "gappedTargetPhrase": "We eat ___ noon.",
+          "gappedTargetPhrase": "I would ___ a starter.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-26:i03:r1",
-              "text": "at"
+              "text": "like"
             },
             {
               "responseId": "en:lesson-10:session-26:i03:r2",
-              "text": "on"
+              "text": "likes"
             },
             {
               "responseId": "en:lesson-10:session-26:i03:r3",
-              "text": "in"
+              "text": "liking"
             }
           ],
-          "testedDimension": "Виберіть прийменник для «опівдні»",
+          "testedDimension": "Виберіть форму like після would",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-26:i03:r2",
               "correct": false,
-              "testedDimension": "Виберіть прийменник для «опівдні»",
+              "testedDimension": "Виберіть форму like після would",
               "feedbackByLocale": {
-                "ru": "Перед noon нужно at, не on.",
-                "uk": "Перед noon потрібне at, не on."
+                "ru": "После would нужна like.",
+                "uk": "Після would потрібна like."
               }
             },
             {
               "responseId": "en:lesson-10:session-26:i03:r3",
               "correct": false,
-              "testedDimension": "Виберіть прийменник для «опівдні»",
+              "testedDimension": "Виберіть форму like після would",
               "feedbackByLocale": {
-                "ru": "Перед noon нужно at, не in.",
-                "uk": "Перед noon потрібне at, не in."
+                "ru": "После would нужна like, не liking.",
+                "uk": "Після would потрібна like, не liking."
               }
             }
           ]
@@ -1337,32 +1329,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-26:word:tureen",
+        "interactionId": "en:lesson-10:session-26:word:main-course",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — tureen",
+        "prompt": "Картка слова — main course",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-26:word:tureen:audio"
+          "en:lesson-10:session-26:word:main-course:audio"
         ],
-        "accessibilityLabel": "Картка слова — tureen",
+        "accessibilityLabel": "Картка слова — main course",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:word:tureen:audio",
-            "transcript": "tureen"
+            "audioTargetId": "en:lesson-10:session-26:word:main-course:audio",
+            "transcript": "main course"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-26:word:tureen:r1",
-              "targetText": "tureen",
+              "responseId": "en:lesson-10:session-26:word:main-course:r1",
+              "targetText": "main course",
               "meaningByLocale": {
-                "ru": "«супница». The soup is in the tureen. — «Суп в супнице». Большая посуда для подачи супа к столу.",
-                "uk": "«супниця». The soup is in the tureen. — «Суп у супниці». Великий посуд для подавання супу до столу."
+                "ru": "«основное блюдо». I am choosing a main course. — «Я выбираю основное блюдо».",
+                "uk": "«основна страва». I am choosing a main course. — «Я вибираю основну страву»."
               }
             }
           ],
@@ -1370,10 +1362,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "tureen",
+            "word": "main course",
             "definitionByLocale": {
-              "ru": "«супница». The soup is in the tureen. — «Суп в супнице». Большая посуда для подачи супа к столу.",
-              "uk": "«супниця». The soup is in the tureen. — «Суп у супниці». Великий посуд для подавання супу до столу."
+              "ru": "«основное блюдо». I am choosing a main course. — «Я выбираю основное блюдо».",
+              "uk": "«основна страва». I am choosing a main course. — «Я вибираю основну страву»."
             }
           }
         },
@@ -1385,25 +1377,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг шукає суп. Скажіть: «Суп у супниці»",
+        "prompt": "Ви читаєте меню. Скажіть, що вибираєте основну страву",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг шукає суп. Скажіть: «Суп у супниці»",
+        "accessibilityLabel": "Ви читаєте меню. Скажіть, що вибираєте основну страву",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The soup is in the tureen.",
+          "targetPhrase": "I am choosing a main course.",
           "localizedMeaning": {
-            "ru": "Друг ищет суп. Скажите: «Суп в супнице»",
-            "uk": "Друг шукає суп. Скажіть: «Суп у супниці»"
+            "ru": "Вы читаете меню. Скажите, что выбираете основное блюдо",
+            "uk": "Ви читаєте меню. Скажіть, що вибираєте основну страву"
           },
           "orderedTokens": [
-            "The",
-            "soup",
-            "is",
-            "in",
-            "the",
-            "tureen"
+            "I",
+            "am",
+            "choosing",
+            "a",
+            "main",
+            "course"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1424,15 +1416,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i05:r1",
-            "text": "The tureen is on the table."
+            "text": "He is choosing a main course."
           },
           {
             "responseId": "en:lesson-10:session-26:i05:r2",
-            "text": "The tureen is under the table."
+            "text": "She is choosing a main course."
           },
           {
             "responseId": "en:lesson-10:session-26:i05:r3",
-            "text": "The spoon is on the table."
+            "text": "He is eating a main course."
           }
         ],
         "mediaIds": [],
@@ -1444,23 +1436,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i05:audio",
-            "transcript": "The tureen is on the table."
+            "transcript": "He is choosing a main course."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-26:i05:r1",
-              "targetText": "The tureen is on the table.",
+              "targetText": "He is choosing a main course.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i05:r2",
-              "targetText": "The tureen is under the table.",
+              "targetText": "She is choosing a main course.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i05:r3",
-              "targetText": "The spoon is on the table.",
+              "targetText": "He is eating a main course.",
               "meaningByLocale": null
             }
           ],
@@ -1471,8 +1463,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The tureen is on the table.",
-                "uk": "У записі звучить The tureen is on the table."
+                "ru": "В записи звучит He is choosing a main course.",
+                "uk": "У записі звучить He is choosing a main course."
               }
             },
             {
@@ -1480,8 +1472,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The tureen is on the table.",
-                "uk": "У записі звучить The tureen is on the table."
+                "ru": "В записи звучит He is choosing a main course.",
+                "uk": "У записі звучить He is choosing a main course."
               }
             }
           ],
@@ -1496,63 +1488,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви готуєте суп просто зараз. Виберіть форму make",
+        "prompt": "Виберіть форму choose після am",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i06:r1",
-            "text": "making"
+            "text": "choosing"
           },
           {
             "responseId": "en:lesson-10:session-26:i06:r2",
-            "text": "makeing"
+            "text": "choose"
           },
           {
             "responseId": "en:lesson-10:session-26:i06:r3",
-            "text": "make"
+            "text": "chooses"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви готуєте суп просто зараз. Виберіть форму make",
+        "accessibilityLabel": "Виберіть форму choose після am",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы готовите суп прямо сейчас. Выберите форму make",
-            "uk": "Ви готуєте суп просто зараз. Виберіть форму make"
+            "ru": "Выберите форму choose после am",
+            "uk": "Виберіть форму choose після am"
           },
-          "gappedTargetPhrase": "I am ___ soup now.",
+          "gappedTargetPhrase": "I am ___ a main course.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-26:i06:r1",
-              "text": "making"
+              "text": "choosing"
             },
             {
               "responseId": "en:lesson-10:session-26:i06:r2",
-              "text": "makeing"
+              "text": "choose"
             },
             {
               "responseId": "en:lesson-10:session-26:i06:r3",
-              "text": "make"
+              "text": "chooses"
             }
           ],
-          "testedDimension": "Ви готуєте суп просто зараз. Виберіть форму make",
+          "testedDimension": "Виберіть форму choose після am",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-26:i06:r2",
               "correct": false,
-              "testedDimension": "Ви готуєте суп просто зараз. Виберіть форму make",
+              "testedDimension": "Виберіть форму choose після am",
               "feedbackByLocale": {
-                "ru": "В making конечная e исчезает.",
-                "uk": "У making кінцева e зникає."
+                "ru": "После am нужна choosing.",
+                "uk": "Після am потрібна choosing."
               }
             },
             {
               "responseId": "en:lesson-10:session-26:i06:r3",
               "correct": false,
-              "testedDimension": "Ви готуєте суп просто зараз. Виберіть форму make",
+              "testedDimension": "Виберіть форму choose після am",
               "feedbackByLocale": {
-                "ru": "После am здесь нужна making.",
-                "uk": "Після am тут потрібна making."
+                "ru": "После am нужна choosing, не chooses.",
+                "uk": "Після am потрібна choosing, не chooses."
               }
             }
           ]
@@ -1560,32 +1552,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-26:word:carafe",
+        "interactionId": "en:lesson-10:session-26:word:side-dish",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — carafe",
+        "prompt": "Картка слова — side dish",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-26:word:carafe:audio"
+          "en:lesson-10:session-26:word:side-dish:audio"
         ],
-        "accessibilityLabel": "Картка слова — carafe",
+        "accessibilityLabel": "Картка слова — side dish",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:word:carafe:audio",
-            "transcript": "carafe"
+            "audioTargetId": "en:lesson-10:session-26:word:side-dish:audio",
+            "transcript": "side dish"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-26:word:carafe:r1",
-              "targetText": "carafe",
+              "responseId": "en:lesson-10:session-26:word:side-dish:r1",
+              "targetText": "side dish",
               "meaningByLocale": {
-                "ru": "«графин». She is filling the carafe. — «Она наполняет графин». Сосуд для подачи воды или вина.",
-                "uk": "«карафка». She is filling the carafe. — «Вона наповнює карафку». Посудина для подавання води або вина."
+                "ru": "«гарнир, отдельное дополнение к основному блюду». We need a side dish. — «Нам нужен гарнир».",
+                "uk": "«гарнір, окреме доповнення до основної страви». We need a side dish. — «Нам потрібен гарнір»."
               }
             }
           ],
@@ -1593,10 +1585,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "carafe",
+            "word": "side dish",
             "definitionByLocale": {
-              "ru": "«графин». She is filling the carafe. — «Она наполняет графин». Сосуд для подачи воды или вина.",
-              "uk": "«карафка». She is filling the carafe. — «Вона наповнює карафку». Посудина для подавання води або вина."
+              "ru": "«гарнир, отдельное дополнение к основному блюду». We need a side dish. — «Нам нужен гарнир».",
+              "uk": "«гарнір, окреме доповнення до основної страви». We need a side dish. — «Нам потрібен гарнір»."
             }
           }
         },
@@ -1608,24 +1600,24 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Подруга наливає воду в карафку. Скажіть другу: «Вона наповнює карафку»",
+        "prompt": "До риби ви з другом хочете гарнір. Скажіть: «Нам потрібен гарнір»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Подруга наливає воду в карафку. Скажіть другу: «Вона наповнює карафку»",
+        "accessibilityLabel": "До риби ви з другом хочете гарнір. Скажіть: «Нам потрібен гарнір»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is filling the carafe.",
+          "targetPhrase": "We need a side dish.",
           "localizedMeaning": {
-            "ru": "Подруга наливает воду в графин. Скажите другу: «Она наполняет графин»",
-            "uk": "Подруга наливає воду в карафку. Скажіть другу: «Вона наповнює карафку»"
+            "ru": "К рыбе вы с другом хотите гарнир. Скажите: «Нам нужен гарнир»",
+            "uk": "До риби ви з другом хочете гарнір. Скажіть: «Нам потрібен гарнір»"
           },
           "orderedTokens": [
-            "She",
-            "is",
-            "filling",
-            "the",
-            "carafe"
+            "We",
+            "need",
+            "a",
+            "side",
+            "dish"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1646,15 +1638,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i08:r1",
-            "text": "The carafe is full."
+            "text": "They need a side dish."
           },
           {
             "responseId": "en:lesson-10:session-26:i08:r2",
-            "text": "The carafe is empty."
+            "text": "We need a side dish."
           },
           {
             "responseId": "en:lesson-10:session-26:i08:r3",
-            "text": "The tureen is full."
+            "text": "They have a side dish."
           }
         ],
         "mediaIds": [],
@@ -1666,23 +1658,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i08:audio",
-            "transcript": "The carafe is full."
+            "transcript": "They need a side dish."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-26:i08:r1",
-              "targetText": "The carafe is full.",
+              "targetText": "They need a side dish.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i08:r2",
-              "targetText": "The carafe is empty.",
+              "targetText": "We need a side dish.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i08:r3",
-              "targetText": "The tureen is full.",
+              "targetText": "They have a side dish.",
               "meaningByLocale": null
             }
           ],
@@ -1693,8 +1685,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The carafe is full.",
-                "uk": "У записі звучить The carafe is full."
+                "ru": "В записи звучит They need a side dish.",
+                "uk": "У записі звучить They need a side dish."
               }
             },
             {
@@ -1702,8 +1694,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The carafe is full.",
-                "uk": "У записі звучить The carafe is full."
+                "ru": "В записи звучит They need a side dish.",
+                "uk": "У записі звучить They need a side dish."
               }
             }
           ],
@@ -1718,63 +1710,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вона наповнює карафку просто зараз. Виберіть допоміжне дієслово",
+        "prompt": "Виберіть форму need з we",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i09:r1",
-            "text": "is"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-26:i09:r2",
-            "text": "are"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-26:i09:r3",
-            "text": "does"
+            "text": "needing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вона наповнює карафку просто зараз. Виберіть допоміжне дієслово",
+        "accessibilityLabel": "Виберіть форму need з we",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Она наполняет графин прямо сейчас. Выберите вспомогательный глагол",
-            "uk": "Вона наповнює карафку просто зараз. Виберіть допоміжне дієслово"
+            "ru": "Выберите форму need с we",
+            "uk": "Виберіть форму need з we"
           },
-          "gappedTargetPhrase": "She ___ filling the carafe.",
+          "gappedTargetPhrase": "We ___ a side dish.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-26:i09:r1",
-              "text": "is"
+              "text": "need"
             },
             {
               "responseId": "en:lesson-10:session-26:i09:r2",
-              "text": "are"
+              "text": "needs"
             },
             {
               "responseId": "en:lesson-10:session-26:i09:r3",
-              "text": "does"
+              "text": "needing"
             }
           ],
-          "testedDimension": "Вона наповнює карафку просто зараз. Виберіть допоміжне дієслово",
+          "testedDimension": "Виберіть форму need з we",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-26:i09:r2",
               "correct": false,
-              "testedDimension": "Вона наповнює карафку просто зараз. Виберіть допоміжне дієслово",
+              "testedDimension": "Виберіть форму need з we",
               "feedbackByLocale": {
-                "ru": "С she нужно is, не are.",
-                "uk": "З she потрібне is, не are."
+                "ru": "С we нужна need без s.",
+                "uk": "З we потрібна need без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-26:i09:r3",
               "correct": false,
-              "testedDimension": "Вона наповнює карафку просто зараз. Виберіть допоміжне дієслово",
+              "testedDimension": "Виберіть форму need з we",
               "feedbackByLocale": {
-                "ru": "Перед filling здесь нужно is.",
-                "uk": "Перед filling тут потрібне is."
+                "ru": "Здесь нужна need.",
+                "uk": "Тут потрібна need."
               }
             }
           ]
@@ -1782,32 +1774,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-26:word:cruet",
+        "interactionId": "en:lesson-10:session-26:word:portion",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — cruet",
+        "prompt": "Картка слова — portion",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-26:word:cruet:audio"
+          "en:lesson-10:session-26:word:portion:audio"
         ],
-        "accessibilityLabel": "Картка слова — cruet",
+        "accessibilityLabel": "Картка слова — portion",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:word:cruet:audio",
-            "transcript": "cruet"
+            "audioTargetId": "en:lesson-10:session-26:word:portion:audio",
+            "transcript": "portion"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-26:word:cruet:r1",
-              "targetText": "cruet",
+              "responseId": "en:lesson-10:session-26:word:portion:r1",
+              "targetText": "portion",
               "meaningByLocale": {
-                "ru": "«бутылочка для масла». The oil is in the cruet. — «Масло в бутылочке для масла». Небольшой сосуд для подачи приправ к столу.",
-                "uk": "«пляшечка для олії». The oil is in the cruet. — «Олія у пляшечці для олії». Невелика посудина для подавання приправ до столу."
+                "ru": "«порция». This portion is small. — «Эта порция маленькая».",
+                "uk": "«порція». This portion is small. — «Ця порція маленька»."
               }
             }
           ],
@@ -1815,10 +1807,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "cruet",
+            "word": "portion",
             "definitionByLocale": {
-              "ru": "«бутылочка для масла». The oil is in the cruet. — «Масло в бутылочке для масла». Небольшой сосуд для подачи приправ к столу.",
-              "uk": "«пляшечка для олії». The oil is in the cruet. — «Олія у пляшечці для олії». Невелика посудина для подавання приправ до столу."
+              "ru": "«порция». This portion is small. — «Эта порция маленькая».",
+              "uk": "«порція». This portion is small. — «Ця порція маленька»."
             }
           }
         },
@@ -1830,25 +1822,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг запитує, де олія для салату. Скажіть: «Олія у пляшечці для олії»",
+        "prompt": "Їжі на тарілці небагато. Скажіть, що ця порція маленька",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг запитує, де олія для салату. Скажіть: «Олія у пляшечці для олії»",
+        "accessibilityLabel": "Їжі на тарілці небагато. Скажіть, що ця порція маленька",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The oil is in the cruet.",
+          "targetPhrase": "This portion is small.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, где масло для салата. Скажите: «Масло в бутылочке для масла»",
-            "uk": "Друг запитує, де олія для салату. Скажіть: «Олія у пляшечці для олії»"
+            "ru": "Еды на тарелке немного. Скажите, что эта порция маленькая",
+            "uk": "Їжі на тарілці небагато. Скажіть, що ця порція маленька"
           },
           "orderedTokens": [
-            "The",
-            "oil",
+            "This",
+            "portion",
             "is",
-            "in",
-            "the",
-            "cruet"
+            "small"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1869,15 +1859,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i11:r1",
-            "text": "The cruet is beside the plate."
+            "text": "This portion is large."
           },
           {
             "responseId": "en:lesson-10:session-26:i11:r2",
-            "text": "The cruet is behind the plate."
+            "text": "This portion is small."
           },
           {
             "responseId": "en:lesson-10:session-26:i11:r3",
-            "text": "The carafe is beside the plate."
+            "text": "That portion is large."
           }
         ],
         "mediaIds": [],
@@ -1889,23 +1879,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i11:audio",
-            "transcript": "The cruet is beside the plate."
+            "transcript": "This portion is large."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-26:i11:r1",
-              "targetText": "The cruet is beside the plate.",
+              "targetText": "This portion is large.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i11:r2",
-              "targetText": "The cruet is behind the plate.",
+              "targetText": "This portion is small.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-26:i11:r3",
-              "targetText": "The carafe is beside the plate.",
+              "targetText": "That portion is large.",
               "meaningByLocale": null
             }
           ],
@@ -1916,8 +1906,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The cruet is beside the plate.",
-                "uk": "У записі звучить The cruet is beside the plate."
+                "ru": "В записи звучит This portion is large.",
+                "uk": "У записі звучить This portion is large."
               }
             },
             {
@@ -1925,8 +1915,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The cruet is beside the plate.",
-                "uk": "У записі звучить The cruet is beside the plate."
+                "ru": "В записи звучит This portion is large.",
+                "uk": "У записі звучить This portion is large."
               }
             }
           ],
@@ -1941,63 +1931,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви зазвичай обідаєте вдома. Виберіть форму eat",
+        "prompt": "Виберіть зв’язку для однієї порції",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-26:i12:r1",
-            "text": "eat"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-26:i12:r2",
-            "text": "eats"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-26:i12:r3",
-            "text": "eating"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зазвичай обідаєте вдома. Виберіть форму eat",
+        "accessibilityLabel": "Виберіть зв’язку для однієї порції",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы обычно обедаете дома. Выберите форму eat",
-            "uk": "Ви зазвичай обідаєте вдома. Виберіть форму eat"
+            "ru": "Выберите связку для одной порции",
+            "uk": "Виберіть зв’язку для однієї порції"
           },
-          "gappedTargetPhrase": "We usually ___ at home.",
+          "gappedTargetPhrase": "This portion ___ small.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-26:i12:r1",
-              "text": "eat"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-26:i12:r2",
-              "text": "eats"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-26:i12:r3",
-              "text": "eating"
+              "text": "am"
             }
           ],
-          "testedDimension": "Ви зазвичай обідаєте вдома. Виберіть форму eat",
+          "testedDimension": "Виберіть зв’язку для однієї порції",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-26:i12:r2",
               "correct": false,
-              "testedDimension": "Ви зазвичай обідаєте вдома. Виберіть форму eat",
+              "testedDimension": "Виберіть зв’язку для однієї порції",
               "feedbackByLocale": {
-                "ru": "С we нужна eat без s.",
-                "uk": "З we потрібна eat без s."
+                "ru": "Одна порция: is.",
+                "uk": "Одна порція: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-26:i12:r3",
               "correct": false,
-              "testedDimension": "Ви зазвичай обідаєте вдома. Виберіть форму eat",
+              "testedDimension": "Виберіть зв’язку для однієї порції",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна eat.",
-                "uk": "Для цієї звички потрібна eat."
+                "ru": "Am употребляем с I, здесь is.",
+                "uk": "Am вживаємо з I, тут is."
               }
             }
           ]
@@ -2010,58 +2000,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте нові слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-26:i13:p1",
-              "target": "noon",
+              "target": "starter",
               "meaningByLocale": {
-                "ru": "полдень",
-                "uk": "полудень"
+                "ru": "закуска",
+                "uk": "закуска"
               }
             },
             {
               "pairId": "en:lesson-10:session-26:i13:p2",
-              "target": "tureen",
+              "target": "main course",
               "meaningByLocale": {
-                "ru": "супница",
-                "uk": "супниця"
+                "ru": "основное блюдо",
+                "uk": "основна страва"
               }
             },
             {
               "pairId": "en:lesson-10:session-26:i13:p3",
-              "target": "carafe",
+              "target": "side dish",
               "meaningByLocale": {
-                "ru": "графин",
-                "uk": "карафка"
+                "ru": "гарнир",
+                "uk": "гарнір"
               }
             },
             {
               "pairId": "en:lesson-10:session-26:i13:p4",
-              "target": "cruet",
+              "target": "portion",
               "meaningByLocale": {
-                "ru": "бутылочка для масла",
-                "uk": "пляшечка для олії"
+                "ru": "порция",
+                "uk": "порція"
               }
             }
           ],
           "leftColumn": [
-            "noon",
-            "tureen",
-            "carafe",
-            "cruet"
+            "starter",
+            "main course",
+            "side dish",
+            "portion"
           ],
           "rightColumn": [
-            "полудень",
-            "супниця",
-            "карафка",
-            "пляшечка для олії"
+            "закуска",
+            "основна страва",
+            "гарнір",
+            "порція"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2083,27 +2073,28 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-26:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i14:audio",
-            "transcript": "She is filling the carafe."
+            "transcript": "I am choosing a main course."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She is filling the carafe.",
+          "hiddenTargetPhrase": "I am choosing a main course.",
           "orderedTokens": [
-            "She",
-            "is",
-            "filling",
-            "the",
-            "carafe"
+            "I",
+            "am",
+            "choosing",
+            "a",
+            "main",
+            "course"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2117,24 +2108,60 @@
       {
         "interactionId": "en:lesson-10:session-26:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг запитує, о котрій ви зазвичай їсте. Скажіть: «Ми зазвичай їмо опівдні»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-26:i15:audio"
         ],
-        "accessibilityLabel": "Друг запитує, о котрій ви зазвичай їсте. Скажіть: «Ми зазвичай їмо опівдні»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-26:i15:audio",
+            "transcript": "This portion is small."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This portion is small.",
+          "orderedTokens": [
+            "This",
+            "portion",
+            "is",
+            "small"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ввічливо попросіть гарнір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Ввічливо попросіть гарнір",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-26:i15:audio",
-            "transcript": "We usually eat at noon."
+            "audioTargetId": "en:lesson-10:session-26:i16:audio",
+            "transcript": "I would like a side dish."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We usually eat at noon.",
+          "targetPhrase": "I would like a side dish.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2148,72 +2175,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-26:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Гість шукає суп. Скажіть йому: «Суп у супниці»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Гість шукає суп. Скажіть йому: «Суп у супниці»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "The soup is in the tureen.",
-          "localizedMeaning": {
-            "ru": "Гость ищет суп. Скажите ему: «Суп в супнице»",
-            "uk": "Гість шукає суп. Скажіть йому: «Суп у супниці»"
-          },
-          "orderedTokens": [
-            "The",
-            "soup",
-            "is",
-            "in",
-            "the",
-            "tureen"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-26:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг запитує, що робить ваша подруга. Ви бачите, як вона наливає воду в карафку. Скажіть: «Вона наповнює карафку»",
+        "prompt": "На тарілці багато їжі. Скажіть: «Ця порція велика»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-26:i17:audio"
         ],
-        "accessibilityLabel": "Друг запитує, що робить ваша подруга. Ви бачите, як вона наливає воду в карафку. Скажіть: «Вона наповнює карафку»",
+        "accessibilityLabel": "На тарілці багато їжі. Скажіть: «Ця порція велика»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-26:i17:audio",
-            "transcript": "She is filling the carafe."
+            "transcript": "This portion is large."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She is filling the carafe.",
+          "targetPhrase": "This portion is large.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2227,83 +2211,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-26:word:noon",
-      "correctText": "noon",
+      "interactionId": "en:lesson-10:session-26:word:starter",
+      "correctText": "starter",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i01",
-      "correctText": "We usually eat at noon.",
+      "correctText": "I would like a starter.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i02",
-      "correctText": "We eat at noon.",
+      "correctText": "She would like a starter.",
       "correctResponseId": "en:lesson-10:session-26:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-26:i03",
-      "correctText": "at",
+      "correctText": "like",
       "correctResponseId": "en:lesson-10:session-26:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-26:word:tureen",
-      "correctText": "tureen",
+      "interactionId": "en:lesson-10:session-26:word:main-course",
+      "correctText": "main course",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i04",
-      "correctText": "The soup is in the tureen.",
+      "correctText": "I am choosing a main course.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i05",
-      "correctText": "The tureen is on the table.",
+      "correctText": "He is choosing a main course.",
       "correctResponseId": "en:lesson-10:session-26:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-26:i06",
-      "correctText": "making",
+      "correctText": "choosing",
       "correctResponseId": "en:lesson-10:session-26:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-26:word:carafe",
-      "correctText": "carafe",
+      "interactionId": "en:lesson-10:session-26:word:side-dish",
+      "correctText": "side dish",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i07",
-      "correctText": "She is filling the carafe.",
+      "correctText": "We need a side dish.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i08",
-      "correctText": "The carafe is full.",
+      "correctText": "They need a side dish.",
       "correctResponseId": "en:lesson-10:session-26:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-26:i09",
-      "correctText": "is",
+      "correctText": "need",
       "correctResponseId": "en:lesson-10:session-26:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-26:word:cruet",
-      "correctText": "cruet",
+      "interactionId": "en:lesson-10:session-26:word:portion",
+      "correctText": "portion",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i10",
-      "correctText": "The oil is in the cruet.",
+      "correctText": "This portion is small.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i11",
-      "correctText": "The cruet is beside the plate.",
+      "correctText": "This portion is large.",
       "correctResponseId": "en:lesson-10:session-26:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-26:i12",
-      "correctText": "eat",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-26:i12:r1"
     },
     {
@@ -2313,22 +2297,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-26:i14",
-      "correctText": "She is filling the carafe.",
+      "correctText": "I am choosing a main course.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i15",
-      "correctText": "We usually eat at noon.",
+      "correctText": "This portion is small.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i16",
-      "correctText": "The soup is in the tureen.",
+      "correctText": "I would like a side dish.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-26:i17",
-      "correctText": "She is filling the carafe.",
+      "correctText": "This portion is large.",
       "correctResponseId": null
     }
   ]

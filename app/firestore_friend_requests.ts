@@ -35,8 +35,11 @@ export interface FriendRequestEntry {
   createdAt: number;
 }
 
-// зачем (владелец 17.10 «друзья мгновенно»): каждый фокус вкладки перечитывает заявки и друзей, если прошло ≥30 с (было 60).
-export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 30_000;
+// зачем (владелец 21.10, №45 «сократить чтения Друзей»; правило 17.10 «друзья мгновенно» сохранено): список друзей
+// (до 500) и заявки (до 200) живут в кэше 30 мин вместо 30 с. Мгновенность держит проба уведомлений на вкладке: новая
+// заявка или принятие (friend_request / friend_accepted) сбрасывает кэш (invalidateFriendsSocialReadCaches), свои действия —
+// invalidateFriendReadCaches.
+export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 30 * 60_000;
 
 type FriendsReadCache = {
   scopeKey: string;
@@ -182,6 +185,17 @@ let friendRequestViewerAuthLinkSuccess: {
 
 function friendRequestViewerAuthScopeKey(stableId: string): string {
   return `${stableId}:${String(getAuthUserId() ?? '').trim()}`;
+}
+
+/**
+ * Сброс кэша друзей и заявок по событию дружбы, о котором сообщила проба уведомлений (заявка мне / моё принято).
+ * Без stableId: кэш хранит одну пару аккаунта, а событие пришло текущему владельцу.
+ */
+export function invalidateFriendsSocialReadCaches(reason: string): void {
+  const had = { friends: friendReadCache !== null, requests: incomingRequestsReadCache !== null };
+  friendReadCache = null;
+  incomingRequestsReadCache = null;
+  console.log('[READ-TTL]', JSON.stringify({ area: 'friends', event: 'invalidate', reason, had })); // guard-ok: причина сброса кэша, без uid
 }
 
 function invalidateFriendReadCaches(stableId: string): void {
@@ -754,6 +768,7 @@ export function subscribeToFriends(
       const cachedScopeKey = friendRequestViewerAuthScopeKey(myUid);
       if (friendReadCache?.scopeKey === cachedScopeKey && friendReadCache.expiresAt > Date.now()) {
         logFriendAdd('friends_read', { me: friendTag(myUid), source: 'memory_cache', count: friendReadCache.rows.length, expiresInMs: friendReadCache.expiresAt - Date.now() });
+        console.log('[READ-TTL]', JSON.stringify({ area: 'friends_list', source: 'cache', expiresInMs: friendReadCache.expiresAt - Date.now() })); // guard-ok: из кэша, без uid
         callback([...friendReadCache.rows], { fromCache: false });
         return;
       }
@@ -791,6 +806,7 @@ export function subscribeToFriends(
         expiresAt: Date.now() + FRIENDS_REALTIME_REPLACEMENT_TTL_MS,
       };
       logFriendAdd('friends_read', { me: friendTag(myUid), source: snap.metadata?.fromCache === true ? 'sdk_cache' : 'server', count: friends.length, ms: Date.now() - friendsReadStartedAt });
+      console.log('[READ-TTL]', JSON.stringify({ area: 'friends_list', source: snap.metadata?.fromCache === true ? 'sdk_cache' : 'network', docs: friends.length, ttlMs: FRIENDS_REALTIME_REPLACEMENT_TTL_MS })); // guard-ok: из сети, без uid
       callback(friends, { fromCache: snap.metadata?.fromCache === true });
     })
     .catch((err: unknown) => {
@@ -826,6 +842,7 @@ export function subscribeToIncomingRequests(
       const cachedScopeKey = friendRequestViewerAuthScopeKey(myUid);
       if (incomingRequestsReadCache?.scopeKey === cachedScopeKey && incomingRequestsReadCache.expiresAt > Date.now()) {
         logFriendAdd('requests_read', { me: friendTag(myUid), source: 'memory_cache', count: incomingRequestsReadCache.rows.length, expiresInMs: incomingRequestsReadCache.expiresAt - Date.now() });
+        console.log('[READ-TTL]', JSON.stringify({ area: 'friend_requests', source: 'cache', expiresInMs: incomingRequestsReadCache.expiresAt - Date.now() })); // guard-ok: из кэша, без uid
         callback([...incomingRequestsReadCache.rows]);
         return;
       }
@@ -870,6 +887,7 @@ export function subscribeToIncomingRequests(
         expiresAt: Date.now() + FRIENDS_REALTIME_REPLACEMENT_TTL_MS,
       };
       logFriendAdd('requests_read', { me: friendTag(myUid), source: 'server', count: requests.length, ms: Date.now() - requestsReadStartedAt });
+      console.log('[READ-TTL]', JSON.stringify({ area: 'friend_requests', source: 'network', docs: snap.docs.length, ttlMs: FRIENDS_REALTIME_REPLACEMENT_TTL_MS })); // guard-ok: из сети, без uid
       callback(requests);
     })
     .catch((err: unknown) => {

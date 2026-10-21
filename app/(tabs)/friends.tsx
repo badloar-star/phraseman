@@ -63,6 +63,7 @@ import {
   deleteFriend,
   subscribeToIncomingRequests,
   cleanupStaleFriendData,
+  invalidateFriendsSocialReadCaches,
   type FriendEntry,
   type FriendRequestEntry,
 } from '../firestore_friend_requests';
@@ -169,8 +170,8 @@ import {
 } from '../friend_social_events';
 import {
   markUserNotificationsRead,
+  probeUserNotificationsHead,
   readCachedUserNotifications,
-  refreshUserNotificationsOnce,
 } from '../user_notifications';
 // DEV-only: сквозная ручная проверка «Вместе» без реальных друзей (владелец, 2026-08-17).
 import DevBotsSheet from '../../components/friends_together/DevBotsSheet';
@@ -895,9 +896,35 @@ export default function FriendsTabScreen() {
     const apply = (rows: Awaited<ReturnType<typeof readCachedUserNotifications>>) => {
       if (!cancelled) setFriendEvents(friendSocialEventsFromNotifications(rows));
     };
+    let unsubFreshRequests: (() => void) | null = null;
     void readCachedUserNotifications().then(apply);
-    void refreshUserNotificationsOnce({ minIntervalMs: 30_000 }).then(apply);
-    return () => { cancelled = true; };
+    // зачем (владелец 21.10, №45; Ревизор п.1–2): вместо полного списка уведомлений (до 20) на каждом заходе — проба
+    // «последнее уведомление» (1 чтение, не чаще раза в минуту). Новое уведомление о заявке или принятии → кэш друзей и
+    // заявок (30 мин) сбрасывается и перечитывается сразу: правило 17.10 «друзья мгновенно» держится без чтений каждые 30 с.
+    void probeUserNotificationsHead('friends_focus').then((fresh) => {
+      if (cancelled) return;
+      if (!fresh) {
+        console.log('[READ-TTL]', JSON.stringify({ area: 'friends_notifications', source: 'cache', reason: 'probe_no_newer_or_ttl' })); // guard-ok: ветка решения
+        return;
+      }
+      apply(fresh);
+      const socialNews = fresh.some((row) => row.type === 'friend_request' || row.type === 'friend_accepted');
+      console.log('[READ-TTL]', JSON.stringify({ area: 'friends_notifications', source: 'network', socialNews, rows: fresh.length })); // guard-ok: ветка решения
+      if (!socialNews) return;
+      invalidateFriendsSocialReadCaches('notification_friend_event');
+      friendsAccountStore.retry();
+      unsubFreshRequests = subscribeToIncomingRequests(
+        (data) => {
+          if (cancelled) return;
+          setRequests(pendingFriendOpsRef.current.filterRequests(data, Date.now()));
+        },
+        (error) => console.warn('[FRIENDS] fresh requests after friend event failed', { message: error?.message?.slice(0, 80) }), // guard-ok: причина
+      );
+    });
+    return () => {
+      cancelled = true;
+      unsubFreshRequests?.();
+    };
   }, [focusTick, friendsRuntimeActive]);
   useEffect(() => {
     if (!ENABLE_DEV_TOOLS) return;

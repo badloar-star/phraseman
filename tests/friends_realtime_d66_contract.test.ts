@@ -35,8 +35,16 @@ describe('D66 friends realtime contract', () => {
     const friends = exportedBlock(input, 'subscribeToFriends', '// ── subscribeToIncomingRequests');
     const requests = exportedBlock(input, 'subscribeToIncomingRequests', '// ── cleanupStaleFriendData');
 
-    // зачем (владелец 17.10 «друзья мгновенно»): фокус вкладки перечитывает, если прошло ≥30 с.
-    expect(input).toContain('export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 30_000');
+    // зачем (владелец 21.10, №45 «сократить чтения Друзей»): кэш 30 мин; правило 17.10 «друзья мгновенно» держит проба
+    // уведомлений на вкладке — событие дружбы сбрасывает кэш (invalidateFriendsSocialReadCaches).
+    expect(input).toContain('export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 30 * 60_000');
+    expect(input).toContain('export function invalidateFriendsSocialReadCaches(');
+    const tab = fs.readFileSync(path.join(root, 'app', '(tabs)', 'friends.tsx'), 'utf8');
+    expect(tab).toContain("probeUserNotificationsHead('friends_focus')");
+    expect(tab).toContain("row.type === 'friend_request' || row.type === 'friend_accepted'");
+    expect(tab).toContain("invalidateFriendsSocialReadCaches('notification_friend_event')");
+    expect(tab).toContain('friendsAccountStore.retry();');
+    expect(tab).not.toContain('refreshUserNotificationsOnce({ minIntervalMs: 30_000 })');
     expect(input).toContain('friendReadCache');
     expect(friends).toContain('if (cancelled) return;');
     expect(requests).toContain('if (cancelled) return;');

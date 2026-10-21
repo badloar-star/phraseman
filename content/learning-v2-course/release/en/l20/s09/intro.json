@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "have/has to + base verb",
+    "uk": "have/has to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прочитать договор",
+        "uk": "Прочитати договір"
+      },
+      "bodyByLocale": {
+        "ru": "Contract — договор. В нашей сцене руководитель попросил прочитать его перед встречей. Вы говорите о том, что вам нужно сделать. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Contract — договір. У нашій сцені керівник попросив прочитати його перед зустріччю. Ви говорите про те, що вам потрібно зробити. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-09:intro1:r1",
+              "text": "I have to read the contract."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro1:r2",
+              "text": "I has to read the contract."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro1:r3",
+              "text": "I have read the contract."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-09:intro1:r1",
+              "text": "I have to read the contract."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro1:r2",
+              "text": "I has to read the contract."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro1:r3",
+              "text": "I have read the contract."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заполнить поле в форме",
+        "uk": "Заповнити поле у формі"
+      },
+      "bodyByLocale": {
+        "ru": "Occupation — профессия или род занятий. В форме есть обязательное поле, и знакомая должна его заполнить. Position — должность: её друг хочет получить работу, для которой нужно подать заявление. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Occupation — професія або рід занять. У формі є обовʼязкове поле, і знайома має його заповнити. Position — посада: її друг хоче отримати роботу, на яку потрібно подати заяву. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-09:intro2:r1",
+              "text": "She has to enter her occupation."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro2:r2",
+              "text": "She have to enter her occupation."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro2:r3",
+              "text": "She has enter her occupation."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-09:intro2:r1",
+              "text": "She has to enter her occupation."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro2:r2",
+              "text": "She have to enter her occupation."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro2:r3",
+              "text": "She has enter her occupation."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Позвонить соискателю",
+        "uk": "Зателефонувати претендентові"
+      },
+      "bodyByLocale": {
+        "ru": "Applicant — человек, подавший заявление. Здесь это соискатель работы. Организатор попросил вас позвонить ему и уточнить время встречи. С we говорим have to. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Applicant — людина, яка подала заяву. Тут це претендент на роботу. Організатор попросив вас зателефонувати йому й уточнити час зустрічі. З we кажемо have to. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-09:intro3:r1",
+              "text": "We have to call the applicant."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro3:r2",
+              "text": "We has to call the applicant."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro3:r3",
+              "text": "We have call the applicant."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-09:intro3:r1",
+              "text": "We have to call the applicant."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro3:r2",
+              "text": "We has to call the applicant."
+            },
+            {
+              "responseId": "en:lesson-20:session-09:intro3:r3",
+              "text": "We have call the applicant."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d6e650a6179afcdb695a52bba699a4a578d5a54cf2e0507e4d3caf1158de1744"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-11:word:lease",
+    "correctText": "lease",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i01",
+    "correctText": "I have to read the lease.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i02",
+    "correctText": "I have to read the lease.",
+    "correctResponseId": "en:lesson-20:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i03",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:word:owner",
+    "correctText": "owner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i04",
+    "correctText": "She has to call the owner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i05",
+    "correctText": "She has to call the owner.",
+    "correctResponseId": "en:lesson-20:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i06",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:word:property",
+    "correctText": "property",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i07",
+    "correctText": "We have to visit the property.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i08",
+    "correctText": "We have to visit the property.",
+    "correctResponseId": "en:lesson-20:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i09",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:word:resident",
+    "correctText": "resident",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i10",
+    "correctText": "He has to ask a resident for directions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i11",
+    "correctText": "He has to ask a resident for directions.",
+    "correctResponseId": "en:lesson-20:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i12",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i13",
+    "correctText": "en:lesson-20:session-11:i13:p1=lease\nen:lesson-20:session-11:i13:p2=owner\nen:lesson-20:session-11:i13:p3=property\nen:lesson-20:session-11:i13:p4=resident",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i16",
+    "correctText": "I have to read the lease.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-11:i17",
+    "correctText": "She has to call the owner.",
+    "correctResponseId": null
+  }
+]

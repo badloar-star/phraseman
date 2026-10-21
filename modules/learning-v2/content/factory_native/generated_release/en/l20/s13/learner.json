@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-13:word:nationality",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nationality",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:word:nationality:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nationality",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:word:nationality:audio",
+          "transcript": "nationality"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-13:word:nationality:r1",
+            "targetText": "nationality",
+            "meaningByLocale": {
+              "ru": "гражданство, национальная принадлежность.",
+              "uk": "громадянство, національна належність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nationality",
+          "definitionByLocale": {
+            "ru": "гражданство, национальная принадлежность.",
+            "uk": "громадянство, національна належність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с have to или has to: «Мне нужно указать своё гражданство».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с have to или has to: «Мне нужно указать своё гражданство».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have to enter my nationality.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Мне нужно указать своё гражданство».",
+          "uk": "Скажіть із have to або has to: «Мені потрібно вказати своє громадянство»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "to",
+          "enter",
+          "my",
+          "nationality"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-13:i02:r1",
+          "text": "I have to enter my nationality."
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i02:r2",
+          "text": "I can enter my nationality."
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i02:r3",
+          "text": "I want to enter my nationality."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:i02:audio",
+          "transcript": "I have to enter my nationality."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-13:i02:r1",
+            "targetText": "I have to enter my nationality.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i02:r2",
+            "targetText": "I can enter my nationality.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i02:r3",
+            "targetText": "I want to enter my nationality.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have to enter my nationality.",
+              "uk": "У записі звучить I have to enter my nationality."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have to enter my nationality.",
+              "uk": "У записі звучить I have to enter my nationality."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-13:i03:r1",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i03:r2",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i03:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "I ___ enter my nationality.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-13:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i03:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:word:marital-status",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — marital status",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:word:marital-status:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — marital status",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:word:marital-status:audio",
+          "transcript": "marital status"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-13:word:marital-status:r1",
+            "targetText": "marital status",
+            "meaningByLocale": {
+              "ru": "семейное положение.",
+              "uk": "сімейний стан."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "marital status",
+          "definitionByLocale": {
+            "ru": "семейное положение.",
+            "uk": "сімейний стан."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с have to или has to: «Ей нужно указать своё семейное положение».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с have to или has to: «Ей нужно указать своё семейное положение».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has to enter her marital status.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Ей нужно указать своё семейное положение».",
+          "uk": "Скажіть із have to або has to: «Їй потрібно вказати свій сімейний стан»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "to",
+          "enter",
+          "her",
+          "marital",
+          "status"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-13:i05:r1",
+          "text": "She has to enter her marital status."
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i05:r2",
+          "text": "She can enter her marital status."
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i05:r3",
+          "text": "She wants to enter her marital status."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:i05:audio",
+          "transcript": "She has to enter her marital status."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-13:i05:r1",
+            "targetText": "She has to enter her marital status.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i05:r2",
+            "targetText": "She can enter her marital status.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i05:r3",
+            "targetText": "She wants to enter her marital status.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has to enter her marital status.",
+              "uk": "У записі звучить She has to enter her marital status."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has to enter her marital status.",
+              "uk": "У записі звучить She has to enter her marital status."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-13:i06:r1",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i06:r2",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i06:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "She ___ enter her marital status.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-13:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i06:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:word:initials",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — initials",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:word:initials:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — initials",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:word:initials:audio",
+          "transcript": "initials"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-13:word:initials:r1",
+            "targetText": "initials",
+            "meaningByLocale": {
+              "ru": "инициалы.",
+              "uk": "ініціали."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "initials",
+          "definitionByLocale": {
+            "ru": "инициалы.",
+            "uk": "ініціали."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с have to или has to: «Нам нужно написать здесь свои инициалы».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с have to или has to: «Нам нужно написать здесь свои инициалы».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have to write our initials here.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Нам нужно написать здесь свои инициалы».",
+          "uk": "Скажіть із have to або has to: «Нам потрібно написати тут свої ініціали»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "write",
+          "our",
+          "initials",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-13:i08:r1",
+          "text": "We have to write our initials here."
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i08:r2",
+          "text": "We can write our initials here."
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i08:r3",
+          "text": "We want to write our initials here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:i08:audio",
+          "transcript": "We have to write our initials here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-13:i08:r1",
+            "targetText": "We have to write our initials here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i08:r2",
+            "targetText": "We can write our initials here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i08:r3",
+            "targetText": "We want to write our initials here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have to write our initials here.",
+              "uk": "У записі звучить We have to write our initials here."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have to write our initials here.",
+              "uk": "У записі звучить We have to write our initials here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-13:i09:r1",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i09:r2",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i09:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ write our initials here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-13:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i09:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:word:document",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — document",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:word:document:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — document",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:word:document:audio",
+          "transcript": "document"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-13:word:document:r1",
+            "targetText": "document",
+            "meaningByLocale": {
+              "ru": "документ.",
+              "uk": "документ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "document",
+          "definitionByLocale": {
+            "ru": "документ.",
+            "uk": "документ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с have to или has to: «Ему нужно принести этот документ».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с have to или has to: «Ему нужно принести этот документ».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has to bring this document.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Ему нужно принести этот документ».",
+          "uk": "Скажіть із have to або has to: «Йому потрібно принести цей документ»."
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "to",
+          "bring",
+          "this",
+          "document"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-13:i11:r1",
+          "text": "He has to bring this document."
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i11:r2",
+          "text": "He can bring this document."
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i11:r3",
+          "text": "He wants to bring this document."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:i11:audio",
+          "transcript": "He has to bring this document."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-13:i11:r1",
+            "targetText": "He has to bring this document.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i11:r2",
+            "targetText": "He can bring this document.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i11:r3",
+            "targetText": "He wants to bring this document.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has to bring this document.",
+              "uk": "У записі звучить He has to bring this document."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has to bring this document.",
+              "uk": "У записі звучить He has to bring this document."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-13:i12:r1",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i12:r2",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-13:i12:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "He ___ bring this document.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-13:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i12:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-13:i13:p1",
+            "target": "nationality",
+            "meaningByLocale": {
+              "ru": "гражданство, национальная принадлежность",
+              "uk": "громадянство, національна належність"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-13:i13:p2",
+            "target": "marital status",
+            "meaningByLocale": {
+              "ru": "семейное положение",
+              "uk": "сімейний стан"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-13:i13:p3",
+            "target": "initials",
+            "meaningByLocale": {
+              "ru": "инициалы",
+              "uk": "ініціали"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-13:i13:p4",
+            "target": "document",
+            "meaningByLocale": {
+              "ru": "документ",
+              "uk": "документ"
+            }
+          }
+        ],
+        "leftColumn": [
+          "nationality",
+          "marital status",
+          "initials",
+          "document"
+        ],
+        "rightColumn": [
+          "гражданство, национальная принадлежность",
+          "семейное положение",
+          "инициалы",
+          "документ"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: вежливая просьба",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: вежливая просьба",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: количество",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:i15:audio",
+          "transcript": "Could I have a bottle of water?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I have a bottle of water?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "bottle",
+          "of",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что нужно указать гражданство",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что нужно указать гражданство",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:i16:audio",
+          "transcript": "I have to enter my nationality."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have to enter my nationality.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-13:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ему нужно принести документ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ему нужно принести документ",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-13:i17:audio",
+          "transcript": "He has to bring this document."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He has to bring this document.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3a2221a210889019948f68bf6e207badc87d5a73f9ae65bed30053db1774d52f"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-12:word:announcement",
+    "correctText": "announcement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i01",
+    "correctText": "I have to listen to the announcement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i02",
+    "correctText": "I have to listen to the announcement.",
+    "correctResponseId": "en:lesson-20:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i03",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:word:connection",
+    "correctText": "connection",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i04",
+    "correctText": "She has to check the connection.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i05",
+    "correctText": "She has to check the connection.",
+    "correctResponseId": "en:lesson-20:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i06",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:word:disruption",
+    "correctText": "disruption",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i07",
+    "correctText": "We have to ask about the disruption.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i08",
+    "correctText": "We have to ask about the disruption.",
+    "correctResponseId": "en:lesson-20:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i09",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:word:diversion",
+    "correctText": "diversion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i10",
+    "correctText": "He has to follow the diversion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i11",
+    "correctText": "He has to follow the diversion.",
+    "correctResponseId": "en:lesson-20:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i12",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i13",
+    "correctText": "en:lesson-20:session-12:i13:p1=announcement\nen:lesson-20:session-12:i13:p2=connection\nen:lesson-20:session-12:i13:p3=disruption\nen:lesson-20:session-12:i13:p4=diversion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i16",
+    "correctText": "I have to listen to the announcement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-12:i17",
+    "correctText": "He has to follow the diversion.",
+    "correctResponseId": null
+  }
+]

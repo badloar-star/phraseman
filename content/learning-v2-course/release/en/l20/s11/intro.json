@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "have/has to + base verb",
+    "uk": "have/has to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прочитать договор аренды",
+        "uk": "Прочитати договір оренди"
+      },
+      "bodyByLocale": {
+        "ru": "Lease — договор аренды жилья или другого имущества. В нашей истории вам прислали документ перед просмотром квартиры, и вы собираетесь его прочитать. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Lease — договір оренди житла або іншого майна. У нашій історії вам надіслали документ перед переглядом квартири, і ви збираєтеся його прочитати. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-11:intro1:r1",
+              "text": "I have to read the lease."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro1:r2",
+              "text": "I has to read the lease."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro1:r3",
+              "text": "I have read the lease."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-11:intro1:r1",
+              "text": "I have to read the lease."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro1:r2",
+              "text": "I has to read the lease."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro1:r3",
+              "text": "I have read the lease."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Связаться с владельцем",
+        "uk": "Звʼязатися з власником"
+      },
+      "bodyByLocale": {
+        "ru": "Owner — владелец: человек, которому принадлежит вещь или жильё. Подруге нужно договориться с владельцем о времени просмотра. Property здесь — объект недвижимости, например дом или квартира; вы хотите увидеть его лично. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Owner — власник: людина, якій належить річ або житло. Подрузі потрібно домовитися з власником про час перегляду. Property тут — обʼєкт нерухомості, наприклад будинок або квартира; ви хочете побачити його особисто. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-11:intro2:r1",
+              "text": "She has to call the owner."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro2:r2",
+              "text": "She have to call the owner."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro2:r3",
+              "text": "She has call the owner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-11:intro2:r1",
+              "text": "She has to call the owner."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro2:r2",
+              "text": "She have to call the owner."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro2:r3",
+              "text": "She has call the owner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить у жителя",
+        "uk": "Запитати в мешканця"
+      },
+      "bodyByLocale": {
+        "ru": "Resident — житель какого-то места. Знакомый ищет нужный вход и вынужден спросить дорогу у местного жителя. Resident не обязательно владеет жильём: он может его снимать. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Resident — мешканець певного місця. Знайомий шукає потрібний вхід і мусить запитати дорогу в місцевого мешканця. Resident не обовʼязково володіє житлом: він може його винаймати. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-11:intro3:r1",
+              "text": "He has to ask a resident for directions."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro3:r2",
+              "text": "He have to ask a resident for directions."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro3:r3",
+              "text": "He has ask a resident for directions."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-11:intro3:r1",
+              "text": "He has to ask a resident for directions."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro3:r2",
+              "text": "He have to ask a resident for directions."
+            },
+            {
+              "responseId": "en:lesson-20:session-11:intro3:r3",
+              "text": "He has ask a resident for directions."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c497947c1ea93758487eae9ba5f3e77b879aeece8cae0b57312fe108872634de"
+}

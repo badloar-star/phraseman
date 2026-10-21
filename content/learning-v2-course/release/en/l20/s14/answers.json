@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-14:word:purchase",
+    "correctText": "purchase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i01",
+    "correctText": "I have to show proof of purchase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i02",
+    "correctText": "I have to show proof of purchase.",
+    "correctResponseId": "en:lesson-20:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i03",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:word:damaged",
+    "correctText": "damaged",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i04",
+    "correctText": "She has to replace the damaged box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i05",
+    "correctText": "She has to replace the damaged box.",
+    "correctResponseId": "en:lesson-20:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i06",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:word:faulty",
+    "correctText": "faulty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i07",
+    "correctText": "We have to return the faulty lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i08",
+    "correctText": "We have to return the faulty lamp.",
+    "correctResponseId": "en:lesson-20:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i09",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:word:guarantee",
+    "correctText": "guarantee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i10",
+    "correctText": "He has to check the guarantee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i11",
+    "correctText": "He has to check the guarantee.",
+    "correctResponseId": "en:lesson-20:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i12",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i13",
+    "correctText": "en:lesson-20:session-14:i13:p1=purchase\nen:lesson-20:session-14:i13:p2=damaged\nen:lesson-20:session-14:i13:p3=faulty\nen:lesson-20:session-14:i13:p4=guarantee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i16",
+    "correctText": "I have to show proof of purchase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-14:i17",
+    "correctText": "We have to return the faulty lamp.",
+    "correctResponseId": null
+  }
+]

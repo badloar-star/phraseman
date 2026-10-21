@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-10:word:occasionally",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — occasionally",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:word:occasionally:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — occasionally",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:word:occasionally:audio",
+          "transcript": "occasionally"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-10:word:occasionally:r1",
+            "targetText": "occasionally",
+            "meaningByLocale": {
+              "ru": "иногда, время от времени.",
+              "uk": "іноді, час від часу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "occasionally",
+          "definitionByLocale": {
+            "ru": "иногда, время от времени.",
+            "uk": "іноді, час від часу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с have to или has to: «Мне иногда приходится работать допоздна».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с have to или has to: «Мне иногда приходится работать допоздна».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I occasionally have to work late.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Мне иногда приходится работать допоздна».",
+          "uk": "Скажіть із have to або has to: «Мені іноді доводиться працювати допізна»."
+        },
+        "orderedTokens": [
+          "I",
+          "occasionally",
+          "have",
+          "to",
+          "work",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-10:i02:r1",
+          "text": "I occasionally have to work late."
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i02:r2",
+          "text": "I occasionally can work late."
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i02:r3",
+          "text": "I occasionally want to work late."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:i02:audio",
+          "transcript": "I occasionally have to work late."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-10:i02:r1",
+            "targetText": "I occasionally have to work late.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i02:r2",
+            "targetText": "I occasionally can work late.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i02:r3",
+            "targetText": "I occasionally want to work late.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I occasionally have to work late.",
+              "uk": "У записі звучить I occasionally have to work late."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I occasionally have to work late.",
+              "uk": "У записі звучить I occasionally have to work late."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-10:i03:r1",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i03:r2",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i03:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "I occasionally ___ work late.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-10:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i03:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:word:rarely",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rarely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:word:rarely:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rarely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:word:rarely:audio",
+          "transcript": "rarely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-10:word:rarely:r1",
+            "targetText": "rarely",
+            "meaningByLocale": {
+              "ru": "редко.",
+              "uk": "рідко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rarely",
+          "definitionByLocale": {
+            "ru": "редко.",
+            "uk": "рідко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с have to или has to: «Ей редко приходится платить за парковку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с have to или has to: «Ей редко приходится платить за парковку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She rarely has to pay for parking.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Ей редко приходится платить за парковку».",
+          "uk": "Скажіть із have to або has to: «Їй рідко доводиться платити за паркування»."
+        },
+        "orderedTokens": [
+          "She",
+          "rarely",
+          "has",
+          "to",
+          "pay",
+          "for",
+          "parking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-10:i05:r1",
+          "text": "She rarely has to pay for parking."
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i05:r2",
+          "text": "She rarely can pay for parking."
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i05:r3",
+          "text": "She rarely wants to pay for parking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:i05:audio",
+          "transcript": "She rarely has to pay for parking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-10:i05:r1",
+            "targetText": "She rarely has to pay for parking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i05:r2",
+            "targetText": "She rarely can pay for parking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i05:r3",
+            "targetText": "She rarely wants to pay for parking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She rarely has to pay for parking.",
+              "uk": "У записі звучить She rarely has to pay for parking."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She rarely has to pay for parking.",
+              "uk": "У записі звучить She rarely has to pay for parking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-10:i06:r1",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i06:r2",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i06:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "She rarely ___ pay for parking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-10:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i06:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:word:currently",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — currently",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:word:currently:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — currently",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:word:currently:audio",
+          "transcript": "currently"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-10:word:currently:r1",
+            "targetText": "currently",
+            "meaningByLocale": {
+              "ru": "сейчас, в настоящее время.",
+              "uk": "зараз, нині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "currently",
+          "definitionByLocale": {
+            "ru": "сейчас, в настоящее время.",
+            "uk": "зараз, нині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с have to или has to: «Сейчас нам приходится пользоваться другим входом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с have to или has to: «Сейчас нам приходится пользоваться другим входом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We currently have to use another entrance.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Сейчас нам приходится пользоваться другим входом».",
+          "uk": "Скажіть із have to або has to: «Зараз нам доводиться користуватися іншим входом»."
+        },
+        "orderedTokens": [
+          "We",
+          "currently",
+          "have",
+          "to",
+          "use",
+          "another",
+          "entrance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-10:i08:r1",
+          "text": "We currently have to use another entrance."
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i08:r2",
+          "text": "We currently can use another entrance."
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i08:r3",
+          "text": "We currently want to use another entrance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:i08:audio",
+          "transcript": "We currently have to use another entrance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-10:i08:r1",
+            "targetText": "We currently have to use another entrance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i08:r2",
+            "targetText": "We currently can use another entrance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i08:r3",
+            "targetText": "We currently want to use another entrance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We currently have to use another entrance.",
+              "uk": "У записі звучить We currently have to use another entrance."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We currently have to use another entrance.",
+              "uk": "У записі звучить We currently have to use another entrance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-10:i09:r1",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i09:r2",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i09:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We currently ___ use another entrance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-10:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i09:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:word:overseas",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overseas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:word:overseas:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overseas",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:word:overseas:audio",
+          "transcript": "overseas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-10:word:overseas:r1",
+            "targetText": "overseas",
+            "meaningByLocale": {
+              "ru": "за границу, за границей.",
+              "uk": "за кордон, за кордоном."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overseas",
+          "definitionByLocale": {
+            "ru": "за границу, за границей.",
+            "uk": "за кордон, за кордоном."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с have to или has to: «Ему нужно ехать за границу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с have to или has to: «Ему нужно ехать за границу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has to travel overseas.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Ему нужно ехать за границу».",
+          "uk": "Скажіть із have to або has to: «Йому потрібно їхати за кордон»."
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "to",
+          "travel",
+          "overseas"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-10:i11:r1",
+          "text": "He has to travel overseas."
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i11:r2",
+          "text": "He can travel overseas."
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i11:r3",
+          "text": "He wants to travel overseas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:i11:audio",
+          "transcript": "He has to travel overseas."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-10:i11:r1",
+            "targetText": "He has to travel overseas.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i11:r2",
+            "targetText": "He can travel overseas.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i11:r3",
+            "targetText": "He wants to travel overseas.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has to travel overseas.",
+              "uk": "У записі звучить He has to travel overseas."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has to travel overseas.",
+              "uk": "У записі звучить He has to travel overseas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу о необходимости.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-10:i12:r1",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i12:r2",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-10:i12:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу о необходимости.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "He ___ travel overseas.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-10:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i12:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Дополните фразу о необходимости.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу о необходимости.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-10:i13:p1",
+            "target": "occasionally",
+            "meaningByLocale": {
+              "ru": "иногда, время от времени",
+              "uk": "іноді, час від часу"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-10:i13:p2",
+            "target": "rarely",
+            "meaningByLocale": {
+              "ru": "редко",
+              "uk": "рідко"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-10:i13:p3",
+            "target": "currently",
+            "meaningByLocale": {
+              "ru": "сейчас, в настоящее время",
+              "uk": "зараз, нині"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-10:i13:p4",
+            "target": "overseas",
+            "meaningByLocale": {
+              "ru": "за границу, за границей",
+              "uk": "за кордон, за кордоном"
+            }
+          }
+        ],
+        "leftColumn": [
+          "occasionally",
+          "rarely",
+          "currently",
+          "overseas"
+        ],
+        "rightColumn": [
+          "иногда, время от времени",
+          "редко",
+          "сейчас, в настоящее время",
+          "за границу, за границей"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: вежливая просьба",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: вежливая просьба",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: количество",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:i15:audio",
+          "transcript": "Could I have a bottle of water?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I have a bottle of water?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "bottle",
+          "of",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что иногда приходится задерживаться",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что иногда приходится задерживаться",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:i16:audio",
+          "transcript": "I occasionally have to work late."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I occasionally have to work late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-10:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ему нужно ехать за границу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ему нужно ехать за границу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-10:i17:audio",
+          "transcript": "He has to travel overseas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He has to travel overseas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5fb7883065d6d0238d36bb2b120764a23d2f580495a11b04292784a7b2ca0024"
+}

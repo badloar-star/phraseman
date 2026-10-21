@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-15:word:staff",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — staff",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:word:staff:audio"
+      ],
+      "accessibilityLabel": "Картка слова — staff",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:word:staff:audio",
+          "transcript": "staff"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-15:word:staff:r1",
+            "targetText": "staff",
+            "meaningByLocale": {
+              "ru": "персонал, сотрудники.",
+              "uk": "персонал, працівники."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "staff",
+          "definitionByLocale": {
+            "ru": "персонал, сотрудники.",
+            "uk": "персонал, працівники."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із have to або has to: «Мені потрібно повідомити про це персоналу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із have to або has to: «Мені потрібно повідомити про це персоналу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have to inform the staff.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Мне нужно сообщить об этом персоналу».",
+          "uk": "Скажіть із have to або has to: «Мені потрібно повідомити про це персоналу»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "to",
+          "inform",
+          "the",
+          "staff"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-15:i02:r1",
+          "text": "I have to inform the staff."
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i02:r2",
+          "text": "I can inform the staff."
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i02:r3",
+          "text": "I want to inform the staff."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:i02:audio",
+          "transcript": "I have to inform the staff."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-15:i02:r1",
+            "targetText": "I have to inform the staff.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i02:r2",
+            "targetText": "I can inform the staff.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i02:r3",
+            "targetText": "I want to inform the staff.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have to inform the staff.",
+              "uk": "У записі звучить I have to inform the staff."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have to inform the staff.",
+              "uk": "У записі звучить I have to inform the staff."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-15:i03:r1",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i03:r2",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i03:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "I ___ inform the staff.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-15:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i03:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:word:employee",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — employee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:word:employee:audio"
+      ],
+      "accessibilityLabel": "Картка слова — employee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:word:employee:audio",
+          "transcript": "employee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-15:word:employee:r1",
+            "targetText": "employee",
+            "meaningByLocale": {
+              "ru": "работник, сотрудник.",
+              "uk": "працівник, співробітник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "employee",
+          "definitionByLocale": {
+            "ru": "работник, сотрудник.",
+            "uk": "працівник, співробітник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із have to або has to: «Їй потрібно навчити нового працівника».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із have to або has to: «Їй потрібно навчити нового працівника».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has to train a new employee.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Ей нужно обучить нового сотрудника».",
+          "uk": "Скажіть із have to або has to: «Їй потрібно навчити нового працівника»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "to",
+          "train",
+          "a",
+          "new",
+          "employee"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-15:i05:r1",
+          "text": "She has to train a new employee."
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i05:r2",
+          "text": "She can train a new employee."
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i05:r3",
+          "text": "She wants to train a new employee."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:i05:audio",
+          "transcript": "She has to train a new employee."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-15:i05:r1",
+            "targetText": "She has to train a new employee.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i05:r2",
+            "targetText": "She can train a new employee.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i05:r3",
+            "targetText": "She wants to train a new employee.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has to train a new employee.",
+              "uk": "У записі звучить She has to train a new employee."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has to train a new employee.",
+              "uk": "У записі звучить She has to train a new employee."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-15:i06:r1",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i06:r2",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i06:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "She ___ train a new employee.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-15:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i06:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:word:employer",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — employer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:word:employer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — employer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:word:employer:audio",
+          "transcript": "employer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-15:word:employer:r1",
+            "targetText": "employer",
+            "meaningByLocale": {
+              "ru": "работодатель.",
+              "uk": "роботодавець."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "employer",
+          "definitionByLocale": {
+            "ru": "работодатель.",
+            "uk": "роботодавець."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із have to або has to: «Нам потрібно звʼязатися з роботодавцем».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із have to або has to: «Нам потрібно звʼязатися з роботодавцем».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have to contact the employer.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Нам нужно связаться с работодателем».",
+          "uk": "Скажіть із have to або has to: «Нам потрібно звʼязатися з роботодавцем»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "contact",
+          "the",
+          "employer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-15:i08:r1",
+          "text": "We have to contact the employer."
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i08:r2",
+          "text": "We can contact the employer."
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i08:r3",
+          "text": "We want to contact the employer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:i08:audio",
+          "transcript": "We have to contact the employer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-15:i08:r1",
+            "targetText": "We have to contact the employer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i08:r2",
+            "targetText": "We can contact the employer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i08:r3",
+            "targetText": "We want to contact the employer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have to contact the employer.",
+              "uk": "У записі звучить We have to contact the employer."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have to contact the employer.",
+              "uk": "У записі звучить We have to contact the employer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-15:i09:r1",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i09:r2",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i09:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ contact the employer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-15:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i09:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:word:self-employed",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — self-employed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:word:self-employed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — self-employed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:word:self-employed:audio",
+          "transcript": "self-employed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-15:word:self-employed:r1",
+            "targetText": "self-employed",
+            "meaningByLocale": {
+              "ru": "работающий на себя.",
+              "uk": "той, хто працює на себе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "self-employed",
+          "definitionByLocale": {
+            "ru": "работающий на себя.",
+            "uk": "той, хто працює на себе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із have to або has to: «Йому потрібно поговорити з будівельником, який працює на себе».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із have to або has to: «Йому потрібно поговорити з будівельником, який працює на себе».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has to speak to a self-employed builder.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Ему нужно поговорить со строителем, работающим на себя».",
+          "uk": "Скажіть із have to або has to: «Йому потрібно поговорити з будівельником, який працює на себе»."
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "to",
+          "speak",
+          "to",
+          "a",
+          "self-employed",
+          "builder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-15:i11:r1",
+          "text": "He has to speak to a self-employed builder."
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i11:r2",
+          "text": "He can speak to a self-employed builder."
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i11:r3",
+          "text": "He wants to speak to a self-employed builder."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:i11:audio",
+          "transcript": "He has to speak to a self-employed builder."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-15:i11:r1",
+            "targetText": "He has to speak to a self-employed builder.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i11:r2",
+            "targetText": "He can speak to a self-employed builder.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i11:r3",
+            "targetText": "He wants to speak to a self-employed builder.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has to speak to a self-employed builder.",
+              "uk": "У записі звучить He has to speak to a self-employed builder."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has to speak to a self-employed builder.",
+              "uk": "У записі звучить He has to speak to a self-employed builder."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-15:i12:r1",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i12:r2",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-15:i12:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "He ___ speak to a self-employed builder.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-15:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i12:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-15:i13:p1",
+            "target": "staff",
+            "meaningByLocale": {
+              "ru": "персонал, сотрудники",
+              "uk": "персонал, працівники"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-15:i13:p2",
+            "target": "employee",
+            "meaningByLocale": {
+              "ru": "работник, сотрудник",
+              "uk": "працівник, співробітник"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-15:i13:p3",
+            "target": "employer",
+            "meaningByLocale": {
+              "ru": "работодатель",
+              "uk": "роботодавець"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-15:i13:p4",
+            "target": "self-employed",
+            "meaningByLocale": {
+              "ru": "работающий на себя",
+              "uk": "той, хто працює на себе"
+            }
+          }
+        ],
+        "leftColumn": [
+          "staff",
+          "employee",
+          "employer",
+          "self-employed"
+        ],
+        "rightColumn": [
+          "персонал, працівники",
+          "працівник, співробітник",
+          "роботодавець",
+          "той, хто працює на себе"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: ввічливе прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: ввічливе прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: кількість",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:i15:audio",
+          "transcript": "Could I have a bottle of water?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I have a bottle of water?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "bottle",
+          "of",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що потрібно повідомити персоналу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що потрібно повідомити персоналу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:i16:audio",
+          "transcript": "I have to inform the staff."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have to inform the staff.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що їй потрібно навчити нового працівника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що їй потрібно навчити нового працівника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-15:i17:audio",
+          "transcript": "She has to train a new employee."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has to train a new employee.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e0bb1143a8de64ae013c3fd146f724da8b6d3230e59d814714d99a061984b84a"
+}

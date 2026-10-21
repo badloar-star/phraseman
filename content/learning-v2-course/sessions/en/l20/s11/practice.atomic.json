@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-11",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-11:word:lease",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lease",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:word:lease:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lease",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:word:lease:audio",
+            "transcript": "lease"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:word:lease:r1",
+              "targetText": "lease",
+              "meaningByLocale": {
+                "ru": "договор аренды.",
+                "uk": "договір оренди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lease",
+            "definitionByLocale": {
+              "ru": "договор аренды.",
+              "uk": "договір оренди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Мне нужно прочитать договор аренды».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Мне нужно прочитать договор аренды».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have to read the lease.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Мне нужно прочитать договор аренды».",
+            "uk": "Скажіть із have to або has to: «Мені потрібно прочитати договір оренди»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "to",
+            "read",
+            "the",
+            "lease"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i02:r1",
+            "text": "I have to read the lease."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i02:r2",
+            "text": "I can read the lease."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i02:r3",
+            "text": "I want to read the lease."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i02:audio",
+            "transcript": "I have to read the lease."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:i02:r1",
+              "targetText": "I have to read the lease.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i02:r2",
+              "targetText": "I can read the lease.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i02:r3",
+              "targetText": "I want to read the lease.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to read the lease.",
+                "uk": "У записі звучить I have to read the lease."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to read the lease.",
+                "uk": "У записі звучить I have to read the lease."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i03:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ read the lease.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-11:i03:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i03:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i03:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "I have read — уже прочитал; выберите have to для необходимости.",
+                "uk": "I have read — уже прочитав; виберіть have to для необхідності."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:word:owner",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — owner",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:word:owner:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — owner",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:word:owner:audio",
+            "transcript": "owner"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:word:owner:r1",
+              "targetText": "owner",
+              "meaningByLocale": {
+                "ru": "владелец.",
+                "uk": "власник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "owner",
+            "definitionByLocale": {
+              "ru": "владелец.",
+              "uk": "власник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Ей нужно позвонить владельцу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Ей нужно позвонить владельцу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has to call the owner.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ей нужно позвонить владельцу».",
+            "uk": "Скажіть із have to або has to: «Їй потрібно зателефонувати власникові»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "to",
+            "call",
+            "the",
+            "owner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i05:r1",
+            "text": "She has to call the owner."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i05:r2",
+            "text": "She can call the owner."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i05:r3",
+            "text": "She wants to call the owner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i05:audio",
+            "transcript": "She has to call the owner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:i05:r1",
+              "targetText": "She has to call the owner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i05:r2",
+              "targetText": "She can call the owner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i05:r3",
+              "targetText": "She wants to call the owner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to call the owner.",
+                "uk": "У записі звучить She has to call the owner."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to call the owner.",
+                "uk": "У записі звучить She has to call the owner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "She ___ call the owner.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-11:i06:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i06:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:word:property",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — property",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:word:property:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — property",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:word:property:audio",
+            "transcript": "property"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:word:property:r1",
+              "targetText": "property",
+              "meaningByLocale": {
+                "ru": "недвижимость, объект недвижимости.",
+                "uk": "нерухомість, обʼєкт нерухомості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "property",
+            "definitionByLocale": {
+              "ru": "недвижимость, объект недвижимости.",
+              "uk": "нерухомість, обʼєкт нерухомості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Нам нужно посетить этот объект недвижимости».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Нам нужно посетить этот объект недвижимости».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have to visit the property.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Нам нужно посетить этот объект недвижимости».",
+            "uk": "Скажіть із have to або has to: «Нам потрібно відвідати цей обʼєкт нерухомості»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "visit",
+            "the",
+            "property"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i08:r1",
+            "text": "We have to visit the property."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i08:r2",
+            "text": "We can visit the property."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i08:r3",
+            "text": "We want to visit the property."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i08:audio",
+            "transcript": "We have to visit the property."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:i08:r1",
+              "targetText": "We have to visit the property.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i08:r2",
+              "targetText": "We can visit the property.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i08:r3",
+              "targetText": "We want to visit the property.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to visit the property.",
+                "uk": "У записі звучить We have to visit the property."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to visit the property.",
+                "uk": "У записі звучить We have to visit the property."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i09:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ visit the property.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-11:i09:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i09:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i09:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:word:resident",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — resident",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:word:resident:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — resident",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:word:resident:audio",
+            "transcript": "resident"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:word:resident:r1",
+              "targetText": "resident",
+              "meaningByLocale": {
+                "ru": "житель, проживающий.",
+                "uk": "мешканець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "resident",
+            "definitionByLocale": {
+              "ru": "житель, проживающий.",
+              "uk": "мешканець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Ему приходится спрашивать дорогу у местного жителя».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Ему приходится спрашивать дорогу у местного жителя».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has to ask a resident for directions.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ему приходится спрашивать дорогу у местного жителя».",
+            "uk": "Скажіть із have to або has to: «Йому доводиться питати дорогу в місцевого мешканця»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "to",
+            "ask",
+            "a",
+            "resident",
+            "for",
+            "directions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i11:r1",
+            "text": "He has to ask a resident for directions."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i11:r2",
+            "text": "He can ask a resident for directions."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i11:r3",
+            "text": "He wants to ask a resident for directions."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i11:audio",
+            "transcript": "He has to ask a resident for directions."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:i11:r1",
+              "targetText": "He has to ask a resident for directions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i11:r2",
+              "targetText": "He can ask a resident for directions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i11:r3",
+              "targetText": "He wants to ask a resident for directions.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to ask a resident for directions.",
+                "uk": "У записі звучить He has to ask a resident for directions."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to ask a resident for directions.",
+                "uk": "У записі звучить He has to ask a resident for directions."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i12:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "He ___ ask a resident for directions.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-11:i12:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i12:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i12:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-11:i13:p1",
+              "target": "lease",
+              "meaningByLocale": {
+                "ru": "договор аренды",
+                "uk": "договір оренди"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-11:i13:p2",
+              "target": "owner",
+              "meaningByLocale": {
+                "ru": "владелец",
+                "uk": "власник"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-11:i13:p3",
+              "target": "property",
+              "meaningByLocale": {
+                "ru": "недвижимость, объект недвижимости",
+                "uk": "нерухомість, обʼєкт нерухомості"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-11:i13:p4",
+              "target": "resident",
+              "meaningByLocale": {
+                "ru": "житель, проживающий",
+                "uk": "мешканець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lease",
+            "owner",
+            "property",
+            "resident"
+          ],
+          "rightColumn": [
+            "договор аренды",
+            "владелец",
+            "недвижимость, объект недвижимости",
+            "житель, проживающий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: вежливая просьба",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: вежливая просьба",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: количество",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что нужно прочитать договор аренды",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что нужно прочитать договор аренды",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i16:audio",
+            "transcript": "I have to read the lease."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have to read the lease.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что ей нужно позвонить владельцу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что ей нужно позвонить владельцу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i17:audio",
+            "transcript": "She has to call the owner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has to call the owner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-11:word:lease",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lease",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:word:lease:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lease",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:word:lease:audio",
+            "transcript": "lease"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:word:lease:r1",
+              "targetText": "lease",
+              "meaningByLocale": {
+                "ru": "договор аренды.",
+                "uk": "договір оренди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lease",
+            "definitionByLocale": {
+              "ru": "договор аренды.",
+              "uk": "договір оренди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Мені потрібно прочитати договір оренди».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Мені потрібно прочитати договір оренди».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have to read the lease.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Мне нужно прочитать договор аренды».",
+            "uk": "Скажіть із have to або has to: «Мені потрібно прочитати договір оренди»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "to",
+            "read",
+            "the",
+            "lease"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i02:r1",
+            "text": "I have to read the lease."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i02:r2",
+            "text": "I can read the lease."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i02:r3",
+            "text": "I want to read the lease."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i02:audio",
+            "transcript": "I have to read the lease."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:i02:r1",
+              "targetText": "I have to read the lease.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i02:r2",
+              "targetText": "I can read the lease.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i02:r3",
+              "targetText": "I want to read the lease.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to read the lease.",
+                "uk": "У записі звучить I have to read the lease."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to read the lease.",
+                "uk": "У записі звучить I have to read the lease."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i03:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ read the lease.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-11:i03:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i03:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i03:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "I have read — уже прочитал; выберите have to для необходимости.",
+                "uk": "I have read — уже прочитав; виберіть have to для необхідності."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:word:owner",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — owner",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:word:owner:audio"
+        ],
+        "accessibilityLabel": "Картка слова — owner",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:word:owner:audio",
+            "transcript": "owner"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:word:owner:r1",
+              "targetText": "owner",
+              "meaningByLocale": {
+                "ru": "владелец.",
+                "uk": "власник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "owner",
+            "definitionByLocale": {
+              "ru": "владелец.",
+              "uk": "власник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Їй потрібно зателефонувати власникові».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Їй потрібно зателефонувати власникові».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has to call the owner.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ей нужно позвонить владельцу».",
+            "uk": "Скажіть із have to або has to: «Їй потрібно зателефонувати власникові»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "to",
+            "call",
+            "the",
+            "owner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i05:r1",
+            "text": "She has to call the owner."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i05:r2",
+            "text": "She can call the owner."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i05:r3",
+            "text": "She wants to call the owner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i05:audio",
+            "transcript": "She has to call the owner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:i05:r1",
+              "targetText": "She has to call the owner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i05:r2",
+              "targetText": "She can call the owner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i05:r3",
+              "targetText": "She wants to call the owner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to call the owner.",
+                "uk": "У записі звучить She has to call the owner."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to call the owner.",
+                "uk": "У записі звучить She has to call the owner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "She ___ call the owner.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-11:i06:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i06:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:word:property",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — property",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:word:property:audio"
+        ],
+        "accessibilityLabel": "Картка слова — property",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:word:property:audio",
+            "transcript": "property"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:word:property:r1",
+              "targetText": "property",
+              "meaningByLocale": {
+                "ru": "недвижимость, объект недвижимости.",
+                "uk": "нерухомість, обʼєкт нерухомості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "property",
+            "definitionByLocale": {
+              "ru": "недвижимость, объект недвижимости.",
+              "uk": "нерухомість, обʼєкт нерухомості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Нам потрібно відвідати цей обʼєкт нерухомості».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Нам потрібно відвідати цей обʼєкт нерухомості».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have to visit the property.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Нам нужно посетить этот объект недвижимости».",
+            "uk": "Скажіть із have to або has to: «Нам потрібно відвідати цей обʼєкт нерухомості»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "visit",
+            "the",
+            "property"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i08:r1",
+            "text": "We have to visit the property."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i08:r2",
+            "text": "We can visit the property."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i08:r3",
+            "text": "We want to visit the property."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i08:audio",
+            "transcript": "We have to visit the property."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:i08:r1",
+              "targetText": "We have to visit the property.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i08:r2",
+              "targetText": "We can visit the property.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i08:r3",
+              "targetText": "We want to visit the property.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to visit the property.",
+                "uk": "У записі звучить We have to visit the property."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to visit the property.",
+                "uk": "У записі звучить We have to visit the property."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i09:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ visit the property.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-11:i09:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i09:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i09:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:word:resident",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — resident",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:word:resident:audio"
+        ],
+        "accessibilityLabel": "Картка слова — resident",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:word:resident:audio",
+            "transcript": "resident"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:word:resident:r1",
+              "targetText": "resident",
+              "meaningByLocale": {
+                "ru": "житель, проживающий.",
+                "uk": "мешканець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "resident",
+            "definitionByLocale": {
+              "ru": "житель, проживающий.",
+              "uk": "мешканець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Йому доводиться питати дорогу в місцевого мешканця».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Йому доводиться питати дорогу в місцевого мешканця».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has to ask a resident for directions.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ему приходится спрашивать дорогу у местного жителя».",
+            "uk": "Скажіть із have to або has to: «Йому доводиться питати дорогу в місцевого мешканця»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "to",
+            "ask",
+            "a",
+            "resident",
+            "for",
+            "directions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i11:r1",
+            "text": "He has to ask a resident for directions."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i11:r2",
+            "text": "He can ask a resident for directions."
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i11:r3",
+            "text": "He wants to ask a resident for directions."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i11:audio",
+            "transcript": "He has to ask a resident for directions."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-11:i11:r1",
+              "targetText": "He has to ask a resident for directions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i11:r2",
+              "targetText": "He can ask a resident for directions.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i11:r3",
+              "targetText": "He wants to ask a resident for directions.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to ask a resident for directions.",
+                "uk": "У записі звучить He has to ask a resident for directions."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to ask a resident for directions.",
+                "uk": "У записі звучить He has to ask a resident for directions."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-11:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-11:i12:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "He ___ ask a resident for directions.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-11:i12:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i12:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i12:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-11:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-11:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-11:i13:p1",
+              "target": "lease",
+              "meaningByLocale": {
+                "ru": "договор аренды",
+                "uk": "договір оренди"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-11:i13:p2",
+              "target": "owner",
+              "meaningByLocale": {
+                "ru": "владелец",
+                "uk": "власник"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-11:i13:p3",
+              "target": "property",
+              "meaningByLocale": {
+                "ru": "недвижимость, объект недвижимости",
+                "uk": "нерухомість, обʼєкт нерухомості"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-11:i13:p4",
+              "target": "resident",
+              "meaningByLocale": {
+                "ru": "житель, проживающий",
+                "uk": "мешканець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lease",
+            "owner",
+            "property",
+            "resident"
+          ],
+          "rightColumn": [
+            "договір оренди",
+            "власник",
+            "нерухомість, обʼєкт нерухомості",
+            "мешканець"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: ввічливе прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: ввічливе прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: кількість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що потрібно прочитати договір оренди",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що потрібно прочитати договір оренди",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i16:audio",
+            "transcript": "I have to read the lease."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have to read the lease.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-11:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що їй потрібно зателефонувати власникові",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-11:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що їй потрібно зателефонувати власникові",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-11:i17:audio",
+            "transcript": "She has to call the owner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has to call the owner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-11:word:lease",
+      "correctText": "lease",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i01",
+      "correctText": "I have to read the lease.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i02",
+      "correctText": "I have to read the lease.",
+      "correctResponseId": "en:lesson-20:session-11:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i03",
+      "correctText": "have to",
+      "correctResponseId": "en:lesson-20:session-11:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:word:owner",
+      "correctText": "owner",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i04",
+      "correctText": "She has to call the owner.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i05",
+      "correctText": "She has to call the owner.",
+      "correctResponseId": "en:lesson-20:session-11:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i06",
+      "correctText": "has to",
+      "correctResponseId": "en:lesson-20:session-11:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:word:property",
+      "correctText": "property",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i07",
+      "correctText": "We have to visit the property.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i08",
+      "correctText": "We have to visit the property.",
+      "correctResponseId": "en:lesson-20:session-11:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i09",
+      "correctText": "have to",
+      "correctResponseId": "en:lesson-20:session-11:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:word:resident",
+      "correctText": "resident",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i10",
+      "correctText": "He has to ask a resident for directions.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i11",
+      "correctText": "He has to ask a resident for directions.",
+      "correctResponseId": "en:lesson-20:session-11:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i12",
+      "correctText": "has to",
+      "correctResponseId": "en:lesson-20:session-11:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i15",
+      "correctText": "Could I have a bottle of water?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i16",
+      "correctText": "I have to read the lease.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-11:i17",
+      "correctText": "She has to call the owner.",
+      "correctResponseId": null
+    }
+  ]
+}

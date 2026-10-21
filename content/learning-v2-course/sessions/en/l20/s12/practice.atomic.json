@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-12",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-12:word:announcement",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — announcement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:word:announcement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — announcement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:word:announcement:audio",
+            "transcript": "announcement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:word:announcement:r1",
+              "targetText": "announcement",
+              "meaningByLocale": {
+                "ru": "объявление.",
+                "uk": "оголошення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "announcement",
+            "definitionByLocale": {
+              "ru": "объявление.",
+              "uk": "оголошення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Мне нужно прослушать объявление».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Мне нужно прослушать объявление».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have to listen to the announcement.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Мне нужно прослушать объявление».",
+            "uk": "Скажіть із have to або has to: «Мені потрібно прослухати оголошення»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "to",
+            "listen",
+            "to",
+            "the",
+            "announcement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i02:r1",
+            "text": "I have to listen to the announcement."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i02:r2",
+            "text": "I can listen to the announcement."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i02:r3",
+            "text": "I want to listen to the announcement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i02:audio",
+            "transcript": "I have to listen to the announcement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:i02:r1",
+              "targetText": "I have to listen to the announcement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i02:r2",
+              "targetText": "I can listen to the announcement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i02:r3",
+              "targetText": "I want to listen to the announcement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to listen to the announcement.",
+                "uk": "У записі звучить I have to listen to the announcement."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to listen to the announcement.",
+                "uk": "У записі звучить I have to listen to the announcement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i03:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ listen to the announcement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-12:i03:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i03:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i03:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:word:connection",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — connection",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:word:connection:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — connection",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:word:connection:audio",
+            "transcript": "connection"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:word:connection:r1",
+              "targetText": "connection",
+              "meaningByLocale": {
+                "ru": "пересадка, стыковка.",
+                "uk": "пересадка, стикування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "connection",
+            "definitionByLocale": {
+              "ru": "пересадка, стыковка.",
+              "uk": "пересадка, стикування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Ей нужно проверить пересадку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Ей нужно проверить пересадку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has to check the connection.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ей нужно проверить пересадку».",
+            "uk": "Скажіть із have to або has to: «Їй потрібно перевірити пересадку»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "to",
+            "check",
+            "the",
+            "connection"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i05:r1",
+            "text": "She has to check the connection."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i05:r2",
+            "text": "She can check the connection."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i05:r3",
+            "text": "She wants to check the connection."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i05:audio",
+            "transcript": "She has to check the connection."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:i05:r1",
+              "targetText": "She has to check the connection.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i05:r2",
+              "targetText": "She can check the connection.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i05:r3",
+              "targetText": "She wants to check the connection.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to check the connection.",
+                "uk": "У записі звучить She has to check the connection."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to check the connection.",
+                "uk": "У записі звучить She has to check the connection."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "She ___ check the connection.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-12:i06:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i06:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:word:disruption",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — disruption",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:word:disruption:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — disruption",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:word:disruption:audio",
+            "transcript": "disruption"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:word:disruption:r1",
+              "targetText": "disruption",
+              "meaningByLocale": {
+                "ru": "сбой, нарушение обычной работы.",
+                "uk": "збій, порушення звичної роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "disruption",
+            "definitionByLocale": {
+              "ru": "сбой, нарушение обычной работы.",
+              "uk": "збій, порушення звичної роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Нам нужно спросить о сбое в движении».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Нам нужно спросить о сбое в движении».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have to ask about the disruption.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Нам нужно спросить о сбое в движении».",
+            "uk": "Скажіть із have to або has to: «Нам потрібно запитати про збій у русі»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "ask",
+            "about",
+            "the",
+            "disruption"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i08:r1",
+            "text": "We have to ask about the disruption."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i08:r2",
+            "text": "We can ask about the disruption."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i08:r3",
+            "text": "We want to ask about the disruption."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i08:audio",
+            "transcript": "We have to ask about the disruption."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:i08:r1",
+              "targetText": "We have to ask about the disruption.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i08:r2",
+              "targetText": "We can ask about the disruption.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i08:r3",
+              "targetText": "We want to ask about the disruption.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to ask about the disruption.",
+                "uk": "У записі звучить We have to ask about the disruption."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to ask about the disruption.",
+                "uk": "У записі звучить We have to ask about the disruption."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i09:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ ask about the disruption.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-12:i09:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i09:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i09:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:word:diversion",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — diversion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:word:diversion:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — diversion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:word:diversion:audio",
+            "transcript": "diversion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:word:diversion:r1",
+              "targetText": "diversion",
+              "meaningByLocale": {
+                "ru": "объезд, обходной маршрут.",
+                "uk": "обʼїзд, обхідний маршрут."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diversion",
+            "definitionByLocale": {
+              "ru": "объезд, обходной маршрут.",
+              "uk": "обʼїзд, обхідний маршрут."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Ему приходится ехать по объезду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Ему приходится ехать по объезду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has to follow the diversion.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ему приходится ехать по объезду».",
+            "uk": "Скажіть із have to або has to: «Йому доводиться їхати обʼїздом»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "to",
+            "follow",
+            "the",
+            "diversion"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i11:r1",
+            "text": "He has to follow the diversion."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i11:r2",
+            "text": "He can follow the diversion."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i11:r3",
+            "text": "He wants to follow the diversion."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i11:audio",
+            "transcript": "He has to follow the diversion."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:i11:r1",
+              "targetText": "He has to follow the diversion.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i11:r2",
+              "targetText": "He can follow the diversion.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i11:r3",
+              "targetText": "He wants to follow the diversion.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to follow the diversion.",
+                "uk": "У записі звучить He has to follow the diversion."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to follow the diversion.",
+                "uk": "У записі звучить He has to follow the diversion."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i12:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "He ___ follow the diversion.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-12:i12:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i12:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i12:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-12:i13:p1",
+              "target": "announcement",
+              "meaningByLocale": {
+                "ru": "объявление",
+                "uk": "оголошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-12:i13:p2",
+              "target": "connection",
+              "meaningByLocale": {
+                "ru": "пересадка, стыковка",
+                "uk": "пересадка, стикування"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-12:i13:p3",
+              "target": "disruption",
+              "meaningByLocale": {
+                "ru": "сбой, нарушение обычной работы",
+                "uk": "збій, порушення звичної роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-12:i13:p4",
+              "target": "diversion",
+              "meaningByLocale": {
+                "ru": "объезд, обходной маршрут",
+                "uk": "обʼїзд, обхідний маршрут"
+              }
+            }
+          ],
+          "leftColumn": [
+            "announcement",
+            "connection",
+            "disruption",
+            "diversion"
+          ],
+          "rightColumn": [
+            "объявление",
+            "пересадка, стыковка",
+            "сбой, нарушение обычной работы",
+            "объезд, обходной маршрут"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: вежливая просьба",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: вежливая просьба",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: количество",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что нужно прослушать объявление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что нужно прослушать объявление",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i16:audio",
+            "transcript": "I have to listen to the announcement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have to listen to the announcement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что ему приходится ехать по объезду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что ему приходится ехать по объезду",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i17:audio",
+            "transcript": "He has to follow the diversion."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He has to follow the diversion.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-12:word:announcement",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — announcement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:word:announcement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — announcement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:word:announcement:audio",
+            "transcript": "announcement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:word:announcement:r1",
+              "targetText": "announcement",
+              "meaningByLocale": {
+                "ru": "объявление.",
+                "uk": "оголошення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "announcement",
+            "definitionByLocale": {
+              "ru": "объявление.",
+              "uk": "оголошення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Мені потрібно прослухати оголошення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Мені потрібно прослухати оголошення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have to listen to the announcement.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Мне нужно прослушать объявление».",
+            "uk": "Скажіть із have to або has to: «Мені потрібно прослухати оголошення»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "to",
+            "listen",
+            "to",
+            "the",
+            "announcement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i02:r1",
+            "text": "I have to listen to the announcement."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i02:r2",
+            "text": "I can listen to the announcement."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i02:r3",
+            "text": "I want to listen to the announcement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i02:audio",
+            "transcript": "I have to listen to the announcement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:i02:r1",
+              "targetText": "I have to listen to the announcement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i02:r2",
+              "targetText": "I can listen to the announcement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i02:r3",
+              "targetText": "I want to listen to the announcement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to listen to the announcement.",
+                "uk": "У записі звучить I have to listen to the announcement."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to listen to the announcement.",
+                "uk": "У записі звучить I have to listen to the announcement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i03:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ listen to the announcement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-12:i03:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i03:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i03:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:word:connection",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — connection",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:word:connection:audio"
+        ],
+        "accessibilityLabel": "Картка слова — connection",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:word:connection:audio",
+            "transcript": "connection"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:word:connection:r1",
+              "targetText": "connection",
+              "meaningByLocale": {
+                "ru": "пересадка, стыковка.",
+                "uk": "пересадка, стикування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "connection",
+            "definitionByLocale": {
+              "ru": "пересадка, стыковка.",
+              "uk": "пересадка, стикування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Їй потрібно перевірити пересадку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Їй потрібно перевірити пересадку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has to check the connection.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ей нужно проверить пересадку».",
+            "uk": "Скажіть із have to або has to: «Їй потрібно перевірити пересадку»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "to",
+            "check",
+            "the",
+            "connection"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i05:r1",
+            "text": "She has to check the connection."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i05:r2",
+            "text": "She can check the connection."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i05:r3",
+            "text": "She wants to check the connection."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i05:audio",
+            "transcript": "She has to check the connection."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:i05:r1",
+              "targetText": "She has to check the connection.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i05:r2",
+              "targetText": "She can check the connection.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i05:r3",
+              "targetText": "She wants to check the connection.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to check the connection.",
+                "uk": "У записі звучить She has to check the connection."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to check the connection.",
+                "uk": "У записі звучить She has to check the connection."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "She ___ check the connection.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-12:i06:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i06:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:word:disruption",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — disruption",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:word:disruption:audio"
+        ],
+        "accessibilityLabel": "Картка слова — disruption",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:word:disruption:audio",
+            "transcript": "disruption"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:word:disruption:r1",
+              "targetText": "disruption",
+              "meaningByLocale": {
+                "ru": "сбой, нарушение обычной работы.",
+                "uk": "збій, порушення звичної роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "disruption",
+            "definitionByLocale": {
+              "ru": "сбой, нарушение обычной работы.",
+              "uk": "збій, порушення звичної роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Нам потрібно запитати про збій у русі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Нам потрібно запитати про збій у русі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have to ask about the disruption.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Нам нужно спросить о сбое в движении».",
+            "uk": "Скажіть із have to або has to: «Нам потрібно запитати про збій у русі»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "ask",
+            "about",
+            "the",
+            "disruption"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i08:r1",
+            "text": "We have to ask about the disruption."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i08:r2",
+            "text": "We can ask about the disruption."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i08:r3",
+            "text": "We want to ask about the disruption."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i08:audio",
+            "transcript": "We have to ask about the disruption."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:i08:r1",
+              "targetText": "We have to ask about the disruption.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i08:r2",
+              "targetText": "We can ask about the disruption.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i08:r3",
+              "targetText": "We want to ask about the disruption.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to ask about the disruption.",
+                "uk": "У записі звучить We have to ask about the disruption."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to ask about the disruption.",
+                "uk": "У записі звучить We have to ask about the disruption."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i09:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ ask about the disruption.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-12:i09:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i09:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i09:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:word:diversion",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — diversion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:word:diversion:audio"
+        ],
+        "accessibilityLabel": "Картка слова — diversion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:word:diversion:audio",
+            "transcript": "diversion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:word:diversion:r1",
+              "targetText": "diversion",
+              "meaningByLocale": {
+                "ru": "объезд, обходной маршрут.",
+                "uk": "обʼїзд, обхідний маршрут."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diversion",
+            "definitionByLocale": {
+              "ru": "объезд, обходной маршрут.",
+              "uk": "обʼїзд, обхідний маршрут."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Йому доводиться їхати обʼїздом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Йому доводиться їхати обʼїздом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has to follow the diversion.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ему приходится ехать по объезду».",
+            "uk": "Скажіть із have to або has to: «Йому доводиться їхати обʼїздом»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "to",
+            "follow",
+            "the",
+            "diversion"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i11:r1",
+            "text": "He has to follow the diversion."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i11:r2",
+            "text": "He can follow the diversion."
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i11:r3",
+            "text": "He wants to follow the diversion."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i11:audio",
+            "transcript": "He has to follow the diversion."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-12:i11:r1",
+              "targetText": "He has to follow the diversion.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i11:r2",
+              "targetText": "He can follow the diversion.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i11:r3",
+              "targetText": "He wants to follow the diversion.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to follow the diversion.",
+                "uk": "У записі звучить He has to follow the diversion."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to follow the diversion.",
+                "uk": "У записі звучить He has to follow the diversion."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-12:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-12:i12:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "He ___ follow the diversion.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-12:i12:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i12:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i12:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-12:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-12:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-12:i13:p1",
+              "target": "announcement",
+              "meaningByLocale": {
+                "ru": "объявление",
+                "uk": "оголошення"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-12:i13:p2",
+              "target": "connection",
+              "meaningByLocale": {
+                "ru": "пересадка, стыковка",
+                "uk": "пересадка, стикування"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-12:i13:p3",
+              "target": "disruption",
+              "meaningByLocale": {
+                "ru": "сбой, нарушение обычной работы",
+                "uk": "збій, порушення звичної роботи"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-12:i13:p4",
+              "target": "diversion",
+              "meaningByLocale": {
+                "ru": "объезд, обходной маршрут",
+                "uk": "обʼїзд, обхідний маршрут"
+              }
+            }
+          ],
+          "leftColumn": [
+            "announcement",
+            "connection",
+            "disruption",
+            "diversion"
+          ],
+          "rightColumn": [
+            "оголошення",
+            "пересадка, стикування",
+            "збій, порушення звичної роботи",
+            "обʼїзд, обхідний маршрут"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: ввічливе прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: ввічливе прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: кількість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що потрібно прослухати оголошення",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що потрібно прослухати оголошення",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i16:audio",
+            "transcript": "I have to listen to the announcement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have to listen to the announcement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-12:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що йому доводиться їхати обʼїздом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-12:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що йому доводиться їхати обʼїздом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-12:i17:audio",
+            "transcript": "He has to follow the diversion."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He has to follow the diversion.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-12:word:announcement",
+      "correctText": "announcement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i01",
+      "correctText": "I have to listen to the announcement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i02",
+      "correctText": "I have to listen to the announcement.",
+      "correctResponseId": "en:lesson-20:session-12:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i03",
+      "correctText": "have to",
+      "correctResponseId": "en:lesson-20:session-12:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:word:connection",
+      "correctText": "connection",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i04",
+      "correctText": "She has to check the connection.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i05",
+      "correctText": "She has to check the connection.",
+      "correctResponseId": "en:lesson-20:session-12:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i06",
+      "correctText": "has to",
+      "correctResponseId": "en:lesson-20:session-12:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:word:disruption",
+      "correctText": "disruption",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i07",
+      "correctText": "We have to ask about the disruption.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i08",
+      "correctText": "We have to ask about the disruption.",
+      "correctResponseId": "en:lesson-20:session-12:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i09",
+      "correctText": "have to",
+      "correctResponseId": "en:lesson-20:session-12:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:word:diversion",
+      "correctText": "diversion",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i10",
+      "correctText": "He has to follow the diversion.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i11",
+      "correctText": "He has to follow the diversion.",
+      "correctResponseId": "en:lesson-20:session-12:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i12",
+      "correctText": "has to",
+      "correctResponseId": "en:lesson-20:session-12:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i15",
+      "correctText": "Could I have a bottle of water?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i16",
+      "correctText": "I have to listen to the announcement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-12:i17",
+      "correctText": "He has to follow the diversion.",
+      "correctResponseId": null
+    }
+  ]
+}

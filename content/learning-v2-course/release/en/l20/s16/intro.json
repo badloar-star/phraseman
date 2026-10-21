@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "have/has to + base verb",
+    "uk": "have/has to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Отказать в чрезмерной просьбе",
+        "uk": "Відмовити в надмірному проханні"
+      },
+      "bodyByLocale": {
+        "ru": "Unreasonable — неразумный, чрезмерный. Вас попросили выполнить недельную работу за час, и вы считаете просьбу невыполнимой. Вы объясняете, почему приходится отказать. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Unreasonable — нерозумний, надмірний. Вас попросили виконати тижневу роботу за годину, і ви вважаєте прохання нездійсненним. Ви пояснюєте, чому доводиться відмовити. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-16:intro1:r1",
+              "text": "I have to refuse this unreasonable request."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro1:r2",
+              "text": "I has to refuse this unreasonable request."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro1:r3",
+              "text": "I have refuse this unreasonable request."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-16:intro1:r1",
+              "text": "I have to refuse this unreasonable request."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro1:r2",
+              "text": "I has to refuse this unreasonable request."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro1:r3",
+              "text": "I have refuse this unreasonable request."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Неприятный разговор",
+        "uk": "Неприємна розмова"
+      },
+      "bodyByLocale": {
+        "ru": "Unpleasant — неприятный. Клиент грубо разговаривает, а сотруднице приходится с ним общаться. Uncertain — неопределённый: вы пока не знаете, где будете работать через год, но всё равно строите планы. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Unpleasant — неприємний. Клієнт грубо розмовляє, а працівниці доводиться з ним спілкуватися. Uncertain — невизначений: ви поки не знаєте, де працюватимете через рік, але все одно будуєте плани. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-16:intro2:r1",
+              "text": "She has to deal with an unpleasant customer."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro2:r2",
+              "text": "She have to deal with an unpleasant customer."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro2:r3",
+              "text": "She has deal with an unpleasant customer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-16:intro2:r1",
+              "text": "She has to deal with an unpleasant customer."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro2:r2",
+              "text": "She have to deal with an unpleasant customer."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro2:r3",
+              "text": "She has deal with an unpleasant customer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Неожиданная проблема",
+        "uk": "Несподівана проблема"
+      },
+      "bodyByLocale": {
+        "ru": "Unexpected — неожиданный, такой, которого не ожидали. Перед встречей обнаружилась проблема с помещением, и знакомому приходится её решать. Это слово не означает обязательно плохой: приятная новость тоже может быть unexpected. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Unexpected — несподіваний, такий, якого не очікували. Перед зустріччю виявилася проблема з приміщенням, і знайомому доводиться її розвʼязувати. Це слово не означає обовʼязково поганий: приємна новина теж може бути unexpected. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-16:intro3:r1",
+              "text": "He has to solve an unexpected problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro3:r2",
+              "text": "He have to solve an unexpected problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro3:r3",
+              "text": "He has solve an unexpected problem."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-16:intro3:r1",
+              "text": "He has to solve an unexpected problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro3:r2",
+              "text": "He have to solve an unexpected problem."
+            },
+            {
+              "responseId": "en:lesson-20:session-16:intro3:r3",
+              "text": "He has solve an unexpected problem."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1ba03534c4bd500c94455943747f870c2e0a55b968a955596d6a2917457ea2e7"
+}

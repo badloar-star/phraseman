@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-20:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-20:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-09:intro1:r2": {
+          "ru": "С этим подлежащим используйте have to.",
+          "uk": "Із цим підметом використайте have to."
+        },
+        "en:lesson-20:session-09:intro1:r3": {
+          "ru": "I have read означает «я уже прочитал». Для необходимости нужно I have to read.",
+          "uk": "I have read означає «я вже прочитав». Для необхідності потрібно I have to read."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-09:intro2:r2": {
+          "ru": "С she используйте has to.",
+          "uk": "З she використайте has to."
+        },
+        "en:lesson-20:session-09:intro2:r3": {
+          "ru": "В конструкции нужно to перед глаголом.",
+          "uk": "У конструкції потрібне to перед дієсловом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-09:intro3:r2": {
+          "ru": "С этим подлежащим используйте have to.",
+          "uk": "Із цим підметом використайте have to."
+        },
+        "en:lesson-20:session-09:intro3:r3": {
+          "ru": "В конструкции нужно to перед глаголом.",
+          "uk": "У конструкції потрібне to перед дієсловом."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7478298cf65ee11308b71077a71d309652a44950113bd5d2ccac0148566d628f"
+}

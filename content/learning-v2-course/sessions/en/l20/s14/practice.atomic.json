@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-20:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-20:session-14:word:purchase",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — purchase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:word:purchase:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — purchase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:word:purchase:audio",
+            "transcript": "purchase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:word:purchase:r1",
+              "targetText": "purchase",
+              "meaningByLocale": {
+                "ru": "покупка.",
+                "uk": "покупка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "purchase",
+            "definitionByLocale": {
+              "ru": "покупка.",
+              "uk": "покупка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Мне нужно показать подтверждение покупки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Мне нужно показать подтверждение покупки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have to show proof of purchase.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Мне нужно показать подтверждение покупки».",
+            "uk": "Скажіть із have to або has to: «Мені потрібно показати підтвердження покупки»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "to",
+            "show",
+            "proof",
+            "of",
+            "purchase"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i02:r1",
+            "text": "I have to show proof of purchase."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i02:r2",
+            "text": "I can show proof of purchase."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i02:r3",
+            "text": "I want to show proof of purchase."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i02:audio",
+            "transcript": "I have to show proof of purchase."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:i02:r1",
+              "targetText": "I have to show proof of purchase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i02:r2",
+              "targetText": "I can show proof of purchase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i02:r3",
+              "targetText": "I want to show proof of purchase.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to show proof of purchase.",
+                "uk": "У записі звучить I have to show proof of purchase."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to show proof of purchase.",
+                "uk": "У записі звучить I have to show proof of purchase."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i03:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ show proof of purchase.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-14:i03:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i03:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i03:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:word:damaged",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — damaged",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:word:damaged:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — damaged",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:word:damaged:audio",
+            "transcript": "damaged"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:word:damaged:r1",
+              "targetText": "damaged",
+              "meaningByLocale": {
+                "ru": "повреждённый.",
+                "uk": "пошкоджений."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "damaged",
+            "definitionByLocale": {
+              "ru": "повреждённый.",
+              "uk": "пошкоджений."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Ей нужно заменить повреждённую коробку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Ей нужно заменить повреждённую коробку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has to replace the damaged box.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ей нужно заменить повреждённую коробку».",
+            "uk": "Скажіть із have to або has to: «Їй потрібно замінити пошкоджену коробку»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "to",
+            "replace",
+            "the",
+            "damaged",
+            "box"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i05:r1",
+            "text": "She has to replace the damaged box."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i05:r2",
+            "text": "She can replace the damaged box."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i05:r3",
+            "text": "She wants to replace the damaged box."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i05:audio",
+            "transcript": "She has to replace the damaged box."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:i05:r1",
+              "targetText": "She has to replace the damaged box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i05:r2",
+              "targetText": "She can replace the damaged box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i05:r3",
+              "targetText": "She wants to replace the damaged box.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to replace the damaged box.",
+                "uk": "У записі звучить She has to replace the damaged box."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to replace the damaged box.",
+                "uk": "У записі звучить She has to replace the damaged box."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "She ___ replace the damaged box.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-14:i06:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i06:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:word:faulty",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — faulty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:word:faulty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — faulty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:word:faulty:audio",
+            "transcript": "faulty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:word:faulty:r1",
+              "targetText": "faulty",
+              "meaningByLocale": {
+                "ru": "неисправный.",
+                "uk": "несправний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "faulty",
+            "definitionByLocale": {
+              "ru": "неисправный.",
+              "uk": "несправний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Нам нужно вернуть неисправную лампу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Нам нужно вернуть неисправную лампу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have to return the faulty lamp.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Нам нужно вернуть неисправную лампу».",
+            "uk": "Скажіть із have to або has to: «Нам потрібно повернути несправну лампу»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "return",
+            "the",
+            "faulty",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i08:r1",
+            "text": "We have to return the faulty lamp."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i08:r2",
+            "text": "We can return the faulty lamp."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i08:r3",
+            "text": "We want to return the faulty lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i08:audio",
+            "transcript": "We have to return the faulty lamp."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:i08:r1",
+              "targetText": "We have to return the faulty lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i08:r2",
+              "targetText": "We can return the faulty lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i08:r3",
+              "targetText": "We want to return the faulty lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to return the faulty lamp.",
+                "uk": "У записі звучить We have to return the faulty lamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to return the faulty lamp.",
+                "uk": "У записі звучить We have to return the faulty lamp."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i09:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ return the faulty lamp.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-14:i09:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i09:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i09:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:word:guarantee",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guarantee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:word:guarantee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guarantee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:word:guarantee:audio",
+            "transcript": "guarantee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:word:guarantee:r1",
+              "targetText": "guarantee",
+              "meaningByLocale": {
+                "ru": "гарантия.",
+                "uk": "гарантія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guarantee",
+            "definitionByLocale": {
+              "ru": "гарантия.",
+              "uk": "гарантія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с have to или has to: «Ему нужно проверить гарантию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с have to или has to: «Ему нужно проверить гарантию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has to check the guarantee.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ему нужно проверить гарантию».",
+            "uk": "Скажіть із have to або has to: «Йому потрібно перевірити гарантію»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "to",
+            "check",
+            "the",
+            "guarantee"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i11:r1",
+            "text": "He has to check the guarantee."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i11:r2",
+            "text": "He can check the guarantee."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i11:r3",
+            "text": "He wants to check the guarantee."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i11:audio",
+            "transcript": "He has to check the guarantee."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:i11:r1",
+              "targetText": "He has to check the guarantee.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i11:r2",
+              "targetText": "He can check the guarantee.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i11:r3",
+              "targetText": "He wants to check the guarantee.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to check the guarantee.",
+                "uk": "У записі звучить He has to check the guarantee."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to check the guarantee.",
+                "uk": "У записі звучить He has to check the guarantee."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу о необходимости.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i12:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу о необходимости.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "He ___ check the guarantee.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-14:i12:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i12:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i12:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Дополните фразу о необходимости.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу о необходимости.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-14:i13:p1",
+              "target": "purchase",
+              "meaningByLocale": {
+                "ru": "покупка",
+                "uk": "покупка"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-14:i13:p2",
+              "target": "damaged",
+              "meaningByLocale": {
+                "ru": "повреждённый",
+                "uk": "пошкоджений"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-14:i13:p3",
+              "target": "faulty",
+              "meaningByLocale": {
+                "ru": "неисправный",
+                "uk": "несправний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-14:i13:p4",
+              "target": "guarantee",
+              "meaningByLocale": {
+                "ru": "гарантия",
+                "uk": "гарантія"
+              }
+            }
+          ],
+          "leftColumn": [
+            "purchase",
+            "damaged",
+            "faulty",
+            "guarantee"
+          ],
+          "rightColumn": [
+            "покупка",
+            "повреждённый",
+            "неисправный",
+            "гарантия"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: вежливая просьба",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: вежливая просьба",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: количество",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что нужно подтвердить покупку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что нужно подтвердить покупку",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i16:audio",
+            "transcript": "I have to show proof of purchase."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have to show proof of purchase.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что нужно вернуть неисправную лампу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что нужно вернуть неисправную лампу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i17:audio",
+            "transcript": "We have to return the faulty lamp."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have to return the faulty lamp.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-20:session-14:word:purchase",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — purchase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:word:purchase:audio"
+        ],
+        "accessibilityLabel": "Картка слова — purchase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:word:purchase:audio",
+            "transcript": "purchase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:word:purchase:r1",
+              "targetText": "purchase",
+              "meaningByLocale": {
+                "ru": "покупка.",
+                "uk": "покупка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "purchase",
+            "definitionByLocale": {
+              "ru": "покупка.",
+              "uk": "покупка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Мені потрібно показати підтвердження покупки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Мені потрібно показати підтвердження покупки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have to show proof of purchase.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Мне нужно показать подтверждение покупки».",
+            "uk": "Скажіть із have to або has to: «Мені потрібно показати підтвердження покупки»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "to",
+            "show",
+            "proof",
+            "of",
+            "purchase"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i02:r1",
+            "text": "I have to show proof of purchase."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i02:r2",
+            "text": "I can show proof of purchase."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i02:r3",
+            "text": "I want to show proof of purchase."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i02:audio",
+            "transcript": "I have to show proof of purchase."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:i02:r1",
+              "targetText": "I have to show proof of purchase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i02:r2",
+              "targetText": "I can show proof of purchase.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i02:r3",
+              "targetText": "I want to show proof of purchase.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to show proof of purchase.",
+                "uk": "У записі звучить I have to show proof of purchase."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have to show proof of purchase.",
+                "uk": "У записі звучить I have to show proof of purchase."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i03:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "I ___ show proof of purchase.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-14:i03:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i03:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i03:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:word:damaged",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — damaged",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:word:damaged:audio"
+        ],
+        "accessibilityLabel": "Картка слова — damaged",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:word:damaged:audio",
+            "transcript": "damaged"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:word:damaged:r1",
+              "targetText": "damaged",
+              "meaningByLocale": {
+                "ru": "повреждённый.",
+                "uk": "пошкоджений."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "damaged",
+            "definitionByLocale": {
+              "ru": "повреждённый.",
+              "uk": "пошкоджений."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Їй потрібно замінити пошкоджену коробку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Їй потрібно замінити пошкоджену коробку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has to replace the damaged box.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ей нужно заменить повреждённую коробку».",
+            "uk": "Скажіть із have to або has to: «Їй потрібно замінити пошкоджену коробку»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "to",
+            "replace",
+            "the",
+            "damaged",
+            "box"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i05:r1",
+            "text": "She has to replace the damaged box."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i05:r2",
+            "text": "She can replace the damaged box."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i05:r3",
+            "text": "She wants to replace the damaged box."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i05:audio",
+            "transcript": "She has to replace the damaged box."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:i05:r1",
+              "targetText": "She has to replace the damaged box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i05:r2",
+              "targetText": "She can replace the damaged box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i05:r3",
+              "targetText": "She wants to replace the damaged box.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to replace the damaged box.",
+                "uk": "У записі звучить She has to replace the damaged box."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has to replace the damaged box.",
+                "uk": "У записі звучить She has to replace the damaged box."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i06:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "She ___ replace the damaged box.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-14:i06:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i06:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i06:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:word:faulty",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — faulty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:word:faulty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — faulty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:word:faulty:audio",
+            "transcript": "faulty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:word:faulty:r1",
+              "targetText": "faulty",
+              "meaningByLocale": {
+                "ru": "неисправный.",
+                "uk": "несправний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "faulty",
+            "definitionByLocale": {
+              "ru": "неисправный.",
+              "uk": "несправний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Нам потрібно повернути несправну лампу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Нам потрібно повернути несправну лампу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have to return the faulty lamp.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Нам нужно вернуть неисправную лампу».",
+            "uk": "Скажіть із have to або has to: «Нам потрібно повернути несправну лампу»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "to",
+            "return",
+            "the",
+            "faulty",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i08:r1",
+            "text": "We have to return the faulty lamp."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i08:r2",
+            "text": "We can return the faulty lamp."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i08:r3",
+            "text": "We want to return the faulty lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i08:audio",
+            "transcript": "We have to return the faulty lamp."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:i08:r1",
+              "targetText": "We have to return the faulty lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i08:r2",
+              "targetText": "We can return the faulty lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i08:r3",
+              "targetText": "We want to return the faulty lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to return the faulty lamp.",
+                "uk": "У записі звучить We have to return the faulty lamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have to return the faulty lamp.",
+                "uk": "У записі звучить We have to return the faulty lamp."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i09:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "We ___ return the faulty lamp.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-14:i09:r1",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i09:r2",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i09:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:word:guarantee",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guarantee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:word:guarantee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guarantee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:word:guarantee:audio",
+            "transcript": "guarantee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:word:guarantee:r1",
+              "targetText": "guarantee",
+              "meaningByLocale": {
+                "ru": "гарантия.",
+                "uk": "гарантія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guarantee",
+            "definitionByLocale": {
+              "ru": "гарантия.",
+              "uk": "гарантія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із have to або has to: «Йому потрібно перевірити гарантію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із have to або has to: «Йому потрібно перевірити гарантію».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has to check the guarantee.",
+          "localizedMeaning": {
+            "ru": "Скажите с have to или has to: «Ему нужно проверить гарантию».",
+            "uk": "Скажіть із have to або has to: «Йому потрібно перевірити гарантію»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "to",
+            "check",
+            "the",
+            "guarantee"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i11:r1",
+            "text": "He has to check the guarantee."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i11:r2",
+            "text": "He can check the guarantee."
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i11:r3",
+            "text": "He wants to check the guarantee."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i11:audio",
+            "transcript": "He has to check the guarantee."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-20:session-14:i11:r1",
+              "targetText": "He has to check the guarantee.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i11:r2",
+              "targetText": "He can check the guarantee.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i11:r3",
+              "targetText": "He wants to check the guarantee.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to check the guarantee.",
+                "uk": "У записі звучить He has to check the guarantee."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has to check the guarantee.",
+                "uk": "У записі звучить He has to check the guarantee."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу про необхідність.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-20:session-14:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-14:i12:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу про необхідність.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу о необходимости.",
+            "uk": "Доповніть фразу про необхідність."
+          },
+          "gappedTargetPhrase": "He ___ check the guarantee.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-20:session-14:i12:r1",
+              "text": "has to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i12:r2",
+              "text": "have to"
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i12:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Доповніть фразу про необхідність.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-20:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+                "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+              }
+            },
+            {
+              "responseId": "en:lesson-20:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу про необхідність.",
+              "feedbackByLocale": {
+                "ru": "Перед глаголом нужно to.",
+                "uk": "Перед дієсловом потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-20:session-14:i13:p1",
+              "target": "purchase",
+              "meaningByLocale": {
+                "ru": "покупка",
+                "uk": "покупка"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-14:i13:p2",
+              "target": "damaged",
+              "meaningByLocale": {
+                "ru": "повреждённый",
+                "uk": "пошкоджений"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-14:i13:p3",
+              "target": "faulty",
+              "meaningByLocale": {
+                "ru": "неисправный",
+                "uk": "несправний"
+              }
+            },
+            {
+              "pairId": "en:lesson-20:session-14:i13:p4",
+              "target": "guarantee",
+              "meaningByLocale": {
+                "ru": "гарантия",
+                "uk": "гарантія"
+              }
+            }
+          ],
+          "leftColumn": [
+            "purchase",
+            "damaged",
+            "faulty",
+            "guarantee"
+          ],
+          "rightColumn": [
+            "покупка",
+            "пошкоджений",
+            "несправний",
+            "гарантія"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: ввічливе прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: ввічливе прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i14:audio",
+            "transcript": "Could I ask a question?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I ask a question?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "ask",
+            "a",
+            "question"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: кількість",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i15:audio",
+            "transcript": "Could I have a bottle of water?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I have a bottle of water?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "have",
+            "a",
+            "bottle",
+            "of",
+            "water"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що потрібно підтвердити покупку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що потрібно підтвердити покупку",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i16:audio",
+            "transcript": "I have to show proof of purchase."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have to show proof of purchase.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-20:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що потрібно повернути несправну лампу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-20:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що потрібно повернути несправну лампу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-20:session-14:i17:audio",
+            "transcript": "We have to return the faulty lamp."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have to return the faulty lamp.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-20:session-14:word:purchase",
+      "correctText": "purchase",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i01",
+      "correctText": "I have to show proof of purchase.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i02",
+      "correctText": "I have to show proof of purchase.",
+      "correctResponseId": "en:lesson-20:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i03",
+      "correctText": "have to",
+      "correctResponseId": "en:lesson-20:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:word:damaged",
+      "correctText": "damaged",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i04",
+      "correctText": "She has to replace the damaged box.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i05",
+      "correctText": "She has to replace the damaged box.",
+      "correctResponseId": "en:lesson-20:session-14:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i06",
+      "correctText": "has to",
+      "correctResponseId": "en:lesson-20:session-14:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:word:faulty",
+      "correctText": "faulty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i07",
+      "correctText": "We have to return the faulty lamp.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i08",
+      "correctText": "We have to return the faulty lamp.",
+      "correctResponseId": "en:lesson-20:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i09",
+      "correctText": "have to",
+      "correctResponseId": "en:lesson-20:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:word:guarantee",
+      "correctText": "guarantee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i10",
+      "correctText": "He has to check the guarantee.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i11",
+      "correctText": "He has to check the guarantee.",
+      "correctResponseId": "en:lesson-20:session-14:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i12",
+      "correctText": "has to",
+      "correctResponseId": "en:lesson-20:session-14:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i14",
+      "correctText": "Could I ask a question?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i15",
+      "correctText": "Could I have a bottle of water?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i16",
+      "correctText": "I have to show proof of purchase.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-14:i17",
+      "correctText": "We have to return the faulty lamp.",
+      "correctResponseId": null
+    }
+  ]
+}

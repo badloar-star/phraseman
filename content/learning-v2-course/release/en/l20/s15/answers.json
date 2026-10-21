@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-15:word:staff",
+    "correctText": "staff",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i01",
+    "correctText": "I have to inform the staff.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i02",
+    "correctText": "I have to inform the staff.",
+    "correctResponseId": "en:lesson-20:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i03",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:word:employee",
+    "correctText": "employee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i04",
+    "correctText": "She has to train a new employee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i05",
+    "correctText": "She has to train a new employee.",
+    "correctResponseId": "en:lesson-20:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i06",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:word:employer",
+    "correctText": "employer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i07",
+    "correctText": "We have to contact the employer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i08",
+    "correctText": "We have to contact the employer.",
+    "correctResponseId": "en:lesson-20:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i09",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:word:self-employed",
+    "correctText": "self-employed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i10",
+    "correctText": "He has to speak to a self-employed builder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i11",
+    "correctText": "He has to speak to a self-employed builder.",
+    "correctResponseId": "en:lesson-20:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i12",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i13",
+    "correctText": "en:lesson-20:session-15:i13:p1=staff\nen:lesson-20:session-15:i13:p2=employee\nen:lesson-20:session-15:i13:p3=employer\nen:lesson-20:session-15:i13:p4=self-employed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i16",
+    "correctText": "I have to inform the staff.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-15:i17",
+    "correctText": "She has to train a new employee.",
+    "correctResponseId": null
+  }
+]

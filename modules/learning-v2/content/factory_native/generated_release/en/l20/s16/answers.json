@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-16:word:unreasonable",
+    "correctText": "unreasonable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i01",
+    "correctText": "I have to refuse this unreasonable request.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i02",
+    "correctText": "I have to refuse this unreasonable request.",
+    "correctResponseId": "en:lesson-20:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i03",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:word:unpleasant",
+    "correctText": "unpleasant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i04",
+    "correctText": "She has to deal with an unpleasant customer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i05",
+    "correctText": "She has to deal with an unpleasant customer.",
+    "correctResponseId": "en:lesson-20:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i06",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:word:uncertain",
+    "correctText": "uncertain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i07",
+    "correctText": "We have to plan for an uncertain future.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i08",
+    "correctText": "We have to plan for an uncertain future.",
+    "correctResponseId": "en:lesson-20:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i09",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:word:unexpected",
+    "correctText": "unexpected",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i10",
+    "correctText": "He has to solve an unexpected problem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i11",
+    "correctText": "He has to solve an unexpected problem.",
+    "correctResponseId": "en:lesson-20:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i12",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i13",
+    "correctText": "en:lesson-20:session-16:i13:p1=unreasonable\nen:lesson-20:session-16:i13:p2=unpleasant\nen:lesson-20:session-16:i13:p3=uncertain\nen:lesson-20:session-16:i13:p4=unexpected",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i16",
+    "correctText": "I have to refuse this unreasonable request.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-16:i17",
+    "correctText": "He has to solve an unexpected problem.",
+    "correctResponseId": null
+  }
+]

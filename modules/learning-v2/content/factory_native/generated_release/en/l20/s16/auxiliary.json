@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-20:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-20:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-16:intro1:r2": {
+          "ru": "С этим подлежащим используйте have to.",
+          "uk": "Із цим підметом використайте have to."
+        },
+        "en:lesson-20:session-16:intro1:r3": {
+          "ru": "В конструкции нужно to перед глаголом.",
+          "uk": "У конструкції потрібне to перед дієсловом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-16:intro2:r2": {
+          "ru": "С he или she используйте has to.",
+          "uk": "З he або she використайте has to."
+        },
+        "en:lesson-20:session-16:intro2:r3": {
+          "ru": "В конструкции нужно to перед глаголом.",
+          "uk": "У конструкції потрібне to перед дієсловом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-20:session-16:intro3:r2": {
+          "ru": "С he или she используйте has to.",
+          "uk": "З he або she використайте has to."
+        },
+        "en:lesson-20:session-16:intro3:r3": {
+          "ru": "В конструкции нужно to перед глаголом.",
+          "uk": "У конструкції потрібне to перед дієсловом."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c5e4f58a967617bda0181a8e56e824f4aaa2d80a34f050bf5dbd1895471e421e"
+}

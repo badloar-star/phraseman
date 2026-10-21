@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-09:word:contract",
+    "correctText": "contract",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i01",
+    "correctText": "I have to read the contract.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i02",
+    "correctText": "I have to read the contract.",
+    "correctResponseId": "en:lesson-20:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i03",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:word:occupation",
+    "correctText": "occupation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i04",
+    "correctText": "She has to enter her occupation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i05",
+    "correctText": "She has to enter her occupation.",
+    "correctResponseId": "en:lesson-20:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i06",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:word:position",
+    "correctText": "position",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i07",
+    "correctText": "He has to apply for this position.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i08",
+    "correctText": "He has to apply for this position.",
+    "correctResponseId": "en:lesson-20:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i09",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:word:applicant",
+    "correctText": "applicant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i10",
+    "correctText": "We have to call the applicant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i11",
+    "correctText": "We have to call the applicant.",
+    "correctResponseId": "en:lesson-20:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i12",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i13",
+    "correctText": "en:lesson-20:session-09:i13:p1=contract\nen:lesson-20:session-09:i13:p2=occupation\nen:lesson-20:session-09:i13:p3=position\nen:lesson-20:session-09:i13:p4=applicant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i16",
+    "correctText": "I have to read the contract.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-09:i17",
+    "correctText": "She has to enter her occupation.",
+    "correctResponseId": null
+  }
+]

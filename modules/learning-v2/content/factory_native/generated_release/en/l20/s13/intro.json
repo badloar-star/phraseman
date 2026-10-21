@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "have/has to + base verb",
+    "uk": "have/has to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Указать гражданство",
+        "uk": "Указати громадянство"
+      },
+      "bodyByLocale": {
+        "ru": "Nationality — национальная принадлежность; в поле нашей анкеты спрашивают гражданство, например Italian. Это не вопрос о родном языке или о городе рождения. У каждой реальной формы свои пояснения, а здесь заполняем учебный пример. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Nationality — національна належність; у полі нашої анкети запитують громадянство, наприклад Italian. Це не запитання про рідну мову чи місто народження. Кожна реальна форма має свої пояснення, а тут заповнюємо навчальний приклад. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-13:intro1:r1",
+              "text": "I have to enter my nationality."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro1:r2",
+              "text": "I has to enter my nationality."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro1:r3",
+              "text": "I have enter my nationality."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-13:intro1:r1",
+              "text": "I have to enter my nationality."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro1:r2",
+              "text": "I has to enter my nationality."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro1:r3",
+              "text": "I have enter my nationality."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Указать семейное положение",
+        "uk": "Указати сімейний стан"
+      },
+      "bodyByLocale": {
+        "ru": "Marital status — семейное положение, например single или married. Initials — первые буквы имени и фамилии: у Anna Smith это A. S. В нашей форме нужно написать инициалы в отдельном поле. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Marital status — сімейний стан, наприклад single або married. Initials — перші літери імені та прізвища: в Anna Smith це A. S. У нашій формі потрібно написати ініціали в окремому полі. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-13:intro2:r1",
+              "text": "She has to enter her marital status."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro2:r2",
+              "text": "She have to enter her marital status."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro2:r3",
+              "text": "She has enter her marital status."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-13:intro2:r1",
+              "text": "She has to enter her marital status."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro2:r2",
+              "text": "She have to enter her marital status."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro2:r3",
+              "text": "She has enter her marital status."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Принести документ",
+        "uk": "Принести документ"
+      },
+      "bodyByLocale": {
+        "ru": "Document — документ, например справка или договор. Для назначенной встречи знакомого попросили принести конкретный документ. С he используем has to, затем bring без окончания. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Document — документ, наприклад довідка або договір. На призначену зустріч знайомого попросили принести певний документ. З he використовуємо has to, далі bring без закінчення. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-13:intro3:r1",
+              "text": "He has to bring this document."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro3:r2",
+              "text": "He have to bring this document."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro3:r3",
+              "text": "He has bring this document."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-13:intro3:r1",
+              "text": "He has to bring this document."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro3:r2",
+              "text": "He have to bring this document."
+            },
+            {
+              "responseId": "en:lesson-20:session-13:intro3:r3",
+              "text": "He has bring this document."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9a27d312ebb6af5a9a560ce8ad31579eced582ab68ee0ad3f289b36bae9c623a"
+}

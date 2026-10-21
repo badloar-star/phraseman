@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "have/has to + base verb",
+    "uk": "have/has to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Послушать объявление",
+        "uk": "Послухати оголошення"
+      },
+      "bodyByLocale": {
+        "ru": "Announcement — объявление, в этой сцене сообщение по громкой связи на вокзале. Платформу изменили, и вам нужно дослушать информацию. После listen перед тем, что слушаем, сохраняем to: listen to the announcement. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Announcement — оголошення, у цій сцені повідомлення через гучномовець на вокзалі. Платформу змінили, і вам потрібно дослухати інформацію. Після listen перед тим, що слухаємо, зберігаємо to: listen to the announcement. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-12:intro1:r1",
+              "text": "I have to listen to the announcement."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro1:r2",
+              "text": "I has to listen to the announcement."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro1:r3",
+              "text": "I have listen to the announcement."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-12:intro1:r1",
+              "text": "I have to listen to the announcement."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro1:r2",
+              "text": "I has to listen to the announcement."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro1:r3",
+              "text": "I have listen to the announcement."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверить пересадку",
+        "uk": "Перевірити пересадку"
+      },
+      "bodyByLocale": {
+        "ru": "Connection здесь — пересадка между поездами. Знакомой нужно проверить, успеет ли она на следующий поезд. Disruption — сбой в обычной работе: поезда идут не по расписанию, и вы хотите узнать у сотрудника, что случилось. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Connection тут — пересадка між поїздами. Знайомій потрібно перевірити, чи встигне вона на наступний поїзд. Disruption — збій у звичній роботі: поїзди йдуть не за розкладом, і ви хочете дізнатися в працівника, що сталося. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-12:intro2:r1",
+              "text": "She has to check the connection."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro2:r2",
+              "text": "She have to check the connection."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro2:r3",
+              "text": "She has check the connection."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-12:intro2:r1",
+              "text": "She has to check the connection."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro2:r2",
+              "text": "She have to check the connection."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro2:r3",
+              "text": "She has check the connection."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поехать в объезд",
+        "uk": "Поїхати в обʼїзд"
+      },
+      "bodyByLocale": {
+        "ru": "Diversion — объезд, это слово часто встречается на дорожных указателях в Британии. Прямая дорога закрыта, и водителю приходится следовать указанному маршруту. Знакомое detour передаёт близкий смысл. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Diversion — обʼїзд, це слово часто трапляється на дорожніх покажчиках у Британії. Пряма дорога закрита, і водієві доводиться їхати вказаним маршрутом. Знайоме detour передає близький зміст. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-12:intro3:r1",
+              "text": "He has to follow the diversion."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro3:r2",
+              "text": "He have to follow the diversion."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro3:r3",
+              "text": "He has follow the diversion."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-12:intro3:r1",
+              "text": "He has to follow the diversion."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro3:r2",
+              "text": "He have to follow the diversion."
+            },
+            {
+              "responseId": "en:lesson-20:session-12:intro3:r3",
+              "text": "He has follow the diversion."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "66a115ea4759827f05e9e0cf539ee9a813e81ba20549f4d99211a4d46e50e1e9"
+}

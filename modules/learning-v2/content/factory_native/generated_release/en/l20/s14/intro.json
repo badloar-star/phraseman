@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-20:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "have/has to + base verb",
+    "uk": "have/has to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-20:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подтвердить покупку",
+        "uk": "Підтвердити покупку"
+      },
+      "bodyByLocale": {
+        "ru": "Purchase — покупка. Магазин в нашей сцене попросил показать proof of purchase — подтверждение покупки, например чек. Слово purchase здесь существительное, а не команда купить. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Purchase — покупка. Магазин у нашій сцені попросив показати proof of purchase — підтвердження покупки, наприклад чек. Слово purchase тут іменник, а не команда купити. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-14:intro1:r1",
+              "text": "I have to show proof of purchase."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro1:r2",
+              "text": "I has to show proof of purchase."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro1:r3",
+              "text": "I have show proof of purchase."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-14:intro1:r1",
+              "text": "I have to show proof of purchase."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro1:r2",
+              "text": "I has to show proof of purchase."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro1:r3",
+              "text": "I have show proof of purchase."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-20:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Повреждённая коробка",
+        "uk": "Пошкоджена коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Damaged — повреждённый: коробка порвалась при перевозке, и её нужно заменить. Faulty — неисправный: лампа выглядит целой, но не работает как следует. Эти слова описывают разные проблемы. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Damaged — пошкоджений: коробка порвалася під час перевезення, і її потрібно замінити. Faulty — несправний: лампа виглядає цілою, але не працює як слід. Ці слова описують різні проблеми. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-14:intro2:r1",
+              "text": "She has to replace the damaged box."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro2:r2",
+              "text": "She have to replace the damaged box."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro2:r3",
+              "text": "She has replace the damaged box."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-14:intro2:r1",
+              "text": "She has to replace the damaged box."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro2:r2",
+              "text": "She have to replace the damaged box."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro2:r3",
+              "text": "She has replace the damaged box."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-20:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить гарантию",
+        "uk": "Перевірити гарантію"
+      },
+      "bodyByLocale": {
+        "ru": "Guarantee — гарантия. Знакомый ищет информацию о гарантии на товар. В этой ситуации слово близко к знакомому warranty; конкретные условия можно узнать из документа. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
+        "uk": "Guarantee — гарантія. Знайомий шукає інформацію про гарантію на товар. У цій ситуації слово близьке до знайомого warranty; конкретні умови можна дізнатися з документа. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+      },
+      "question": {
+        "interactionId": "en:lesson-20:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-20:session-14:intro3:r1",
+              "text": "He has to check the guarantee."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro3:r2",
+              "text": "He have to check the guarantee."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro3:r3",
+              "text": "He has check the guarantee."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-20:session-14:intro3:r1",
+              "text": "He has to check the guarantee."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro3:r2",
+              "text": "He have to check the guarantee."
+            },
+            {
+              "responseId": "en:lesson-20:session-14:intro3:r3",
+              "text": "He has check the guarantee."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f1322e488510c9621cd04478b27e74da0eaa029043e18a9d69767e888b225579"
+}

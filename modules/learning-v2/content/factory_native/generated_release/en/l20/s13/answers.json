@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-13:word:nationality",
+    "correctText": "nationality",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i01",
+    "correctText": "I have to enter my nationality.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i02",
+    "correctText": "I have to enter my nationality.",
+    "correctResponseId": "en:lesson-20:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i03",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:word:marital-status",
+    "correctText": "marital status",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i04",
+    "correctText": "She has to enter her marital status.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i05",
+    "correctText": "She has to enter her marital status.",
+    "correctResponseId": "en:lesson-20:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i06",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:word:initials",
+    "correctText": "initials",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i07",
+    "correctText": "We have to write our initials here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i08",
+    "correctText": "We have to write our initials here.",
+    "correctResponseId": "en:lesson-20:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i09",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:word:document",
+    "correctText": "document",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i10",
+    "correctText": "He has to bring this document.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i11",
+    "correctText": "He has to bring this document.",
+    "correctResponseId": "en:lesson-20:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i12",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i13",
+    "correctText": "en:lesson-20:session-13:i13:p1=nationality\nen:lesson-20:session-13:i13:p2=marital status\nen:lesson-20:session-13:i13:p3=initials\nen:lesson-20:session-13:i13:p4=document",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i16",
+    "correctText": "I have to enter my nationality.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-13:i17",
+    "correctText": "He has to bring this document.",
+    "correctResponseId": null
+  }
+]

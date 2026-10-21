@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-20:session-10:word:occasionally",
+    "correctText": "occasionally",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i01",
+    "correctText": "I occasionally have to work late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i02",
+    "correctText": "I occasionally have to work late.",
+    "correctResponseId": "en:lesson-20:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i03",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:word:rarely",
+    "correctText": "rarely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i04",
+    "correctText": "She rarely has to pay for parking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i05",
+    "correctText": "She rarely has to pay for parking.",
+    "correctResponseId": "en:lesson-20:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i06",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:word:currently",
+    "correctText": "currently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i07",
+    "correctText": "We currently have to use another entrance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i08",
+    "correctText": "We currently have to use another entrance.",
+    "correctResponseId": "en:lesson-20:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i09",
+    "correctText": "have to",
+    "correctResponseId": "en:lesson-20:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:word:overseas",
+    "correctText": "overseas",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i10",
+    "correctText": "He has to travel overseas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i11",
+    "correctText": "He has to travel overseas.",
+    "correctResponseId": "en:lesson-20:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i12",
+    "correctText": "has to",
+    "correctResponseId": "en:lesson-20:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i13",
+    "correctText": "en:lesson-20:session-10:i13:p1=occasionally\nen:lesson-20:session-10:i13:p2=rarely\nen:lesson-20:session-10:i13:p3=currently\nen:lesson-20:session-10:i13:p4=overseas",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i14",
+    "correctText": "Could I ask a question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i15",
+    "correctText": "Could I have a bottle of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i16",
+    "correctText": "I occasionally have to work late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-20:session-10:i17",
+    "correctText": "He has to travel overseas.",
+    "correctResponseId": null
+  }
+]

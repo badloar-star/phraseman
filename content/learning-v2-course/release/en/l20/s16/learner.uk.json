@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-20:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-20:session-16:word:unreasonable",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unreasonable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:word:unreasonable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unreasonable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:word:unreasonable:audio",
+          "transcript": "unreasonable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-16:word:unreasonable:r1",
+            "targetText": "unreasonable",
+            "meaningByLocale": {
+              "ru": "неразумный, чрезмерный.",
+              "uk": "нерозумний, надмірний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unreasonable",
+          "definitionByLocale": {
+            "ru": "неразумный, чрезмерный.",
+            "uk": "нерозумний, надмірний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із have to або has to: «Мені доводиться відмовити в цьому надмірному проханні».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із have to або has to: «Мені доводиться відмовити в цьому надмірному проханні».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have to refuse this unreasonable request.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Мне приходится отказать в этой чрезмерной просьбе».",
+          "uk": "Скажіть із have to або has to: «Мені доводиться відмовити в цьому надмірному проханні»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "to",
+          "refuse",
+          "this",
+          "unreasonable",
+          "request"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-16:i02:r1",
+          "text": "I have to refuse this unreasonable request."
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i02:r2",
+          "text": "I can refuse this unreasonable request."
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i02:r3",
+          "text": "I want to refuse this unreasonable request."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:i02:audio",
+          "transcript": "I have to refuse this unreasonable request."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-16:i02:r1",
+            "targetText": "I have to refuse this unreasonable request.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i02:r2",
+            "targetText": "I can refuse this unreasonable request.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i02:r3",
+            "targetText": "I want to refuse this unreasonable request.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have to refuse this unreasonable request.",
+              "uk": "У записі звучить I have to refuse this unreasonable request."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have to refuse this unreasonable request.",
+              "uk": "У записі звучить I have to refuse this unreasonable request."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-16:i03:r1",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i03:r2",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i03:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "I ___ refuse this unreasonable request.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-16:i03:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i03:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i03:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:word:unpleasant",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unpleasant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:word:unpleasant:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unpleasant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:word:unpleasant:audio",
+          "transcript": "unpleasant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-16:word:unpleasant:r1",
+            "targetText": "unpleasant",
+            "meaningByLocale": {
+              "ru": "неприятный.",
+              "uk": "неприємний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unpleasant",
+          "definitionByLocale": {
+            "ru": "неприятный.",
+            "uk": "неприємний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із have to або has to: «Їй доводиться мати справу з неприємним клієнтом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із have to або has to: «Їй доводиться мати справу з неприємним клієнтом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has to deal with an unpleasant customer.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Ей приходится иметь дело с неприятным клиентом».",
+          "uk": "Скажіть із have to або has to: «Їй доводиться мати справу з неприємним клієнтом»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "to",
+          "deal",
+          "with",
+          "an",
+          "unpleasant",
+          "customer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-16:i05:r1",
+          "text": "She has to deal with an unpleasant customer."
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i05:r2",
+          "text": "She can deal with an unpleasant customer."
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i05:r3",
+          "text": "She wants to deal with an unpleasant customer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:i05:audio",
+          "transcript": "She has to deal with an unpleasant customer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-16:i05:r1",
+            "targetText": "She has to deal with an unpleasant customer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i05:r2",
+            "targetText": "She can deal with an unpleasant customer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i05:r3",
+            "targetText": "She wants to deal with an unpleasant customer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has to deal with an unpleasant customer.",
+              "uk": "У записі звучить She has to deal with an unpleasant customer."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has to deal with an unpleasant customer.",
+              "uk": "У записі звучить She has to deal with an unpleasant customer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-16:i06:r1",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i06:r2",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i06:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "She ___ deal with an unpleasant customer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-16:i06:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i06:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i06:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:word:uncertain",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — uncertain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:word:uncertain:audio"
+      ],
+      "accessibilityLabel": "Картка слова — uncertain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:word:uncertain:audio",
+          "transcript": "uncertain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-16:word:uncertain:r1",
+            "targetText": "uncertain",
+            "meaningByLocale": {
+              "ru": "неопределённый, неясный.",
+              "uk": "невизначений, неясний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "uncertain",
+          "definitionByLocale": {
+            "ru": "неопределённый, неясный.",
+            "uk": "невизначений, неясний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із have to або has to: «Нам доводиться будувати плани на невизначене майбутнє».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із have to або has to: «Нам доводиться будувати плани на невизначене майбутнє».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have to plan for an uncertain future.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Нам приходится строить планы на неопределённое будущее».",
+          "uk": "Скажіть із have to або has to: «Нам доводиться будувати плани на невизначене майбутнє»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "to",
+          "plan",
+          "for",
+          "an",
+          "uncertain",
+          "future"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-16:i08:r1",
+          "text": "We have to plan for an uncertain future."
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i08:r2",
+          "text": "We can plan for an uncertain future."
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i08:r3",
+          "text": "We want to plan for an uncertain future."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:i08:audio",
+          "transcript": "We have to plan for an uncertain future."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-16:i08:r1",
+            "targetText": "We have to plan for an uncertain future.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i08:r2",
+            "targetText": "We can plan for an uncertain future.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i08:r3",
+            "targetText": "We want to plan for an uncertain future.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have to plan for an uncertain future.",
+              "uk": "У записі звучить We have to plan for an uncertain future."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have to plan for an uncertain future.",
+              "uk": "У записі звучить We have to plan for an uncertain future."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-16:i09:r1",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i09:r2",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i09:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "We ___ plan for an uncertain future.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-16:i09:r1",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i09:r2",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i09:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:word:unexpected",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unexpected",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:word:unexpected:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unexpected",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:word:unexpected:audio",
+          "transcript": "unexpected"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-16:word:unexpected:r1",
+            "targetText": "unexpected",
+            "meaningByLocale": {
+              "ru": "неожиданный.",
+              "uk": "несподіваний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unexpected",
+          "definitionByLocale": {
+            "ru": "неожиданный.",
+            "uk": "несподіваний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із have to або has to: «Йому доводиться розвʼязувати несподівану проблему».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із have to або has to: «Йому доводиться розвʼязувати несподівану проблему».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has to solve an unexpected problem.",
+        "localizedMeaning": {
+          "ru": "Скажите с have to или has to: «Ему приходится решать неожиданную проблему».",
+          "uk": "Скажіть із have to або has to: «Йому доводиться розвʼязувати несподівану проблему»."
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "to",
+          "solve",
+          "an",
+          "unexpected",
+          "problem"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-16:i11:r1",
+          "text": "He has to solve an unexpected problem."
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i11:r2",
+          "text": "He can solve an unexpected problem."
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i11:r3",
+          "text": "He wants to solve an unexpected problem."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:i11:audio",
+          "transcript": "He has to solve an unexpected problem."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-20:session-16:i11:r1",
+            "targetText": "He has to solve an unexpected problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i11:r2",
+            "targetText": "He can solve an unexpected problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i11:r3",
+            "targetText": "He wants to solve an unexpected problem.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has to solve an unexpected problem.",
+              "uk": "У записі звучить He has to solve an unexpected problem."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has to solve an unexpected problem.",
+              "uk": "У записі звучить He has to solve an unexpected problem."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про необхідність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-20:session-16:i12:r1",
+          "text": "has to"
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i12:r2",
+          "text": "have to"
+        },
+        {
+          "responseId": "en:lesson-20:session-16:i12:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про необхідність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о необходимости.",
+          "uk": "Доповніть фразу про необхідність."
+        },
+        "gappedTargetPhrase": "He ___ solve an unexpected problem.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-20:session-16:i12:r1",
+            "text": "has to"
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i12:r2",
+            "text": "have to"
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i12:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про необхідність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-20:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
+            }
+          },
+          {
+            "responseId": "en:lesson-20:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про необхідність.",
+            "feedbackByLocale": {
+              "ru": "Перед глаголом нужно to.",
+              "uk": "Перед дієсловом потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-20:session-16:i13:p1",
+            "target": "unreasonable",
+            "meaningByLocale": {
+              "ru": "неразумный, чрезмерный",
+              "uk": "нерозумний, надмірний"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-16:i13:p2",
+            "target": "unpleasant",
+            "meaningByLocale": {
+              "ru": "неприятный",
+              "uk": "неприємний"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-16:i13:p3",
+            "target": "uncertain",
+            "meaningByLocale": {
+              "ru": "неопределённый, неясный",
+              "uk": "невизначений, неясний"
+            }
+          },
+          {
+            "pairId": "en:lesson-20:session-16:i13:p4",
+            "target": "unexpected",
+            "meaningByLocale": {
+              "ru": "неожиданный",
+              "uk": "несподіваний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "unreasonable",
+          "unpleasant",
+          "uncertain",
+          "unexpected"
+        ],
+        "rightColumn": [
+          "нерозумний, надмірний",
+          "неприємний",
+          "невизначений, неясний",
+          "несподіваний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: ввічливе прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: ввічливе прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:i14:audio",
+          "transcript": "Could I ask a question?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I ask a question?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "ask",
+          "a",
+          "question"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: кількість",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:i15:audio",
+          "transcript": "Could I have a bottle of water?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I have a bottle of water?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "bottle",
+          "of",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть, чому доводиться відмовити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Поясніть, чому доводиться відмовити",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:i16:audio",
+          "transcript": "I have to refuse this unreasonable request."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have to refuse this unreasonable request.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-20:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що йому потрібно розвʼязати несподівану проблему",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-20:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що йому потрібно розвʼязати несподівану проблему",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-20:session-16:i17:audio",
+          "transcript": "He has to solve an unexpected problem."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He has to solve an unexpected problem.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "94c2d78de4f509e4f9b3d513adc4682f7dfb72f539b00c4ba0a1ee08d2110f0c"
+}

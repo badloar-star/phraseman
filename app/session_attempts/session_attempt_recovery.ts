@@ -313,6 +313,24 @@ export async function persistSessionAttemptsState(
   }));
 }
 
+
+/**
+ * зачем (владелец 19.10 «при начале занятия иногда снимается сердечко»): запись сердечек живёт 12 ч под стабильным
+ * ключом урока, а Learning V2 не стирал её после завершения — повтор пройденного урока начинался с теми же 2/3, и HUD
+ * показывал «потерю» сразу на входе. Завершённое занятие стираем: следующий заход — новые 3/3.
+ */
+export async function clearSessionAttemptsState(token: AccountGenerationToken, sessionId: string): Promise<void> {
+  const ownerStableId = ownerFromToken(token);
+  await withAccountTransitionLock(async () => withStorageLock(async () => {
+    if (!isCurrentAccountGeneration(token, ownerStableId)) {
+      traceAttempts(`СБРОС: пропущен — аккаунт сменился, сессия=${sessionId}`);
+      return;
+    }
+    const key = sessionAttemptsStateKey(ownerStableId, sessionId);
+    await AsyncStorage.removeItem(key);
+    traceAttempts(`СБРОС: занятие завершено, запись удалена, ключ=${key}`);
+  }));
+}
 /** Сколько живёт незавершённое занятие: вернулся позже — начинаешь заново. */
 export const SESSION_ATTEMPTS_STATE_TTL_MS = 12 * 60 * 60 * 1000;
 

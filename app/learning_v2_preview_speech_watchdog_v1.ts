@@ -10,6 +10,7 @@ export type LearningV2PreviewSpeechGenerationV1 = Readonly<{
 
 export function createLearningV2PreviewSpeechGenerationGuardV1(): Readonly<{
   begin: (key: string) => LearningV2PreviewSpeechGenerationV1;
+  isCurrent: (request: LearningV2PreviewSpeechGenerationV1) => boolean;
   clear: (request: LearningV2PreviewSpeechGenerationV1) => boolean;
   cancelCurrent: () => void;
   currentKey: () => string | null;
@@ -20,6 +21,9 @@ export function createLearningV2PreviewSpeechGenerationGuardV1(): Readonly<{
     begin(key: string) {
       current = Object.freeze({ generation: ++generation, key });
       return current;
+    },
+    isCurrent(request: LearningV2PreviewSpeechGenerationV1) {
+      return current?.generation === request.generation;
     },
     clear(request: LearningV2PreviewSpeechGenerationV1) {
       if (current?.generation !== request.generation) return false;

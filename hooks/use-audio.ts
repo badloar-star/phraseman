@@ -65,6 +65,8 @@ export type SpeakOpts = {
    * точного языка, иначе «Голос недоступен» и onError('card_voice_unavailable').
    */
   cardAudio?: boolean;
+  /** Skip every prerecorded/corpus route and speak through the device engine. */
+  systemTtsOnly?: boolean;
   onStart?: () => void;
   onDone?: () => void;
   onStopped?: () => void;
@@ -260,6 +262,10 @@ export function useAudio() {
     if (opts?.strictVoice && !requestedVoice) {
       console.warn('[PACK-AUDIO] speak:skip strict_voice_missing', JSON.stringify({ language }));
       opts.onError?.(new Error('strict_dialogue_voice_missing'));
+      return;
+    }
+    if (opts?.systemTtsOnly) {
+      speakWithSystemTts();
       return;
     }
     const isEnglish = language.toLowerCase().startsWith('en');

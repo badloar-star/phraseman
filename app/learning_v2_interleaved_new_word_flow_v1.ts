@@ -57,6 +57,17 @@ export function createLearningV2InterleavedNewWordFlowV1(): LearningV2Interleave
   return ready([]);
 }
 
+export function shouldAutoplayLearningV2PracticeAudioV1(input: Readonly<{
+  requestedToken: number;
+  consumedToken: number;
+  practiceActivated: boolean;
+  referenceAvailable: boolean;
+}>): boolean {
+  return input.requestedToken > input.consumedToken
+    && input.practiceActivated
+    && input.referenceAvailable;
+}
+
 export function reduceLearningV2InterleavedNewWordFlowV1(
   state: LearningV2InterleavedNewWordFlowStateV1,
   event: LearningV2InterleavedNewWordFlowEventV1,

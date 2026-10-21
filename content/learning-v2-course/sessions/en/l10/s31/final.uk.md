@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 31 — Сад у різні пори року
+# Англійська · Урок 10 · Заняття 31 — Коли ви це робите
 
-**Ситуація.** Описати сад на весняних та осінніх фотографіях і порівняти звичні зміни з тими, що відбуваються зараз.
+**Ситуація.** Запитати про місяць поїздки й розповісти про звичні справи протягом року.
 
-**Що ви опануєте:** Spring is my favourite season; The tree is in blossom; The foliage is turning yellow
-**Нові слова:** blossom, foliage, snowdrop, daffodil
+**Що ви опануєте:** Do you travel in April; We swim in June; I usually stay home in October; We visit our family in November
+**Нові слова:** April, June, October, November
 
 ## Інтро 1
 
-### Улюблена пора року
+### Запитати про квітень
 
-Season уже траплялося як дієслово «приправляти». Тепер використовуємо іменник season — «пора року». Spring is my favourite season — «Весна — моя улюблена пора року». Це ваше вподобання, тому використовуємо is. Не потрібно ставити Continuous лише тому, що ви говорите зараз.
+Друг часто їздить до моря. Ви хочете дізнатися, чи буває це у квітні. April — «квітень»: Do you travel in April? — «Ти подорожуєш у квітні?» Запитуємо про звичку: do перед you, потім travel. Перед назвою місяця — in.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **Spring is my favourite season.**
-- ❌ Spring my favourite season. — *Між spring та описом потрібне is.*
-- ❌ Spring are my favourite season. — *Spring тут однина: is.*
+- ✅ **Do you travel in April?**
+- ❌ Does you travel in April? — *З you у запитанні потрібна do.*
+- ❌ Do you travels in April? — *Після do потрібна travel без s.*
 
 ---
 
 ## Інтро 2
 
-### Дерево у цвіту
+### Червень
 
-На весняній фотографії дерево вкрите квітами. Blossom — «квіти на дереві». The tree is in blossom — «Дерево у цвіту». In blossom — готове сполучення про дерево, що квітне. Це опис стану: is in blossom. Порівняйте звичний час цвітіння: This tree is usually in blossom in spring.
+Ви розповідаєте про звичний літній відпочинок. June — «червень»: We swim in June — «Ми плаваємо в червні». З we вживаємо swim без s. June і July — різні місяці: червень і липень.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The tree is in blossom.**
-- ❌ The tree in blossom. — *Перед in blossom потрібне is.*
-- ❌ The tree is on blossom. — *Кажемо in blossom, не on blossom.*
+- ✅ **We swim in June.**
+- ❌ We swims in June. — *З we потрібна swim без s.*
+- ❌ We swim on June. — *Перед місяцем потрібна in.*
 
 ---
 
 ## Інтро 3
 
-### Листя змінює колір
+### Жовтень і листопад
 
-На іншій фотографії вже осінь. Foliage — «листя». The foliage is turning yellow — «Листя жовтіє». Для зміни, що відбувається, використовуємо is + turning. Foliage позначає листя разом і тут незлічуване: is, не are. Для звичної сезонної зміни: The foliage usually turns yellow in autumn.
+Друг запитує про осінь. October — «жовтень»: I usually stay home in October — «У жовтні я зазвичай залишаюся вдома». November — «листопад»: We visit our family in November — «Ми відвідуємо родину в листопаді». Це звичні щорічні справи. Назви місяців пишемо з великої літери.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The foliage is turning yellow.**
-- ❌ The foliage are turning yellow. — *Foliage тут незлічуване: is.*
-- ❌ The foliage turning yellow. — *Перед turning потрібне is.*
+- ✅ **We visit our family in November.**
+- ❌ We visits our family in November. — *З we потрібна visit без s.*
+- ❌ We visit our family at November. — *Перед місяцем потрібна in, не at.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — blossom**
-<!-- interaction_id: en:lesson-10:session-31:word:blossom; family: word_card -->
-> **blossom** — «квіти на дереві». The tree is in blossom. — «Дерево у цвіту». Тут blossom позначає квіти разом; in blossom — «у цвіту».
+**1 · Картка слова — April**
+<!-- interaction_id: en:lesson-10:session-31:word:April; family: word_card -->
+> **April** — «квітень». Do you travel in April? — «Ти подорожуєш у квітні?»
 
-**2 · На весняній фотографії дерево вкрите квітами. Скажіть другу: «Дерево у цвіту»**
+**2 · Запитайте, чи подорожує співрозмовник у квітні. Місяць поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-31:i01; family: phrase_builder -->
-Плитки: `blossom` `in` `is` `tree` `The` → **The tree is in blossom.**
+Плитки: `April` `in` `travel` `you` `Do` → **Do you travel in April?**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-31:i02; family: listen_choose -->
-🔊 *The blossom is pink.* → **The blossom is pink.** · The blossom is white. · The flower is pink.
-- The blossom is white. — *У записі звучить The blossom is pink.*
-- The flower is pink. — *У записі звучить The blossom is pink.*
+🔊 *I travel in April.* → **I travel in April.** · We travel in April. · I travel in January.
+- We travel in April. — *У записі звучить I travel in April.*
+- I travel in January. — *У записі звучить I travel in April.*
 
-**4 · Виберіть прийменник у сполученні «у цвіту»**
+**4 · Виберіть допоміжне дієслово для запитання з you**
 <!-- interaction_id: en:lesson-10:session-31:i03; family: context_gap_grammar -->
-The tree is ___ blossom. → **in** · on · at
-- on — *Використовуємо in blossom, не on blossom.*
-- at — *Використовуємо in blossom, не at blossom.*
+___ you travel in April? → **Do** · Does · Is
+- Does — *З you потрібна do, не does.*
+- Is — *У запитанні про звичку з travel потрібна do.*
 
-**5 · Картка слова — foliage**
-<!-- interaction_id: en:lesson-10:session-31:word:foliage; family: word_card -->
-> **foliage** — «листя». The foliage is turning yellow. — «Листя жовтіє». Листя рослини разом; незлічуваний іменник.
+**5 · Картка слова — June**
+<!-- interaction_id: en:lesson-10:session-31:word:June; family: word_card -->
+> **June** — «червень». We swim in June. — «Ми плаваємо в червні».
 
-**6 · На осінній фотографії частина листя ще зелена, а частина вже жовта. Опишіть зміну: «Листя жовтіє»**
+**6 · Скажіть, що плаваєте в червні. Місяць поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-31:i04; family: phrase_builder -->
-Плитки: `yellow` `turning` `is` `foliage` `The` → **The foliage is turning yellow.**
+Плитки: `June` `in` `swim` `We` → **We swim in June.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-31:i05; family: listen_choose -->
-🔊 *The foliage is green.* → **The foliage is green.** · The foliage is red. · The grass is green.
-- The foliage is red. — *У записі звучить The foliage is green.*
-- The grass is green. — *У записі звучить The foliage is green.*
+🔊 *They swim in June.* → **They swim in June.** · They swim in July. · We swim in June.
+- They swim in July. — *У записі звучить They swim in June.*
+- We swim in June. — *У записі звучить They swim in June.*
 
-**8 · Виберіть зв’язку з незлічуваним foliage**
+**8 · Ви плаваєте в червні, не в липні. Виберіть місяць**
 <!-- interaction_id: en:lesson-10:session-31:i06; family: context_gap_grammar -->
-The foliage ___ turning yellow. → **is** · are · am
-- are — *Foliage тут потребує is.*
-- am — *Am використовуємо з I; тут потрібне is.*
+We swim in ___. → **June** · July · April
+- July — *July — липень, а потрібен червень.*
+- April — *April — квітень, а потрібен червень.*
 
-**9 · Картка слова — snowdrop**
-<!-- interaction_id: en:lesson-10:session-31:word:snowdrop; family: word_card -->
-> **snowdrop** — «підсніжник». I can see a snowdrop. — «Я бачу підсніжник». Невелика рання квітка з білою похиленою голівкою.
+**9 · Картка слова — October**
+<!-- interaction_id: en:lesson-10:session-31:word:October; family: word_card -->
+> **October** — «жовтень». I usually stay home in October. — «У жовтні я зазвичай залишаюся вдома».
 
-**10 · Ви розглядаєте весняну фотографію саду й помічаєте підсніжник. Скажіть другу: «Я бачу підсніжник»**
+**10 · Скажіть, що зазвичай залишаєтеся вдома в жовтні. Usually поставте перед stay, місяць — у кінці**
 <!-- interaction_id: en:lesson-10:session-31:i07; family: phrase_builder -->
-Плитки: `snowdrop` `a` `see` `can` `I` → **I can see a snowdrop.**
+Плитки: `October` `in` `home` `stay` `usually` `I` → **I usually stay home in October.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-31:i08; family: listen_choose -->
-🔊 *The snowdrop is beside the path.* → **The snowdrop is beside the path.** · The snowdrop is beside the wall. · The tree is beside the path.
-- The snowdrop is beside the wall. — *У записі звучить The snowdrop is beside the path.*
-- The tree is beside the path. — *У записі звучить The snowdrop is beside the path.*
+🔊 *I work in October.* → **I work in October.** · I work in April. · We work in October.
+- I work in April. — *У записі звучить I work in October.*
+- We work in October. — *У записі звучить I work in October.*
 
-**12 · Виберіть форму see після can**
+**12 · Виберіть прийменник перед October**
 <!-- interaction_id: en:lesson-10:session-31:i09; family: context_gap_grammar -->
-We can ___ a snowdrop. → **see** · sees · seeing
-- sees — *Після can потрібна see без s.*
-- seeing — *Після can потрібна початкова форма see.*
+I work ___ October. → **in** · on · at
+- on — *Перед місяцем потрібна in.*
+- at — *Перед місяцем потрібна in.*
 
-**13 · Картка слова — daffodil**
-<!-- interaction_id: en:lesson-10:session-31:word:daffodil; family: word_card -->
-> **daffodil** — «нарцис». The daffodil is yellow. — «Нарцис жовтий». Весняна квітка з виступною серединкою; тут жовтий нарцис.
+**13 · Картка слова — November**
+<!-- interaction_id: en:lesson-10:session-31:word:November; family: word_card -->
+> **November** — «листопад». We visit our family in November. — «Ми відвідуємо родину в листопаді».
 
-**14 · На фотографії біля доріжки жовтий нарцис. Назвіть його колір: «Нарцис жовтий»**
+**14 · Скажіть, що відвідуєте родину в листопаді. Місяць поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-31:i10; family: phrase_builder -->
-Плитки: `yellow` `is` `daffodil` `The` → **The daffodil is yellow.**
+Плитки: `November` `in` `family` `our` `visit` `We` → **We visit our family in November.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-31:i11; family: listen_choose -->
-🔊 *I can see a daffodil.* → **I can see a daffodil.** · We can see a daffodil. · I can see a snowdrop.
-- We can see a daffodil. — *У записі звучить I can see a daffodil.*
-- I can see a snowdrop. — *У записі звучить I can see a daffodil.*
+🔊 *She works in November.* → **She works in November.** · She works in October. · He works in November.
+- She works in October. — *У записі звучить She works in November.*
+- He works in November. — *У записі звучить She works in November.*
 
-**16 · Ви описуєте звичну осінню зміну. Виберіть форму turn**
+**16 · Виберіть форму visit з we**
 <!-- interaction_id: en:lesson-10:session-31:i12; family: context_gap_grammar -->
-The foliage usually ___ yellow in autumn. → **turns** · turn · turning
-- turn — *З незлічуваним foliage потрібна turns.*
-- turning — *Для цієї звичної зміни потрібна turns.*
+We ___ our family in November. → **visit** · visits · visiting
+- visits — *З we потрібна visit без s.*
+- visiting — *Для звичної дії тут потрібна visit.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте місяці з перекладом**
 <!-- interaction_id: en:lesson-10:session-31:i13; family: speed_match -->
-blossom — квіти на дереві · foliage — листя · snowdrop — підсніжник · daffodil — нарцис
+April — квітень · June — червень · October — жовтень · November — листопад
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-31:i14; family: listen_build_dictation -->
-🔊 *The foliage is turning yellow.* Плитки: `yellow` `turning` `is` `foliage` `The` → **The foliage is turning yellow.**
+🔊 *We swim in June.* Плитки: `June` `in` `swim` `We` → **We swim in June.**
 
-**19 · Друг запитує про вашу улюблену пору року. Скажіть: «Весна — моя улюблена пора року»**
-<!-- interaction_id: en:lesson-10:session-31:i15; family: scripted_repeat_compare -->
-🎙 **Spring is my favourite season.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-31:i15; family: listen_build_dictation -->
+🔊 *We visit our family in November.* Плитки: `November` `in` `family` `our` `visit` `We` → **We visit our family in November.**
 
-**20 · Ви показуєте другу дерево у цвіту на фотографії. Скажіть: «Дерево у цвіту»**
-<!-- interaction_id: en:lesson-10:session-31:i16; family: phrase_builder -->
-Плитки: `blossom` `in` `is` `tree` `The` → **The tree is in blossom.**
+**20 · Скажіть, що працюєте у квітні**
+<!-- interaction_id: en:lesson-10:session-31:i16; family: scripted_repeat_compare -->
+🎙 **I work in April.**
 
-**21 · Друг запитує про дерева на осінній фотографії. Листя змінює зелений колір на жовтий. Скажіть: «Листя жовтіє»**
-<!-- interaction_id: en:lesson-10:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The foliage is turning yellow.**
+**21 · Запитайте, чи працює співрозмовник у жовтні**
+<!-- interaction_id: en:lesson-10:session-31:i17; family: scripted_repeat_compare -->
+🎙 **Do you work in October?**
 

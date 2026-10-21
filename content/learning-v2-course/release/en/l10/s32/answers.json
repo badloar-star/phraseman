@@ -1,57 +1,57 @@
 [
   {
-    "interactionId": "en:lesson-10:session-32:word:sapling",
-    "correctText": "sapling",
+    "interactionId": "en:lesson-10:session-32:word:choice",
+    "correctText": "choice",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i01",
-    "correctText": "I am watering the sapling.",
+    "correctText": "It is a good choice.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i02",
-    "correctText": "The sapling is growing.",
+    "correctText": "It is a good choice.",
     "correctResponseId": "en:lesson-10:session-32:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-32:i03",
-    "correctText": "work",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-32:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-32:word:mulch",
-    "correctText": "mulch",
+    "interactionId": "en:lesson-10:session-32:word:decide",
+    "correctText": "decide",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i04",
-    "correctText": "The mulch is in the bag.",
+    "correctText": "I cannot decide.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i05",
-    "correctText": "The mulch is dry.",
+    "correctText": "We cannot decide.",
     "correctResponseId": "en:lesson-10:session-32:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-32:i06",
-    "correctText": "is",
+    "correctText": "decide",
     "correctResponseId": "en:lesson-10:session-32:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-32:word:compost",
-    "correctText": "compost",
+    "interactionId": "en:lesson-10:session-32:word:reason",
+    "correctText": "reason",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i07",
-    "correctText": "There is compost in the bag.",
+    "correctText": "What is the reason?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i08",
-    "correctText": "The compost is dark.",
+    "correctText": "What is the reason?",
     "correctResponseId": "en:lesson-10:session-32:i08:r1"
   },
   {
@@ -60,48 +60,48 @@
     "correctResponseId": "en:lesson-10:session-32:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-32:word:seedbed",
-    "correctText": "seedbed",
+    "interactionId": "en:lesson-10:session-32:word:allow",
+    "correctText": "allow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i10",
-    "correctText": "We are preparing the seedbed.",
+    "correctText": "Do they allow dogs?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i11",
-    "correctText": "The seedbed is beside the path.",
+    "correctText": "They allow dogs.",
     "correctResponseId": "en:lesson-10:session-32:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-32:i12",
-    "correctText": "preparing",
+    "correctText": "allow",
     "correctResponseId": "en:lesson-10:session-32:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-32:i13",
-    "correctText": "en:lesson-10:session-32:i13:p1=sapling\nen:lesson-10:session-32:i13:p2=mulch\nen:lesson-10:session-32:i13:p3=compost\nen:lesson-10:session-32:i13:p4=seedbed",
+    "correctText": "en:lesson-10:session-32:i13:p1=decide\nen:lesson-10:session-32:i13:p2=choice\nen:lesson-10:session-32:i13:p3=reason\nen:lesson-10:session-32:i13:p4=allow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i14",
-    "correctText": "We are preparing the seedbed.",
+    "correctText": "I cannot decide.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i15",
-    "correctText": "I know this garden.",
+    "correctText": "Do they allow dogs?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i16",
-    "correctText": "She is working here this week.",
+    "correctText": "I can decide now.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-32:i17",
-    "correctText": "We are preparing the seedbed.",
+    "correctText": "I know the reason.",
     "correctResponseId": null
   }
 ]

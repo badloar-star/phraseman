@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-32:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-32:intro1:r2": {
-          "ru": "С I нужна work без s.",
-          "uk": "З I потрібна work без s."
+          "ru": "После cannot не ставим to.",
+          "uk": "Після cannot не ставимо to."
         },
         "en:lesson-10:session-32:intro1:r3": {
-          "ru": "Для этой привычки нужна work.",
-          "uk": "Для цієї звички потрібна work."
+          "ru": "После cannot нужна decide без s.",
+          "uk": "Після cannot потрібна decide без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-32:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-32:intro2:r2": {
-          "ru": "Перед working нужен is.",
-          "uk": "Перед working потрібне is."
+          "ru": "Одна причина: is, не are.",
+          "uk": "Одна причина: is, не are."
         },
         "en:lesson-10:session-32:intro2:r3": {
-          "ru": "С she нужно is.",
-          "uk": "З she потрібне is."
+          "ru": "В этом вопросе нужна is после what.",
+          "uk": "У цьому запитанні потрібна is після what."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-32:intro3:r2": {
-          "ru": "С I нужна know без s.",
-          "uk": "З I потрібна know без s."
+          "ru": "С they нужна do.",
+          "uk": "З they потрібна do."
         },
         "en:lesson-10:session-32:intro3:r3": {
-          "ru": "Am know неверно; здесь нужна know.",
-          "uk": "Am know неправильно; тут потрібна know."
+          "ru": "После do нужна allow без s.",
+          "uk": "Після do потрібна allow без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9108237dd7a1f0a10c6724b4394506bbbc94759a2d2653d003a74f787d10ea64"
+  "auxiliaryFingerprint": "324b16c54684ce0c8d0aeed89549d997e400dcd5e4a9876ce86895a44e028432"
 }

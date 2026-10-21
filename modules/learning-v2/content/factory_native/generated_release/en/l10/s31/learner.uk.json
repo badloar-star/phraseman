@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-31:word:blossom",
+      "interactionId": "en:lesson-10:session-31:word:April",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — blossom",
+      "prompt": "Картка слова — April",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-31:word:blossom:audio"
+        "en:lesson-10:session-31:word:April:audio"
       ],
-      "accessibilityLabel": "Картка слова — blossom",
+      "accessibilityLabel": "Картка слова — April",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-31:word:blossom:audio",
-          "transcript": "blossom"
+          "audioTargetId": "en:lesson-10:session-31:word:April:audio",
+          "transcript": "April"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-31:word:blossom:r1",
-            "targetText": "blossom",
+            "responseId": "en:lesson-10:session-31:word:April:r1",
+            "targetText": "April",
             "meaningByLocale": {
-              "ru": "«цветы на дереве». The tree is in blossom. — «Дерево в цвету». Здесь blossom обозначает цветы вместе; in blossom — «в цвету».",
-              "uk": "«квіти на дереві». The tree is in blossom. — «Дерево у цвіту». Тут blossom позначає квіти разом; in blossom — «у цвіту»."
+              "ru": "«апрель». Do you travel in April? — «Ты путешествуешь в апреле?»",
+              "uk": "«квітень». Do you travel in April? — «Ти подорожуєш у квітні?»"
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "blossom",
+          "word": "April",
           "definitionByLocale": {
-            "ru": "«цветы на дереве». The tree is in blossom. — «Дерево в цвету». Здесь blossom обозначает цветы вместе; in blossom — «в цвету».",
-            "uk": "«квіти на дереві». The tree is in blossom. — «Дерево у цвіту». Тут blossom позначає квіти разом; in blossom — «у цвіту»."
+            "ru": "«апрель». Do you travel in April? — «Ты путешествуешь в апреле?»",
+            "uk": "«квітень». Do you travel in April? — «Ти подорожуєш у квітні?»"
           }
         }
       },
@@ -52,24 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На весняній фотографії дерево вкрите квітами. Скажіть другу: «Дерево у цвіту»",
+      "prompt": "Запитайте, чи подорожує співрозмовник у квітні. Місяць поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На весняній фотографії дерево вкрите квітами. Скажіть другу: «Дерево у цвіту»",
+      "accessibilityLabel": "Запитайте, чи подорожує співрозмовник у квітні. Місяць поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The tree is in blossom.",
+        "targetPhrase": "Do you travel in April?",
         "localizedMeaning": {
-          "ru": "На весенней фотографии дерево покрыто цветами. Скажите другу: «Дерево в цвету»",
-          "uk": "На весняній фотографії дерево вкрите квітами. Скажіть другу: «Дерево у цвіту»"
+          "ru": "Спросите, путешествует ли собеседник в апреле. Месяц поставьте в конце",
+          "uk": "Запитайте, чи подорожує співрозмовник у квітні. Місяць поставте в кінці"
         },
         "orderedTokens": [
-          "The",
-          "tree",
-          "is",
+          "Do",
+          "you",
+          "travel",
           "in",
-          "blossom"
+          "April"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +90,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-31:i02:r1",
-          "text": "The blossom is pink."
+          "text": "I travel in April."
         },
         {
           "responseId": "en:lesson-10:session-31:i02:r2",
-          "text": "The blossom is white."
+          "text": "We travel in April."
         },
         {
           "responseId": "en:lesson-10:session-31:i02:r3",
-          "text": "The flower is pink."
+          "text": "I travel in January."
         }
       ],
       "mediaIds": [],
@@ -110,23 +110,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-31:i02:audio",
-          "transcript": "The blossom is pink."
+          "transcript": "I travel in April."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-31:i02:r1",
-            "targetText": "The blossom is pink.",
+            "targetText": "I travel in April.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-31:i02:r2",
-            "targetText": "The blossom is white.",
+            "targetText": "We travel in April.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-31:i02:r3",
-            "targetText": "The flower is pink.",
+            "targetText": "I travel in January.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +137,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The blossom is pink.",
-              "uk": "У записі звучить The blossom is pink."
+              "ru": "В записи звучит I travel in April.",
+              "uk": "У записі звучить I travel in April."
             }
           },
           {
@@ -146,8 +146,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The blossom is pink.",
-              "uk": "У записі звучить The blossom is pink."
+              "ru": "В записи звучит I travel in April.",
+              "uk": "У записі звучить I travel in April."
             }
           }
         ],
@@ -162,63 +162,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть прийменник у сполученні «у цвіту»",
+      "prompt": "Виберіть допоміжне дієслово для запитання з you",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-31:i03:r1",
-          "text": "in"
+          "text": "Do"
         },
         {
           "responseId": "en:lesson-10:session-31:i03:r2",
-          "text": "on"
+          "text": "Does"
         },
         {
           "responseId": "en:lesson-10:session-31:i03:r3",
-          "text": "at"
+          "text": "Is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть прийменник у сполученні «у цвіту»",
+      "accessibilityLabel": "Виберіть допоміжне дієслово для запитання з you",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите предлог в сочетании «в цвету»",
-          "uk": "Виберіть прийменник у сполученні «у цвіту»"
+          "ru": "Выберите вспомогательный глагол для вопроса с you",
+          "uk": "Виберіть допоміжне дієслово для запитання з you"
         },
-        "gappedTargetPhrase": "The tree is ___ blossom.",
+        "gappedTargetPhrase": "___ you travel in April?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-31:i03:r1",
-            "text": "in"
+            "text": "Do"
           },
           {
             "responseId": "en:lesson-10:session-31:i03:r2",
-            "text": "on"
+            "text": "Does"
           },
           {
             "responseId": "en:lesson-10:session-31:i03:r3",
-            "text": "at"
+            "text": "Is"
           }
         ],
-        "testedDimension": "Виберіть прийменник у сполученні «у цвіту»",
+        "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-31:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть прийменник у сполученні «у цвіту»",
+            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
             "feedbackByLocale": {
-              "ru": "Используем in blossom, не on blossom.",
-              "uk": "Використовуємо in blossom, не on blossom."
+              "ru": "С you нужна do, не does.",
+              "uk": "З you потрібна do, не does."
             }
           },
           {
             "responseId": "en:lesson-10:session-31:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть прийменник у сполученні «у цвіту»",
+            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
             "feedbackByLocale": {
-              "ru": "Используем in blossom, не at blossom.",
-              "uk": "Використовуємо in blossom, не at blossom."
+              "ru": "В вопросе о привычке с travel нужна do.",
+              "uk": "У запитанні про звичку з travel потрібна do."
             }
           }
         ]
@@ -226,32 +226,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-31:word:foliage",
+      "interactionId": "en:lesson-10:session-31:word:June",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — foliage",
+      "prompt": "Картка слова — June",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-31:word:foliage:audio"
+        "en:lesson-10:session-31:word:June:audio"
       ],
-      "accessibilityLabel": "Картка слова — foliage",
+      "accessibilityLabel": "Картка слова — June",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-31:word:foliage:audio",
-          "transcript": "foliage"
+          "audioTargetId": "en:lesson-10:session-31:word:June:audio",
+          "transcript": "June"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-31:word:foliage:r1",
-            "targetText": "foliage",
+            "responseId": "en:lesson-10:session-31:word:June:r1",
+            "targetText": "June",
             "meaningByLocale": {
-              "ru": "«листва». The foliage is turning yellow. — «Листва желтеет». Листья растения вместе; неисчисляемое существительное.",
-              "uk": "«листя». The foliage is turning yellow. — «Листя жовтіє». Листя рослини разом; незлічуваний іменник."
+              "ru": "«июнь». We swim in June. — «Мы плаваем в июне».",
+              "uk": "«червень». We swim in June. — «Ми плаваємо в червні»."
             }
           }
         ],
@@ -259,10 +259,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "foliage",
+          "word": "June",
           "definitionByLocale": {
-            "ru": "«листва». The foliage is turning yellow. — «Листва желтеет». Листья растения вместе; неисчисляемое существительное.",
-            "uk": "«листя». The foliage is turning yellow. — «Листя жовтіє». Листя рослини разом; незлічуваний іменник."
+            "ru": "«июнь». We swim in June. — «Мы плаваем в июне».",
+            "uk": "«червень». We swim in June. — «Ми плаваємо в червні»."
           }
         }
       },
@@ -274,24 +274,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На осінній фотографії частина листя ще зелена, а частина вже жовта. Опишіть зміну: «Листя жовтіє»",
+      "prompt": "Скажіть, що плаваєте в червні. Місяць поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На осінній фотографії частина листя ще зелена, а частина вже жовта. Опишіть зміну: «Листя жовтіє»",
+      "accessibilityLabel": "Скажіть, що плаваєте в червні. Місяць поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The foliage is turning yellow.",
+        "targetPhrase": "We swim in June.",
         "localizedMeaning": {
-          "ru": "На осенней фотографии часть листьев ещё зелёная, а часть уже жёлтая. Опишите изменение: «Листва желтеет»",
-          "uk": "На осінній фотографії частина листя ще зелена, а частина вже жовта. Опишіть зміну: «Листя жовтіє»"
+          "ru": "Скажите, что плаваете в июне. Месяц поставьте в конце",
+          "uk": "Скажіть, що плаваєте в червні. Місяць поставте в кінці"
         },
         "orderedTokens": [
-          "The",
-          "foliage",
-          "is",
-          "turning",
-          "yellow"
+          "We",
+          "swim",
+          "in",
+          "June"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -312,15 +311,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-31:i05:r1",
-          "text": "The foliage is green."
+          "text": "They swim in June."
         },
         {
           "responseId": "en:lesson-10:session-31:i05:r2",
-          "text": "The foliage is red."
+          "text": "They swim in July."
         },
         {
           "responseId": "en:lesson-10:session-31:i05:r3",
-          "text": "The grass is green."
+          "text": "We swim in June."
         }
       ],
       "mediaIds": [],
@@ -332,23 +331,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-31:i05:audio",
-          "transcript": "The foliage is green."
+          "transcript": "They swim in June."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-31:i05:r1",
-            "targetText": "The foliage is green.",
+            "targetText": "They swim in June.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-31:i05:r2",
-            "targetText": "The foliage is red.",
+            "targetText": "They swim in July.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-31:i05:r3",
-            "targetText": "The grass is green.",
+            "targetText": "We swim in June.",
             "meaningByLocale": null
           }
         ],
@@ -359,8 +358,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The foliage is green.",
-              "uk": "У записі звучить The foliage is green."
+              "ru": "В записи звучит They swim in June.",
+              "uk": "У записі звучить They swim in June."
             }
           },
           {
@@ -368,8 +367,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The foliage is green.",
-              "uk": "У записі звучить The foliage is green."
+              "ru": "В записи звучит They swim in June.",
+              "uk": "У записі звучить They swim in June."
             }
           }
         ],
@@ -384,63 +383,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку з незлічуваним foliage",
+      "prompt": "Ви плаваєте в червні, не в липні. Виберіть місяць",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-31:i06:r1",
-          "text": "is"
+          "text": "June"
         },
         {
           "responseId": "en:lesson-10:session-31:i06:r2",
-          "text": "are"
+          "text": "July"
         },
         {
           "responseId": "en:lesson-10:session-31:i06:r3",
-          "text": "am"
+          "text": "April"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку з незлічуваним foliage",
+      "accessibilityLabel": "Ви плаваєте в червні, не в липні. Виберіть місяць",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку с неисчисляемым foliage",
-          "uk": "Виберіть зв’язку з незлічуваним foliage"
+          "ru": "Вы плаваете в июне, не в июле. Выберите месяц",
+          "uk": "Ви плаваєте в червні, не в липні. Виберіть місяць"
         },
-        "gappedTargetPhrase": "The foliage ___ turning yellow.",
+        "gappedTargetPhrase": "We swim in ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-31:i06:r1",
-            "text": "is"
+            "text": "June"
           },
           {
             "responseId": "en:lesson-10:session-31:i06:r2",
-            "text": "are"
+            "text": "July"
           },
           {
             "responseId": "en:lesson-10:session-31:i06:r3",
-            "text": "am"
+            "text": "April"
           }
         ],
-        "testedDimension": "Виберіть зв’язку з незлічуваним foliage",
+        "testedDimension": "Ви плаваєте в червні, не в липні. Виберіть місяць",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-31:i06:r2",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку з незлічуваним foliage",
+            "testedDimension": "Ви плаваєте в червні, не в липні. Виберіть місяць",
             "feedbackByLocale": {
-              "ru": "Foliage здесь требует is.",
-              "uk": "Foliage тут потребує is."
+              "ru": "July — июль, а нужен июнь.",
+              "uk": "July — липень, а потрібен червень."
             }
           },
           {
             "responseId": "en:lesson-10:session-31:i06:r3",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку з незлічуваним foliage",
+            "testedDimension": "Ви плаваєте в червні, не в липні. Виберіть місяць",
             "feedbackByLocale": {
-              "ru": "Am используем с I; здесь нужна is.",
-              "uk": "Am використовуємо з I; тут потрібне is."
+              "ru": "April — апрель, а нужен июнь.",
+              "uk": "April — квітень, а потрібен червень."
             }
           }
         ]
@@ -448,32 +447,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-31:word:snowdrop",
+      "interactionId": "en:lesson-10:session-31:word:October",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — snowdrop",
+      "prompt": "Картка слова — October",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-31:word:snowdrop:audio"
+        "en:lesson-10:session-31:word:October:audio"
       ],
-      "accessibilityLabel": "Картка слова — snowdrop",
+      "accessibilityLabel": "Картка слова — October",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-31:word:snowdrop:audio",
-          "transcript": "snowdrop"
+          "audioTargetId": "en:lesson-10:session-31:word:October:audio",
+          "transcript": "October"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-31:word:snowdrop:r1",
-            "targetText": "snowdrop",
+            "responseId": "en:lesson-10:session-31:word:October:r1",
+            "targetText": "October",
             "meaningByLocale": {
-              "ru": "«подснежник». I can see a snowdrop. — «Я вижу подснежник». Небольшой ранний цветок с белой поникающей головкой.",
-              "uk": "«підсніжник». I can see a snowdrop. — «Я бачу підсніжник». Невелика рання квітка з білою похиленою голівкою."
+              "ru": "«октябрь». I usually stay home in October. — «В октябре я обычно остаюсь дома».",
+              "uk": "«жовтень». I usually stay home in October. — «У жовтні я зазвичай залишаюся вдома»."
             }
           }
         ],
@@ -481,10 +480,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "snowdrop",
+          "word": "October",
           "definitionByLocale": {
-            "ru": "«подснежник». I can see a snowdrop. — «Я вижу подснежник». Небольшой ранний цветок с белой поникающей головкой.",
-            "uk": "«підсніжник». I can see a snowdrop. — «Я бачу підсніжник». Невелика рання квітка з білою похиленою голівкою."
+            "ru": "«октябрь». I usually stay home in October. — «В октябре я обычно остаюсь дома».",
+            "uk": "«жовтень». I usually stay home in October. — «У жовтні я зазвичай залишаюся вдома»."
           }
         }
       },
@@ -496,24 +495,25 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви розглядаєте весняну фотографію саду й помічаєте підсніжник. Скажіть другу: «Я бачу підсніжник»",
+      "prompt": "Скажіть, що зазвичай залишаєтеся вдома в жовтні. Usually поставте перед stay, місяць — у кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви розглядаєте весняну фотографію саду й помічаєте підсніжник. Скажіть другу: «Я бачу підсніжник»",
+      "accessibilityLabel": "Скажіть, що зазвичай залишаєтеся вдома в жовтні. Usually поставте перед stay, місяць — у кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can see a snowdrop.",
+        "targetPhrase": "I usually stay home in October.",
         "localizedMeaning": {
-          "ru": "Вы рассматриваете весеннюю фотографию сада и замечаете подснежник. Скажите другу: «Я вижу подснежник»",
-          "uk": "Ви розглядаєте весняну фотографію саду й помічаєте підсніжник. Скажіть другу: «Я бачу підсніжник»"
+          "ru": "Скажите, что обычно остаётесь дома в октябре. Usually поставьте перед stay, месяц — в конце",
+          "uk": "Скажіть, що зазвичай залишаєтеся вдома в жовтні. Usually поставте перед stay, місяць — у кінці"
         },
         "orderedTokens": [
           "I",
-          "can",
-          "see",
-          "a",
-          "snowdrop"
+          "usually",
+          "stay",
+          "home",
+          "in",
+          "October"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +534,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-31:i08:r1",
-          "text": "The snowdrop is beside the path."
+          "text": "I work in October."
         },
         {
           "responseId": "en:lesson-10:session-31:i08:r2",
-          "text": "The snowdrop is beside the wall."
+          "text": "I work in April."
         },
         {
           "responseId": "en:lesson-10:session-31:i08:r3",
-          "text": "The tree is beside the path."
+          "text": "We work in October."
         }
       ],
       "mediaIds": [],
@@ -554,23 +554,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-31:i08:audio",
-          "transcript": "The snowdrop is beside the path."
+          "transcript": "I work in October."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-31:i08:r1",
-            "targetText": "The snowdrop is beside the path.",
+            "targetText": "I work in October.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-31:i08:r2",
-            "targetText": "The snowdrop is beside the wall.",
+            "targetText": "I work in April.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-31:i08:r3",
-            "targetText": "The tree is beside the path.",
+            "targetText": "We work in October.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +581,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The snowdrop is beside the path.",
-              "uk": "У записі звучить The snowdrop is beside the path."
+              "ru": "В записи звучит I work in October.",
+              "uk": "У записі звучить I work in October."
             }
           },
           {
@@ -590,8 +590,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The snowdrop is beside the path.",
-              "uk": "У записі звучить The snowdrop is beside the path."
+              "ru": "В записи звучит I work in October.",
+              "uk": "У записі звучить I work in October."
             }
           }
         ],
@@ -606,63 +606,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму see після can",
+      "prompt": "Виберіть прийменник перед October",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-31:i09:r1",
-          "text": "see"
+          "text": "in"
         },
         {
           "responseId": "en:lesson-10:session-31:i09:r2",
-          "text": "sees"
+          "text": "on"
         },
         {
           "responseId": "en:lesson-10:session-31:i09:r3",
-          "text": "seeing"
+          "text": "at"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму see після can",
+      "accessibilityLabel": "Виберіть прийменник перед October",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму see после can",
-          "uk": "Виберіть форму see після can"
+          "ru": "Выберите предлог перед October",
+          "uk": "Виберіть прийменник перед October"
         },
-        "gappedTargetPhrase": "We can ___ a snowdrop.",
+        "gappedTargetPhrase": "I work ___ October.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-31:i09:r1",
-            "text": "see"
+            "text": "in"
           },
           {
             "responseId": "en:lesson-10:session-31:i09:r2",
-            "text": "sees"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-31:i09:r3",
-            "text": "seeing"
+            "text": "at"
           }
         ],
-        "testedDimension": "Виберіть форму see після can",
+        "testedDimension": "Виберіть прийменник перед October",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-31:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму see після can",
+            "testedDimension": "Виберіть прийменник перед October",
             "feedbackByLocale": {
-              "ru": "После can нужна see без s.",
-              "uk": "Після can потрібна see без s."
+              "ru": "Перед месяцем нужна in.",
+              "uk": "Перед місяцем потрібна in."
             }
           },
           {
             "responseId": "en:lesson-10:session-31:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму see після can",
+            "testedDimension": "Виберіть прийменник перед October",
             "feedbackByLocale": {
-              "ru": "После can нужна базовая форма see.",
-              "uk": "Після can потрібна початкова форма see."
+              "ru": "Перед месяцем нужна in.",
+              "uk": "Перед місяцем потрібна in."
             }
           }
         ]
@@ -670,32 +670,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-31:word:daffodil",
+      "interactionId": "en:lesson-10:session-31:word:November",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — daffodil",
+      "prompt": "Картка слова — November",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-31:word:daffodil:audio"
+        "en:lesson-10:session-31:word:November:audio"
       ],
-      "accessibilityLabel": "Картка слова — daffodil",
+      "accessibilityLabel": "Картка слова — November",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-31:word:daffodil:audio",
-          "transcript": "daffodil"
+          "audioTargetId": "en:lesson-10:session-31:word:November:audio",
+          "transcript": "November"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-31:word:daffodil:r1",
-            "targetText": "daffodil",
+            "responseId": "en:lesson-10:session-31:word:November:r1",
+            "targetText": "November",
             "meaningByLocale": {
-              "ru": "«нарцисс». The daffodil is yellow. — «Нарцисс жёлтый». Весенний цветок с выступающей серединкой; здесь жёлтый нарцисс.",
-              "uk": "«нарцис». The daffodil is yellow. — «Нарцис жовтий». Весняна квітка з виступною серединкою; тут жовтий нарцис."
+              "ru": "«ноябрь». We visit our family in November. — «Мы навещаем семью в ноябре».",
+              "uk": "«листопад». We visit our family in November. — «Ми відвідуємо родину в листопаді»."
             }
           }
         ],
@@ -703,10 +703,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "daffodil",
+          "word": "November",
           "definitionByLocale": {
-            "ru": "«нарцисс». The daffodil is yellow. — «Нарцисс жёлтый». Весенний цветок с выступающей серединкой; здесь жёлтый нарцисс.",
-            "uk": "«нарцис». The daffodil is yellow. — «Нарцис жовтий». Весняна квітка з виступною серединкою; тут жовтий нарцис."
+            "ru": "«ноябрь». We visit our family in November. — «Мы навещаем семью в ноябре».",
+            "uk": "«листопад». We visit our family in November. — «Ми відвідуємо родину в листопаді»."
           }
         }
       },
@@ -718,23 +718,25 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На фотографії біля доріжки жовтий нарцис. Назвіть його колір: «Нарцис жовтий»",
+      "prompt": "Скажіть, що відвідуєте родину в листопаді. Місяць поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На фотографії біля доріжки жовтий нарцис. Назвіть його колір: «Нарцис жовтий»",
+      "accessibilityLabel": "Скажіть, що відвідуєте родину в листопаді. Місяць поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The daffodil is yellow.",
+        "targetPhrase": "We visit our family in November.",
         "localizedMeaning": {
-          "ru": "На фотографии рядом с дорожкой жёлтый нарцисс. Назовите его цвет: «Нарцисс жёлтый»",
-          "uk": "На фотографії біля доріжки жовтий нарцис. Назвіть його колір: «Нарцис жовтий»"
+          "ru": "Скажите, что навещаете семью в ноябре. Месяц поставьте в конце",
+          "uk": "Скажіть, що відвідуєте родину в листопаді. Місяць поставте в кінці"
         },
         "orderedTokens": [
-          "The",
-          "daffodil",
-          "is",
-          "yellow"
+          "We",
+          "visit",
+          "our",
+          "family",
+          "in",
+          "November"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -755,15 +757,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-31:i11:r1",
-          "text": "I can see a daffodil."
+          "text": "She works in November."
         },
         {
           "responseId": "en:lesson-10:session-31:i11:r2",
-          "text": "We can see a daffodil."
+          "text": "She works in October."
         },
         {
           "responseId": "en:lesson-10:session-31:i11:r3",
-          "text": "I can see a snowdrop."
+          "text": "He works in November."
         }
       ],
       "mediaIds": [],
@@ -775,23 +777,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-31:i11:audio",
-          "transcript": "I can see a daffodil."
+          "transcript": "She works in November."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-31:i11:r1",
-            "targetText": "I can see a daffodil.",
+            "targetText": "She works in November.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-31:i11:r2",
-            "targetText": "We can see a daffodil.",
+            "targetText": "She works in October.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-31:i11:r3",
-            "targetText": "I can see a snowdrop.",
+            "targetText": "He works in November.",
             "meaningByLocale": null
           }
         ],
@@ -802,8 +804,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I can see a daffodil.",
-              "uk": "У записі звучить I can see a daffodil."
+              "ru": "В записи звучит She works in November.",
+              "uk": "У записі звучить She works in November."
             }
           },
           {
@@ -811,8 +813,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I can see a daffodil.",
-              "uk": "У записі звучить I can see a daffodil."
+              "ru": "В записи звучит She works in November.",
+              "uk": "У записі звучить She works in November."
             }
           }
         ],
@@ -827,63 +829,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+      "prompt": "Виберіть форму visit з we",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-31:i12:r1",
-          "text": "turns"
+          "text": "visit"
         },
         {
           "responseId": "en:lesson-10:session-31:i12:r2",
-          "text": "turn"
+          "text": "visits"
         },
         {
           "responseId": "en:lesson-10:session-31:i12:r3",
-          "text": "turning"
+          "text": "visiting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+      "accessibilityLabel": "Виберіть форму visit з we",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы описываете обычное осеннее изменение. Выберите форму turn",
-          "uk": "Ви описуєте звичну осінню зміну. Виберіть форму turn"
+          "ru": "Выберите форму visit с we",
+          "uk": "Виберіть форму visit з we"
         },
-        "gappedTargetPhrase": "The foliage usually ___ yellow in autumn.",
+        "gappedTargetPhrase": "We ___ our family in November.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-31:i12:r1",
-            "text": "turns"
+            "text": "visit"
           },
           {
             "responseId": "en:lesson-10:session-31:i12:r2",
-            "text": "turn"
+            "text": "visits"
           },
           {
             "responseId": "en:lesson-10:session-31:i12:r3",
-            "text": "turning"
+            "text": "visiting"
           }
         ],
-        "testedDimension": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+        "testedDimension": "Виберіть форму visit з we",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-31:i12:r2",
             "correct": false,
-            "testedDimension": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+            "testedDimension": "Виберіть форму visit з we",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым foliage нужна turns.",
-              "uk": "З незлічуваним foliage потрібна turns."
+              "ru": "С we нужна visit без s.",
+              "uk": "З we потрібна visit без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-31:i12:r3",
             "correct": false,
-            "testedDimension": "Ви описуєте звичну осінню зміну. Виберіть форму turn",
+            "testedDimension": "Виберіть форму visit з we",
             "feedbackByLocale": {
-              "ru": "Для этой обычной перемены нужна turns.",
-              "uk": "Для цієї звичної зміни потрібна turns."
+              "ru": "Для привычного действия здесь нужна visit.",
+              "uk": "Для звичної дії тут потрібна visit."
             }
           }
         ]
@@ -896,58 +898,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте місяці з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте місяці з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-31:i13:p1",
-            "target": "blossom",
+            "target": "April",
             "meaningByLocale": {
-              "ru": "цветы на дереве",
-              "uk": "квіти на дереві"
+              "ru": "апрель",
+              "uk": "квітень"
             }
           },
           {
             "pairId": "en:lesson-10:session-31:i13:p2",
-            "target": "foliage",
+            "target": "June",
             "meaningByLocale": {
-              "ru": "листва",
-              "uk": "листя"
+              "ru": "июнь",
+              "uk": "червень"
             }
           },
           {
             "pairId": "en:lesson-10:session-31:i13:p3",
-            "target": "snowdrop",
+            "target": "October",
             "meaningByLocale": {
-              "ru": "подснежник",
-              "uk": "підсніжник"
+              "ru": "октябрь",
+              "uk": "жовтень"
             }
           },
           {
             "pairId": "en:lesson-10:session-31:i13:p4",
-            "target": "daffodil",
+            "target": "November",
             "meaningByLocale": {
-              "ru": "нарцисс",
-              "uk": "нарцис"
+              "ru": "ноябрь",
+              "uk": "листопад"
             }
           }
         ],
         "leftColumn": [
-          "blossom",
-          "foliage",
-          "snowdrop",
-          "daffodil"
+          "April",
+          "June",
+          "October",
+          "November"
         ],
         "rightColumn": [
-          "квіти на дереві",
-          "листя",
-          "підсніжник",
-          "нарцис"
+          "квітень",
+          "червень",
+          "жовтень",
+          "листопад"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -969,27 +971,26 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-31:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-31:i14:audio",
-          "transcript": "The foliage is turning yellow."
+          "transcript": "We swim in June."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The foliage is turning yellow.",
+        "hiddenTargetPhrase": "We swim in June.",
         "orderedTokens": [
-          "The",
-          "foliage",
-          "is",
-          "turning",
-          "yellow"
+          "We",
+          "swim",
+          "in",
+          "June"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1003,24 +1004,62 @@
     {
       "interactionId": "en:lesson-10:session-31:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує про вашу улюблену пору року. Скажіть: «Весна — моя улюблена пора року»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-31:i15:audio"
       ],
-      "accessibilityLabel": "Друг запитує про вашу улюблену пору року. Скажіть: «Весна — моя улюблена пора року»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-31:i15:audio",
+          "transcript": "We visit our family in November."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We visit our family in November.",
+        "orderedTokens": [
+          "We",
+          "visit",
+          "our",
+          "family",
+          "in",
+          "November"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-31:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що працюєте у квітні",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-31:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що працюєте у квітні",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-31:i15:audio",
-          "transcript": "Spring is my favourite season."
+          "audioTargetId": "en:lesson-10:session-31:i16:audio",
+          "transcript": "I work in April."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Spring is my favourite season.",
+        "targetPhrase": "I work in April.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1034,71 +1073,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-31:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ви показуєте другу дерево у цвіту на фотографії. Скажіть: «Дерево у цвіту»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте другу дерево у цвіту на фотографії. Скажіть: «Дерево у цвіту»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The tree is in blossom.",
-        "localizedMeaning": {
-          "ru": "Вы показываете другу цветущее дерево на фотографии. Скажите: «Дерево в цвету»",
-          "uk": "Ви показуєте другу дерево у цвіту на фотографії. Скажіть: «Дерево у цвіту»"
-        },
-        "orderedTokens": [
-          "The",
-          "tree",
-          "is",
-          "in",
-          "blossom"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-31:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує про дерева на осінній фотографії. Листя змінює зелений колір на жовтий. Скажіть: «Листя жовтіє»",
+      "prompt": "Запитайте, чи працює співрозмовник у жовтні",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-31:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує про дерева на осінній фотографії. Листя змінює зелений колір на жовтий. Скажіть: «Листя жовтіє»",
+      "accessibilityLabel": "Запитайте, чи працює співрозмовник у жовтні",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-31:i17:audio",
-          "transcript": "The foliage is turning yellow."
+          "transcript": "Do you work in October?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The foliage is turning yellow.",
+        "targetPhrase": "Do you work in October?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1115,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7894171d47bef105f20a38edd35e60c96a78f04c72ad26c2937f8f8b1419c9a7"
+  "learnerFingerprint": "09e556efd2d17ecd91025dfaada8c6b8d2b35023ccf8285af078bb9719193ad1"
 }

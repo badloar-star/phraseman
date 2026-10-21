@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 33 — На музыкальном фестивале
+# Английский · Урок 10 · Занятие 33 — Лицо и руки
 
-**Ситуация.** Рассказать о ежегодном посещении фестиваля и о выступлении, которое идёт сейчас.
+**Ситуация.** Назвать части лица и руки, описать то, что видите.
 
-**Что вы освоите:** We come here every year; The headliner is playing now; The band is in the marquee
-**Новые слова:** headliner, lineup, marquee, bunting
+**Что вы освоите:** Your chin is wet; Your cheek is dirty; My lips are dry; My thumb is clean
+**Новые слова:** chin, cheek, lip, thumb
 
 ## Интро 1
 
-### Каждый год
+### После умывания
 
-Повторим festival — «фестиваль». Вы с другом приезжаете на один музыкальный фестиваль каждый год: We come here every year — «Мы приезжаем сюда каждый год». Every year обозначает повторяющуюся ситуацию; используем Present Simple. А сейчас вы слушаете музыку: We are listening to music now.
+Друг умылся, но на подбородке осталась вода. Chin — «подбородок»: Your chin is wet — «У тебя мокрый подбородок». Cheek — «щека». Если на щеке видна грязь: Your cheek is dirty — «У тебя грязная щека». Одна часть лица — chin или cheek — сочетается с is.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We come here every year.**
-- ❌ We comes here every year. — *С we нужна come без s.*
-- ❌ We coming here every year. — *Для этой привычки нужна come.*
+- ✅ **Your chin is wet.**
+- ❌ Your chin are wet. — *С одним chin нужна is.*
+- ❌ Your chin am wet. — *Am используется с I. Здесь нужна is.*
 
 ---
 
 ## Интро 2
 
-### Главный участник выступает
+### Одна губа и две губы
 
-Headliner — «главный участник программы»: известный артист или группа, чьё выступление особенно ждут. Сегодня это гитарист. The headliner is playing now — «Главный участник сейчас играет». Действие идёт сейчас, поэтому используем is + playing.
+Вы смотрите в зеркало после прогулки. Lip — «губа», lips — «губы»: My lips are dry — «У меня сухие губы». Lip — одна губа, lips — больше одной. С lips нужна are.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The headliner is playing now.**
-- ❌ The headliner playing now. — *Перед playing нужен is.*
-- ❌ The headliner are playing now. — *Здесь один артист: is.*
+- ✅ **My lips are dry.**
+- ❌ My lips is dry. — *Lips — множественное число, поэтому are.*
+- ❌ My lips am dry. — *С lips нужна are.*
 
 ---
 
 ## Интро 3
 
-### Нравится состав участников
+### Большой палец руки
 
-Lineup — «состав участников». Вы читаете имена артистов этого фестиваля: I like the lineup — «Мне нравится состав участников». Like описывает ваше отношение, поэтому здесь используем Present Simple. Написание line-up тоже употребляется; в этом занятии используем lineup.
+После рисования вы вымыли руки и смотрите на большой палец. Thumb — «большой палец руки»: My thumb is clean — «У меня чистый большой палец». Thumb относится к руке. Здесь один палец, поэтому is.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I like the lineup.**
-- ❌ I likes the lineup. — *С I нужна like без s.*
-- ❌ I am like the lineup. — *Am like неверно; здесь нужна like.*
+- ✅ **My thumb is clean.**
+- ❌ My thumb are clean. — *Один thumb: is, не are.*
+- ❌ My thumb am clean. — *Am используется с I. Здесь нужна is.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — headliner**
-<!-- interaction_id: en:lesson-10:session-33:word:headliner; family: word_card -->
-> **headliner** — «главный участник программы». The headliner is playing now. — «Главный участник сейчас играет». Здесь главный приглашённый музыкант фестиваля.
+**1 · Карточка слова — chin**
+<!-- interaction_id: en:lesson-10:session-33:word:chin; family: word_card -->
+> **chin** — «подбородок». Your chin is wet. — «У тебя мокрый подбородок».
 
-**2 · Главный приглашённый гитарист уже на сцене. Скажите другу: «Главный участник сейчас играет». Поставьте now в конце**
+**2 · Скажите другу, что у него мокрый подбородок**
 <!-- interaction_id: en:lesson-10:session-33:i01; family: phrase_builder -->
-Плитки: `now` `playing` `is` `headliner` `The` → **The headliner is playing now.**
+Плитки: `wet` `is` `chin` `Your` → **Your chin is wet.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-33:i02; family: listen_choose -->
-🔊 *The headliner is on the stage.* → **The headliner is on the stage.** · The headliner is behind the stage. · The singer is on the stage.
-- The headliner is behind the stage. — *В записи звучит The headliner is on the stage.*
-- The singer is on the stage. — *В записи звучит The headliner is on the stage.*
+🔊 *My chin is wet.* → **My chin is wet.** · Your chin is wet. · My chin is dry.
+- Your chin is wet. — *В записи звучит My chin is wet.*
+- My chin is dry. — *В записи звучит My chin is wet.*
 
-**4 · Вы приезжаете сюда каждый год. Выберите форму come**
+**4 · Выберите глагол для chin**
 <!-- interaction_id: en:lesson-10:session-33:i03; family: context_gap_grammar -->
-We ___ here every year. → **come** · comes · coming
-- comes — *С we нужна come без s.*
-- coming — *Для этой повторяющейся поездки нужна come.*
+Your chin ___ wet. → **is** · are · am
+- are — *Один chin: нужна is.*
+- am — *Am используется с I. Здесь нужна is.*
 
-**5 · Карточка слова — lineup**
-<!-- interaction_id: en:lesson-10:session-33:word:lineup; family: word_card -->
-> **lineup** — «состав участников». I like the lineup. — «Мне нравится состав участников». Здесь артисты и группы фестиваля.
+**5 · Карточка слова — cheek**
+<!-- interaction_id: en:lesson-10:session-33:word:cheek; family: word_card -->
+> **cheek** — «щека». Your cheek is dirty. — «У тебя грязная щека».
 
-**6 · Друг показывает список артистов фестиваля. Вы довольны выбором. Скажите: «Мне нравится состав участников»**
+**6 · Скажите другу, что у него грязная щека**
 <!-- interaction_id: en:lesson-10:session-33:i04; family: phrase_builder -->
-Плитки: `lineup` `the` `like` `I` → **I like the lineup.**
+Плитки: `dirty` `is` `cheek` `Your` → **Your cheek is dirty.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-33:i05; family: listen_choose -->
-🔊 *The lineup is on the poster.* → **The lineup is on the poster.** · The lineup is on the website. · The date is on the poster.
-- The lineup is on the website. — *В записи звучит The lineup is on the poster.*
-- The date is on the poster. — *В записи звучит The lineup is on the poster.*
+🔊 *My cheek is dirty.* → **My cheek is dirty.** · My chin is dirty. · My cheek is clean.
+- My chin is dirty. — *В записи звучит My cheek is dirty.*
+- My cheek is clean. — *В записи звучит My cheek is dirty.*
 
-**8 · Выберите форму like с I**
+**8 · Выберите глагол для одной щеки**
 <!-- interaction_id: en:lesson-10:session-33:i06; family: context_gap_grammar -->
-I ___ the lineup. → **like** · likes · am like
-- likes — *С I нужна like без s.*
-- am like — *Am like неверно; здесь нужна like.*
+My cheek ___ dirty. → **is** · are · am
+- are — *Одна cheek: нужна is.*
+- am — *Am используется с I. Здесь нужна is.*
 
-**9 · Карточка слова — marquee**
-<!-- interaction_id: en:lesson-10:session-33:word:marquee; family: word_card -->
-> **marquee** — «большой шатёр». The band is in the marquee. — «Группа в большом шатре». Здесь британское значение слова: большой шатёр для мероприятий.
+**9 · Карточка слова — lip**
+<!-- interaction_id: en:lesson-10:session-33:word:lip; family: word_card -->
+> **lip** — «губа», lips — «губы». My lips are dry. — «У меня сухие губы».
 
-**10 · Друг ищет другую музыкальную группу. Она находится внутри большого фестивального шатра. Скажите: «Группа в большом шатре»**
+**10 · Одна губа сухая. Скажите об этом, используя lip в единственном числе**
 <!-- interaction_id: en:lesson-10:session-33:i07; family: phrase_builder -->
-Плитки: `marquee` `the` `in` `is` `band` `The` → **The band is in the marquee.**
+Плитки: `dry` `is` `lip` `My` → **My lip is dry.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-33:i08; family: listen_choose -->
-🔊 *The marquee is white.* → **The marquee is white.** · The marquee is blue. · The stage is white.
-- The marquee is blue. — *В записи звучит The marquee is white.*
-- The stage is white. — *В записи звучит The marquee is white.*
+🔊 *Your lips are dry.* → **Your lips are dry.** · My lips are dry. · Your lips are wet.
+- My lips are dry. — *В записи звучит Your lips are dry.*
+- Your lips are wet. — *В записи звучит Your lips are dry.*
 
-**12 · Группа находится внутри шатра. Выберите предлог**
+**12 · Выберите глагол для lips во множественном числе**
 <!-- interaction_id: en:lesson-10:session-33:i09; family: context_gap_grammar -->
-The band is ___ the marquee. → **in** · on · under
-- on — *Внутри — in; on означает на поверхности.*
-- under — *Для нахождения внутри здесь нужно in, не under.*
+My lips ___ dry. → **are** · is · am
+- is — *С lips нужна are, не is.*
+- am — *Am используется с I. С lips нужна are.*
 
-**13 · Карточка слова — bunting**
-<!-- interaction_id: en:lesson-10:session-33:word:bunting; family: word_card -->
-> **bunting** — «гирлянда флажков». The bunting is colourful. — «Гирлянда флажков разноцветная». Декоративные флажки на верёвке; здесь неисчисляемое существительное.
+**13 · Карточка слова — thumb**
+<!-- interaction_id: en:lesson-10:session-33:word:thumb; family: word_card -->
+> **thumb** — «большой палец руки». My thumb is clean. — «У меня чистый большой палец».
 
-**14 · Над входом висят флажки разных цветов. Скажите другу: «Гирлянда флажков разноцветная»**
+**14 · После мытья скажите, что большой палец руки чистый**
 <!-- interaction_id: en:lesson-10:session-33:i10; family: phrase_builder -->
-Плитки: `colourful` `is` `bunting` `The` → **The bunting is colourful.**
+Плитки: `clean` `is` `thumb` `My` → **My thumb is clean.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-33:i11; family: listen_choose -->
-🔊 *The bunting is above the entrance.* → **The bunting is above the entrance.** · The bunting is beside the entrance. · The sign is above the entrance.
-- The bunting is beside the entrance. — *В записи звучит The bunting is above the entrance.*
-- The sign is above the entrance. — *В записи звучит The bunting is above the entrance.*
+🔊 *Your thumb is clean.* → **Your thumb is clean.** · Your thumb is dirty. · My thumb is clean.
+- Your thumb is dirty. — *В записи звучит Your thumb is clean.*
+- My thumb is clean. — *В записи звучит Your thumb is clean.*
 
-**16 · Выберите связку с неисчисляемым bunting**
+**16 · Выберите глагол для одного большого пальца**
 <!-- interaction_id: en:lesson-10:session-33:i12; family: context_gap_grammar -->
-The bunting ___ colourful. → **is** · are · am
-- are — *С bunting здесь нужно is.*
-- am — *Am используем с I; здесь нужно is.*
+My thumb ___ clean. → **is** · are · am
+- are — *Один thumb: нужна is.*
+- am — *Am используется с I. Здесь нужна is.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-33:i13; family: speed_match -->
-headliner — главный участник программы · lineup — состав участников · marquee — большой шатёр · bunting — гирлянда флажков
+chin — подбородок · cheek — щека · lip — губа · thumb — большой палец руки
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-33:i14; family: listen_build_dictation -->
-🔊 *The headliner is playing now.* Плитки: `now` `playing` `is` `headliner` `The` → **The headliner is playing now.**
+🔊 *Your cheek is dirty.* Плитки: `dirty` `is` `cheek` `Your` → **Your cheek is dirty.**
 
-**19 · Друг спрашивает, бываете ли вы на этом фестивале регулярно. Скажите: «Мы приезжаем сюда каждый год»**
-<!-- interaction_id: en:lesson-10:session-33:i15; family: scripted_repeat_compare -->
-🎙 **We come here every year.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-33:i15; family: listen_build_dictation -->
+🔊 *My thumb is clean.* Плитки: `clean` `is` `thumb` `My` → **My thumb is clean.**
 
-**20 · Друг спрашивает ваше мнение об артистах фестиваля. Скажите: «Мне нравится состав участников»**
-<!-- interaction_id: en:lesson-10:session-33:i16; family: phrase_builder -->
-Плитки: `lineup` `the` `like` `I` → **I like the lineup.**
+**20 · Скажите, что у вас чистый подбородок**
+<!-- interaction_id: en:lesson-10:session-33:i16; family: scripted_repeat_compare -->
+🎙 **My chin is clean.**
 
-**21 · Друг звонит и спрашивает, что происходит на главной сцене. Приглашённый главный гитарист уже начал выступление. Скажите: «Главный участник сейчас играет»**
-<!-- interaction_id: en:lesson-10:session-33:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The headliner is playing now.**
+**21 · Скажите, что у вас мокрые щёки**
+<!-- interaction_id: en:lesson-10:session-33:i17; family: scripted_repeat_compare -->
+🎙 **My cheeks are wet.**
 

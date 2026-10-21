@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-32:word:sapling",
+        "interactionId": "en:lesson-10:session-32:word:choice",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — sapling",
+        "prompt": "Карточка слова — choice",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-32:word:sapling:audio"
+          "en:lesson-10:session-32:word:choice:audio"
         ],
-        "accessibilityLabel": "Карточка слова — sapling",
+        "accessibilityLabel": "Карточка слова — choice",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:word:sapling:audio",
-            "transcript": "sapling"
+            "audioTargetId": "en:lesson-10:session-32:word:choice:audio",
+            "transcript": "choice"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-32:word:sapling:r1",
-              "targetText": "sapling",
+              "responseId": "en:lesson-10:session-32:word:choice:r1",
+              "targetText": "choice",
               "meaningByLocale": {
-                "ru": "«молодое деревце». I am watering the sapling. — «Я поливаю молодое деревце». Молодое дерево с тонким стволом.",
-                "uk": "«молоде деревце». I am watering the sapling. — «Я поливаю молоде деревце». Молоде дерево з тонким стовбуром."
+                "ru": "«выбор». It is a good choice. — «Это хороший выбор».",
+                "uk": "«вибір». It is a good choice. — «Це хороший вибір»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "sapling",
+            "word": "choice",
             "definitionByLocale": {
-              "ru": "«молодое деревце». I am watering the sapling. — «Я поливаю молодое деревце». Молодое дерево с тонким стволом.",
-              "uk": "«молоде деревце». I am watering the sapling. — «Я поливаю молоде деревце». Молоде дерево з тонким стовбуром."
+              "ru": "«выбор». It is a good choice. — «Это хороший выбор».",
+              "uk": "«вибір». It is a good choice. — «Це хороший вибір»."
             }
           }
         },
@@ -52,24 +52,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг звонит, пока вы поливаете молодое дерево. Скажите: «Я поливаю молодое деревце»",
+        "prompt": "Друг выбрал удобное кафе. Скажите, что это хороший выбор",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг звонит, пока вы поливаете молодое дерево. Скажите: «Я поливаю молодое деревце»",
+        "accessibilityLabel": "Друг выбрал удобное кафе. Скажите, что это хороший выбор",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am watering the sapling.",
+          "targetPhrase": "It is a good choice.",
           "localizedMeaning": {
-            "ru": "Друг звонит, пока вы поливаете молодое дерево. Скажите: «Я поливаю молодое деревце»",
-            "uk": "Друг телефонує, поки ви поливаєте молоде дерево. Скажіть: «Я поливаю молоде деревце»"
+            "ru": "Друг выбрал удобное кафе. Скажите, что это хороший выбор",
+            "uk": "Друг обрав зручне кафе. Скажіть, що це хороший вибір"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "watering",
-            "the",
-            "sapling"
+            "It",
+            "is",
+            "a",
+            "good",
+            "choice"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -90,15 +90,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i02:r1",
-            "text": "The sapling is growing."
+            "text": "It is a good choice."
           },
           {
             "responseId": "en:lesson-10:session-32:i02:r2",
-            "text": "The flower is growing."
+            "text": "It is a bad choice."
           },
           {
             "responseId": "en:lesson-10:session-32:i02:r3",
-            "text": "The sapling is green."
+            "text": "Is it a good choice?"
           }
         ],
         "mediaIds": [],
@@ -110,23 +110,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i02:audio",
-            "transcript": "The sapling is growing."
+            "transcript": "It is a good choice."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-32:i02:r1",
-              "targetText": "The sapling is growing.",
+              "targetText": "It is a good choice.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i02:r2",
-              "targetText": "The flower is growing.",
+              "targetText": "It is a bad choice.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i02:r3",
-              "targetText": "The sapling is green.",
+              "targetText": "Is it a good choice?",
               "meaningByLocale": null
             }
           ],
@@ -137,8 +137,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The sapling is growing.",
-                "uk": "У записі звучить The sapling is growing."
+                "ru": "В записи звучит It is a good choice.",
+                "uk": "У записі звучить It is a good choice."
               }
             },
             {
@@ -146,8 +146,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The sapling is growing.",
-                "uk": "У записі звучить The sapling is growing."
+                "ru": "В записи звучит It is a good choice.",
+                "uk": "У записі звучить It is a good choice."
               }
             }
           ],
@@ -162,63 +162,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы описываете привычку. Выберите форму work",
+        "prompt": "Выберите глагол с it",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i03:r1",
-            "text": "work"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-32:i03:r2",
-            "text": "works"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-32:i03:r3",
-            "text": "working"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы описываете привычку. Выберите форму work",
+        "accessibilityLabel": "Выберите глагол с it",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы описываете привычку. Выберите форму work",
-            "uk": "Ви описуєте звичку. Виберіть форму work"
+            "ru": "Выберите глагол с it",
+            "uk": "Виберіть дієслово з it"
           },
-          "gappedTargetPhrase": "I usually ___ here on Saturdays.",
+          "gappedTargetPhrase": "It ___ a good choice.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-32:i03:r1",
-              "text": "work"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-32:i03:r2",
-              "text": "works"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-32:i03:r3",
-              "text": "working"
+              "text": "am"
             }
           ],
-          "testedDimension": "Вы описываете привычку. Выберите форму work",
+          "testedDimension": "Выберите глагол с it",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-32:i03:r2",
               "correct": false,
-              "testedDimension": "Вы описываете привычку. Выберите форму work",
+              "testedDimension": "Выберите глагол с it",
               "feedbackByLocale": {
-                "ru": "С I нужна work без s.",
-                "uk": "З I потрібна work без s."
+                "ru": "С it нужна is.",
+                "uk": "З it потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-32:i03:r3",
               "correct": false,
-              "testedDimension": "Вы описываете привычку. Выберите форму work",
+              "testedDimension": "Выберите глагол с it",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна work.",
-                "uk": "Для цієї звички потрібна work."
+                "ru": "Am используется с I, а здесь it is.",
+                "uk": "Am вживається з I, а тут it is."
               }
             }
           ]
@@ -226,32 +226,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-32:word:mulch",
+        "interactionId": "en:lesson-10:session-32:word:decide",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — mulch",
+        "prompt": "Карточка слова — decide",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-32:word:mulch:audio"
+          "en:lesson-10:session-32:word:decide:audio"
         ],
-        "accessibilityLabel": "Карточка слова — mulch",
+        "accessibilityLabel": "Карточка слова — decide",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:word:mulch:audio",
-            "transcript": "mulch"
+            "audioTargetId": "en:lesson-10:session-32:word:decide:audio",
+            "transcript": "decide"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-32:word:mulch:r1",
-              "targetText": "mulch",
+              "responseId": "en:lesson-10:session-32:word:decide:r1",
+              "targetText": "decide",
               "meaningByLocale": {
-                "ru": "«мульча». The mulch is in the bag. — «Мульча в мешке». Материал, которым покрывают поверхность почвы; здесь неисчисляемое существительное.",
-                "uk": "«мульча». The mulch is in the bag. — «Мульча в мішку». Матеріал, яким вкривають поверхню ґрунту; тут незлічуваний іменник."
+                "ru": "«решать, принимать решение». I cannot decide. — «Я не могу решить».",
+                "uk": "«вирішувати, ухвалювати рішення». I cannot decide. — «Я не можу вирішити»."
               }
             }
           ],
@@ -259,10 +259,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "mulch",
+            "word": "decide",
             "definitionByLocale": {
-              "ru": "«мульча». The mulch is in the bag. — «Мульча в мешке». Материал, которым покрывают поверхность почвы; здесь неисчисляемое существительное.",
-              "uk": "«мульча». The mulch is in the bag. — «Мульча в мішку». Матеріал, яким вкривають поверхню ґрунту; тут незлічуваний іменник."
+              "ru": "«решать, принимать решение». I cannot decide. — «Я не могу решить».",
+              "uk": "«вирішувати, ухвалювати рішення». I cannot decide. — «Я не можу вирішити»."
             }
           }
         },
@@ -274,25 +274,22 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега ищет мульчу для покрытия почвы. Скажите: «Мульча в мешке»",
+        "prompt": "Вы пока не можете выбрать кафе. Скажите, что не можете решить",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега ищет мульчу для покрытия почвы. Скажите: «Мульча в мешке»",
+        "accessibilityLabel": "Вы пока не можете выбрать кафе. Скажите, что не можете решить",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The mulch is in the bag.",
+          "targetPhrase": "I cannot decide.",
           "localizedMeaning": {
-            "ru": "Коллега ищет мульчу для покрытия почвы. Скажите: «Мульча в мешке»",
-            "uk": "Колега шукає мульчу для вкривання ґрунту. Скажіть: «Мульча в мішку»"
+            "ru": "Вы пока не можете выбрать кафе. Скажите, что не можете решить",
+            "uk": "Ви поки не можете обрати кафе. Скажіть, що не можете вирішити"
           },
           "orderedTokens": [
-            "The",
-            "mulch",
-            "is",
-            "in",
-            "the",
-            "bag"
+            "I",
+            "cannot",
+            "decide"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -313,15 +310,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i05:r1",
-            "text": "The mulch is dry."
+            "text": "We cannot decide."
           },
           {
             "responseId": "en:lesson-10:session-32:i05:r2",
-            "text": "The mulch is wet."
+            "text": "I cannot decide."
           },
           {
             "responseId": "en:lesson-10:session-32:i05:r3",
-            "text": "The soil is dry."
+            "text": "They cannot decide."
           }
         ],
         "mediaIds": [],
@@ -333,23 +330,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i05:audio",
-            "transcript": "The mulch is dry."
+            "transcript": "We cannot decide."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-32:i05:r1",
-              "targetText": "The mulch is dry.",
+              "targetText": "We cannot decide.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i05:r2",
-              "targetText": "The mulch is wet.",
+              "targetText": "I cannot decide.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i05:r3",
-              "targetText": "The soil is dry.",
+              "targetText": "They cannot decide.",
               "meaningByLocale": null
             }
           ],
@@ -360,8 +357,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The mulch is dry.",
-                "uk": "У записі звучить The mulch is dry."
+                "ru": "В записи звучит We cannot decide.",
+                "uk": "У записі звучить We cannot decide."
               }
             },
             {
@@ -369,8 +366,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The mulch is dry.",
-                "uk": "У записі звучить The mulch is dry."
+                "ru": "В записи звучит We cannot decide.",
+                "uk": "У записі звучить We cannot decide."
               }
             }
           ],
@@ -385,63 +382,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с неисчисляемым mulch",
+        "prompt": "Выберите форму decide после cannot",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i06:r1",
-            "text": "is"
+            "text": "decide"
           },
           {
             "responseId": "en:lesson-10:session-32:i06:r2",
-            "text": "are"
+            "text": "decides"
           },
           {
             "responseId": "en:lesson-10:session-32:i06:r3",
-            "text": "am"
+            "text": "to decide"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с неисчисляемым mulch",
+        "accessibilityLabel": "Выберите форму decide после cannot",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с неисчисляемым mulch",
-            "uk": "Виберіть зв’язку з незлічуваним mulch"
+            "ru": "Выберите форму decide после cannot",
+            "uk": "Виберіть форму decide після cannot"
           },
-          "gappedTargetPhrase": "The mulch ___ dry.",
+          "gappedTargetPhrase": "I cannot ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-32:i06:r1",
-              "text": "is"
+              "text": "decide"
             },
             {
               "responseId": "en:lesson-10:session-32:i06:r2",
-              "text": "are"
+              "text": "decides"
             },
             {
               "responseId": "en:lesson-10:session-32:i06:r3",
-              "text": "am"
+              "text": "to decide"
             }
           ],
-          "testedDimension": "Выберите связку с неисчисляемым mulch",
+          "testedDimension": "Выберите форму decide после cannot",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-32:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите связку с неисчисляемым mulch",
+              "testedDimension": "Выберите форму decide после cannot",
               "feedbackByLocale": {
-                "ru": "С mulch здесь нужна is.",
-                "uk": "З mulch тут потрібна is."
+                "ru": "После cannot нужна decide без s.",
+                "uk": "Після cannot потрібна decide без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-32:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите связку с неисчисляемым mulch",
+              "testedDimension": "Выберите форму decide после cannot",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am використовуємо з I; тут потрібна is."
+                "ru": "После cannot не ставим to.",
+                "uk": "Після cannot не ставимо to."
               }
             }
           ]
@@ -449,32 +446,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-32:word:compost",
+        "interactionId": "en:lesson-10:session-32:word:reason",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — compost",
+        "prompt": "Карточка слова — reason",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-32:word:compost:audio"
+          "en:lesson-10:session-32:word:reason:audio"
         ],
-        "accessibilityLabel": "Карточка слова — compost",
+        "accessibilityLabel": "Карточка слова — reason",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:word:compost:audio",
-            "transcript": "compost"
+            "audioTargetId": "en:lesson-10:session-32:word:reason:audio",
+            "transcript": "reason"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-32:word:compost:r1",
-              "targetText": "compost",
+              "responseId": "en:lesson-10:session-32:word:reason:r1",
+              "targetText": "reason",
               "meaningByLocale": {
-                "ru": "«компост». There is compost in the bag. — «В мешке компост». Перепревший органический материал для почвы.",
-                "uk": "«компост». There is compost in the bag. — «У мішку компост». Перепрілий органічний матеріал для ґрунту."
+                "ru": "«причина». What is the reason? — «В чём причина?»",
+                "uk": "«причина». What is the reason? — «У чому причина?»"
               }
             }
           ],
@@ -482,10 +479,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "compost",
+            "word": "reason",
             "definitionByLocale": {
-              "ru": "«компост». There is compost in the bag. — «В мешке компост». Перепревший органический материал для почвы.",
-              "uk": "«компост». There is compost in the bag. — «У мішку компост». Перепрілий органічний матеріал для ґрунту."
+              "ru": "«причина». What is the reason? — «В чём причина?»",
+              "uk": "«причина». What is the reason? — «У чому причина?»"
             }
           }
         },
@@ -497,25 +494,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг показывает другой мешок и спрашивает, что в нём. Скажите: «В мешке компост»",
+        "prompt": "Друг отказывается идти в кафе. Спросите о причине",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг показывает другой мешок и спрашивает, что в нём. Скажите: «В мешке компост»",
+        "accessibilityLabel": "Друг отказывается идти в кафе. Спросите о причине",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "There is compost in the bag.",
+          "targetPhrase": "What is the reason?",
           "localizedMeaning": {
-            "ru": "Друг показывает другой мешок и спрашивает, что в нём. Скажите: «В мешке компост»",
-            "uk": "Друг показує інший мішок і запитує, що в ньому. Скажіть: «У мішку компост»"
+            "ru": "Друг отказывается идти в кафе. Спросите о причине",
+            "uk": "Друг відмовляється йти до кафе. Запитайте про причину"
           },
           "orderedTokens": [
-            "There",
+            "What",
             "is",
-            "compost",
-            "in",
             "the",
-            "bag"
+            "reason"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -536,15 +531,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i08:r1",
-            "text": "The compost is dark."
+            "text": "What is the reason?"
           },
           {
             "responseId": "en:lesson-10:session-32:i08:r2",
-            "text": "The compost is dry."
+            "text": "What is the price?"
           },
           {
             "responseId": "en:lesson-10:session-32:i08:r3",
-            "text": "The mulch is dark."
+            "text": "What is the choice?"
           }
         ],
         "mediaIds": [],
@@ -556,23 +551,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i08:audio",
-            "transcript": "The compost is dark."
+            "transcript": "What is the reason?"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-32:i08:r1",
-              "targetText": "The compost is dark.",
+              "targetText": "What is the reason?",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i08:r2",
-              "targetText": "The compost is dry.",
+              "targetText": "What is the price?",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i08:r3",
-              "targetText": "The mulch is dark.",
+              "targetText": "What is the choice?",
               "meaningByLocale": null
             }
           ],
@@ -583,8 +578,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The compost is dark.",
-                "uk": "У записі звучить The compost is dark."
+                "ru": "В записи звучит What is the reason?",
+                "uk": "У записі звучить What is the reason?"
               }
             },
             {
@@ -592,8 +587,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The compost is dark.",
-                "uk": "У записі звучить The compost is dark."
+                "ru": "В записи звучит What is the reason?",
+                "uk": "У записі звучить What is the reason?"
               }
             }
           ],
@@ -608,7 +603,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для неисчисляемого compost",
+        "prompt": "Выберите глагол для одной причины",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i09:r1",
@@ -625,14 +620,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для неисчисляемого compost",
+        "accessibilityLabel": "Выберите глагол для одной причины",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для неисчисляемого compost",
-            "uk": "Виберіть зв’язку для незлічуваного compost"
+            "ru": "Выберите глагол для одной причины",
+            "uk": "Виберіть дієслово для однієї причини"
           },
-          "gappedTargetPhrase": "There ___ compost in the bag.",
+          "gappedTargetPhrase": "What ___ the reason?",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-32:i09:r1",
@@ -647,24 +642,24 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Выберите связку для неисчисляемого compost",
+          "testedDimension": "Выберите глагол для одной причины",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-32:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите связку для неисчисляемого compost",
+              "testedDimension": "Выберите глагол для одной причины",
               "feedbackByLocale": {
-                "ru": "С неисчисляемым compost используем there is.",
-                "uk": "З незлічуваним compost використовуємо there is."
+                "ru": "Одна причина: is.",
+                "uk": "Одна причина: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-32:i09:r3",
               "correct": false,
-              "testedDimension": "Выберите связку для неисчисляемого compost",
+              "testedDimension": "Выберите глагол для одной причины",
               "feedbackByLocale": {
-                "ru": "Здесь нужна конструкция there is.",
-                "uk": "Тут потрібна конструкція there is."
+                "ru": "Am используется с I. Здесь нужна is.",
+                "uk": "Am вживається з I. Тут потрібна is."
               }
             }
           ]
@@ -672,32 +667,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-32:word:seedbed",
+        "interactionId": "en:lesson-10:session-32:word:allow",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — seedbed",
+        "prompt": "Карточка слова — allow",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-32:word:seedbed:audio"
+          "en:lesson-10:session-32:word:allow:audio"
         ],
-        "accessibilityLabel": "Карточка слова — seedbed",
+        "accessibilityLabel": "Карточка слова — allow",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:word:seedbed:audio",
-            "transcript": "seedbed"
+            "audioTargetId": "en:lesson-10:session-32:word:allow:audio",
+            "transcript": "allow"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-32:word:seedbed:r1",
-              "targetText": "seedbed",
+              "responseId": "en:lesson-10:session-32:word:allow:r1",
+              "targetText": "allow",
               "meaningByLocale": {
-                "ru": "«грядка для посева». We are preparing the seedbed. — «Мы готовим грядку для посева». Участок почвы, подготовленный для семян.",
-                "uk": "«грядка для посіву». We are preparing the seedbed. — «Ми готуємо грядку для посіву». Ділянка ґрунту, підготовлена для насіння."
+                "ru": "«разрешать». Do they allow dogs? — «Они разрешают приходить с собаками?»",
+                "uk": "«дозволяти». Do they allow dogs? — «Вони дозволяють приходити із собаками?»"
               }
             }
           ],
@@ -705,10 +700,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "seedbed",
+            "word": "allow",
             "definitionByLocale": {
-              "ru": "«грядка для посева». We are preparing the seedbed. — «Мы готовим грядку для посева». Участок почвы, подготовленный для семян.",
-              "uk": "«грядка для посіву». We are preparing the seedbed. — «Ми готуємо грядку для посіву». Ділянка ґрунту, підготовлена для насіння."
+              "ru": "«разрешать». Do they allow dogs? — «Они разрешают приходить с собаками?»",
+              "uk": "«дозволяти». Do they allow dogs? — «Вони дозволяють приходити із собаками?»"
             }
           }
         },
@@ -720,24 +715,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает, над чем вы с коллегой работаете сейчас. Скажите: «Мы готовим грядку для посева»",
+        "prompt": "Спросите друга, разрешают ли сотрудники кафе приходить с собаками",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает, над чем вы с коллегой работаете сейчас. Скажите: «Мы готовим грядку для посева»",
+        "accessibilityLabel": "Спросите друга, разрешают ли сотрудники кафе приходить с собаками",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are preparing the seedbed.",
+          "targetPhrase": "Do they allow dogs?",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, над чем вы с коллегой работаете сейчас. Скажите: «Мы готовим грядку для посева»",
-            "uk": "Друг запитує, над чим ви з колегою працюєте зараз. Скажіть: «Ми готуємо грядку для посіву»"
+            "ru": "Спросите друга, разрешают ли сотрудники кафе приходить с собаками",
+            "uk": "Запитайте друга, чи дозволяють працівники кафе приходити із собаками"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "preparing",
-            "the",
-            "seedbed"
+            "Do",
+            "they",
+            "allow",
+            "dogs"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -758,15 +752,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i11:r1",
-            "text": "The seedbed is beside the path."
+            "text": "They allow dogs."
           },
           {
             "responseId": "en:lesson-10:session-32:i11:r2",
-            "text": "The seedbed is beside the wall."
+            "text": "Do they allow dogs?"
           },
           {
             "responseId": "en:lesson-10:session-32:i11:r3",
-            "text": "The sapling is beside the path."
+            "text": "They allow cats."
           }
         ],
         "mediaIds": [],
@@ -778,23 +772,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i11:audio",
-            "transcript": "The seedbed is beside the path."
+            "transcript": "They allow dogs."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-32:i11:r1",
-              "targetText": "The seedbed is beside the path.",
+              "targetText": "They allow dogs.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i11:r2",
-              "targetText": "The seedbed is beside the wall.",
+              "targetText": "Do they allow dogs?",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i11:r3",
-              "targetText": "The sapling is beside the path.",
+              "targetText": "They allow cats.",
               "meaningByLocale": null
             }
           ],
@@ -805,8 +799,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The seedbed is beside the path.",
-                "uk": "У записі звучить The seedbed is beside the path."
+                "ru": "В записи звучит They allow dogs.",
+                "uk": "У записі звучить They allow dogs."
               }
             },
             {
@@ -814,8 +808,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The seedbed is beside the path.",
-                "uk": "У записі звучить The seedbed is beside the path."
+                "ru": "В записи звучит They allow dogs.",
+                "uk": "У записі звучить They allow dogs."
               }
             }
           ],
@@ -830,63 +824,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы работаете над грядкой сейчас. Выберите написание формы prepare",
+        "prompt": "Выберите форму allow после do",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i12:r1",
-            "text": "preparing"
+            "text": "allow"
           },
           {
             "responseId": "en:lesson-10:session-32:i12:r2",
-            "text": "prepareing"
+            "text": "allows"
           },
           {
             "responseId": "en:lesson-10:session-32:i12:r3",
-            "text": "prepare"
+            "text": "allowing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы работаете над грядкой сейчас. Выберите написание формы prepare",
+        "accessibilityLabel": "Выберите форму allow после do",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы работаете над грядкой сейчас. Выберите написание формы prepare",
-            "uk": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare"
+            "ru": "Выберите форму allow после do",
+            "uk": "Виберіть форму allow після do"
           },
-          "gappedTargetPhrase": "We are ___ the seedbed.",
+          "gappedTargetPhrase": "Do they ___ dogs?",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-32:i12:r1",
-              "text": "preparing"
+              "text": "allow"
             },
             {
               "responseId": "en:lesson-10:session-32:i12:r2",
-              "text": "prepareing"
+              "text": "allows"
             },
             {
               "responseId": "en:lesson-10:session-32:i12:r3",
-              "text": "prepare"
+              "text": "allowing"
             }
           ],
-          "testedDimension": "Вы работаете над грядкой сейчас. Выберите написание формы prepare",
+          "testedDimension": "Выберите форму allow после do",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-32:i12:r2",
               "correct": false,
-              "testedDimension": "Вы работаете над грядкой сейчас. Выберите написание формы prepare",
+              "testedDimension": "Выберите форму allow после do",
               "feedbackByLocale": {
-                "ru": "Перед ing конечная e исчезает: preparing.",
-                "uk": "Перед ing кінцева e зникає: preparing."
+                "ru": "После do нужна allow без s.",
+                "uk": "Після do потрібна allow без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-32:i12:r3",
               "correct": false,
-              "testedDimension": "Вы работаете над грядкой сейчас. Выберите написание формы prepare",
+              "testedDimension": "Выберите форму allow после do",
               "feedbackByLocale": {
-                "ru": "После are здесь нужна preparing.",
-                "uk": "Після are тут потрібна preparing."
+                "ru": "После do нужна allow без ing.",
+                "uk": "Після do потрібна allow без ing."
               }
             }
           ]
@@ -899,58 +893,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините новые слова со значениями",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините новые слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-32:i13:p1",
-              "target": "sapling",
+              "target": "decide",
               "meaningByLocale": {
-                "ru": "молодое деревце",
-                "uk": "молоде деревце"
+                "ru": "решать",
+                "uk": "вирішувати"
               }
             },
             {
               "pairId": "en:lesson-10:session-32:i13:p2",
-              "target": "mulch",
+              "target": "choice",
               "meaningByLocale": {
-                "ru": "мульча",
-                "uk": "мульча"
+                "ru": "выбор",
+                "uk": "вибір"
               }
             },
             {
               "pairId": "en:lesson-10:session-32:i13:p3",
-              "target": "compost",
+              "target": "reason",
               "meaningByLocale": {
-                "ru": "компост",
-                "uk": "компост"
+                "ru": "причина",
+                "uk": "причина"
               }
             },
             {
               "pairId": "en:lesson-10:session-32:i13:p4",
-              "target": "seedbed",
+              "target": "allow",
               "meaningByLocale": {
-                "ru": "грядка для посева",
-                "uk": "грядка для посіву"
+                "ru": "разрешать",
+                "uk": "дозволяти"
               }
             }
           ],
           "leftColumn": [
-            "sapling",
-            "mulch",
-            "compost",
-            "seedbed"
+            "decide",
+            "choice",
+            "reason",
+            "allow"
           ],
           "rightColumn": [
-            "молодое деревце",
-            "мульча",
-            "компост",
-            "грядка для посева"
+            "решать",
+            "выбор",
+            "причина",
+            "разрешать"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -972,27 +966,25 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-32:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i14:audio",
-            "transcript": "We are preparing the seedbed."
+            "transcript": "I cannot decide."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are preparing the seedbed.",
+          "hiddenTargetPhrase": "I cannot decide.",
           "orderedTokens": [
-            "We",
-            "are",
-            "preparing",
-            "the",
-            "seedbed"
+            "I",
+            "cannot",
+            "decide"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1006,24 +998,60 @@
       {
         "interactionId": "en:lesson-10:session-32:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг спрашивает, знаком ли вам этот сад. Вы давно помогаете здесь. Скажите: «Я знаю этот сад»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-32:i15:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает, знаком ли вам этот сад. Вы давно помогаете здесь. Скажите: «Я знаю этот сад»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-32:i15:audio",
+            "transcript": "Do they allow dogs?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do they allow dogs?",
+          "orderedTokens": [
+            "Do",
+            "they",
+            "allow",
+            "dogs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что вы можете решить сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что вы можете решить сейчас",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:i15:audio",
-            "transcript": "I know this garden."
+            "audioTargetId": "en:lesson-10:session-32:i16:audio",
+            "transcript": "I can decide now."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I know this garden.",
+          "targetPhrase": "I can decide now.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1037,72 +1065,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-32:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Обычно коллега работает в теплице, но временно помогает здесь. Скажите: «Она работает здесь на этой неделе». Поставьте this week в конце",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Обычно коллега работает в теплице, но временно помогает здесь. Скажите: «Она работает здесь на этой неделе». Поставьте this week в конце",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "She is working here this week.",
-          "localizedMeaning": {
-            "ru": "Обычно коллега работает в теплице, но временно помогает здесь. Скажите: «Она работает здесь на этой неделе». Поставьте this week в конце",
-            "uk": "Зазвичай колега працює в теплиці, але тимчасово допомагає тут. Скажіть: «Вона працює тут цього тижня». Поставте this week у кінці"
-          },
-          "orderedTokens": [
-            "She",
-            "is",
-            "working",
-            "here",
-            "this",
-            "week"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-32:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг звонит и спрашивает, что вы делаете вместе с коллегой. Вы готовите участок для семян. Скажите: «Мы готовим грядку для посева»",
+        "prompt": "Скажите, что знаете причину",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-32:i17:audio"
         ],
-        "accessibilityLabel": "Друг звонит и спрашивает, что вы делаете вместе с коллегой. Вы готовите участок для семян. Скажите: «Мы готовим грядку для посева»",
+        "accessibilityLabel": "Скажите, что знаете причину",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i17:audio",
-            "transcript": "We are preparing the seedbed."
+            "transcript": "I know the reason."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are preparing the seedbed.",
+          "targetPhrase": "I know the reason.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1115,32 +1100,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-32:word:sapling",
+        "interactionId": "en:lesson-10:session-32:word:choice",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — sapling",
+        "prompt": "Картка слова — choice",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-32:word:sapling:audio"
+          "en:lesson-10:session-32:word:choice:audio"
         ],
-        "accessibilityLabel": "Картка слова — sapling",
+        "accessibilityLabel": "Картка слова — choice",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:word:sapling:audio",
-            "transcript": "sapling"
+            "audioTargetId": "en:lesson-10:session-32:word:choice:audio",
+            "transcript": "choice"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-32:word:sapling:r1",
-              "targetText": "sapling",
+              "responseId": "en:lesson-10:session-32:word:choice:r1",
+              "targetText": "choice",
               "meaningByLocale": {
-                "ru": "«молодое деревце». I am watering the sapling. — «Я поливаю молодое деревце». Молодое дерево с тонким стволом.",
-                "uk": "«молоде деревце». I am watering the sapling. — «Я поливаю молоде деревце». Молоде дерево з тонким стовбуром."
+                "ru": "«выбор». It is a good choice. — «Это хороший выбор».",
+                "uk": "«вибір». It is a good choice. — «Це хороший вибір»."
               }
             }
           ],
@@ -1148,10 +1133,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "sapling",
+            "word": "choice",
             "definitionByLocale": {
-              "ru": "«молодое деревце». I am watering the sapling. — «Я поливаю молодое деревце». Молодое дерево с тонким стволом.",
-              "uk": "«молоде деревце». I am watering the sapling. — «Я поливаю молоде деревце». Молоде дерево з тонким стовбуром."
+              "ru": "«выбор». It is a good choice. — «Это хороший выбор».",
+              "uk": "«вибір». It is a good choice. — «Це хороший вибір»."
             }
           }
         },
@@ -1163,24 +1148,24 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг телефонує, поки ви поливаєте молоде дерево. Скажіть: «Я поливаю молоде деревце»",
+        "prompt": "Друг обрав зручне кафе. Скажіть, що це хороший вибір",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг телефонує, поки ви поливаєте молоде дерево. Скажіть: «Я поливаю молоде деревце»",
+        "accessibilityLabel": "Друг обрав зручне кафе. Скажіть, що це хороший вибір",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am watering the sapling.",
+          "targetPhrase": "It is a good choice.",
           "localizedMeaning": {
-            "ru": "Друг звонит, пока вы поливаете молодое дерево. Скажите: «Я поливаю молодое деревце»",
-            "uk": "Друг телефонує, поки ви поливаєте молоде дерево. Скажіть: «Я поливаю молоде деревце»"
+            "ru": "Друг выбрал удобное кафе. Скажите, что это хороший выбор",
+            "uk": "Друг обрав зручне кафе. Скажіть, що це хороший вибір"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "watering",
-            "the",
-            "sapling"
+            "It",
+            "is",
+            "a",
+            "good",
+            "choice"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1201,15 +1186,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i02:r1",
-            "text": "The sapling is growing."
+            "text": "It is a good choice."
           },
           {
             "responseId": "en:lesson-10:session-32:i02:r2",
-            "text": "The flower is growing."
+            "text": "It is a bad choice."
           },
           {
             "responseId": "en:lesson-10:session-32:i02:r3",
-            "text": "The sapling is green."
+            "text": "Is it a good choice?"
           }
         ],
         "mediaIds": [],
@@ -1221,23 +1206,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i02:audio",
-            "transcript": "The sapling is growing."
+            "transcript": "It is a good choice."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-32:i02:r1",
-              "targetText": "The sapling is growing.",
+              "targetText": "It is a good choice.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i02:r2",
-              "targetText": "The flower is growing.",
+              "targetText": "It is a bad choice.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i02:r3",
-              "targetText": "The sapling is green.",
+              "targetText": "Is it a good choice?",
               "meaningByLocale": null
             }
           ],
@@ -1248,8 +1233,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The sapling is growing.",
-                "uk": "У записі звучить The sapling is growing."
+                "ru": "В записи звучит It is a good choice.",
+                "uk": "У записі звучить It is a good choice."
               }
             },
             {
@@ -1257,8 +1242,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The sapling is growing.",
-                "uk": "У записі звучить The sapling is growing."
+                "ru": "В записи звучит It is a good choice.",
+                "uk": "У записі звучить It is a good choice."
               }
             }
           ],
@@ -1273,63 +1258,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви описуєте звичку. Виберіть форму work",
+        "prompt": "Виберіть дієслово з it",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i03:r1",
-            "text": "work"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-32:i03:r2",
-            "text": "works"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-32:i03:r3",
-            "text": "working"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви описуєте звичку. Виберіть форму work",
+        "accessibilityLabel": "Виберіть дієслово з it",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы описываете привычку. Выберите форму work",
-            "uk": "Ви описуєте звичку. Виберіть форму work"
+            "ru": "Выберите глагол с it",
+            "uk": "Виберіть дієслово з it"
           },
-          "gappedTargetPhrase": "I usually ___ here on Saturdays.",
+          "gappedTargetPhrase": "It ___ a good choice.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-32:i03:r1",
-              "text": "work"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-32:i03:r2",
-              "text": "works"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-32:i03:r3",
-              "text": "working"
+              "text": "am"
             }
           ],
-          "testedDimension": "Ви описуєте звичку. Виберіть форму work",
+          "testedDimension": "Виберіть дієслово з it",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-32:i03:r2",
               "correct": false,
-              "testedDimension": "Ви описуєте звичку. Виберіть форму work",
+              "testedDimension": "Виберіть дієслово з it",
               "feedbackByLocale": {
-                "ru": "С I нужна work без s.",
-                "uk": "З I потрібна work без s."
+                "ru": "С it нужна is.",
+                "uk": "З it потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-32:i03:r3",
               "correct": false,
-              "testedDimension": "Ви описуєте звичку. Виберіть форму work",
+              "testedDimension": "Виберіть дієслово з it",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна work.",
-                "uk": "Для цієї звички потрібна work."
+                "ru": "Am используется с I, а здесь it is.",
+                "uk": "Am вживається з I, а тут it is."
               }
             }
           ]
@@ -1337,32 +1322,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-32:word:mulch",
+        "interactionId": "en:lesson-10:session-32:word:decide",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — mulch",
+        "prompt": "Картка слова — decide",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-32:word:mulch:audio"
+          "en:lesson-10:session-32:word:decide:audio"
         ],
-        "accessibilityLabel": "Картка слова — mulch",
+        "accessibilityLabel": "Картка слова — decide",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:word:mulch:audio",
-            "transcript": "mulch"
+            "audioTargetId": "en:lesson-10:session-32:word:decide:audio",
+            "transcript": "decide"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-32:word:mulch:r1",
-              "targetText": "mulch",
+              "responseId": "en:lesson-10:session-32:word:decide:r1",
+              "targetText": "decide",
               "meaningByLocale": {
-                "ru": "«мульча». The mulch is in the bag. — «Мульча в мешке». Материал, которым покрывают поверхность почвы; здесь неисчисляемое существительное.",
-                "uk": "«мульча». The mulch is in the bag. — «Мульча в мішку». Матеріал, яким вкривають поверхню ґрунту; тут незлічуваний іменник."
+                "ru": "«решать, принимать решение». I cannot decide. — «Я не могу решить».",
+                "uk": "«вирішувати, ухвалювати рішення». I cannot decide. — «Я не можу вирішити»."
               }
             }
           ],
@@ -1370,10 +1355,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "mulch",
+            "word": "decide",
             "definitionByLocale": {
-              "ru": "«мульча». The mulch is in the bag. — «Мульча в мешке». Материал, которым покрывают поверхность почвы; здесь неисчисляемое существительное.",
-              "uk": "«мульча». The mulch is in the bag. — «Мульча в мішку». Матеріал, яким вкривають поверхню ґрунту; тут незлічуваний іменник."
+              "ru": "«решать, принимать решение». I cannot decide. — «Я не могу решить».",
+              "uk": "«вирішувати, ухвалювати рішення». I cannot decide. — «Я не можу вирішити»."
             }
           }
         },
@@ -1385,25 +1370,22 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега шукає мульчу для вкривання ґрунту. Скажіть: «Мульча в мішку»",
+        "prompt": "Ви поки не можете обрати кафе. Скажіть, що не можете вирішити",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега шукає мульчу для вкривання ґрунту. Скажіть: «Мульча в мішку»",
+        "accessibilityLabel": "Ви поки не можете обрати кафе. Скажіть, що не можете вирішити",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The mulch is in the bag.",
+          "targetPhrase": "I cannot decide.",
           "localizedMeaning": {
-            "ru": "Коллега ищет мульчу для покрытия почвы. Скажите: «Мульча в мешке»",
-            "uk": "Колега шукає мульчу для вкривання ґрунту. Скажіть: «Мульча в мішку»"
+            "ru": "Вы пока не можете выбрать кафе. Скажите, что не можете решить",
+            "uk": "Ви поки не можете обрати кафе. Скажіть, що не можете вирішити"
           },
           "orderedTokens": [
-            "The",
-            "mulch",
-            "is",
-            "in",
-            "the",
-            "bag"
+            "I",
+            "cannot",
+            "decide"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1424,15 +1406,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i05:r1",
-            "text": "The mulch is dry."
+            "text": "We cannot decide."
           },
           {
             "responseId": "en:lesson-10:session-32:i05:r2",
-            "text": "The mulch is wet."
+            "text": "I cannot decide."
           },
           {
             "responseId": "en:lesson-10:session-32:i05:r3",
-            "text": "The soil is dry."
+            "text": "They cannot decide."
           }
         ],
         "mediaIds": [],
@@ -1444,23 +1426,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i05:audio",
-            "transcript": "The mulch is dry."
+            "transcript": "We cannot decide."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-32:i05:r1",
-              "targetText": "The mulch is dry.",
+              "targetText": "We cannot decide.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i05:r2",
-              "targetText": "The mulch is wet.",
+              "targetText": "I cannot decide.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i05:r3",
-              "targetText": "The soil is dry.",
+              "targetText": "They cannot decide.",
               "meaningByLocale": null
             }
           ],
@@ -1471,8 +1453,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The mulch is dry.",
-                "uk": "У записі звучить The mulch is dry."
+                "ru": "В записи звучит We cannot decide.",
+                "uk": "У записі звучить We cannot decide."
               }
             },
             {
@@ -1480,8 +1462,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The mulch is dry.",
-                "uk": "У записі звучить The mulch is dry."
+                "ru": "В записи звучит We cannot decide.",
+                "uk": "У записі звучить We cannot decide."
               }
             }
           ],
@@ -1496,63 +1478,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з незлічуваним mulch",
+        "prompt": "Виберіть форму decide після cannot",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i06:r1",
-            "text": "is"
+            "text": "decide"
           },
           {
             "responseId": "en:lesson-10:session-32:i06:r2",
-            "text": "are"
+            "text": "decides"
           },
           {
             "responseId": "en:lesson-10:session-32:i06:r3",
-            "text": "am"
+            "text": "to decide"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з незлічуваним mulch",
+        "accessibilityLabel": "Виберіть форму decide після cannot",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с неисчисляемым mulch",
-            "uk": "Виберіть зв’язку з незлічуваним mulch"
+            "ru": "Выберите форму decide после cannot",
+            "uk": "Виберіть форму decide після cannot"
           },
-          "gappedTargetPhrase": "The mulch ___ dry.",
+          "gappedTargetPhrase": "I cannot ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-32:i06:r1",
-              "text": "is"
+              "text": "decide"
             },
             {
               "responseId": "en:lesson-10:session-32:i06:r2",
-              "text": "are"
+              "text": "decides"
             },
             {
               "responseId": "en:lesson-10:session-32:i06:r3",
-              "text": "am"
+              "text": "to decide"
             }
           ],
-          "testedDimension": "Виберіть зв’язку з незлічуваним mulch",
+          "testedDimension": "Виберіть форму decide після cannot",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-32:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку з незлічуваним mulch",
+              "testedDimension": "Виберіть форму decide після cannot",
               "feedbackByLocale": {
-                "ru": "С mulch здесь нужна is.",
-                "uk": "З mulch тут потрібна is."
+                "ru": "После cannot нужна decide без s.",
+                "uk": "Після cannot потрібна decide без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-32:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку з незлічуваним mulch",
+              "testedDimension": "Виберіть форму decide після cannot",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am використовуємо з I; тут потрібна is."
+                "ru": "После cannot не ставим to.",
+                "uk": "Після cannot не ставимо to."
               }
             }
           ]
@@ -1560,32 +1542,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-32:word:compost",
+        "interactionId": "en:lesson-10:session-32:word:reason",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — compost",
+        "prompt": "Картка слова — reason",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-32:word:compost:audio"
+          "en:lesson-10:session-32:word:reason:audio"
         ],
-        "accessibilityLabel": "Картка слова — compost",
+        "accessibilityLabel": "Картка слова — reason",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:word:compost:audio",
-            "transcript": "compost"
+            "audioTargetId": "en:lesson-10:session-32:word:reason:audio",
+            "transcript": "reason"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-32:word:compost:r1",
-              "targetText": "compost",
+              "responseId": "en:lesson-10:session-32:word:reason:r1",
+              "targetText": "reason",
               "meaningByLocale": {
-                "ru": "«компост». There is compost in the bag. — «В мешке компост». Перепревший органический материал для почвы.",
-                "uk": "«компост». There is compost in the bag. — «У мішку компост». Перепрілий органічний матеріал для ґрунту."
+                "ru": "«причина». What is the reason? — «В чём причина?»",
+                "uk": "«причина». What is the reason? — «У чому причина?»"
               }
             }
           ],
@@ -1593,10 +1575,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "compost",
+            "word": "reason",
             "definitionByLocale": {
-              "ru": "«компост». There is compost in the bag. — «В мешке компост». Перепревший органический материал для почвы.",
-              "uk": "«компост». There is compost in the bag. — «У мішку компост». Перепрілий органічний матеріал для ґрунту."
+              "ru": "«причина». What is the reason? — «В чём причина?»",
+              "uk": "«причина». What is the reason? — «У чому причина?»"
             }
           }
         },
@@ -1608,25 +1590,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг показує інший мішок і запитує, що в ньому. Скажіть: «У мішку компост»",
+        "prompt": "Друг відмовляється йти до кафе. Запитайте про причину",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг показує інший мішок і запитує, що в ньому. Скажіть: «У мішку компост»",
+        "accessibilityLabel": "Друг відмовляється йти до кафе. Запитайте про причину",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "There is compost in the bag.",
+          "targetPhrase": "What is the reason?",
           "localizedMeaning": {
-            "ru": "Друг показывает другой мешок и спрашивает, что в нём. Скажите: «В мешке компост»",
-            "uk": "Друг показує інший мішок і запитує, що в ньому. Скажіть: «У мішку компост»"
+            "ru": "Друг отказывается идти в кафе. Спросите о причине",
+            "uk": "Друг відмовляється йти до кафе. Запитайте про причину"
           },
           "orderedTokens": [
-            "There",
+            "What",
             "is",
-            "compost",
-            "in",
             "the",
-            "bag"
+            "reason"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1647,15 +1627,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i08:r1",
-            "text": "The compost is dark."
+            "text": "What is the reason?"
           },
           {
             "responseId": "en:lesson-10:session-32:i08:r2",
-            "text": "The compost is dry."
+            "text": "What is the price?"
           },
           {
             "responseId": "en:lesson-10:session-32:i08:r3",
-            "text": "The mulch is dark."
+            "text": "What is the choice?"
           }
         ],
         "mediaIds": [],
@@ -1667,23 +1647,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i08:audio",
-            "transcript": "The compost is dark."
+            "transcript": "What is the reason?"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-32:i08:r1",
-              "targetText": "The compost is dark.",
+              "targetText": "What is the reason?",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i08:r2",
-              "targetText": "The compost is dry.",
+              "targetText": "What is the price?",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i08:r3",
-              "targetText": "The mulch is dark.",
+              "targetText": "What is the choice?",
               "meaningByLocale": null
             }
           ],
@@ -1694,8 +1674,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The compost is dark.",
-                "uk": "У записі звучить The compost is dark."
+                "ru": "В записи звучит What is the reason?",
+                "uk": "У записі звучить What is the reason?"
               }
             },
             {
@@ -1703,8 +1683,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The compost is dark.",
-                "uk": "У записі звучить The compost is dark."
+                "ru": "В записи звучит What is the reason?",
+                "uk": "У записі звучить What is the reason?"
               }
             }
           ],
@@ -1719,7 +1699,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для незлічуваного compost",
+        "prompt": "Виберіть дієслово для однієї причини",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i09:r1",
@@ -1736,14 +1716,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для незлічуваного compost",
+        "accessibilityLabel": "Виберіть дієслово для однієї причини",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для неисчисляемого compost",
-            "uk": "Виберіть зв’язку для незлічуваного compost"
+            "ru": "Выберите глагол для одной причины",
+            "uk": "Виберіть дієслово для однієї причини"
           },
-          "gappedTargetPhrase": "There ___ compost in the bag.",
+          "gappedTargetPhrase": "What ___ the reason?",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-32:i09:r1",
@@ -1758,24 +1738,24 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Виберіть зв’язку для незлічуваного compost",
+          "testedDimension": "Виберіть дієслово для однієї причини",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-32:i09:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для незлічуваного compost",
+              "testedDimension": "Виберіть дієслово для однієї причини",
               "feedbackByLocale": {
-                "ru": "С неисчисляемым compost используем there is.",
-                "uk": "З незлічуваним compost використовуємо there is."
+                "ru": "Одна причина: is.",
+                "uk": "Одна причина: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-32:i09:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для незлічуваного compost",
+              "testedDimension": "Виберіть дієслово для однієї причини",
               "feedbackByLocale": {
-                "ru": "Здесь нужна конструкция there is.",
-                "uk": "Тут потрібна конструкція there is."
+                "ru": "Am используется с I. Здесь нужна is.",
+                "uk": "Am вживається з I. Тут потрібна is."
               }
             }
           ]
@@ -1783,32 +1763,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-32:word:seedbed",
+        "interactionId": "en:lesson-10:session-32:word:allow",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — seedbed",
+        "prompt": "Картка слова — allow",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-32:word:seedbed:audio"
+          "en:lesson-10:session-32:word:allow:audio"
         ],
-        "accessibilityLabel": "Картка слова — seedbed",
+        "accessibilityLabel": "Картка слова — allow",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:word:seedbed:audio",
-            "transcript": "seedbed"
+            "audioTargetId": "en:lesson-10:session-32:word:allow:audio",
+            "transcript": "allow"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-32:word:seedbed:r1",
-              "targetText": "seedbed",
+              "responseId": "en:lesson-10:session-32:word:allow:r1",
+              "targetText": "allow",
               "meaningByLocale": {
-                "ru": "«грядка для посева». We are preparing the seedbed. — «Мы готовим грядку для посева». Участок почвы, подготовленный для семян.",
-                "uk": "«грядка для посіву». We are preparing the seedbed. — «Ми готуємо грядку для посіву». Ділянка ґрунту, підготовлена для насіння."
+                "ru": "«разрешать». Do they allow dogs? — «Они разрешают приходить с собаками?»",
+                "uk": "«дозволяти». Do they allow dogs? — «Вони дозволяють приходити із собаками?»"
               }
             }
           ],
@@ -1816,10 +1796,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "seedbed",
+            "word": "allow",
             "definitionByLocale": {
-              "ru": "«грядка для посева». We are preparing the seedbed. — «Мы готовим грядку для посева». Участок почвы, подготовленный для семян.",
-              "uk": "«грядка для посіву». We are preparing the seedbed. — «Ми готуємо грядку для посіву». Ділянка ґрунту, підготовлена для насіння."
+              "ru": "«разрешать». Do they allow dogs? — «Они разрешают приходить с собаками?»",
+              "uk": "«дозволяти». Do they allow dogs? — «Вони дозволяють приходити із собаками?»"
             }
           }
         },
@@ -1831,24 +1811,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг запитує, над чим ви з колегою працюєте зараз. Скажіть: «Ми готуємо грядку для посіву»",
+        "prompt": "Запитайте друга, чи дозволяють працівники кафе приходити із собаками",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг запитує, над чим ви з колегою працюєте зараз. Скажіть: «Ми готуємо грядку для посіву»",
+        "accessibilityLabel": "Запитайте друга, чи дозволяють працівники кафе приходити із собаками",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are preparing the seedbed.",
+          "targetPhrase": "Do they allow dogs?",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, над чем вы с коллегой работаете сейчас. Скажите: «Мы готовим грядку для посева»",
-            "uk": "Друг запитує, над чим ви з колегою працюєте зараз. Скажіть: «Ми готуємо грядку для посіву»"
+            "ru": "Спросите друга, разрешают ли сотрудники кафе приходить с собаками",
+            "uk": "Запитайте друга, чи дозволяють працівники кафе приходити із собаками"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "preparing",
-            "the",
-            "seedbed"
+            "Do",
+            "they",
+            "allow",
+            "dogs"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1869,15 +1848,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i11:r1",
-            "text": "The seedbed is beside the path."
+            "text": "They allow dogs."
           },
           {
             "responseId": "en:lesson-10:session-32:i11:r2",
-            "text": "The seedbed is beside the wall."
+            "text": "Do they allow dogs?"
           },
           {
             "responseId": "en:lesson-10:session-32:i11:r3",
-            "text": "The sapling is beside the path."
+            "text": "They allow cats."
           }
         ],
         "mediaIds": [],
@@ -1889,23 +1868,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i11:audio",
-            "transcript": "The seedbed is beside the path."
+            "transcript": "They allow dogs."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-32:i11:r1",
-              "targetText": "The seedbed is beside the path.",
+              "targetText": "They allow dogs.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i11:r2",
-              "targetText": "The seedbed is beside the wall.",
+              "targetText": "Do they allow dogs?",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-32:i11:r3",
-              "targetText": "The sapling is beside the path.",
+              "targetText": "They allow cats.",
               "meaningByLocale": null
             }
           ],
@@ -1916,8 +1895,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The seedbed is beside the path.",
-                "uk": "У записі звучить The seedbed is beside the path."
+                "ru": "В записи звучит They allow dogs.",
+                "uk": "У записі звучить They allow dogs."
               }
             },
             {
@@ -1925,8 +1904,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The seedbed is beside the path.",
-                "uk": "У записі звучить The seedbed is beside the path."
+                "ru": "В записи звучит They allow dogs.",
+                "uk": "У записі звучить They allow dogs."
               }
             }
           ],
@@ -1941,63 +1920,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+        "prompt": "Виберіть форму allow після do",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-32:i12:r1",
-            "text": "preparing"
+            "text": "allow"
           },
           {
             "responseId": "en:lesson-10:session-32:i12:r2",
-            "text": "prepareing"
+            "text": "allows"
           },
           {
             "responseId": "en:lesson-10:session-32:i12:r3",
-            "text": "prepare"
+            "text": "allowing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+        "accessibilityLabel": "Виберіть форму allow після do",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы работаете над грядкой сейчас. Выберите написание формы prepare",
-            "uk": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare"
+            "ru": "Выберите форму allow после do",
+            "uk": "Виберіть форму allow після do"
           },
-          "gappedTargetPhrase": "We are ___ the seedbed.",
+          "gappedTargetPhrase": "Do they ___ dogs?",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-32:i12:r1",
-              "text": "preparing"
+              "text": "allow"
             },
             {
               "responseId": "en:lesson-10:session-32:i12:r2",
-              "text": "prepareing"
+              "text": "allows"
             },
             {
               "responseId": "en:lesson-10:session-32:i12:r3",
-              "text": "prepare"
+              "text": "allowing"
             }
           ],
-          "testedDimension": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+          "testedDimension": "Виберіть форму allow після do",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-32:i12:r2",
               "correct": false,
-              "testedDimension": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+              "testedDimension": "Виберіть форму allow після do",
               "feedbackByLocale": {
-                "ru": "Перед ing конечная e исчезает: preparing.",
-                "uk": "Перед ing кінцева e зникає: preparing."
+                "ru": "После do нужна allow без s.",
+                "uk": "Після do потрібна allow без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-32:i12:r3",
               "correct": false,
-              "testedDimension": "Ви працюєте над грядкою зараз. Виберіть написання форми prepare",
+              "testedDimension": "Виберіть форму allow після do",
               "feedbackByLocale": {
-                "ru": "После are здесь нужна preparing.",
-                "uk": "Після are тут потрібна preparing."
+                "ru": "После do нужна allow без ing.",
+                "uk": "Після do потрібна allow без ing."
               }
             }
           ]
@@ -2010,58 +1989,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте нові слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-32:i13:p1",
-              "target": "sapling",
+              "target": "decide",
               "meaningByLocale": {
-                "ru": "молодое деревце",
-                "uk": "молоде деревце"
+                "ru": "решать",
+                "uk": "вирішувати"
               }
             },
             {
               "pairId": "en:lesson-10:session-32:i13:p2",
-              "target": "mulch",
+              "target": "choice",
               "meaningByLocale": {
-                "ru": "мульча",
-                "uk": "мульча"
+                "ru": "выбор",
+                "uk": "вибір"
               }
             },
             {
               "pairId": "en:lesson-10:session-32:i13:p3",
-              "target": "compost",
+              "target": "reason",
               "meaningByLocale": {
-                "ru": "компост",
-                "uk": "компост"
+                "ru": "причина",
+                "uk": "причина"
               }
             },
             {
               "pairId": "en:lesson-10:session-32:i13:p4",
-              "target": "seedbed",
+              "target": "allow",
               "meaningByLocale": {
-                "ru": "грядка для посева",
-                "uk": "грядка для посіву"
+                "ru": "разрешать",
+                "uk": "дозволяти"
               }
             }
           ],
           "leftColumn": [
-            "sapling",
-            "mulch",
-            "compost",
-            "seedbed"
+            "decide",
+            "choice",
+            "reason",
+            "allow"
           ],
           "rightColumn": [
-            "молоде деревце",
-            "мульча",
-            "компост",
-            "грядка для посіву"
+            "вирішувати",
+            "вибір",
+            "причина",
+            "дозволяти"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2083,27 +2062,25 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-32:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i14:audio",
-            "transcript": "We are preparing the seedbed."
+            "transcript": "I cannot decide."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "We are preparing the seedbed.",
+          "hiddenTargetPhrase": "I cannot decide.",
           "orderedTokens": [
-            "We",
-            "are",
-            "preparing",
-            "the",
-            "seedbed"
+            "I",
+            "cannot",
+            "decide"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2117,24 +2094,60 @@
       {
         "interactionId": "en:lesson-10:session-32:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг запитує, чи знаєте ви цей сад. Ви давно допомагаєте тут. Скажіть: «Я знаю цей сад»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-32:i15:audio"
         ],
-        "accessibilityLabel": "Друг запитує, чи знаєте ви цей сад. Ви давно допомагаєте тут. Скажіть: «Я знаю цей сад»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-32:i15:audio",
+            "transcript": "Do they allow dogs?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do they allow dogs?",
+          "orderedTokens": [
+            "Do",
+            "they",
+            "allow",
+            "dogs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що ви можете вирішити зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що ви можете вирішити зараз",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-32:i15:audio",
-            "transcript": "I know this garden."
+            "audioTargetId": "en:lesson-10:session-32:i16:audio",
+            "transcript": "I can decide now."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I know this garden.",
+          "targetPhrase": "I can decide now.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2148,72 +2161,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-32:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Зазвичай колега працює в теплиці, але тимчасово допомагає тут. Скажіть: «Вона працює тут цього тижня». Поставте this week у кінці",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Зазвичай колега працює в теплиці, але тимчасово допомагає тут. Скажіть: «Вона працює тут цього тижня». Поставте this week у кінці",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "She is working here this week.",
-          "localizedMeaning": {
-            "ru": "Обычно коллега работает в теплице, но временно помогает здесь. Скажите: «Она работает здесь на этой неделе». Поставьте this week в конце",
-            "uk": "Зазвичай колега працює в теплиці, але тимчасово допомагає тут. Скажіть: «Вона працює тут цього тижня». Поставте this week у кінці"
-          },
-          "orderedTokens": [
-            "She",
-            "is",
-            "working",
-            "here",
-            "this",
-            "week"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-32:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг телефонує й запитує, що ви робите разом із колегою. Ви готуєте ділянку для насіння. Скажіть: «Ми готуємо грядку для посіву»",
+        "prompt": "Скажіть, що знаєте причину",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-32:i17:audio"
         ],
-        "accessibilityLabel": "Друг телефонує й запитує, що ви робите разом із колегою. Ви готуєте ділянку для насіння. Скажіть: «Ми готуємо грядку для посіву»",
+        "accessibilityLabel": "Скажіть, що знаєте причину",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-32:i17:audio",
-            "transcript": "We are preparing the seedbed."
+            "transcript": "I know the reason."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are preparing the seedbed.",
+          "targetPhrase": "I know the reason.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2227,58 +2197,58 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-32:word:sapling",
-      "correctText": "sapling",
+      "interactionId": "en:lesson-10:session-32:word:choice",
+      "correctText": "choice",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i01",
-      "correctText": "I am watering the sapling.",
+      "correctText": "It is a good choice.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i02",
-      "correctText": "The sapling is growing.",
+      "correctText": "It is a good choice.",
       "correctResponseId": "en:lesson-10:session-32:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-32:i03",
-      "correctText": "work",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-32:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-32:word:mulch",
-      "correctText": "mulch",
+      "interactionId": "en:lesson-10:session-32:word:decide",
+      "correctText": "decide",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i04",
-      "correctText": "The mulch is in the bag.",
+      "correctText": "I cannot decide.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i05",
-      "correctText": "The mulch is dry.",
+      "correctText": "We cannot decide.",
       "correctResponseId": "en:lesson-10:session-32:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-32:i06",
-      "correctText": "is",
+      "correctText": "decide",
       "correctResponseId": "en:lesson-10:session-32:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-32:word:compost",
-      "correctText": "compost",
+      "interactionId": "en:lesson-10:session-32:word:reason",
+      "correctText": "reason",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i07",
-      "correctText": "There is compost in the bag.",
+      "correctText": "What is the reason?",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i08",
-      "correctText": "The compost is dark.",
+      "correctText": "What is the reason?",
       "correctResponseId": "en:lesson-10:session-32:i08:r1"
     },
     {
@@ -2287,23 +2257,23 @@
       "correctResponseId": "en:lesson-10:session-32:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-32:word:seedbed",
-      "correctText": "seedbed",
+      "interactionId": "en:lesson-10:session-32:word:allow",
+      "correctText": "allow",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i10",
-      "correctText": "We are preparing the seedbed.",
+      "correctText": "Do they allow dogs?",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i11",
-      "correctText": "The seedbed is beside the path.",
+      "correctText": "They allow dogs.",
       "correctResponseId": "en:lesson-10:session-32:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-32:i12",
-      "correctText": "preparing",
+      "correctText": "allow",
       "correctResponseId": "en:lesson-10:session-32:i12:r1"
     },
     {
@@ -2313,22 +2283,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-32:i14",
-      "correctText": "We are preparing the seedbed.",
+      "correctText": "I cannot decide.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i15",
-      "correctText": "I know this garden.",
+      "correctText": "Do they allow dogs?",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i16",
-      "correctText": "She is working here this week.",
+      "correctText": "I can decide now.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-32:i17",
-      "correctText": "We are preparing the seedbed.",
+      "correctText": "I know the reason.",
       "correctResponseId": null
     }
   ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-33",
   "learningOutcomeByLocale": {
-    "ru": "We come here every year; The headliner is playing now; The band is in the marquee",
-    "uk": "We come here every year; The headliner is playing now; The band is in the marquee"
+    "ru": "Your chin is wet; Your cheek is dirty; My lips are dry; My thumb is clean",
+    "uk": "Your chin is wet; Your cheek is dirty; My lips are dry; My thumb is clean"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-33:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Каждый год",
-        "uk": "Щороку"
+        "ru": "После умывания",
+        "uk": "Після вмивання"
       },
       "bodyByLocale": {
-        "ru": "Повторим festival — «фестиваль». Вы с другом приезжаете на один музыкальный фестиваль каждый год: We come here every year — «Мы приезжаем сюда каждый год». Every year обозначает повторяющуюся ситуацию; используем Present Simple. А сейчас вы слушаете музыку: We are listening to music now.",
-        "uk": "Повторімо festival — «фестиваль». Ви з другом приїжджаєте на один музичний фестиваль щороку: We come here every year — «Ми приїжджаємо сюди щороку». Every year позначає повторювану ситуацію; використовуємо Present Simple. А зараз ви слухаєте музику: We are listening to music now."
+        "ru": "Друг умылся, но на подбородке осталась вода. Chin — «подбородок»: Your chin is wet — «У тебя мокрый подбородок». Cheek — «щека». Если на щеке видна грязь: Your cheek is dirty — «У тебя грязная щека». Одна часть лица — chin или cheek — сочетается с is.",
+        "uk": "Друг умився, але на підборідді залишилася вода. Chin — «підборіддя»: Your chin is wet — «У тебе мокре підборіддя». Cheek — «щока». Якщо на щоці видно бруд: Your cheek is dirty — «У тебе брудна щока». Одна частина обличчя — chin або cheek — поєднується з is."
       },
       "question": {
         "interactionId": "en:lesson-10:session-33:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-33:intro1:r1",
-              "text": "We come here every year."
+              "text": "Your chin is wet."
             },
             {
               "responseId": "en:lesson-10:session-33:intro1:r2",
-              "text": "We comes here every year."
+              "text": "Your chin are wet."
             },
             {
               "responseId": "en:lesson-10:session-33:intro1:r3",
-              "text": "We coming here every year."
+              "text": "Your chin am wet."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-33:intro1:r1",
-              "text": "We come here every year."
+              "text": "Your chin is wet."
             },
             {
               "responseId": "en:lesson-10:session-33:intro1:r2",
-              "text": "We comes here every year."
+              "text": "Your chin are wet."
             },
             {
               "responseId": "en:lesson-10:session-33:intro1:r3",
-              "text": "We coming here every year."
+              "text": "Your chin am wet."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Главный участник выступает",
-        "uk": "Головний учасник виступає"
+        "ru": "Одна губа и две губы",
+        "uk": "Одна губа й дві губи"
       },
       "bodyByLocale": {
-        "ru": "Headliner — «главный участник программы»: известный артист или группа, чьё выступление особенно ждут. Сегодня это гитарист. The headliner is playing now — «Главный участник сейчас играет». Действие идёт сейчас, поэтому используем is + playing.",
-        "uk": "Headliner — «головний учасник програми»: відомий артист або гурт, на чий виступ особливо чекають. Сьогодні це гітарист. The headliner is playing now — «Головний учасник зараз грає». Дія триває зараз, тому використовуємо is + playing."
+        "ru": "Вы смотрите в зеркало после прогулки. Lip — «губа», lips — «губы»: My lips are dry — «У меня сухие губы». Lip — одна губа, lips — больше одной. С lips нужна are.",
+        "uk": "Ви дивитеся в дзеркало після прогулянки. Lip — «губа», lips — «губи»: My lips are dry — «У мене сухі губи». Lip — одна губа, lips — більше однієї. З lips потрібна are."
       },
       "question": {
         "interactionId": "en:lesson-10:session-33:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-33:intro2:r1",
-              "text": "The headliner is playing now."
+              "text": "My lips are dry."
             },
             {
               "responseId": "en:lesson-10:session-33:intro2:r2",
-              "text": "The headliner playing now."
+              "text": "My lips is dry."
             },
             {
               "responseId": "en:lesson-10:session-33:intro2:r3",
-              "text": "The headliner are playing now."
+              "text": "My lips am dry."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-33:intro2:r1",
-              "text": "The headliner is playing now."
+              "text": "My lips are dry."
             },
             {
               "responseId": "en:lesson-10:session-33:intro2:r2",
-              "text": "The headliner playing now."
+              "text": "My lips is dry."
             },
             {
               "responseId": "en:lesson-10:session-33:intro2:r3",
-              "text": "The headliner are playing now."
+              "text": "My lips am dry."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Нравится состав участников",
-        "uk": "Подобається склад учасників"
+        "ru": "Большой палец руки",
+        "uk": "Великий палець руки"
       },
       "bodyByLocale": {
-        "ru": "Lineup — «состав участников». Вы читаете имена артистов этого фестиваля: I like the lineup — «Мне нравится состав участников». Like описывает ваше отношение, поэтому здесь используем Present Simple. Написание line-up тоже употребляется; в этом занятии используем lineup.",
-        "uk": "Lineup — «склад учасників». Ви читаєте імена артистів цього фестивалю: I like the lineup — «Мені подобається склад учасників». Like описує ваше ставлення, тому тут використовуємо Present Simple. Написання line-up теж уживають; у цьому занятті використовуємо lineup."
+        "ru": "После рисования вы вымыли руки и смотрите на большой палец. Thumb — «большой палец руки»: My thumb is clean — «У меня чистый большой палец». Thumb относится к руке. Здесь один палец, поэтому is.",
+        "uk": "Після малювання ви вимили руки й дивитеся на великий палець. Thumb — «великий палець руки»: My thumb is clean — «У мене чистий великий палець». Thumb стосується руки. Тут один палець, тому is."
       },
       "question": {
         "interactionId": "en:lesson-10:session-33:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-33:intro3:r1",
-              "text": "I like the lineup."
+              "text": "My thumb is clean."
             },
             {
               "responseId": "en:lesson-10:session-33:intro3:r2",
-              "text": "I likes the lineup."
+              "text": "My thumb are clean."
             },
             {
               "responseId": "en:lesson-10:session-33:intro3:r3",
-              "text": "I am like the lineup."
+              "text": "My thumb am clean."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-33:intro3:r1",
-              "text": "I like the lineup."
+              "text": "My thumb is clean."
             },
             {
               "responseId": "en:lesson-10:session-33:intro3:r2",
-              "text": "I likes the lineup."
+              "text": "My thumb are clean."
             },
             {
               "responseId": "en:lesson-10:session-33:intro3:r3",
-              "text": "I am like the lineup."
+              "text": "My thumb am clean."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ce62dccb137d9d2f288ab90bcdb8d21330c96db69d1cbb904cf6885f244ec073"
+  "introFingerprint": "1435740f64ebe4a96e93d7add41ce8bcc30cb1974f37a65bdacc9ee94b14c963"
 }

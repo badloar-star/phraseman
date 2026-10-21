@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-31:word:blossom",
-    "correctText": "blossom",
+    "interactionId": "en:lesson-10:session-31:word:April",
+    "correctText": "April",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i01",
-    "correctText": "The tree is in blossom.",
+    "correctText": "Do you travel in April?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i02",
-    "correctText": "The blossom is pink.",
+    "correctText": "I travel in April.",
     "correctResponseId": "en:lesson-10:session-31:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-31:i03",
-    "correctText": "in",
+    "correctText": "Do",
     "correctResponseId": "en:lesson-10:session-31:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-31:word:foliage",
-    "correctText": "foliage",
+    "interactionId": "en:lesson-10:session-31:word:June",
+    "correctText": "June",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i04",
-    "correctText": "The foliage is turning yellow.",
+    "correctText": "We swim in June.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i05",
-    "correctText": "The foliage is green.",
+    "correctText": "They swim in June.",
     "correctResponseId": "en:lesson-10:session-31:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-31:i06",
-    "correctText": "is",
+    "correctText": "June",
     "correctResponseId": "en:lesson-10:session-31:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-31:word:snowdrop",
-    "correctText": "snowdrop",
+    "interactionId": "en:lesson-10:session-31:word:October",
+    "correctText": "October",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i07",
-    "correctText": "I can see a snowdrop.",
+    "correctText": "I usually stay home in October.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i08",
-    "correctText": "The snowdrop is beside the path.",
+    "correctText": "I work in October.",
     "correctResponseId": "en:lesson-10:session-31:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-31:i09",
-    "correctText": "see",
+    "correctText": "in",
     "correctResponseId": "en:lesson-10:session-31:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-31:word:daffodil",
-    "correctText": "daffodil",
+    "interactionId": "en:lesson-10:session-31:word:November",
+    "correctText": "November",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i10",
-    "correctText": "The daffodil is yellow.",
+    "correctText": "We visit our family in November.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i11",
-    "correctText": "I can see a daffodil.",
+    "correctText": "She works in November.",
     "correctResponseId": "en:lesson-10:session-31:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-31:i12",
-    "correctText": "turns",
+    "correctText": "visit",
     "correctResponseId": "en:lesson-10:session-31:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-31:i13",
-    "correctText": "en:lesson-10:session-31:i13:p1=blossom\nen:lesson-10:session-31:i13:p2=foliage\nen:lesson-10:session-31:i13:p3=snowdrop\nen:lesson-10:session-31:i13:p4=daffodil",
+    "correctText": "en:lesson-10:session-31:i13:p1=April\nen:lesson-10:session-31:i13:p2=June\nen:lesson-10:session-31:i13:p3=October\nen:lesson-10:session-31:i13:p4=November",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i14",
-    "correctText": "The foliage is turning yellow.",
+    "correctText": "We swim in June.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i15",
-    "correctText": "Spring is my favourite season.",
+    "correctText": "We visit our family in November.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i16",
-    "correctText": "The tree is in blossom.",
+    "correctText": "I work in April.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-31:i17",
-    "correctText": "The foliage is turning yellow.",
+    "correctText": "Do you work in October?",
     "correctResponseId": null
   }
 ]

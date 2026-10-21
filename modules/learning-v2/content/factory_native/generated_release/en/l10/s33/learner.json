@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-33:word:headliner",
+      "interactionId": "en:lesson-10:session-33:word:chin",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — headliner",
+      "prompt": "Карточка слова — chin",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-33:word:headliner:audio"
+        "en:lesson-10:session-33:word:chin:audio"
       ],
-      "accessibilityLabel": "Карточка слова — headliner",
+      "accessibilityLabel": "Карточка слова — chin",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-33:word:headliner:audio",
-          "transcript": "headliner"
+          "audioTargetId": "en:lesson-10:session-33:word:chin:audio",
+          "transcript": "chin"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-33:word:headliner:r1",
-            "targetText": "headliner",
+            "responseId": "en:lesson-10:session-33:word:chin:r1",
+            "targetText": "chin",
             "meaningByLocale": {
-              "ru": "«главный участник программы». The headliner is playing now. — «Главный участник сейчас играет». Здесь главный приглашённый музыкант фестиваля.",
-              "uk": "«головний учасник програми». The headliner is playing now. — «Головний учасник зараз грає». Тут головний запрошений музикант фестивалю."
+              "ru": "«подбородок». Your chin is wet. — «У тебя мокрый подбородок».",
+              "uk": "«підборіддя». Your chin is wet. — «У тебе мокре підборіддя»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "headliner",
+          "word": "chin",
           "definitionByLocale": {
-            "ru": "«главный участник программы». The headliner is playing now. — «Главный участник сейчас играет». Здесь главный приглашённый музыкант фестиваля.",
-            "uk": "«головний учасник програми». The headliner is playing now. — «Головний учасник зараз грає». Тут головний запрошений музикант фестивалю."
+            "ru": "«подбородок». Your chin is wet. — «У тебя мокрый подбородок».",
+            "uk": "«підборіддя». Your chin is wet. — «У тебе мокре підборіддя»."
           }
         }
       },
@@ -52,24 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Главный приглашённый гитарист уже на сцене. Скажите другу: «Главный участник сейчас играет». Поставьте now в конце",
+      "prompt": "Скажите другу, что у него мокрый подбородок",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Главный приглашённый гитарист уже на сцене. Скажите другу: «Главный участник сейчас играет». Поставьте now в конце",
+      "accessibilityLabel": "Скажите другу, что у него мокрый подбородок",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The headliner is playing now.",
+        "targetPhrase": "Your chin is wet.",
         "localizedMeaning": {
-          "ru": "Главный приглашённый гитарист уже на сцене. Скажите другу: «Главный участник сейчас играет». Поставьте now в конце",
-          "uk": "Головний запрошений гітарист уже на сцені. Скажіть другу: «Головний учасник зараз грає». Поставте now у кінці"
+          "ru": "Скажите другу, что у него мокрый подбородок",
+          "uk": "Скажіть другу, що в нього мокре підборіддя"
         },
         "orderedTokens": [
-          "The",
-          "headliner",
+          "Your",
+          "chin",
           "is",
-          "playing",
-          "now"
+          "wet"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-33:i02:r1",
-          "text": "The headliner is on the stage."
+          "text": "My chin is wet."
         },
         {
           "responseId": "en:lesson-10:session-33:i02:r2",
-          "text": "The headliner is behind the stage."
+          "text": "Your chin is wet."
         },
         {
           "responseId": "en:lesson-10:session-33:i02:r3",
-          "text": "The singer is on the stage."
+          "text": "My chin is dry."
         }
       ],
       "mediaIds": [],
@@ -110,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-33:i02:audio",
-          "transcript": "The headliner is on the stage."
+          "transcript": "My chin is wet."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-33:i02:r1",
-            "targetText": "The headliner is on the stage.",
+            "targetText": "My chin is wet.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-33:i02:r2",
-            "targetText": "The headliner is behind the stage.",
+            "targetText": "Your chin is wet.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-33:i02:r3",
-            "targetText": "The singer is on the stage.",
+            "targetText": "My chin is dry.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The headliner is on the stage.",
-              "uk": "У записі звучить The headliner is on the stage."
+              "ru": "В записи звучит My chin is wet.",
+              "uk": "У записі звучить My chin is wet."
             }
           },
           {
@@ -146,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The headliner is on the stage.",
-              "uk": "У записі звучить The headliner is on the stage."
+              "ru": "В записи звучит My chin is wet.",
+              "uk": "У записі звучить My chin is wet."
             }
           }
         ],
@@ -162,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы приезжаете сюда каждый год. Выберите форму come",
+      "prompt": "Выберите глагол для chin",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-33:i03:r1",
-          "text": "come"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-33:i03:r2",
-          "text": "comes"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-33:i03:r3",
-          "text": "coming"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы приезжаете сюда каждый год. Выберите форму come",
+      "accessibilityLabel": "Выберите глагол для chin",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы приезжаете сюда каждый год. Выберите форму come",
-          "uk": "Ви приїжджаєте сюди щороку. Виберіть форму come"
+          "ru": "Выберите глагол для chin",
+          "uk": "Виберіть дієслово для chin"
         },
-        "gappedTargetPhrase": "We ___ here every year.",
+        "gappedTargetPhrase": "Your chin ___ wet.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-33:i03:r1",
-            "text": "come"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-33:i03:r2",
-            "text": "comes"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-33:i03:r3",
-            "text": "coming"
+            "text": "am"
           }
         ],
-        "testedDimension": "Вы приезжаете сюда каждый год. Выберите форму come",
+        "testedDimension": "Выберите глагол для chin",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-33:i03:r2",
             "correct": false,
-            "testedDimension": "Вы приезжаете сюда каждый год. Выберите форму come",
+            "testedDimension": "Выберите глагол для chin",
             "feedbackByLocale": {
-              "ru": "С we нужна come без s.",
-              "uk": "З we потрібна come без s."
+              "ru": "Один chin: нужна is.",
+              "uk": "Один chin: потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-33:i03:r3",
             "correct": false,
-            "testedDimension": "Вы приезжаете сюда каждый год. Выберите форму come",
+            "testedDimension": "Выберите глагол для chin",
             "feedbackByLocale": {
-              "ru": "Для этой повторяющейся поездки нужна come.",
-              "uk": "Для цієї повторюваної поїздки потрібна come."
+              "ru": "Am используется с I. Здесь нужна is.",
+              "uk": "Am вживається з I. Тут потрібна is."
             }
           }
         ]
@@ -226,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-33:word:lineup",
+      "interactionId": "en:lesson-10:session-33:word:cheek",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — lineup",
+      "prompt": "Карточка слова — cheek",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-33:word:lineup:audio"
+        "en:lesson-10:session-33:word:cheek:audio"
       ],
-      "accessibilityLabel": "Карточка слова — lineup",
+      "accessibilityLabel": "Карточка слова — cheek",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-33:word:lineup:audio",
-          "transcript": "lineup"
+          "audioTargetId": "en:lesson-10:session-33:word:cheek:audio",
+          "transcript": "cheek"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-33:word:lineup:r1",
-            "targetText": "lineup",
+            "responseId": "en:lesson-10:session-33:word:cheek:r1",
+            "targetText": "cheek",
             "meaningByLocale": {
-              "ru": "«состав участников». I like the lineup. — «Мне нравится состав участников». Здесь артисты и группы фестиваля.",
-              "uk": "«склад учасників». I like the lineup. — «Мені подобається склад учасників». Тут артисти й гурти фестивалю."
+              "ru": "«щека». Your cheek is dirty. — «У тебя грязная щека».",
+              "uk": "«щока». Your cheek is dirty. — «У тебе брудна щока»."
             }
           }
         ],
@@ -259,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "lineup",
+          "word": "cheek",
           "definitionByLocale": {
-            "ru": "«состав участников». I like the lineup. — «Мне нравится состав участников». Здесь артисты и группы фестиваля.",
-            "uk": "«склад учасників». I like the lineup. — «Мені подобається склад учасників». Тут артисти й гурти фестивалю."
+            "ru": "«щека». Your cheek is dirty. — «У тебя грязная щека».",
+            "uk": "«щока». Your cheek is dirty. — «У тебе брудна щока»."
           }
         }
       },
@@ -274,23 +273,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг показывает список артистов фестиваля. Вы довольны выбором. Скажите: «Мне нравится состав участников»",
+      "prompt": "Скажите другу, что у него грязная щека",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг показывает список артистов фестиваля. Вы довольны выбором. Скажите: «Мне нравится состав участников»",
+      "accessibilityLabel": "Скажите другу, что у него грязная щека",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I like the lineup.",
+        "targetPhrase": "Your cheek is dirty.",
         "localizedMeaning": {
-          "ru": "Друг показывает список артистов фестиваля. Вы довольны выбором. Скажите: «Мне нравится состав участников»",
-          "uk": "Друг показує список артистів фестивалю. Ви задоволені вибором. Скажіть: «Мені подобається склад учасників»"
+          "ru": "Скажите другу, что у него грязная щека",
+          "uk": "Скажіть другу, що в нього брудна щока"
         },
         "orderedTokens": [
-          "I",
-          "like",
-          "the",
-          "lineup"
+          "Your",
+          "cheek",
+          "is",
+          "dirty"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,15 +310,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-33:i05:r1",
-          "text": "The lineup is on the poster."
+          "text": "My cheek is dirty."
         },
         {
           "responseId": "en:lesson-10:session-33:i05:r2",
-          "text": "The lineup is on the website."
+          "text": "My chin is dirty."
         },
         {
           "responseId": "en:lesson-10:session-33:i05:r3",
-          "text": "The date is on the poster."
+          "text": "My cheek is clean."
         }
       ],
       "mediaIds": [],
@@ -331,23 +330,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-33:i05:audio",
-          "transcript": "The lineup is on the poster."
+          "transcript": "My cheek is dirty."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-33:i05:r1",
-            "targetText": "The lineup is on the poster.",
+            "targetText": "My cheek is dirty.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-33:i05:r2",
-            "targetText": "The lineup is on the website.",
+            "targetText": "My chin is dirty.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-33:i05:r3",
-            "targetText": "The date is on the poster.",
+            "targetText": "My cheek is clean.",
             "meaningByLocale": null
           }
         ],
@@ -358,8 +357,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The lineup is on the poster.",
-              "uk": "У записі звучить The lineup is on the poster."
+              "ru": "В записи звучит My cheek is dirty.",
+              "uk": "У записі звучить My cheek is dirty."
             }
           },
           {
@@ -367,8 +366,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The lineup is on the poster.",
-              "uk": "У записі звучить The lineup is on the poster."
+              "ru": "В записи звучит My cheek is dirty.",
+              "uk": "У записі звучить My cheek is dirty."
             }
           }
         ],
@@ -383,63 +382,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму like с I",
+      "prompt": "Выберите глагол для одной щеки",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-33:i06:r1",
-          "text": "like"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-33:i06:r2",
-          "text": "likes"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-33:i06:r3",
-          "text": "am like"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму like с I",
+      "accessibilityLabel": "Выберите глагол для одной щеки",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму like с I",
-          "uk": "Виберіть форму like з I"
+          "ru": "Выберите глагол для одной щеки",
+          "uk": "Виберіть дієслово для однієї щоки"
         },
-        "gappedTargetPhrase": "I ___ the lineup.",
+        "gappedTargetPhrase": "My cheek ___ dirty.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-33:i06:r1",
-            "text": "like"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-33:i06:r2",
-            "text": "likes"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-33:i06:r3",
-            "text": "am like"
+            "text": "am"
           }
         ],
-        "testedDimension": "Выберите форму like с I",
+        "testedDimension": "Выберите глагол для одной щеки",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-33:i06:r2",
             "correct": false,
-            "testedDimension": "Выберите форму like с I",
+            "testedDimension": "Выберите глагол для одной щеки",
             "feedbackByLocale": {
-              "ru": "С I нужна like без s.",
-              "uk": "З I потрібна like без s."
+              "ru": "Одна cheek: нужна is.",
+              "uk": "Одна cheek: потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-33:i06:r3",
             "correct": false,
-            "testedDimension": "Выберите форму like с I",
+            "testedDimension": "Выберите глагол для одной щеки",
             "feedbackByLocale": {
-              "ru": "Am like неверно; здесь нужна like.",
-              "uk": "Am like неправильно; тут потрібна like."
+              "ru": "Am используется с I. Здесь нужна is.",
+              "uk": "Am вживається з I. Тут потрібна is."
             }
           }
         ]
@@ -447,32 +446,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-33:word:marquee",
+      "interactionId": "en:lesson-10:session-33:word:lip",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — marquee",
+      "prompt": "Карточка слова — lip",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-33:word:marquee:audio"
+        "en:lesson-10:session-33:word:lip:audio"
       ],
-      "accessibilityLabel": "Карточка слова — marquee",
+      "accessibilityLabel": "Карточка слова — lip",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-33:word:marquee:audio",
-          "transcript": "marquee"
+          "audioTargetId": "en:lesson-10:session-33:word:lip:audio",
+          "transcript": "lip"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-33:word:marquee:r1",
-            "targetText": "marquee",
+            "responseId": "en:lesson-10:session-33:word:lip:r1",
+            "targetText": "lip",
             "meaningByLocale": {
-              "ru": "«большой шатёр». The band is in the marquee. — «Группа в большом шатре». Здесь британское значение слова: большой шатёр для мероприятий.",
-              "uk": "«великий намет». The band is in the marquee. — «Гурт у великому наметі». Тут британське значення слова: великий намет для заходів."
+              "ru": "«губа», lips — «губы». My lips are dry. — «У меня сухие губы».",
+              "uk": "«губа», lips — «губи». My lips are dry. — «У мене сухі губи»."
             }
           }
         ],
@@ -480,10 +479,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "marquee",
+          "word": "lip",
           "definitionByLocale": {
-            "ru": "«большой шатёр». The band is in the marquee. — «Группа в большом шатре». Здесь британское значение слова: большой шатёр для мероприятий.",
-            "uk": "«великий намет». The band is in the marquee. — «Гурт у великому наметі». Тут британське значення слова: великий намет для заходів."
+            "ru": "«губа», lips — «губы». My lips are dry. — «У меня сухие губы».",
+            "uk": "«губа», lips — «губи». My lips are dry. — «У мене сухі губи»."
           }
         }
       },
@@ -495,25 +494,23 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг ищет другую музыкальную группу. Она находится внутри большого фестивального шатра. Скажите: «Группа в большом шатре»",
+      "prompt": "Одна губа сухая. Скажите об этом, используя lip в единственном числе",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг ищет другую музыкальную группу. Она находится внутри большого фестивального шатра. Скажите: «Группа в большом шатре»",
+      "accessibilityLabel": "Одна губа сухая. Скажите об этом, используя lip в единственном числе",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The band is in the marquee.",
+        "targetPhrase": "My lip is dry.",
         "localizedMeaning": {
-          "ru": "Друг ищет другую музыкальную группу. Она находится внутри большого фестивального шатра. Скажите: «Группа в большом шатре»",
-          "uk": "Друг шукає інший музичний гурт. Він перебуває всередині великого фестивального намету. Скажіть: «Гурт у великому наметі»"
+          "ru": "Одна губа сухая. Скажите об этом, используя lip в единственном числе",
+          "uk": "Одна губа суха. Скажіть про це, використовуючи lip в однині"
         },
         "orderedTokens": [
-          "The",
-          "band",
+          "My",
+          "lip",
           "is",
-          "in",
-          "the",
-          "marquee"
+          "dry"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +531,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-33:i08:r1",
-          "text": "The marquee is white."
+          "text": "Your lips are dry."
         },
         {
           "responseId": "en:lesson-10:session-33:i08:r2",
-          "text": "The marquee is blue."
+          "text": "My lips are dry."
         },
         {
           "responseId": "en:lesson-10:session-33:i08:r3",
-          "text": "The stage is white."
+          "text": "Your lips are wet."
         }
       ],
       "mediaIds": [],
@@ -554,23 +551,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-33:i08:audio",
-          "transcript": "The marquee is white."
+          "transcript": "Your lips are dry."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-33:i08:r1",
-            "targetText": "The marquee is white.",
+            "targetText": "Your lips are dry.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-33:i08:r2",
-            "targetText": "The marquee is blue.",
+            "targetText": "My lips are dry.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-33:i08:r3",
-            "targetText": "The stage is white.",
+            "targetText": "Your lips are wet.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +578,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The marquee is white.",
-              "uk": "У записі звучить The marquee is white."
+              "ru": "В записи звучит Your lips are dry.",
+              "uk": "У записі звучить Your lips are dry."
             }
           },
           {
@@ -590,8 +587,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The marquee is white.",
-              "uk": "У записі звучить The marquee is white."
+              "ru": "В записи звучит Your lips are dry.",
+              "uk": "У записі звучить Your lips are dry."
             }
           }
         ],
@@ -606,63 +603,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Группа находится внутри шатра. Выберите предлог",
+      "prompt": "Выберите глагол для lips во множественном числе",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-33:i09:r1",
-          "text": "in"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-33:i09:r2",
-          "text": "on"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-33:i09:r3",
-          "text": "under"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Группа находится внутри шатра. Выберите предлог",
+      "accessibilityLabel": "Выберите глагол для lips во множественном числе",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Группа находится внутри шатра. Выберите предлог",
-          "uk": "Гурт перебуває всередині намету. Виберіть прийменник"
+          "ru": "Выберите глагол для lips во множественном числе",
+          "uk": "Виберіть дієслово для lips у множині"
         },
-        "gappedTargetPhrase": "The band is ___ the marquee.",
+        "gappedTargetPhrase": "My lips ___ dry.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-33:i09:r1",
-            "text": "in"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-33:i09:r2",
-            "text": "on"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-33:i09:r3",
-            "text": "under"
+            "text": "am"
           }
         ],
-        "testedDimension": "Группа находится внутри шатра. Выберите предлог",
+        "testedDimension": "Выберите глагол для lips во множественном числе",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-33:i09:r2",
             "correct": false,
-            "testedDimension": "Группа находится внутри шатра. Выберите предлог",
+            "testedDimension": "Выберите глагол для lips во множественном числе",
             "feedbackByLocale": {
-              "ru": "Внутри — in; on означает на поверхности.",
-              "uk": "Усередині — in; on означає на поверхні."
+              "ru": "С lips нужна are, не is.",
+              "uk": "З lips потрібна are, не is."
             }
           },
           {
             "responseId": "en:lesson-10:session-33:i09:r3",
             "correct": false,
-            "testedDimension": "Группа находится внутри шатра. Выберите предлог",
+            "testedDimension": "Выберите глагол для lips во множественном числе",
             "feedbackByLocale": {
-              "ru": "Для нахождения внутри здесь нужно in, не under.",
-              "uk": "Для перебування всередині тут потрібне in, не under."
+              "ru": "Am используется с I. С lips нужна are.",
+              "uk": "Am вживається з I. З lips потрібна are."
             }
           }
         ]
@@ -670,32 +667,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-33:word:bunting",
+      "interactionId": "en:lesson-10:session-33:word:thumb",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — bunting",
+      "prompt": "Карточка слова — thumb",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-33:word:bunting:audio"
+        "en:lesson-10:session-33:word:thumb:audio"
       ],
-      "accessibilityLabel": "Карточка слова — bunting",
+      "accessibilityLabel": "Карточка слова — thumb",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-33:word:bunting:audio",
-          "transcript": "bunting"
+          "audioTargetId": "en:lesson-10:session-33:word:thumb:audio",
+          "transcript": "thumb"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-33:word:bunting:r1",
-            "targetText": "bunting",
+            "responseId": "en:lesson-10:session-33:word:thumb:r1",
+            "targetText": "thumb",
             "meaningByLocale": {
-              "ru": "«гирлянда флажков». The bunting is colourful. — «Гирлянда флажков разноцветная». Декоративные флажки на верёвке; здесь неисчисляемое существительное.",
-              "uk": "«гірлянда прапорців». The bunting is colourful. — «Гірлянда прапорців різнобарвна». Декоративні прапорці на мотузці; тут незлічуваний іменник."
+              "ru": "«большой палец руки». My thumb is clean. — «У меня чистый большой палец».",
+              "uk": "«великий палець руки». My thumb is clean. — «У мене чистий великий палець»."
             }
           }
         ],
@@ -703,10 +700,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "bunting",
+          "word": "thumb",
           "definitionByLocale": {
-            "ru": "«гирлянда флажков». The bunting is colourful. — «Гирлянда флажков разноцветная». Декоративные флажки на верёвке; здесь неисчисляемое существительное.",
-            "uk": "«гірлянда прапорців». The bunting is colourful. — «Гірлянда прапорців різнобарвна». Декоративні прапорці на мотузці; тут незлічуваний іменник."
+            "ru": "«большой палец руки». My thumb is clean. — «У меня чистый большой палец».",
+            "uk": "«великий палець руки». My thumb is clean. — «У мене чистий великий палець»."
           }
         }
       },
@@ -718,23 +715,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Над входом висят флажки разных цветов. Скажите другу: «Гирлянда флажков разноцветная»",
+      "prompt": "После мытья скажите, что большой палец руки чистый",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Над входом висят флажки разных цветов. Скажите другу: «Гирлянда флажков разноцветная»",
+      "accessibilityLabel": "После мытья скажите, что большой палец руки чистый",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bunting is colourful.",
+        "targetPhrase": "My thumb is clean.",
         "localizedMeaning": {
-          "ru": "Над входом висят флажки разных цветов. Скажите другу: «Гирлянда флажков разноцветная»",
-          "uk": "Над входом висять прапорці різних кольорів. Скажіть другу: «Гірлянда прапорців різнобарвна»"
+          "ru": "После мытья скажите, что большой палец руки чистый",
+          "uk": "Після миття скажіть, що великий палець руки чистий"
         },
         "orderedTokens": [
-          "The",
-          "bunting",
+          "My",
+          "thumb",
           "is",
-          "colourful"
+          "clean"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -755,15 +752,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-33:i11:r1",
-          "text": "The bunting is above the entrance."
+          "text": "Your thumb is clean."
         },
         {
           "responseId": "en:lesson-10:session-33:i11:r2",
-          "text": "The bunting is beside the entrance."
+          "text": "Your thumb is dirty."
         },
         {
           "responseId": "en:lesson-10:session-33:i11:r3",
-          "text": "The sign is above the entrance."
+          "text": "My thumb is clean."
         }
       ],
       "mediaIds": [],
@@ -775,23 +772,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-33:i11:audio",
-          "transcript": "The bunting is above the entrance."
+          "transcript": "Your thumb is clean."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-33:i11:r1",
-            "targetText": "The bunting is above the entrance.",
+            "targetText": "Your thumb is clean.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-33:i11:r2",
-            "targetText": "The bunting is beside the entrance.",
+            "targetText": "Your thumb is dirty.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-33:i11:r3",
-            "targetText": "The sign is above the entrance.",
+            "targetText": "My thumb is clean.",
             "meaningByLocale": null
           }
         ],
@@ -802,8 +799,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The bunting is above the entrance.",
-              "uk": "У записі звучить The bunting is above the entrance."
+              "ru": "В записи звучит Your thumb is clean.",
+              "uk": "У записі звучить Your thumb is clean."
             }
           },
           {
@@ -811,8 +808,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The bunting is above the entrance.",
-              "uk": "У записі звучить The bunting is above the entrance."
+              "ru": "В записи звучит Your thumb is clean.",
+              "uk": "У записі звучить Your thumb is clean."
             }
           }
         ],
@@ -827,7 +824,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку с неисчисляемым bunting",
+      "prompt": "Выберите глагол для одного большого пальца",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-33:i12:r1",
@@ -844,14 +841,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку с неисчисляемым bunting",
+      "accessibilityLabel": "Выберите глагол для одного большого пальца",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку с неисчисляемым bunting",
-          "uk": "Виберіть зв’язку з незлічуваним bunting"
+          "ru": "Выберите глагол для одного большого пальца",
+          "uk": "Виберіть дієслово для одного великого пальця"
         },
-        "gappedTargetPhrase": "The bunting ___ colourful.",
+        "gappedTargetPhrase": "My thumb ___ clean.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-33:i12:r1",
@@ -866,24 +863,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Выберите связку с неисчисляемым bunting",
+        "testedDimension": "Выберите глагол для одного большого пальца",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-33:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите связку с неисчисляемым bunting",
+            "testedDimension": "Выберите глагол для одного большого пальца",
             "feedbackByLocale": {
-              "ru": "С bunting здесь нужно is.",
-              "uk": "З bunting тут потрібне is."
+              "ru": "Один thumb: нужна is.",
+              "uk": "Один thumb: потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-33:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите связку с неисчисляемым bunting",
+            "testedDimension": "Выберите глагол для одного большого пальца",
             "feedbackByLocale": {
-              "ru": "Am используем с I; здесь нужно is.",
-              "uk": "Am використовуємо з I; тут потрібне is."
+              "ru": "Am используется с I. Здесь нужна is.",
+              "uk": "Am вживається з I. Тут потрібна is."
             }
           }
         ]
@@ -896,58 +893,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините новые слова со значениями",
+      "prompt": "Соедините слова с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините новые слова со значениями",
+      "accessibilityLabel": "Соедините слова с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-33:i13:p1",
-            "target": "headliner",
+            "target": "chin",
             "meaningByLocale": {
-              "ru": "главный участник программы",
-              "uk": "головний учасник програми"
+              "ru": "подбородок",
+              "uk": "підборіддя"
             }
           },
           {
             "pairId": "en:lesson-10:session-33:i13:p2",
-            "target": "lineup",
+            "target": "cheek",
             "meaningByLocale": {
-              "ru": "состав участников",
-              "uk": "склад учасників"
+              "ru": "щека",
+              "uk": "щока"
             }
           },
           {
             "pairId": "en:lesson-10:session-33:i13:p3",
-            "target": "marquee",
+            "target": "lip",
             "meaningByLocale": {
-              "ru": "большой шатёр",
-              "uk": "великий намет"
+              "ru": "губа",
+              "uk": "губа"
             }
           },
           {
             "pairId": "en:lesson-10:session-33:i13:p4",
-            "target": "bunting",
+            "target": "thumb",
             "meaningByLocale": {
-              "ru": "гирлянда флажков",
-              "uk": "гірлянда прапорців"
+              "ru": "большой палец руки",
+              "uk": "великий палець руки"
             }
           }
         ],
         "leftColumn": [
-          "headliner",
-          "lineup",
-          "marquee",
-          "bunting"
+          "chin",
+          "cheek",
+          "lip",
+          "thumb"
         ],
         "rightColumn": [
-          "главный участник программы",
-          "состав участников",
-          "большой шатёр",
-          "гирлянда флажков"
+          "подбородок",
+          "щека",
+          "губа",
+          "большой палец руки"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -969,27 +966,26 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-33:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-33:i14:audio",
-          "transcript": "The headliner is playing now."
+          "transcript": "Your cheek is dirty."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The headliner is playing now.",
+        "hiddenTargetPhrase": "Your cheek is dirty.",
         "orderedTokens": [
-          "The",
-          "headliner",
+          "Your",
+          "cheek",
           "is",
-          "playing",
-          "now"
+          "dirty"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1003,24 +999,60 @@
     {
       "interactionId": "en:lesson-10:session-33:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, бываете ли вы на этом фестивале регулярно. Скажите: «Мы приезжаем сюда каждый год»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-33:i15:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, бываете ли вы на этом фестивале регулярно. Скажите: «Мы приезжаем сюда каждый год»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-33:i15:audio",
+          "transcript": "My thumb is clean."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My thumb is clean.",
+        "orderedTokens": [
+          "My",
+          "thumb",
+          "is",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что у вас чистый подбородок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что у вас чистый подбородок",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-33:i15:audio",
-          "transcript": "We come here every year."
+          "audioTargetId": "en:lesson-10:session-33:i16:audio",
+          "transcript": "My chin is clean."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We come here every year.",
+        "targetPhrase": "My chin is clean.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1034,70 +1066,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-33:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает ваше мнение об артистах фестиваля. Скажите: «Мне нравится состав участников»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает ваше мнение об артистах фестиваля. Скажите: «Мне нравится состав участников»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I like the lineup.",
-        "localizedMeaning": {
-          "ru": "Друг спрашивает ваше мнение об артистах фестиваля. Скажите: «Мне нравится состав участников»",
-          "uk": "Друг запитує вашу думку про артистів фестивалю. Скажіть: «Мені подобається склад учасників»"
-        },
-        "orderedTokens": [
-          "I",
-          "like",
-          "the",
-          "lineup"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-33:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг звонит и спрашивает, что происходит на главной сцене. Приглашённый главный гитарист уже начал выступление. Скажите: «Главный участник сейчас играет»",
+      "prompt": "Скажите, что у вас мокрые щёки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-33:i17:audio"
       ],
-      "accessibilityLabel": "Друг звонит и спрашивает, что происходит на главной сцене. Приглашённый главный гитарист уже начал выступление. Скажите: «Главный участник сейчас играет»",
+      "accessibilityLabel": "Скажите, что у вас мокрые щёки",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-33:i17:audio",
-          "transcript": "The headliner is playing now."
+          "transcript": "My cheeks are wet."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The headliner is playing now.",
+        "targetPhrase": "My cheeks are wet.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1114,5 +1105,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "48e2fecbdb19f6ea4be4fd1e4553b6e8cd8a2c96a89b98250858879807c39d04"
+  "learnerFingerprint": "5b7de93425e4fac40549a150e5ecf1b73ec92899cecd2b52684ae6595d066641"
 }

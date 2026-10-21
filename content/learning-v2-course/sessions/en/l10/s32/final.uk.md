@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 32 — Робота в саду
+# Англійська · Урок 10 · Заняття 32 — Обрати кафе
 
-**Ситуація.** Порівняти звичну роботу в саду з тим, що відбувається зараз.
+**Ситуація.** Обрати місце, пояснити причину й дізнатися, чи можна прийти із собакою.
 
-**Що ви опануєте:** I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed
-**Нові слова:** sapling, mulch, compost, seedbed
+**Що ви опануєте:** I cannot decide; It is a good choice; What is the reason; Do they allow dogs
+**Нові слова:** decide, choice, reason, allow
 
 ## Інтро 1
 
-### Зазвичай щосуботи
+### Не можу вирішити
 
-Ви допомагаєте в саду щосуботи: I usually work here on Saturdays — «Я зазвичай працюю тут щосуботи». Usually ставимо перед work. Зараз друг телефонує, поки ви поливаєте рослини: I am watering the plants — «Я поливаю рослини». Звичка — Simple, дія, що відбувається, — Continuous.
+Перед вами два кафе, і ви поки не знаєте, яке обрати. Decide — «вирішувати, ухвалювати рішення»: I cannot decide — «Я не можу вирішити». Після cannot потрібна decide без to. Коли друг пропонує доречне кафе, можна відповісти: It is a good choice — «Це хороший вибір». Choice — «вибір».
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I usually work here on Saturdays.**
-- ❌ I usually works here on Saturdays. — *З I потрібна work без s.*
-- ❌ I usually working here on Saturdays. — *Для цієї звички потрібна work.*
+- ✅ **I cannot decide.**
+- ❌ I cannot to decide. — *Після cannot не ставимо to.*
+- ❌ I cannot decides. — *Після cannot потрібна decide без s.*
 
 ---
 
 ## Інтро 2
 
-### Тимчасова робота
+### Дізнатися причину
 
-Інша працівниця зазвичай працює в теплиці. Цього тижня вона допомагає в саду: She is working here this week — «Вона працює тут цього тижня». Continuous підходить для тимчасової ситуації. Для звичного місця роботи: She works in a greenhouse — «Вона працює в теплиці».
+Друг не хоче йти до першого кафе, і ви хочете зрозуміти чому. Reason — «причина»: What is the reason? — «У чому причина?» У цьому запитанні після what стоїть is, потім the reason. Можна почути просту відповідь: It is expensive — «Там дорого».
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She is working here this week.**
-- ❌ She working here this week. — *Перед working потрібне is.*
-- ❌ She are working here this week. — *З she потрібне is.*
+- ✅ **What is the reason?**
+- ❌ What are the reason? — *Одна причина: is, не are.*
+- ❌ What the reason? — *У цьому запитанні потрібна is після what.*
 
 ---
 
 ## Інтро 3
 
-### Я знаю цей сад
+### Чи можна із собакою
 
-Ви давно тут допомагаєте: I know this garden — «Я знаю цей сад». Know описує ваше знання, тому тут використовуємо Simple. А для конкретної роботи просто зараз: We are preparing the soil — «Ми готуємо ґрунт». Спочатку визначаємо зміст ситуації, а не обираємо форму лише за словом «зараз».
+Ви гуляєте із собакою й уточнюєте правила кафе в друга. Allow — «дозволяти»: Do they allow dogs? — «Вони дозволяють приходити із собаками?» They тут — працівники кафе. У запитанні do перед they, потім allow без s.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I know this garden.**
-- ❌ I knows this garden. — *З I потрібна know без s.*
-- ❌ I am know this garden. — *Am know неправильно; тут потрібна know.*
+- ✅ **Do they allow dogs?**
+- ❌ Does they allow dogs? — *З they потрібна do.*
+- ❌ Do they allows dogs? — *Після do потрібна allow без s.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — sapling**
-<!-- interaction_id: en:lesson-10:session-32:word:sapling; family: word_card -->
-> **sapling** — «молоде деревце». I am watering the sapling. — «Я поливаю молоде деревце». Молоде дерево з тонким стовбуром.
+**1 · Картка слова — choice**
+<!-- interaction_id: en:lesson-10:session-32:word:choice; family: word_card -->
+> **choice** — «вибір». It is a good choice. — «Це хороший вибір».
 
-**2 · Друг телефонує, поки ви поливаєте молоде дерево. Скажіть: «Я поливаю молоде деревце»**
+**2 · Друг обрав зручне кафе. Скажіть, що це хороший вибір**
 <!-- interaction_id: en:lesson-10:session-32:i01; family: phrase_builder -->
-Плитки: `sapling` `the` `watering` `am` `I` → **I am watering the sapling.**
+Плитки: `choice` `good` `a` `is` `It` → **It is a good choice.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-32:i02; family: listen_choose -->
-🔊 *The sapling is growing.* → **The sapling is growing.** · The flower is growing. · The sapling is green.
-- The flower is growing. — *У записі звучить The sapling is growing.*
-- The sapling is green. — *У записі звучить The sapling is growing.*
+🔊 *It is a good choice.* → **It is a good choice.** · It is a bad choice. · Is it a good choice?
+- It is a bad choice. — *У записі звучить It is a good choice.*
+- Is it a good choice? — *У записі звучить It is a good choice.*
 
-**4 · Ви описуєте звичку. Виберіть форму work**
+**4 · Виберіть дієслово з it**
 <!-- interaction_id: en:lesson-10:session-32:i03; family: context_gap_grammar -->
-I usually ___ here on Saturdays. → **work** · works · working
-- works — *З I потрібна work без s.*
-- working — *Для цієї звички потрібна work.*
+It ___ a good choice. → **is** · are · am
+- are — *З it потрібна is.*
+- am — *Am вживається з I, а тут it is.*
 
-**5 · Картка слова — mulch**
-<!-- interaction_id: en:lesson-10:session-32:word:mulch; family: word_card -->
-> **mulch** — «мульча». The mulch is in the bag. — «Мульча в мішку». Матеріал, яким вкривають поверхню ґрунту; тут незлічуваний іменник.
+**5 · Картка слова — decide**
+<!-- interaction_id: en:lesson-10:session-32:word:decide; family: word_card -->
+> **decide** — «вирішувати, ухвалювати рішення». I cannot decide. — «Я не можу вирішити».
 
-**6 · Колега шукає мульчу для вкривання ґрунту. Скажіть: «Мульча в мішку»**
+**6 · Ви поки не можете обрати кафе. Скажіть, що не можете вирішити**
 <!-- interaction_id: en:lesson-10:session-32:i04; family: phrase_builder -->
-Плитки: `bag` `the` `in` `is` `mulch` `The` → **The mulch is in the bag.**
+Плитки: `decide` `cannot` `I` → **I cannot decide.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-32:i05; family: listen_choose -->
-🔊 *The mulch is dry.* → **The mulch is dry.** · The mulch is wet. · The soil is dry.
-- The mulch is wet. — *У записі звучить The mulch is dry.*
-- The soil is dry. — *У записі звучить The mulch is dry.*
+🔊 *We cannot decide.* → **We cannot decide.** · I cannot decide. · They cannot decide.
+- I cannot decide. — *У записі звучить We cannot decide.*
+- They cannot decide. — *У записі звучить We cannot decide.*
 
-**8 · Виберіть зв’язку з незлічуваним mulch**
+**8 · Виберіть форму decide після cannot**
 <!-- interaction_id: en:lesson-10:session-32:i06; family: context_gap_grammar -->
-The mulch ___ dry. → **is** · are · am
-- are — *З mulch тут потрібна is.*
-- am — *Am використовуємо з I; тут потрібна is.*
+I cannot ___. → **decide** · decides · to decide
+- decides — *Після cannot потрібна decide без s.*
+- to decide — *Після cannot не ставимо to.*
 
-**9 · Картка слова — compost**
-<!-- interaction_id: en:lesson-10:session-32:word:compost; family: word_card -->
-> **compost** — «компост». There is compost in the bag. — «У мішку компост». Перепрілий органічний матеріал для ґрунту.
+**9 · Картка слова — reason**
+<!-- interaction_id: en:lesson-10:session-32:word:reason; family: word_card -->
+> **reason** — «причина». What is the reason? — «У чому причина?»
 
-**10 · Друг показує інший мішок і запитує, що в ньому. Скажіть: «У мішку компост»**
+**10 · Друг відмовляється йти до кафе. Запитайте про причину**
 <!-- interaction_id: en:lesson-10:session-32:i07; family: phrase_builder -->
-Плитки: `bag` `the` `in` `compost` `is` `There` → **There is compost in the bag.**
+Плитки: `reason` `the` `is` `What` → **What is the reason?**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-32:i08; family: listen_choose -->
-🔊 *The compost is dark.* → **The compost is dark.** · The compost is dry. · The mulch is dark.
-- The compost is dry. — *У записі звучить The compost is dark.*
-- The mulch is dark. — *У записі звучить The compost is dark.*
+🔊 *What is the reason?* → **What is the reason?** · What is the price? · What is the choice?
+- What is the price? — *У записі звучить What is the reason?*
+- What is the choice? — *У записі звучить What is the reason?*
 
-**12 · Виберіть зв’язку для незлічуваного compost**
+**12 · Виберіть дієслово для однієї причини**
 <!-- interaction_id: en:lesson-10:session-32:i09; family: context_gap_grammar -->
-There ___ compost in the bag. → **is** · are · am
-- are — *З незлічуваним compost використовуємо there is.*
-- am — *Тут потрібна конструкція there is.*
+What ___ the reason? → **is** · are · am
+- are — *Одна причина: is.*
+- am — *Am вживається з I. Тут потрібна is.*
 
-**13 · Картка слова — seedbed**
-<!-- interaction_id: en:lesson-10:session-32:word:seedbed; family: word_card -->
-> **seedbed** — «грядка для посіву». We are preparing the seedbed. — «Ми готуємо грядку для посіву». Ділянка ґрунту, підготовлена для насіння.
+**13 · Картка слова — allow**
+<!-- interaction_id: en:lesson-10:session-32:word:allow; family: word_card -->
+> **allow** — «дозволяти». Do they allow dogs? — «Вони дозволяють приходити із собаками?»
 
-**14 · Друг запитує, над чим ви з колегою працюєте зараз. Скажіть: «Ми готуємо грядку для посіву»**
+**14 · Запитайте друга, чи дозволяють працівники кафе приходити із собаками**
 <!-- interaction_id: en:lesson-10:session-32:i10; family: phrase_builder -->
-Плитки: `seedbed` `the` `preparing` `are` `We` → **We are preparing the seedbed.**
+Плитки: `dogs` `allow` `they` `Do` → **Do they allow dogs?**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-32:i11; family: listen_choose -->
-🔊 *The seedbed is beside the path.* → **The seedbed is beside the path.** · The seedbed is beside the wall. · The sapling is beside the path.
-- The seedbed is beside the wall. — *У записі звучить The seedbed is beside the path.*
-- The sapling is beside the path. — *У записі звучить The seedbed is beside the path.*
+🔊 *They allow dogs.* → **They allow dogs.** · Do they allow dogs? · They allow cats.
+- Do they allow dogs? — *У записі звучить They allow dogs.*
+- They allow cats. — *У записі звучить They allow dogs.*
 
-**16 · Ви працюєте над грядкою зараз. Виберіть написання форми prepare**
+**16 · Виберіть форму allow після do**
 <!-- interaction_id: en:lesson-10:session-32:i12; family: context_gap_grammar -->
-We are ___ the seedbed. → **preparing** · prepareing · prepare
-- prepareing — *Перед ing кінцева e зникає: preparing.*
-- prepare — *Після are тут потрібна preparing.*
+Do they ___ dogs? → **allow** · allows · allowing
+- allows — *Після do потрібна allow без s.*
+- allowing — *Після do потрібна allow без ing.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-32:i13; family: speed_match -->
-sapling — молоде деревце · mulch — мульча · compost — компост · seedbed — грядка для посіву
+decide — вирішувати · choice — вибір · reason — причина · allow — дозволяти
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-32:i14; family: listen_build_dictation -->
-🔊 *We are preparing the seedbed.* Плитки: `seedbed` `the` `preparing` `are` `We` → **We are preparing the seedbed.**
+🔊 *I cannot decide.* Плитки: `decide` `cannot` `I` → **I cannot decide.**
 
-**19 · Друг запитує, чи знаєте ви цей сад. Ви давно допомагаєте тут. Скажіть: «Я знаю цей сад»**
-<!-- interaction_id: en:lesson-10:session-32:i15; family: scripted_repeat_compare -->
-🎙 **I know this garden.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-32:i15; family: listen_build_dictation -->
+🔊 *Do they allow dogs?* Плитки: `dogs` `allow` `they` `Do` → **Do they allow dogs?**
 
-**20 · Зазвичай колега працює в теплиці, але тимчасово допомагає тут. Скажіть: «Вона працює тут цього тижня». Поставте this week у кінці**
-<!-- interaction_id: en:lesson-10:session-32:i16; family: phrase_builder -->
-Плитки: `week` `this` `here` `working` `is` `She` → **She is working here this week.**
+**20 · Скажіть, що ви можете вирішити зараз**
+<!-- interaction_id: en:lesson-10:session-32:i16; family: scripted_repeat_compare -->
+🎙 **I can decide now.**
 
-**21 · Друг телефонує й запитує, що ви робите разом із колегою. Ви готуєте ділянку для насіння. Скажіть: «Ми готуємо грядку для посіву»**
-<!-- interaction_id: en:lesson-10:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are preparing the seedbed.**
+**21 · Скажіть, що знаєте причину**
+<!-- interaction_id: en:lesson-10:session-32:i17; family: scripted_repeat_compare -->
+🎙 **I know the reason.**
 

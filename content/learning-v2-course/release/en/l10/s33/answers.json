@@ -1,77 +1,77 @@
 [
   {
-    "interactionId": "en:lesson-10:session-33:word:headliner",
-    "correctText": "headliner",
+    "interactionId": "en:lesson-10:session-33:word:chin",
+    "correctText": "chin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i01",
-    "correctText": "The headliner is playing now.",
+    "correctText": "Your chin is wet.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i02",
-    "correctText": "The headliner is on the stage.",
+    "correctText": "My chin is wet.",
     "correctResponseId": "en:lesson-10:session-33:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-33:i03",
-    "correctText": "come",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-33:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-33:word:lineup",
-    "correctText": "lineup",
+    "interactionId": "en:lesson-10:session-33:word:cheek",
+    "correctText": "cheek",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i04",
-    "correctText": "I like the lineup.",
+    "correctText": "Your cheek is dirty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i05",
-    "correctText": "The lineup is on the poster.",
+    "correctText": "My cheek is dirty.",
     "correctResponseId": "en:lesson-10:session-33:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-33:i06",
-    "correctText": "like",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-33:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-33:word:marquee",
-    "correctText": "marquee",
+    "interactionId": "en:lesson-10:session-33:word:lip",
+    "correctText": "lip",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i07",
-    "correctText": "The band is in the marquee.",
+    "correctText": "My lip is dry.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i08",
-    "correctText": "The marquee is white.",
+    "correctText": "Your lips are dry.",
     "correctResponseId": "en:lesson-10:session-33:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-33:i09",
-    "correctText": "in",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-33:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-33:word:bunting",
-    "correctText": "bunting",
+    "interactionId": "en:lesson-10:session-33:word:thumb",
+    "correctText": "thumb",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i10",
-    "correctText": "The bunting is colourful.",
+    "correctText": "My thumb is clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i11",
-    "correctText": "The bunting is above the entrance.",
+    "correctText": "Your thumb is clean.",
     "correctResponseId": "en:lesson-10:session-33:i11:r1"
   },
   {
@@ -81,27 +81,27 @@
   },
   {
     "interactionId": "en:lesson-10:session-33:i13",
-    "correctText": "en:lesson-10:session-33:i13:p1=headliner\nen:lesson-10:session-33:i13:p2=lineup\nen:lesson-10:session-33:i13:p3=marquee\nen:lesson-10:session-33:i13:p4=bunting",
+    "correctText": "en:lesson-10:session-33:i13:p1=chin\nen:lesson-10:session-33:i13:p2=cheek\nen:lesson-10:session-33:i13:p3=lip\nen:lesson-10:session-33:i13:p4=thumb",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i14",
-    "correctText": "The headliner is playing now.",
+    "correctText": "Your cheek is dirty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i15",
-    "correctText": "We come here every year.",
+    "correctText": "My thumb is clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i16",
-    "correctText": "I like the lineup.",
+    "correctText": "My chin is clean.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-33:i17",
-    "correctText": "The headliner is playing now.",
+    "correctText": "My cheeks are wet.",
     "correctResponseId": null
   }
 ]

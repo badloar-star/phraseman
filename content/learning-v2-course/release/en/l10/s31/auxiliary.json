@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-31:intro1:r2": {
-          "ru": "Между spring и описанием нужна is.",
-          "uk": "Між spring та описом потрібне is."
+          "ru": "С you в вопросе нужна do.",
+          "uk": "З you у запитанні потрібна do."
         },
         "en:lesson-10:session-31:intro1:r3": {
-          "ru": "Spring здесь единственное число: is.",
-          "uk": "Spring тут однина: is."
+          "ru": "После do нужна travel без s.",
+          "uk": "Після do потрібна travel без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-31:intro2:r2": {
-          "ru": "Перед in blossom нужна is.",
-          "uk": "Перед in blossom потрібне is."
+          "ru": "С we нужна swim без s.",
+          "uk": "З we потрібна swim без s."
         },
         "en:lesson-10:session-31:intro2:r3": {
-          "ru": "Говорим in blossom, не on blossom.",
-          "uk": "Кажемо in blossom, не on blossom."
+          "ru": "Перед месяцем нужна in.",
+          "uk": "Перед місяцем потрібна in."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-31:intro3:r2": {
-          "ru": "Foliage здесь неисчисляемое: is.",
-          "uk": "Foliage тут незлічуване: is."
+          "ru": "С we нужна visit без s.",
+          "uk": "З we потрібна visit без s."
         },
         "en:lesson-10:session-31:intro3:r3": {
-          "ru": "Перед turning нужна is.",
-          "uk": "Перед turning потрібне is."
+          "ru": "Перед месяцем нужна in, не at.",
+          "uk": "Перед місяцем потрібна in, не at."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "111e643aa97d8f1c2f4480fb5f47a90718b38c29042377b481a18d7a23119f1f"
+  "auxiliaryFingerprint": "aba2d6a9335c076cc8acdc50b709606d2095f0b60347847b3958c029896af5b5"
 }

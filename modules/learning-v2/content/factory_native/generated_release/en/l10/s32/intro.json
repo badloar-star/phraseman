@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-32",
   "learningOutcomeByLocale": {
-    "ru": "I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed",
-    "uk": "I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed"
+    "ru": "I cannot decide; It is a good choice; What is the reason; Do they allow dogs",
+    "uk": "I cannot decide; It is a good choice; What is the reason; Do they allow dogs"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обычно по субботам",
-        "uk": "Зазвичай щосуботи"
+        "ru": "Не могу решить",
+        "uk": "Не можу вирішити"
       },
       "bodyByLocale": {
-        "ru": "Вы помогаете в саду каждую субботу: I usually work here on Saturdays — «Я обычно работаю здесь по субботам». Usually ставим перед work. Сейчас друг звонит, пока вы поливаете растения: I am watering the plants — «Я поливаю растения». Привычка — Simple, происходящее действие — Continuous.",
-        "uk": "Ви допомагаєте в саду щосуботи: I usually work here on Saturdays — «Я зазвичай працюю тут щосуботи». Usually ставимо перед work. Зараз друг телефонує, поки ви поливаєте рослини: I am watering the plants — «Я поливаю рослини». Звичка — Simple, дія, що відбувається, — Continuous."
+        "ru": "Перед вами два кафе, и вы пока не знаете, какое выбрать. Decide — «решать, принимать решение»: I cannot decide — «Я не могу решить». После cannot нужна decide без to. Когда друг предлагает подходящее кафе, можно ответить: It is a good choice — «Это хороший выбор». Choice — «выбор».",
+        "uk": "Перед вами два кафе, і ви поки не знаєте, яке обрати. Decide — «вирішувати, ухвалювати рішення»: I cannot decide — «Я не можу вирішити». Після cannot потрібна decide без to. Коли друг пропонує доречне кафе, можна відповісти: It is a good choice — «Це хороший вибір». Choice — «вибір»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-32:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-32:intro1:r1",
-              "text": "I usually work here on Saturdays."
+              "text": "I cannot decide."
             },
             {
               "responseId": "en:lesson-10:session-32:intro1:r2",
-              "text": "I usually works here on Saturdays."
+              "text": "I cannot to decide."
             },
             {
               "responseId": "en:lesson-10:session-32:intro1:r3",
-              "text": "I usually working here on Saturdays."
+              "text": "I cannot decides."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-32:intro1:r1",
-              "text": "I usually work here on Saturdays."
+              "text": "I cannot decide."
             },
             {
               "responseId": "en:lesson-10:session-32:intro1:r2",
-              "text": "I usually works here on Saturdays."
+              "text": "I cannot to decide."
             },
             {
               "responseId": "en:lesson-10:session-32:intro1:r3",
-              "text": "I usually working here on Saturdays."
+              "text": "I cannot decides."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Временная работа",
-        "uk": "Тимчасова робота"
+        "ru": "Узнать причину",
+        "uk": "Дізнатися причину"
       },
       "bodyByLocale": {
-        "ru": "Другая сотрудница обычно работает в теплице. На этой неделе она помогает в саду: She is working here this week — «Она работает здесь на этой неделе». Continuous подходит для временной ситуации. Для обычного места работы: She works in a greenhouse — «Она работает в теплице».",
-        "uk": "Інша працівниця зазвичай працює в теплиці. Цього тижня вона допомагає в саду: She is working here this week — «Вона працює тут цього тижня». Continuous підходить для тимчасової ситуації. Для звичного місця роботи: She works in a greenhouse — «Вона працює в теплиці»."
+        "ru": "Друг не хочет идти в первое кафе, и вы хотите понять почему. Reason — «причина»: What is the reason? — «В чём причина?» В этом вопросе после what стоит is, затем the reason. Можно услышать простой ответ: It is expensive — «Там дорого».",
+        "uk": "Друг не хоче йти до першого кафе, і ви хочете зрозуміти чому. Reason — «причина»: What is the reason? — «У чому причина?» У цьому запитанні після what стоїть is, потім the reason. Можна почути просту відповідь: It is expensive — «Там дорого»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-32:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-32:intro2:r1",
-              "text": "She is working here this week."
+              "text": "What is the reason?"
             },
             {
               "responseId": "en:lesson-10:session-32:intro2:r2",
-              "text": "She working here this week."
+              "text": "What are the reason?"
             },
             {
               "responseId": "en:lesson-10:session-32:intro2:r3",
-              "text": "She are working here this week."
+              "text": "What the reason?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-32:intro2:r1",
-              "text": "She is working here this week."
+              "text": "What is the reason?"
             },
             {
               "responseId": "en:lesson-10:session-32:intro2:r2",
-              "text": "She working here this week."
+              "text": "What are the reason?"
             },
             {
               "responseId": "en:lesson-10:session-32:intro2:r3",
-              "text": "She are working here this week."
+              "text": "What the reason?"
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Я знаю этот сад",
-        "uk": "Я знаю цей сад"
+        "ru": "Можно ли с собакой",
+        "uk": "Чи можна із собакою"
       },
       "bodyByLocale": {
-        "ru": "Вы давно здесь помогаете: I know this garden — «Я знаю этот сад». Know описывает ваше знание, поэтому здесь используем Simple. А для конкретной работы прямо сейчас: We are preparing the soil — «Мы готовим почву». Сначала определяем смысл ситуации, а не выбираем форму только по слову «сейчас».",
-        "uk": "Ви давно тут допомагаєте: I know this garden — «Я знаю цей сад». Know описує ваше знання, тому тут використовуємо Simple. А для конкретної роботи просто зараз: We are preparing the soil — «Ми готуємо ґрунт». Спочатку визначаємо зміст ситуації, а не обираємо форму лише за словом «зараз»."
+        "ru": "Вы гуляете с собакой и уточняете правила кафе у друга. Allow — «разрешать»: Do they allow dogs? — «Они разрешают приходить с собаками?» They здесь — сотрудники кафе. В вопросе do перед they, затем allow без s.",
+        "uk": "Ви гуляєте із собакою й уточнюєте правила кафе в друга. Allow — «дозволяти»: Do they allow dogs? — «Вони дозволяють приходити із собаками?» They тут — працівники кафе. У запитанні do перед they, потім allow без s."
       },
       "question": {
         "interactionId": "en:lesson-10:session-32:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-32:intro3:r1",
-              "text": "I know this garden."
+              "text": "Do they allow dogs?"
             },
             {
               "responseId": "en:lesson-10:session-32:intro3:r2",
-              "text": "I knows this garden."
+              "text": "Does they allow dogs?"
             },
             {
               "responseId": "en:lesson-10:session-32:intro3:r3",
-              "text": "I am know this garden."
+              "text": "Do they allows dogs?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-32:intro3:r1",
-              "text": "I know this garden."
+              "text": "Do they allow dogs?"
             },
             {
               "responseId": "en:lesson-10:session-32:intro3:r2",
-              "text": "I knows this garden."
+              "text": "Does they allow dogs?"
             },
             {
               "responseId": "en:lesson-10:session-32:intro3:r3",
-              "text": "I am know this garden."
+              "text": "Do they allows dogs?"
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2dc333382fba6408b316e4380462b2a31417caef53d3134f0b8fac1d37cd8957"
+  "introFingerprint": "b42cf49d36be5ee54b32338dbf7fcd57b82ea37c247d5851869dba8644baa275"
 }

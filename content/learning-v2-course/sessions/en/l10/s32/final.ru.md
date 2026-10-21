@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 32 — Работа в саду
+# Английский · Урок 10 · Занятие 32 — Выбрать кафе
 
-**Ситуация.** Сравнить обычную работу в саду с тем, что происходит сейчас.
+**Ситуация.** Выбрать место, объяснить причину и узнать, можно ли прийти с собакой.
 
-**Что вы освоите:** I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed
-**Новые слова:** sapling, mulch, compost, seedbed
+**Что вы освоите:** I cannot decide; It is a good choice; What is the reason; Do they allow dogs
+**Новые слова:** decide, choice, reason, allow
 
 ## Интро 1
 
-### Обычно по субботам
+### Не могу решить
 
-Вы помогаете в саду каждую субботу: I usually work here on Saturdays — «Я обычно работаю здесь по субботам». Usually ставим перед work. Сейчас друг звонит, пока вы поливаете растения: I am watering the plants — «Я поливаю растения». Привычка — Simple, происходящее действие — Continuous.
+Перед вами два кафе, и вы пока не знаете, какое выбрать. Decide — «решать, принимать решение»: I cannot decide — «Я не могу решить». После cannot нужна decide без to. Когда друг предлагает подходящее кафе, можно ответить: It is a good choice — «Это хороший выбор». Choice — «выбор».
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I usually work here on Saturdays.**
-- ❌ I usually works here on Saturdays. — *С I нужна work без s.*
-- ❌ I usually working here on Saturdays. — *Для этой привычки нужна work.*
+- ✅ **I cannot decide.**
+- ❌ I cannot to decide. — *После cannot не ставим to.*
+- ❌ I cannot decides. — *После cannot нужна decide без s.*
 
 ---
 
 ## Интро 2
 
-### Временная работа
+### Узнать причину
 
-Другая сотрудница обычно работает в теплице. На этой неделе она помогает в саду: She is working here this week — «Она работает здесь на этой неделе». Continuous подходит для временной ситуации. Для обычного места работы: She works in a greenhouse — «Она работает в теплице».
+Друг не хочет идти в первое кафе, и вы хотите понять почему. Reason — «причина»: What is the reason? — «В чём причина?» В этом вопросе после what стоит is, затем the reason. Можно услышать простой ответ: It is expensive — «Там дорого».
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She is working here this week.**
-- ❌ She working here this week. — *Перед working нужен is.*
-- ❌ She are working here this week. — *С she нужно is.*
+- ✅ **What is the reason?**
+- ❌ What are the reason? — *Одна причина: is, не are.*
+- ❌ What the reason? — *В этом вопросе нужна is после what.*
 
 ---
 
 ## Интро 3
 
-### Я знаю этот сад
+### Можно ли с собакой
 
-Вы давно здесь помогаете: I know this garden — «Я знаю этот сад». Know описывает ваше знание, поэтому здесь используем Simple. А для конкретной работы прямо сейчас: We are preparing the soil — «Мы готовим почву». Сначала определяем смысл ситуации, а не выбираем форму только по слову «сейчас».
+Вы гуляете с собакой и уточняете правила кафе у друга. Allow — «разрешать»: Do they allow dogs? — «Они разрешают приходить с собаками?» They здесь — сотрудники кафе. В вопросе do перед they, затем allow без s.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I know this garden.**
-- ❌ I knows this garden. — *С I нужна know без s.*
-- ❌ I am know this garden. — *Am know неверно; здесь нужна know.*
+- ✅ **Do they allow dogs?**
+- ❌ Does they allow dogs? — *С they нужна do.*
+- ❌ Do they allows dogs? — *После do нужна allow без s.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — sapling**
-<!-- interaction_id: en:lesson-10:session-32:word:sapling; family: word_card -->
-> **sapling** — «молодое деревце». I am watering the sapling. — «Я поливаю молодое деревце». Молодое дерево с тонким стволом.
+**1 · Карточка слова — choice**
+<!-- interaction_id: en:lesson-10:session-32:word:choice; family: word_card -->
+> **choice** — «выбор». It is a good choice. — «Это хороший выбор».
 
-**2 · Друг звонит, пока вы поливаете молодое дерево. Скажите: «Я поливаю молодое деревце»**
+**2 · Друг выбрал удобное кафе. Скажите, что это хороший выбор**
 <!-- interaction_id: en:lesson-10:session-32:i01; family: phrase_builder -->
-Плитки: `sapling` `the` `watering` `am` `I` → **I am watering the sapling.**
+Плитки: `choice` `good` `a` `is` `It` → **It is a good choice.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-32:i02; family: listen_choose -->
-🔊 *The sapling is growing.* → **The sapling is growing.** · The flower is growing. · The sapling is green.
-- The flower is growing. — *В записи звучит The sapling is growing.*
-- The sapling is green. — *В записи звучит The sapling is growing.*
+🔊 *It is a good choice.* → **It is a good choice.** · It is a bad choice. · Is it a good choice?
+- It is a bad choice. — *В записи звучит It is a good choice.*
+- Is it a good choice? — *В записи звучит It is a good choice.*
 
-**4 · Вы описываете привычку. Выберите форму work**
+**4 · Выберите глагол с it**
 <!-- interaction_id: en:lesson-10:session-32:i03; family: context_gap_grammar -->
-I usually ___ here on Saturdays. → **work** · works · working
-- works — *С I нужна work без s.*
-- working — *Для этой привычки нужна work.*
+It ___ a good choice. → **is** · are · am
+- are — *С it нужна is.*
+- am — *Am используется с I, а здесь it is.*
 
-**5 · Карточка слова — mulch**
-<!-- interaction_id: en:lesson-10:session-32:word:mulch; family: word_card -->
-> **mulch** — «мульча». The mulch is in the bag. — «Мульча в мешке». Материал, которым покрывают поверхность почвы; здесь неисчисляемое существительное.
+**5 · Карточка слова — decide**
+<!-- interaction_id: en:lesson-10:session-32:word:decide; family: word_card -->
+> **decide** — «решать, принимать решение». I cannot decide. — «Я не могу решить».
 
-**6 · Коллега ищет мульчу для покрытия почвы. Скажите: «Мульча в мешке»**
+**6 · Вы пока не можете выбрать кафе. Скажите, что не можете решить**
 <!-- interaction_id: en:lesson-10:session-32:i04; family: phrase_builder -->
-Плитки: `bag` `the` `in` `is` `mulch` `The` → **The mulch is in the bag.**
+Плитки: `decide` `cannot` `I` → **I cannot decide.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-32:i05; family: listen_choose -->
-🔊 *The mulch is dry.* → **The mulch is dry.** · The mulch is wet. · The soil is dry.
-- The mulch is wet. — *В записи звучит The mulch is dry.*
-- The soil is dry. — *В записи звучит The mulch is dry.*
+🔊 *We cannot decide.* → **We cannot decide.** · I cannot decide. · They cannot decide.
+- I cannot decide. — *В записи звучит We cannot decide.*
+- They cannot decide. — *В записи звучит We cannot decide.*
 
-**8 · Выберите связку с неисчисляемым mulch**
+**8 · Выберите форму decide после cannot**
 <!-- interaction_id: en:lesson-10:session-32:i06; family: context_gap_grammar -->
-The mulch ___ dry. → **is** · are · am
-- are — *С mulch здесь нужна is.*
-- am — *Am используется с I; здесь нужна is.*
+I cannot ___. → **decide** · decides · to decide
+- decides — *После cannot нужна decide без s.*
+- to decide — *После cannot не ставим to.*
 
-**9 · Карточка слова — compost**
-<!-- interaction_id: en:lesson-10:session-32:word:compost; family: word_card -->
-> **compost** — «компост». There is compost in the bag. — «В мешке компост». Перепревший органический материал для почвы.
+**9 · Карточка слова — reason**
+<!-- interaction_id: en:lesson-10:session-32:word:reason; family: word_card -->
+> **reason** — «причина». What is the reason? — «В чём причина?»
 
-**10 · Друг показывает другой мешок и спрашивает, что в нём. Скажите: «В мешке компост»**
+**10 · Друг отказывается идти в кафе. Спросите о причине**
 <!-- interaction_id: en:lesson-10:session-32:i07; family: phrase_builder -->
-Плитки: `bag` `the` `in` `compost` `is` `There` → **There is compost in the bag.**
+Плитки: `reason` `the` `is` `What` → **What is the reason?**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-32:i08; family: listen_choose -->
-🔊 *The compost is dark.* → **The compost is dark.** · The compost is dry. · The mulch is dark.
-- The compost is dry. — *В записи звучит The compost is dark.*
-- The mulch is dark. — *В записи звучит The compost is dark.*
+🔊 *What is the reason?* → **What is the reason?** · What is the price? · What is the choice?
+- What is the price? — *В записи звучит What is the reason?*
+- What is the choice? — *В записи звучит What is the reason?*
 
-**12 · Выберите связку для неисчисляемого compost**
+**12 · Выберите глагол для одной причины**
 <!-- interaction_id: en:lesson-10:session-32:i09; family: context_gap_grammar -->
-There ___ compost in the bag. → **is** · are · am
-- are — *С неисчисляемым compost используем there is.*
-- am — *Здесь нужна конструкция there is.*
+What ___ the reason? → **is** · are · am
+- are — *Одна причина: is.*
+- am — *Am используется с I. Здесь нужна is.*
 
-**13 · Карточка слова — seedbed**
-<!-- interaction_id: en:lesson-10:session-32:word:seedbed; family: word_card -->
-> **seedbed** — «грядка для посева». We are preparing the seedbed. — «Мы готовим грядку для посева». Участок почвы, подготовленный для семян.
+**13 · Карточка слова — allow**
+<!-- interaction_id: en:lesson-10:session-32:word:allow; family: word_card -->
+> **allow** — «разрешать». Do they allow dogs? — «Они разрешают приходить с собаками?»
 
-**14 · Друг спрашивает, над чем вы с коллегой работаете сейчас. Скажите: «Мы готовим грядку для посева»**
+**14 · Спросите друга, разрешают ли сотрудники кафе приходить с собаками**
 <!-- interaction_id: en:lesson-10:session-32:i10; family: phrase_builder -->
-Плитки: `seedbed` `the` `preparing` `are` `We` → **We are preparing the seedbed.**
+Плитки: `dogs` `allow` `they` `Do` → **Do they allow dogs?**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-32:i11; family: listen_choose -->
-🔊 *The seedbed is beside the path.* → **The seedbed is beside the path.** · The seedbed is beside the wall. · The sapling is beside the path.
-- The seedbed is beside the wall. — *В записи звучит The seedbed is beside the path.*
-- The sapling is beside the path. — *В записи звучит The seedbed is beside the path.*
+🔊 *They allow dogs.* → **They allow dogs.** · Do they allow dogs? · They allow cats.
+- Do they allow dogs? — *В записи звучит They allow dogs.*
+- They allow cats. — *В записи звучит They allow dogs.*
 
-**16 · Вы работаете над грядкой сейчас. Выберите написание формы prepare**
+**16 · Выберите форму allow после do**
 <!-- interaction_id: en:lesson-10:session-32:i12; family: context_gap_grammar -->
-We are ___ the seedbed. → **preparing** · prepareing · prepare
-- prepareing — *Перед ing конечная e исчезает: preparing.*
-- prepare — *После are здесь нужна preparing.*
+Do they ___ dogs? → **allow** · allows · allowing
+- allows — *После do нужна allow без s.*
+- allowing — *После do нужна allow без ing.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-32:i13; family: speed_match -->
-sapling — молодое деревце · mulch — мульча · compost — компост · seedbed — грядка для посева
+decide — решать · choice — выбор · reason — причина · allow — разрешать
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-32:i14; family: listen_build_dictation -->
-🔊 *We are preparing the seedbed.* Плитки: `seedbed` `the` `preparing` `are` `We` → **We are preparing the seedbed.**
+🔊 *I cannot decide.* Плитки: `decide` `cannot` `I` → **I cannot decide.**
 
-**19 · Друг спрашивает, знаком ли вам этот сад. Вы давно помогаете здесь. Скажите: «Я знаю этот сад»**
-<!-- interaction_id: en:lesson-10:session-32:i15; family: scripted_repeat_compare -->
-🎙 **I know this garden.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-32:i15; family: listen_build_dictation -->
+🔊 *Do they allow dogs?* Плитки: `dogs` `allow` `they` `Do` → **Do they allow dogs?**
 
-**20 · Обычно коллега работает в теплице, но временно помогает здесь. Скажите: «Она работает здесь на этой неделе». Поставьте this week в конце**
-<!-- interaction_id: en:lesson-10:session-32:i16; family: phrase_builder -->
-Плитки: `week` `this` `here` `working` `is` `She` → **She is working here this week.**
+**20 · Скажите, что вы можете решить сейчас**
+<!-- interaction_id: en:lesson-10:session-32:i16; family: scripted_repeat_compare -->
+🎙 **I can decide now.**
 
-**21 · Друг звонит и спрашивает, что вы делаете вместе с коллегой. Вы готовите участок для семян. Скажите: «Мы готовим грядку для посева»**
-<!-- interaction_id: en:lesson-10:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are preparing the seedbed.**
+**21 · Скажите, что знаете причину**
+<!-- interaction_id: en:lesson-10:session-32:i17; family: scripted_repeat_compare -->
+🎙 **I know the reason.**
 

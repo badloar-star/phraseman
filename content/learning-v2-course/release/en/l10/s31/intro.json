@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-31",
   "learningOutcomeByLocale": {
-    "ru": "Spring is my favourite season; The tree is in blossom; The foliage is turning yellow",
-    "uk": "Spring is my favourite season; The tree is in blossom; The foliage is turning yellow"
+    "ru": "Do you travel in April; We swim in June; I usually stay home in October; We visit our family in November",
+    "uk": "Do you travel in April; We swim in June; I usually stay home in October; We visit our family in November"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Любимое время года",
-        "uk": "Улюблена пора року"
+        "ru": "Спросить об апреле",
+        "uk": "Запитати про квітень"
       },
       "bodyByLocale": {
-        "ru": "Season уже встречалось как глагол «приправлять». Теперь используем существительное season — «время года». Spring is my favourite season — «Весна — моё любимое время года». Это ваше предпочтение, поэтому используем is. Не нужно ставить Continuous только потому, что вы говорите сейчас.",
-        "uk": "Season уже траплялося як дієслово «приправляти». Тепер використовуємо іменник season — «пора року». Spring is my favourite season — «Весна — моя улюблена пора року». Це ваше вподобання, тому використовуємо is. Не потрібно ставити Continuous лише тому, що ви говорите зараз."
+        "ru": "Друг часто ездит к морю. Вы хотите узнать, бывает ли это в апреле. April — «апрель»: Do you travel in April? — «Ты путешествуешь в апреле?» Спрашиваем о привычке: do перед you, затем travel. Перед названием месяца — in.",
+        "uk": "Друг часто їздить до моря. Ви хочете дізнатися, чи буває це у квітні. April — «квітень»: Do you travel in April? — «Ти подорожуєш у квітні?» Запитуємо про звичку: do перед you, потім travel. Перед назвою місяця — in."
       },
       "question": {
         "interactionId": "en:lesson-10:session-31:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-31:intro1:r1",
-              "text": "Spring is my favourite season."
+              "text": "Do you travel in April?"
             },
             {
               "responseId": "en:lesson-10:session-31:intro1:r2",
-              "text": "Spring my favourite season."
+              "text": "Does you travel in April?"
             },
             {
               "responseId": "en:lesson-10:session-31:intro1:r3",
-              "text": "Spring are my favourite season."
+              "text": "Do you travels in April?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-31:intro1:r1",
-              "text": "Spring is my favourite season."
+              "text": "Do you travel in April?"
             },
             {
               "responseId": "en:lesson-10:session-31:intro1:r2",
-              "text": "Spring my favourite season."
+              "text": "Does you travel in April?"
             },
             {
               "responseId": "en:lesson-10:session-31:intro1:r3",
-              "text": "Spring are my favourite season."
+              "text": "Do you travels in April?"
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дерево в цвету",
-        "uk": "Дерево у цвіту"
+        "ru": "Июнь",
+        "uk": "Червень"
       },
       "bodyByLocale": {
-        "ru": "На весенней фотографии дерево покрыто цветами. Blossom — «цветы на дереве». The tree is in blossom — «Дерево в цвету». In blossom — готовое сочетание о цветущем дереве. Это описание состояния: is in blossom. Сравните обычное время цветения: This tree is usually in blossom in spring.",
-        "uk": "На весняній фотографії дерево вкрите квітами. Blossom — «квіти на дереві». The tree is in blossom — «Дерево у цвіту». In blossom — готове сполучення про дерево, що квітне. Це опис стану: is in blossom. Порівняйте звичний час цвітіння: This tree is usually in blossom in spring."
+        "ru": "Вы рассказываете о привычном летнем отдыхе. June — «июнь»: We swim in June — «Мы плаваем в июне». С we используем swim без s. June и July — разные месяцы: июнь и июль.",
+        "uk": "Ви розповідаєте про звичний літній відпочинок. June — «червень»: We swim in June — «Ми плаваємо в червні». З we вживаємо swim без s. June і July — різні місяці: червень і липень."
       },
       "question": {
         "interactionId": "en:lesson-10:session-31:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-31:intro2:r1",
-              "text": "The tree is in blossom."
+              "text": "We swim in June."
             },
             {
               "responseId": "en:lesson-10:session-31:intro2:r2",
-              "text": "The tree in blossom."
+              "text": "We swims in June."
             },
             {
               "responseId": "en:lesson-10:session-31:intro2:r3",
-              "text": "The tree is on blossom."
+              "text": "We swim on June."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-31:intro2:r1",
-              "text": "The tree is in blossom."
+              "text": "We swim in June."
             },
             {
               "responseId": "en:lesson-10:session-31:intro2:r2",
-              "text": "The tree in blossom."
+              "text": "We swims in June."
             },
             {
               "responseId": "en:lesson-10:session-31:intro2:r3",
-              "text": "The tree is on blossom."
+              "text": "We swim on June."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Листва меняет цвет",
-        "uk": "Листя змінює колір"
+        "ru": "Октябрь и ноябрь",
+        "uk": "Жовтень і листопад"
       },
       "bodyByLocale": {
-        "ru": "На другой фотографии уже осень. Foliage — «листва». The foliage is turning yellow — «Листва желтеет». Для происходящего изменения используем is + turning. Foliage обозначает листья вместе и здесь неисчисляемое: is, не are. Для обычного сезонного изменения: The foliage usually turns yellow in autumn.",
-        "uk": "На іншій фотографії вже осінь. Foliage — «листя». The foliage is turning yellow — «Листя жовтіє». Для зміни, що відбувається, використовуємо is + turning. Foliage позначає листя разом і тут незлічуване: is, не are. Для звичної сезонної зміни: The foliage usually turns yellow in autumn."
+        "ru": "Друг спрашивает об осени. October — «октябрь»: I usually stay home in October — «В октябре я обычно остаюсь дома». November — «ноябрь»: We visit our family in November — «Мы навещаем семью в ноябре». Это обычные ежегодные дела. Названия месяцев пишем с большой буквы.",
+        "uk": "Друг запитує про осінь. October — «жовтень»: I usually stay home in October — «У жовтні я зазвичай залишаюся вдома». November — «листопад»: We visit our family in November — «Ми відвідуємо родину в листопаді». Це звичні щорічні справи. Назви місяців пишемо з великої літери."
       },
       "question": {
         "interactionId": "en:lesson-10:session-31:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-31:intro3:r1",
-              "text": "The foliage is turning yellow."
+              "text": "We visit our family in November."
             },
             {
               "responseId": "en:lesson-10:session-31:intro3:r2",
-              "text": "The foliage are turning yellow."
+              "text": "We visits our family in November."
             },
             {
               "responseId": "en:lesson-10:session-31:intro3:r3",
-              "text": "The foliage turning yellow."
+              "text": "We visit our family at November."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-31:intro3:r1",
-              "text": "The foliage is turning yellow."
+              "text": "We visit our family in November."
             },
             {
               "responseId": "en:lesson-10:session-31:intro3:r2",
-              "text": "The foliage are turning yellow."
+              "text": "We visits our family in November."
             },
             {
               "responseId": "en:lesson-10:session-31:intro3:r3",
-              "text": "The foliage turning yellow."
+              "text": "We visit our family at November."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fa0f17695f17efadd7161d23c71aead161ec39552cae5554afa4835c7fab928c"
+  "introFingerprint": "1700099bf97a2c4876f8b34ad40bc9d08d523c5680a7b0b5650ac05a778afa6c"
 }

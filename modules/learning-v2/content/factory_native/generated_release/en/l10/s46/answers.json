@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-46:word:launch",
+    "correctText": "launch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i01",
+    "correctText": "The launch is tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i02",
+    "correctText": "The launch is in June.",
+    "correctResponseId": "en:lesson-10:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:word:rollout",
+    "correctText": "rollout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i04",
+    "correctText": "We review the rollout every week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i05",
+    "correctText": "The rollout is going well.",
+    "correctResponseId": "en:lesson-10:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i06",
+    "correctText": "review",
+    "correctResponseId": "en:lesson-10:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:word:flagship",
+    "correctText": "flagship",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i07",
+    "correctText": "This model is our flagship.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i08",
+    "correctText": "Our flagship is on display.",
+    "correctResponseId": "en:lesson-10:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:word:showroom",
+    "correctText": "showroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i10",
+    "correctText": "We are preparing the showroom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i11",
+    "correctText": "The showroom is on the ground floor.",
+    "correctResponseId": "en:lesson-10:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i12",
+    "correctText": "preparing",
+    "correctResponseId": "en:lesson-10:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i13",
+    "correctText": "en:lesson-10:session-46:i13:p1=launch\nen:lesson-10:session-46:i13:p2=rollout\nen:lesson-10:session-46:i13:p3=flagship\nen:lesson-10:session-46:i13:p4=showroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i14",
+    "correctText": "We are preparing the showroom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i15",
+    "correctText": "We review the rollout every week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i16",
+    "correctText": "This model is our flagship.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-46:i17",
+    "correctText": "We are preparing the showroom.",
+    "correctResponseId": null
+  }
+]

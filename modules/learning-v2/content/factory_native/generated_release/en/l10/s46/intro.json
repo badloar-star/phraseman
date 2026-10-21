@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "The launch is tomorrow; We review the rollout every week; We are preparing the showroom",
+    "uk": "The launch is tomorrow; We review the rollout every week; We are preparing the showroom"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выпуск продукта",
+        "uk": "Випуск продукту"
+      },
+      "bodyByLocale": {
+        "ru": "Launch здесь — «запуск продукта», его официальное представление и выход на рынок. Он назначен на завтра: The launch is tomorrow — «Запуск завтра». Is сообщает время события. Указание tomorrow не требует формы Continuous во всяком предложении.",
+        "uk": "Launch тут — «запуск продукту», його офіційне представлення й вихід на ринок. Його призначено на завтра: The launch is tomorrow — «Запуск завтра». Is повідомляє час події. Указівка tomorrow не вимагає форми Continuous в кожному реченні."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-46:intro1:r1",
+              "text": "The launch is tomorrow."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro1:r2",
+              "text": "The launch are tomorrow."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro1:r3",
+              "text": "The launch tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-46:intro1:r1",
+              "text": "The launch is tomorrow."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro1:r2",
+              "text": "The launch are tomorrow."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro1:r3",
+              "text": "The launch tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Постепенное внедрение",
+        "uk": "Поступове впровадження"
+      },
+      "bodyByLocale": {
+        "ru": "Rollout — «поэтапное внедрение»: продукт становится доступен постепенно, например в разных городах. Команда обсуждает ход внедрения каждую неделю: We review the rollout every week — «Мы анализируем поэтапное внедрение каждую неделю». Это регулярное действие: Present Simple.",
+        "uk": "Rollout — «поетапне впровадження»: продукт стає доступним поступово, наприклад у різних містах. Команда обговорює хід упровадження щотижня: We review the rollout every week — «Ми аналізуємо поетапне впровадження щотижня». Це регулярна дія: Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-46:intro2:r1",
+              "text": "We review the rollout every week."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro2:r2",
+              "text": "We reviews the rollout every week."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro2:r3",
+              "text": "We reviewing the rollout every week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-46:intro2:r1",
+              "text": "We review the rollout every week."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro2:r2",
+              "text": "We reviews the rollout every week."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro2:r3",
+              "text": "We reviewing the rollout every week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Готовим зал",
+        "uk": "Готуємо зал"
+      },
+      "bodyByLocale": {
+        "ru": "Showroom — «демонстрационный зал»: место, где покупателям показывают товары. Вы сейчас расставляете новые модели: We are preparing the showroom — «Мы готовим демонстрационный зал». Действие происходит сейчас: are + preparing. У prepare перед ing убираем e.",
+        "uk": "Showroom — «демонстраційний зал»: місце, де покупцям показують товари. Ви зараз розставляєте нові моделі: We are preparing the showroom — «Ми готуємо демонстраційний зал». Дія відбувається зараз: are + preparing. У prepare перед ing прибираємо e."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-46:intro3:r1",
+              "text": "We are preparing the showroom."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro3:r2",
+              "text": "We are prepareing the showroom."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro3:r3",
+              "text": "We preparing the showroom."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-46:intro3:r1",
+              "text": "We are preparing the showroom."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro3:r2",
+              "text": "We are prepareing the showroom."
+            },
+            {
+              "responseId": "en:lesson-10:session-46:intro3:r3",
+              "text": "We preparing the showroom."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "92a0bf34c20b8669f7a488b7a5b7f993aeac821b1ef55319e8bd438f569ef6fe"
+}

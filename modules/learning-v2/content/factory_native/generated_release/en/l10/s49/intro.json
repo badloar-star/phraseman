@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "We check the forecast every morning; The humidity is rising; We are checking the barometer",
+    "uk": "We check the forecast every morning; The humidity is rising; We are checking the barometer"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Утренняя привычка",
+        "uk": "Ранкова звичка"
+      },
+      "bodyByLocale": {
+        "ru": "Forecast — «прогноз». Здесь речь о погоде. Перед выходом команда читает его каждое утро: We check the forecast every morning — «Мы проверяем прогноз каждое утро». Это привычка: Present Simple.",
+        "uk": "Forecast — «прогноз». Тут ідеться про погоду. Перед виходом команда читає його щоранку: We check the forecast every morning — «Ми перевіряємо прогноз щоранку». Це звичка: Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-49:intro1:r1",
+              "text": "We check the forecast every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro1:r2",
+              "text": "We checks the forecast every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro1:r3",
+              "text": "We checking the forecast every morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-49:intro1:r1",
+              "text": "We check the forecast every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro1:r2",
+              "text": "We checks the forecast every morning."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro1:r3",
+              "text": "We checking the forecast every morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Влажность растёт",
+        "uk": "Вологість зростає"
+      },
+      "bodyByLocale": {
+        "ru": "Humidity — «влажность воздуха». Показатель меняется прямо сейчас: The humidity is rising — «Влажность растёт». Для текущего изменения используем is + rising. У rise перед ing убираем e.",
+        "uk": "Humidity — «вологість повітря». Показник змінюється саме зараз: The humidity is rising — «Вологість зростає». Для поточної зміни використовуємо is + rising. У rise перед ing прибираємо e."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-49:intro2:r1",
+              "text": "The humidity is rising."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro2:r2",
+              "text": "The humidity is riseing."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro2:r3",
+              "text": "The humidity rising."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-49:intro2:r1",
+              "text": "The humidity is rising."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro2:r2",
+              "text": "The humidity is riseing."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro2:r3",
+              "text": "The humidity rising."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Смотрим на прибор",
+        "uk": "Дивимося на прилад"
+      },
+      "bodyByLocale": {
+        "ru": "Barometer — «барометр», прибор для измерения атмосферного давления. Вы с коллегой сейчас проверяете прибор: We are checking the barometer — «Мы проверяем барометр». Текущая работа: are + checking.",
+        "uk": "Barometer — «барометр», прилад для вимірювання атмосферного тиску. Ви з колегою зараз перевіряєте прилад: We are checking the barometer — «Ми перевіряємо барометр». Поточна робота: are + checking."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-49:intro3:r1",
+              "text": "We are checking the barometer."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro3:r2",
+              "text": "We checking the barometer."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro3:r3",
+              "text": "We are check the barometer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-49:intro3:r1",
+              "text": "We are checking the barometer."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro3:r2",
+              "text": "We checking the barometer."
+            },
+            {
+              "responseId": "en:lesson-10:session-49:intro3:r3",
+              "text": "We are check the barometer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "77dea9fee70757860a407be1849c9106ea3cd71eea87b88c9e68e1dc6b0a09bb"
+}

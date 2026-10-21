@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-49:word:forecast",
+    "correctText": "forecast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i01",
+    "correctText": "We check the forecast every morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i02",
+    "correctText": "The forecast is on the website.",
+    "correctResponseId": "en:lesson-10:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i03",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-10:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:word:humidity",
+    "correctText": "humidity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i04",
+    "correctText": "The humidity is rising.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i05",
+    "correctText": "The humidity is high.",
+    "correctResponseId": "en:lesson-10:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i06",
+    "correctText": "rising",
+    "correctResponseId": "en:lesson-10:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:word:barometer",
+    "correctText": "barometer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i07",
+    "correctText": "We are checking the barometer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i08",
+    "correctText": "The barometer is on the wall.",
+    "correctResponseId": "en:lesson-10:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-10:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:word:precipitation",
+    "correctText": "precipitation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i10",
+    "correctText": "We measure precipitation every day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i11",
+    "correctText": "The precipitation is heavy.",
+    "correctResponseId": "en:lesson-10:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i12",
+    "correctText": "measure",
+    "correctResponseId": "en:lesson-10:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i13",
+    "correctText": "en:lesson-10:session-49:i13:p1=forecast\nen:lesson-10:session-49:i13:p2=humidity\nen:lesson-10:session-49:i13:p3=barometer\nen:lesson-10:session-49:i13:p4=precipitation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i14",
+    "correctText": "The humidity is rising.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i15",
+    "correctText": "We check the forecast every morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i16",
+    "correctText": "The humidity is rising.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-49:i17",
+    "correctText": "We are checking the barometer.",
+    "correctResponseId": null
+  }
+]

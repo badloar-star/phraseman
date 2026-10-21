@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-08",
   "learningOutcomeByLocale": {
-    "ru": "She usually weaves at home; I am watching the demonstration",
-    "uk": "She usually weaves at home; I am watching the demonstration"
+    "ru": "I agree with you; I disagree; I do not mind; It does not matter",
+    "uk": "I agree with you; I disagree; I do not mind; It does not matter"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Участница выставки",
-        "uk": "Учасниця виставки"
+        "ru": "Согласиться или возразить",
+        "uk": "Погодитися або заперечити"
       },
       "bodyByLocale": {
-        "ru": "Exhibitor — участник выставки, который представляет свои работы. Друг рассказывает вам о мастерице у стенда: She usually weaves at home — «Она обычно ткёт дома». Сейчас она стоит у стенда и беседует с посетителем: The exhibitor is speaking — «Участница выставки говорит». Usually weaves — привычное занятие; is speaking — действие сейчас.",
-        "uk": "Exhibitor — учасник виставки, який представляє свої роботи. Друг розповідає вам про майстриню біля стенда: She usually weaves at home — «Вона зазвичай тче вдома». Зараз вона стоїть біля стенда й розмовляє з відвідувачем: The exhibitor is speaking — «Учасниця виставки говорить». Usually weaves — звичне заняття; is speaking — дія зараз."
+        "ru": "Друг говорит, что здесь слишком шумно. Вы думаете так же: I agree with you — «Я с тобой согласен». Agree — «соглашаться». После agree перед человеком нужен with. Если ваше мнение другое: I disagree — «Я не согласен». Disagree — «не соглашаться». Это мнение, а не действие в процессе: I agree, без am.",
+        "uk": "Друг каже, що тут надто шумно. Ви думаєте так само: I agree with you — «Я з тобою згоден». Agree — «погоджуватися». Після agree перед людиною потрібне with. Якщо ваша думка інша: I disagree — «Я не згоден». Disagree — «не погоджуватися». Це думка, а не дія в процесі: I agree, без am."
       },
       "question": {
         "interactionId": "en:lesson-10:session-08:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-08:intro1:r1",
-              "text": "The exhibitor is speaking."
+              "text": "I agree with you."
             },
             {
               "responseId": "en:lesson-10:session-08:intro1:r2",
-              "text": "The exhibitor speaking."
+              "text": "I am agree with you."
             },
             {
               "responseId": "en:lesson-10:session-08:intro1:r3",
-              "text": "The exhibitor is speak."
+              "text": "I agree you."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-08:intro1:r1",
-              "text": "The exhibitor is speaking."
+              "text": "I agree with you."
             },
             {
               "responseId": "en:lesson-10:session-08:intro1:r2",
-              "text": "The exhibitor speaking."
+              "text": "I am agree with you."
             },
             {
               "responseId": "en:lesson-10:session-08:intro1:r3",
-              "text": "The exhibitor is speak."
+              "text": "I agree you."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Мастер показывает, как это делается",
-        "uk": "Майстер показує, як це робиться"
+        "ru": "Вы не возражаете",
+        "uk": "Ви не заперечуєте"
       },
       "bodyByLocale": {
-        "ru": "Demonstration здесь — «показ процесса работы». Мастер при посетителях вырезает фигурку. Обычно вы сами вырезаете деревянные ложки, но сейчас смотрите на его работу. I am watching the demonstration — «Я смотрю показ». Это не название вашего хобби: вы наблюдаете прямо сейчас, поэтому am watching.",
-        "uk": "Demonstration тут — «показ процесу роботи». Майстер перед відвідувачами вирізьблює фігурку. Зазвичай ви самі вирізьблюєте дерев’яні ложки, але зараз дивитеся на його роботу. I am watching the demonstration — «Я дивлюся показ». Це не назва вашого хобі: ви спостерігаєте просто зараз, тому am watching."
+        "ru": "В кафе посетитель спрашивает: «Можно сесть рядом?» Вам это не мешает: I do not mind — «Я не возражаю». Mind здесь — «возражать, иметь что-то против». Отрицание do not делает ответ разрешением. Если убрать not, смысл изменится.",
+        "uk": "У кафе відвідувач запитує: «Можна сісти поруч?» Вам це не заважає: I do not mind — «Я не заперечую». Mind тут — «заперечувати, мати щось проти». Заперечення do not робить відповідь дозволом. Якщо прибрати not, зміст зміниться."
       },
       "question": {
         "interactionId": "en:lesson-10:session-08:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-08:intro2:r1",
-              "text": "I am watching the demonstration."
+              "text": "I do not mind."
             },
             {
               "responseId": "en:lesson-10:session-08:intro2:r2",
-              "text": "I watching the demonstration."
+              "text": "I does not mind."
             },
             {
               "responseId": "en:lesson-10:session-08:intro2:r3",
-              "text": "I am watch the demonstration."
+              "text": "I am not mind."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-08:intro2:r1",
-              "text": "I am watching the demonstration."
+              "text": "I do not mind."
             },
             {
               "responseId": "en:lesson-10:session-08:intro2:r2",
-              "text": "I watching the demonstration."
+              "text": "I does not mind."
             },
             {
               "responseId": "en:lesson-10:session-08:intro2:r3",
-              "text": "I am watch the demonstration."
+              "text": "I am not mind."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Готовая работа за стеклом",
-        "uk": "Готова робота за склом"
+        "ru": "Ничего страшного",
+        "uk": "Нічого страшного"
       },
       "bodyByLocale": {
-        "ru": "Showcase здесь — «витрина»: стеклянный шкаф для показа предметов. Внутри стоит готовая статуэтка. The figurine is in the showcase — «Статуэтка в витрине». Is здесь сообщает, где предмет находится; это не Present Continuous, потому что действия с -ing нет. Рядом мастер продолжает работать: He is carving — «Он вырезает».",
-        "uk": "Showcase тут — «вітрина»: скляна шафа для показу предметів. Усередині стоїть готова статуетка. The figurine is in the showcase — «Статуетка у вітрині». Is тут повідомляє, де предмет розташований; це не Present Continuous, бо дії з -ing немає. Поруч майстер продовжує працювати: He is carving — «Він вирізьблює»."
+        "ru": "Друг извиняется за опоздание на минуту. Вы никуда не спешите: It does not matter — «Это неважно; ничего страшного». Matter — «иметь значение». С it отрицание строится через does not, после него matter без s.",
+        "uk": "Друг вибачається за запізнення на хвилину. Ви нікуди не поспішаєте: It does not matter — «Це неважливо; нічого страшного». Matter — «мати значення». З it заперечення будуємо через does not, після нього matter без s."
       },
       "question": {
         "interactionId": "en:lesson-10:session-08:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-08:intro3:r1",
-              "text": "The figurine is in the showcase."
+              "text": "It does not matter."
             },
             {
               "responseId": "en:lesson-10:session-08:intro3:r2",
-              "text": "The figurine are in the showcase."
+              "text": "It do not matter."
             },
             {
               "responseId": "en:lesson-10:session-08:intro3:r3",
-              "text": "The figurine in the showcase."
+              "text": "It does not matters."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-08:intro3:r1",
-              "text": "The figurine is in the showcase."
+              "text": "It does not matter."
             },
             {
               "responseId": "en:lesson-10:session-08:intro3:r2",
-              "text": "The figurine are in the showcase."
+              "text": "It do not matter."
             },
             {
               "responseId": "en:lesson-10:session-08:intro3:r3",
-              "text": "The figurine in the showcase."
+              "text": "It does not matters."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4260c299a8d90b40978337c6fc459fdae28ec69a2c31e66f43ae4f3f9afd1150"
+  "introFingerprint": "e16851d21cd1dc2a6e3661c220edbda16e45f1238ea1a52d61dde5f1cdb64697"
 }

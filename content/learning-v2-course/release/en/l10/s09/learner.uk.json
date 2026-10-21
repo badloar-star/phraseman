@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-09:word:sous-chef",
+      "interactionId": "en:lesson-10:session-09:word:tinned",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — sous-chef",
+      "prompt": "Картка слова — tinned",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-09:word:sous-chef:audio"
+        "en:lesson-10:session-09:word:tinned:audio"
       ],
-      "accessibilityLabel": "Картка слова — sous-chef",
+      "accessibilityLabel": "Картка слова — tinned",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-09:word:sous-chef:audio",
-          "transcript": "sous-chef"
+          "audioTargetId": "en:lesson-10:session-09:word:tinned:audio",
+          "transcript": "tinned"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-09:word:sous-chef:r1",
-            "targetText": "sous-chef",
+            "responseId": "en:lesson-10:session-09:word:tinned:r1",
+            "targetText": "tinned",
             "meaningByLocale": {
-              "ru": "«су-шеф». She is a sous-chef. — «Она су-шеф». Заместитель шеф-повара.",
-              "uk": "«су-шеф». She is a sous-chef. — «Вона су-шеф». Заступник шеф-кухаря."
+              "ru": "«консервированный». tinned tomatoes — «консервированные помидоры».",
+              "uk": "«консервований». tinned tomatoes — «консервовані помідори»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "sous-chef",
+          "word": "tinned",
           "definitionByLocale": {
-            "ru": "«су-шеф». She is a sous-chef. — «Она су-шеф». Заместитель шеф-повара.",
-            "uk": "«су-шеф». She is a sous-chef. — «Вона су-шеф». Заступник шеф-кухаря."
+            "ru": "«консервированный». tinned tomatoes — «консервированные помидоры».",
+            "uk": "«консервований». tinned tomatoes — «консервовані помідори»."
           }
         }
       },
@@ -52,23 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Новий працівник запитує про посаду вашої колеги. Скажіть: «Вона су-шеф»",
+      "prompt": "Скажіть, що зазвичай купуєте консервовані помідори. Поставте usually перед buy",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Новий працівник запитує про посаду вашої колеги. Скажіть: «Вона су-шеф»",
+      "accessibilityLabel": "Скажіть, що зазвичай купуєте консервовані помідори. Поставте usually перед buy",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is a sous-chef.",
+        "targetPhrase": "I usually buy tinned tomatoes.",
         "localizedMeaning": {
-          "ru": "Новый сотрудник спрашивает о должности вашей коллеги. Скажите: «Она су-шеф»",
-          "uk": "Новий працівник запитує про посаду вашої колеги. Скажіть: «Вона су-шеф»"
+          "ru": "Скажите, что обычно покупаете консервированные помидоры. Поставьте usually перед buy",
+          "uk": "Скажіть, що зазвичай купуєте консервовані помідори. Поставте usually перед buy"
         },
         "orderedTokens": [
-          "She",
-          "is",
-          "a",
-          "sous-chef"
+          "I",
+          "usually",
+          "buy",
+          "tinned",
+          "tomatoes"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +90,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i02:r1",
-          "text": "She works at a hotel."
+          "text": "We buy tinned tomatoes."
         },
         {
           "responseId": "en:lesson-10:session-09:i02:r2",
-          "text": "She works at a school."
+          "text": "I buy tinned tomatoes."
         },
         {
           "responseId": "en:lesson-10:session-09:i02:r3",
-          "text": "He works at a hotel."
+          "text": "We buy fresh tomatoes."
         }
       ],
       "mediaIds": [],
@@ -109,23 +110,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-09:i02:audio",
-          "transcript": "She works at a hotel."
+          "transcript": "We buy tinned tomatoes."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-09:i02:r1",
-            "targetText": "She works at a hotel.",
+            "targetText": "We buy tinned tomatoes.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-09:i02:r2",
-            "targetText": "She works at a school.",
+            "targetText": "I buy tinned tomatoes.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-09:i02:r3",
-            "targetText": "He works at a hotel.",
+            "targetText": "We buy fresh tomatoes.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +137,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She works at a hotel.",
-              "uk": "У записі звучить She works at a hotel."
+              "ru": "В записи звучит We buy tinned tomatoes.",
+              "uk": "У записі звучить We buy tinned tomatoes."
             }
           },
           {
@@ -145,8 +146,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She works at a hotel.",
-              "uk": "У записі звучить She works at a hotel."
+              "ru": "В записи звучит We buy tinned tomatoes.",
+              "uk": "У записі звучить We buy tinned tomatoes."
             }
           }
         ],
@@ -161,63 +162,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму work для основного місця роботи з she",
+      "prompt": "Виберіть форму buy для звички з I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i03:r1",
-          "text": "works"
+          "text": "buy"
         },
         {
           "responseId": "en:lesson-10:session-09:i03:r2",
-          "text": "work"
+          "text": "buys"
         },
         {
           "responseId": "en:lesson-10:session-09:i03:r3",
-          "text": "working"
+          "text": "buying"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму work для основного місця роботи з she",
+      "accessibilityLabel": "Виберіть форму buy для звички з I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму work для основного места работы с she",
-          "uk": "Виберіть форму work для основного місця роботи з she"
+          "ru": "Выберите форму buy для привычки с I",
+          "uk": "Виберіть форму buy для звички з I"
         },
-        "gappedTargetPhrase": "She ___ at a hotel.",
+        "gappedTargetPhrase": "I usually ___ tinned tomatoes.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-09:i03:r1",
-            "text": "works"
+            "text": "buy"
           },
           {
             "responseId": "en:lesson-10:session-09:i03:r2",
-            "text": "work"
+            "text": "buys"
           },
           {
             "responseId": "en:lesson-10:session-09:i03:r3",
-            "text": "working"
+            "text": "buying"
           }
         ],
-        "testedDimension": "Виберіть форму work для основного місця роботи з she",
+        "testedDimension": "Виберіть форму buy для звички з I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-09:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму work для основного місця роботи з she",
+            "testedDimension": "Виберіть форму buy для звички з I",
             "feedbackByLocale": {
-              "ru": "С she в Present Simple нужна works.",
-              "uk": "З she у Present Simple потрібна works."
+              "ru": "С I нужна buy без s.",
+              "uk": "З I потрібна buy без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-09:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму work для основного місця роботи з she",
+            "testedDimension": "Виберіть форму buy для звички з I",
             "feedbackByLocale": {
-              "ru": "Working без is не образует сказуемое.",
-              "uk": "Working без is не утворює присудок."
+              "ru": "Для привычки нужна buy.",
+              "uk": "Для звички потрібна buy."
             }
           }
         ]
@@ -225,32 +226,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-09:word:griddle",
+      "interactionId": "en:lesson-10:session-09:word:ready-made",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — griddle",
+      "prompt": "Картка слова — ready-made",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-09:word:griddle:audio"
+        "en:lesson-10:session-09:word:ready-made:audio"
       ],
-      "accessibilityLabel": "Картка слова — griddle",
+      "accessibilityLabel": "Картка слова — ready-made",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-09:word:griddle:audio",
-          "transcript": "griddle"
+          "audioTargetId": "en:lesson-10:session-09:word:ready-made:audio",
+          "transcript": "ready-made"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-09:word:griddle:r1",
-            "targetText": "griddle",
+            "responseId": "en:lesson-10:session-09:word:ready-made:r1",
+            "targetText": "ready-made",
             "meaningByLocale": {
-              "ru": "«плоская жарочная поверхность». She is using a griddle. — «Она пользуется плоской жарочной поверхностью». Здесь оборудование для приготовления блинов.",
-              "uk": "«плоска смажильна поверхня». She is using a griddle. — «Вона користується плоскою смажильною поверхнею». Тут обладнання для приготування млинців."
+              "ru": "«готовый, заранее приготовленный». a ready-made meal — «готовое блюдо».",
+              "uk": "«готовий, заздалегідь приготований». a ready-made meal — «готова страва»."
             }
           }
         ],
@@ -258,10 +259,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "griddle",
+          "word": "ready-made",
           "definitionByLocale": {
-            "ru": "«плоская жарочная поверхность». She is using a griddle. — «Она пользуется плоской жарочной поверхностью». Здесь оборудование для приготовления блинов.",
-            "uk": "«плоска смажильна поверхня». She is using a griddle. — «Вона користується плоскою смажильною поверхнею». Тут обладнання для приготування млинців."
+            "ru": "«готовый, заранее приготовленный». a ready-made meal — «готовое блюдо».",
+            "uk": "«готовий, заздалегідь приготований». a ready-made meal — «готова страва»."
           }
         }
       },
@@ -273,24 +274,26 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега запитує, на чому су-шеф готує млинці зараз. Скажіть: «Вона користується плоскою смажильною поверхнею»",
+      "prompt": "Сьогодні ви купуєте готову страву. Скажіть про це. Today поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега запитує, на чому су-шеф готує млинці зараз. Скажіть: «Вона користується плоскою смажильною поверхнею»",
+      "accessibilityLabel": "Сьогодні ви купуєте готову страву. Скажіть про це. Today поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is using a griddle.",
+        "targetPhrase": "I am buying a ready-made meal today.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, на чём су-шеф готовит блины сейчас. Скажите: «Она пользуется плоской жарочной поверхностью»",
-          "uk": "Колега запитує, на чому су-шеф готує млинці зараз. Скажіть: «Вона користується плоскою смажильною поверхнею»"
+          "ru": "Сегодня вы покупаете готовое блюдо. Скажите об этом. Today поставьте в конце",
+          "uk": "Сьогодні ви купуєте готову страву. Скажіть про це. Today поставте в кінці"
         },
         "orderedTokens": [
-          "She",
-          "is",
-          "using",
+          "I",
+          "am",
+          "buying",
           "a",
-          "griddle"
+          "ready-made",
+          "meal",
+          "today"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,15 +314,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i05:r1",
-          "text": "The griddle is hot."
+          "text": "She is buying a ready-made meal."
         },
         {
           "responseId": "en:lesson-10:session-09:i05:r2",
-          "text": "The griddle is cold."
+          "text": "He is buying a ready-made meal."
         },
         {
           "responseId": "en:lesson-10:session-09:i05:r3",
-          "text": "The oven is hot."
+          "text": "She is eating a ready-made meal."
         }
       ],
       "mediaIds": [],
@@ -331,23 +334,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-09:i05:audio",
-          "transcript": "The griddle is hot."
+          "transcript": "She is buying a ready-made meal."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-09:i05:r1",
-            "targetText": "The griddle is hot.",
+            "targetText": "She is buying a ready-made meal.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-09:i05:r2",
-            "targetText": "The griddle is cold.",
+            "targetText": "He is buying a ready-made meal.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-09:i05:r3",
-            "targetText": "The oven is hot.",
+            "targetText": "She is eating a ready-made meal.",
             "meaningByLocale": null
           }
         ],
@@ -358,8 +361,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The griddle is hot.",
-              "uk": "У записі звучить The griddle is hot."
+              "ru": "В записи звучит She is buying a ready-made meal.",
+              "uk": "У записі звучить She is buying a ready-made meal."
             }
           },
           {
@@ -367,8 +370,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The griddle is hot.",
-              "uk": "У записі звучить The griddle is hot."
+              "ru": "В записи звучит She is buying a ready-made meal.",
+              "uk": "У записі звучить She is buying a ready-made meal."
             }
           }
         ],
@@ -383,63 +386,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму use після is",
+      "prompt": "Купівля триває зараз. Виберіть форму buy",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i06:r1",
-          "text": "using"
+          "text": "buying"
         },
         {
           "responseId": "en:lesson-10:session-09:i06:r2",
-          "text": "useing"
+          "text": "buy"
         },
         {
           "responseId": "en:lesson-10:session-09:i06:r3",
-          "text": "use"
+          "text": "buys"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму use після is",
+      "accessibilityLabel": "Купівля триває зараз. Виберіть форму buy",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму use после is",
-          "uk": "Виберіть форму use після is"
+          "ru": "Покупка идёт сейчас. Выберите форму buy",
+          "uk": "Купівля триває зараз. Виберіть форму buy"
         },
-        "gappedTargetPhrase": "She is ___ a griddle.",
+        "gappedTargetPhrase": "I am ___ a ready-made meal.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-09:i06:r1",
-            "text": "using"
+            "text": "buying"
           },
           {
             "responseId": "en:lesson-10:session-09:i06:r2",
-            "text": "useing"
+            "text": "buy"
           },
           {
             "responseId": "en:lesson-10:session-09:i06:r3",
-            "text": "use"
+            "text": "buys"
           }
         ],
-        "testedDimension": "Виберіть форму use після is",
+        "testedDimension": "Купівля триває зараз. Виберіть форму buy",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-09:i06:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму use після is",
+            "testedDimension": "Купівля триває зараз. Виберіть форму buy",
             "feedbackByLocale": {
-              "ru": "Конечная e исчезает: using.",
-              "uk": "Кінцева e зникає: using."
+              "ru": "После am нужна buying.",
+              "uk": "Після am потрібна buying."
             }
           },
           {
             "responseId": "en:lesson-10:session-09:i06:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму use після is",
+            "testedDimension": "Купівля триває зараз. Виберіть форму buy",
             "feedbackByLocale": {
-              "ru": "После is нужна using.",
-              "uk": "Після is потрібна using."
+              "ru": "После am нужна buying, не buys.",
+              "uk": "Після am потрібна buying, не buys."
             }
           }
         ]
@@ -447,32 +450,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-09:word:ramekin",
+      "interactionId": "en:lesson-10:session-09:word:sugar-free",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — ramekin",
+      "prompt": "Картка слова — sugar-free",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-09:word:ramekin:audio"
+        "en:lesson-10:session-09:word:sugar-free:audio"
       ],
-      "accessibilityLabel": "Картка слова — ramekin",
+      "accessibilityLabel": "Картка слова — sugar-free",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-09:word:ramekin:audio",
-          "transcript": "ramekin"
+          "audioTargetId": "en:lesson-10:session-09:word:sugar-free:audio",
+          "transcript": "sugar-free"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-09:word:ramekin:r1",
-            "targetText": "ramekin",
+            "responseId": "en:lesson-10:session-09:word:sugar-free:r1",
+            "targetText": "sugar-free",
             "meaningByLocale": {
-              "ru": "«маленькая порционная формочка». The ramekin is on the tray. — «Формочка на подносе». Здесь небольшая керамическая посуда для запекания и подачи порции.",
-              "uk": "«маленька порційна формочка». The ramekin is on the tray. — «Формочка на таці». Тут невеликий керамічний посуд для запікання й подавання порції."
+              "ru": "«без сахара». This drink is sugar-free. — «Этот напиток без сахара».",
+              "uk": "«без цукру». This drink is sugar-free. — «Цей напій без цукру»."
             }
           }
         ],
@@ -480,10 +483,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "ramekin",
+          "word": "sugar-free",
           "definitionByLocale": {
-            "ru": "«маленькая порционная формочка». The ramekin is on the tray. — «Формочка на подносе». Здесь небольшая керамическая посуда для запекания и подачи порции.",
-            "uk": "«маленька порційна формочка». The ramekin is on the tray. — «Формочка на таці». Тут невеликий керамічний посуд для запікання й подавання порції."
+            "ru": "«без сахара». This drink is sugar-free. — «Этот напиток без сахара».",
+            "uk": "«без цукру». This drink is sugar-free. — «Цей напій без цукру»."
           }
         }
       },
@@ -495,25 +498,23 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Кухар шукає маленьку порційну формочку. Скажіть: «Формочка на таці»",
+      "prompt": "Прочитавши напис, скажіть: «Цей напій без цукру»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Кухар шукає маленьку порційну формочку. Скажіть: «Формочка на таці»",
+      "accessibilityLabel": "Прочитавши напис, скажіть: «Цей напій без цукру»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The ramekin is on the tray.",
+        "targetPhrase": "This drink is sugar-free.",
         "localizedMeaning": {
-          "ru": "Повар ищет маленькую порционную формочку. Скажите: «Формочка на подносе»",
-          "uk": "Кухар шукає маленьку порційну формочку. Скажіть: «Формочка на таці»"
+          "ru": "Прочитав надпись, скажите: «Этот напиток без сахара»",
+          "uk": "Прочитавши напис, скажіть: «Цей напій без цукру»"
         },
         "orderedTokens": [
-          "The",
-          "ramekin",
+          "This",
+          "drink",
           "is",
-          "on",
-          "the",
-          "tray"
+          "sugar-free"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +535,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i08:r1",
-          "text": "I am washing the ramekin."
+          "text": "This drink is sugar-free."
         },
         {
           "responseId": "en:lesson-10:session-09:i08:r2",
-          "text": "I am using the ramekin."
+          "text": "That drink is sugar-free."
         },
         {
           "responseId": "en:lesson-10:session-09:i08:r3",
-          "text": "She is washing the ramekin."
+          "text": "These drinks are sugar-free."
         }
       ],
       "mediaIds": [],
@@ -554,23 +555,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-09:i08:audio",
-          "transcript": "I am washing the ramekin."
+          "transcript": "This drink is sugar-free."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-09:i08:r1",
-            "targetText": "I am washing the ramekin.",
+            "targetText": "This drink is sugar-free.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-09:i08:r2",
-            "targetText": "I am using the ramekin.",
+            "targetText": "That drink is sugar-free.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-09:i08:r3",
-            "targetText": "She is washing the ramekin.",
+            "targetText": "These drinks are sugar-free.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +582,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am washing the ramekin.",
-              "uk": "У записі звучить I am washing the ramekin."
+              "ru": "В записи звучит This drink is sugar-free.",
+              "uk": "У записі звучить This drink is sugar-free."
             }
           },
           {
@@ -590,8 +591,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am washing the ramekin.",
-              "uk": "У записі звучить I am washing the ramekin."
+              "ru": "В записи звучит This drink is sugar-free.",
+              "uk": "У записі звучить This drink is sugar-free."
             }
           }
         ],
@@ -606,7 +607,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для однієї формочки",
+      "prompt": "Виберіть зв’язку для одного напою",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i09:r1",
@@ -623,14 +624,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для однієї формочки",
+      "accessibilityLabel": "Виберіть зв’язку для одного напою",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одной формочки",
-          "uk": "Виберіть зв’язку для однієї формочки"
+          "ru": "Выберите связку для одного напитка",
+          "uk": "Виберіть зв’язку для одного напою"
         },
-        "gappedTargetPhrase": "The ramekin ___ on the tray.",
+        "gappedTargetPhrase": "This drink ___ sugar-free.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-09:i09:r1",
@@ -645,24 +646,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Виберіть зв’язку для однієї формочки",
+        "testedDimension": "Виберіть зв’язку для одного напою",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-09:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку для однієї формочки",
+            "testedDimension": "Виберіть зв’язку для одного напою",
             "feedbackByLocale": {
-              "ru": "Ramekin одна: is.",
-              "uk": "Ramekin одна: is."
+              "ru": "Один напиток: is.",
+              "uk": "Один напій: is."
             }
           },
           {
             "responseId": "en:lesson-10:session-09:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку для однієї формочки",
+            "testedDimension": "Виберіть зв’язку для одного напою",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Am употребляем с I, здесь is.",
+              "uk": "Am вживаємо з I, тут is."
             }
           }
         ]
@@ -670,32 +671,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-09:word:garnish",
+      "interactionId": "en:lesson-10:session-09:word:dairy-free",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — garnish",
+      "prompt": "Картка слова — dairy-free",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-09:word:garnish:audio"
+        "en:lesson-10:session-09:word:dairy-free:audio"
       ],
-      "accessibilityLabel": "Картка слова — garnish",
+      "accessibilityLabel": "Картка слова — dairy-free",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-09:word:garnish:audio",
-          "transcript": "garnish"
+          "audioTargetId": "en:lesson-10:session-09:word:dairy-free:audio",
+          "transcript": "dairy-free"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-09:word:garnish:r1",
-            "targetText": "garnish",
+            "responseId": "en:lesson-10:session-09:word:dairy-free:r1",
+            "targetText": "dairy-free",
             "meaningByLocale": {
-              "ru": "«украшение блюда». The garnish is on the plate. — «Украшение блюда на тарелке». Например, веточка зелени; здесь не гарнир как отдельное дополнение к основному блюду.",
-              "uk": "«оздоба страви». The garnish is on the plate. — «Оздоба страви на тарілці». Наприклад, гілочка зелені; тут не гарнір як окреме доповнення до основної страви."
+              "ru": "«без молочных ингредиентов». This cake is dairy-free. — «Этот пирог без молочных ингредиентов».",
+              "uk": "«без молочних інгредієнтів». This cake is dairy-free. — «Цей пиріг без молочних інгредієнтів»."
             }
           }
         ],
@@ -703,10 +704,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "garnish",
+          "word": "dairy-free",
           "definitionByLocale": {
-            "ru": "«украшение блюда». The garnish is on the plate. — «Украшение блюда на тарелке». Например, веточка зелени; здесь не гарнир как отдельное дополнение к основному блюду.",
-            "uk": "«оздоба страви». The garnish is on the plate. — «Оздоба страви на тарілці». Наприклад, гілочка зелені; тут не гарнір як окреме доповнення до основної страви."
+            "ru": "«без молочных ингредиентов». This cake is dairy-free. — «Этот пирог без молочных ингредиентов».",
+            "uk": "«без молочних інгредієнтів». This cake is dairy-free. — «Цей пиріг без молочних інгредієнтів»."
           }
         }
       },
@@ -718,25 +719,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Кухар запитує, де підготовлена зелень для оздоблення. Скажіть: «Оздоба страви на тарілці»",
+      "prompt": "На пирозі вказано, що в ньому немає молочних інгредієнтів. Скажіть про це",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Кухар запитує, де підготовлена зелень для оздоблення. Скажіть: «Оздоба страви на тарілці»",
+      "accessibilityLabel": "На пирозі вказано, що в ньому немає молочних інгредієнтів. Скажіть про це",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The garnish is on the plate.",
+        "targetPhrase": "This cake is dairy-free.",
         "localizedMeaning": {
-          "ru": "Повар спрашивает, где подготовленная зелень для украшения. Скажите: «Украшение блюда на тарелке»",
-          "uk": "Кухар запитує, де підготовлена зелень для оздоблення. Скажіть: «Оздоба страви на тарілці»"
+          "ru": "На пироге указано, что в нём нет молочных ингредиентов. Скажите об этом",
+          "uk": "На пирозі вказано, що в ньому немає молочних інгредієнтів. Скажіть про це"
         },
         "orderedTokens": [
-          "The",
-          "garnish",
+          "This",
+          "cake",
           "is",
-          "on",
-          "the",
-          "plate"
+          "dairy-free"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -757,15 +756,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i11:r1",
-          "text": "The garnish is green."
+          "text": "This cake is dairy-free."
         },
         {
           "responseId": "en:lesson-10:session-09:i11:r2",
-          "text": "The garnish is red."
+          "text": "That cake is dairy-free."
         },
         {
           "responseId": "en:lesson-10:session-09:i11:r3",
-          "text": "The plate is green."
+          "text": "This cake is sugar-free."
         }
       ],
       "mediaIds": [],
@@ -777,23 +776,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-09:i11:audio",
-          "transcript": "The garnish is green."
+          "transcript": "This cake is dairy-free."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-09:i11:r1",
-            "targetText": "The garnish is green.",
+            "targetText": "This cake is dairy-free.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-09:i11:r2",
-            "targetText": "The garnish is red.",
+            "targetText": "That cake is dairy-free.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-09:i11:r3",
-            "targetText": "The plate is green.",
+            "targetText": "This cake is sugar-free.",
             "meaningByLocale": null
           }
         ],
@@ -804,8 +803,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The garnish is green.",
-              "uk": "У записі звучить The garnish is green."
+              "ru": "В записи звучит This cake is dairy-free.",
+              "uk": "У записі звучить This cake is dairy-free."
             }
           },
           {
@@ -813,8 +812,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The garnish is green.",
-              "uk": "У записі звучить The garnish is green."
+              "ru": "В записи звучит This cake is dairy-free.",
+              "uk": "У записі звучить This cake is dairy-free."
             }
           }
         ],
@@ -829,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку перед working з she для тимчасової роботи",
+      "prompt": "Виберіть зв’язку для одного пирога",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i12:r1",
@@ -846,14 +845,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку перед working з she для тимчасової роботи",
+      "accessibilityLabel": "Виберіть зв’язку для одного пирога",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку перед working с she для временной работы",
-          "uk": "Виберіть зв’язку перед working з she для тимчасової роботи"
+          "ru": "Выберите связку для одного пирога",
+          "uk": "Виберіть зв’язку для одного пирога"
         },
-        "gappedTargetPhrase": "She ___ working here this week.",
+        "gappedTargetPhrase": "This cake ___ dairy-free.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-09:i12:r1",
@@ -868,24 +867,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Виберіть зв’язку перед working з she для тимчасової роботи",
+        "testedDimension": "Виберіть зв’язку для одного пирога",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-09:i12:r2",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку перед working з she для тимчасової роботи",
+            "testedDimension": "Виберіть зв’язку для одного пирога",
             "feedbackByLocale": {
-              "ru": "С she нужна is.",
-              "uk": "З she потрібна is."
+              "ru": "Один пирог: is.",
+              "uk": "Один пиріг: is."
             }
           },
           {
             "responseId": "en:lesson-10:session-09:i12:r3",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку перед working з she для тимчасової роботи",
+            "testedDimension": "Виберіть зв’язку для одного пирога",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Am употребляем с I, здесь is.",
+              "uk": "Am вживаємо з I, тут is."
             }
           }
         ]
@@ -898,58 +897,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте позначення з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте позначення з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-09:i13:p1",
-            "target": "sous-chef",
+            "target": "tinned",
             "meaningByLocale": {
-              "ru": "су-шеф",
-              "uk": "су-шеф"
+              "ru": "консервированный",
+              "uk": "консервований"
             }
           },
           {
             "pairId": "en:lesson-10:session-09:i13:p2",
-            "target": "griddle",
+            "target": "ready-made",
             "meaningByLocale": {
-              "ru": "плоская жарочная поверхность",
-              "uk": "плоска смажильна поверхня"
+              "ru": "заранее приготовленный",
+              "uk": "заздалегідь приготований"
             }
           },
           {
             "pairId": "en:lesson-10:session-09:i13:p3",
-            "target": "ramekin",
+            "target": "sugar-free",
             "meaningByLocale": {
-              "ru": "маленькая порционная формочка",
-              "uk": "маленька порційна формочка"
+              "ru": "без сахара",
+              "uk": "без цукру"
             }
           },
           {
             "pairId": "en:lesson-10:session-09:i13:p4",
-            "target": "garnish",
+            "target": "dairy-free",
             "meaningByLocale": {
-              "ru": "украшение блюда",
-              "uk": "оздоба страви"
+              "ru": "без молочных ингредиентов",
+              "uk": "без молочних інгредієнтів"
             }
           }
         ],
         "leftColumn": [
-          "sous-chef",
-          "griddle",
-          "ramekin",
-          "garnish"
+          "tinned",
+          "ready-made",
+          "sugar-free",
+          "dairy-free"
         ],
         "rightColumn": [
-          "су-шеф",
-          "плоска смажильна поверхня",
-          "маленька порційна формочка",
-          "оздоба страви"
+          "консервований",
+          "заздалегідь приготований",
+          "без цукру",
+          "без молочних інгредієнтів"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -971,28 +970,26 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання; this week поставте наприкінці",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-09:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання; this week поставте наприкінці",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-09:i14:audio",
-          "transcript": "Is she working here this week?"
+          "transcript": "This drink is sugar-free."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is she working here this week?",
+        "hiddenTargetPhrase": "This drink is sugar-free.",
         "orderedTokens": [
-          "Is",
-          "she",
-          "working",
-          "here",
-          "this",
-          "week"
+          "This",
+          "drink",
+          "is",
+          "sugar-free"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1006,24 +1003,60 @@
     {
       "interactionId": "en:lesson-10:session-09:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Відвідувач запитує про основне місце роботи су-шефа. Скажіть: «Вона працює в готелі»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-09:i15:audio"
       ],
-      "accessibilityLabel": "Відвідувач запитує про основне місце роботи су-шефа. Скажіть: «Вона працює в готелі»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-09:i15:audio",
+          "transcript": "This cake is dairy-free."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This cake is dairy-free.",
+        "orderedTokens": [
+          "This",
+          "cake",
+          "is",
+          "dairy-free"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-09:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви купуєте готову страву сьогодні. Скажіть про цю покупку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Ви купуєте готову страву сьогодні. Скажіть про цю покупку",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-09:i15:audio",
-          "transcript": "She works at a hotel."
+          "audioTargetId": "en:lesson-10:session-09:i16:audio",
+          "transcript": "I am buying a ready-made meal today."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She works at a hotel.",
+        "targetPhrase": "I am buying a ready-made meal today.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1037,72 +1070,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-09:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Су-шеф тимчасово допомагає вашому кафе. Скажіть: «Вона працює тут цього тижня». Поставте this week наприкінці",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Су-шеф тимчасово допомагає вашому кафе. Скажіть: «Вона працює тут цього тижня». Поставте this week наприкінці",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She is working here this week.",
-        "localizedMeaning": {
-          "ru": "Су-шеф временно помогает вашему кафе. Скажите: «Она работает здесь на этой неделе». Поставьте this week в конце",
-          "uk": "Су-шеф тимчасово допомагає вашому кафе. Скажіть: «Вона працює тут цього тижня». Поставте this week наприкінці"
-        },
-        "orderedTokens": [
-          "She",
-          "is",
-          "working",
-          "here",
-          "this",
-          "week"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-09:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Основне місце роботи вашої колеги — готель. Вона допомагає вашому кафе лише цього тижня, потім повертається. Відвідувач запитує, чому вона сьогодні тут. Поясніть: «Вона працює тут цього тижня»",
+      "prompt": "Прочитавши напис, скажіть, що напій без цукру",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-09:i17:audio"
       ],
-      "accessibilityLabel": "Основне місце роботи вашої колеги — готель. Вона допомагає вашому кафе лише цього тижня, потім повертається. Відвідувач запитує, чому вона сьогодні тут. Поясніть: «Вона працює тут цього тижня»",
+      "accessibilityLabel": "Прочитавши напис, скажіть, що напій без цукру",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-09:i17:audio",
-          "transcript": "She is working here this week."
+          "transcript": "This drink is sugar-free."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is working here this week.",
+        "targetPhrase": "This drink is sugar-free.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1119,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "52334bea5151febb4c925c085bbc040c9c946f897a1e6e02a02d6060ae840f85"
+  "learnerFingerprint": "4af0a8f584998211af8f0bad27f9aa4f8737945adb2fe95efe9ec2908696f86b"
 }

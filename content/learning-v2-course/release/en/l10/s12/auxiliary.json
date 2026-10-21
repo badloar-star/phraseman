@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-12:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-12:intro1:r2": {
-          "ru": "С he нужна works.",
-          "uk": "З he потрібна works."
+          "ru": "Перед packing нужна am.",
+          "uk": "Перед packing потрібна am."
         },
         "en:lesson-10:session-12:intro1:r3": {
-          "ru": "Для привычной работы здесь нужна works.",
-          "uk": "Для звичної роботи тут потрібна works."
+          "ru": "После am нужна packing.",
+          "uk": "Після am потрібна packing."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-12:intro2:r2": {
-          "ru": "Перед working нужна is.",
-          "uk": "Перед working потрібна is."
+          "ru": "С she нужна wears с s.",
+          "uk": "З she потрібна wears із s."
         },
         "en:lesson-10:session-12:intro2:r3": {
-          "ru": "После is нужна working.",
-          "uk": "Після is потрібна working."
+          "ru": "Для привычки здесь нужна wears.",
+          "uk": "Для звички тут потрібна wears."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-12:intro3:r2": {
-          "ru": "Use → using, без e.",
-          "uk": "Use → using, без e."
+          "ru": "Tights — множественное число: some tights.",
+          "uk": "Tights — множина: some tights."
         },
         "en:lesson-10:session-12:intro3:r3": {
-          "ru": "Перед using нужна is.",
-          "uk": "Перед using потрібна is."
+          "ru": "С I нужна need без s.",
+          "uk": "З I потрібна need без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3d5a2ac70bb8413e2201b7dc71f768c72080e8d75ee88a27adac03afa775b47b"
+  "auxiliaryFingerprint": "d41ef6a2cc844900b6bc6c3be5295ec6a4b59be184ef6dcfa8266feede46ce69"
 }

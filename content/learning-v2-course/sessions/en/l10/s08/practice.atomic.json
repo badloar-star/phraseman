@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-08:word:exhibitor",
+        "interactionId": "en:lesson-10:session-08:word:agree",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — exhibitor",
+        "prompt": "Карточка слова — agree",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-08:word:exhibitor:audio"
+          "en:lesson-10:session-08:word:agree:audio"
         ],
-        "accessibilityLabel": "Карточка слова — exhibitor",
+        "accessibilityLabel": "Карточка слова — agree",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:word:exhibitor:audio",
-            "transcript": "exhibitor"
+            "audioTargetId": "en:lesson-10:session-08:word:agree:audio",
+            "transcript": "agree"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-08:word:exhibitor:r1",
-              "targetText": "exhibitor",
+              "responseId": "en:lesson-10:session-08:word:agree:r1",
+              "targetText": "agree",
               "meaningByLocale": {
-                "ru": "«участник выставки, представляющий работы». The exhibitor is speaking. — «Участник выставки говорит». Здесь человек со своим стендом, а не просто посетитель.",
-                "uk": "«учасник виставки, який представляє роботи». The exhibitor is speaking. — «Учасник виставки говорить». Тут людина зі своїм стендом, а не просто відвідувач."
+                "ru": "«соглашаться». I agree with you. — «Я с тобой согласен».",
+                "uk": "«погоджуватися». I agree with you. — «Я з тобою згоден»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "exhibitor",
+            "word": "agree",
             "definitionByLocale": {
-              "ru": "«участник выставки, представляющий работы». The exhibitor is speaking. — «Участник выставки говорит». Здесь человек со своим стендом, а не просто посетитель.",
-              "uk": "«учасник виставки, який представляє роботи». The exhibitor is speaking. — «Учасник виставки говорить». Тут людина зі своїм стендом, а не просто відвідувач."
+              "ru": "«соглашаться». I agree with you. — «Я с тобой согласен».",
+              "uk": "«погоджуватися». I agree with you. — «Я з тобою згоден»."
             }
           }
         },
@@ -52,23 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг ищет участника выставки. Покажите на человека, который сейчас говорит: «Участник выставки говорит»",
+        "prompt": "Друг говорит, что здесь шумно. Вы думаете так же. Скажите: «Я с тобой согласен»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг ищет участника выставки. Покажите на человека, который сейчас говорит: «Участник выставки говорит»",
+        "accessibilityLabel": "Друг говорит, что здесь шумно. Вы думаете так же. Скажите: «Я с тобой согласен»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The exhibitor is speaking.",
+          "targetPhrase": "I agree with you.",
           "localizedMeaning": {
-            "ru": "Друг ищет участника выставки. Покажите на человека, который сейчас говорит: «Участник выставки говорит»",
-            "uk": "Друг шукає учасника виставки. Покажіть на людину, яка зараз говорить: «Учасник виставки говорить»"
+            "ru": "Друг говорит, что здесь шумно. Вы думаете так же. Скажите: «Я с тобой согласен»",
+            "uk": "Друг каже, що тут шумно. Ви думаєте так само. Скажіть: «Я з тобою згоден»"
           },
           "orderedTokens": [
-            "The",
-            "exhibitor",
-            "is",
-            "speaking"
+            "I",
+            "agree",
+            "with",
+            "you"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -89,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i02:r1",
-            "text": "She usually weaves at home."
+            "text": "We agree with you."
           },
           {
             "responseId": "en:lesson-10:session-08:i02:r2",
-            "text": "She usually knits at home."
+            "text": "I agree with you."
           },
           {
             "responseId": "en:lesson-10:session-08:i02:r3",
-            "text": "He usually weaves at home."
+            "text": "They agree with you."
           }
         ],
         "mediaIds": [],
@@ -109,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i02:audio",
-            "transcript": "She usually weaves at home."
+            "transcript": "We agree with you."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-08:i02:r1",
-              "targetText": "She usually weaves at home.",
+              "targetText": "We agree with you.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i02:r2",
-              "targetText": "She usually knits at home.",
+              "targetText": "I agree with you.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i02:r3",
-              "targetText": "He usually weaves at home.",
+              "targetText": "They agree with you.",
               "meaningByLocale": null
             }
           ],
@@ -136,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She usually weaves at home.",
-                "uk": "У записі звучить She usually weaves at home."
+                "ru": "В записи звучит We agree with you.",
+                "uk": "У записі звучить We agree with you."
               }
             },
             {
@@ -145,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She usually weaves at home.",
-                "uk": "У записі звучить She usually weaves at home."
+                "ru": "В записи звучит We agree with you.",
+                "uk": "У записі звучить We agree with you."
               }
             }
           ],
@@ -161,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму weave для обычной работы с she",
+        "prompt": "Выберите предлог после agree перед человеком",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i03:r1",
-            "text": "weaves"
+            "text": "with"
           },
           {
             "responseId": "en:lesson-10:session-08:i03:r2",
-            "text": "weave"
+            "text": "at"
           },
           {
             "responseId": "en:lesson-10:session-08:i03:r3",
-            "text": "weaving"
+            "text": "for"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму weave для обычной работы с she",
+        "accessibilityLabel": "Выберите предлог после agree перед человеком",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму weave для обычной работы с she",
-            "uk": "Виберіть форму weave для звичної роботи з she"
+            "ru": "Выберите предлог после agree перед человеком",
+            "uk": "Виберіть прийменник після agree перед людиною"
           },
-          "gappedTargetPhrase": "She usually ___ at home.",
+          "gappedTargetPhrase": "I agree ___ you.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-08:i03:r1",
-              "text": "weaves"
+              "text": "with"
             },
             {
               "responseId": "en:lesson-10:session-08:i03:r2",
-              "text": "weave"
+              "text": "at"
             },
             {
               "responseId": "en:lesson-10:session-08:i03:r3",
-              "text": "weaving"
+              "text": "for"
             }
           ],
-          "testedDimension": "Выберите форму weave для обычной работы с she",
+          "testedDimension": "Выберите предлог после agree перед человеком",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-08:i03:r2",
               "correct": false,
-              "testedDimension": "Выберите форму weave для обычной работы с she",
+              "testedDimension": "Выберите предлог после agree перед человеком",
               "feedbackByLocale": {
-                "ru": "С she в Present Simple нужна weaves.",
-                "uk": "З she у Present Simple потрібна weaves."
+                "ru": "Agree with someone — соглашаться с кем-то.",
+                "uk": "Agree with someone — погоджуватися з кимось."
               }
             },
             {
               "responseId": "en:lesson-10:session-08:i03:r3",
               "correct": false,
-              "testedDimension": "Выберите форму weave для обычной работы с she",
+              "testedDimension": "Выберите предлог после agree перед человеком",
               "feedbackByLocale": {
-                "ru": "Weaving без is не образует сказуемое.",
-                "uk": "Weaving без is не утворює присудок."
+                "ru": "Здесь нужен with.",
+                "uk": "Тут потрібне with."
               }
             }
           ]
@@ -225,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-08:word:demonstration",
+        "interactionId": "en:lesson-10:session-08:word:disagree",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — demonstration",
+        "prompt": "Карточка слова — disagree",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-08:word:demonstration:audio"
+          "en:lesson-10:session-08:word:disagree:audio"
         ],
-        "accessibilityLabel": "Карточка слова — demonstration",
+        "accessibilityLabel": "Карточка слова — disagree",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:word:demonstration:audio",
-            "transcript": "demonstration"
+            "audioTargetId": "en:lesson-10:session-08:word:disagree:audio",
+            "transcript": "disagree"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-08:word:demonstration:r1",
-              "targetText": "demonstration",
+              "responseId": "en:lesson-10:session-08:word:disagree:r1",
+              "targetText": "disagree",
               "meaningByLocale": {
-                "ru": "«показ процесса работы». I am watching the demonstration. — «Я смотрю показ». Здесь мастер показывает посетителям, как он работает.",
-                "uk": "«показ процесу роботи». I am watching the demonstration. — «Я дивлюся показ». Тут майстер показує відвідувачам, як він працює."
+                "ru": "«не соглашаться». I disagree. — «Я не согласен».",
+                "uk": "«не погоджуватися». I disagree. — «Я не згоден»."
               }
             }
           ],
@@ -258,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "demonstration",
+            "word": "disagree",
             "definitionByLocale": {
-              "ru": "«показ процесса работы». I am watching the demonstration. — «Я смотрю показ». Здесь мастер показывает посетителям, как он работает.",
-              "uk": "«показ процесу роботи». I am watching the demonstration. — «Я дивлюся показ». Тут майстер показує відвідувачам, як він працює."
+              "ru": "«не соглашаться». I disagree. — «Я не согласен».",
+              "uk": "«не погоджуватися». I disagree. — «Я не згоден»."
             }
           }
         },
@@ -273,24 +273,21 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг звонит, пока вы наблюдаете за работой мастера. Скажите: «Я смотрю показ»",
+        "prompt": "Друг считает, что кафе закрыто, но вы видите посетителей внутри. Скажите: «Я не согласен»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг звонит, пока вы наблюдаете за работой мастера. Скажите: «Я смотрю показ»",
+        "accessibilityLabel": "Друг считает, что кафе закрыто, но вы видите посетителей внутри. Скажите: «Я не согласен»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am watching the demonstration.",
+          "targetPhrase": "I disagree.",
           "localizedMeaning": {
-            "ru": "Друг звонит, пока вы наблюдаете за работой мастера. Скажите: «Я смотрю показ»",
-            "uk": "Друг телефонує, поки ви спостерігаєте за роботою майстра. Скажіть: «Я дивлюся показ»"
+            "ru": "Друг считает, что кафе закрыто, но вы видите посетителей внутри. Скажите: «Я не согласен»",
+            "uk": "Друг вважає, що кафе зачинене, але ви бачите відвідувачів усередині. Скажіть: «Я не згоден»"
           },
           "orderedTokens": [
             "I",
-            "am",
-            "watching",
-            "the",
-            "demonstration"
+            "disagree"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -311,15 +308,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i05:r1",
-            "text": "The demonstration is starting."
+            "text": "We disagree."
           },
           {
             "responseId": "en:lesson-10:session-08:i05:r2",
-            "text": "The demonstration is ending."
+            "text": "I disagree."
           },
           {
             "responseId": "en:lesson-10:session-08:i05:r3",
-            "text": "The meeting is starting."
+            "text": "We agree."
           }
         ],
         "mediaIds": [],
@@ -331,23 +328,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i05:audio",
-            "transcript": "The demonstration is starting."
+            "transcript": "We disagree."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-08:i05:r1",
-              "targetText": "The demonstration is starting.",
+              "targetText": "We disagree.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i05:r2",
-              "targetText": "The demonstration is ending.",
+              "targetText": "I disagree.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i05:r3",
-              "targetText": "The meeting is starting.",
+              "targetText": "We agree.",
               "meaningByLocale": null
             }
           ],
@@ -358,8 +355,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The demonstration is starting.",
-                "uk": "У записі звучить The demonstration is starting."
+                "ru": "В записи звучит We disagree.",
+                "uk": "У записі звучить We disagree."
               }
             },
             {
@@ -367,8 +364,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The demonstration is starting.",
-                "uk": "У записі звучить The demonstration is starting."
+                "ru": "В записи звучит We disagree.",
+                "uk": "У записі звучить We disagree."
               }
             }
           ],
@@ -383,63 +380,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму watch после am",
+        "prompt": "Выберите форму disagree с I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i06:r1",
-            "text": "watching"
+            "text": "disagree"
           },
           {
             "responseId": "en:lesson-10:session-08:i06:r2",
-            "text": "watch"
+            "text": "disagrees"
           },
           {
             "responseId": "en:lesson-10:session-08:i06:r3",
-            "text": "watches"
+            "text": "disagreeing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму watch после am",
+        "accessibilityLabel": "Выберите форму disagree с I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму watch после am",
-            "uk": "Виберіть форму watch після am"
+            "ru": "Выберите форму disagree с I",
+            "uk": "Виберіть форму disagree з I"
           },
-          "gappedTargetPhrase": "I am ___ the demonstration.",
+          "gappedTargetPhrase": "I ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-08:i06:r1",
-              "text": "watching"
+              "text": "disagree"
             },
             {
               "responseId": "en:lesson-10:session-08:i06:r2",
-              "text": "watch"
+              "text": "disagrees"
             },
             {
               "responseId": "en:lesson-10:session-08:i06:r3",
-              "text": "watches"
+              "text": "disagreeing"
             }
           ],
-          "testedDimension": "Выберите форму watch после am",
+          "testedDimension": "Выберите форму disagree с I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-08:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите форму watch после am",
+              "testedDimension": "Выберите форму disagree с I",
               "feedbackByLocale": {
-                "ru": "После am нужна watching.",
-                "uk": "Після am потрібна watching."
+                "ru": "С I нужна disagree без s.",
+                "uk": "З I потрібна disagree без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-08:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите форму watch после am",
+              "testedDimension": "Выберите форму disagree с I",
               "feedbackByLocale": {
-                "ru": "Watches не употребляется после am.",
-                "uk": "Watches не вживається після am."
+                "ru": "Здесь нужна disagree.",
+                "uk": "Тут потрібна disagree."
               }
             }
           ]
@@ -447,32 +444,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-08:word:showcase",
+        "interactionId": "en:lesson-10:session-08:word:mind",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — showcase",
+        "prompt": "Карточка слова — mind",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-08:word:showcase:audio"
+          "en:lesson-10:session-08:word:mind:audio"
         ],
-        "accessibilityLabel": "Карточка слова — showcase",
+        "accessibilityLabel": "Карточка слова — mind",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:word:showcase:audio",
-            "transcript": "showcase"
+            "audioTargetId": "en:lesson-10:session-08:word:mind:audio",
+            "transcript": "mind"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-08:word:showcase:r1",
-              "targetText": "showcase",
+              "responseId": "en:lesson-10:session-08:word:mind:r1",
+              "targetText": "mind",
               "meaningByLocale": {
-                "ru": "«витрина». The figurine is in the showcase. — «Статуэтка в витрине». Здесь стеклянный шкаф для показа предметов.",
-                "uk": "«вітрина». The figurine is in the showcase. — «Статуетка у вітрині». Тут скляна шафа для показу предметів."
+                "ru": "«возражать» в этой ситуации. I do not mind. — «Я не возражаю».",
+                "uk": "«заперечувати» в цій ситуації. I do not mind. — «Я не заперечую»."
               }
             }
           ],
@@ -480,10 +477,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "showcase",
+            "word": "mind",
             "definitionByLocale": {
-              "ru": "«витрина». The figurine is in the showcase. — «Статуэтка в витрине». Здесь стеклянный шкаф для показа предметов.",
-              "uk": "«вітрина». The figurine is in the showcase. — «Статуетка у вітрині». Тут скляна шафа для показу предметів."
+              "ru": "«возражать» в этой ситуации. I do not mind. — «Я не возражаю».",
+              "uk": "«заперечувати» в цій ситуації. I do not mind. — «Я не заперечую»."
             }
           }
         },
@@ -495,25 +492,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает, где готовая статуэтка. Скажите: «Статуэтка в витрине»",
+        "prompt": "Посетитель спрашивает, можно ли сесть рядом. Вам это не мешает. Скажите: «Я не возражаю»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает, где готовая статуэтка. Скажите: «Статуэтка в витрине»",
+        "accessibilityLabel": "Посетитель спрашивает, можно ли сесть рядом. Вам это не мешает. Скажите: «Я не возражаю»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The figurine is in the showcase.",
+          "targetPhrase": "I do not mind.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, где готовая статуэтка. Скажите: «Статуэтка в витрине»",
-            "uk": "Друг запитує, де готова статуетка. Скажіть: «Статуетка у вітрині»"
+            "ru": "Посетитель спрашивает, можно ли сесть рядом. Вам это не мешает. Скажите: «Я не возражаю»",
+            "uk": "Відвідувач запитує, чи можна сісти поруч. Вам це не заважає. Скажіть: «Я не заперечую»"
           },
           "orderedTokens": [
-            "The",
-            "figurine",
-            "is",
-            "in",
-            "the",
-            "showcase"
+            "I",
+            "do",
+            "not",
+            "mind"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -534,15 +529,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i08:r1",
-            "text": "The showcase is open."
+            "text": "We do not mind."
           },
           {
             "responseId": "en:lesson-10:session-08:i08:r2",
-            "text": "The showcase is closed."
+            "text": "I do not mind."
           },
           {
             "responseId": "en:lesson-10:session-08:i08:r3",
-            "text": "The shop is open."
+            "text": "We do mind."
           }
         ],
         "mediaIds": [],
@@ -554,23 +549,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i08:audio",
-            "transcript": "The showcase is open."
+            "transcript": "We do not mind."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-08:i08:r1",
-              "targetText": "The showcase is open.",
+              "targetText": "We do not mind.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i08:r2",
-              "targetText": "The showcase is closed.",
+              "targetText": "I do not mind.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i08:r3",
-              "targetText": "The shop is open.",
+              "targetText": "We do mind.",
               "meaningByLocale": null
             }
           ],
@@ -581,8 +576,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The showcase is open.",
-                "uk": "У записі звучить The showcase is open."
+                "ru": "В записи звучит We do not mind.",
+                "uk": "У записі звучить We do not mind."
               }
             },
             {
@@ -590,8 +585,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The showcase is open.",
-                "uk": "У записі звучить The showcase is open."
+                "ru": "В записи звучит We do not mind.",
+                "uk": "У записі звучить We do not mind."
               }
             }
           ],
@@ -606,15 +601,15 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для одной статуэтки",
+        "prompt": "Выберите вспомогательный глагол для отрицания с I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i09:r1",
-            "text": "is"
+            "text": "do"
           },
           {
             "responseId": "en:lesson-10:session-08:i09:r2",
-            "text": "are"
+            "text": "does"
           },
           {
             "responseId": "en:lesson-10:session-08:i09:r3",
@@ -623,46 +618,46 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для одной статуэтки",
+        "accessibilityLabel": "Выберите вспомогательный глагол для отрицания с I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одной статуэтки",
-            "uk": "Виберіть зв’язку для однієї статуетки"
+            "ru": "Выберите вспомогательный глагол для отрицания с I",
+            "uk": "Виберіть допоміжне дієслово для заперечення з I"
           },
-          "gappedTargetPhrase": "The figurine ___ in the showcase.",
+          "gappedTargetPhrase": "I ___ not mind.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-08:i09:r1",
-              "text": "is"
+              "text": "do"
             },
             {
               "responseId": "en:lesson-10:session-08:i09:r2",
-              "text": "are"
+              "text": "does"
             },
             {
               "responseId": "en:lesson-10:session-08:i09:r3",
               "text": "am"
             }
           ],
-          "testedDimension": "Выберите связку для одной статуэтки",
+          "testedDimension": "Выберите вспомогательный глагол для отрицания с I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-08:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите связку для одной статуэтки",
+              "testedDimension": "Выберите вспомогательный глагол для отрицания с I",
               "feedbackByLocale": {
-                "ru": "Предмет один: is.",
-                "uk": "Предмет один: is."
+                "ru": "С I нужен do.",
+                "uk": "З I потрібне do."
               }
             },
             {
               "responseId": "en:lesson-10:session-08:i09:r3",
               "correct": false,
-              "testedDimension": "Выберите связку для одной статуэтки",
+              "testedDimension": "Выберите вспомогательный глагол для отрицания с I",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Отрицание mind: do not mind.",
+                "uk": "Заперечення mind: do not mind."
               }
             }
           ]
@@ -670,32 +665,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-08:word:craftsmanship",
+        "interactionId": "en:lesson-10:session-08:word:matter",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — craftsmanship",
+        "prompt": "Карточка слова — matter",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-08:word:craftsmanship:audio"
+          "en:lesson-10:session-08:word:matter:audio"
         ],
-        "accessibilityLabel": "Карточка слова — craftsmanship",
+        "accessibilityLabel": "Карточка слова — matter",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:word:craftsmanship:audio",
-            "transcript": "craftsmanship"
+            "audioTargetId": "en:lesson-10:session-08:word:matter:audio",
+            "transcript": "matter"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-08:word:craftsmanship:r1",
-              "targetText": "craftsmanship",
+              "responseId": "en:lesson-10:session-08:word:matter:r1",
+              "targetText": "matter",
               "meaningByLocale": {
-                "ru": "«мастерство изготовления». The craftsmanship is excellent. — «Качество работы превосходное». Здесь умение мастера, заметное в хорошо сделанной вещи.",
-                "uk": "«майстерність виготовлення». The craftsmanship is excellent. — «Якість роботи чудова». Тут уміння майстра, помітне в добре зробленій речі."
+                "ru": "«иметь значение». It does not matter. — «Это неважно».",
+                "uk": "«мати значення». It does not matter. — «Це неважливо»."
               }
             }
           ],
@@ -703,10 +698,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "craftsmanship",
+            "word": "matter",
             "definitionByLocale": {
-              "ru": "«мастерство изготовления». The craftsmanship is excellent. — «Качество работы превосходное». Здесь умение мастера, заметное в хорошо сделанной вещи.",
-              "uk": "«майстерність виготовлення». The craftsmanship is excellent. — «Якість роботи чудова». Тут уміння майстра, помітне в добре зробленій речі."
+              "ru": "«иметь значение». It does not matter. — «Это неважно».",
+              "uk": "«мати значення». It does not matter. — «Це неважливо»."
             }
           }
         },
@@ -718,23 +713,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы рассматриваете аккуратно сделанную статуэтку и хотите похвалить качество работы. Скажите: «Качество работы превосходное»",
+        "prompt": "Друг извиняется за минуту опоздания. Вы не спешите. Скажите: «Это неважно»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы рассматриваете аккуратно сделанную статуэтку и хотите похвалить качество работы. Скажите: «Качество работы превосходное»",
+        "accessibilityLabel": "Друг извиняется за минуту опоздания. Вы не спешите. Скажите: «Это неважно»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The craftsmanship is excellent.",
+          "targetPhrase": "It does not matter.",
           "localizedMeaning": {
-            "ru": "Вы рассматриваете аккуратно сделанную статуэтку и хотите похвалить качество работы. Скажите: «Качество работы превосходное»",
-            "uk": "Ви розглядаєте акуратно зроблену статуетку й хочете похвалити якість роботи. Скажіть: «Якість роботи чудова»"
+            "ru": "Друг извиняется за минуту опоздания. Вы не спешите. Скажите: «Это неважно»",
+            "uk": "Друг вибачається за хвилину запізнення. Ви не поспішаєте. Скажіть: «Це неважливо»"
           },
           "orderedTokens": [
-            "The",
-            "craftsmanship",
-            "is",
-            "excellent"
+            "It",
+            "does",
+            "not",
+            "matter"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,15 +750,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i11:r1",
-            "text": "The craftsmanship is excellent."
+            "text": "It does not matter."
           },
           {
             "responseId": "en:lesson-10:session-08:i11:r2",
-            "text": "The craftsmanship is poor."
+            "text": "It does matter."
           },
           {
             "responseId": "en:lesson-10:session-08:i11:r3",
-            "text": "The coffee is excellent."
+            "text": "They do not matter."
           }
         ],
         "mediaIds": [],
@@ -775,23 +770,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i11:audio",
-            "transcript": "The craftsmanship is excellent."
+            "transcript": "It does not matter."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-08:i11:r1",
-              "targetText": "The craftsmanship is excellent.",
+              "targetText": "It does not matter.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i11:r2",
-              "targetText": "The craftsmanship is poor.",
+              "targetText": "It does matter.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i11:r3",
-              "targetText": "The coffee is excellent.",
+              "targetText": "They do not matter.",
               "meaningByLocale": null
             }
           ],
@@ -802,8 +797,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The craftsmanship is excellent.",
-                "uk": "У записі звучить The craftsmanship is excellent."
+                "ru": "В записи звучит It does not matter.",
+                "uk": "У записі звучить It does not matter."
               }
             },
             {
@@ -811,8 +806,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The craftsmanship is excellent.",
-                "uk": "У записі звучить The craftsmanship is excellent."
+                "ru": "В записи звучит It does not matter.",
+                "uk": "У записі звучить It does not matter."
               }
             }
           ],
@@ -827,63 +822,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку для неисчисляемого craftsmanship",
+        "prompt": "Выберите форму matter после does not",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i12:r1",
-            "text": "is"
+            "text": "matter"
           },
           {
             "responseId": "en:lesson-10:session-08:i12:r2",
-            "text": "are"
+            "text": "matters"
           },
           {
             "responseId": "en:lesson-10:session-08:i12:r3",
-            "text": "am"
+            "text": "mattering"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку для неисчисляемого craftsmanship",
+        "accessibilityLabel": "Выберите форму matter после does not",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для неисчисляемого craftsmanship",
-            "uk": "Виберіть зв’язку для незлічуваного craftsmanship"
+            "ru": "Выберите форму matter после does not",
+            "uk": "Виберіть форму matter після does not"
           },
-          "gappedTargetPhrase": "The craftsmanship ___ excellent.",
+          "gappedTargetPhrase": "It does not ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-08:i12:r1",
-              "text": "is"
+              "text": "matter"
             },
             {
               "responseId": "en:lesson-10:session-08:i12:r2",
-              "text": "are"
+              "text": "matters"
             },
             {
               "responseId": "en:lesson-10:session-08:i12:r3",
-              "text": "am"
+              "text": "mattering"
             }
           ],
-          "testedDimension": "Выберите связку для неисчисляемого craftsmanship",
+          "testedDimension": "Выберите форму matter после does not",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-08:i12:r2",
               "correct": false,
-              "testedDimension": "Выберите связку для неисчисляемого craftsmanship",
+              "testedDimension": "Выберите форму matter после does not",
               "feedbackByLocale": {
-                "ru": "Craftsmanship неисчисляемое: is.",
-                "uk": "Craftsmanship незлічуване: is."
+                "ru": "После does not нужна matter без s.",
+                "uk": "Після does not потрібна matter без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-08:i12:r3",
               "correct": false,
-              "testedDimension": "Выберите связку для неисчисляемого craftsmanship",
+              "testedDimension": "Выберите форму matter после does not",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "После does not нужна matter.",
+                "uk": "Після does not потрібна matter."
               }
             }
           ]
@@ -896,58 +891,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините новые слова со значениями",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините новые слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-08:i13:p1",
-              "target": "exhibitor",
+              "target": "agree",
               "meaningByLocale": {
-                "ru": "участник выставки, представляющий работы",
-                "uk": "учасник виставки, який представляє роботи"
+                "ru": "соглашаться",
+                "uk": "погоджуватися"
               }
             },
             {
               "pairId": "en:lesson-10:session-08:i13:p2",
-              "target": "demonstration",
+              "target": "disagree",
               "meaningByLocale": {
-                "ru": "показ процесса работы",
-                "uk": "показ процесу роботи"
+                "ru": "не соглашаться",
+                "uk": "не погоджуватися"
               }
             },
             {
               "pairId": "en:lesson-10:session-08:i13:p3",
-              "target": "showcase",
+              "target": "mind",
               "meaningByLocale": {
-                "ru": "витрина",
-                "uk": "вітрина"
+                "ru": "возражать",
+                "uk": "заперечувати"
               }
             },
             {
               "pairId": "en:lesson-10:session-08:i13:p4",
-              "target": "craftsmanship",
+              "target": "matter",
               "meaningByLocale": {
-                "ru": "мастерство изготовления",
-                "uk": "майстерність виготовлення"
+                "ru": "иметь значение",
+                "uk": "мати значення"
               }
             }
           ],
           "leftColumn": [
-            "exhibitor",
-            "demonstration",
-            "showcase",
-            "craftsmanship"
+            "agree",
+            "disagree",
+            "mind",
+            "matter"
           ],
           "rightColumn": [
-            "участник выставки, представляющий работы",
-            "показ процесса работы",
-            "витрина",
-            "мастерство изготовления"
+            "соглашаться",
+            "не соглашаться",
+            "возражать",
+            "иметь значение"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -969,27 +964,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите вопрос о действии сейчас",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-08:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите вопрос о действии сейчас",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i14:audio",
-            "transcript": "Are you watching the demonstration?"
+            "transcript": "I agree with you."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "Are you watching the demonstration?",
+          "hiddenTargetPhrase": "I agree with you.",
           "orderedTokens": [
-            "Are",
-            "you",
-            "watching",
-            "the",
-            "demonstration"
+            "I",
+            "agree",
+            "with",
+            "you"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1003,24 +997,60 @@
       {
         "interactionId": "en:lesson-10:session-08:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Посетитель спрашивает о вашей обычной работе. Скажите: «Я вырезаю деревянные ложки»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-08:i15:audio"
         ],
-        "accessibilityLabel": "Посетитель спрашивает о вашей обычной работе. Скажите: «Я вырезаю деревянные ложки»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-08:i15:audio",
+            "transcript": "It does not matter."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It does not matter.",
+          "orderedTokens": [
+            "It",
+            "does",
+            "not",
+            "matter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Посетитель спрашивает, можно ли сесть рядом. Ответьте: «Я не возражаю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Посетитель спрашивает, можно ли сесть рядом. Ответьте: «Я не возражаю»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:i15:audio",
-            "transcript": "I carve wooden spoons."
+            "audioTargetId": "en:lesson-10:session-08:i16:audio",
+            "transcript": "I do not mind."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I carve wooden spoons.",
+          "targetPhrase": "I do not mind.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1034,72 +1064,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-08:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Друг думает, что вы сейчас вырезаете статуэтку. Но вы только смотрите на мастера. Скажите: «Я не вырезаю статуэтку»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Друг думает, что вы сейчас вырезаете статуэтку. Но вы только смотрите на мастера. Скажите: «Я не вырезаю статуэтку»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I am not carving a figurine.",
-          "localizedMeaning": {
-            "ru": "Друг думает, что вы сейчас вырезаете статуэтку. Но вы только смотрите на мастера. Скажите: «Я не вырезаю статуэтку»",
-            "uk": "Друг думає, що ви зараз вирізьблюєте статуетку. Але ви лише дивитеся на майстра. Скажіть: «Я не вирізьблюю статуетку»"
-          },
-          "orderedTokens": [
-            "I",
-            "am",
-            "not",
-            "carving",
-            "a",
-            "figurine"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-08:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Обычно вы работаете в своей мастерской. Сейчас вы на выставке и смотрите, как другой мастер вырезает фигурку. Друг звонит: «Чем ты занят?» Ответьте: «Я смотрю показ»",
+        "prompt": "Друг извиняется за минуту опоздания. Ответьте: «Это неважно»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-08:i17:audio"
         ],
-        "accessibilityLabel": "Обычно вы работаете в своей мастерской. Сейчас вы на выставке и смотрите, как другой мастер вырезает фигурку. Друг звонит: «Чем ты занят?» Ответьте: «Я смотрю показ»",
+        "accessibilityLabel": "Друг извиняется за минуту опоздания. Ответьте: «Это неважно»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i17:audio",
-            "transcript": "I am watching the demonstration."
+            "transcript": "It does not matter."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am watching the demonstration.",
+          "targetPhrase": "It does not matter.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1112,32 +1099,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-08:word:exhibitor",
+        "interactionId": "en:lesson-10:session-08:word:agree",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — exhibitor",
+        "prompt": "Картка слова — agree",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-08:word:exhibitor:audio"
+          "en:lesson-10:session-08:word:agree:audio"
         ],
-        "accessibilityLabel": "Картка слова — exhibitor",
+        "accessibilityLabel": "Картка слова — agree",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:word:exhibitor:audio",
-            "transcript": "exhibitor"
+            "audioTargetId": "en:lesson-10:session-08:word:agree:audio",
+            "transcript": "agree"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-08:word:exhibitor:r1",
-              "targetText": "exhibitor",
+              "responseId": "en:lesson-10:session-08:word:agree:r1",
+              "targetText": "agree",
               "meaningByLocale": {
-                "ru": "«участник выставки, представляющий работы». The exhibitor is speaking. — «Участник выставки говорит». Здесь человек со своим стендом, а не просто посетитель.",
-                "uk": "«учасник виставки, який представляє роботи». The exhibitor is speaking. — «Учасник виставки говорить». Тут людина зі своїм стендом, а не просто відвідувач."
+                "ru": "«соглашаться». I agree with you. — «Я с тобой согласен».",
+                "uk": "«погоджуватися». I agree with you. — «Я з тобою згоден»."
               }
             }
           ],
@@ -1145,10 +1132,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "exhibitor",
+            "word": "agree",
             "definitionByLocale": {
-              "ru": "«участник выставки, представляющий работы». The exhibitor is speaking. — «Участник выставки говорит». Здесь человек со своим стендом, а не просто посетитель.",
-              "uk": "«учасник виставки, який представляє роботи». The exhibitor is speaking. — «Учасник виставки говорить». Тут людина зі своїм стендом, а не просто відвідувач."
+              "ru": "«соглашаться». I agree with you. — «Я с тобой согласен».",
+              "uk": "«погоджуватися». I agree with you. — «Я з тобою згоден»."
             }
           }
         },
@@ -1160,23 +1147,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг шукає учасника виставки. Покажіть на людину, яка зараз говорить: «Учасник виставки говорить»",
+        "prompt": "Друг каже, що тут шумно. Ви думаєте так само. Скажіть: «Я з тобою згоден»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг шукає учасника виставки. Покажіть на людину, яка зараз говорить: «Учасник виставки говорить»",
+        "accessibilityLabel": "Друг каже, що тут шумно. Ви думаєте так само. Скажіть: «Я з тобою згоден»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The exhibitor is speaking.",
+          "targetPhrase": "I agree with you.",
           "localizedMeaning": {
-            "ru": "Друг ищет участника выставки. Покажите на человека, который сейчас говорит: «Участник выставки говорит»",
-            "uk": "Друг шукає учасника виставки. Покажіть на людину, яка зараз говорить: «Учасник виставки говорить»"
+            "ru": "Друг говорит, что здесь шумно. Вы думаете так же. Скажите: «Я с тобой согласен»",
+            "uk": "Друг каже, що тут шумно. Ви думаєте так само. Скажіть: «Я з тобою згоден»"
           },
           "orderedTokens": [
-            "The",
-            "exhibitor",
-            "is",
-            "speaking"
+            "I",
+            "agree",
+            "with",
+            "you"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1197,15 +1184,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i02:r1",
-            "text": "She usually weaves at home."
+            "text": "We agree with you."
           },
           {
             "responseId": "en:lesson-10:session-08:i02:r2",
-            "text": "She usually knits at home."
+            "text": "I agree with you."
           },
           {
             "responseId": "en:lesson-10:session-08:i02:r3",
-            "text": "He usually weaves at home."
+            "text": "They agree with you."
           }
         ],
         "mediaIds": [],
@@ -1217,23 +1204,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i02:audio",
-            "transcript": "She usually weaves at home."
+            "transcript": "We agree with you."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-08:i02:r1",
-              "targetText": "She usually weaves at home.",
+              "targetText": "We agree with you.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i02:r2",
-              "targetText": "She usually knits at home.",
+              "targetText": "I agree with you.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i02:r3",
-              "targetText": "He usually weaves at home.",
+              "targetText": "They agree with you.",
               "meaningByLocale": null
             }
           ],
@@ -1244,8 +1231,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She usually weaves at home.",
-                "uk": "У записі звучить She usually weaves at home."
+                "ru": "В записи звучит We agree with you.",
+                "uk": "У записі звучить We agree with you."
               }
             },
             {
@@ -1253,8 +1240,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She usually weaves at home.",
-                "uk": "У записі звучить She usually weaves at home."
+                "ru": "В записи звучит We agree with you.",
+                "uk": "У записі звучить We agree with you."
               }
             }
           ],
@@ -1269,63 +1256,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму weave для звичної роботи з she",
+        "prompt": "Виберіть прийменник після agree перед людиною",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i03:r1",
-            "text": "weaves"
+            "text": "with"
           },
           {
             "responseId": "en:lesson-10:session-08:i03:r2",
-            "text": "weave"
+            "text": "at"
           },
           {
             "responseId": "en:lesson-10:session-08:i03:r3",
-            "text": "weaving"
+            "text": "for"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму weave для звичної роботи з she",
+        "accessibilityLabel": "Виберіть прийменник після agree перед людиною",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму weave для обычной работы с she",
-            "uk": "Виберіть форму weave для звичної роботи з she"
+            "ru": "Выберите предлог после agree перед человеком",
+            "uk": "Виберіть прийменник після agree перед людиною"
           },
-          "gappedTargetPhrase": "She usually ___ at home.",
+          "gappedTargetPhrase": "I agree ___ you.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-08:i03:r1",
-              "text": "weaves"
+              "text": "with"
             },
             {
               "responseId": "en:lesson-10:session-08:i03:r2",
-              "text": "weave"
+              "text": "at"
             },
             {
               "responseId": "en:lesson-10:session-08:i03:r3",
-              "text": "weaving"
+              "text": "for"
             }
           ],
-          "testedDimension": "Виберіть форму weave для звичної роботи з she",
+          "testedDimension": "Виберіть прийменник після agree перед людиною",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-08:i03:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму weave для звичної роботи з she",
+              "testedDimension": "Виберіть прийменник після agree перед людиною",
               "feedbackByLocale": {
-                "ru": "С she в Present Simple нужна weaves.",
-                "uk": "З she у Present Simple потрібна weaves."
+                "ru": "Agree with someone — соглашаться с кем-то.",
+                "uk": "Agree with someone — погоджуватися з кимось."
               }
             },
             {
               "responseId": "en:lesson-10:session-08:i03:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму weave для звичної роботи з she",
+              "testedDimension": "Виберіть прийменник після agree перед людиною",
               "feedbackByLocale": {
-                "ru": "Weaving без is не образует сказуемое.",
-                "uk": "Weaving без is не утворює присудок."
+                "ru": "Здесь нужен with.",
+                "uk": "Тут потрібне with."
               }
             }
           ]
@@ -1333,32 +1320,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-08:word:demonstration",
+        "interactionId": "en:lesson-10:session-08:word:disagree",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — demonstration",
+        "prompt": "Картка слова — disagree",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-08:word:demonstration:audio"
+          "en:lesson-10:session-08:word:disagree:audio"
         ],
-        "accessibilityLabel": "Картка слова — demonstration",
+        "accessibilityLabel": "Картка слова — disagree",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:word:demonstration:audio",
-            "transcript": "demonstration"
+            "audioTargetId": "en:lesson-10:session-08:word:disagree:audio",
+            "transcript": "disagree"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-08:word:demonstration:r1",
-              "targetText": "demonstration",
+              "responseId": "en:lesson-10:session-08:word:disagree:r1",
+              "targetText": "disagree",
               "meaningByLocale": {
-                "ru": "«показ процесса работы». I am watching the demonstration. — «Я смотрю показ». Здесь мастер показывает посетителям, как он работает.",
-                "uk": "«показ процесу роботи». I am watching the demonstration. — «Я дивлюся показ». Тут майстер показує відвідувачам, як він працює."
+                "ru": "«не соглашаться». I disagree. — «Я не согласен».",
+                "uk": "«не погоджуватися». I disagree. — «Я не згоден»."
               }
             }
           ],
@@ -1366,10 +1353,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "demonstration",
+            "word": "disagree",
             "definitionByLocale": {
-              "ru": "«показ процесса работы». I am watching the demonstration. — «Я смотрю показ». Здесь мастер показывает посетителям, как он работает.",
-              "uk": "«показ процесу роботи». I am watching the demonstration. — «Я дивлюся показ». Тут майстер показує відвідувачам, як він працює."
+              "ru": "«не соглашаться». I disagree. — «Я не согласен».",
+              "uk": "«не погоджуватися». I disagree. — «Я не згоден»."
             }
           }
         },
@@ -1381,24 +1368,21 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг телефонує, поки ви спостерігаєте за роботою майстра. Скажіть: «Я дивлюся показ»",
+        "prompt": "Друг вважає, що кафе зачинене, але ви бачите відвідувачів усередині. Скажіть: «Я не згоден»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг телефонує, поки ви спостерігаєте за роботою майстра. Скажіть: «Я дивлюся показ»",
+        "accessibilityLabel": "Друг вважає, що кафе зачинене, але ви бачите відвідувачів усередині. Скажіть: «Я не згоден»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am watching the demonstration.",
+          "targetPhrase": "I disagree.",
           "localizedMeaning": {
-            "ru": "Друг звонит, пока вы наблюдаете за работой мастера. Скажите: «Я смотрю показ»",
-            "uk": "Друг телефонує, поки ви спостерігаєте за роботою майстра. Скажіть: «Я дивлюся показ»"
+            "ru": "Друг считает, что кафе закрыто, но вы видите посетителей внутри. Скажите: «Я не согласен»",
+            "uk": "Друг вважає, що кафе зачинене, але ви бачите відвідувачів усередині. Скажіть: «Я не згоден»"
           },
           "orderedTokens": [
             "I",
-            "am",
-            "watching",
-            "the",
-            "demonstration"
+            "disagree"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1419,15 +1403,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i05:r1",
-            "text": "The demonstration is starting."
+            "text": "We disagree."
           },
           {
             "responseId": "en:lesson-10:session-08:i05:r2",
-            "text": "The demonstration is ending."
+            "text": "I disagree."
           },
           {
             "responseId": "en:lesson-10:session-08:i05:r3",
-            "text": "The meeting is starting."
+            "text": "We agree."
           }
         ],
         "mediaIds": [],
@@ -1439,23 +1423,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i05:audio",
-            "transcript": "The demonstration is starting."
+            "transcript": "We disagree."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-08:i05:r1",
-              "targetText": "The demonstration is starting.",
+              "targetText": "We disagree.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i05:r2",
-              "targetText": "The demonstration is ending.",
+              "targetText": "I disagree.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i05:r3",
-              "targetText": "The meeting is starting.",
+              "targetText": "We agree.",
               "meaningByLocale": null
             }
           ],
@@ -1466,8 +1450,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The demonstration is starting.",
-                "uk": "У записі звучить The demonstration is starting."
+                "ru": "В записи звучит We disagree.",
+                "uk": "У записі звучить We disagree."
               }
             },
             {
@@ -1475,8 +1459,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The demonstration is starting.",
-                "uk": "У записі звучить The demonstration is starting."
+                "ru": "В записи звучит We disagree.",
+                "uk": "У записі звучить We disagree."
               }
             }
           ],
@@ -1491,63 +1475,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму watch після am",
+        "prompt": "Виберіть форму disagree з I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i06:r1",
-            "text": "watching"
+            "text": "disagree"
           },
           {
             "responseId": "en:lesson-10:session-08:i06:r2",
-            "text": "watch"
+            "text": "disagrees"
           },
           {
             "responseId": "en:lesson-10:session-08:i06:r3",
-            "text": "watches"
+            "text": "disagreeing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму watch після am",
+        "accessibilityLabel": "Виберіть форму disagree з I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму watch после am",
-            "uk": "Виберіть форму watch після am"
+            "ru": "Выберите форму disagree с I",
+            "uk": "Виберіть форму disagree з I"
           },
-          "gappedTargetPhrase": "I am ___ the demonstration.",
+          "gappedTargetPhrase": "I ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-08:i06:r1",
-              "text": "watching"
+              "text": "disagree"
             },
             {
               "responseId": "en:lesson-10:session-08:i06:r2",
-              "text": "watch"
+              "text": "disagrees"
             },
             {
               "responseId": "en:lesson-10:session-08:i06:r3",
-              "text": "watches"
+              "text": "disagreeing"
             }
           ],
-          "testedDimension": "Виберіть форму watch після am",
+          "testedDimension": "Виберіть форму disagree з I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-08:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму watch після am",
+              "testedDimension": "Виберіть форму disagree з I",
               "feedbackByLocale": {
-                "ru": "После am нужна watching.",
-                "uk": "Після am потрібна watching."
+                "ru": "С I нужна disagree без s.",
+                "uk": "З I потрібна disagree без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-08:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму watch після am",
+              "testedDimension": "Виберіть форму disagree з I",
               "feedbackByLocale": {
-                "ru": "Watches не употребляется после am.",
-                "uk": "Watches не вживається після am."
+                "ru": "Здесь нужна disagree.",
+                "uk": "Тут потрібна disagree."
               }
             }
           ]
@@ -1555,32 +1539,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-08:word:showcase",
+        "interactionId": "en:lesson-10:session-08:word:mind",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — showcase",
+        "prompt": "Картка слова — mind",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-08:word:showcase:audio"
+          "en:lesson-10:session-08:word:mind:audio"
         ],
-        "accessibilityLabel": "Картка слова — showcase",
+        "accessibilityLabel": "Картка слова — mind",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:word:showcase:audio",
-            "transcript": "showcase"
+            "audioTargetId": "en:lesson-10:session-08:word:mind:audio",
+            "transcript": "mind"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-08:word:showcase:r1",
-              "targetText": "showcase",
+              "responseId": "en:lesson-10:session-08:word:mind:r1",
+              "targetText": "mind",
               "meaningByLocale": {
-                "ru": "«витрина». The figurine is in the showcase. — «Статуэтка в витрине». Здесь стеклянный шкаф для показа предметов.",
-                "uk": "«вітрина». The figurine is in the showcase. — «Статуетка у вітрині». Тут скляна шафа для показу предметів."
+                "ru": "«возражать» в этой ситуации. I do not mind. — «Я не возражаю».",
+                "uk": "«заперечувати» в цій ситуації. I do not mind. — «Я не заперечую»."
               }
             }
           ],
@@ -1588,10 +1572,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "showcase",
+            "word": "mind",
             "definitionByLocale": {
-              "ru": "«витрина». The figurine is in the showcase. — «Статуэтка в витрине». Здесь стеклянный шкаф для показа предметов.",
-              "uk": "«вітрина». The figurine is in the showcase. — «Статуетка у вітрині». Тут скляна шафа для показу предметів."
+              "ru": "«возражать» в этой ситуации. I do not mind. — «Я не возражаю».",
+              "uk": "«заперечувати» в цій ситуації. I do not mind. — «Я не заперечую»."
             }
           }
         },
@@ -1603,25 +1587,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг запитує, де готова статуетка. Скажіть: «Статуетка у вітрині»",
+        "prompt": "Відвідувач запитує, чи можна сісти поруч. Вам це не заважає. Скажіть: «Я не заперечую»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг запитує, де готова статуетка. Скажіть: «Статуетка у вітрині»",
+        "accessibilityLabel": "Відвідувач запитує, чи можна сісти поруч. Вам це не заважає. Скажіть: «Я не заперечую»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The figurine is in the showcase.",
+          "targetPhrase": "I do not mind.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает, где готовая статуэтка. Скажите: «Статуэтка в витрине»",
-            "uk": "Друг запитує, де готова статуетка. Скажіть: «Статуетка у вітрині»"
+            "ru": "Посетитель спрашивает, можно ли сесть рядом. Вам это не мешает. Скажите: «Я не возражаю»",
+            "uk": "Відвідувач запитує, чи можна сісти поруч. Вам це не заважає. Скажіть: «Я не заперечую»"
           },
           "orderedTokens": [
-            "The",
-            "figurine",
-            "is",
-            "in",
-            "the",
-            "showcase"
+            "I",
+            "do",
+            "not",
+            "mind"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1642,15 +1624,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i08:r1",
-            "text": "The showcase is open."
+            "text": "We do not mind."
           },
           {
             "responseId": "en:lesson-10:session-08:i08:r2",
-            "text": "The showcase is closed."
+            "text": "I do not mind."
           },
           {
             "responseId": "en:lesson-10:session-08:i08:r3",
-            "text": "The shop is open."
+            "text": "We do mind."
           }
         ],
         "mediaIds": [],
@@ -1662,23 +1644,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i08:audio",
-            "transcript": "The showcase is open."
+            "transcript": "We do not mind."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-08:i08:r1",
-              "targetText": "The showcase is open.",
+              "targetText": "We do not mind.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i08:r2",
-              "targetText": "The showcase is closed.",
+              "targetText": "I do not mind.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i08:r3",
-              "targetText": "The shop is open.",
+              "targetText": "We do mind.",
               "meaningByLocale": null
             }
           ],
@@ -1689,8 +1671,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The showcase is open.",
-                "uk": "У записі звучить The showcase is open."
+                "ru": "В записи звучит We do not mind.",
+                "uk": "У записі звучить We do not mind."
               }
             },
             {
@@ -1698,8 +1680,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The showcase is open.",
-                "uk": "У записі звучить The showcase is open."
+                "ru": "В записи звучит We do not mind.",
+                "uk": "У записі звучить We do not mind."
               }
             }
           ],
@@ -1714,15 +1696,15 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для однієї статуетки",
+        "prompt": "Виберіть допоміжне дієслово для заперечення з I",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i09:r1",
-            "text": "is"
+            "text": "do"
           },
           {
             "responseId": "en:lesson-10:session-08:i09:r2",
-            "text": "are"
+            "text": "does"
           },
           {
             "responseId": "en:lesson-10:session-08:i09:r3",
@@ -1731,46 +1713,46 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для однієї статуетки",
+        "accessibilityLabel": "Виберіть допоміжне дієслово для заперечення з I",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для одной статуэтки",
-            "uk": "Виберіть зв’язку для однієї статуетки"
+            "ru": "Выберите вспомогательный глагол для отрицания с I",
+            "uk": "Виберіть допоміжне дієслово для заперечення з I"
           },
-          "gappedTargetPhrase": "The figurine ___ in the showcase.",
+          "gappedTargetPhrase": "I ___ not mind.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-08:i09:r1",
-              "text": "is"
+              "text": "do"
             },
             {
               "responseId": "en:lesson-10:session-08:i09:r2",
-              "text": "are"
+              "text": "does"
             },
             {
               "responseId": "en:lesson-10:session-08:i09:r3",
               "text": "am"
             }
           ],
-          "testedDimension": "Виберіть зв’язку для однієї статуетки",
+          "testedDimension": "Виберіть допоміжне дієслово для заперечення з I",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-08:i09:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для однієї статуетки",
+              "testedDimension": "Виберіть допоміжне дієслово для заперечення з I",
               "feedbackByLocale": {
-                "ru": "Предмет один: is.",
-                "uk": "Предмет один: is."
+                "ru": "С I нужен do.",
+                "uk": "З I потрібне do."
               }
             },
             {
               "responseId": "en:lesson-10:session-08:i09:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для однієї статуетки",
+              "testedDimension": "Виберіть допоміжне дієслово для заперечення з I",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "Отрицание mind: do not mind.",
+                "uk": "Заперечення mind: do not mind."
               }
             }
           ]
@@ -1778,32 +1760,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-08:word:craftsmanship",
+        "interactionId": "en:lesson-10:session-08:word:matter",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — craftsmanship",
+        "prompt": "Картка слова — matter",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-08:word:craftsmanship:audio"
+          "en:lesson-10:session-08:word:matter:audio"
         ],
-        "accessibilityLabel": "Картка слова — craftsmanship",
+        "accessibilityLabel": "Картка слова — matter",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:word:craftsmanship:audio",
-            "transcript": "craftsmanship"
+            "audioTargetId": "en:lesson-10:session-08:word:matter:audio",
+            "transcript": "matter"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-08:word:craftsmanship:r1",
-              "targetText": "craftsmanship",
+              "responseId": "en:lesson-10:session-08:word:matter:r1",
+              "targetText": "matter",
               "meaningByLocale": {
-                "ru": "«мастерство изготовления». The craftsmanship is excellent. — «Качество работы превосходное». Здесь умение мастера, заметное в хорошо сделанной вещи.",
-                "uk": "«майстерність виготовлення». The craftsmanship is excellent. — «Якість роботи чудова». Тут уміння майстра, помітне в добре зробленій речі."
+                "ru": "«иметь значение». It does not matter. — «Это неважно».",
+                "uk": "«мати значення». It does not matter. — «Це неважливо»."
               }
             }
           ],
@@ -1811,10 +1793,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "craftsmanship",
+            "word": "matter",
             "definitionByLocale": {
-              "ru": "«мастерство изготовления». The craftsmanship is excellent. — «Качество работы превосходное». Здесь умение мастера, заметное в хорошо сделанной вещи.",
-              "uk": "«майстерність виготовлення». The craftsmanship is excellent. — «Якість роботи чудова». Тут уміння майстра, помітне в добре зробленій речі."
+              "ru": "«иметь значение». It does not matter. — «Это неважно».",
+              "uk": "«мати значення». It does not matter. — «Це неважливо»."
             }
           }
         },
@@ -1826,23 +1808,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви розглядаєте акуратно зроблену статуетку й хочете похвалити якість роботи. Скажіть: «Якість роботи чудова»",
+        "prompt": "Друг вибачається за хвилину запізнення. Ви не поспішаєте. Скажіть: «Це неважливо»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви розглядаєте акуратно зроблену статуетку й хочете похвалити якість роботи. Скажіть: «Якість роботи чудова»",
+        "accessibilityLabel": "Друг вибачається за хвилину запізнення. Ви не поспішаєте. Скажіть: «Це неважливо»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The craftsmanship is excellent.",
+          "targetPhrase": "It does not matter.",
           "localizedMeaning": {
-            "ru": "Вы рассматриваете аккуратно сделанную статуэтку и хотите похвалить качество работы. Скажите: «Качество работы превосходное»",
-            "uk": "Ви розглядаєте акуратно зроблену статуетку й хочете похвалити якість роботи. Скажіть: «Якість роботи чудова»"
+            "ru": "Друг извиняется за минуту опоздания. Вы не спешите. Скажите: «Это неважно»",
+            "uk": "Друг вибачається за хвилину запізнення. Ви не поспішаєте. Скажіть: «Це неважливо»"
           },
           "orderedTokens": [
-            "The",
-            "craftsmanship",
-            "is",
-            "excellent"
+            "It",
+            "does",
+            "not",
+            "matter"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1863,15 +1845,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i11:r1",
-            "text": "The craftsmanship is excellent."
+            "text": "It does not matter."
           },
           {
             "responseId": "en:lesson-10:session-08:i11:r2",
-            "text": "The craftsmanship is poor."
+            "text": "It does matter."
           },
           {
             "responseId": "en:lesson-10:session-08:i11:r3",
-            "text": "The coffee is excellent."
+            "text": "They do not matter."
           }
         ],
         "mediaIds": [],
@@ -1883,23 +1865,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i11:audio",
-            "transcript": "The craftsmanship is excellent."
+            "transcript": "It does not matter."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-08:i11:r1",
-              "targetText": "The craftsmanship is excellent.",
+              "targetText": "It does not matter.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i11:r2",
-              "targetText": "The craftsmanship is poor.",
+              "targetText": "It does matter.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-08:i11:r3",
-              "targetText": "The coffee is excellent.",
+              "targetText": "They do not matter.",
               "meaningByLocale": null
             }
           ],
@@ -1910,8 +1892,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The craftsmanship is excellent.",
-                "uk": "У записі звучить The craftsmanship is excellent."
+                "ru": "В записи звучит It does not matter.",
+                "uk": "У записі звучить It does not matter."
               }
             },
             {
@@ -1919,8 +1901,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The craftsmanship is excellent.",
-                "uk": "У записі звучить The craftsmanship is excellent."
+                "ru": "В записи звучит It does not matter.",
+                "uk": "У записі звучить It does not matter."
               }
             }
           ],
@@ -1935,63 +1917,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку для незлічуваного craftsmanship",
+        "prompt": "Виберіть форму matter після does not",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-08:i12:r1",
-            "text": "is"
+            "text": "matter"
           },
           {
             "responseId": "en:lesson-10:session-08:i12:r2",
-            "text": "are"
+            "text": "matters"
           },
           {
             "responseId": "en:lesson-10:session-08:i12:r3",
-            "text": "am"
+            "text": "mattering"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку для незлічуваного craftsmanship",
+        "accessibilityLabel": "Виберіть форму matter після does not",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку для неисчисляемого craftsmanship",
-            "uk": "Виберіть зв’язку для незлічуваного craftsmanship"
+            "ru": "Выберите форму matter после does not",
+            "uk": "Виберіть форму matter після does not"
           },
-          "gappedTargetPhrase": "The craftsmanship ___ excellent.",
+          "gappedTargetPhrase": "It does not ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-08:i12:r1",
-              "text": "is"
+              "text": "matter"
             },
             {
               "responseId": "en:lesson-10:session-08:i12:r2",
-              "text": "are"
+              "text": "matters"
             },
             {
               "responseId": "en:lesson-10:session-08:i12:r3",
-              "text": "am"
+              "text": "mattering"
             }
           ],
-          "testedDimension": "Виберіть зв’язку для незлічуваного craftsmanship",
+          "testedDimension": "Виберіть форму matter після does not",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-08:i12:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для незлічуваного craftsmanship",
+              "testedDimension": "Виберіть форму matter після does not",
               "feedbackByLocale": {
-                "ru": "Craftsmanship неисчисляемое: is.",
-                "uk": "Craftsmanship незлічуване: is."
+                "ru": "После does not нужна matter без s.",
+                "uk": "Після does not потрібна matter без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-08:i12:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку для незлічуваного craftsmanship",
+              "testedDimension": "Виберіть форму matter після does not",
               "feedbackByLocale": {
-                "ru": "Am употребляется с I.",
-                "uk": "Am уживається з I."
+                "ru": "После does not нужна matter.",
+                "uk": "Після does not потрібна matter."
               }
             }
           ]
@@ -2004,58 +1986,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте нові слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-08:i13:p1",
-              "target": "exhibitor",
+              "target": "agree",
               "meaningByLocale": {
-                "ru": "участник выставки, представляющий работы",
-                "uk": "учасник виставки, який представляє роботи"
+                "ru": "соглашаться",
+                "uk": "погоджуватися"
               }
             },
             {
               "pairId": "en:lesson-10:session-08:i13:p2",
-              "target": "demonstration",
+              "target": "disagree",
               "meaningByLocale": {
-                "ru": "показ процесса работы",
-                "uk": "показ процесу роботи"
+                "ru": "не соглашаться",
+                "uk": "не погоджуватися"
               }
             },
             {
               "pairId": "en:lesson-10:session-08:i13:p3",
-              "target": "showcase",
+              "target": "mind",
               "meaningByLocale": {
-                "ru": "витрина",
-                "uk": "вітрина"
+                "ru": "возражать",
+                "uk": "заперечувати"
               }
             },
             {
               "pairId": "en:lesson-10:session-08:i13:p4",
-              "target": "craftsmanship",
+              "target": "matter",
               "meaningByLocale": {
-                "ru": "мастерство изготовления",
-                "uk": "майстерність виготовлення"
+                "ru": "иметь значение",
+                "uk": "мати значення"
               }
             }
           ],
           "leftColumn": [
-            "exhibitor",
-            "demonstration",
-            "showcase",
-            "craftsmanship"
+            "agree",
+            "disagree",
+            "mind",
+            "matter"
           ],
           "rightColumn": [
-            "учасник виставки, який представляє роботи",
-            "показ процесу роботи",
-            "вітрина",
-            "майстерність виготовлення"
+            "погоджуватися",
+            "не погоджуватися",
+            "заперечувати",
+            "мати значення"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2077,27 +2059,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть запитання про дію зараз",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-08:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть запитання про дію зараз",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i14:audio",
-            "transcript": "Are you watching the demonstration?"
+            "transcript": "I agree with you."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "Are you watching the demonstration?",
+          "hiddenTargetPhrase": "I agree with you.",
           "orderedTokens": [
-            "Are",
-            "you",
-            "watching",
-            "the",
-            "demonstration"
+            "I",
+            "agree",
+            "with",
+            "you"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2111,24 +2092,60 @@
       {
         "interactionId": "en:lesson-10:session-08:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Відвідувач запитує про вашу звичну роботу. Скажіть: «Я вирізьблюю дерев’яні ложки»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-08:i15:audio"
         ],
-        "accessibilityLabel": "Відвідувач запитує про вашу звичну роботу. Скажіть: «Я вирізьблюю дерев’яні ложки»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-08:i15:audio",
+            "transcript": "It does not matter."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It does not matter.",
+          "orderedTokens": [
+            "It",
+            "does",
+            "not",
+            "matter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Відвідувач запитує, чи можна сісти поруч. Дайте відповідь: «Я не заперечую»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Відвідувач запитує, чи можна сісти поруч. Дайте відповідь: «Я не заперечую»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-08:i15:audio",
-            "transcript": "I carve wooden spoons."
+            "audioTargetId": "en:lesson-10:session-08:i16:audio",
+            "transcript": "I do not mind."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I carve wooden spoons.",
+          "targetPhrase": "I do not mind.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2142,72 +2159,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-08:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Друг думає, що ви зараз вирізьблюєте статуетку. Але ви лише дивитеся на майстра. Скажіть: «Я не вирізьблюю статуетку»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Друг думає, що ви зараз вирізьблюєте статуетку. Але ви лише дивитеся на майстра. Скажіть: «Я не вирізьблюю статуетку»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I am not carving a figurine.",
-          "localizedMeaning": {
-            "ru": "Друг думает, что вы сейчас вырезаете статуэтку. Но вы только смотрите на мастера. Скажите: «Я не вырезаю статуэтку»",
-            "uk": "Друг думає, що ви зараз вирізьблюєте статуетку. Але ви лише дивитеся на майстра. Скажіть: «Я не вирізьблюю статуетку»"
-          },
-          "orderedTokens": [
-            "I",
-            "am",
-            "not",
-            "carving",
-            "a",
-            "figurine"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-08:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Зазвичай ви працюєте у своїй майстерні. Зараз ви на виставці й дивитеся, як інший майстер вирізьблює фігурку. Друг телефонує: «Чим ти зайнятий?» Дайте відповідь: «Я дивлюся показ»",
+        "prompt": "Друг вибачається за хвилину запізнення. Дайте відповідь: «Це неважливо»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-08:i17:audio"
         ],
-        "accessibilityLabel": "Зазвичай ви працюєте у своїй майстерні. Зараз ви на виставці й дивитеся, як інший майстер вирізьблює фігурку. Друг телефонує: «Чим ти зайнятий?» Дайте відповідь: «Я дивлюся показ»",
+        "accessibilityLabel": "Друг вибачається за хвилину запізнення. Дайте відповідь: «Це неважливо»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-08:i17:audio",
-            "transcript": "I am watching the demonstration."
+            "transcript": "It does not matter."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am watching the demonstration.",
+          "targetPhrase": "It does not matter.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2221,83 +2195,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-08:word:exhibitor",
-      "correctText": "exhibitor",
+      "interactionId": "en:lesson-10:session-08:word:agree",
+      "correctText": "agree",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i01",
-      "correctText": "The exhibitor is speaking.",
+      "correctText": "I agree with you.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i02",
-      "correctText": "She usually weaves at home.",
+      "correctText": "We agree with you.",
       "correctResponseId": "en:lesson-10:session-08:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-08:i03",
-      "correctText": "weaves",
+      "correctText": "with",
       "correctResponseId": "en:lesson-10:session-08:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-08:word:demonstration",
-      "correctText": "demonstration",
+      "interactionId": "en:lesson-10:session-08:word:disagree",
+      "correctText": "disagree",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i04",
-      "correctText": "I am watching the demonstration.",
+      "correctText": "I disagree.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i05",
-      "correctText": "The demonstration is starting.",
+      "correctText": "We disagree.",
       "correctResponseId": "en:lesson-10:session-08:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-08:i06",
-      "correctText": "watching",
+      "correctText": "disagree",
       "correctResponseId": "en:lesson-10:session-08:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-08:word:showcase",
-      "correctText": "showcase",
+      "interactionId": "en:lesson-10:session-08:word:mind",
+      "correctText": "mind",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i07",
-      "correctText": "The figurine is in the showcase.",
+      "correctText": "I do not mind.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i08",
-      "correctText": "The showcase is open.",
+      "correctText": "We do not mind.",
       "correctResponseId": "en:lesson-10:session-08:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-08:i09",
-      "correctText": "is",
+      "correctText": "do",
       "correctResponseId": "en:lesson-10:session-08:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-08:word:craftsmanship",
-      "correctText": "craftsmanship",
+      "interactionId": "en:lesson-10:session-08:word:matter",
+      "correctText": "matter",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i10",
-      "correctText": "The craftsmanship is excellent.",
+      "correctText": "It does not matter.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i11",
-      "correctText": "The craftsmanship is excellent.",
+      "correctText": "It does not matter.",
       "correctResponseId": "en:lesson-10:session-08:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-08:i12",
-      "correctText": "is",
+      "correctText": "matter",
       "correctResponseId": "en:lesson-10:session-08:i12:r1"
     },
     {
@@ -2307,22 +2281,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-08:i14",
-      "correctText": "Are you watching the demonstration?",
+      "correctText": "I agree with you.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i15",
-      "correctText": "I carve wooden spoons.",
+      "correctText": "It does not matter.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i16",
-      "correctText": "I am not carving a figurine.",
+      "correctText": "I do not mind.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-08:i17",
-      "correctText": "I am watching the demonstration.",
+      "correctText": "It does not matter.",
       "correctResponseId": null
     }
   ]

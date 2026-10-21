@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-11:word:editor",
+      "interactionId": "en:lesson-10:session-11:word:phone-number",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — editor",
+      "prompt": "Картка слова — phone number",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-11:word:editor:audio"
+        "en:lesson-10:session-11:word:phone-number:audio"
       ],
-      "accessibilityLabel": "Картка слова — editor",
+      "accessibilityLabel": "Картка слова — phone number",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-11:word:editor:audio",
-          "transcript": "editor"
+          "audioTargetId": "en:lesson-10:session-11:word:phone-number:audio",
+          "transcript": "phone number"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-11:word:editor:r1",
-            "targetText": "editor",
+            "responseId": "en:lesson-10:session-11:word:phone-number:r1",
+            "targetText": "phone number",
             "meaningByLocale": {
-              "ru": "«редактор». She is an editor. — «Она редактор». Человек, который готовит и редактирует материалы для публикации.",
-              "uk": "«редактор». She is an editor. — «Вона редакторка». Людина, яка готує та редагує матеріали для публікації."
+              "ru": "«номер телефона». Can I have your phone number? — «Можно твой номер телефона?»",
+              "uk": "«номер телефону». Can I have your phone number? — «Можна твій номер телефону?»"
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "editor",
+          "word": "phone number",
           "definitionByLocale": {
-            "ru": "«редактор». She is an editor. — «Она редактор». Человек, который готовит и редактирует материалы для публикации.",
-            "uk": "«редактор». She is an editor. — «Вона редакторка». Людина, яка готує та редагує матеріали для публікації."
+            "ru": "«номер телефона». Can I have your phone number? — «Можно твой номер телефона?»",
+            "uk": "«номер телефону». Can I have your phone number? — «Можна твій номер телефону?»"
           }
         }
       },
@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг запитує про професію вашої знайомої. Скажіть: «Вона редакторка»",
+      "prompt": "Ви хочете зателефонувати другу завтра. Попросіть його номер телефону",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг запитує про професію вашої знайомої. Скажіть: «Вона редакторка»",
+      "accessibilityLabel": "Ви хочете зателефонувати другу завтра. Попросіть його номер телефону",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is an editor.",
+        "targetPhrase": "Can I have your phone number?",
         "localizedMeaning": {
-          "ru": "Друг спрашивает о профессии вашей знакомой. Скажите: «Она редактор»",
-          "uk": "Друг запитує про професію вашої знайомої. Скажіть: «Вона редакторка»"
+          "ru": "Вы хотите позвонить другу завтра. Попросите его номер телефона",
+          "uk": "Ви хочете зателефонувати другу завтра. Попросіть його номер телефону"
         },
         "orderedTokens": [
-          "She",
-          "is",
-          "an",
-          "editor"
+          "Can",
+          "I",
+          "have",
+          "your",
+          "phone",
+          "number"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +91,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-11:i02:r1",
-          "text": "She works for a newspaper."
+          "text": "Can I have your phone number?"
         },
         {
           "responseId": "en:lesson-10:session-11:i02:r2",
-          "text": "He works for a newspaper."
+          "text": "Can we have your phone number?"
         },
         {
           "responseId": "en:lesson-10:session-11:i02:r3",
-          "text": "She works for a school."
+          "text": "Can I have her phone number?"
         }
       ],
       "mediaIds": [],
@@ -109,23 +111,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-11:i02:audio",
-          "transcript": "She works for a newspaper."
+          "transcript": "Can I have your phone number?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-11:i02:r1",
-            "targetText": "She works for a newspaper.",
+            "targetText": "Can I have your phone number?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-11:i02:r2",
-            "targetText": "He works for a newspaper.",
+            "targetText": "Can we have your phone number?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-11:i02:r3",
-            "targetText": "She works for a school.",
+            "targetText": "Can I have her phone number?",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +138,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She works for a newspaper.",
-              "uk": "У записі звучить She works for a newspaper."
+              "ru": "В записи звучит Can I have your phone number?",
+              "uk": "У записі звучить Can I have your phone number?"
             }
           },
           {
@@ -145,8 +147,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She works for a newspaper.",
-              "uk": "У записі звучить She works for a newspaper."
+              "ru": "В записи звучит Can I have your phone number?",
+              "uk": "У записі звучить Can I have your phone number?"
             }
           }
         ],
@@ -161,63 +163,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль перед editor",
+      "prompt": "Виберіть форму have після can",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-11:i03:r1",
-          "text": "an"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-10:session-11:i03:r2",
-          "text": "a"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-10:session-11:i03:r3",
-          "text": "are"
+          "text": "having"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль перед editor",
+      "accessibilityLabel": "Виберіть форму have після can",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед editor",
-          "uk": "Виберіть артикль перед editor"
+          "ru": "Выберите форму have после can",
+          "uk": "Виберіть форму have після can"
         },
-        "gappedTargetPhrase": "She is ___ editor.",
+        "gappedTargetPhrase": "Can I ___ your phone number?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-11:i03:r1",
-            "text": "an"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-11:i03:r2",
-            "text": "a"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-10:session-11:i03:r3",
-            "text": "are"
+            "text": "having"
           }
         ],
-        "testedDimension": "Виберіть артикль перед editor",
+        "testedDimension": "Виберіть форму have після can",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-11:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть артикль перед editor",
+            "testedDimension": "Виберіть форму have після can",
             "feedbackByLocale": {
-              "ru": "Editor начинается с гласного звука: an.",
-              "uk": "Editor починається з голосного звука: an."
+              "ru": "После can нужна have.",
+              "uk": "Після can потрібна have."
             }
           },
           {
             "responseId": "en:lesson-10:session-11:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть артикль перед editor",
+            "testedDimension": "Виберіть форму have після can",
             "feedbackByLocale": {
-              "ru": "Are — глагол; здесь нужен артикль an.",
-              "uk": "Are — дієслово; тут потрібен артикль an."
+              "ru": "После can нужна have, не having.",
+              "uk": "Після can потрібна have, не having."
             }
           }
         ]
@@ -225,32 +227,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-11:word:manuscript",
+      "interactionId": "en:lesson-10:session-11:word:text-message",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — manuscript",
+      "prompt": "Картка слова — text message",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-11:word:manuscript:audio"
+        "en:lesson-10:session-11:word:text-message:audio"
       ],
-      "accessibilityLabel": "Картка слова — manuscript",
+      "accessibilityLabel": "Картка слова — text message",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-11:word:manuscript:audio",
-          "transcript": "manuscript"
+          "audioTargetId": "en:lesson-10:session-11:word:text-message:audio",
+          "transcript": "text message"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-11:word:manuscript:r1",
-            "targetText": "manuscript",
+            "responseId": "en:lesson-10:session-11:word:text-message:r1",
+            "targetText": "text message",
             "meaningByLocale": {
-              "ru": "«рукопись». She is reading the manuscript. — «Она читает рукопись». Здесь текст книги до публикации, в том числе электронный.",
-              "uk": "«рукопис». She is reading the manuscript. — «Вона читає рукопис». Тут текст книжки до публікації, зокрема електронний."
+              "ru": "«текстовое сообщение, СМС». I am sending a text message. — «Я отправляю сообщение».",
+              "uk": "«текстове повідомлення, СМС». I am sending a text message. — «Я надсилаю повідомлення»."
             }
           }
         ],
@@ -258,10 +260,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "manuscript",
+          "word": "text message",
           "definitionByLocale": {
-            "ru": "«рукопись». She is reading the manuscript. — «Она читает рукопись». Здесь текст книги до публикации, в том числе электронный.",
-            "uk": "«рукопис». She is reading the manuscript. — «Вона читає рукопис». Тут текст книжки до публікації, зокрема електронний."
+            "ru": "«текстовое сообщение, СМС». I am sending a text message. — «Я отправляю сообщение».",
+            "uk": "«текстове повідомлення, СМС». I am sending a text message. — «Я надсилаю повідомлення»."
           }
         }
       },
@@ -273,24 +275,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Автор запитує, чим редакторка зайнята зараз. Скажіть: «Вона читає рукопис»",
+      "prompt": "Скажіть, що зараз надсилаєте текстове повідомлення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Автор запитує, чим редакторка зайнята зараз. Скажіть: «Вона читає рукопис»",
+      "accessibilityLabel": "Скажіть, що зараз надсилаєте текстове повідомлення",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is reading the manuscript.",
+        "targetPhrase": "I am sending a text message.",
         "localizedMeaning": {
-          "ru": "Автор спрашивает, чем редактор занята сейчас. Скажите: «Она читает рукопись»",
-          "uk": "Автор запитує, чим редакторка зайнята зараз. Скажіть: «Вона читає рукопис»"
+          "ru": "Скажите, что сейчас отправляете текстовое сообщение",
+          "uk": "Скажіть, що зараз надсилаєте текстове повідомлення"
         },
         "orderedTokens": [
-          "She",
-          "is",
-          "reading",
-          "the",
-          "manuscript"
+          "I",
+          "am",
+          "sending",
+          "a",
+          "text",
+          "message"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,15 +314,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-11:i05:r1",
-          "text": "The manuscript is long."
+          "text": "She is sending a text message."
         },
         {
           "responseId": "en:lesson-10:session-11:i05:r2",
-          "text": "The manuscript is short."
+          "text": "He is sending a text message."
         },
         {
           "responseId": "en:lesson-10:session-11:i05:r3",
-          "text": "The letter is long."
+          "text": "She is reading a text message."
         }
       ],
       "mediaIds": [],
@@ -331,23 +334,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-11:i05:audio",
-          "transcript": "The manuscript is long."
+          "transcript": "She is sending a text message."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-11:i05:r1",
-            "targetText": "The manuscript is long.",
+            "targetText": "She is sending a text message.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-11:i05:r2",
-            "targetText": "The manuscript is short.",
+            "targetText": "He is sending a text message.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-11:i05:r3",
-            "targetText": "The letter is long.",
+            "targetText": "She is reading a text message.",
             "meaningByLocale": null
           }
         ],
@@ -358,8 +361,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The manuscript is long.",
-              "uk": "У записі звучить The manuscript is long."
+              "ru": "В записи звучит She is sending a text message.",
+              "uk": "У записі звучить She is sending a text message."
             }
           },
           {
@@ -367,8 +370,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The manuscript is long.",
-              "uk": "У записі звучить The manuscript is long."
+              "ru": "В записи звучит She is sending a text message.",
+              "uk": "У записі звучить She is sending a text message."
             }
           }
         ],
@@ -383,63 +386,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму read після is",
+      "prompt": "Виберіть форму send після am",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-11:i06:r1",
-          "text": "reading"
+          "text": "sending"
         },
         {
           "responseId": "en:lesson-10:session-11:i06:r2",
-          "text": "read"
+          "text": "send"
         },
         {
           "responseId": "en:lesson-10:session-11:i06:r3",
-          "text": "reads"
+          "text": "sends"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму read після is",
+      "accessibilityLabel": "Виберіть форму send після am",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму read после is",
-          "uk": "Виберіть форму read після is"
+          "ru": "Выберите форму send после am",
+          "uk": "Виберіть форму send після am"
         },
-        "gappedTargetPhrase": "She is ___ the manuscript.",
+        "gappedTargetPhrase": "I am ___ a text message.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-11:i06:r1",
-            "text": "reading"
+            "text": "sending"
           },
           {
             "responseId": "en:lesson-10:session-11:i06:r2",
-            "text": "read"
+            "text": "send"
           },
           {
             "responseId": "en:lesson-10:session-11:i06:r3",
-            "text": "reads"
+            "text": "sends"
           }
         ],
-        "testedDimension": "Виберіть форму read після is",
+        "testedDimension": "Виберіть форму send після am",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-11:i06:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму read після is",
+            "testedDimension": "Виберіть форму send після am",
             "feedbackByLocale": {
-              "ru": "После is нужна reading.",
-              "uk": "Після is потрібна reading."
+              "ru": "После am нужна sending.",
+              "uk": "Після am потрібна sending."
             }
           },
           {
             "responseId": "en:lesson-10:session-11:i06:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму read після is",
+            "testedDimension": "Виберіть форму send після am",
             "feedbackByLocale": {
-              "ru": "Reads — форма Present Simple; после is здесь нужна reading.",
-              "uk": "Reads — форма Present Simple; після is тут потрібна reading."
+              "ru": "После am нужна sending, не sends.",
+              "uk": "Після am потрібна sending, не sends."
             }
           }
         ]
@@ -447,32 +450,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-11:word:proofreader",
+      "interactionId": "en:lesson-10:session-11:word:missed-call",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — proofreader",
+      "prompt": "Картка слова — missed call",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-11:word:proofreader:audio"
+        "en:lesson-10:session-11:word:missed-call:audio"
       ],
-      "accessibilityLabel": "Картка слова — proofreader",
+      "accessibilityLabel": "Картка слова — missed call",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-11:word:proofreader:audio",
-          "transcript": "proofreader"
+          "audioTargetId": "en:lesson-10:session-11:word:missed-call:audio",
+          "transcript": "missed call"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-11:word:proofreader:r1",
-            "targetText": "proofreader",
+            "responseId": "en:lesson-10:session-11:word:missed-call:r1",
+            "targetText": "missed call",
             "meaningByLocale": {
-              "ru": "«корректор». He is a proofreader. — «Он корректор». Здесь специалист, который ищет оставшиеся ошибки перед публикацией.",
-              "uk": "«коректор». He is a proofreader. — «Він коректор». Тут фахівець, який шукає помилки, що залишилися перед публікацією."
+              "ru": "«пропущенный звонок». I have a missed call. — «У меня пропущенный звонок».",
+              "uk": "«пропущений дзвінок». I have a missed call. — «У мене пропущений дзвінок»."
             }
           }
         ],
@@ -480,10 +483,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "proofreader",
+          "word": "missed call",
           "definitionByLocale": {
-            "ru": "«корректор». He is a proofreader. — «Он корректор». Здесь специалист, который ищет оставшиеся ошибки перед публикацией.",
-            "uk": "«коректор». He is a proofreader. — «Він коректор». Тут фахівець, який шукає помилки, що залишилися перед публікацією."
+            "ru": "«пропущенный звонок». I have a missed call. — «У меня пропущенный звонок».",
+            "uk": "«пропущений дзвінок». I have a missed call. — «У мене пропущений дзвінок»."
           }
         }
       },
@@ -495,23 +498,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Автор запитує про професію вашого колеги. Скажіть: «Він коректор»",
+      "prompt": "На телефоні один пропущений дзвінок. Скажіть про це",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Автор запитує про професію вашого колеги. Скажіть: «Він коректор»",
+      "accessibilityLabel": "На телефоні один пропущений дзвінок. Скажіть про це",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He is a proofreader.",
+        "targetPhrase": "I have a missed call.",
         "localizedMeaning": {
-          "ru": "Автор спрашивает о профессии вашего коллеги. Скажите: «Он корректор»",
-          "uk": "Автор запитує про професію вашого колеги. Скажіть: «Він коректор»"
+          "ru": "На телефоне один пропущенный звонок. Скажите об этом",
+          "uk": "На телефоні один пропущений дзвінок. Скажіть про це"
         },
         "orderedTokens": [
-          "He",
-          "is",
+          "I",
+          "have",
           "a",
-          "proofreader"
+          "missed",
+          "call"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -532,15 +536,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-11:i08:r1",
-          "text": "The proofreader is busy."
+          "text": "I have a missed call."
         },
         {
           "responseId": "en:lesson-10:session-11:i08:r2",
-          "text": "The proofreader is ready."
+          "text": "We have a missed call."
         },
         {
           "responseId": "en:lesson-10:session-11:i08:r3",
-          "text": "The editor is busy."
+          "text": "I have a text message."
         }
       ],
       "mediaIds": [],
@@ -552,23 +556,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-11:i08:audio",
-          "transcript": "The proofreader is busy."
+          "transcript": "I have a missed call."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-11:i08:r1",
-            "targetText": "The proofreader is busy.",
+            "targetText": "I have a missed call.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-11:i08:r2",
-            "targetText": "The proofreader is ready.",
+            "targetText": "We have a missed call.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-11:i08:r3",
-            "targetText": "The editor is busy.",
+            "targetText": "I have a text message.",
             "meaningByLocale": null
           }
         ],
@@ -579,8 +583,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The proofreader is busy.",
-              "uk": "У записі звучить The proofreader is busy."
+              "ru": "В записи звучит I have a missed call.",
+              "uk": "У записі звучить I have a missed call."
             }
           },
           {
@@ -588,8 +592,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The proofreader is busy.",
-              "uk": "У записі звучить The proofreader is busy."
+              "ru": "В записи звучит I have a missed call.",
+              "uk": "У записі звучить I have a missed call."
             }
           }
         ],
@@ -604,63 +608,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для одного коректора",
+      "prompt": "Виберіть have або його форму для I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-11:i09:r1",
-          "text": "is"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-10:session-11:i09:r2",
-          "text": "are"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-10:session-11:i09:r3",
-          "text": "am"
+          "text": "having"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для одного коректора",
+      "accessibilityLabel": "Виберіть have або його форму для I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одного корректора",
-          "uk": "Виберіть зв’язку для одного коректора"
+          "ru": "Выберите have или его форму для I",
+          "uk": "Виберіть have або його форму для I"
         },
-        "gappedTargetPhrase": "The proofreader ___ busy.",
+        "gappedTargetPhrase": "I ___ a missed call.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-11:i09:r1",
-            "text": "is"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-11:i09:r2",
-            "text": "are"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-10:session-11:i09:r3",
-            "text": "am"
+            "text": "having"
           }
         ],
-        "testedDimension": "Виберіть зв’язку для одного коректора",
+        "testedDimension": "Виберіть have або його форму для I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-11:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку для одного коректора",
+            "testedDimension": "Виберіть have або його форму для I",
             "feedbackByLocale": {
-              "ru": "Один человек: is.",
-              "uk": "Одна людина: is."
+              "ru": "С I нужна have.",
+              "uk": "З I потрібна have."
             }
           },
           {
             "responseId": "en:lesson-10:session-11:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку для одного коректора",
+            "testedDimension": "Виберіть have або його форму для I",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Здесь нужна have.",
+              "uk": "Тут потрібна have."
             }
           }
         ]
@@ -668,32 +672,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-11:word:byline",
+      "interactionId": "en:lesson-10:session-11:word:voicemail",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — byline",
+      "prompt": "Картка слова — voicemail",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-11:word:byline:audio"
+        "en:lesson-10:session-11:word:voicemail:audio"
       ],
-      "accessibilityLabel": "Картка слова — byline",
+      "accessibilityLabel": "Картка слова — voicemail",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-11:word:byline:audio",
-          "transcript": "byline"
+          "audioTargetId": "en:lesson-10:session-11:word:voicemail:audio",
+          "transcript": "voicemail"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-11:word:byline:r1",
-            "targetText": "byline",
+            "responseId": "en:lesson-10:session-11:word:voicemail:r1",
+            "targetText": "voicemail",
             "meaningByLocale": {
-              "ru": "«строка с именем автора». The byline is missing. — «Строка с именем автора отсутствует». Здесь указание автора статьи, не её заголовок.",
-              "uk": "«рядок з іменем автора». The byline is missing. — «Рядок з іменем автора відсутній». Тут зазначення автора статті, а не її заголовок."
+              "ru": "«сообщение голосовой почты». I am leaving a voicemail. — «Я оставляю голосовое сообщение».",
+              "uk": "«повідомлення голосової пошти». I am leaving a voicemail. — «Я залишаю голосове повідомлення»."
             }
           }
         ],
@@ -701,10 +705,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "byline",
+          "word": "voicemail",
           "definitionByLocale": {
-            "ru": "«строка с именем автора». The byline is missing. — «Строка с именем автора отсутствует». Здесь указание автора статьи, не её заголовок.",
-            "uk": "«рядок з іменем автора». The byline is missing. — «Рядок з іменем автора відсутній». Тут зазначення автора статті, а не її заголовок."
+            "ru": "«сообщение голосовой почты». I am leaving a voicemail. — «Я оставляю голосовое сообщение».",
+            "uk": "«повідомлення голосової пошти». I am leaving a voicemail. — «Я залишаю голосове повідомлення»."
           }
         }
       },
@@ -716,23 +720,24 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Редактор запитує, чого бракує у статті. Скажіть: «Рядок з іменем автора відсутній»",
+      "prompt": "Друг не відповів. Після сигналу ви залишаєте йому голосове повідомлення. Скажіть, що робите",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Редактор запитує, чого бракує у статті. Скажіть: «Рядок з іменем автора відсутній»",
+      "accessibilityLabel": "Друг не відповів. Після сигналу ви залишаєте йому голосове повідомлення. Скажіть, що робите",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The byline is missing.",
+        "targetPhrase": "I am leaving a voicemail.",
         "localizedMeaning": {
-          "ru": "Редактор спрашивает, чего не хватает в статье. Скажите: «Строка с именем автора отсутствует»",
-          "uk": "Редактор запитує, чого бракує у статті. Скажіть: «Рядок з іменем автора відсутній»"
+          "ru": "Друг не ответил. После сигнала вы оставляете ему голосовое сообщение. Скажите, что делаете",
+          "uk": "Друг не відповів. Після сигналу ви залишаєте йому голосове повідомлення. Скажіть, що робите"
         },
         "orderedTokens": [
-          "The",
-          "byline",
-          "is",
-          "missing"
+          "I",
+          "am",
+          "leaving",
+          "a",
+          "voicemail"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -753,15 +758,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-11:i11:r1",
-          "text": "I am checking the byline."
+          "text": "He is leaving a voicemail."
         },
         {
           "responseId": "en:lesson-10:session-11:i11:r2",
-          "text": "I am checking the title."
+          "text": "She is leaving a voicemail."
         },
         {
           "responseId": "en:lesson-10:session-11:i11:r3",
-          "text": "He is checking the byline."
+          "text": "He is sending a text message."
         }
       ],
       "mediaIds": [],
@@ -773,23 +778,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-11:i11:audio",
-          "transcript": "I am checking the byline."
+          "transcript": "He is leaving a voicemail."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-11:i11:r1",
-            "targetText": "I am checking the byline.",
+            "targetText": "He is leaving a voicemail.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-11:i11:r2",
-            "targetText": "I am checking the title.",
+            "targetText": "She is leaving a voicemail.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-11:i11:r3",
-            "targetText": "He is checking the byline.",
+            "targetText": "He is sending a text message.",
             "meaningByLocale": null
           }
         ],
@@ -800,8 +805,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am checking the byline.",
-              "uk": "У записі звучить I am checking the byline."
+              "ru": "В записи звучит He is leaving a voicemail.",
+              "uk": "У записі звучить He is leaving a voicemail."
             }
           },
           {
@@ -809,8 +814,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am checking the byline.",
-              "uk": "У записі звучить I am checking the byline."
+              "ru": "В записи звучит He is leaving a voicemail.",
+              "uk": "У записі звучить He is leaving a voicemail."
             }
           }
         ],
@@ -825,63 +830,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму work після is для тимчасового проєкту",
+      "prompt": "Виберіть форму leave після am",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-11:i12:r1",
-          "text": "working"
+          "text": "leaving"
         },
         {
           "responseId": "en:lesson-10:session-11:i12:r2",
-          "text": "works"
+          "text": "leave"
         },
         {
           "responseId": "en:lesson-10:session-11:i12:r3",
-          "text": "work"
+          "text": "leaves"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму work після is для тимчасового проєкту",
+      "accessibilityLabel": "Виберіть форму leave після am",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму work после is для временного проекта",
-          "uk": "Виберіть форму work після is для тимчасового проєкту"
+          "ru": "Выберите форму leave после am",
+          "uk": "Виберіть форму leave після am"
         },
-        "gappedTargetPhrase": "She is ___ on a book this month.",
+        "gappedTargetPhrase": "I am ___ a voicemail.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-11:i12:r1",
-            "text": "working"
+            "text": "leaving"
           },
           {
             "responseId": "en:lesson-10:session-11:i12:r2",
-            "text": "works"
+            "text": "leave"
           },
           {
             "responseId": "en:lesson-10:session-11:i12:r3",
-            "text": "work"
+            "text": "leaves"
           }
         ],
-        "testedDimension": "Виберіть форму work після is для тимчасового проєкту",
+        "testedDimension": "Виберіть форму leave після am",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-11:i12:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму work після is для тимчасового проєкту",
+            "testedDimension": "Виберіть форму leave після am",
             "feedbackByLocale": {
-              "ru": "После is нужна working.",
-              "uk": "Після is потрібна working."
+              "ru": "После am нужна leaving.",
+              "uk": "Після am потрібна leaving."
             }
           },
           {
             "responseId": "en:lesson-10:session-11:i12:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму work після is для тимчасового проєкту",
+            "testedDimension": "Виберіть форму leave після am",
             "feedbackByLocale": {
-              "ru": "Для Present Continuous нужны is working.",
-              "uk": "Для Present Continuous потрібні is working."
+              "ru": "После am нужна leaving, не leaves.",
+              "uk": "Після am потрібна leaving, не leaves."
             }
           }
         ]
@@ -894,58 +899,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте вислови з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте вислови з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-11:i13:p1",
-            "target": "editor",
+            "target": "phone number",
             "meaningByLocale": {
-              "ru": "редактор",
-              "uk": "редактор"
+              "ru": "номер телефона",
+              "uk": "номер телефону"
             }
           },
           {
             "pairId": "en:lesson-10:session-11:i13:p2",
-            "target": "manuscript",
+            "target": "text message",
             "meaningByLocale": {
-              "ru": "рукопись",
-              "uk": "рукопис"
+              "ru": "текстовое сообщение",
+              "uk": "текстове повідомлення"
             }
           },
           {
             "pairId": "en:lesson-10:session-11:i13:p3",
-            "target": "proofreader",
+            "target": "missed call",
             "meaningByLocale": {
-              "ru": "корректор",
-              "uk": "коректор"
+              "ru": "пропущенный звонок",
+              "uk": "пропущений дзвінок"
             }
           },
           {
             "pairId": "en:lesson-10:session-11:i13:p4",
-            "target": "byline",
+            "target": "voicemail",
             "meaningByLocale": {
-              "ru": "строка с именем автора",
-              "uk": "рядок з іменем автора"
+              "ru": "сообщение голосовой почты",
+              "uk": "повідомлення голосової пошти"
             }
           }
         ],
         "leftColumn": [
-          "editor",
-          "manuscript",
-          "proofreader",
-          "byline"
+          "phone number",
+          "text message",
+          "missed call",
+          "voicemail"
         ],
         "rightColumn": [
-          "редактор",
-          "рукопис",
-          "коректор",
-          "рядок з іменем автора"
+          "номер телефону",
+          "текстове повідомлення",
+          "пропущений дзвінок",
+          "повідомлення голосової пошти"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -967,27 +972,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-11:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-11:i14:audio",
-          "transcript": "Is she reading the manuscript?"
+          "transcript": "I have a missed call."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is she reading the manuscript?",
+        "hiddenTargetPhrase": "I have a missed call.",
         "orderedTokens": [
-          "Is",
-          "she",
-          "reading",
-          "the",
-          "manuscript"
+          "I",
+          "have",
+          "a",
+          "missed",
+          "call"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1001,24 +1006,61 @@
     {
       "interactionId": "en:lesson-10:session-11:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, на яку організацію працює ваша знайома. Скажіть: «Вона працює в газеті»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-11:i15:audio"
       ],
-      "accessibilityLabel": "Друг запитує, на яку організацію працює ваша знайома. Скажіть: «Вона працює в газеті»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-11:i15:audio",
+          "transcript": "I am leaving a voicemail."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am leaving a voicemail.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "leaving",
+          "a",
+          "voicemail"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-11:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Домовилися зустрітися завтра. Попросіть номер телефону друга",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Домовилися зустрітися завтра. Попросіть номер телефону друга",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-11:i15:audio",
-          "transcript": "She works for a newspaper."
+          "audioTargetId": "en:lesson-10:session-11:i16:audio",
+          "transcript": "Can I have your phone number?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She works for a newspaper.",
+        "targetPhrase": "Can I have your phone number?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1032,74 +1074,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-11:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Редакторка тимчасово допомагає автору. Скажіть: «Цього місяця вона працює над книжкою». Поставте this month наприкінці",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Редакторка тимчасово допомагає автору. Скажіть: «Цього місяця вона працює над книжкою». Поставте this month наприкінці",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She is working on a book this month.",
-        "localizedMeaning": {
-          "ru": "Редактор временно помогает автору. Скажите: «В этом месяце она работает над книгой». Поставьте this month в конце",
-          "uk": "Редакторка тимчасово допомагає автору. Скажіть: «Цього місяця вона працює над книжкою». Поставте this month наприкінці"
-        },
-        "orderedTokens": [
-          "She",
-          "is",
-          "working",
-          "on",
-          "a",
-          "book",
-          "this",
-          "month"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-11:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ваша знайома зазвичай працює з газетними статтями, але тимчасово взяла книжковий проєкт на один місяць. Колега запитує, чим вона займається в цей період. Дайте відповідь: «Цього місяця вона працює над книжкою»",
+      "prompt": "Скажіть, що надсилаєте текстове повідомлення",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-11:i17:audio"
       ],
-      "accessibilityLabel": "Ваша знайома зазвичай працює з газетними статтями, але тимчасово взяла книжковий проєкт на один місяць. Колега запитує, чим вона займається в цей період. Дайте відповідь: «Цього місяця вона працює над книжкою»",
+      "accessibilityLabel": "Скажіть, що надсилаєте текстове повідомлення",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-11:i17:audio",
-          "transcript": "She is working on a book this month."
+          "transcript": "I am sending a text message."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is working on a book this month.",
+        "targetPhrase": "I am sending a text message.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1116,5 +1113,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d6729d6ee51e3220da8161c120a8dcd10399049eea91a95539b73856ee68ca56"
+  "learnerFingerprint": "2906cf0ecea831d03d7569b79378fe715191be6a4f68626aa09dd480800dd78e"
 }

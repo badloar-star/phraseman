@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 8 — На выставке ремёсел
+# Английский · Урок 10 · Занятие 8 — Ответить собеседнику
 
-**Ситуация.** Рассказать об обычной работе мастера и о том, что происходит на выставке сейчас.
+**Ситуация.** Согласиться, выразить другое мнение, разрешить сесть рядом и успокоить друга.
 
-**Что вы освоите:** She usually weaves at home; I am watching the demonstration
-**Новые слова:** exhibitor, demonstration, showcase, craftsmanship
+**Что вы освоите:** I agree with you; I disagree; I do not mind; It does not matter
+**Новые слова:** agree, disagree, mind, matter
 
 ## Интро 1
 
-### Участница выставки
+### Согласиться или возразить
 
-Exhibitor — участник выставки, который представляет свои работы. Друг рассказывает вам о мастерице у стенда: She usually weaves at home — «Она обычно ткёт дома». Сейчас она стоит у стенда и беседует с посетителем: The exhibitor is speaking — «Участница выставки говорит». Usually weaves — привычное занятие; is speaking — действие сейчас.
+Друг говорит, что здесь слишком шумно. Вы думаете так же: I agree with you — «Я с тобой согласен». Agree — «соглашаться». После agree перед человеком нужен with. Если ваше мнение другое: I disagree — «Я не согласен». Disagree — «не соглашаться». Это мнение, а не действие в процессе: I agree, без am.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The exhibitor is speaking.**
-- ❌ The exhibitor speaking. — *Для действия сейчас пропущено is.*
-- ❌ The exhibitor is speak. — *После is нужна speaking.*
+- ✅ **I agree with you.**
+- ❌ I am agree with you. — *Нужна agree без am.*
+- ❌ I agree you. — *Перед you после agree нужен with.*
 
 ---
 
 ## Интро 2
 
-### Мастер показывает, как это делается
+### Вы не возражаете
 
-Demonstration здесь — «показ процесса работы». Мастер при посетителях вырезает фигурку. Обычно вы сами вырезаете деревянные ложки, но сейчас смотрите на его работу. I am watching the demonstration — «Я смотрю показ». Это не название вашего хобби: вы наблюдаете прямо сейчас, поэтому am watching.
+В кафе посетитель спрашивает: «Можно сесть рядом?» Вам это не мешает: I do not mind — «Я не возражаю». Mind здесь — «возражать, иметь что-то против». Отрицание do not делает ответ разрешением. Если убрать not, смысл изменится.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am watching the demonstration.**
-- ❌ I watching the demonstration. — *С I перед watching нужно am.*
-- ❌ I am watch the demonstration. — *После am нужна watching.*
+- ✅ **I do not mind.**
+- ❌ I does not mind. — *С I нужен do, не does.*
+- ❌ I am not mind. — *Для отрицания mind нужен do not.*
 
 ---
 
 ## Интро 3
 
-### Готовая работа за стеклом
+### Ничего страшного
 
-Showcase здесь — «витрина»: стеклянный шкаф для показа предметов. Внутри стоит готовая статуэтка. The figurine is in the showcase — «Статуэтка в витрине». Is здесь сообщает, где предмет находится; это не Present Continuous, потому что действия с -ing нет. Рядом мастер продолжает работать: He is carving — «Он вырезает».
+Друг извиняется за опоздание на минуту. Вы никуда не спешите: It does not matter — «Это неважно; ничего страшного». Matter — «иметь значение». С it отрицание строится через does not, после него matter без s.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The figurine is in the showcase.**
-- ❌ The figurine are in the showcase. — *Figurine одна: is.*
-- ❌ The figurine in the showcase. — *Для полного предложения нужна is.*
+- ✅ **It does not matter.**
+- ❌ It do not matter. — *С it нужен does.*
+- ❌ It does not matters. — *После does not нужна matter без s.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — exhibitor**
-<!-- interaction_id: en:lesson-10:session-08:word:exhibitor; family: word_card -->
-> **exhibitor** — «участник выставки, представляющий работы». The exhibitor is speaking. — «Участник выставки говорит». Здесь человек со своим стендом, а не просто посетитель.
+**1 · Карточка слова — agree**
+<!-- interaction_id: en:lesson-10:session-08:word:agree; family: word_card -->
+> **agree** — «соглашаться». I agree with you. — «Я с тобой согласен».
 
-**2 · Друг ищет участника выставки. Покажите на человека, который сейчас говорит: «Участник выставки говорит»**
+**2 · Друг говорит, что здесь шумно. Вы думаете так же. Скажите: «Я с тобой согласен»**
 <!-- interaction_id: en:lesson-10:session-08:i01; family: phrase_builder -->
-Плитки: `speaking` `is` `exhibitor` `The` → **The exhibitor is speaking.**
+Плитки: `you` `with` `agree` `I` → **I agree with you.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-08:i02; family: listen_choose -->
-🔊 *She usually weaves at home.* → **She usually weaves at home.** · She usually knits at home. · He usually weaves at home.
-- She usually knits at home. — *В записи звучит She usually weaves at home.*
-- He usually weaves at home. — *В записи звучит She usually weaves at home.*
+🔊 *We agree with you.* → **We agree with you.** · I agree with you. · They agree with you.
+- I agree with you. — *В записи звучит We agree with you.*
+- They agree with you. — *В записи звучит We agree with you.*
 
-**4 · Выберите форму weave для обычной работы с she**
+**4 · Выберите предлог после agree перед человеком**
 <!-- interaction_id: en:lesson-10:session-08:i03; family: context_gap_grammar -->
-She usually ___ at home. → **weaves** · weave · weaving
-- weave — *С she в Present Simple нужна weaves.*
-- weaving — *Weaving без is не образует сказуемое.*
+I agree ___ you. → **with** · at · for
+- at — *Agree with someone — соглашаться с кем-то.*
+- for — *Здесь нужен with.*
 
-**5 · Карточка слова — demonstration**
-<!-- interaction_id: en:lesson-10:session-08:word:demonstration; family: word_card -->
-> **demonstration** — «показ процесса работы». I am watching the demonstration. — «Я смотрю показ». Здесь мастер показывает посетителям, как он работает.
+**5 · Карточка слова — disagree**
+<!-- interaction_id: en:lesson-10:session-08:word:disagree; family: word_card -->
+> **disagree** — «не соглашаться». I disagree. — «Я не согласен».
 
-**6 · Друг звонит, пока вы наблюдаете за работой мастера. Скажите: «Я смотрю показ»**
+**6 · Друг считает, что кафе закрыто, но вы видите посетителей внутри. Скажите: «Я не согласен»**
 <!-- interaction_id: en:lesson-10:session-08:i04; family: phrase_builder -->
-Плитки: `demonstration` `the` `watching` `am` `I` → **I am watching the demonstration.**
+Плитки: `disagree` `I` → **I disagree.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-08:i05; family: listen_choose -->
-🔊 *The demonstration is starting.* → **The demonstration is starting.** · The demonstration is ending. · The meeting is starting.
-- The demonstration is ending. — *В записи звучит The demonstration is starting.*
-- The meeting is starting. — *В записи звучит The demonstration is starting.*
+🔊 *We disagree.* → **We disagree.** · I disagree. · We agree.
+- I disagree. — *В записи звучит We disagree.*
+- We agree. — *В записи звучит We disagree.*
 
-**8 · Выберите форму watch после am**
+**8 · Выберите форму disagree с I**
 <!-- interaction_id: en:lesson-10:session-08:i06; family: context_gap_grammar -->
-I am ___ the demonstration. → **watching** · watch · watches
-- watch — *После am нужна watching.*
-- watches — *Watches не употребляется после am.*
+I ___. → **disagree** · disagrees · disagreeing
+- disagrees — *С I нужна disagree без s.*
+- disagreeing — *Здесь нужна disagree.*
 
-**9 · Карточка слова — showcase**
-<!-- interaction_id: en:lesson-10:session-08:word:showcase; family: word_card -->
-> **showcase** — «витрина». The figurine is in the showcase. — «Статуэтка в витрине». Здесь стеклянный шкаф для показа предметов.
+**9 · Карточка слова — mind**
+<!-- interaction_id: en:lesson-10:session-08:word:mind; family: word_card -->
+> **mind** — «возражать» в этой ситуации. I do not mind. — «Я не возражаю».
 
-**10 · Друг спрашивает, где готовая статуэтка. Скажите: «Статуэтка в витрине»**
+**10 · Посетитель спрашивает, можно ли сесть рядом. Вам это не мешает. Скажите: «Я не возражаю»**
 <!-- interaction_id: en:lesson-10:session-08:i07; family: phrase_builder -->
-Плитки: `showcase` `the` `in` `is` `figurine` `The` → **The figurine is in the showcase.**
+Плитки: `mind` `not` `do` `I` → **I do not mind.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-08:i08; family: listen_choose -->
-🔊 *The showcase is open.* → **The showcase is open.** · The showcase is closed. · The shop is open.
-- The showcase is closed. — *В записи звучит The showcase is open.*
-- The shop is open. — *В записи звучит The showcase is open.*
+🔊 *We do not mind.* → **We do not mind.** · I do not mind. · We do mind.
+- I do not mind. — *В записи звучит We do not mind.*
+- We do mind. — *В записи звучит We do not mind.*
 
-**12 · Выберите связку для одной статуэтки**
+**12 · Выберите вспомогательный глагол для отрицания с I**
 <!-- interaction_id: en:lesson-10:session-08:i09; family: context_gap_grammar -->
-The figurine ___ in the showcase. → **is** · are · am
-- are — *Предмет один: is.*
-- am — *Am употребляется с I.*
+I ___ not mind. → **do** · does · am
+- does — *С I нужен do.*
+- am — *Отрицание mind: do not mind.*
 
-**13 · Карточка слова — craftsmanship**
-<!-- interaction_id: en:lesson-10:session-08:word:craftsmanship; family: word_card -->
-> **craftsmanship** — «мастерство изготовления». The craftsmanship is excellent. — «Качество работы превосходное». Здесь умение мастера, заметное в хорошо сделанной вещи.
+**13 · Карточка слова — matter**
+<!-- interaction_id: en:lesson-10:session-08:word:matter; family: word_card -->
+> **matter** — «иметь значение». It does not matter. — «Это неважно».
 
-**14 · Вы рассматриваете аккуратно сделанную статуэтку и хотите похвалить качество работы. Скажите: «Качество работы превосходное»**
+**14 · Друг извиняется за минуту опоздания. Вы не спешите. Скажите: «Это неважно»**
 <!-- interaction_id: en:lesson-10:session-08:i10; family: phrase_builder -->
-Плитки: `excellent` `is` `craftsmanship` `The` → **The craftsmanship is excellent.**
+Плитки: `matter` `not` `does` `It` → **It does not matter.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-08:i11; family: listen_choose -->
-🔊 *The craftsmanship is excellent.* → **The craftsmanship is excellent.** · The craftsmanship is poor. · The coffee is excellent.
-- The craftsmanship is poor. — *В записи звучит The craftsmanship is excellent.*
-- The coffee is excellent. — *В записи звучит The craftsmanship is excellent.*
+🔊 *It does not matter.* → **It does not matter.** · It does matter. · They do not matter.
+- It does matter. — *В записи звучит It does not matter.*
+- They do not matter. — *В записи звучит It does not matter.*
 
-**16 · Выберите связку для неисчисляемого craftsmanship**
+**16 · Выберите форму matter после does not**
 <!-- interaction_id: en:lesson-10:session-08:i12; family: context_gap_grammar -->
-The craftsmanship ___ excellent. → **is** · are · am
-- are — *Craftsmanship неисчисляемое: is.*
-- am — *Am употребляется с I.*
+It does not ___. → **matter** · matters · mattering
+- matters — *После does not нужна matter без s.*
+- mattering — *После does not нужна matter.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-08:i13; family: speed_match -->
-exhibitor — участник выставки, представляющий работы · demonstration — показ процесса работы · showcase — витрина · craftsmanship — мастерство изготовления
+agree — соглашаться · disagree — не соглашаться · mind — возражать · matter — иметь значение
 
-**18 · Послушайте и соберите вопрос о действии сейчас**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-08:i14; family: listen_build_dictation -->
-🔊 *Are you watching the demonstration?* Плитки: `demonstration` `the` `watching` `you` `Are` → **Are you watching the demonstration?**
+🔊 *I agree with you.* Плитки: `you` `with` `agree` `I` → **I agree with you.**
 
-**19 · Посетитель спрашивает о вашей обычной работе. Скажите: «Я вырезаю деревянные ложки»**
-<!-- interaction_id: en:lesson-10:session-08:i15; family: scripted_repeat_compare -->
-🎙 **I carve wooden spoons.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-08:i15; family: listen_build_dictation -->
+🔊 *It does not matter.* Плитки: `matter` `not` `does` `It` → **It does not matter.**
 
-**20 · Друг думает, что вы сейчас вырезаете статуэтку. Но вы только смотрите на мастера. Скажите: «Я не вырезаю статуэтку»**
-<!-- interaction_id: en:lesson-10:session-08:i16; family: phrase_builder -->
-Плитки: `figurine` `a` `carving` `not` `am` `I` → **I am not carving a figurine.**
+**20 · Посетитель спрашивает, можно ли сесть рядом. Ответьте: «Я не возражаю»**
+<!-- interaction_id: en:lesson-10:session-08:i16; family: scripted_repeat_compare -->
+🎙 **I do not mind.**
 
-**21 · Обычно вы работаете в своей мастерской. Сейчас вы на выставке и смотрите, как другой мастер вырезает фигурку. Друг звонит: «Чем ты занят?» Ответьте: «Я смотрю показ»**
-<!-- interaction_id: en:lesson-10:session-08:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am watching the demonstration.**
+**21 · Друг извиняется за минуту опоздания. Ответьте: «Это неважно»**
+<!-- interaction_id: en:lesson-10:session-08:i17; family: scripted_repeat_compare -->
+🎙 **It does not matter.**
 

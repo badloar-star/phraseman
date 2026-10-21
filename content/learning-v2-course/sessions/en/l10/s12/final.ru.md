@@ -1,152 +1,151 @@
-# Английский · Урок 10 · Занятие 12 — Кассир временно работает в другом магазине
+# Английский · Урок 10 · Занятие 12 — Одежда на каждый день
 
-**Ситуация.** Рассказать об обычном месте работы кассира и временной помощи другому магазину.
+**Ситуация.** Собрать одежду в поездку и сказать, что вы носите дома.
 
-**Что вы освоите:** He usually works near the station; He is working here this week
-**Новые слова:** till, conveyor belt, divider, cash drawer
-**Повторение:** cashier (3.41), barcode, scanner (3.40)
+**Что вы освоите:** I am packing my underwear; She usually wears a nightdress; I need some tights; I am wearing a dressing gown
+**Новые слова:** underwear, nightdress, tights, dressing gown
 
 ## Интро 1
 
-### Обычный магазин
+### Собрать бельё
 
-Ваш знакомый — кассир. Обычно он работает в магазине возле станции. He usually works near the station — «Обычно он работает возле станции». Present Simple описывает привычную работу. Usually стоит перед works, а с he у глагола есть окончание s.
+Вы собираете чемодан. Underwear — «нижнее бельё»: I am packing my underwear — «Я укладываю нижнее бельё». Это действие сейчас: am packing. Underwear — неисчисляемое слово, поэтому не добавляем s и не ставим a.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He usually works near the station.**
-- ❌ He usually work near the station. — *С he нужна works.*
-- ❌ He usually working near the station. — *Для привычной работы здесь нужна works.*
+- ✅ **I am packing my underwear.**
+- ❌ I packing my underwear. — *Перед packing нужна am.*
+- ❌ I am pack my underwear. — *После am нужна packing.*
 
 ---
 
 ## Интро 2
 
-### Помощь на неделю
+### Одежда для сна
 
-На этой неделе кассир временно помогает в вашем магазине. Потом он вернётся к прежнему месту работы. He is working here this week — «На этой неделе он работает здесь». Is working описывает временную ситуацию. Он может сейчас обедать: фраза всё равно описывает его работу на этой неделе.
+Подруга обычно спит в ночной рубашке, а не в пижаме. Nightdress — «ночная рубашка»: She usually wears a nightdress — «Она обычно носит ночную рубашку». Это привычка: wears с s после she. Одну рубашку можно посчитать, поэтому a nightdress.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He is working here this week.**
-- ❌ He working here this week. — *Перед working нужна is.*
-- ❌ He is works here this week. — *После is нужна working.*
+- ✅ **She usually wears a nightdress.**
+- ❌ She usually wear a nightdress. — *С she нужна wears с s.*
+- ❌ She usually wearing a nightdress. — *Для привычки здесь нужна wears.*
 
 ---
 
 ## Интро 3
 
-### Другой кассовый аппарат
+### Колготки и халат
 
-Till — «кассовый аппарат» в британском английском. На этой неделе кассир осваивает аппарат в другом магазине. He is using a new till this week — «На этой неделе он пользуется новым кассовым аппаратом». Здесь new означает новый для него; аппарат не обязательно только что купили. Use теряет конечную e: using.
+Для поездки нужны колготки. Tights — «колготки»: I need some tights — «Мне нужны колготки». Слово употребляется во множественном числе: some tights, без a. Дома после душа вы в халате. Dressing gown — «домашний халат»: I am wearing a dressing gown — «Я сейчас в халате». Wear здесь описывает одежду на вас сейчас: am wearing.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He is using a new till this week.**
-- ❌ He is useing a new till this week. — *Use → using, без e.*
-- ❌ He using a new till this week. — *Перед using нужна is.*
+- ✅ **I need some tights.**
+- ❌ I need a tights. — *Tights — множественное число: some tights.*
+- ❌ I needs some tights. — *С I нужна need без s.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — till**
-<!-- interaction_id: en:lesson-10:session-12:word:till; family: word_card -->
-> **till** — «кассовый аппарат». The till is new. — «Кассовый аппарат новый». Здесь британское название аппарата на кассе.
+**1 · Карточка слова — underwear**
+<!-- interaction_id: en:lesson-10:session-12:word:underwear; family: word_card -->
+> **underwear** — «нижнее бельё». I am packing my underwear. — «Я укладываю нижнее бельё».
 
-**2 · Коллега спрашивает, новый ли кассовый аппарат. Скажите: «Кассовый аппарат новый»**
+**2 · Вы собираете чемодан. Скажите: «Я укладываю нижнее бельё»**
 <!-- interaction_id: en:lesson-10:session-12:i01; family: phrase_builder -->
-Плитки: `new` `is` `till` `The` → **The till is new.**
+Плитки: `underwear` `my` `packing` `am` `I` → **I am packing my underwear.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-12:i02; family: listen_choose -->
-🔊 *He usually works near the station.* → **He usually works near the station.** · She usually works near the station. · He usually works near the school.
-- She usually works near the station. — *В записи звучит He usually works near the station.*
-- He usually works near the school. — *В записи звучит He usually works near the station.*
+🔊 *She is packing her underwear.* → **She is packing her underwear.** · He is packing his underwear. · She is washing her underwear.
+- He is packing his underwear. — *В записи звучит She is packing her underwear.*
+- She is washing her underwear. — *В записи звучит She is packing her underwear.*
 
-**4 · Выберите форму work для обычной работы с he**
+**4 · Выберите форму pack после am**
 <!-- interaction_id: en:lesson-10:session-12:i03; family: context_gap_grammar -->
-He usually ___ near the station. → **works** · work · working
-- work — *С he нужна works.*
-- working — *Для обычной работы здесь нужна works.*
+I am ___ my underwear. → **packing** · pack · packs
+- pack — *После am нужна packing.*
+- packs — *После am нужна packing, не packs.*
 
-**5 · Карточка слова — conveyor belt**
-<!-- interaction_id: en:lesson-10:session-12:word:conveyor-belt; family: word_card -->
-> **conveyor belt** — «конвейерная лента». The conveyor belt is moving. — «Конвейерная лента движется». Здесь лента, которая подаёт покупки к кассиру.
+**5 · Карточка слова — nightdress**
+<!-- interaction_id: en:lesson-10:session-12:word:nightdress; family: word_card -->
+> **nightdress** — «ночная рубашка». She usually wears a nightdress. — «Она обычно носит ночную рубашку».
 
-**6 · Покупатель спрашивает, почему его покупки едут вперёд. Скажите: «Конвейерная лента движется»**
+**6 · Скажите, что подруга обычно носит ночную рубашку. Usually поставьте перед wears**
 <!-- interaction_id: en:lesson-10:session-12:i04; family: phrase_builder -->
-Плитки: `moving` `is` `belt` `conveyor` `The` → **The conveyor belt is moving.**
+Плитки: `nightdress` `a` `wears` `usually` `She` → **She usually wears a nightdress.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-12:i05; family: listen_choose -->
-🔊 *The conveyor belt is empty.* → **The conveyor belt is empty.** · The conveyor belt is full. · The basket is empty.
-- The conveyor belt is full. — *В записи звучит The conveyor belt is empty.*
-- The basket is empty. — *В записи звучит The conveyor belt is empty.*
+🔊 *She is wearing a nightdress.* → **She is wearing a nightdress.** · She is buying a nightdress. · She is washing a nightdress.
+- She is buying a nightdress. — *В записи звучит She is wearing a nightdress.*
+- She is washing a nightdress. — *В записи звучит She is wearing a nightdress.*
 
-**8 · Выберите форму move после is**
+**8 · Выберите форму wear для привычки с she**
 <!-- interaction_id: en:lesson-10:session-12:i06; family: context_gap_grammar -->
-The conveyor belt is ___. → **moving** · moveing · move
-- moveing — *Move теряет конечную e: moving.*
-- move — *После is нужна moving.*
+She usually ___ a nightdress. → **wears** · wear · wearing
+- wear — *С she нужна wears с s.*
+- wearing — *Для привычки здесь нужна wears.*
 
-**9 · Карточка слова — divider**
-<!-- interaction_id: en:lesson-10:session-12:word:divider; family: word_card -->
-> **divider** — «разделитель покупок». The divider is on the belt. — «Разделитель покупок на ленте». Здесь планка между покупками разных людей.
+**9 · Карточка слова — tights**
+<!-- interaction_id: en:lesson-10:session-12:word:tights; family: word_card -->
+> **tights** — «колготки». I need some tights. — «Мне нужны колготки».
 
-**10 · Кассир ищет планку, которая отделяет ваши покупки. Скажите: «Разделитель покупок на ленте»**
+**10 · Скажите, что вам нужны колготки**
 <!-- interaction_id: en:lesson-10:session-12:i07; family: phrase_builder -->
-Плитки: `belt` `the` `on` `is` `divider` `The` → **The divider is on the belt.**
+Плитки: `tights` `some` `need` `I` → **I need some tights.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-12:i08; family: listen_choose -->
-🔊 *The divider is blue.* → **The divider is blue.** · The divider is red. · The bag is blue.
-- The divider is red. — *В записи звучит The divider is blue.*
-- The bag is blue. — *В записи звучит The divider is blue.*
+🔊 *I need some tights.* → **I need some tights.** · We need some tights. · I have some tights.
+- We need some tights. — *В записи звучит I need some tights.*
+- I have some tights. — *В записи звучит I need some tights.*
 
-**12 · Выберите связку для одного разделителя**
+**12 · Выберите слово перед tights во множественном числе**
 <!-- interaction_id: en:lesson-10:session-12:i09; family: context_gap_grammar -->
-The divider ___ on the belt. → **is** · are · am
-- are — *Один предмет: is.*
-- am — *Am употребляется с I.*
+I need ___ tights. → **some** · a · an
+- a — *Tights — множественное число, a не подходит.*
+- an — *Tights — множественное число, an не подходит.*
 
-**13 · Карточка слова — cash drawer**
-<!-- interaction_id: en:lesson-10:session-12:word:cash-drawer; family: word_card -->
-> **cash drawer** — «денежный ящик». The cash drawer is open. — «Денежный ящик открыт». Здесь выдвижной ящик кассы для наличных.
+**13 · Карточка слова — dressing gown**
+<!-- interaction_id: en:lesson-10:session-12:word:dressing-gown; family: word_card -->
+> **dressing gown** — «домашний халат». I am wearing a dressing gown. — «Я сейчас в халате».
 
-**14 · Коллега спрашивает, закрыт ли ящик кассы. Скажите: «Денежный ящик открыт»**
+**14 · После душа на вас халат. Скажите, что вы сейчас в халате**
 <!-- interaction_id: en:lesson-10:session-12:i10; family: phrase_builder -->
-Плитки: `open` `is` `drawer` `cash` `The` → **The cash drawer is open.**
+Плитки: `gown` `dressing` `a` `wearing` `am` `I` → **I am wearing a dressing gown.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-12:i11; family: listen_choose -->
-🔊 *He is closing the cash drawer.* → **He is closing the cash drawer.** · He is opening the cash drawer. · She is closing the cash drawer.
-- He is opening the cash drawer. — *В записи звучит He is closing the cash drawer.*
-- She is closing the cash drawer. — *В записи звучит He is closing the cash drawer.*
+🔊 *He is wearing a dressing gown.* → **He is wearing a dressing gown.** · She is washing a nightdress. · He is buying a dressing gown.
+- She is washing a nightdress. — *В записи звучит He is wearing a dressing gown.*
+- He is buying a dressing gown. — *В записи звучит He is wearing a dressing gown.*
 
-**16 · Выберите связку перед working с he для временной работы**
+**16 · Выберите форму wear после am**
 <!-- interaction_id: en:lesson-10:session-12:i12; family: context_gap_grammar -->
-He ___ working here this week. → **is** · are · am
-- are — *С he нужна is.*
-- am — *Am употребляется с I.*
+I am ___ a dressing gown. → **wearing** · wear · wears
+- wear — *После am нужна wearing.*
+- wears — *После am нужна wearing, не wears.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините названия с переводом**
 <!-- interaction_id: en:lesson-10:session-12:i13; family: speed_match -->
-till — кассовый аппарат · conveyor belt — конвейерная лента · divider — разделитель покупок · cash drawer — денежный ящик
+underwear — нижнее бельё · nightdress — ночная рубашка · tights — колготки · dressing gown — домашний халат
 
-**18 · Послушайте и соберите вопрос; this week поставьте в конце**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-12:i14; family: listen_build_dictation -->
-🔊 *Is he working here this week?* Плитки: `week` `this` `here` `working` `he` `Is` → **Is he working here this week?**
+🔊 *I need some tights.* Плитки: `tights` `some` `need` `I` → **I need some tights.**
 
-**19 · Знакомая спрашивает, где кассир обычно работает. Скажите: «Обычно он работает возле станции»**
-<!-- interaction_id: en:lesson-10:session-12:i15; family: scripted_repeat_compare -->
-🎙 **He usually works near the station.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-12:i15; family: listen_build_dictation -->
+🔊 *I am wearing a dressing gown.* Плитки: `gown` `dressing` `a` `wearing` `am` `I` → **I am wearing a dressing gown.**
 
-**20 · Кассир временно помогает вашему магазину. Скажите: «На этой неделе он работает здесь». Поставьте this week в конце**
-<!-- interaction_id: en:lesson-10:session-12:i16; family: phrase_builder -->
-Плитки: `week` `this` `here` `working` `is` `He` → **He is working here this week.**
+**20 · Собирая чемодан, скажите, что укладываете нижнее бельё**
+<!-- interaction_id: en:lesson-10:session-12:i16; family: scripted_repeat_compare -->
+🎙 **I am packing my underwear.**
 
-**21 · Кассир обычно работает в магазине возле станции. Он помогает вашему магазину только одну неделю. Посетитель спрашивает, почему он здесь. Объясните: «На этой неделе он работает здесь»**
-<!-- interaction_id: en:lesson-10:session-12:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **He is working here this week.**
+**21 · На вас халат после душа. Скажите, что вы сейчас в халате**
+<!-- interaction_id: en:lesson-10:session-12:i17; family: scripted_repeat_compare -->
+🎙 **I am wearing a dressing gown.**
 

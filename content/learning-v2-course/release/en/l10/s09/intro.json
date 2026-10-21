@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-09",
   "learningOutcomeByLocale": {
-    "ru": "She works at a hotel; She is working here this week",
-    "uk": "She works at a hotel; She is working here this week"
+    "ru": "I usually buy tinned tomatoes; I am buying a ready-made meal today; This drink is sugar-free; This cake is dairy-free",
+    "uk": "I usually buy tinned tomatoes; I am buying a ready-made meal today; This drink is sugar-free; This cake is dairy-free"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-09:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Основное место работы",
-        "uk": "Основне місце роботи"
+        "ru": "Обычная покупка",
+        "uk": "Звичайна покупка"
       },
       "bodyByLocale": {
-        "ru": "Коллега знакомит вас с поваром, который помогает шефу руководить кухней. Sous-chef — «су-шеф», заместитель шеф-повара. She works at a hotel — «Она работает в отеле». Это её основное место работы: Present Simple. Мы не утверждаем, что она будет работать там всегда; описываем обычную ситуацию.",
-        "uk": "Колега знайомить вас із кухаркою, яка допомагає шефу керувати кухнею. Sous-chef — «су-шеф», заступник шеф-кухаря. She works at a hotel — «Вона працює в готелі». Це її основне місце роботи: Present Simple. Ми не стверджуємо, що вона працюватиме там завжди; описуємо звичайну ситуацію."
+        "ru": "Вы часто готовите соус из помидоров в банке. Tinned — «консервированный»: I usually buy tinned tomatoes — «Я обычно покупаю консервированные помидоры». Это привычка: buy. Здесь обычно ставим usually перед buy.",
+        "uk": "Ви часто готуєте соус із помідорів у банці. Tinned — «консервований»: I usually buy tinned tomatoes — «Я зазвичай купую консервовані помідори». Це звичка: buy. Тут зазвичай ставимо usually перед buy."
       },
       "question": {
         "interactionId": "en:lesson-10:session-09:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-09:intro1:r1",
-              "text": "She works at a hotel."
+              "text": "I usually buy tinned tomatoes."
             },
             {
               "responseId": "en:lesson-10:session-09:intro1:r2",
-              "text": "She work at a hotel."
+              "text": "I usually buys tinned tomatoes."
             },
             {
               "responseId": "en:lesson-10:session-09:intro1:r3",
-              "text": "She is work at a hotel."
+              "text": "I usually buying tinned tomatoes."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-09:intro1:r1",
-              "text": "She works at a hotel."
+              "text": "I usually buy tinned tomatoes."
             },
             {
               "responseId": "en:lesson-10:session-09:intro1:r2",
-              "text": "She work at a hotel."
+              "text": "I usually buys tinned tomatoes."
             },
             {
               "responseId": "en:lesson-10:session-09:intro1:r3",
-              "text": "She is work at a hotel."
+              "text": "I usually buying tinned tomatoes."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Помощь на одну неделю",
-        "uk": "Допомога на один тиждень"
+        "ru": "Сегодня готовить некогда",
+        "uk": "Сьогодні готувати ніколи"
       },
       "bodyByLocale": {
-        "ru": "На этой неделе су-шеф временно помогает в вашем кафе, а потом возвращается в отель. She is working here this week — «Она работает здесь на этой неделе». Present Continuous может описывать временный период, а не только эту секунду. Даже во время её перерыва можно сказать is working here this week: речь о временном месте работы.",
-        "uk": "Цього тижня су-шеф тимчасово допомагає у вашому кафе, а потім повертається до готелю. She is working here this week — «Вона працює тут цього тижня». Present Continuous може описувати тимчасовий період, а не лише цю секунду. Навіть під час її перерви можна сказати is working here this week: ідеться про тимчасове місце роботи."
+        "ru": "Обычно вы готовите дома, но сегодня поздно вернулись и выбираете в магазине готовый ужин. Ready-made — «готовый, заранее приготовленный»: I am buying a ready-made meal today — «Сегодня я покупаю готовое блюдо». Вы говорите о сегодняшней покупке: am buying. Meal — блюдо или приём пищи; a ready-made meal здесь — готовое блюдо из магазина.",
+        "uk": "Зазвичай ви готуєте вдома, але сьогодні пізно повернулися й вибираєте в магазині готову вечерю. Ready-made — «готовий, заздалегідь приготований»: I am buying a ready-made meal today — «Сьогодні я купую готову страву». Ви говорите про сьогоднішню покупку: am buying. Meal — страва або прийом їжі; a ready-made meal тут — готова страва з магазину."
       },
       "question": {
         "interactionId": "en:lesson-10:session-09:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-09:intro2:r1",
-              "text": "She is working here this week."
+              "text": "I am buying a ready-made meal today."
             },
             {
               "responseId": "en:lesson-10:session-09:intro2:r2",
-              "text": "She working here this week."
+              "text": "I buying a ready-made meal today."
             },
             {
               "responseId": "en:lesson-10:session-09:intro2:r3",
-              "text": "She is works here this week."
+              "text": "I am buy a ready-made meal today."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-09:intro2:r1",
-              "text": "She is working here this week."
+              "text": "I am buying a ready-made meal today."
             },
             {
               "responseId": "en:lesson-10:session-09:intro2:r2",
-              "text": "She working here this week."
+              "text": "I buying a ready-made meal today."
             },
             {
               "responseId": "en:lesson-10:session-09:intro2:r3",
-              "text": "She is works here this week."
+              "text": "I am buy a ready-made meal today."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Другая техника",
-        "uk": "Інше обладнання"
+        "ru": "Надписи на упаковке",
+        "uk": "Написи на упаковці"
       },
       "bodyByLocale": {
-        "ru": "Griddle — «плоская жарочная поверхность», на которой готовят, например, блины. В отеле повар обычно пользуется сковородой, но в вашем кафе на этой неделе готовит на такой поверхности. She is using a griddle this week — «На этой неделе она пользуется плоской жарочной поверхностью». Is using показывает временный способ работы.",
-        "uk": "Griddle — «плоска смажильна поверхня», на якій готують, наприклад, млинці. У готелі кухарка зазвичай користується сковородою, але у вашому кафе цього тижня готує на такій поверхні. She is using a griddle this week — «Цього тижня вона користується плоскою смажильною поверхнею». Is using показує тимчасовий спосіб роботи."
+        "ru": "Вы читаете надписи на напитке и пироге. Sugar-free — «без сахара»: This drink is sugar-free — «Этот напиток без сахара». Dairy-free — «без молочных ингредиентов»: This cake is dairy-free — «Этот пирог без молочных ингредиентов». Это описание продукта, поэтому нужна связка is. Free здесь не значит «бесплатный»: sugar-free и dairy-free учим целиком.",
+        "uk": "Ви читаєте написи на напої й пирозі. Sugar-free — «без цукру»: This drink is sugar-free — «Цей напій без цукру». Dairy-free — «без молочних інгредієнтів»: This cake is dairy-free — «Цей пиріг без молочних інгредієнтів». Це опис продукту, тому потрібна зв’язка is. Free тут не означає «безкоштовний»: sugar-free і dairy-free вчимо цілком."
       },
       "question": {
         "interactionId": "en:lesson-10:session-09:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-09:intro3:r1",
-              "text": "She is using a griddle this week."
+              "text": "This drink is sugar-free."
             },
             {
               "responseId": "en:lesson-10:session-09:intro3:r2",
-              "text": "She is useing a griddle this week."
+              "text": "This drink are sugar-free."
             },
             {
               "responseId": "en:lesson-10:session-09:intro3:r3",
-              "text": "She using a griddle this week."
+              "text": "This drink sugar-free."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-09:intro3:r1",
-              "text": "She is using a griddle this week."
+              "text": "This drink is sugar-free."
             },
             {
               "responseId": "en:lesson-10:session-09:intro3:r2",
-              "text": "She is useing a griddle this week."
+              "text": "This drink are sugar-free."
             },
             {
               "responseId": "en:lesson-10:session-09:intro3:r3",
-              "text": "She using a griddle this week."
+              "text": "This drink sugar-free."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fdae3ca74252920024db4fd3e7c08200b1e6bf20de0e07c5e49d80ab59ebc1ac"
+  "introFingerprint": "3ec8c9c6f76fd0ee2c288a3f2c1c3030aa84489c7365b3c1f3b3a1ae53ba6926"
 }

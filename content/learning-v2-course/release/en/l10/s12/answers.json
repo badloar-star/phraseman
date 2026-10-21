@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-12:word:till",
-    "correctText": "till",
+    "interactionId": "en:lesson-10:session-12:word:underwear",
+    "correctText": "underwear",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i01",
-    "correctText": "The till is new.",
+    "correctText": "I am packing my underwear.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i02",
-    "correctText": "He usually works near the station.",
+    "correctText": "She is packing her underwear.",
     "correctResponseId": "en:lesson-10:session-12:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-12:i03",
-    "correctText": "works",
+    "correctText": "packing",
     "correctResponseId": "en:lesson-10:session-12:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-12:word:conveyor-belt",
-    "correctText": "conveyor belt",
+    "interactionId": "en:lesson-10:session-12:word:nightdress",
+    "correctText": "nightdress",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i04",
-    "correctText": "The conveyor belt is moving.",
+    "correctText": "She usually wears a nightdress.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i05",
-    "correctText": "The conveyor belt is empty.",
+    "correctText": "She is wearing a nightdress.",
     "correctResponseId": "en:lesson-10:session-12:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-12:i06",
-    "correctText": "moving",
+    "correctText": "wears",
     "correctResponseId": "en:lesson-10:session-12:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-12:word:divider",
-    "correctText": "divider",
+    "interactionId": "en:lesson-10:session-12:word:tights",
+    "correctText": "tights",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i07",
-    "correctText": "The divider is on the belt.",
+    "correctText": "I need some tights.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i08",
-    "correctText": "The divider is blue.",
+    "correctText": "I need some tights.",
     "correctResponseId": "en:lesson-10:session-12:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-12:i09",
-    "correctText": "is",
+    "correctText": "some",
     "correctResponseId": "en:lesson-10:session-12:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-12:word:cash-drawer",
-    "correctText": "cash drawer",
+    "interactionId": "en:lesson-10:session-12:word:dressing-gown",
+    "correctText": "dressing gown",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i10",
-    "correctText": "The cash drawer is open.",
+    "correctText": "I am wearing a dressing gown.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i11",
-    "correctText": "He is closing the cash drawer.",
+    "correctText": "He is wearing a dressing gown.",
     "correctResponseId": "en:lesson-10:session-12:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-12:i12",
-    "correctText": "is",
+    "correctText": "wearing",
     "correctResponseId": "en:lesson-10:session-12:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-12:i13",
-    "correctText": "en:lesson-10:session-12:i13:p1=till\nen:lesson-10:session-12:i13:p2=conveyor belt\nen:lesson-10:session-12:i13:p3=divider\nen:lesson-10:session-12:i13:p4=cash drawer",
+    "correctText": "en:lesson-10:session-12:i13:p1=underwear\nen:lesson-10:session-12:i13:p2=nightdress\nen:lesson-10:session-12:i13:p3=tights\nen:lesson-10:session-12:i13:p4=dressing gown",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i14",
-    "correctText": "Is he working here this week?",
+    "correctText": "I need some tights.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i15",
-    "correctText": "He usually works near the station.",
+    "correctText": "I am wearing a dressing gown.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i16",
-    "correctText": "He is working here this week.",
+    "correctText": "I am packing my underwear.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-12:i17",
-    "correctText": "He is working here this week.",
+    "correctText": "I am wearing a dressing gown.",
     "correctResponseId": null
   }
 ]

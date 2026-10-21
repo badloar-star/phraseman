@@ -1,152 +1,151 @@
-# Англійська · Урок 10 · Заняття 10 — Гід тимчасово працює в музеї
+# Англійська · Урок 10 · Заняття 10 — Написати другу
 
-**Ситуація.** Розповісти про постійну роботу гіда й тимчасову роботу в музеї цього місяця.
+**Ситуація.** Написати другу, побажати успіху й пообіцяти допомогти.
 
-**Що ви опануєте:** He usually works outside; He is working at a museum this month
-**Нові слова:** docent, curator, artifact, diorama
-**Повторення:** guide (7.47)
+**Що ви опануєте:** I know the address; I hope you are well; I wish you good luck; I promise to help
+**Нові слова:** know, hope, wish, promise
 
 ## Інтро 1
 
-### Звичайна робота
+### Адреса вам відома
 
-Ваш знайомий — гід: зазвичай він проводить екскурсії містом. He usually works outside — «Зазвичай він працює надворі». Present Simple описує звичну ситуацію. Usually стоїть перед смисловим дієсловом works. Це не обіцянка, що робота ніколи не зміниться.
+Друг хоче надіслати адресу, щоб ви знайшли його будинок. Ви вже знаєте адресу: I know the address — «Я знаю адресу». Know — «знати». Знання — не дія в процесі: тут I know, без am, навіть якщо йдеться про те, що ви знаєте зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **He usually works outside.**
-- ❌ He usually work outside. — *З he потрібна works.*
-- ❌ He usually working outside. — *Для звичайної роботи тут потрібна works.*
+- ✅ **I know the address.**
+- ❌ I am know the address. — *Потрібна know без am.*
+- ❌ I knows the address. — *З I потрібна know без s.*
 
 ---
 
 ## Інтро 2
 
-### Тимчасово в музеї
+### Добрі слова в повідомленні
 
-Цього місяця гід тимчасово допомагає музею, а потім повернеться до міських екскурсій. He is working at a museum this month — «Цього місяця він працює в музеї». Is working описує тимчасовий період; він не обов’язково проводить екскурсію саме зараз. В американському музеї екскурсовода можуть називати docent — «музейний екскурсовод». Тут ідеться саме про це значення, а не про університетську посаду.
+Ви давно не спілкувалися з другом і починаєте повідомлення: I hope you are well — «Сподіваюся, у тебе все добре». Hope — «сподіватися». Ви не стверджуєте, що знаєте, як справи: ви сподіваєтеся. Перед іспитом можна додати: I wish you good luck — «Бажаю тобі успіху». Wish тут — «бажати», а good luck — «удача, успіх» у побажанні.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **He is working at a museum this month.**
-- ❌ He working at a museum this month. — *Перед working потрібна is.*
-- ❌ He is works at a museum this month. — *Після is потрібна working.*
+- ✅ **I hope you are well.**
+- ❌ I hopes you are well. — *З I потрібна hope без s.*
+- ❌ I hope you is well. — *З you потрібна are.*
 
 ---
 
 ## Інтро 3
 
-### Колега з музею
+### Пообіцяти допомогу
 
-Гід знайомить вас із кураторкою музейної колекції. Curator — «куратор колекції»: фахівець, який займається колекцією та її представленням. She is a curator — «Вона кураторка колекції». Тут is поєднує she з назвою професії; це не Present Continuous. Для дії в тимчасовому періоді знадобилося б, наприклад, is working.
+Друг просить допомогти з переїздом. Ви обіцяєте: I promise to help — «Я обіцяю допомогти». Promise — «обіцяти». Перед наступною дією ставимо to: promise to help. Ви даєте обіцянку цією фразою; тут не потрібне am.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She is a curator.**
-- ❌ She a curator. — *Потрібна зв’язка is.*
-- ❌ She is curator. — *Перед назвою професії в однині потрібен a.*
+- ✅ **I promise to help.**
+- ❌ I promise to helps. — *Після to потрібна help без s.*
+- ❌ I am promise to help. — *Потрібна promise без am.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — docent**
-<!-- interaction_id: en:lesson-10:session-10:word:docent; family: word_card -->
-> **docent** — «музейний екскурсовод». He is a docent. — «Він музейний екскурсовод». Таке значення вживається у США.
+**1 · Картка слова — know**
+<!-- interaction_id: en:lesson-10:session-10:word:know; family: word_card -->
+> **know** — «знати». I know the address. — «Я знаю адресу».
 
-**2 · Відвідувач американського музею запитує про вашого колегу. Скажіть: «Він музейний екскурсовод»**
+**2 · Друг пропонує надіслати адресу. Скажіть: «Я знаю адресу»**
 <!-- interaction_id: en:lesson-10:session-10:i01; family: phrase_builder -->
-Плитки: `docent` `a` `is` `He` → **He is a docent.**
+Плитки: `address` `the` `know` `I` → **I know the address.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-10:i02; family: listen_choose -->
-🔊 *He usually works outside.* → **He usually works outside.** · She usually works outside. · He usually works here.
-- She usually works outside. — *У записі звучить He usually works outside.*
-- He usually works here. — *У записі звучить He usually works outside.*
+🔊 *We know the address.* → **We know the address.** · I know the address. · They know the address.
+- I know the address. — *У записі звучить We know the address.*
+- They know the address. — *У записі звучить We know the address.*
 
-**4 · Виберіть форму work для звичайної роботи з he**
+**4 · Виберіть форму know з I**
 <!-- interaction_id: en:lesson-10:session-10:i03; family: context_gap_grammar -->
-He usually ___ outside. → **works** · work · working
-- work — *З he потрібна works.*
-- working — *Тут звичайна робота: works.*
+I ___ the address. → **know** · knows · knowing
+- knows — *З I потрібна know без s.*
+- knowing — *Тут потрібна know.*
 
-**5 · Картка слова — curator**
-<!-- interaction_id: en:lesson-10:session-10:word:curator; family: word_card -->
-> **curator** — «куратор колекції». She is a curator. — «Вона кураторка колекції». Тут фахівець із музейної колекції.
+**5 · Картка слова — hope**
+<!-- interaction_id: en:lesson-10:session-10:word:hope; family: word_card -->
+> **hope** — «сподіватися». I hope you are well. — «Сподіваюся, у тебе все добре».
 
-**6 · Колега запитує про професію вашої знайомої. Скажіть: «Вона кураторка колекції»**
+**6 · Почніть повідомлення другу: «Сподіваюся, у тебе все добре»**
 <!-- interaction_id: en:lesson-10:session-10:i04; family: phrase_builder -->
-Плитки: `curator` `a` `is` `She` → **She is a curator.**
+Плитки: `well` `are` `you` `hope` `I` → **I hope you are well.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-10:i05; family: listen_choose -->
-🔊 *The curator is here.* → **The curator is here.** · The curator is outside. · The guide is here.
-- The curator is outside. — *У записі звучить The curator is here.*
-- The guide is here. — *У записі звучить The curator is here.*
+🔊 *I hope you are well.* → **I hope you are well.** · We hope you are well. · I hope she is well.
+- We hope you are well. — *У записі звучить I hope you are well.*
+- I hope she is well. — *У записі звучить I hope you are well.*
 
-**8 · Виберіть артикль перед назвою професії**
+**8 · Виберіть зв’язку з you**
 <!-- interaction_id: en:lesson-10:session-10:i06; family: context_gap_grammar -->
-She is ___ curator. → **a** · an · are
-- an — *Curator починається з приголосного звука: a.*
-- are — *Are — дієслово, а тут потрібен артикль a.*
+I hope you ___ well. → **are** · is · am
+- is — *З you потрібна are.*
+- am — *Am вживаємо з I, тут you are.*
 
-**9 · Картка слова — artifact**
-<!-- interaction_id: en:lesson-10:session-10:word:artifact; family: word_card -->
-> **artifact** — «артефакт». The artifact is old. — «Артефакт старий». Тут предмет, створений людиною, що становить історичний інтерес.
+**9 · Картка слова — wish**
+<!-- interaction_id: en:lesson-10:session-10:word:wish; family: word_card -->
+> **wish** — «бажати». I wish you good luck. — «Бажаю тобі успіху».
 
-**10 · Відвідувач запитує про вік історичного предмета. Скажіть: «Артефакт старий»**
+**10 · Перед іспитом побажайте другу успіху**
 <!-- interaction_id: en:lesson-10:session-10:i07; family: phrase_builder -->
-Плитки: `old` `is` `artifact` `The` → **The artifact is old.**
+Плитки: `luck` `good` `you` `wish` `I` → **I wish you good luck.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-10:i08; family: listen_choose -->
-🔊 *I am looking at the artifact.* → **I am looking at the artifact.** · I am looking at the door. · She is looking at the artifact.
-- I am looking at the door. — *У записі звучить I am looking at the artifact.*
-- She is looking at the artifact. — *У записі звучить I am looking at the artifact.*
+🔊 *We wish you good luck.* → **We wish you good luck.** · I wish you good luck. · We wish her good luck.
+- I wish you good luck. — *У записі звучить We wish you good luck.*
+- We wish her good luck. — *У записі звучить We wish you good luck.*
 
-**12 · Виберіть зв’язку для одного артефакту**
+**12 · Виберіть форму wish з I**
 <!-- interaction_id: en:lesson-10:session-10:i09; family: context_gap_grammar -->
-The artifact ___ old. → **is** · are · am
-- are — *Один предмет: is.*
-- am — *Am уживається з I.*
+I ___ you good luck. → **wish** · wishes · wishing
+- wishes — *З I потрібна wish без es.*
+- wishing — *Тут потрібна wish.*
 
-**13 · Картка слова — diorama**
-<!-- interaction_id: en:lesson-10:session-10:word:diorama; family: word_card -->
-> **diorama** — «діорама». The diorama is small. — «Діорама маленька». Тут об’ємна модель сцени в музеї.
+**13 · Картка слова — promise**
+<!-- interaction_id: en:lesson-10:session-10:word:promise; family: word_card -->
+> **promise** — «обіцяти». I promise to help. — «Я обіцяю допомогти».
 
-**14 · Колега запитує про розмір об’ємної моделі сцени. Скажіть: «Діорама маленька»**
+**14 · Друг просить допомоги з переїздом. Скажіть: «Я обіцяю допомогти»**
 <!-- interaction_id: en:lesson-10:session-10:i10; family: phrase_builder -->
-Плитки: `small` `is` `diorama` `The` → **The diorama is small.**
+Плитки: `help` `to` `promise` `I` → **I promise to help.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-10:i11; family: listen_choose -->
-🔊 *We are looking at the diorama.* → **We are looking at the diorama.** · They are looking at the diorama. · We are looking at the map.
-- They are looking at the diorama. — *У записі звучить We are looking at the diorama.*
-- We are looking at the map. — *У записі звучить We are looking at the diorama.*
+🔊 *I promise to help.* → **I promise to help.** · We promise to help. · I promise to wait.
+- We promise to help. — *У записі звучить I promise to help.*
+- I promise to wait. — *У записі звучить I promise to help.*
 
-**16 · Виберіть зв’язку перед working з he для тимчасової роботи**
+**16 · Виберіть слово перед дією help після promise**
 <!-- interaction_id: en:lesson-10:session-10:i12; family: context_gap_grammar -->
-He ___ working here this month. → **is** · are · am
-- are — *З he потрібна is.*
-- am — *Am уживається з I.*
+I promise ___ help. → **to** · at · with
+- at — *Перед дією після promise потрібне to.*
+- with — *Тут promise to help.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-10:i13; family: speed_match -->
-docent — музейний екскурсовод · curator — куратор колекції · artifact — артефакт · diorama — діорама
+know — знати · hope — сподіватися · wish — бажати · promise — обіцяти
 
-**18 · Послухайте й складіть запитання; this month поставте наприкінці**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-10:i14; family: listen_build_dictation -->
-🔊 *Is he working here this month?* Плитки: `month` `this` `here` `working` `he` `Is` → **Is he working here this month?**
+🔊 *I wish you good luck.* Плитки: `luck` `good` `you` `wish` `I` → **I wish you good luck.**
 
-**19 · Знайома запитує, де гід зазвичай проводить робочий день. Скажіть: «Зазвичай він працює надворі»**
-<!-- interaction_id: en:lesson-10:session-10:i15; family: scripted_repeat_compare -->
-🎙 **He usually works outside.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-10:i15; family: listen_build_dictation -->
+🔊 *I promise to help.* Плитки: `help` `to` `promise` `I` → **I promise to help.**
 
-**20 · Гід тимчасово допомагає музею. Скажіть: «Цього місяця він працює в музеї». Поставте this month наприкінці**
-<!-- interaction_id: en:lesson-10:session-10:i16; family: phrase_builder -->
-Плитки: `month` `this` `museum` `a` `at` `working` `is` `He` → **He is working at a museum this month.**
+**20 · Давно не спілкувалися з другом. Скажіть: «Сподіваюся, у тебе все добре»**
+<!-- interaction_id: en:lesson-10:session-10:i16; family: scripted_repeat_compare -->
+🎙 **I hope you are well.**
 
-**21 · Ваш знайомий зазвичай проводить міські екскурсії. Він тимчасово допомагає музею один місяць, потім повертається до попередньої роботи. Колега запитує, де він працює в цей період. Дайте відповідь: «Цього місяця він працює в музеї»**
-<!-- interaction_id: en:lesson-10:session-10:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **He is working at a museum this month.**
+**21 · Друг просить допомоги. Пообіцяйте допомогти**
+<!-- interaction_id: en:lesson-10:session-10:i17; family: scripted_repeat_compare -->
+🎙 **I promise to help.**
 

@@ -1,57 +1,57 @@
 [
   {
-    "interactionId": "en:lesson-10:session-09:word:sous-chef",
-    "correctText": "sous-chef",
+    "interactionId": "en:lesson-10:session-09:word:tinned",
+    "correctText": "tinned",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i01",
-    "correctText": "She is a sous-chef.",
+    "correctText": "I usually buy tinned tomatoes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i02",
-    "correctText": "She works at a hotel.",
+    "correctText": "We buy tinned tomatoes.",
     "correctResponseId": "en:lesson-10:session-09:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-09:i03",
-    "correctText": "works",
+    "correctText": "buy",
     "correctResponseId": "en:lesson-10:session-09:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-09:word:griddle",
-    "correctText": "griddle",
+    "interactionId": "en:lesson-10:session-09:word:ready-made",
+    "correctText": "ready-made",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i04",
-    "correctText": "She is using a griddle.",
+    "correctText": "I am buying a ready-made meal today.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i05",
-    "correctText": "The griddle is hot.",
+    "correctText": "She is buying a ready-made meal.",
     "correctResponseId": "en:lesson-10:session-09:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-09:i06",
-    "correctText": "using",
+    "correctText": "buying",
     "correctResponseId": "en:lesson-10:session-09:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-09:word:ramekin",
-    "correctText": "ramekin",
+    "interactionId": "en:lesson-10:session-09:word:sugar-free",
+    "correctText": "sugar-free",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i07",
-    "correctText": "The ramekin is on the tray.",
+    "correctText": "This drink is sugar-free.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i08",
-    "correctText": "I am washing the ramekin.",
+    "correctText": "This drink is sugar-free.",
     "correctResponseId": "en:lesson-10:session-09:i08:r1"
   },
   {
@@ -60,18 +60,18 @@
     "correctResponseId": "en:lesson-10:session-09:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-09:word:garnish",
-    "correctText": "garnish",
+    "interactionId": "en:lesson-10:session-09:word:dairy-free",
+    "correctText": "dairy-free",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i10",
-    "correctText": "The garnish is on the plate.",
+    "correctText": "This cake is dairy-free.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i11",
-    "correctText": "The garnish is green.",
+    "correctText": "This cake is dairy-free.",
     "correctResponseId": "en:lesson-10:session-09:i11:r1"
   },
   {
@@ -81,27 +81,27 @@
   },
   {
     "interactionId": "en:lesson-10:session-09:i13",
-    "correctText": "en:lesson-10:session-09:i13:p1=sous-chef\nen:lesson-10:session-09:i13:p2=griddle\nen:lesson-10:session-09:i13:p3=ramekin\nen:lesson-10:session-09:i13:p4=garnish",
+    "correctText": "en:lesson-10:session-09:i13:p1=tinned\nen:lesson-10:session-09:i13:p2=ready-made\nen:lesson-10:session-09:i13:p3=sugar-free\nen:lesson-10:session-09:i13:p4=dairy-free",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i14",
-    "correctText": "Is she working here this week?",
+    "correctText": "This drink is sugar-free.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i15",
-    "correctText": "She works at a hotel.",
+    "correctText": "This cake is dairy-free.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i16",
-    "correctText": "She is working here this week.",
+    "correctText": "I am buying a ready-made meal today.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-09:i17",
-    "correctText": "She is working here this week.",
+    "correctText": "This drink is sugar-free.",
     "correctResponseId": null
   }
 ]

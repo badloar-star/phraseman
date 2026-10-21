@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-10:word:docent",
+      "interactionId": "en:lesson-10:session-10:word:know",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — docent",
+      "prompt": "Карточка слова — know",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-10:word:docent:audio"
+        "en:lesson-10:session-10:word:know:audio"
       ],
-      "accessibilityLabel": "Карточка слова — docent",
+      "accessibilityLabel": "Карточка слова — know",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-10:word:docent:audio",
-          "transcript": "docent"
+          "audioTargetId": "en:lesson-10:session-10:word:know:audio",
+          "transcript": "know"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-10:word:docent:r1",
-            "targetText": "docent",
+            "responseId": "en:lesson-10:session-10:word:know:r1",
+            "targetText": "know",
             "meaningByLocale": {
-              "ru": "«музейный экскурсовод». He is a docent. — «Он музейный экскурсовод». Такое значение употребляется в США.",
-              "uk": "«музейний екскурсовод». He is a docent. — «Він музейний екскурсовод». Таке значення вживається у США."
+              "ru": "«знать». I know the address. — «Я знаю адрес».",
+              "uk": "«знати». I know the address. — «Я знаю адресу»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "docent",
+          "word": "know",
           "definitionByLocale": {
-            "ru": "«музейный экскурсовод». He is a docent. — «Он музейный экскурсовод». Такое значение употребляется в США.",
-            "uk": "«музейний екскурсовод». He is a docent. — «Він музейний екскурсовод». Таке значення вживається у США."
+            "ru": "«знать». I know the address. — «Я знаю адрес».",
+            "uk": "«знати». I know the address. — «Я знаю адресу»."
           }
         }
       },
@@ -52,23 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Посетитель американского музея спрашивает о вашем коллеге. Скажите: «Он музейный экскурсовод»",
+      "prompt": "Друг предлагает прислать адрес. Скажите: «Я знаю адрес»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Посетитель американского музея спрашивает о вашем коллеге. Скажите: «Он музейный экскурсовод»",
+      "accessibilityLabel": "Друг предлагает прислать адрес. Скажите: «Я знаю адрес»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He is a docent.",
+        "targetPhrase": "I know the address.",
         "localizedMeaning": {
-          "ru": "Посетитель американского музея спрашивает о вашем коллеге. Скажите: «Он музейный экскурсовод»",
-          "uk": "Відвідувач американського музею запитує про вашого колегу. Скажіть: «Він музейний екскурсовод»"
+          "ru": "Друг предлагает прислать адрес. Скажите: «Я знаю адрес»",
+          "uk": "Друг пропонує надіслати адресу. Скажіть: «Я знаю адресу»"
         },
         "orderedTokens": [
-          "He",
-          "is",
-          "a",
-          "docent"
+          "I",
+          "know",
+          "the",
+          "address"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-10:i02:r1",
-          "text": "He usually works outside."
+          "text": "We know the address."
         },
         {
           "responseId": "en:lesson-10:session-10:i02:r2",
-          "text": "She usually works outside."
+          "text": "I know the address."
         },
         {
           "responseId": "en:lesson-10:session-10:i02:r3",
-          "text": "He usually works here."
+          "text": "They know the address."
         }
       ],
       "mediaIds": [],
@@ -109,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-10:i02:audio",
-          "transcript": "He usually works outside."
+          "transcript": "We know the address."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-10:i02:r1",
-            "targetText": "He usually works outside.",
+            "targetText": "We know the address.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-10:i02:r2",
-            "targetText": "She usually works outside.",
+            "targetText": "I know the address.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-10:i02:r3",
-            "targetText": "He usually works here.",
+            "targetText": "They know the address.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He usually works outside.",
-              "uk": "У записі звучить He usually works outside."
+              "ru": "В записи звучит We know the address.",
+              "uk": "У записі звучить We know the address."
             }
           },
           {
@@ -145,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He usually works outside.",
-              "uk": "У записі звучить He usually works outside."
+              "ru": "В записи звучит We know the address.",
+              "uk": "У записі звучить We know the address."
             }
           }
         ],
@@ -161,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму work для обычной работы с he",
+      "prompt": "Выберите форму know с I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-10:i03:r1",
-          "text": "works"
+          "text": "know"
         },
         {
           "responseId": "en:lesson-10:session-10:i03:r2",
-          "text": "work"
+          "text": "knows"
         },
         {
           "responseId": "en:lesson-10:session-10:i03:r3",
-          "text": "working"
+          "text": "knowing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму work для обычной работы с he",
+      "accessibilityLabel": "Выберите форму know с I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму work для обычной работы с he",
-          "uk": "Виберіть форму work для звичайної роботи з he"
+          "ru": "Выберите форму know с I",
+          "uk": "Виберіть форму know з I"
         },
-        "gappedTargetPhrase": "He usually ___ outside.",
+        "gappedTargetPhrase": "I ___ the address.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-10:i03:r1",
-            "text": "works"
+            "text": "know"
           },
           {
             "responseId": "en:lesson-10:session-10:i03:r2",
-            "text": "work"
+            "text": "knows"
           },
           {
             "responseId": "en:lesson-10:session-10:i03:r3",
-            "text": "working"
+            "text": "knowing"
           }
         ],
-        "testedDimension": "Выберите форму work для обычной работы с he",
+        "testedDimension": "Выберите форму know с I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-10:i03:r2",
             "correct": false,
-            "testedDimension": "Выберите форму work для обычной работы с he",
+            "testedDimension": "Выберите форму know с I",
             "feedbackByLocale": {
-              "ru": "С he нужна works.",
-              "uk": "З he потрібна works."
+              "ru": "С I нужна know без s.",
+              "uk": "З I потрібна know без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-10:i03:r3",
             "correct": false,
-            "testedDimension": "Выберите форму work для обычной работы с he",
+            "testedDimension": "Выберите форму know с I",
             "feedbackByLocale": {
-              "ru": "Здесь обычная работа: works.",
-              "uk": "Тут звичайна робота: works."
+              "ru": "Здесь нужна know.",
+              "uk": "Тут потрібна know."
             }
           }
         ]
@@ -225,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-10:word:curator",
+      "interactionId": "en:lesson-10:session-10:word:hope",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — curator",
+      "prompt": "Карточка слова — hope",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-10:word:curator:audio"
+        "en:lesson-10:session-10:word:hope:audio"
       ],
-      "accessibilityLabel": "Карточка слова — curator",
+      "accessibilityLabel": "Карточка слова — hope",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-10:word:curator:audio",
-          "transcript": "curator"
+          "audioTargetId": "en:lesson-10:session-10:word:hope:audio",
+          "transcript": "hope"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-10:word:curator:r1",
-            "targetText": "curator",
+            "responseId": "en:lesson-10:session-10:word:hope:r1",
+            "targetText": "hope",
             "meaningByLocale": {
-              "ru": "«куратор коллекции». She is a curator. — «Она куратор коллекции». Здесь специалист по музейной коллекции.",
-              "uk": "«куратор колекції». She is a curator. — «Вона кураторка колекції». Тут фахівець із музейної колекції."
+              "ru": "«надеяться». I hope you are well. — «Надеюсь, у тебя всё хорошо».",
+              "uk": "«сподіватися». I hope you are well. — «Сподіваюся, у тебе все добре»."
             }
           }
         ],
@@ -258,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "curator",
+          "word": "hope",
           "definitionByLocale": {
-            "ru": "«куратор коллекции». She is a curator. — «Она куратор коллекции». Здесь специалист по музейной коллекции.",
-            "uk": "«куратор колекції». She is a curator. — «Вона кураторка колекції». Тут фахівець із музейної колекції."
+            "ru": "«надеяться». I hope you are well. — «Надеюсь, у тебя всё хорошо».",
+            "uk": "«сподіватися». I hope you are well. — «Сподіваюся, у тебе все добре»."
           }
         }
       },
@@ -273,23 +273,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает о профессии вашей знакомой. Скажите: «Она куратор коллекции»",
+      "prompt": "Начните сообщение другу: «Надеюсь, у тебя всё хорошо»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает о профессии вашей знакомой. Скажите: «Она куратор коллекции»",
+      "accessibilityLabel": "Начните сообщение другу: «Надеюсь, у тебя всё хорошо»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is a curator.",
+        "targetPhrase": "I hope you are well.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает о профессии вашей знакомой. Скажите: «Она куратор коллекции»",
-          "uk": "Колега запитує про професію вашої знайомої. Скажіть: «Вона кураторка колекції»"
+          "ru": "Начните сообщение другу: «Надеюсь, у тебя всё хорошо»",
+          "uk": "Почніть повідомлення другу: «Сподіваюся, у тебе все добре»"
         },
         "orderedTokens": [
-          "She",
-          "is",
-          "a",
-          "curator"
+          "I",
+          "hope",
+          "you",
+          "are",
+          "well"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -310,15 +311,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-10:i05:r1",
-          "text": "The curator is here."
+          "text": "I hope you are well."
         },
         {
           "responseId": "en:lesson-10:session-10:i05:r2",
-          "text": "The curator is outside."
+          "text": "We hope you are well."
         },
         {
           "responseId": "en:lesson-10:session-10:i05:r3",
-          "text": "The guide is here."
+          "text": "I hope she is well."
         }
       ],
       "mediaIds": [],
@@ -330,23 +331,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-10:i05:audio",
-          "transcript": "The curator is here."
+          "transcript": "I hope you are well."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-10:i05:r1",
-            "targetText": "The curator is here.",
+            "targetText": "I hope you are well.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-10:i05:r2",
-            "targetText": "The curator is outside.",
+            "targetText": "We hope you are well.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-10:i05:r3",
-            "targetText": "The guide is here.",
+            "targetText": "I hope she is well.",
             "meaningByLocale": null
           }
         ],
@@ -357,8 +358,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The curator is here.",
-              "uk": "У записі звучить The curator is here."
+              "ru": "В записи звучит I hope you are well.",
+              "uk": "У записі звучить I hope you are well."
             }
           },
           {
@@ -366,8 +367,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The curator is here.",
-              "uk": "У записі звучить The curator is here."
+              "ru": "В записи звучит I hope you are well.",
+              "uk": "У записі звучить I hope you are well."
             }
           }
         ],
@@ -382,63 +383,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль перед названием профессии",
+      "prompt": "Выберите связку с you",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-10:i06:r1",
-          "text": "a"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-10:i06:r2",
-          "text": "an"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-10:i06:r3",
-          "text": "are"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль перед названием профессии",
+      "accessibilityLabel": "Выберите связку с you",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед названием профессии",
-          "uk": "Виберіть артикль перед назвою професії"
+          "ru": "Выберите связку с you",
+          "uk": "Виберіть зв’язку з you"
         },
-        "gappedTargetPhrase": "She is ___ curator.",
+        "gappedTargetPhrase": "I hope you ___ well.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-10:i06:r1",
-            "text": "a"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-10:i06:r2",
-            "text": "an"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-10:i06:r3",
-            "text": "are"
+            "text": "am"
           }
         ],
-        "testedDimension": "Выберите артикль перед названием профессии",
+        "testedDimension": "Выберите связку с you",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-10:i06:r2",
             "correct": false,
-            "testedDimension": "Выберите артикль перед названием профессии",
+            "testedDimension": "Выберите связку с you",
             "feedbackByLocale": {
-              "ru": "Curator начинается с согласного звука: a.",
-              "uk": "Curator починається з приголосного звука: a."
+              "ru": "С you нужна are.",
+              "uk": "З you потрібна are."
             }
           },
           {
             "responseId": "en:lesson-10:session-10:i06:r3",
             "correct": false,
-            "testedDimension": "Выберите артикль перед названием профессии",
+            "testedDimension": "Выберите связку с you",
             "feedbackByLocale": {
-              "ru": "Are — глагол, а здесь нужен артикль a.",
-              "uk": "Are — дієслово, а тут потрібен артикль a."
+              "ru": "Am употребляем с I, здесь you are.",
+              "uk": "Am вживаємо з I, тут you are."
             }
           }
         ]
@@ -446,32 +447,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-10:word:artifact",
+      "interactionId": "en:lesson-10:session-10:word:wish",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — artifact",
+      "prompt": "Карточка слова — wish",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-10:word:artifact:audio"
+        "en:lesson-10:session-10:word:wish:audio"
       ],
-      "accessibilityLabel": "Карточка слова — artifact",
+      "accessibilityLabel": "Карточка слова — wish",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-10:word:artifact:audio",
-          "transcript": "artifact"
+          "audioTargetId": "en:lesson-10:session-10:word:wish:audio",
+          "transcript": "wish"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-10:word:artifact:r1",
-            "targetText": "artifact",
+            "responseId": "en:lesson-10:session-10:word:wish:r1",
+            "targetText": "wish",
             "meaningByLocale": {
-              "ru": "«артефакт». The artifact is old. — «Артефакт старый». Здесь предмет, созданный человеком и представляющий исторический интерес.",
-              "uk": "«артефакт». The artifact is old. — «Артефакт старий». Тут предмет, створений людиною, що становить історичний інтерес."
+              "ru": "«желать». I wish you good luck. — «Желаю тебе удачи».",
+              "uk": "«бажати». I wish you good luck. — «Бажаю тобі успіху»."
             }
           }
         ],
@@ -479,10 +480,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "artifact",
+          "word": "wish",
           "definitionByLocale": {
-            "ru": "«артефакт». The artifact is old. — «Артефакт старый». Здесь предмет, созданный человеком и представляющий исторический интерес.",
-            "uk": "«артефакт». The artifact is old. — «Артефакт старий». Тут предмет, створений людиною, що становить історичний інтерес."
+            "ru": "«желать». I wish you good luck. — «Желаю тебе удачи».",
+            "uk": "«бажати». I wish you good luck. — «Бажаю тобі успіху»."
           }
         }
       },
@@ -494,23 +495,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Посетитель спрашивает о возрасте исторического предмета. Скажите: «Артефакт старый»",
+      "prompt": "Перед экзаменом пожелайте другу удачи",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Посетитель спрашивает о возрасте исторического предмета. Скажите: «Артефакт старый»",
+      "accessibilityLabel": "Перед экзаменом пожелайте другу удачи",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The artifact is old.",
+        "targetPhrase": "I wish you good luck.",
         "localizedMeaning": {
-          "ru": "Посетитель спрашивает о возрасте исторического предмета. Скажите: «Артефакт старый»",
-          "uk": "Відвідувач запитує про вік історичного предмета. Скажіть: «Артефакт старий»"
+          "ru": "Перед экзаменом пожелайте другу удачи",
+          "uk": "Перед іспитом побажайте другу успіху"
         },
         "orderedTokens": [
-          "The",
-          "artifact",
-          "is",
-          "old"
+          "I",
+          "wish",
+          "you",
+          "good",
+          "luck"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -531,15 +533,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-10:i08:r1",
-          "text": "I am looking at the artifact."
+          "text": "We wish you good luck."
         },
         {
           "responseId": "en:lesson-10:session-10:i08:r2",
-          "text": "I am looking at the door."
+          "text": "I wish you good luck."
         },
         {
           "responseId": "en:lesson-10:session-10:i08:r3",
-          "text": "She is looking at the artifact."
+          "text": "We wish her good luck."
         }
       ],
       "mediaIds": [],
@@ -551,23 +553,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-10:i08:audio",
-          "transcript": "I am looking at the artifact."
+          "transcript": "We wish you good luck."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-10:i08:r1",
-            "targetText": "I am looking at the artifact.",
+            "targetText": "We wish you good luck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-10:i08:r2",
-            "targetText": "I am looking at the door.",
+            "targetText": "I wish you good luck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-10:i08:r3",
-            "targetText": "She is looking at the artifact.",
+            "targetText": "We wish her good luck.",
             "meaningByLocale": null
           }
         ],
@@ -578,8 +580,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am looking at the artifact.",
-              "uk": "У записі звучить I am looking at the artifact."
+              "ru": "В записи звучит We wish you good luck.",
+              "uk": "У записі звучить We wish you good luck."
             }
           },
           {
@@ -587,8 +589,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am looking at the artifact.",
-              "uk": "У записі звучить I am looking at the artifact."
+              "ru": "В записи звучит We wish you good luck.",
+              "uk": "У записі звучить We wish you good luck."
             }
           }
         ],
@@ -603,63 +605,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для одного артефакта",
+      "prompt": "Выберите форму wish с I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-10:i09:r1",
-          "text": "is"
+          "text": "wish"
         },
         {
           "responseId": "en:lesson-10:session-10:i09:r2",
-          "text": "are"
+          "text": "wishes"
         },
         {
           "responseId": "en:lesson-10:session-10:i09:r3",
-          "text": "am"
+          "text": "wishing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для одного артефакта",
+      "accessibilityLabel": "Выберите форму wish с I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одного артефакта",
-          "uk": "Виберіть зв’язку для одного артефакту"
+          "ru": "Выберите форму wish с I",
+          "uk": "Виберіть форму wish з I"
         },
-        "gappedTargetPhrase": "The artifact ___ old.",
+        "gappedTargetPhrase": "I ___ you good luck.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-10:i09:r1",
-            "text": "is"
+            "text": "wish"
           },
           {
             "responseId": "en:lesson-10:session-10:i09:r2",
-            "text": "are"
+            "text": "wishes"
           },
           {
             "responseId": "en:lesson-10:session-10:i09:r3",
-            "text": "am"
+            "text": "wishing"
           }
         ],
-        "testedDimension": "Выберите связку для одного артефакта",
+        "testedDimension": "Выберите форму wish с I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-10:i09:r2",
             "correct": false,
-            "testedDimension": "Выберите связку для одного артефакта",
+            "testedDimension": "Выберите форму wish с I",
             "feedbackByLocale": {
-              "ru": "Один предмет: is.",
-              "uk": "Один предмет: is."
+              "ru": "С I нужна wish без es.",
+              "uk": "З I потрібна wish без es."
             }
           },
           {
             "responseId": "en:lesson-10:session-10:i09:r3",
             "correct": false,
-            "testedDimension": "Выберите связку для одного артефакта",
+            "testedDimension": "Выберите форму wish с I",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Здесь нужна wish.",
+              "uk": "Тут потрібна wish."
             }
           }
         ]
@@ -667,32 +669,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-10:word:diorama",
+      "interactionId": "en:lesson-10:session-10:word:promise",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — diorama",
+      "prompt": "Карточка слова — promise",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-10:word:diorama:audio"
+        "en:lesson-10:session-10:word:promise:audio"
       ],
-      "accessibilityLabel": "Карточка слова — diorama",
+      "accessibilityLabel": "Карточка слова — promise",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-10:word:diorama:audio",
-          "transcript": "diorama"
+          "audioTargetId": "en:lesson-10:session-10:word:promise:audio",
+          "transcript": "promise"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-10:word:diorama:r1",
-            "targetText": "diorama",
+            "responseId": "en:lesson-10:session-10:word:promise:r1",
+            "targetText": "promise",
             "meaningByLocale": {
-              "ru": "«диорама». The diorama is small. — «Диорама маленькая». Здесь объёмная модель сцены в музее.",
-              "uk": "«діорама». The diorama is small. — «Діорама маленька». Тут об’ємна модель сцени в музеї."
+              "ru": "«обещать». I promise to help. — «Я обещаю помочь».",
+              "uk": "«обіцяти». I promise to help. — «Я обіцяю допомогти»."
             }
           }
         ],
@@ -700,10 +702,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "diorama",
+          "word": "promise",
           "definitionByLocale": {
-            "ru": "«диорама». The diorama is small. — «Диорама маленькая». Здесь объёмная модель сцены в музее.",
-            "uk": "«діорама». The diorama is small. — «Діорама маленька». Тут об’ємна модель сцени в музеї."
+            "ru": "«обещать». I promise to help. — «Я обещаю помочь».",
+            "uk": "«обіцяти». I promise to help. — «Я обіцяю допомогти»."
           }
         }
       },
@@ -715,23 +717,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает о размере объёмной модели сцены. Скажите: «Диорама маленькая»",
+      "prompt": "Друг просит помощи с переездом. Скажите: «Я обещаю помочь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает о размере объёмной модели сцены. Скажите: «Диорама маленькая»",
+      "accessibilityLabel": "Друг просит помощи с переездом. Скажите: «Я обещаю помочь»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The diorama is small.",
+        "targetPhrase": "I promise to help.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает о размере объёмной модели сцены. Скажите: «Диорама маленькая»",
-          "uk": "Колега запитує про розмір об’ємної моделі сцени. Скажіть: «Діорама маленька»"
+          "ru": "Друг просит помощи с переездом. Скажите: «Я обещаю помочь»",
+          "uk": "Друг просить допомоги з переїздом. Скажіть: «Я обіцяю допомогти»"
         },
         "orderedTokens": [
-          "The",
-          "diorama",
-          "is",
-          "small"
+          "I",
+          "promise",
+          "to",
+          "help"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -752,15 +754,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-10:i11:r1",
-          "text": "We are looking at the diorama."
+          "text": "I promise to help."
         },
         {
           "responseId": "en:lesson-10:session-10:i11:r2",
-          "text": "They are looking at the diorama."
+          "text": "We promise to help."
         },
         {
           "responseId": "en:lesson-10:session-10:i11:r3",
-          "text": "We are looking at the map."
+          "text": "I promise to wait."
         }
       ],
       "mediaIds": [],
@@ -772,23 +774,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-10:i11:audio",
-          "transcript": "We are looking at the diorama."
+          "transcript": "I promise to help."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-10:i11:r1",
-            "targetText": "We are looking at the diorama.",
+            "targetText": "I promise to help.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-10:i11:r2",
-            "targetText": "They are looking at the diorama.",
+            "targetText": "We promise to help.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-10:i11:r3",
-            "targetText": "We are looking at the map.",
+            "targetText": "I promise to wait.",
             "meaningByLocale": null
           }
         ],
@@ -799,8 +801,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит We are looking at the diorama.",
-              "uk": "У записі звучить We are looking at the diorama."
+              "ru": "В записи звучит I promise to help.",
+              "uk": "У записі звучить I promise to help."
             }
           },
           {
@@ -808,8 +810,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит We are looking at the diorama.",
-              "uk": "У записі звучить We are looking at the diorama."
+              "ru": "В записи звучит I promise to help.",
+              "uk": "У записі звучить I promise to help."
             }
           }
         ],
@@ -824,63 +826,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку перед working с he для временной работы",
+      "prompt": "Выберите слово перед действием help после promise",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-10:i12:r1",
-          "text": "is"
+          "text": "to"
         },
         {
           "responseId": "en:lesson-10:session-10:i12:r2",
-          "text": "are"
+          "text": "at"
         },
         {
           "responseId": "en:lesson-10:session-10:i12:r3",
-          "text": "am"
+          "text": "with"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку перед working с he для временной работы",
+      "accessibilityLabel": "Выберите слово перед действием help после promise",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку перед working с he для временной работы",
-          "uk": "Виберіть зв’язку перед working з he для тимчасової роботи"
+          "ru": "Выберите слово перед действием help после promise",
+          "uk": "Виберіть слово перед дією help після promise"
         },
-        "gappedTargetPhrase": "He ___ working here this month.",
+        "gappedTargetPhrase": "I promise ___ help.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-10:i12:r1",
-            "text": "is"
+            "text": "to"
           },
           {
             "responseId": "en:lesson-10:session-10:i12:r2",
-            "text": "are"
+            "text": "at"
           },
           {
             "responseId": "en:lesson-10:session-10:i12:r3",
-            "text": "am"
+            "text": "with"
           }
         ],
-        "testedDimension": "Выберите связку перед working с he для временной работы",
+        "testedDimension": "Выберите слово перед действием help после promise",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-10:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите связку перед working с he для временной работы",
+            "testedDimension": "Выберите слово перед действием help после promise",
             "feedbackByLocale": {
-              "ru": "С he нужна is.",
-              "uk": "З he потрібна is."
+              "ru": "Перед действием после promise нужен to.",
+              "uk": "Перед дією після promise потрібне to."
             }
           },
           {
             "responseId": "en:lesson-10:session-10:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите связку перед working с he для временной работы",
+            "testedDimension": "Выберите слово перед действием help после promise",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Здесь promise to help.",
+              "uk": "Тут promise to help."
             }
           }
         ]
@@ -893,58 +895,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините новые слова со значениями",
+      "prompt": "Соедините слова с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините новые слова со значениями",
+      "accessibilityLabel": "Соедините слова с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-10:i13:p1",
-            "target": "docent",
+            "target": "know",
             "meaningByLocale": {
-              "ru": "музейный экскурсовод",
-              "uk": "музейний екскурсовод"
+              "ru": "знать",
+              "uk": "знати"
             }
           },
           {
             "pairId": "en:lesson-10:session-10:i13:p2",
-            "target": "curator",
+            "target": "hope",
             "meaningByLocale": {
-              "ru": "куратор коллекции",
-              "uk": "куратор колекції"
+              "ru": "надеяться",
+              "uk": "сподіватися"
             }
           },
           {
             "pairId": "en:lesson-10:session-10:i13:p3",
-            "target": "artifact",
+            "target": "wish",
             "meaningByLocale": {
-              "ru": "артефакт",
-              "uk": "артефакт"
+              "ru": "желать",
+              "uk": "бажати"
             }
           },
           {
             "pairId": "en:lesson-10:session-10:i13:p4",
-            "target": "diorama",
+            "target": "promise",
             "meaningByLocale": {
-              "ru": "диорама",
-              "uk": "діорама"
+              "ru": "обещать",
+              "uk": "обіцяти"
             }
           }
         ],
         "leftColumn": [
-          "docent",
-          "curator",
-          "artifact",
-          "diorama"
+          "know",
+          "hope",
+          "wish",
+          "promise"
         ],
         "rightColumn": [
-          "музейный экскурсовод",
-          "куратор коллекции",
-          "артефакт",
-          "диорама"
+          "знать",
+          "надеяться",
+          "желать",
+          "обещать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -966,28 +968,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос; this month поставьте в конце",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-10:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос; this month поставьте в конце",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-10:i14:audio",
-          "transcript": "Is he working here this month?"
+          "transcript": "I wish you good luck."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is he working here this month?",
+        "hiddenTargetPhrase": "I wish you good luck.",
         "orderedTokens": [
-          "Is",
-          "he",
-          "working",
-          "here",
-          "this",
-          "month"
+          "I",
+          "wish",
+          "you",
+          "good",
+          "luck"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1001,24 +1002,60 @@
     {
       "interactionId": "en:lesson-10:session-10:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Знакомая спрашивает, где гид обычно проводит рабочий день. Скажите: «Обычно он работает на улице»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-10:i15:audio"
       ],
-      "accessibilityLabel": "Знакомая спрашивает, где гид обычно проводит рабочий день. Скажите: «Обычно он работает на улице»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-10:i15:audio",
+          "transcript": "I promise to help."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I promise to help.",
+        "orderedTokens": [
+          "I",
+          "promise",
+          "to",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Давно не общались с другом. Скажите: «Надеюсь, у тебя всё хорошо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Давно не общались с другом. Скажите: «Надеюсь, у тебя всё хорошо»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-10:i15:audio",
-          "transcript": "He usually works outside."
+          "audioTargetId": "en:lesson-10:session-10:i16:audio",
+          "transcript": "I hope you are well."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He usually works outside.",
+        "targetPhrase": "I hope you are well.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1032,74 +1069,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-10:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Гид временно помогает музею. Скажите: «В этом месяце он работает в музее». Поставьте this month в конце",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Гид временно помогает музею. Скажите: «В этом месяце он работает в музее». Поставьте this month в конце",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is working at a museum this month.",
-        "localizedMeaning": {
-          "ru": "Гид временно помогает музею. Скажите: «В этом месяце он работает в музее». Поставьте this month в конце",
-          "uk": "Гід тимчасово допомагає музею. Скажіть: «Цього місяця він працює в музеї». Поставте this month наприкінці"
-        },
-        "orderedTokens": [
-          "He",
-          "is",
-          "working",
-          "at",
-          "a",
-          "museum",
-          "this",
-          "month"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-10:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ваш знакомый обычно проводит городские экскурсии. Он временно помогает музею один месяц, затем возвращается к прежней работе. Коллега спрашивает, где он работает в этот период. Ответьте: «В этом месяце он работает в музее»",
+      "prompt": "Друг просит помощи. Пообещайте помочь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-10:i17:audio"
       ],
-      "accessibilityLabel": "Ваш знакомый обычно проводит городские экскурсии. Он временно помогает музею один месяц, затем возвращается к прежней работе. Коллега спрашивает, где он работает в этот период. Ответьте: «В этом месяце он работает в музее»",
+      "accessibilityLabel": "Друг просит помощи. Пообещайте помочь",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-10:i17:audio",
-          "transcript": "He is working at a museum this month."
+          "transcript": "I promise to help."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is working at a museum this month.",
+        "targetPhrase": "I promise to help.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1116,5 +1108,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2d7535cbe2ae80c163671304435392292ae33495d5ff41ecf080826de16147e3"
+  "learnerFingerprint": "dc64efdbdf3995abd976ad2cd3b887d37d05768b8aff7eaf4ba1a12fc2ea8ff6"
 }

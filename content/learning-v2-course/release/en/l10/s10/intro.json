@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-10",
   "learningOutcomeByLocale": {
-    "ru": "He usually works outside; He is working at a museum this month",
-    "uk": "He usually works outside; He is working at a museum this month"
+    "ru": "I know the address; I hope you are well; I wish you good luck; I promise to help",
+    "uk": "I know the address; I hope you are well; I wish you good luck; I promise to help"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обычная работа",
-        "uk": "Звичайна робота"
+        "ru": "Адрес вам известен",
+        "uk": "Адреса вам відома"
       },
       "bodyByLocale": {
-        "ru": "Ваш знакомый — гид: обычно он проводит экскурсии по городу. He usually works outside — «Обычно он работает на улице». Present Simple описывает привычную ситуацию. Usually стоит перед смысловым глаголом works. Это не обещание, что работа никогда не изменится.",
-        "uk": "Ваш знайомий — гід: зазвичай він проводить екскурсії містом. He usually works outside — «Зазвичай він працює надворі». Present Simple описує звичну ситуацію. Usually стоїть перед смисловим дієсловом works. Це не обіцянка, що робота ніколи не зміниться."
+        "ru": "Друг хочет прислать адрес, чтобы вы нашли его дом. Вы уже знаете адрес: I know the address — «Я знаю адрес». Know — «знать». Знание — не действие в процессе: здесь I know, без am, даже если речь о том, что вы знаете сейчас.",
+        "uk": "Друг хоче надіслати адресу, щоб ви знайшли його будинок. Ви вже знаєте адресу: I know the address — «Я знаю адресу». Know — «знати». Знання — не дія в процесі: тут I know, без am, навіть якщо йдеться про те, що ви знаєте зараз."
       },
       "question": {
         "interactionId": "en:lesson-10:session-10:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-10:intro1:r1",
-              "text": "He usually works outside."
+              "text": "I know the address."
             },
             {
               "responseId": "en:lesson-10:session-10:intro1:r2",
-              "text": "He usually work outside."
+              "text": "I am know the address."
             },
             {
               "responseId": "en:lesson-10:session-10:intro1:r3",
-              "text": "He usually working outside."
+              "text": "I knows the address."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-10:intro1:r1",
-              "text": "He usually works outside."
+              "text": "I know the address."
             },
             {
               "responseId": "en:lesson-10:session-10:intro1:r2",
-              "text": "He usually work outside."
+              "text": "I am know the address."
             },
             {
               "responseId": "en:lesson-10:session-10:intro1:r3",
-              "text": "He usually working outside."
+              "text": "I knows the address."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Временно в музее",
-        "uk": "Тимчасово в музеї"
+        "ru": "Добрые слова в сообщении",
+        "uk": "Добрі слова в повідомленні"
       },
       "bodyByLocale": {
-        "ru": "В этом месяце гид временно помогает музею, а затем вернётся к городским экскурсиям. He is working at a museum this month — «В этом месяце он работает в музее». Is working описывает временный период; он не обязан проводить экскурсию именно сейчас. В американском музее экскурсовода могут называть docent — «музейный экскурсовод». Здесь речь именно об этом значении, не об университетской должности.",
-        "uk": "Цього місяця гід тимчасово допомагає музею, а потім повернеться до міських екскурсій. He is working at a museum this month — «Цього місяця він працює в музеї». Is working описує тимчасовий період; він не обов’язково проводить екскурсію саме зараз. В американському музеї екскурсовода можуть називати docent — «музейний екскурсовод». Тут ідеться саме про це значення, а не про університетську посаду."
+        "ru": "Вы давно не общались с другом и начинаете сообщение: I hope you are well — «Надеюсь, у тебя всё хорошо». Hope — «надеяться». Вы не утверждаете, что знаете, как дела: вы надеетесь. Перед экзаменом можно добавить: I wish you good luck — «Желаю тебе удачи». Wish здесь — «желать», а good luck — «удача» в пожелании.",
+        "uk": "Ви давно не спілкувалися з другом і починаєте повідомлення: I hope you are well — «Сподіваюся, у тебе все добре». Hope — «сподіватися». Ви не стверджуєте, що знаєте, як справи: ви сподіваєтеся. Перед іспитом можна додати: I wish you good luck — «Бажаю тобі успіху». Wish тут — «бажати», а good luck — «удача, успіх» у побажанні."
       },
       "question": {
         "interactionId": "en:lesson-10:session-10:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-10:intro2:r1",
-              "text": "He is working at a museum this month."
+              "text": "I hope you are well."
             },
             {
               "responseId": "en:lesson-10:session-10:intro2:r2",
-              "text": "He working at a museum this month."
+              "text": "I hopes you are well."
             },
             {
               "responseId": "en:lesson-10:session-10:intro2:r3",
-              "text": "He is works at a museum this month."
+              "text": "I hope you is well."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-10:intro2:r1",
-              "text": "He is working at a museum this month."
+              "text": "I hope you are well."
             },
             {
               "responseId": "en:lesson-10:session-10:intro2:r2",
-              "text": "He working at a museum this month."
+              "text": "I hopes you are well."
             },
             {
               "responseId": "en:lesson-10:session-10:intro2:r3",
-              "text": "He is works at a museum this month."
+              "text": "I hope you is well."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Коллега по музею",
-        "uk": "Колега з музею"
+        "ru": "Пообещать помощь",
+        "uk": "Пообіцяти допомогу"
       },
       "bodyByLocale": {
-        "ru": "Гид знакомит вас с куратором музейной коллекции. Curator — «куратор коллекции»: специалист, который занимается коллекцией и её представлением. She is a curator — «Она куратор коллекции». Здесь is связывает she с названием профессии; это не Present Continuous. Для действия во временном периоде понадобилось бы, например, is working.",
-        "uk": "Гід знайомить вас із кураторкою музейної колекції. Curator — «куратор колекції»: фахівець, який займається колекцією та її представленням. She is a curator — «Вона кураторка колекції». Тут is поєднує she з назвою професії; це не Present Continuous. Для дії в тимчасовому періоді знадобилося б, наприклад, is working."
+        "ru": "Друг просит помочь с переездом. Вы обещаете: I promise to help — «Я обещаю помочь». Promise — «обещать». Перед следующим действием ставим to: promise to help. Вы даёте обещание этой фразой; здесь не нужно am.",
+        "uk": "Друг просить допомогти з переїздом. Ви обіцяєте: I promise to help — «Я обіцяю допомогти». Promise — «обіцяти». Перед наступною дією ставимо to: promise to help. Ви даєте обіцянку цією фразою; тут не потрібне am."
       },
       "question": {
         "interactionId": "en:lesson-10:session-10:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-10:intro3:r1",
-              "text": "She is a curator."
+              "text": "I promise to help."
             },
             {
               "responseId": "en:lesson-10:session-10:intro3:r2",
-              "text": "She a curator."
+              "text": "I promise to helps."
             },
             {
               "responseId": "en:lesson-10:session-10:intro3:r3",
-              "text": "She is curator."
+              "text": "I am promise to help."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-10:intro3:r1",
-              "text": "She is a curator."
+              "text": "I promise to help."
             },
             {
               "responseId": "en:lesson-10:session-10:intro3:r2",
-              "text": "She a curator."
+              "text": "I promise to helps."
             },
             {
               "responseId": "en:lesson-10:session-10:intro3:r3",
-              "text": "She is curator."
+              "text": "I am promise to help."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "de080f0869a6ab792e1cb1976b4ee4e2159b68ab8220360f0c1b551a512855b0"
+  "introFingerprint": "828092db8ac1f47932bf73f5c6c5ddacec87bcba9e391ff024538e851097f868"
 }

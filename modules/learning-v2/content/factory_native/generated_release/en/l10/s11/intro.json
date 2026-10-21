@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-11",
   "learningOutcomeByLocale": {
-    "ru": "She works for a newspaper; She is working on a book this month",
-    "uk": "She works for a newspaper; She is working on a book this month"
+    "ru": "Can I have your phone number?; I am sending a text message; I have a missed call; I am leaving a voicemail",
+    "uk": "Can I have your phone number?; I am sending a text message; I have a missed call; I am leaving a voicemail"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-11:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Основная работа",
-        "uk": "Основна робота"
+        "ru": "Обменяться номерами",
+        "uk": "Обмінятися номерами"
       },
       "bodyByLocale": {
-        "ru": "Ваша знакомая редактирует материалы для газеты. Editor — «редактор». She works for a newspaper — «Она работает в газете». Works for показывает, на какую организацию она работает. Present Simple описывает её обычную работу, а не действие в эту секунду.",
-        "uk": "Ваша знайома редагує матеріали для газети. Editor — «редактор». She works for a newspaper — «Вона працює в газеті». Works for показує, на яку організацію вона працює. Present Simple описує її звичайну роботу, а не дію цієї секунди."
+        "ru": "Вы договорились встретиться завтра и хотите иметь возможность позвонить. Phone number — «номер телефона»: Can I have your phone number? — «Можно твой номер телефона?» После can нужна have без to.",
+        "uk": "Ви домовилися зустрітися завтра й хочете мати змогу зателефонувати. Phone number — «номер телефону»: Can I have your phone number? — «Можна твій номер телефону?» Після can потрібна have без to."
       },
       "question": {
         "interactionId": "en:lesson-10:session-11:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-11:intro1:r1",
-              "text": "She works for a newspaper."
+              "text": "Can I have your phone number?"
             },
             {
               "responseId": "en:lesson-10:session-11:intro1:r2",
-              "text": "She work for a newspaper."
+              "text": "Can I to have your phone number?"
             },
             {
               "responseId": "en:lesson-10:session-11:intro1:r3",
-              "text": "She is work for a newspaper."
+              "text": "Can I has your phone number?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-11:intro1:r1",
-              "text": "She works for a newspaper."
+              "text": "Can I have your phone number?"
             },
             {
               "responseId": "en:lesson-10:session-11:intro1:r2",
-              "text": "She work for a newspaper."
+              "text": "Can I to have your phone number?"
             },
             {
               "responseId": "en:lesson-10:session-11:intro1:r3",
-              "text": "She is work for a newspaper."
+              "text": "Can I has your phone number?"
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Проект на этот месяц",
-        "uk": "Проєкт на цей місяць"
+        "ru": "Сообщение и пропущенный звонок",
+        "uk": "Повідомлення й пропущений дзвінок"
       },
       "bodyByLocale": {
-        "ru": "В этом месяце редактор временно помогает автору с книгой. She is working on a book this month — «В этом месяце она работает над книгой». Work on — работать над чем-то. Is working описывает временный проект. Фраза остаётся верной и во время её обеденного перерыва: речь о периоде, а не только об этой секунде.",
-        "uk": "Цього місяця редакторка тимчасово допомагає автору з книжкою. She is working on a book this month — «Цього місяця вона працює над книжкою». Work on — працювати над чимось. Is working описує тимчасовий проєкт. Фраза залишається правильною і під час її обідньої перерви: ідеться про період, а не лише про цю секунду."
+        "ru": "Вы сейчас отправляете другу короткое сообщение с адресом. Text message — «текстовое сообщение, СМС»: I am sending a text message — «Я отправляю сообщение». А missed call — «пропущенный звонок»: I have a missed call — «У меня пропущенный звонок». Sending описывает действие сейчас; have здесь сообщает, что у вас есть уведомление о звонке.",
+        "uk": "Ви зараз надсилаєте другу коротке повідомлення з адресою. Text message — «текстове повідомлення, СМС»: I am sending a text message — «Я надсилаю повідомлення». А missed call — «пропущений дзвінок»: I have a missed call — «У мене пропущений дзвінок». Sending описує дію зараз; have тут повідомляє, що у вас є сповіщення про дзвінок."
       },
       "question": {
         "interactionId": "en:lesson-10:session-11:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-11:intro2:r1",
-              "text": "She is working on a book this month."
+              "text": "I am sending a text message."
             },
             {
               "responseId": "en:lesson-10:session-11:intro2:r2",
-              "text": "She working on a book this month."
+              "text": "I sending a text message."
             },
             {
               "responseId": "en:lesson-10:session-11:intro2:r3",
-              "text": "She is works on a book this month."
+              "text": "I am send a text message."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-11:intro2:r1",
-              "text": "She is working on a book this month."
+              "text": "I am sending a text message."
             },
             {
               "responseId": "en:lesson-10:session-11:intro2:r2",
-              "text": "She working on a book this month."
+              "text": "I sending a text message."
             },
             {
               "responseId": "en:lesson-10:session-11:intro2:r3",
-              "text": "She is works on a book this month."
+              "text": "I am send a text message."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Текст до публикации",
-        "uk": "Текст до публікації"
+        "ru": "Оставить голосовое сообщение",
+        "uk": "Залишити голосове повідомлення"
       },
       "bodyByLocale": {
-        "ru": "Автор прислал текст книги до публикации. Manuscript — «рукопись»: здесь авторский текст, даже если он набран на компьютере. Редактор открыла файл. She is reading the manuscript — «Она читает рукопись». Теперь Present Continuous описывает то, что она делает сейчас. Контекст помогает понять: действие сейчас или временный период.",
-        "uk": "Автор надіслав текст книжки до публікації. Manuscript — «рукопис»: тут авторський текст, навіть якщо його набрано на комп’ютері. Редакторка відкрила файл. She is reading the manuscript — «Вона читає рукопис». Тепер Present Continuous описує те, що вона робить зараз. Контекст допомагає зрозуміти: дія зараз чи тимчасовий період."
+        "ru": "Друг не отвечает на звонок. После сигнала вы записываете сообщение, чтобы он послушал позже. Voicemail — «сообщение голосовой почты»: I am leaving a voicemail — «Я оставляю голосовое сообщение». В leave перед ing убираем последнюю e: leaving. Здесь voicemail — одно записанное сообщение, поэтому a voicemail.",
+        "uk": "Друг не відповідає на дзвінок. Після сигналу ви записуєте повідомлення, щоб він послухав пізніше. Voicemail — «повідомлення голосової пошти»: I am leaving a voicemail — «Я залишаю голосове повідомлення». У leave перед ing прибираємо останню e: leaving. Тут voicemail — одне записане повідомлення, тому a voicemail."
       },
       "question": {
         "interactionId": "en:lesson-10:session-11:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-11:intro3:r1",
-              "text": "She is reading the manuscript."
+              "text": "I am leaving a voicemail."
             },
             {
               "responseId": "en:lesson-10:session-11:intro3:r2",
-              "text": "She is read the manuscript."
+              "text": "I leaving a voicemail."
             },
             {
               "responseId": "en:lesson-10:session-11:intro3:r3",
-              "text": "She reading the manuscript."
+              "text": "I am leave a voicemail."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-11:intro3:r1",
-              "text": "She is reading the manuscript."
+              "text": "I am leaving a voicemail."
             },
             {
               "responseId": "en:lesson-10:session-11:intro3:r2",
-              "text": "She is read the manuscript."
+              "text": "I leaving a voicemail."
             },
             {
               "responseId": "en:lesson-10:session-11:intro3:r3",
-              "text": "She reading the manuscript."
+              "text": "I am leave a voicemail."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c53d82ac2ac378cdb15a93c0e639190f1607b298103554052791510a829465bf"
+  "introFingerprint": "3c701dc59c522a581c6c50bd62213311e037b076fb2c726e8e571b8488de3804"
 }

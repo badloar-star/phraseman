@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-09:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-09:intro1:r2": {
-          "ru": "С she в Present Simple нужна works.",
-          "uk": "З she у Present Simple потрібна works."
+          "ru": "С I нужна buy без s.",
+          "uk": "З I потрібна buy без s."
         },
         "en:lesson-10:session-09:intro1:r3": {
-          "ru": "Is work неверно; здесь обычная ситуация She works.",
-          "uk": "Is work неправильно; тут звичайна ситуація She works."
+          "ru": "Для привычки нужна buy.",
+          "uk": "Для звички потрібна buy."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-09:intro2:r2": {
-          "ru": "Для временного периода здесь нужны is working.",
-          "uk": "Для тимчасового періоду тут потрібні is working."
+          "ru": "Перед buying нужна am.",
+          "uk": "Перед buying потрібна am."
         },
         "en:lesson-10:session-09:intro2:r3": {
-          "ru": "После is нужна working, не works.",
-          "uk": "Після is потрібна working."
+          "ru": "После am нужна buying.",
+          "uk": "Після am потрібна buying."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-09:intro3:r2": {
-          "ru": "Use теряет e: using.",
-          "uk": "Use втрачає e: using."
+          "ru": "Один напиток: is.",
+          "uk": "Один напій: is."
         },
         "en:lesson-10:session-09:intro3:r3": {
-          "ru": "Перед using с she нужна is.",
-          "uk": "Перед using з she потрібна is."
+          "ru": "Перед sugar-free нужна is.",
+          "uk": "Перед sugar-free потрібна is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1e25467197b57d6fac22e2cd345f272ba39d0f404a9d3bc27afba3ee214c0ed1"
+  "auxiliaryFingerprint": "69f739e874737392a681e45b848923b0257049e3ec4accb7a19ae3951f3e143a"
 }

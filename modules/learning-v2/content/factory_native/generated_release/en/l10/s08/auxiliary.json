@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-08:intro1:r2": {
-          "ru": "Для действия сейчас пропущено is.",
-          "uk": "Для дії зараз пропущене is."
+          "ru": "Нужна agree без am.",
+          "uk": "Потрібна agree без am."
         },
         "en:lesson-10:session-08:intro1:r3": {
-          "ru": "После is нужна speaking.",
-          "uk": "Після is потрібна speaking."
+          "ru": "Перед you после agree нужен with.",
+          "uk": "Перед you після agree потрібне with."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-08:intro2:r2": {
-          "ru": "С I перед watching нужно am.",
-          "uk": "З I перед watching потрібне am."
+          "ru": "С I нужен do, не does.",
+          "uk": "З I потрібне do, не does."
         },
         "en:lesson-10:session-08:intro2:r3": {
-          "ru": "После am нужна watching.",
-          "uk": "Після am потрібна watching."
+          "ru": "Для отрицания mind нужен do not.",
+          "uk": "Для заперечення mind потрібне do not."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-08:intro3:r2": {
-          "ru": "Figurine одна: is.",
-          "uk": "Figurine одна: is."
+          "ru": "С it нужен does.",
+          "uk": "З it потрібне does."
         },
         "en:lesson-10:session-08:intro3:r3": {
-          "ru": "Для полного предложения нужна is.",
-          "uk": "Для повного речення потрібне is."
+          "ru": "После does not нужна matter без s.",
+          "uk": "Після does not потрібна matter без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b8055fce933d106d9e54ba739f860414940e56ac2bc6e3704a0671c6a16a2b1f"
+  "auxiliaryFingerprint": "cc76e0ab3ac3d77f0c8d793fb51c9f8c310fe1606c2a806b0210b56c5d4439f2"
 }

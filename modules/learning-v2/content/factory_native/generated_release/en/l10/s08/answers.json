@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-08:word:exhibitor",
-    "correctText": "exhibitor",
+    "interactionId": "en:lesson-10:session-08:word:agree",
+    "correctText": "agree",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i01",
-    "correctText": "The exhibitor is speaking.",
+    "correctText": "I agree with you.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i02",
-    "correctText": "She usually weaves at home.",
+    "correctText": "We agree with you.",
     "correctResponseId": "en:lesson-10:session-08:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-08:i03",
-    "correctText": "weaves",
+    "correctText": "with",
     "correctResponseId": "en:lesson-10:session-08:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-08:word:demonstration",
-    "correctText": "demonstration",
+    "interactionId": "en:lesson-10:session-08:word:disagree",
+    "correctText": "disagree",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i04",
-    "correctText": "I am watching the demonstration.",
+    "correctText": "I disagree.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i05",
-    "correctText": "The demonstration is starting.",
+    "correctText": "We disagree.",
     "correctResponseId": "en:lesson-10:session-08:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-08:i06",
-    "correctText": "watching",
+    "correctText": "disagree",
     "correctResponseId": "en:lesson-10:session-08:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-08:word:showcase",
-    "correctText": "showcase",
+    "interactionId": "en:lesson-10:session-08:word:mind",
+    "correctText": "mind",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i07",
-    "correctText": "The figurine is in the showcase.",
+    "correctText": "I do not mind.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i08",
-    "correctText": "The showcase is open.",
+    "correctText": "We do not mind.",
     "correctResponseId": "en:lesson-10:session-08:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-08:i09",
-    "correctText": "is",
+    "correctText": "do",
     "correctResponseId": "en:lesson-10:session-08:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-08:word:craftsmanship",
-    "correctText": "craftsmanship",
+    "interactionId": "en:lesson-10:session-08:word:matter",
+    "correctText": "matter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i10",
-    "correctText": "The craftsmanship is excellent.",
+    "correctText": "It does not matter.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i11",
-    "correctText": "The craftsmanship is excellent.",
+    "correctText": "It does not matter.",
     "correctResponseId": "en:lesson-10:session-08:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-08:i12",
-    "correctText": "is",
+    "correctText": "matter",
     "correctResponseId": "en:lesson-10:session-08:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-08:i13",
-    "correctText": "en:lesson-10:session-08:i13:p1=exhibitor\nen:lesson-10:session-08:i13:p2=demonstration\nen:lesson-10:session-08:i13:p3=showcase\nen:lesson-10:session-08:i13:p4=craftsmanship",
+    "correctText": "en:lesson-10:session-08:i13:p1=agree\nen:lesson-10:session-08:i13:p2=disagree\nen:lesson-10:session-08:i13:p3=mind\nen:lesson-10:session-08:i13:p4=matter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i14",
-    "correctText": "Are you watching the demonstration?",
+    "correctText": "I agree with you.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i15",
-    "correctText": "I carve wooden spoons.",
+    "correctText": "It does not matter.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i16",
-    "correctText": "I am not carving a figurine.",
+    "correctText": "I do not mind.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-08:i17",
-    "correctText": "I am watching the demonstration.",
+    "correctText": "It does not matter.",
     "correctResponseId": null
   }
 ]

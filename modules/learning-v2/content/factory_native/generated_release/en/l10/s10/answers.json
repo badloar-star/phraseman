@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-10:word:docent",
-    "correctText": "docent",
+    "interactionId": "en:lesson-10:session-10:word:know",
+    "correctText": "know",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i01",
-    "correctText": "He is a docent.",
+    "correctText": "I know the address.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i02",
-    "correctText": "He usually works outside.",
+    "correctText": "We know the address.",
     "correctResponseId": "en:lesson-10:session-10:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-10:i03",
-    "correctText": "works",
+    "correctText": "know",
     "correctResponseId": "en:lesson-10:session-10:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-10:word:curator",
-    "correctText": "curator",
+    "interactionId": "en:lesson-10:session-10:word:hope",
+    "correctText": "hope",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i04",
-    "correctText": "She is a curator.",
+    "correctText": "I hope you are well.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i05",
-    "correctText": "The curator is here.",
+    "correctText": "I hope you are well.",
     "correctResponseId": "en:lesson-10:session-10:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-10:i06",
-    "correctText": "a",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-10:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-10:word:artifact",
-    "correctText": "artifact",
+    "interactionId": "en:lesson-10:session-10:word:wish",
+    "correctText": "wish",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i07",
-    "correctText": "The artifact is old.",
+    "correctText": "I wish you good luck.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i08",
-    "correctText": "I am looking at the artifact.",
+    "correctText": "We wish you good luck.",
     "correctResponseId": "en:lesson-10:session-10:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-10:i09",
-    "correctText": "is",
+    "correctText": "wish",
     "correctResponseId": "en:lesson-10:session-10:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-10:word:diorama",
-    "correctText": "diorama",
+    "interactionId": "en:lesson-10:session-10:word:promise",
+    "correctText": "promise",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i10",
-    "correctText": "The diorama is small.",
+    "correctText": "I promise to help.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i11",
-    "correctText": "We are looking at the diorama.",
+    "correctText": "I promise to help.",
     "correctResponseId": "en:lesson-10:session-10:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-10:i12",
-    "correctText": "is",
+    "correctText": "to",
     "correctResponseId": "en:lesson-10:session-10:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-10:i13",
-    "correctText": "en:lesson-10:session-10:i13:p1=docent\nen:lesson-10:session-10:i13:p2=curator\nen:lesson-10:session-10:i13:p3=artifact\nen:lesson-10:session-10:i13:p4=diorama",
+    "correctText": "en:lesson-10:session-10:i13:p1=know\nen:lesson-10:session-10:i13:p2=hope\nen:lesson-10:session-10:i13:p3=wish\nen:lesson-10:session-10:i13:p4=promise",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i14",
-    "correctText": "Is he working here this month?",
+    "correctText": "I wish you good luck.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i15",
-    "correctText": "He usually works outside.",
+    "correctText": "I promise to help.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i16",
-    "correctText": "He is working at a museum this month.",
+    "correctText": "I hope you are well.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-10:i17",
-    "correctText": "He is working at a museum this month.",
+    "correctText": "I promise to help.",
     "correctResponseId": null
   }
 ]

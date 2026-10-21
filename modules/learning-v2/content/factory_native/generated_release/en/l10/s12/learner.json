@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-12:word:till",
+      "interactionId": "en:lesson-10:session-12:word:underwear",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — till",
+      "prompt": "Карточка слова — underwear",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-12:word:till:audio"
+        "en:lesson-10:session-12:word:underwear:audio"
       ],
-      "accessibilityLabel": "Карточка слова — till",
+      "accessibilityLabel": "Карточка слова — underwear",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-12:word:till:audio",
-          "transcript": "till"
+          "audioTargetId": "en:lesson-10:session-12:word:underwear:audio",
+          "transcript": "underwear"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-12:word:till:r1",
-            "targetText": "till",
+            "responseId": "en:lesson-10:session-12:word:underwear:r1",
+            "targetText": "underwear",
             "meaningByLocale": {
-              "ru": "«кассовый аппарат». The till is new. — «Кассовый аппарат новый». Здесь британское название аппарата на кассе.",
-              "uk": "«касовий апарат». The till is new. — «Касовий апарат новий». Тут британська назва апарата на касі."
+              "ru": "«нижнее бельё». I am packing my underwear. — «Я укладываю нижнее бельё».",
+              "uk": "«спідня білизна». I am packing my underwear. — «Я пакую спідню білизну»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "till",
+          "word": "underwear",
           "definitionByLocale": {
-            "ru": "«кассовый аппарат». The till is new. — «Кассовый аппарат новый». Здесь британское название аппарата на кассе.",
-            "uk": "«касовий апарат». The till is new. — «Касовий апарат новий». Тут британська назва апарата на касі."
+            "ru": "«нижнее бельё». I am packing my underwear. — «Я укладываю нижнее бельё».",
+            "uk": "«спідня білизна». I am packing my underwear. — «Я пакую спідню білизну»."
           }
         }
       },
@@ -52,23 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает, новый ли кассовый аппарат. Скажите: «Кассовый аппарат новый»",
+      "prompt": "Вы собираете чемодан. Скажите: «Я укладываю нижнее бельё»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает, новый ли кассовый аппарат. Скажите: «Кассовый аппарат новый»",
+      "accessibilityLabel": "Вы собираете чемодан. Скажите: «Я укладываю нижнее бельё»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The till is new.",
+        "targetPhrase": "I am packing my underwear.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, новый ли кассовый аппарат. Скажите: «Кассовый аппарат новый»",
-          "uk": "Колега запитує, чи новий касовий апарат. Скажіть: «Касовий апарат новий»"
+          "ru": "Вы собираете чемодан. Скажите: «Я укладываю нижнее бельё»",
+          "uk": "Ви збираєте валізу. Скажіть: «Я пакую спідню білизну»"
         },
         "orderedTokens": [
-          "The",
-          "till",
-          "is",
-          "new"
+          "I",
+          "am",
+          "packing",
+          "my",
+          "underwear"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +90,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i02:r1",
-          "text": "He usually works near the station."
+          "text": "She is packing her underwear."
         },
         {
           "responseId": "en:lesson-10:session-12:i02:r2",
-          "text": "She usually works near the station."
+          "text": "He is packing his underwear."
         },
         {
           "responseId": "en:lesson-10:session-12:i02:r3",
-          "text": "He usually works near the school."
+          "text": "She is washing her underwear."
         }
       ],
       "mediaIds": [],
@@ -109,23 +110,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-12:i02:audio",
-          "transcript": "He usually works near the station."
+          "transcript": "She is packing her underwear."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-12:i02:r1",
-            "targetText": "He usually works near the station.",
+            "targetText": "She is packing her underwear.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-12:i02:r2",
-            "targetText": "She usually works near the station.",
+            "targetText": "He is packing his underwear.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-12:i02:r3",
-            "targetText": "He usually works near the school.",
+            "targetText": "She is washing her underwear.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +137,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He usually works near the station.",
-              "uk": "У записі звучить He usually works near the station."
+              "ru": "В записи звучит She is packing her underwear.",
+              "uk": "У записі звучить She is packing her underwear."
             }
           },
           {
@@ -145,8 +146,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He usually works near the station.",
-              "uk": "У записі звучить He usually works near the station."
+              "ru": "В записи звучит She is packing her underwear.",
+              "uk": "У записі звучить She is packing her underwear."
             }
           }
         ],
@@ -161,63 +162,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму work для обычной работы с he",
+      "prompt": "Выберите форму pack после am",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i03:r1",
-          "text": "works"
+          "text": "packing"
         },
         {
           "responseId": "en:lesson-10:session-12:i03:r2",
-          "text": "work"
+          "text": "pack"
         },
         {
           "responseId": "en:lesson-10:session-12:i03:r3",
-          "text": "working"
+          "text": "packs"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму work для обычной работы с he",
+      "accessibilityLabel": "Выберите форму pack после am",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму work для обычной работы с he",
-          "uk": "Виберіть форму work для звичайної роботи з he"
+          "ru": "Выберите форму pack после am",
+          "uk": "Виберіть форму pack після am"
         },
-        "gappedTargetPhrase": "He usually ___ near the station.",
+        "gappedTargetPhrase": "I am ___ my underwear.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-12:i03:r1",
-            "text": "works"
+            "text": "packing"
           },
           {
             "responseId": "en:lesson-10:session-12:i03:r2",
-            "text": "work"
+            "text": "pack"
           },
           {
             "responseId": "en:lesson-10:session-12:i03:r3",
-            "text": "working"
+            "text": "packs"
           }
         ],
-        "testedDimension": "Выберите форму work для обычной работы с he",
+        "testedDimension": "Выберите форму pack после am",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-12:i03:r2",
             "correct": false,
-            "testedDimension": "Выберите форму work для обычной работы с he",
+            "testedDimension": "Выберите форму pack после am",
             "feedbackByLocale": {
-              "ru": "С he нужна works.",
-              "uk": "З he потрібна works."
+              "ru": "После am нужна packing.",
+              "uk": "Після am потрібна packing."
             }
           },
           {
             "responseId": "en:lesson-10:session-12:i03:r3",
             "correct": false,
-            "testedDimension": "Выберите форму work для обычной работы с he",
+            "testedDimension": "Выберите форму pack после am",
             "feedbackByLocale": {
-              "ru": "Для обычной работы здесь нужна works.",
-              "uk": "Для звичайної роботи тут потрібна works."
+              "ru": "После am нужна packing, не packs.",
+              "uk": "Після am потрібна packing, не packs."
             }
           }
         ]
@@ -225,32 +226,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-12:word:conveyor-belt",
+      "interactionId": "en:lesson-10:session-12:word:nightdress",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — conveyor belt",
+      "prompt": "Карточка слова — nightdress",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-12:word:conveyor-belt:audio"
+        "en:lesson-10:session-12:word:nightdress:audio"
       ],
-      "accessibilityLabel": "Карточка слова — conveyor belt",
+      "accessibilityLabel": "Карточка слова — nightdress",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-12:word:conveyor-belt:audio",
-          "transcript": "conveyor belt"
+          "audioTargetId": "en:lesson-10:session-12:word:nightdress:audio",
+          "transcript": "nightdress"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-12:word:conveyor-belt:r1",
-            "targetText": "conveyor belt",
+            "responseId": "en:lesson-10:session-12:word:nightdress:r1",
+            "targetText": "nightdress",
             "meaningByLocale": {
-              "ru": "«конвейерная лента». The conveyor belt is moving. — «Конвейерная лента движется». Здесь лента, которая подаёт покупки к кассиру.",
-              "uk": "«конвеєрна стрічка». The conveyor belt is moving. — «Конвеєрна стрічка рухається». Тут стрічка, яка подає покупки до касира."
+              "ru": "«ночная рубашка». She usually wears a nightdress. — «Она обычно носит ночную рубашку».",
+              "uk": "«нічна сорочка». She usually wears a nightdress. — «Вона зазвичай носить нічну сорочку»."
             }
           }
         ],
@@ -258,10 +259,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "conveyor belt",
+          "word": "nightdress",
           "definitionByLocale": {
-            "ru": "«конвейерная лента». The conveyor belt is moving. — «Конвейерная лента движется». Здесь лента, которая подаёт покупки к кассиру.",
-            "uk": "«конвеєрна стрічка». The conveyor belt is moving. — «Конвеєрна стрічка рухається». Тут стрічка, яка подає покупки до касира."
+            "ru": "«ночная рубашка». She usually wears a nightdress. — «Она обычно носит ночную рубашку».",
+            "uk": "«нічна сорочка». She usually wears a nightdress. — «Вона зазвичай носить нічну сорочку»."
           }
         }
       },
@@ -273,24 +274,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покупатель спрашивает, почему его покупки едут вперёд. Скажите: «Конвейерная лента движется»",
+      "prompt": "Скажите, что подруга обычно носит ночную рубашку. Usually поставьте перед wears",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покупатель спрашивает, почему его покупки едут вперёд. Скажите: «Конвейерная лента движется»",
+      "accessibilityLabel": "Скажите, что подруга обычно носит ночную рубашку. Usually поставьте перед wears",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The conveyor belt is moving.",
+        "targetPhrase": "She usually wears a nightdress.",
         "localizedMeaning": {
-          "ru": "Покупатель спрашивает, почему его покупки едут вперёд. Скажите: «Конвейерная лента движется»",
-          "uk": "Покупець запитує, чому його покупки їдуть уперед. Скажіть: «Конвеєрна стрічка рухається»"
+          "ru": "Скажите, что подруга обычно носит ночную рубашку. Usually поставьте перед wears",
+          "uk": "Скажіть, що подруга зазвичай носить нічну сорочку. Usually поставте перед wears"
         },
         "orderedTokens": [
-          "The",
-          "conveyor",
-          "belt",
-          "is",
-          "moving"
+          "She",
+          "usually",
+          "wears",
+          "a",
+          "nightdress"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,15 +312,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i05:r1",
-          "text": "The conveyor belt is empty."
+          "text": "She is wearing a nightdress."
         },
         {
           "responseId": "en:lesson-10:session-12:i05:r2",
-          "text": "The conveyor belt is full."
+          "text": "She is buying a nightdress."
         },
         {
           "responseId": "en:lesson-10:session-12:i05:r3",
-          "text": "The basket is empty."
+          "text": "She is washing a nightdress."
         }
       ],
       "mediaIds": [],
@@ -331,23 +332,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-12:i05:audio",
-          "transcript": "The conveyor belt is empty."
+          "transcript": "She is wearing a nightdress."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-12:i05:r1",
-            "targetText": "The conveyor belt is empty.",
+            "targetText": "She is wearing a nightdress.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-12:i05:r2",
-            "targetText": "The conveyor belt is full.",
+            "targetText": "She is buying a nightdress.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-12:i05:r3",
-            "targetText": "The basket is empty.",
+            "targetText": "She is washing a nightdress.",
             "meaningByLocale": null
           }
         ],
@@ -358,8 +359,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The conveyor belt is empty.",
-              "uk": "У записі звучить The conveyor belt is empty."
+              "ru": "В записи звучит She is wearing a nightdress.",
+              "uk": "У записі звучить She is wearing a nightdress."
             }
           },
           {
@@ -367,8 +368,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The conveyor belt is empty.",
-              "uk": "У записі звучить The conveyor belt is empty."
+              "ru": "В записи звучит She is wearing a nightdress.",
+              "uk": "У записі звучить She is wearing a nightdress."
             }
           }
         ],
@@ -383,63 +384,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму move после is",
+      "prompt": "Выберите форму wear для привычки с she",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i06:r1",
-          "text": "moving"
+          "text": "wears"
         },
         {
           "responseId": "en:lesson-10:session-12:i06:r2",
-          "text": "moveing"
+          "text": "wear"
         },
         {
           "responseId": "en:lesson-10:session-12:i06:r3",
-          "text": "move"
+          "text": "wearing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму move после is",
+      "accessibilityLabel": "Выберите форму wear для привычки с she",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму move после is",
-          "uk": "Виберіть форму move після is"
+          "ru": "Выберите форму wear для привычки с she",
+          "uk": "Виберіть форму wear для звички з she"
         },
-        "gappedTargetPhrase": "The conveyor belt is ___.",
+        "gappedTargetPhrase": "She usually ___ a nightdress.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-12:i06:r1",
-            "text": "moving"
+            "text": "wears"
           },
           {
             "responseId": "en:lesson-10:session-12:i06:r2",
-            "text": "moveing"
+            "text": "wear"
           },
           {
             "responseId": "en:lesson-10:session-12:i06:r3",
-            "text": "move"
+            "text": "wearing"
           }
         ],
-        "testedDimension": "Выберите форму move после is",
+        "testedDimension": "Выберите форму wear для привычки с she",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-12:i06:r2",
             "correct": false,
-            "testedDimension": "Выберите форму move после is",
+            "testedDimension": "Выберите форму wear для привычки с she",
             "feedbackByLocale": {
-              "ru": "Move теряет конечную e: moving.",
-              "uk": "Move втрачає кінцеву e: moving."
+              "ru": "С she нужна wears с s.",
+              "uk": "З she потрібна wears із s."
             }
           },
           {
             "responseId": "en:lesson-10:session-12:i06:r3",
             "correct": false,
-            "testedDimension": "Выберите форму move после is",
+            "testedDimension": "Выберите форму wear для привычки с she",
             "feedbackByLocale": {
-              "ru": "После is нужна moving.",
-              "uk": "Після is потрібна moving."
+              "ru": "Для привычки здесь нужна wears.",
+              "uk": "Для звички тут потрібна wears."
             }
           }
         ]
@@ -447,32 +448,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-12:word:divider",
+      "interactionId": "en:lesson-10:session-12:word:tights",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — divider",
+      "prompt": "Карточка слова — tights",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-12:word:divider:audio"
+        "en:lesson-10:session-12:word:tights:audio"
       ],
-      "accessibilityLabel": "Карточка слова — divider",
+      "accessibilityLabel": "Карточка слова — tights",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-12:word:divider:audio",
-          "transcript": "divider"
+          "audioTargetId": "en:lesson-10:session-12:word:tights:audio",
+          "transcript": "tights"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-12:word:divider:r1",
-            "targetText": "divider",
+            "responseId": "en:lesson-10:session-12:word:tights:r1",
+            "targetText": "tights",
             "meaningByLocale": {
-              "ru": "«разделитель покупок». The divider is on the belt. — «Разделитель покупок на ленте». Здесь планка между покупками разных людей.",
-              "uk": "«розділювач покупок». The divider is on the belt. — «Розділювач покупок на стрічці». Тут планка між покупками різних людей."
+              "ru": "«колготки». I need some tights. — «Мне нужны колготки».",
+              "uk": "«колготки». I need some tights. — «Мені потрібні колготки»."
             }
           }
         ],
@@ -480,10 +481,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "divider",
+          "word": "tights",
           "definitionByLocale": {
-            "ru": "«разделитель покупок». The divider is on the belt. — «Разделитель покупок на ленте». Здесь планка между покупками разных людей.",
-            "uk": "«розділювач покупок». The divider is on the belt. — «Розділювач покупок на стрічці». Тут планка між покупками різних людей."
+            "ru": "«колготки». I need some tights. — «Мне нужны колготки».",
+            "uk": "«колготки». I need some tights. — «Мені потрібні колготки»."
           }
         }
       },
@@ -495,25 +496,23 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Кассир ищет планку, которая отделяет ваши покупки. Скажите: «Разделитель покупок на ленте»",
+      "prompt": "Скажите, что вам нужны колготки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Кассир ищет планку, которая отделяет ваши покупки. Скажите: «Разделитель покупок на ленте»",
+      "accessibilityLabel": "Скажите, что вам нужны колготки",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The divider is on the belt.",
+        "targetPhrase": "I need some tights.",
         "localizedMeaning": {
-          "ru": "Кассир ищет планку, которая отделяет ваши покупки. Скажите: «Разделитель покупок на ленте»",
-          "uk": "Касир шукає планку, яка відділяє ваші покупки. Скажіть: «Розділювач покупок на стрічці»"
+          "ru": "Скажите, что вам нужны колготки",
+          "uk": "Скажіть, що вам потрібні колготки"
         },
         "orderedTokens": [
-          "The",
-          "divider",
-          "is",
-          "on",
-          "the",
-          "belt"
+          "I",
+          "need",
+          "some",
+          "tights"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +533,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i08:r1",
-          "text": "The divider is blue."
+          "text": "I need some tights."
         },
         {
           "responseId": "en:lesson-10:session-12:i08:r2",
-          "text": "The divider is red."
+          "text": "We need some tights."
         },
         {
           "responseId": "en:lesson-10:session-12:i08:r3",
-          "text": "The bag is blue."
+          "text": "I have some tights."
         }
       ],
       "mediaIds": [],
@@ -554,23 +553,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-12:i08:audio",
-          "transcript": "The divider is blue."
+          "transcript": "I need some tights."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-12:i08:r1",
-            "targetText": "The divider is blue.",
+            "targetText": "I need some tights.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-12:i08:r2",
-            "targetText": "The divider is red.",
+            "targetText": "We need some tights.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-12:i08:r3",
-            "targetText": "The bag is blue.",
+            "targetText": "I have some tights.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +580,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The divider is blue.",
-              "uk": "У записі звучить The divider is blue."
+              "ru": "В записи звучит I need some tights.",
+              "uk": "У записі звучить I need some tights."
             }
           },
           {
@@ -590,8 +589,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The divider is blue.",
-              "uk": "У записі звучить The divider is blue."
+              "ru": "В записи звучит I need some tights.",
+              "uk": "У записі звучить I need some tights."
             }
           }
         ],
@@ -606,63 +605,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для одного разделителя",
+      "prompt": "Выберите слово перед tights во множественном числе",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i09:r1",
-          "text": "is"
+          "text": "some"
         },
         {
           "responseId": "en:lesson-10:session-12:i09:r2",
-          "text": "are"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-10:session-12:i09:r3",
-          "text": "am"
+          "text": "an"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для одного разделителя",
+      "accessibilityLabel": "Выберите слово перед tights во множественном числе",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одного разделителя",
-          "uk": "Виберіть зв’язку для одного розділювача"
+          "ru": "Выберите слово перед tights во множественном числе",
+          "uk": "Виберіть слово перед tights у множині"
         },
-        "gappedTargetPhrase": "The divider ___ on the belt.",
+        "gappedTargetPhrase": "I need ___ tights.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-12:i09:r1",
-            "text": "is"
+            "text": "some"
           },
           {
             "responseId": "en:lesson-10:session-12:i09:r2",
-            "text": "are"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-10:session-12:i09:r3",
-            "text": "am"
+            "text": "an"
           }
         ],
-        "testedDimension": "Выберите связку для одного разделителя",
+        "testedDimension": "Выберите слово перед tights во множественном числе",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-12:i09:r2",
             "correct": false,
-            "testedDimension": "Выберите связку для одного разделителя",
+            "testedDimension": "Выберите слово перед tights во множественном числе",
             "feedbackByLocale": {
-              "ru": "Один предмет: is.",
-              "uk": "Один предмет: is."
+              "ru": "Tights — множественное число, a не подходит.",
+              "uk": "Tights — множина, a не підходить."
             }
           },
           {
             "responseId": "en:lesson-10:session-12:i09:r3",
             "correct": false,
-            "testedDimension": "Выберите связку для одного разделителя",
+            "testedDimension": "Выберите слово перед tights во множественном числе",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Tights — множественное число, an не подходит.",
+              "uk": "Tights — множина, an не підходить."
             }
           }
         ]
@@ -670,32 +669,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-12:word:cash-drawer",
+      "interactionId": "en:lesson-10:session-12:word:dressing-gown",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — cash drawer",
+      "prompt": "Карточка слова — dressing gown",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-12:word:cash-drawer:audio"
+        "en:lesson-10:session-12:word:dressing-gown:audio"
       ],
-      "accessibilityLabel": "Карточка слова — cash drawer",
+      "accessibilityLabel": "Карточка слова — dressing gown",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-12:word:cash-drawer:audio",
-          "transcript": "cash drawer"
+          "audioTargetId": "en:lesson-10:session-12:word:dressing-gown:audio",
+          "transcript": "dressing gown"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-12:word:cash-drawer:r1",
-            "targetText": "cash drawer",
+            "responseId": "en:lesson-10:session-12:word:dressing-gown:r1",
+            "targetText": "dressing gown",
             "meaningByLocale": {
-              "ru": "«денежный ящик». The cash drawer is open. — «Денежный ящик открыт». Здесь выдвижной ящик кассы для наличных.",
-              "uk": "«грошова шухляда». The cash drawer is open. — «Грошова шухляда відкрита». Тут висувна шухляда каси для готівки."
+              "ru": "«домашний халат». I am wearing a dressing gown. — «Я сейчас в халате».",
+              "uk": "«домашній халат». I am wearing a dressing gown. — «Я зараз у халаті»."
             }
           }
         ],
@@ -703,10 +702,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "cash drawer",
+          "word": "dressing gown",
           "definitionByLocale": {
-            "ru": "«денежный ящик». The cash drawer is open. — «Денежный ящик открыт». Здесь выдвижной ящик кассы для наличных.",
-            "uk": "«грошова шухляда». The cash drawer is open. — «Грошова шухляда відкрита». Тут висувна шухляда каси для готівки."
+            "ru": "«домашний халат». I am wearing a dressing gown. — «Я сейчас в халате».",
+            "uk": "«домашній халат». I am wearing a dressing gown. — «Я зараз у халаті»."
           }
         }
       },
@@ -718,24 +717,25 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает, закрыт ли ящик кассы. Скажите: «Денежный ящик открыт»",
+      "prompt": "После душа на вас халат. Скажите, что вы сейчас в халате",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает, закрыт ли ящик кассы. Скажите: «Денежный ящик открыт»",
+      "accessibilityLabel": "После душа на вас халат. Скажите, что вы сейчас в халате",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The cash drawer is open.",
+        "targetPhrase": "I am wearing a dressing gown.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, закрыт ли ящик кассы. Скажите: «Денежный ящик открыт»",
-          "uk": "Колега запитує, чи закрита шухляда каси. Скажіть: «Грошова шухляда відкрита»"
+          "ru": "После душа на вас халат. Скажите, что вы сейчас в халате",
+          "uk": "Після душу на вас халат. Скажіть, що ви зараз у халаті"
         },
         "orderedTokens": [
-          "The",
-          "cash",
-          "drawer",
-          "is",
-          "open"
+          "I",
+          "am",
+          "wearing",
+          "a",
+          "dressing",
+          "gown"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -756,15 +756,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i11:r1",
-          "text": "He is closing the cash drawer."
+          "text": "He is wearing a dressing gown."
         },
         {
           "responseId": "en:lesson-10:session-12:i11:r2",
-          "text": "He is opening the cash drawer."
+          "text": "She is washing a nightdress."
         },
         {
           "responseId": "en:lesson-10:session-12:i11:r3",
-          "text": "She is closing the cash drawer."
+          "text": "He is buying a dressing gown."
         }
       ],
       "mediaIds": [],
@@ -776,23 +776,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-12:i11:audio",
-          "transcript": "He is closing the cash drawer."
+          "transcript": "He is wearing a dressing gown."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-12:i11:r1",
-            "targetText": "He is closing the cash drawer.",
+            "targetText": "He is wearing a dressing gown.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-12:i11:r2",
-            "targetText": "He is opening the cash drawer.",
+            "targetText": "She is washing a nightdress.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-12:i11:r3",
-            "targetText": "She is closing the cash drawer.",
+            "targetText": "He is buying a dressing gown.",
             "meaningByLocale": null
           }
         ],
@@ -803,8 +803,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He is closing the cash drawer.",
-              "uk": "У записі звучить He is closing the cash drawer."
+              "ru": "В записи звучит He is wearing a dressing gown.",
+              "uk": "У записі звучить He is wearing a dressing gown."
             }
           },
           {
@@ -812,8 +812,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He is closing the cash drawer.",
-              "uk": "У записі звучить He is closing the cash drawer."
+              "ru": "В записи звучит He is wearing a dressing gown.",
+              "uk": "У записі звучить He is wearing a dressing gown."
             }
           }
         ],
@@ -828,63 +828,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку перед working с he для временной работы",
+      "prompt": "Выберите форму wear после am",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i12:r1",
-          "text": "is"
+          "text": "wearing"
         },
         {
           "responseId": "en:lesson-10:session-12:i12:r2",
-          "text": "are"
+          "text": "wear"
         },
         {
           "responseId": "en:lesson-10:session-12:i12:r3",
-          "text": "am"
+          "text": "wears"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку перед working с he для временной работы",
+      "accessibilityLabel": "Выберите форму wear после am",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку перед working с he для временной работы",
-          "uk": "Виберіть зв’язку перед working з he для тимчасової роботи"
+          "ru": "Выберите форму wear после am",
+          "uk": "Виберіть форму wear після am"
         },
-        "gappedTargetPhrase": "He ___ working here this week.",
+        "gappedTargetPhrase": "I am ___ a dressing gown.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-12:i12:r1",
-            "text": "is"
+            "text": "wearing"
           },
           {
             "responseId": "en:lesson-10:session-12:i12:r2",
-            "text": "are"
+            "text": "wear"
           },
           {
             "responseId": "en:lesson-10:session-12:i12:r3",
-            "text": "am"
+            "text": "wears"
           }
         ],
-        "testedDimension": "Выберите связку перед working с he для временной работы",
+        "testedDimension": "Выберите форму wear после am",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-12:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите связку перед working с he для временной работы",
+            "testedDimension": "Выберите форму wear после am",
             "feedbackByLocale": {
-              "ru": "С he нужна is.",
-              "uk": "З he потрібна is."
+              "ru": "После am нужна wearing.",
+              "uk": "Після am потрібна wearing."
             }
           },
           {
             "responseId": "en:lesson-10:session-12:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите связку перед working с he для временной работы",
+            "testedDimension": "Выберите форму wear после am",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "После am нужна wearing, не wears.",
+              "uk": "Після am потрібна wearing, не wears."
             }
           }
         ]
@@ -897,58 +897,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините новые слова со значениями",
+      "prompt": "Соедините названия с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините новые слова со значениями",
+      "accessibilityLabel": "Соедините названия с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-12:i13:p1",
-            "target": "till",
+            "target": "underwear",
             "meaningByLocale": {
-              "ru": "кассовый аппарат",
-              "uk": "касовий апарат"
+              "ru": "нижнее бельё",
+              "uk": "спідня білизна"
             }
           },
           {
             "pairId": "en:lesson-10:session-12:i13:p2",
-            "target": "conveyor belt",
+            "target": "nightdress",
             "meaningByLocale": {
-              "ru": "конвейерная лента",
-              "uk": "конвеєрна стрічка"
+              "ru": "ночная рубашка",
+              "uk": "нічна сорочка"
             }
           },
           {
             "pairId": "en:lesson-10:session-12:i13:p3",
-            "target": "divider",
+            "target": "tights",
             "meaningByLocale": {
-              "ru": "разделитель покупок",
-              "uk": "розділювач покупок"
+              "ru": "колготки",
+              "uk": "колготки"
             }
           },
           {
             "pairId": "en:lesson-10:session-12:i13:p4",
-            "target": "cash drawer",
+            "target": "dressing gown",
             "meaningByLocale": {
-              "ru": "денежный ящик",
-              "uk": "грошова шухляда"
+              "ru": "домашний халат",
+              "uk": "домашній халат"
             }
           }
         ],
         "leftColumn": [
-          "till",
-          "conveyor belt",
-          "divider",
-          "cash drawer"
+          "underwear",
+          "nightdress",
+          "tights",
+          "dressing gown"
         ],
         "rightColumn": [
-          "кассовый аппарат",
-          "конвейерная лента",
-          "разделитель покупок",
-          "денежный ящик"
+          "нижнее бельё",
+          "ночная рубашка",
+          "колготки",
+          "домашний халат"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -970,28 +970,26 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос; this week поставьте в конце",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-12:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос; this week поставьте в конце",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-12:i14:audio",
-          "transcript": "Is he working here this week?"
+          "transcript": "I need some tights."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is he working here this week?",
+        "hiddenTargetPhrase": "I need some tights.",
         "orderedTokens": [
-          "Is",
-          "he",
-          "working",
-          "here",
-          "this",
-          "week"
+          "I",
+          "need",
+          "some",
+          "tights"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1005,24 +1003,62 @@
     {
       "interactionId": "en:lesson-10:session-12:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Знакомая спрашивает, где кассир обычно работает. Скажите: «Обычно он работает возле станции»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-12:i15:audio"
       ],
-      "accessibilityLabel": "Знакомая спрашивает, где кассир обычно работает. Скажите: «Обычно он работает возле станции»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-12:i15:audio",
+          "transcript": "I am wearing a dressing gown."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am wearing a dressing gown.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "wearing",
+          "a",
+          "dressing",
+          "gown"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Собирая чемодан, скажите, что укладываете нижнее бельё",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Собирая чемодан, скажите, что укладываете нижнее бельё",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-12:i15:audio",
-          "transcript": "He usually works near the station."
+          "audioTargetId": "en:lesson-10:session-12:i16:audio",
+          "transcript": "I am packing my underwear."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He usually works near the station.",
+        "targetPhrase": "I am packing my underwear.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1036,72 +1072,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-12:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Кассир временно помогает вашему магазину. Скажите: «На этой неделе он работает здесь». Поставьте this week в конце",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Кассир временно помогает вашему магазину. Скажите: «На этой неделе он работает здесь». Поставьте this week в конце",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is working here this week.",
-        "localizedMeaning": {
-          "ru": "Кассир временно помогает вашему магазину. Скажите: «На этой неделе он работает здесь». Поставьте this week в конце",
-          "uk": "Касир тимчасово допомагає вашому магазину. Скажіть: «Цього тижня він працює тут». Поставте this week наприкінці"
-        },
-        "orderedTokens": [
-          "He",
-          "is",
-          "working",
-          "here",
-          "this",
-          "week"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-12:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Кассир обычно работает в магазине возле станции. Он помогает вашему магазину только одну неделю. Посетитель спрашивает, почему он здесь. Объясните: «На этой неделе он работает здесь»",
+      "prompt": "На вас халат после душа. Скажите, что вы сейчас в халате",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-12:i17:audio"
       ],
-      "accessibilityLabel": "Кассир обычно работает в магазине возле станции. Он помогает вашему магазину только одну неделю. Посетитель спрашивает, почему он здесь. Объясните: «На этой неделе он работает здесь»",
+      "accessibilityLabel": "На вас халат после душа. Скажите, что вы сейчас в халате",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-12:i17:audio",
-          "transcript": "He is working here this week."
+          "transcript": "I am wearing a dressing gown."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is working here this week.",
+        "targetPhrase": "I am wearing a dressing gown.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1118,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f32a889ba1f5130044ad5b72b94640d4b919028a201c929abd0be56e4187c702"
+  "learnerFingerprint": "6b17de1a325855d129322b2297fb3c7ca67a904929745d0ad38f5676b3ef82c9"
 }

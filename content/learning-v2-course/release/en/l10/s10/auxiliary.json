@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-10:intro1:r2": {
-          "ru": "С he нужна works.",
-          "uk": "З he потрібна works."
+          "ru": "Нужна know без am.",
+          "uk": "Потрібна know без am."
         },
         "en:lesson-10:session-10:intro1:r3": {
-          "ru": "Для обычной работы здесь нужна works.",
-          "uk": "Для звичайної роботи тут потрібна works."
+          "ru": "С I нужна know без s.",
+          "uk": "З I потрібна know без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-10:intro2:r2": {
-          "ru": "Перед working нужна is.",
-          "uk": "Перед working потрібна is."
+          "ru": "С I нужна hope без s.",
+          "uk": "З I потрібна hope без s."
         },
         "en:lesson-10:session-10:intro2:r3": {
-          "ru": "После is нужна working.",
-          "uk": "Після is потрібна working."
+          "ru": "С you нужна are.",
+          "uk": "З you потрібна are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-10:intro3:r2": {
-          "ru": "Нужна связка is.",
-          "uk": "Потрібна зв’язка is."
+          "ru": "После to нужна help без s.",
+          "uk": "Після to потрібна help без s."
         },
         "en:lesson-10:session-10:intro3:r3": {
-          "ru": "Перед названием профессии в единственном числе нужна a.",
-          "uk": "Перед назвою професії в однині потрібен a."
+          "ru": "Нужна promise без am.",
+          "uk": "Потрібна promise без am."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7b35349c06149e6e88ed8cbd05961005346cf866f252edb5649f671d747eea5d"
+  "auxiliaryFingerprint": "fabdf237a0dd6ad7ef433d61bbda201258aa50c71f15db5337965cec2323ccd3"
 }

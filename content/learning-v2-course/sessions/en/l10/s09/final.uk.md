@@ -1,152 +1,151 @@
-# Англійська · Урок 10 · Заняття 9 — Тимчасова робота на іншій кухні
+# Англійська · Урок 10 · Заняття 9 — Вибрати продукти
 
-**Ситуація.** Пояснити, де кухар працює зазвичай і де тимчасово допомагає цього тижня.
+**Ситуація.** Пояснити, що купуєте зазвичай і що берете сьогодні, прочитати прості позначення на їжі.
 
-**Що ви опануєте:** She works at a hotel; She is working here this week
-**Нові слова:** sous-chef, griddle, ramekin, garnish
-**Повторення:** chef (7.15)
+**Що ви опануєте:** I usually buy tinned tomatoes; I am buying a ready-made meal today; This drink is sugar-free; This cake is dairy-free
+**Нові слова:** tinned, ready-made, sugar-free, dairy-free
 
 ## Інтро 1
 
-### Основне місце роботи
+### Звичайна покупка
 
-Колега знайомить вас із кухаркою, яка допомагає шефу керувати кухнею. Sous-chef — «су-шеф», заступник шеф-кухаря. She works at a hotel — «Вона працює в готелі». Це її основне місце роботи: Present Simple. Ми не стверджуємо, що вона працюватиме там завжди; описуємо звичайну ситуацію.
+Ви часто готуєте соус із помідорів у банці. Tinned — «консервований»: I usually buy tinned tomatoes — «Я зазвичай купую консервовані помідори». Це звичка: buy. Тут зазвичай ставимо usually перед buy.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She works at a hotel.**
-- ❌ She work at a hotel. — *З she у Present Simple потрібна works.*
-- ❌ She is work at a hotel. — *Is work неправильно; тут звичайна ситуація She works.*
+- ✅ **I usually buy tinned tomatoes.**
+- ❌ I usually buys tinned tomatoes. — *З I потрібна buy без s.*
+- ❌ I usually buying tinned tomatoes. — *Для звички потрібна buy.*
 
 ---
 
 ## Інтро 2
 
-### Допомога на один тиждень
+### Сьогодні готувати ніколи
 
-Цього тижня су-шеф тимчасово допомагає у вашому кафе, а потім повертається до готелю. She is working here this week — «Вона працює тут цього тижня». Present Continuous може описувати тимчасовий період, а не лише цю секунду. Навіть під час її перерви можна сказати is working here this week: ідеться про тимчасове місце роботи.
+Зазвичай ви готуєте вдома, але сьогодні пізно повернулися й вибираєте в магазині готову вечерю. Ready-made — «готовий, заздалегідь приготований»: I am buying a ready-made meal today — «Сьогодні я купую готову страву». Ви говорите про сьогоднішню покупку: am buying. Meal — страва або прийом їжі; a ready-made meal тут — готова страва з магазину.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She is working here this week.**
-- ❌ She working here this week. — *Для тимчасового періоду тут потрібні is working.*
-- ❌ She is works here this week. — *Після is потрібна working.*
+- ✅ **I am buying a ready-made meal today.**
+- ❌ I buying a ready-made meal today. — *Перед buying потрібна am.*
+- ❌ I am buy a ready-made meal today. — *Після am потрібна buying.*
 
 ---
 
 ## Інтро 3
 
-### Інше обладнання
+### Написи на упаковці
 
-Griddle — «плоска смажильна поверхня», на якій готують, наприклад, млинці. У готелі кухарка зазвичай користується сковородою, але у вашому кафе цього тижня готує на такій поверхні. She is using a griddle this week — «Цього тижня вона користується плоскою смажильною поверхнею». Is using показує тимчасовий спосіб роботи.
+Ви читаєте написи на напої й пирозі. Sugar-free — «без цукру»: This drink is sugar-free — «Цей напій без цукру». Dairy-free — «без молочних інгредієнтів»: This cake is dairy-free — «Цей пиріг без молочних інгредієнтів». Це опис продукту, тому потрібна зв’язка is. Free тут не означає «безкоштовний»: sugar-free і dairy-free вчимо цілком.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She is using a griddle this week.**
-- ❌ She is useing a griddle this week. — *Use втрачає e: using.*
-- ❌ She using a griddle this week. — *Перед using з she потрібна is.*
+- ✅ **This drink is sugar-free.**
+- ❌ This drink are sugar-free. — *Один напій: is.*
+- ❌ This drink sugar-free. — *Перед sugar-free потрібна is.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — sous-chef**
-<!-- interaction_id: en:lesson-10:session-09:word:sous-chef; family: word_card -->
-> **sous-chef** — «су-шеф». She is a sous-chef. — «Вона су-шеф». Заступник шеф-кухаря.
+**1 · Картка слова — tinned**
+<!-- interaction_id: en:lesson-10:session-09:word:tinned; family: word_card -->
+> **tinned** — «консервований». tinned tomatoes — «консервовані помідори».
 
-**2 · Новий працівник запитує про посаду вашої колеги. Скажіть: «Вона су-шеф»**
+**2 · Скажіть, що зазвичай купуєте консервовані помідори. Поставте usually перед buy**
 <!-- interaction_id: en:lesson-10:session-09:i01; family: phrase_builder -->
-Плитки: `sous-chef` `a` `is` `She` → **She is a sous-chef.**
+Плитки: `tomatoes` `tinned` `buy` `usually` `I` → **I usually buy tinned tomatoes.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-09:i02; family: listen_choose -->
-🔊 *She works at a hotel.* → **She works at a hotel.** · She works at a school. · He works at a hotel.
-- She works at a school. — *У записі звучить She works at a hotel.*
-- He works at a hotel. — *У записі звучить She works at a hotel.*
+🔊 *We buy tinned tomatoes.* → **We buy tinned tomatoes.** · I buy tinned tomatoes. · We buy fresh tomatoes.
+- I buy tinned tomatoes. — *У записі звучить We buy tinned tomatoes.*
+- We buy fresh tomatoes. — *У записі звучить We buy tinned tomatoes.*
 
-**4 · Виберіть форму work для основного місця роботи з she**
+**4 · Виберіть форму buy для звички з I**
 <!-- interaction_id: en:lesson-10:session-09:i03; family: context_gap_grammar -->
-She ___ at a hotel. → **works** · work · working
-- work — *З she у Present Simple потрібна works.*
-- working — *Working без is не утворює присудок.*
+I usually ___ tinned tomatoes. → **buy** · buys · buying
+- buys — *З I потрібна buy без s.*
+- buying — *Для звички потрібна buy.*
 
-**5 · Картка слова — griddle**
-<!-- interaction_id: en:lesson-10:session-09:word:griddle; family: word_card -->
-> **griddle** — «плоска смажильна поверхня». She is using a griddle. — «Вона користується плоскою смажильною поверхнею». Тут обладнання для приготування млинців.
+**5 · Картка слова — ready-made**
+<!-- interaction_id: en:lesson-10:session-09:word:ready-made; family: word_card -->
+> **ready-made** — «готовий, заздалегідь приготований». a ready-made meal — «готова страва».
 
-**6 · Колега запитує, на чому су-шеф готує млинці зараз. Скажіть: «Вона користується плоскою смажильною поверхнею»**
+**6 · Сьогодні ви купуєте готову страву. Скажіть про це. Today поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-09:i04; family: phrase_builder -->
-Плитки: `griddle` `a` `using` `is` `She` → **She is using a griddle.**
+Плитки: `today` `meal` `ready-made` `a` `buying` `am` `I` → **I am buying a ready-made meal today.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-09:i05; family: listen_choose -->
-🔊 *The griddle is hot.* → **The griddle is hot.** · The griddle is cold. · The oven is hot.
-- The griddle is cold. — *У записі звучить The griddle is hot.*
-- The oven is hot. — *У записі звучить The griddle is hot.*
+🔊 *She is buying a ready-made meal.* → **She is buying a ready-made meal.** · He is buying a ready-made meal. · She is eating a ready-made meal.
+- He is buying a ready-made meal. — *У записі звучить She is buying a ready-made meal.*
+- She is eating a ready-made meal. — *У записі звучить She is buying a ready-made meal.*
 
-**8 · Виберіть форму use після is**
+**8 · Купівля триває зараз. Виберіть форму buy**
 <!-- interaction_id: en:lesson-10:session-09:i06; family: context_gap_grammar -->
-She is ___ a griddle. → **using** · useing · use
-- useing — *Кінцева e зникає: using.*
-- use — *Після is потрібна using.*
+I am ___ a ready-made meal. → **buying** · buy · buys
+- buy — *Після am потрібна buying.*
+- buys — *Після am потрібна buying, не buys.*
 
-**9 · Картка слова — ramekin**
-<!-- interaction_id: en:lesson-10:session-09:word:ramekin; family: word_card -->
-> **ramekin** — «маленька порційна формочка». The ramekin is on the tray. — «Формочка на таці». Тут невеликий керамічний посуд для запікання й подавання порції.
+**9 · Картка слова — sugar-free**
+<!-- interaction_id: en:lesson-10:session-09:word:sugar-free; family: word_card -->
+> **sugar-free** — «без цукру». This drink is sugar-free. — «Цей напій без цукру».
 
-**10 · Кухар шукає маленьку порційну формочку. Скажіть: «Формочка на таці»**
+**10 · Прочитавши напис, скажіть: «Цей напій без цукру»**
 <!-- interaction_id: en:lesson-10:session-09:i07; family: phrase_builder -->
-Плитки: `tray` `the` `on` `is` `ramekin` `The` → **The ramekin is on the tray.**
+Плитки: `sugar-free` `is` `drink` `This` → **This drink is sugar-free.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-09:i08; family: listen_choose -->
-🔊 *I am washing the ramekin.* → **I am washing the ramekin.** · I am using the ramekin. · She is washing the ramekin.
-- I am using the ramekin. — *У записі звучить I am washing the ramekin.*
-- She is washing the ramekin. — *У записі звучить I am washing the ramekin.*
+🔊 *This drink is sugar-free.* → **This drink is sugar-free.** · That drink is sugar-free. · These drinks are sugar-free.
+- That drink is sugar-free. — *У записі звучить This drink is sugar-free.*
+- These drinks are sugar-free. — *У записі звучить This drink is sugar-free.*
 
-**12 · Виберіть зв’язку для однієї формочки**
+**12 · Виберіть зв’язку для одного напою**
 <!-- interaction_id: en:lesson-10:session-09:i09; family: context_gap_grammar -->
-The ramekin ___ on the tray. → **is** · are · am
-- are — *Ramekin одна: is.*
-- am — *Am уживається з I.*
+This drink ___ sugar-free. → **is** · are · am
+- are — *Один напій: is.*
+- am — *Am вживаємо з I, тут is.*
 
-**13 · Картка слова — garnish**
-<!-- interaction_id: en:lesson-10:session-09:word:garnish; family: word_card -->
-> **garnish** — «оздоба страви». The garnish is on the plate. — «Оздоба страви на тарілці». Наприклад, гілочка зелені; тут не гарнір як окреме доповнення до основної страви.
+**13 · Картка слова — dairy-free**
+<!-- interaction_id: en:lesson-10:session-09:word:dairy-free; family: word_card -->
+> **dairy-free** — «без молочних інгредієнтів». This cake is dairy-free. — «Цей пиріг без молочних інгредієнтів».
 
-**14 · Кухар запитує, де підготовлена зелень для оздоблення. Скажіть: «Оздоба страви на тарілці»**
+**14 · На пирозі вказано, що в ньому немає молочних інгредієнтів. Скажіть про це**
 <!-- interaction_id: en:lesson-10:session-09:i10; family: phrase_builder -->
-Плитки: `plate` `the` `on` `is` `garnish` `The` → **The garnish is on the plate.**
+Плитки: `dairy-free` `is` `cake` `This` → **This cake is dairy-free.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-09:i11; family: listen_choose -->
-🔊 *The garnish is green.* → **The garnish is green.** · The garnish is red. · The plate is green.
-- The garnish is red. — *У записі звучить The garnish is green.*
-- The plate is green. — *У записі звучить The garnish is green.*
+🔊 *This cake is dairy-free.* → **This cake is dairy-free.** · That cake is dairy-free. · This cake is sugar-free.
+- That cake is dairy-free. — *У записі звучить This cake is dairy-free.*
+- This cake is sugar-free. — *У записі звучить This cake is dairy-free.*
 
-**16 · Виберіть зв’язку перед working з she для тимчасової роботи**
+**16 · Виберіть зв’язку для одного пирога**
 <!-- interaction_id: en:lesson-10:session-09:i12; family: context_gap_grammar -->
-She ___ working here this week. → **is** · are · am
-- are — *З she потрібна is.*
-- am — *Am уживається з I.*
+This cake ___ dairy-free. → **is** · are · am
+- are — *Один пиріг: is.*
+- am — *Am вживаємо з I, тут is.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте позначення з перекладом**
 <!-- interaction_id: en:lesson-10:session-09:i13; family: speed_match -->
-sous-chef — су-шеф · griddle — плоска смажильна поверхня · ramekin — маленька порційна формочка · garnish — оздоба страви
+tinned — консервований · ready-made — заздалегідь приготований · sugar-free — без цукру · dairy-free — без молочних інгредієнтів
 
-**18 · Послухайте й складіть запитання; this week поставте наприкінці**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-09:i14; family: listen_build_dictation -->
-🔊 *Is she working here this week?* Плитки: `week` `this` `here` `working` `she` `Is` → **Is she working here this week?**
+🔊 *This drink is sugar-free.* Плитки: `sugar-free` `is` `drink` `This` → **This drink is sugar-free.**
 
-**19 · Відвідувач запитує про основне місце роботи су-шефа. Скажіть: «Вона працює в готелі»**
-<!-- interaction_id: en:lesson-10:session-09:i15; family: scripted_repeat_compare -->
-🎙 **She works at a hotel.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-09:i15; family: listen_build_dictation -->
+🔊 *This cake is dairy-free.* Плитки: `dairy-free` `is` `cake` `This` → **This cake is dairy-free.**
 
-**20 · Су-шеф тимчасово допомагає вашому кафе. Скажіть: «Вона працює тут цього тижня». Поставте this week наприкінці**
-<!-- interaction_id: en:lesson-10:session-09:i16; family: phrase_builder -->
-Плитки: `week` `this` `here` `working` `is` `She` → **She is working here this week.**
+**20 · Ви купуєте готову страву сьогодні. Скажіть про цю покупку**
+<!-- interaction_id: en:lesson-10:session-09:i16; family: scripted_repeat_compare -->
+🎙 **I am buying a ready-made meal today.**
 
-**21 · Основне місце роботи вашої колеги — готель. Вона допомагає вашому кафе лише цього тижня, потім повертається. Відвідувач запитує, чому вона сьогодні тут. Поясніть: «Вона працює тут цього тижня»**
-<!-- interaction_id: en:lesson-10:session-09:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She is working here this week.**
+**21 · Прочитавши напис, скажіть, що напій без цукру**
+<!-- interaction_id: en:lesson-10:session-09:i17; family: scripted_repeat_compare -->
+🎙 **This drink is sugar-free.**
 

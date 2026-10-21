@@ -58,22 +58,36 @@ export function resolveDialogueAsrCapability(input: Readonly<{
   startServiceId?: string | null;
 }>): Readonly<{ available: boolean; locale: string; reason: DialogueAsrCapabilityReason | null }> {
   const locale = DIALOGUE_EXACT_SPEECH_LOCALE[input.target];
-  if (input.platform === 'android' && (input.androidApiLevel == null || input.androidApiLevel <= 32)) {
-    return { available: false, locale, reason: 'android_api_unsupported' };
-  }
+  const decide = (
+    available: boolean,
+    reason: DialogueAsrCapabilityReason | null,
+    branch: string,
+  ): Readonly<{ available: boolean; locale: string; reason: DialogueAsrCapabilityReason | null }> => {
+    console.log('[DIALOG-MIC]', JSON.stringify({
+      branch, available, reason, target: input.target, platform: input.platform,
+      androidApiLevel: input.androidApiLevel ?? null, localeCount: Array.isArray(input.locales) ? input.locales.length : null,
+      hasInventoryService: Boolean(input.inventoryServiceId),
+    })); // guard-ok: каждое решение о микрофоне диалога, без идентификаторов
+    return { available, locale, reason };
+  };
+  // зачем (владелец 21.10, B3 / репорт №12 «в диалоге пишет недоступно, а в уроках записывает»): запрета по версии
+  // Android (≤ 12) больше нет — уроки на тех же телефонах распознают речь (use_learning_v2_local_hold_to_talk_v1
+  // проверяет только наличие модуля). Реальный сбой после старта показывает своё сообщение, поле текста есть всегда.
   // зачем: iOS не отдаёт список локалей распознавания (getSupportedLocales там
   // пустой), но системный распознаватель есть всегда. Требовать от него список
   // как доказательство — значит отказывать ВСЕМ пользователям iPhone, что и
   // случилось: экран Диалогов писал «недоступен на этом устройстве» при живом
   // микрофоне в остальных разделах (владелец, 21.09).
   if (input.platform === 'ios') {
-    if (!input.inventoryServiceId) return { available: false, locale, reason: 'inventory_unverified' };
-    return { available: true, locale, reason: null };
+    if (!input.inventoryServiceId) return decide(false, 'inventory_unverified', 'ios_no_service');
+    return decide(true, null, 'ios_system_recognizer');
   }
+  // зачем (21.10): на Android ≤ 12 список языков распознавателя обычно пуст (API появился в Android 13) — это не
+  // доказательство отсутствия, а отсутствие доказательства. Пробуем, как уроки; отказ — только по явному списку ниже.
   if (!Array.isArray(input.locales) || input.locales.length === 0 || !input.inventoryServiceId) {
-    return { available: false, locale, reason: 'inventory_unverified' };
+    return decide(true, null, 'android_inventory_unverified_try_like_lessons');
   }
-  if (input.startServiceId !== input.inventoryServiceId) return { available: false, locale, reason: 'service_mismatch' };
+  if (input.startServiceId !== input.inventoryServiceId) return decide(false, 'service_mismatch', 'android_service_mismatch');
   // Android отдаёт локали то через дефис, то через подчёркивание (en-US / en_US),
   // иногда без региона — сравниваем нормализованно, а не строкой в строку.
   const want = locale.toLowerCase().replace(/_/g, '-');
@@ -81,8 +95,8 @@ export function resolveDialogueAsrCapability(input: Readonly<{
   const normalized = input.locales.map((l) => String(l).toLowerCase().replace(/_/g, '-'));
   const matched = normalized.includes(want) || normalized.some((l) => l === wantLang || l.startsWith(`${wantLang}-`));
   return matched
-    ? { available: true, locale, reason: null }
-    : { available: false, locale, reason: 'exact_locale_missing' };
+    ? decide(true, null, 'android_locale_listed')
+    : decide(false, 'exact_locale_missing', 'android_locale_not_in_list');
 }
 
 /** Generation token used by hooks to discard inventory results after teardown. */

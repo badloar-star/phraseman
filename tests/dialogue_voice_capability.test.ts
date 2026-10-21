@@ -18,8 +18,16 @@ describe('strict dialogue voice capability', () => {
     expect(resolveDialogueVoiceCapability({ target: 'fr', platform: 'ios', iosTargetSpecificProof: true, voices: [{ identifier: 'fr', language: 'fr-FR' }] }).available).toBe(true);
   });
 
-  it('keeps ASR unavailable before Android 13 and requires the same verified service for inventory and start', () => {
-    expect(resolveDialogueAsrCapability({ target: 'de', platform: 'android', androidApiLevel: 31, inventoryServiceId: 'a', startServiceId: 'a', locales: ['de-DE'] })).toMatchObject({ available: false, reason: 'android_api_unsupported' });
+  // зачем (владелец 21.10, B3 / репорт №12 «в диалоге недоступно, а в уроках записывает»): как в уроках — версия
+  // Android не запрет, пустой список языков (Android ≤ 12 его не отдаёт) не отказ; отказ только по явному списку.
+  it('allows ASR on Android 12 and below like lessons; an empty locale list is not a refusal', () => {
+    expect(resolveDialogueAsrCapability({ target: 'de', platform: 'android', androidApiLevel: 31, inventoryServiceId: 'a', startServiceId: 'a', locales: ['de-DE'] })).toMatchObject({ available: true, locale: 'de-DE', reason: null });
+    expect(resolveDialogueAsrCapability({ target: 'en', platform: 'android', androidApiLevel: 30, inventoryServiceId: null, startServiceId: null, locales: [] })).toMatchObject({ available: true, reason: null });
+    expect(resolveDialogueAsrCapability({ target: 'en', platform: 'android', androidApiLevel: undefined, locales: undefined })).toMatchObject({ available: true, reason: null });
+    expect(resolveDialogueAsrCapability({ target: 'en', platform: 'android', androidApiLevel: 31, inventoryServiceId: 'a', startServiceId: 'a', locales: ['fr-FR'] })).toMatchObject({ available: false, reason: 'exact_locale_missing' });
+  });
+
+  it('requires the same verified service for inventory and start', () => {
     expect(resolveDialogueAsrCapability({ target: 'de', platform: 'android', androidApiLevel: 33, inventoryServiceId: 'a', startServiceId: 'b', locales: ['de-DE'] })).toMatchObject({ available: false, reason: 'service_mismatch' });
     expect(resolveDialogueAsrCapability({ target: 'de', platform: 'android', androidApiLevel: 33, inventoryServiceId: 'a', startServiceId: 'a', locales: ['de-DE'] })).toMatchObject({ available: true, locale: 'de-DE' });
   });

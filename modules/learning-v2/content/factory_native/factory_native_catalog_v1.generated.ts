@@ -3906,4 +3906,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"This is a special occasion; The festivities start at six; We are arranging the centrepiece","uk":"This is a special occasion; The festivities start at six; We are arranging the centrepiece"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 54,
+    sourceFingerprint: "2529449315c24625d2935cc05a474ff0067e76020859be2ab1afe7c79209ee0f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am rescheduling my appointment; We check availability every morning; I am on the waiting list","uk":"I am rescheduling my appointment; We check availability every morning; I am on the waiting list"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

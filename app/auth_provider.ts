@@ -1773,6 +1773,18 @@ export async function getLinkedAuthInfo(): Promise<LinkedAuth | null> {
   const db = getFirestore();
   if (!db) return cardLog('no_db', null);
   const fromAuth = (): LinkedAuth | null => getLinkedAuthFromCurrentUser();
+  // зачем (владелец 21.10, №45 шаг 6; Ревизор п.7): сессия уже вошла через Google/Apple — провайдер и почта известны
+  // без сети; документ users/{stableId} целиком читаем только для гостевой (анонимной) сессии.
+  let sessionLinked: LinkedAuth | null = null;
+  try {
+    sessionLinked = fromAuth();
+  } catch (error) {
+    identityTrace('[AUTH-PEEK]', 'linked_auth_session_read_failed', { code: identityErrorCode(error) });
+  }
+  if (sessionLinked) {
+    console.log('[READ-TTL]', JSON.stringify({ area: 'linked_auth', source: 'session', provider: sessionLinked.provider })); // guard-ok: без uid и почты
+    return cardLog('currentUser_provider', sessionLinked);
+  }
   try {
     const stableId = await getStableId();
     const doc = await withTimeout<FirebaseFirestoreTypes.DocumentSnapshot>(

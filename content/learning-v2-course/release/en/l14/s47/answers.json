@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-47:word:garlic-press",
+    "correctText": "garlic press",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i01",
+    "correctText": "I was using a garlic press while you were cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i02",
+    "correctText": "You were using a garlic press while you were cooking.",
+    "correctResponseId": "en:lesson-14:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:word:slotted-spoon",
+    "correctText": "slotted spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i04",
+    "correctText": "They were washing a slotted spoon when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i05",
+    "correctText": "You were washing a slotted spoon when I arrived.",
+    "correctResponseId": "en:lesson-14:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:word:colander",
+    "correctText": "colander",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i07",
+    "correctText": "She was using a colander while I was cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i08",
+    "correctText": "You were using a colander while I was cooking.",
+    "correctResponseId": "en:lesson-14:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:word:potato-masher",
+    "correctText": "potato masher",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i10",
+    "correctText": "We were looking for the potato masher when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i11",
+    "correctText": "You were looking for the potato masher when you called.",
+    "correctResponseId": "en:lesson-14:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i13",
+    "correctText": "en:lesson-14:session-47:i13:p1=garlic press\nen:lesson-14:session-47:i13:p2=slotted spoon\nen:lesson-14:session-47:i13:p3=colander\nen:lesson-14:session-47:i13:p4=potato masher",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i14",
+    "correctText": "I was washing the dishes while she was cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i15",
+    "correctText": "They were making dinner when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i16",
+    "correctText": "She was using a garlic press while I was cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-47:i17",
+    "correctText": "I was washing a colander when she arrived.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-48:word:hula-hoop",
+    "correctText": "hula hoop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i01",
+    "correctText": "I was using a hula hoop while you were taking a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i02",
+    "correctText": "You were using a hula hoop while you were taking a photo.",
+    "correctResponseId": "en:lesson-14:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:word:roller-skates",
+    "correctText": "roller skates",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i04",
+    "correctText": "They were cleaning their roller skates when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i05",
+    "correctText": "You were cleaning their roller skates when I arrived.",
+    "correctResponseId": "en:lesson-14:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:word:yo-yo",
+    "correctText": "yo-yo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i07",
+    "correctText": "She was playing with a yo-yo while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i08",
+    "correctText": "You were playing with a yo-yo while I was reading.",
+    "correctResponseId": "en:lesson-14:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:word:table-tennis",
+    "correctText": "table tennis",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i10",
+    "correctText": "We were playing table tennis when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i11",
+    "correctText": "You were playing table tennis when you called.",
+    "correctResponseId": "en:lesson-14:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i13",
+    "correctText": "en:lesson-14:session-48:i13:p1=hula hoop\nen:lesson-14:session-48:i13:p2=roller skates\nen:lesson-14:session-48:i13:p3=yo-yo\nen:lesson-14:session-48:i13:p4=table tennis",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i14",
+    "correctText": "I was playing while she was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i15",
+    "correctText": "They were having fun when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i16",
+    "correctText": "She was using a hula hoop while I was taking a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-48:i17",
+    "correctText": "I was playing table tennis when she arrived.",
+    "correctResponseId": null
+  }
+]

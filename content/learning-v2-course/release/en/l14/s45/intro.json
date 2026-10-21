@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "review: when and while in past stories",
+    "uk": "review: when and while in past stories"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одновременные действия",
+        "uk": "Одночасні дії"
+      },
+      "bodyByLocale": {
+        "ru": "glue stick — клей-карандаш. I was using a glue stick while you were drawing. — Я пользовался клеем-карандашом, пока ты рисовал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
+        "uk": "glue stick — клей-олівець. I was using a glue stick while you were drawing. — Я користувався клеєм-олівцем, поки ти малював. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-45:intro1:r1",
+              "text": "I was using a glue stick while you were drawing."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro1:r2",
+              "text": "I was using a glue stick while you was drawing."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro1:r3",
+              "text": "I am using a glue stick while you were drawing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-45:intro1:r1",
+              "text": "I was using a glue stick while you were drawing."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro1:r2",
+              "text": "I was using a glue stick while you was drawing."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro1:r3",
+              "text": "I am using a glue stick while you were drawing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два слова",
+        "uk": "Ще два слова"
+      },
+      "bodyByLocale": {
+        "ru": "hole punch — дырокол для бумаги. paperweight — тяжёлый предмет, прижимающий бумаги на столе. She was cleaning a paperweight while I was reading. — Она чистила грузик для бумаг, пока я читал. Выберите фразу о двух процессах в прошлом.",
+        "uk": "hole punch — діркопробивач для паперу. paperweight — важкий предмет, що притискає папери на столі. She was cleaning a paperweight while I was reading. — Вона чистила тягарець для паперів, поки я читав. Виберіть фразу про два процеси в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-45:intro2:r1",
+              "text": "She was cleaning a paperweight while I was reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro2:r2",
+              "text": "She were cleaning a paperweight while I was reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro2:r3",
+              "text": "She was cleaning a paperweight while I were reading."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-45:intro2:r1",
+              "text": "She was cleaning a paperweight while I was reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro2:r2",
+              "text": "She were cleaning a paperweight while I was reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro2:r3",
+              "text": "She was cleaning a paperweight while I were reading."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Событие на фоне процесса",
+        "uk": "Подія на тлі процесу"
+      },
+      "bodyByLocale": {
+        "ru": "masking tape — малярная бумажная лента, которую можно снять после работы. We were using masking tape when you called. — Мы пользовались малярной лентой, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
+        "uk": "masking tape — малярна паперова стрічка, яку можна зняти після роботи. We were using masking tape when you called. — Ми користувалися малярною стрічкою, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-45:intro3:r1",
+              "text": "We were using masking tape when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro3:r2",
+              "text": "We were using masking tape when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro3:r3",
+              "text": "We was using masking tape when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-45:intro3:r1",
+              "text": "We were using masking tape when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro3:r2",
+              "text": "We were using masking tape when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-45:intro3:r3",
+              "text": "We was using masking tape when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2278207e44f547b75404dc05c7166c212a72c72c7a4a3ac659140b3e49d6e7d7"
+}

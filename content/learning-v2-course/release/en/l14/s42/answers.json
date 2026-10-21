@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-42:word:mole",
+    "correctText": "mole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i01",
+    "correctText": "I was drawing a mole while you were reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i02",
+    "correctText": "You were drawing a mole while you were reading.",
+    "correctResponseId": "en:lesson-14:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:word:deer",
+    "correctText": "deer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i04",
+    "correctText": "They were drawing a deer when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i05",
+    "correctText": "You were drawing a deer when I arrived.",
+    "correctResponseId": "en:lesson-14:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:word:hare",
+    "correctText": "hare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i07",
+    "correctText": "She was drawing a hare while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i08",
+    "correctText": "You were drawing a hare while I was talking.",
+    "correctResponseId": "en:lesson-14:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:word:bat",
+    "correctText": "bat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i10",
+    "correctText": "We were drawing a bat when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i11",
+    "correctText": "You were drawing a bat when you called.",
+    "correctResponseId": "en:lesson-14:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i13",
+    "correctText": "en:lesson-14:session-42:i13:p1=mole\nen:lesson-14:session-42:i13:p2=deer\nen:lesson-14:session-42:i13:p3=hare\nen:lesson-14:session-42:i13:p4=bat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i14",
+    "correctText": "I was drawing while you were reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i15",
+    "correctText": "She was looking at the photos when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i16",
+    "correctText": "She was drawing a deer while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-42:i17",
+    "correctText": "I was drawing a hare when she arrived.",
+    "correctResponseId": null
+  }
+]

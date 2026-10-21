@@ -1,0 +1,1137 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-43:word:otter",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — otter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:word:otter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — otter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:word:otter:audio",
+          "transcript": "otter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-43:word:otter:r1",
+            "targetText": "otter",
+            "meaningByLocale": {
+              "ru": "выдра.",
+              "uk": "видра."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "otter",
+          "definitionByLocale": {
+            "ru": "выдра.",
+            "uk": "видра."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я малював видру, поки ти читав",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я малював видру, поки ти читав",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was drawing an otter while you were reading.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я рисовал выдру, пока ты читал",
+          "uk": "Скажіть: Я малював видру, поки ти читав"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "drawing",
+          "an",
+          "otter",
+          "while",
+          "you",
+          "were",
+          "reading"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-43:i02:r1",
+          "text": "You were drawing an otter while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i02:r2",
+          "text": "I was drawing an otter while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i02:r3",
+          "text": "They were drawing an otter while you were reading."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:i02:audio",
+          "transcript": "You were drawing an otter while you were reading."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-43:i02:r1",
+            "targetText": "You were drawing an otter while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i02:r2",
+            "targetText": "I was drawing an otter while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i02:r3",
+            "targetText": "They were drawing an otter while you were reading.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were drawing an otter while you were reading.",
+              "uk": "У записі звучить You were drawing an otter while you were reading."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were drawing an otter while you were reading.",
+              "uk": "У записі звучить You were drawing an otter while you were reading."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-43:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ drawing an otter while you were reading.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-43:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:word:beaver",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — beaver",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:word:beaver:audio"
+      ],
+      "accessibilityLabel": "Картка слова — beaver",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:word:beaver:audio",
+          "transcript": "beaver"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-43:word:beaver:r1",
+            "targetText": "beaver",
+            "meaningByLocale": {
+              "ru": "бобр.",
+              "uk": "бобер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beaver",
+          "definitionByLocale": {
+            "ru": "бобр.",
+            "uk": "бобер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони спостерігали за бобром, коли я прийшов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони спостерігали за бобром, коли я прийшов",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were watching a beaver when I arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они наблюдали за бобром, когда я пришёл",
+          "uk": "Скажіть: Вони спостерігали за бобром, коли я прийшов"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "watching",
+          "a",
+          "beaver",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-43:i05:r1",
+          "text": "You were watching a beaver when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i05:r2",
+          "text": "They were watching a beaver when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i05:r3",
+          "text": "She was watching a beaver when I arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:i05:audio",
+          "transcript": "You were watching a beaver when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-43:i05:r1",
+            "targetText": "You were watching a beaver when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i05:r2",
+            "targetText": "They were watching a beaver when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i05:r3",
+            "targetText": "She was watching a beaver when I arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were watching a beaver when I arrived.",
+              "uk": "У записі звучить You were watching a beaver when I arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were watching a beaver when I arrived.",
+              "uk": "У записі звучить You were watching a beaver when I arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-43:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ watching a beaver when I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-43:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:word:frog",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — frog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:word:frog:audio"
+      ],
+      "accessibilityLabel": "Картка слова — frog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:word:frog:audio",
+          "transcript": "frog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-43:word:frog:r1",
+            "targetText": "frog",
+            "meaningByLocale": {
+              "ru": "лягушка.",
+              "uk": "жаба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frog",
+          "definitionByLocale": {
+            "ru": "лягушка.",
+            "uk": "жаба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона малювала жабу, поки я говорив",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона малювала жабу, поки я говорив",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was drawing a frog while I was talking.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она рисовала лягушку, пока я говорил",
+          "uk": "Скажіть: Вона малювала жабу, поки я говорив"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "drawing",
+          "a",
+          "frog",
+          "while",
+          "I",
+          "was",
+          "talking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-43:i08:r1",
+          "text": "You were drawing a frog while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i08:r2",
+          "text": "She was drawing a frog while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i08:r3",
+          "text": "They were drawing a frog while I was talking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:i08:audio",
+          "transcript": "You were drawing a frog while I was talking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-43:i08:r1",
+            "targetText": "You were drawing a frog while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i08:r2",
+            "targetText": "She was drawing a frog while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i08:r3",
+            "targetText": "They were drawing a frog while I was talking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were drawing a frog while I was talking.",
+              "uk": "У записі звучить You were drawing a frog while I was talking."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were drawing a frog while I was talking.",
+              "uk": "У записі звучить You were drawing a frog while I was talking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-43:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ drawing a frog while I was talking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-43:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:word:tadpole",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tadpole",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:word:tadpole:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tadpole",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:word:tadpole:audio",
+          "transcript": "tadpole"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-43:word:tadpole:r1",
+            "targetText": "tadpole",
+            "meaningByLocale": {
+              "ru": "головастик.",
+              "uk": "пуголовок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tadpole",
+          "definitionByLocale": {
+            "ru": "головастик.",
+            "uk": "пуголовок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми спостерігали за пуголовком, коли ти зателефонував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми спостерігали за пуголовком, коли ти зателефонував",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were watching a tadpole when you called.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы наблюдали за головастиком, когда ты позвонил",
+          "uk": "Скажіть: Ми спостерігали за пуголовком, коли ти зателефонував"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "watching",
+          "a",
+          "tadpole",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-43:i11:r1",
+          "text": "You were watching a tadpole when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i11:r2",
+          "text": "We were watching a tadpole when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i11:r3",
+          "text": "She was watching a tadpole when you called."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:i11:audio",
+          "transcript": "You were watching a tadpole when you called."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-43:i11:r1",
+            "targetText": "You were watching a tadpole when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i11:r2",
+            "targetText": "We were watching a tadpole when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i11:r3",
+            "targetText": "She was watching a tadpole when you called.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were watching a tadpole when you called.",
+              "uk": "У записі звучить You were watching a tadpole when you called."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were watching a tadpole when you called.",
+              "uk": "У записі звучить You were watching a tadpole when you called."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-43:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-43:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ watching a tadpole when you called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-43:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-43:i13:p1",
+            "target": "otter",
+            "meaningByLocale": {
+              "ru": "выдра",
+              "uk": "видра"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-43:i13:p2",
+            "target": "beaver",
+            "meaningByLocale": {
+              "ru": "бобр",
+              "uk": "бобер"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-43:i13:p3",
+            "target": "frog",
+            "meaningByLocale": {
+              "ru": "лягушка",
+              "uk": "жаба"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-43:i13:p4",
+            "target": "tadpole",
+            "meaningByLocale": {
+              "ru": "головастик",
+              "uk": "пуголовок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "otter",
+          "beaver",
+          "frog",
+          "tadpole"
+        ],
+        "rightColumn": [
+          "видра",
+          "бобер",
+          "жаба",
+          "пуголовок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:i14:audio",
+          "transcript": "I was watching the film while she was drawing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was watching the film while she was drawing.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "watching",
+          "the",
+          "film",
+          "while",
+          "she",
+          "was",
+          "drawing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:i15:audio",
+          "transcript": "They were talking about the animals when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were talking about the animals when I arrived.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "talking",
+          "about",
+          "the",
+          "animals",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: вона малювала видру, поки я читав",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: вона малювала видру, поки я читав",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:i16:audio",
+          "transcript": "She was drawing an otter while I was reading."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was drawing an otter while I was reading.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-43:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я спостерігав за пуголовком, коли вона прийшла",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я спостерігав за пуголовком, коли вона прийшла",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-43:i17:audio",
+          "transcript": "I was watching a tadpole when she arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was watching a tadpole when she arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e504ef871961e11807744c4d936f5c1455b2210ce12b145527b21d4b8caedf75"
+}

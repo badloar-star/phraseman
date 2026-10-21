@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-51:word:linen",
+    "correctText": "linen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i01",
+    "correctText": "I was cutting linen while you were reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i02",
+    "correctText": "You were cutting linen while you were reading.",
+    "correctResponseId": "en:lesson-14:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:word:velvet",
+    "correctText": "velvet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i04",
+    "correctText": "They were looking at velvet when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i05",
+    "correctText": "You were looking at velvet when I arrived.",
+    "correctResponseId": "en:lesson-14:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:word:nylon",
+    "correctText": "nylon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i07",
+    "correctText": "She was folding nylon while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i08",
+    "correctText": "You were folding nylon while I was talking.",
+    "correctResponseId": "en:lesson-14:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:word:polyester",
+    "correctText": "polyester",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i10",
+    "correctText": "We were cutting polyester when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i11",
+    "correctText": "You were cutting polyester when you called.",
+    "correctResponseId": "en:lesson-14:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i13",
+    "correctText": "en:lesson-14:session-51:i13:p1=linen\nen:lesson-14:session-51:i13:p2=velvet\nen:lesson-14:session-51:i13:p3=nylon\nen:lesson-14:session-51:i13:p4=polyester",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i14",
+    "correctText": "I was cutting fabric while she was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i15",
+    "correctText": "They were choosing fabric when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i16",
+    "correctText": "She was cutting linen while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-51:i17",
+    "correctText": "I was looking at velvet when she arrived.",
+    "correctResponseId": null
+  }
+]

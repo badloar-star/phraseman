@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-53:word:celery",
+    "correctText": "celery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i01",
+    "correctText": "I was cutting celery while you were cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i02",
+    "correctText": "You were cutting celery while you were cooking.",
+    "correctResponseId": "en:lesson-14:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:word:broccoli",
+    "correctText": "broccoli",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i04",
+    "correctText": "They were washing broccoli when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i05",
+    "correctText": "You were washing broccoli when I arrived.",
+    "correctResponseId": "en:lesson-14:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:word:artichoke",
+    "correctText": "artichoke",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i07",
+    "correctText": "She was cooking an artichoke while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i08",
+    "correctText": "You were cooking an artichoke while I was talking.",
+    "correctResponseId": "en:lesson-14:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:word:fennel",
+    "correctText": "fennel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i10",
+    "correctText": "We were cutting fennel when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i11",
+    "correctText": "You were cutting fennel when you called.",
+    "correctResponseId": "en:lesson-14:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i13",
+    "correctText": "en:lesson-14:session-53:i13:p1=celery\nen:lesson-14:session-53:i13:p2=broccoli\nen:lesson-14:session-53:i13:p3=artichoke\nen:lesson-14:session-53:i13:p4=fennel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i14",
+    "correctText": "I was washing vegetables while she was cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i15",
+    "correctText": "They were making lunch when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i16",
+    "correctText": "She was cutting celery while I was cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-53:i17",
+    "correctText": "I was washing broccoli when she arrived.",
+    "correctResponseId": null
+  }
+]

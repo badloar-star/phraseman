@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-45:word:glue-stick",
+    "correctText": "glue stick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i01",
+    "correctText": "I was using a glue stick while you were drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i02",
+    "correctText": "You were using a glue stick while you were drawing.",
+    "correctResponseId": "en:lesson-14:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:word:hole-punch",
+    "correctText": "hole punch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i04",
+    "correctText": "They were using a hole punch when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i05",
+    "correctText": "You were using a hole punch when I arrived.",
+    "correctResponseId": "en:lesson-14:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:word:paperweight",
+    "correctText": "paperweight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i07",
+    "correctText": "She was cleaning a paperweight while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i08",
+    "correctText": "You were cleaning a paperweight while I was reading.",
+    "correctResponseId": "en:lesson-14:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:word:masking-tape",
+    "correctText": "masking tape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i10",
+    "correctText": "We were using masking tape when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i11",
+    "correctText": "You were using masking tape when you called.",
+    "correctResponseId": "en:lesson-14:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i13",
+    "correctText": "en:lesson-14:session-45:i13:p1=glue stick\nen:lesson-14:session-45:i13:p2=hole punch\nen:lesson-14:session-45:i13:p3=paperweight\nen:lesson-14:session-45:i13:p4=masking tape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i14",
+    "correctText": "I was drawing while she was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i15",
+    "correctText": "They were making decorations when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i16",
+    "correctText": "She was using a glue stick while I was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-45:i17",
+    "correctText": "I was using a hole punch when she arrived.",
+    "correctResponseId": null
+  }
+]

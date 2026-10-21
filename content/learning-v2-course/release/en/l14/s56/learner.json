@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-56:word:feta",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — feta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:word:feta:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — feta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:word:feta:audio",
+          "transcript": "feta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-56:word:feta:r1",
+            "targetText": "feta",
+            "meaningByLocale": {
+              "ru": "фета, белый рассольный сыр.",
+              "uk": "фета, білий розсільний сир."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "feta",
+          "definitionByLocale": {
+            "ru": "фета, белый рассольный сыр.",
+            "uk": "фета, білий розсільний сир."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я резал фету, пока ты готовил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я резал фету, пока ты готовил",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was cutting feta while you were cooking.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я резал фету, пока ты готовил",
+          "uk": "Скажіть: Я різав фету, поки ти готував"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "cutting",
+          "feta",
+          "while",
+          "you",
+          "were",
+          "cooking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-56:i02:r1",
+          "text": "You were cutting feta while you were cooking."
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i02:r2",
+          "text": "I was cutting feta while you were cooking."
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i02:r3",
+          "text": "They were cutting feta while you were cooking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:i02:audio",
+          "transcript": "You were cutting feta while you were cooking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-56:i02:r1",
+            "targetText": "You were cutting feta while you were cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i02:r2",
+            "targetText": "I was cutting feta while you were cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i02:r3",
+            "targetText": "They were cutting feta while you were cooking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting feta while you were cooking.",
+              "uk": "У записі звучить You were cutting feta while you were cooking."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting feta while you were cooking.",
+              "uk": "У записі звучить You were cutting feta while you were cooking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-56:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ cutting feta while you were cooking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-56:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:word:mozzarella",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mozzarella",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:word:mozzarella:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mozzarella",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:word:mozzarella:audio",
+          "transcript": "mozzarella"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-56:word:mozzarella:r1",
+            "targetText": "mozzarella",
+            "meaningByLocale": {
+              "ru": "моцарелла, мягкий белый сыр.",
+              "uk": "моцарела, м’який білий сир."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mozzarella",
+          "definitionByLocale": {
+            "ru": "моцарелла, мягкий белый сыр.",
+            "uk": "моцарела, м’який білий сир."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они резали моцареллу, когда я пришёл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они резали моцареллу, когда я пришёл",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were cutting mozzarella when I arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они резали моцареллу, когда я пришёл",
+          "uk": "Скажіть: Вони різали моцарелу, коли я прийшов"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "cutting",
+          "mozzarella",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-56:i05:r1",
+          "text": "You were cutting mozzarella when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i05:r2",
+          "text": "They were cutting mozzarella when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i05:r3",
+          "text": "She was cutting mozzarella when I arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:i05:audio",
+          "transcript": "You were cutting mozzarella when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-56:i05:r1",
+            "targetText": "You were cutting mozzarella when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i05:r2",
+            "targetText": "They were cutting mozzarella when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i05:r3",
+            "targetText": "She was cutting mozzarella when I arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting mozzarella when I arrived.",
+              "uk": "У записі звучить You were cutting mozzarella when I arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting mozzarella when I arrived.",
+              "uk": "У записі звучить You were cutting mozzarella when I arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-56:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ cutting mozzarella when I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-56:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:word:cheddar",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cheddar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:word:cheddar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cheddar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:word:cheddar:audio",
+          "transcript": "cheddar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-56:word:cheddar:r1",
+            "targetText": "cheddar",
+            "meaningByLocale": {
+              "ru": "чеддер, сорт твёрдого или полутвёрдого сыра.",
+              "uk": "чедер, сорт твердого або напівтвердого сиру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cheddar",
+          "definitionByLocale": {
+            "ru": "чеддер, сорт твёрдого или полутвёрдого сыра.",
+            "uk": "чедер, сорт твердого або напівтвердого сиру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она резала чеддер, пока я говорил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она резала чеддер, пока я говорил",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was cutting cheddar while I was talking.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она резала чеддер, пока я говорил",
+          "uk": "Скажіть: Вона різала чедер, поки я говорив"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "cutting",
+          "cheddar",
+          "while",
+          "I",
+          "was",
+          "talking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-56:i08:r1",
+          "text": "You were cutting cheddar while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i08:r2",
+          "text": "She was cutting cheddar while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i08:r3",
+          "text": "They were cutting cheddar while I was talking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:i08:audio",
+          "transcript": "You were cutting cheddar while I was talking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-56:i08:r1",
+            "targetText": "You were cutting cheddar while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i08:r2",
+            "targetText": "She was cutting cheddar while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i08:r3",
+            "targetText": "They were cutting cheddar while I was talking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting cheddar while I was talking.",
+              "uk": "У записі звучить You were cutting cheddar while I was talking."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting cheddar while I was talking.",
+              "uk": "У записі звучить You were cutting cheddar while I was talking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-56:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ cutting cheddar while I was talking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-56:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:word:parmesan",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — parmesan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:word:parmesan:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — parmesan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:word:parmesan:audio",
+          "transcript": "parmesan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-56:word:parmesan:r1",
+            "targetText": "parmesan",
+            "meaningByLocale": {
+              "ru": "пармезан, твёрдый сыр, который часто натирают.",
+              "uk": "пармезан, твердий сир, який часто натирають."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "parmesan",
+          "definitionByLocale": {
+            "ru": "пармезан, твёрдый сыр, который часто натирают.",
+            "uk": "пармезан, твердий сир, який часто натирають."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы добавляли пармезан, когда ты позвонил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы добавляли пармезан, когда ты позвонил",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were adding parmesan when you called.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы добавляли пармезан, когда ты позвонил",
+          "uk": "Скажіть: Ми додавали пармезан, коли ти зателефонував"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "adding",
+          "parmesan",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-56:i11:r1",
+          "text": "You were adding parmesan when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i11:r2",
+          "text": "We were adding parmesan when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i11:r3",
+          "text": "She was adding parmesan when you called."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:i11:audio",
+          "transcript": "You were adding parmesan when you called."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-56:i11:r1",
+            "targetText": "You were adding parmesan when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i11:r2",
+            "targetText": "We were adding parmesan when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i11:r3",
+            "targetText": "She was adding parmesan when you called.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were adding parmesan when you called.",
+              "uk": "У записі звучить You were adding parmesan when you called."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were adding parmesan when you called.",
+              "uk": "У записі звучить You were adding parmesan when you called."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-56:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-56:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ adding parmesan when you called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-56:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-56:i13:p1",
+            "target": "feta",
+            "meaningByLocale": {
+              "ru": "фета, белый рассольный сыр",
+              "uk": "фета, білий розсільний сир"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-56:i13:p2",
+            "target": "mozzarella",
+            "meaningByLocale": {
+              "ru": "моцарелла, мягкий белый сыр",
+              "uk": "моцарела, м’який білий сир"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-56:i13:p3",
+            "target": "cheddar",
+            "meaningByLocale": {
+              "ru": "чеддер, сорт твёрдого или полутвёрдого сыра",
+              "uk": "чедер, сорт твердого або напівтвердого сиру"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-56:i13:p4",
+            "target": "parmesan",
+            "meaningByLocale": {
+              "ru": "пармезан, твёрдый сыр, который часто натирают",
+              "uk": "пармезан, твердий сир, який часто натирають"
+            }
+          }
+        ],
+        "leftColumn": [
+          "feta",
+          "mozzarella",
+          "cheddar",
+          "parmesan"
+        ],
+        "rightColumn": [
+          "фета, белый рассольный сыр",
+          "моцарелла, мягкий белый сыр",
+          "чеддер, сорт твёрдого или полутвёрдого сыра",
+          "пармезан, твёрдый сыр, который часто натирают"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:i14:audio",
+          "transcript": "I was making a salad while she was cooking."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was making a salad while she was cooking.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "making",
+          "a",
+          "salad",
+          "while",
+          "she",
+          "was",
+          "cooking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:i15:audio",
+          "transcript": "They were preparing dinner when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were preparing dinner when I arrived.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "preparing",
+          "dinner",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: она резала фету, пока я готовил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: она резала фету, пока я готовил",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:i16:audio",
+          "transcript": "She was cutting feta while I was cooking."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was cutting feta while I was cooking.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я добавлял пармезан, когда она пришла",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я добавлял пармезан, когда она пришла",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-56:i17:audio",
+          "transcript": "I was adding parmesan when she arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was adding parmesan when she arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3367082d1fb36c4bb5d6c3a64a51675c15ca8b42f53c5c11de5cfde812efe523"
+}

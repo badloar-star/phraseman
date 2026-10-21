@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "review: when and while in past stories",
+    "uk": "review: when and while in past stories"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одновременные действия",
+        "uk": "Одночасні дії"
+      },
+      "bodyByLocale": {
+        "ru": "otter — выдра. I was drawing an otter while you were reading. — Я рисовал выдру, пока ты читал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
+        "uk": "otter — видра. I was drawing an otter while you were reading. — Я малював видру, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-43:intro1:r1",
+              "text": "I was drawing an otter while you were reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro1:r2",
+              "text": "I was drawing an otter while you was reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro1:r3",
+              "text": "I am drawing an otter while you were reading."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-43:intro1:r1",
+              "text": "I was drawing an otter while you were reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro1:r2",
+              "text": "I was drawing an otter while you was reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro1:r3",
+              "text": "I am drawing an otter while you were reading."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два слова",
+        "uk": "Ще два слова"
+      },
+      "bodyByLocale": {
+        "ru": "beaver — бобр. frog — лягушка. She was drawing a frog while I was talking. — Она рисовала лягушку, пока я говорил. Выберите фразу о двух процессах в прошлом.",
+        "uk": "beaver — бобер. frog — жаба. She was drawing a frog while I was talking. — Вона малювала жабу, поки я говорив. Виберіть фразу про два процеси в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-43:intro2:r1",
+              "text": "She was drawing a frog while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro2:r2",
+              "text": "She were drawing a frog while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro2:r3",
+              "text": "She was drawing a frog while I were talking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-43:intro2:r1",
+              "text": "She was drawing a frog while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro2:r2",
+              "text": "She were drawing a frog while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro2:r3",
+              "text": "She was drawing a frog while I were talking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Событие на фоне процесса",
+        "uk": "Подія на тлі процесу"
+      },
+      "bodyByLocale": {
+        "ru": "tadpole — головастик. We were watching a tadpole when you called. — Мы наблюдали за головастиком, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
+        "uk": "tadpole — пуголовок. We were watching a tadpole when you called. — Ми спостерігали за пуголовком, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-43:intro3:r1",
+              "text": "We were watching a tadpole when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro3:r2",
+              "text": "We were watching a tadpole when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro3:r3",
+              "text": "We was watching a tadpole when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-43:intro3:r1",
+              "text": "We were watching a tadpole when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro3:r2",
+              "text": "We were watching a tadpole when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-43:intro3:r3",
+              "text": "We was watching a tadpole when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cfb112b0febf747adc2cfa66e5095e1c40e20bfd2c7d839537410545496bbc3a"
+}

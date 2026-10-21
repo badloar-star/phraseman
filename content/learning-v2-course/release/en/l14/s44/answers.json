@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-44:word:chessboard",
+    "correctText": "chessboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i01",
+    "correctText": "I was cleaning the chessboard while you were reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i02",
+    "correctText": "You were cleaning the chessboard while you were reading.",
+    "correctResponseId": "en:lesson-14:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:word:dice",
+    "correctText": "dice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i04",
+    "correctText": "They were rolling the dice when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i05",
+    "correctText": "You were rolling the dice when I arrived.",
+    "correctResponseId": "en:lesson-14:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:word:draughts",
+    "correctText": "draughts",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i07",
+    "correctText": "She was playing draughts while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i08",
+    "correctText": "You were playing draughts while I was reading.",
+    "correctResponseId": "en:lesson-14:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:word:word-search",
+    "correctText": "word search",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i10",
+    "correctText": "We were doing a word search when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i11",
+    "correctText": "You were doing a word search when you called.",
+    "correctResponseId": "en:lesson-14:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i13",
+    "correctText": "en:lesson-14:session-44:i13:p1=chessboard\nen:lesson-14:session-44:i13:p2=dice\nen:lesson-14:session-44:i13:p3=draughts\nen:lesson-14:session-44:i13:p4=word search",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i14",
+    "correctText": "I was reading while she was playing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i15",
+    "correctText": "They were playing a game when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i16",
+    "correctText": "She was rolling the dice while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-44:i17",
+    "correctText": "I was playing draughts when she arrived.",
+    "correctResponseId": null
+  }
+]

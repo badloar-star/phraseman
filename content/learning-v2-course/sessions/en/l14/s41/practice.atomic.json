@@ -1,0 +1,2365 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-41:word:butterfly",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — butterfly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:word:butterfly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — butterfly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:word:butterfly:audio",
+            "transcript": "butterfly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:word:butterfly:r1",
+              "targetText": "butterfly",
+              "meaningByLocale": {
+                "ru": "бабочка.",
+                "uk": "метелик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "butterfly",
+            "definitionByLocale": {
+              "ru": "бабочка.",
+              "uk": "метелик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я наблюдал за бабочкой, пока ты фотографировал",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я наблюдал за бабочкой, пока ты фотографировал",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was watching a butterfly while you were taking a photo.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я наблюдал за бабочкой, пока ты фотографировал",
+            "uk": "Скажіть: Я спостерігав за метеликом, поки ти фотографував"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "watching",
+            "a",
+            "butterfly",
+            "while",
+            "you",
+            "were",
+            "taking",
+            "a",
+            "photo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i02:r1",
+            "text": "You were watching a butterfly while you were taking a photo."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i02:r2",
+            "text": "I was watching a butterfly while you were taking a photo."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i02:r3",
+            "text": "They were watching a butterfly while you were taking a photo."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i02:audio",
+            "transcript": "You were watching a butterfly while you were taking a photo."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:i02:r1",
+              "targetText": "You were watching a butterfly while you were taking a photo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i02:r2",
+              "targetText": "I was watching a butterfly while you were taking a photo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i02:r3",
+              "targetText": "They were watching a butterfly while you were taking a photo.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were watching a butterfly while you were taking a photo.",
+                "uk": "У записі звучить You were watching a butterfly while you were taking a photo."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were watching a butterfly while you were taking a photo.",
+                "uk": "У записі звучить You were watching a butterfly while you were taking a photo."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ watching a butterfly while you were taking a photo.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-41:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:word:ladybird",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ladybird",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:word:ladybird:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ladybird",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:word:ladybird:audio",
+            "transcript": "ladybird"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:word:ladybird:r1",
+              "targetText": "ladybird",
+              "meaningByLocale": {
+                "ru": "божья коровка.",
+                "uk": "сонечко, комаха."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ladybird",
+            "definitionByLocale": {
+              "ru": "божья коровка.",
+              "uk": "сонечко, комаха."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они смотрели на божью коровку, когда я пришёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они смотрели на божью коровку, когда я пришёл",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were looking at a ladybird when I arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они смотрели на божью коровку, когда я пришёл",
+            "uk": "Скажіть: Вони дивилися на сонечко, коли я прийшов"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "looking",
+            "at",
+            "a",
+            "ladybird",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i05:r1",
+            "text": "You were looking at a ladybird when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i05:r2",
+            "text": "They were looking at a ladybird when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i05:r3",
+            "text": "She was looking at a ladybird when I arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i05:audio",
+            "transcript": "You were looking at a ladybird when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:i05:r1",
+              "targetText": "You were looking at a ladybird when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i05:r2",
+              "targetText": "They were looking at a ladybird when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i05:r3",
+              "targetText": "She was looking at a ladybird when I arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a ladybird when I arrived.",
+                "uk": "У записі звучить You were looking at a ladybird when I arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a ladybird when I arrived.",
+                "uk": "У записі звучить You were looking at a ladybird when I arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ looking at a ladybird when I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-41:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:word:bee",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:word:bee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:word:bee:audio",
+            "transcript": "bee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:word:bee:r1",
+              "targetText": "bee",
+              "meaningByLocale": {
+                "ru": "пчела.",
+                "uk": "бджола."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bee",
+            "definitionByLocale": {
+              "ru": "пчела.",
+              "uk": "бджола."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она рисовала пчелу, пока я говорил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она рисовала пчелу, пока я говорил",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was drawing a bee while I was talking.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она рисовала пчелу, пока я говорил",
+            "uk": "Скажіть: Вона малювала бджолу, поки я говорив"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "drawing",
+            "a",
+            "bee",
+            "while",
+            "I",
+            "was",
+            "talking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i08:r1",
+            "text": "You were drawing a bee while I was talking."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i08:r2",
+            "text": "She was drawing a bee while I was talking."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i08:r3",
+            "text": "They were drawing a bee while I was talking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i08:audio",
+            "transcript": "You were drawing a bee while I was talking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:i08:r1",
+              "targetText": "You were drawing a bee while I was talking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i08:r2",
+              "targetText": "She was drawing a bee while I was talking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i08:r3",
+              "targetText": "They were drawing a bee while I was talking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were drawing a bee while I was talking.",
+                "uk": "У записі звучить You were drawing a bee while I was talking."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were drawing a bee while I was talking.",
+                "uk": "У записі звучить You were drawing a bee while I was talking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ drawing a bee while I was talking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-41:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:word:wasp",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wasp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:word:wasp:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wasp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:word:wasp:audio",
+            "transcript": "wasp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:word:wasp:r1",
+              "targetText": "wasp",
+              "meaningByLocale": {
+                "ru": "оса.",
+                "uk": "оса."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wasp",
+            "definitionByLocale": {
+              "ru": "оса.",
+              "uk": "оса."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы наблюдали за осой, когда ты позвонил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы наблюдали за осой, когда ты позвонил",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were watching a wasp when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы наблюдали за осой, когда ты позвонил",
+            "uk": "Скажіть: Ми спостерігали за осою, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "watching",
+            "a",
+            "wasp",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i11:r1",
+            "text": "You were watching a wasp when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i11:r2",
+            "text": "We were watching a wasp when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i11:r3",
+            "text": "She was watching a wasp when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i11:audio",
+            "transcript": "You were watching a wasp when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:i11:r1",
+              "targetText": "You were watching a wasp when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i11:r2",
+              "targetText": "We were watching a wasp when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i11:r3",
+              "targetText": "She was watching a wasp when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were watching a wasp when you called.",
+                "uk": "У записі звучить You were watching a wasp when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were watching a wasp when you called.",
+                "uk": "У записі звучить You were watching a wasp when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ watching a wasp when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-41:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-41:i13:p1",
+              "target": "butterfly",
+              "meaningByLocale": {
+                "ru": "бабочка",
+                "uk": "метелик"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-41:i13:p2",
+              "target": "ladybird",
+              "meaningByLocale": {
+                "ru": "божья коровка",
+                "uk": "сонечко, комаха"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-41:i13:p3",
+              "target": "bee",
+              "meaningByLocale": {
+                "ru": "пчела",
+                "uk": "бджола"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-41:i13:p4",
+              "target": "wasp",
+              "meaningByLocale": {
+                "ru": "оса",
+                "uk": "оса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "butterfly",
+            "ladybird",
+            "bee",
+            "wasp"
+          ],
+          "rightColumn": [
+            "бабочка",
+            "божья коровка",
+            "пчела",
+            "оса"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i14:audio",
+            "transcript": "I was taking photos while she was drawing."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was taking photos while she was drawing.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "taking",
+            "photos",
+            "while",
+            "she",
+            "was",
+            "drawing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i15:audio",
+            "transcript": "They were watching the flowers when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They were watching the flowers when I arrived.",
+          "orderedTokens": [
+            "They",
+            "were",
+            "watching",
+            "the",
+            "flowers",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: она наблюдала за бабочкой, пока я рисовал",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: она наблюдала за бабочкой, пока я рисовал",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i16:audio",
+            "transcript": "She was watching a butterfly while I was drawing."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was watching a butterfly while I was drawing.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я смотрел на божью коровку, когда она пришла",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я смотрел на божью коровку, когда она пришла",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i17:audio",
+            "transcript": "I was looking at a ladybird when she arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was looking at a ladybird when she arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-41:word:butterfly",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — butterfly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:word:butterfly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — butterfly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:word:butterfly:audio",
+            "transcript": "butterfly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:word:butterfly:r1",
+              "targetText": "butterfly",
+              "meaningByLocale": {
+                "ru": "бабочка.",
+                "uk": "метелик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "butterfly",
+            "definitionByLocale": {
+              "ru": "бабочка.",
+              "uk": "метелик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я спостерігав за метеликом, поки ти фотографував",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я спостерігав за метеликом, поки ти фотографував",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was watching a butterfly while you were taking a photo.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я наблюдал за бабочкой, пока ты фотографировал",
+            "uk": "Скажіть: Я спостерігав за метеликом, поки ти фотографував"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "watching",
+            "a",
+            "butterfly",
+            "while",
+            "you",
+            "were",
+            "taking",
+            "a",
+            "photo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i02:r1",
+            "text": "You were watching a butterfly while you were taking a photo."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i02:r2",
+            "text": "I was watching a butterfly while you were taking a photo."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i02:r3",
+            "text": "They were watching a butterfly while you were taking a photo."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i02:audio",
+            "transcript": "You were watching a butterfly while you were taking a photo."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:i02:r1",
+              "targetText": "You were watching a butterfly while you were taking a photo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i02:r2",
+              "targetText": "I was watching a butterfly while you were taking a photo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i02:r3",
+              "targetText": "They were watching a butterfly while you were taking a photo.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were watching a butterfly while you were taking a photo.",
+                "uk": "У записі звучить You were watching a butterfly while you were taking a photo."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were watching a butterfly while you were taking a photo.",
+                "uk": "У записі звучить You were watching a butterfly while you were taking a photo."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ watching a butterfly while you were taking a photo.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-41:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:word:ladybird",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ladybird",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:word:ladybird:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ladybird",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:word:ladybird:audio",
+            "transcript": "ladybird"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:word:ladybird:r1",
+              "targetText": "ladybird",
+              "meaningByLocale": {
+                "ru": "божья коровка.",
+                "uk": "сонечко, комаха."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ladybird",
+            "definitionByLocale": {
+              "ru": "божья коровка.",
+              "uk": "сонечко, комаха."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони дивилися на сонечко, коли я прийшов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони дивилися на сонечко, коли я прийшов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were looking at a ladybird when I arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они смотрели на божью коровку, когда я пришёл",
+            "uk": "Скажіть: Вони дивилися на сонечко, коли я прийшов"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "looking",
+            "at",
+            "a",
+            "ladybird",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i05:r1",
+            "text": "You were looking at a ladybird when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i05:r2",
+            "text": "They were looking at a ladybird when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i05:r3",
+            "text": "She was looking at a ladybird when I arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i05:audio",
+            "transcript": "You were looking at a ladybird when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:i05:r1",
+              "targetText": "You were looking at a ladybird when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i05:r2",
+              "targetText": "They were looking at a ladybird when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i05:r3",
+              "targetText": "She was looking at a ladybird when I arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a ladybird when I arrived.",
+                "uk": "У записі звучить You were looking at a ladybird when I arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a ladybird when I arrived.",
+                "uk": "У записі звучить You were looking at a ladybird when I arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ looking at a ladybird when I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-41:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:word:bee",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:word:bee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:word:bee:audio",
+            "transcript": "bee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:word:bee:r1",
+              "targetText": "bee",
+              "meaningByLocale": {
+                "ru": "пчела.",
+                "uk": "бджола."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bee",
+            "definitionByLocale": {
+              "ru": "пчела.",
+              "uk": "бджола."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона малювала бджолу, поки я говорив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона малювала бджолу, поки я говорив",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was drawing a bee while I was talking.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она рисовала пчелу, пока я говорил",
+            "uk": "Скажіть: Вона малювала бджолу, поки я говорив"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "drawing",
+            "a",
+            "bee",
+            "while",
+            "I",
+            "was",
+            "talking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i08:r1",
+            "text": "You were drawing a bee while I was talking."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i08:r2",
+            "text": "She was drawing a bee while I was talking."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i08:r3",
+            "text": "They were drawing a bee while I was talking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i08:audio",
+            "transcript": "You were drawing a bee while I was talking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:i08:r1",
+              "targetText": "You were drawing a bee while I was talking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i08:r2",
+              "targetText": "She was drawing a bee while I was talking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i08:r3",
+              "targetText": "They were drawing a bee while I was talking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were drawing a bee while I was talking.",
+                "uk": "У записі звучить You were drawing a bee while I was talking."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were drawing a bee while I was talking.",
+                "uk": "У записі звучить You were drawing a bee while I was talking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ drawing a bee while I was talking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-41:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:word:wasp",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wasp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:word:wasp:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wasp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:word:wasp:audio",
+            "transcript": "wasp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:word:wasp:r1",
+              "targetText": "wasp",
+              "meaningByLocale": {
+                "ru": "оса.",
+                "uk": "оса."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wasp",
+            "definitionByLocale": {
+              "ru": "оса.",
+              "uk": "оса."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми спостерігали за осою, коли ти зателефонував",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми спостерігали за осою, коли ти зателефонував",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were watching a wasp when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы наблюдали за осой, когда ты позвонил",
+            "uk": "Скажіть: Ми спостерігали за осою, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "watching",
+            "a",
+            "wasp",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i11:r1",
+            "text": "You were watching a wasp when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i11:r2",
+            "text": "We were watching a wasp when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i11:r3",
+            "text": "She was watching a wasp when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i11:audio",
+            "transcript": "You were watching a wasp when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-41:i11:r1",
+              "targetText": "You were watching a wasp when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i11:r2",
+              "targetText": "We were watching a wasp when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i11:r3",
+              "targetText": "She was watching a wasp when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were watching a wasp when you called.",
+                "uk": "У записі звучить You were watching a wasp when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were watching a wasp when you called.",
+                "uk": "У записі звучить You were watching a wasp when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-41:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-41:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ watching a wasp when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-41:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-41:i13:p1",
+              "target": "butterfly",
+              "meaningByLocale": {
+                "ru": "бабочка",
+                "uk": "метелик"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-41:i13:p2",
+              "target": "ladybird",
+              "meaningByLocale": {
+                "ru": "божья коровка",
+                "uk": "сонечко, комаха"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-41:i13:p3",
+              "target": "bee",
+              "meaningByLocale": {
+                "ru": "пчела",
+                "uk": "бджола"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-41:i13:p4",
+              "target": "wasp",
+              "meaningByLocale": {
+                "ru": "оса",
+                "uk": "оса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "butterfly",
+            "ladybird",
+            "bee",
+            "wasp"
+          ],
+          "rightColumn": [
+            "метелик",
+            "сонечко, комаха",
+            "бджола",
+            "оса"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i14:audio",
+            "transcript": "I was taking photos while she was drawing."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was taking photos while she was drawing.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "taking",
+            "photos",
+            "while",
+            "she",
+            "was",
+            "drawing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i15:audio",
+            "transcript": "They were watching the flowers when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They were watching the flowers when I arrived.",
+          "orderedTokens": [
+            "They",
+            "were",
+            "watching",
+            "the",
+            "flowers",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: вона спостерігала за метеликом, поки я малював",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: вона спостерігала за метеликом, поки я малював",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i16:audio",
+            "transcript": "She was watching a butterfly while I was drawing."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was watching a butterfly while I was drawing.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-41:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я дивився на сонечко, коли вона прийшла",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я дивився на сонечко, коли вона прийшла",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-41:i17:audio",
+            "transcript": "I was looking at a ladybird when she arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was looking at a ladybird when she arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-41:word:butterfly",
+      "correctText": "butterfly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i01",
+      "correctText": "I was watching a butterfly while you were taking a photo.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i02",
+      "correctText": "You were watching a butterfly while you were taking a photo.",
+      "correctResponseId": "en:lesson-14:session-41:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-41:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:word:ladybird",
+      "correctText": "ladybird",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i04",
+      "correctText": "They were looking at a ladybird when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i05",
+      "correctText": "You were looking at a ladybird when I arrived.",
+      "correctResponseId": "en:lesson-14:session-41:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i06",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-41:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:word:bee",
+      "correctText": "bee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i07",
+      "correctText": "She was drawing a bee while I was talking.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i08",
+      "correctText": "You were drawing a bee while I was talking.",
+      "correctResponseId": "en:lesson-14:session-41:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-41:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:word:wasp",
+      "correctText": "wasp",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i10",
+      "correctText": "We were watching a wasp when you called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i11",
+      "correctText": "You were watching a wasp when you called.",
+      "correctResponseId": "en:lesson-14:session-41:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-41:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i14",
+      "correctText": "I was taking photos while she was drawing.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i15",
+      "correctText": "They were watching the flowers when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i16",
+      "correctText": "She was watching a butterfly while I was drawing.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-41:i17",
+      "correctText": "I was looking at a ladybird when she arrived.",
+      "correctResponseId": null
+    }
+  ]
+}

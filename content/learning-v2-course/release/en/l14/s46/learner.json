@@ -1,0 +1,1139 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-46:word:safety-pin",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — safety pin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:word:safety-pin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — safety pin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:word:safety-pin:audio",
+          "transcript": "safety pin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-46:word:safety-pin:r1",
+            "targetText": "safety pin",
+            "meaningByLocale": {
+              "ru": "английская булавка с застёжкой.",
+              "uk": "англійська шпилька із застібкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "safety pin",
+          "definitionByLocale": {
+            "ru": "английская булавка с застёжкой.",
+            "uk": "англійська шпилька із застібкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я искал английскую булавку, пока ты читал",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я искал английскую булавку, пока ты читал",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was looking for a safety pin while you were reading.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я искал английскую булавку, пока ты читал",
+          "uk": "Скажіть: Я шукав англійську шпильку, поки ти читав"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "looking",
+          "for",
+          "a",
+          "safety",
+          "pin",
+          "while",
+          "you",
+          "were",
+          "reading"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-46:i02:r1",
+          "text": "You were looking for a safety pin while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i02:r2",
+          "text": "I was looking for a safety pin while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i02:r3",
+          "text": "They were looking for a safety pin while you were reading."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:i02:audio",
+          "transcript": "You were looking for a safety pin while you were reading."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-46:i02:r1",
+            "targetText": "You were looking for a safety pin while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i02:r2",
+            "targetText": "I was looking for a safety pin while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i02:r3",
+            "targetText": "They were looking for a safety pin while you were reading.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking for a safety pin while you were reading.",
+              "uk": "У записі звучить You were looking for a safety pin while you were reading."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking for a safety pin while you were reading.",
+              "uk": "У записі звучить You were looking for a safety pin while you were reading."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-46:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ looking for a safety pin while you were reading.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-46:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:word:sewing-machine",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sewing machine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:word:sewing-machine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sewing machine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:word:sewing-machine:audio",
+          "transcript": "sewing machine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-46:word:sewing-machine:r1",
+            "targetText": "sewing machine",
+            "meaningByLocale": {
+              "ru": "швейная машинка.",
+              "uk": "швейна машинка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sewing machine",
+          "definitionByLocale": {
+            "ru": "швейная машинка.",
+            "uk": "швейна машинка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они пользовались швейной машинкой, когда я пришёл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они пользовались швейной машинкой, когда я пришёл",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were using a sewing machine when I arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они пользовались швейной машинкой, когда я пришёл",
+          "uk": "Скажіть: Вони користувалися швейною машинкою, коли я прийшов"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "using",
+          "a",
+          "sewing",
+          "machine",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-46:i05:r1",
+          "text": "You were using a sewing machine when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i05:r2",
+          "text": "They were using a sewing machine when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i05:r3",
+          "text": "She was using a sewing machine when I arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:i05:audio",
+          "transcript": "You were using a sewing machine when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-46:i05:r1",
+            "targetText": "You were using a sewing machine when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i05:r2",
+            "targetText": "They were using a sewing machine when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i05:r3",
+            "targetText": "She was using a sewing machine when I arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using a sewing machine when I arrived.",
+              "uk": "У записі звучить You were using a sewing machine when I arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using a sewing machine when I arrived.",
+              "uk": "У записі звучить You were using a sewing machine when I arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-46:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ using a sewing machine when I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-46:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:word:pincushion",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pincushion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:word:pincushion:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pincushion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:word:pincushion:audio",
+          "transcript": "pincushion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-46:word:pincushion:r1",
+            "targetText": "pincushion",
+            "meaningByLocale": {
+              "ru": "подушечка для булавок и иголок.",
+              "uk": "подушечка для шпильок і голок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pincushion",
+          "definitionByLocale": {
+            "ru": "подушечка для булавок и иголок.",
+            "uk": "подушечка для шпильок і голок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она делала подушечку для иголок, пока я говорил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она делала подушечку для иголок, пока я говорил",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was making a pincushion while I was talking.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она делала подушечку для иголок, пока я говорил",
+          "uk": "Скажіть: Вона робила подушечку для голок, поки я говорив"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "making",
+          "a",
+          "pincushion",
+          "while",
+          "I",
+          "was",
+          "talking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-46:i08:r1",
+          "text": "You were making a pincushion while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i08:r2",
+          "text": "She was making a pincushion while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i08:r3",
+          "text": "They were making a pincushion while I was talking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:i08:audio",
+          "transcript": "You were making a pincushion while I was talking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-46:i08:r1",
+            "targetText": "You were making a pincushion while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i08:r2",
+            "targetText": "She was making a pincushion while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i08:r3",
+            "targetText": "They were making a pincushion while I was talking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were making a pincushion while I was talking.",
+              "uk": "У записі звучить You were making a pincushion while I was talking."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were making a pincushion while I was talking.",
+              "uk": "У записі звучить You were making a pincushion while I was talking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-46:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ making a pincushion while I was talking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-46:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:word:knitting-needles",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — knitting needles",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:word:knitting-needles:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — knitting needles",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:word:knitting-needles:audio",
+          "transcript": "knitting needles"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-46:word:knitting-needles:r1",
+            "targetText": "knitting needles",
+            "meaningByLocale": {
+              "ru": "вязальные спицы.",
+              "uk": "в’язальні спиці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "knitting needles",
+          "definitionByLocale": {
+            "ru": "вязальные спицы.",
+            "uk": "в’язальні спиці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы искали вязальные спицы, когда ты позвонил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы искали вязальные спицы, когда ты позвонил",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were looking for the knitting needles when you called.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы искали вязальные спицы, когда ты позвонил",
+          "uk": "Скажіть: Ми шукали в’язальні спиці, коли ти зателефонував"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "looking",
+          "for",
+          "the",
+          "knitting",
+          "needles",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-46:i11:r1",
+          "text": "You were looking for the knitting needles when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i11:r2",
+          "text": "We were looking for the knitting needles when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i11:r3",
+          "text": "She was looking for the knitting needles when you called."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:i11:audio",
+          "transcript": "You were looking for the knitting needles when you called."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-46:i11:r1",
+            "targetText": "You were looking for the knitting needles when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i11:r2",
+            "targetText": "We were looking for the knitting needles when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i11:r3",
+            "targetText": "She was looking for the knitting needles when you called.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking for the knitting needles when you called.",
+              "uk": "У записі звучить You were looking for the knitting needles when you called."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking for the knitting needles when you called.",
+              "uk": "У записі звучить You were looking for the knitting needles when you called."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-46:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-46:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ looking for the knitting needles when you called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-46:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-46:i13:p1",
+            "target": "safety pin",
+            "meaningByLocale": {
+              "ru": "английская булавка с застёжкой",
+              "uk": "англійська шпилька із застібкою"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-46:i13:p2",
+            "target": "sewing machine",
+            "meaningByLocale": {
+              "ru": "швейная машинка",
+              "uk": "швейна машинка"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-46:i13:p3",
+            "target": "pincushion",
+            "meaningByLocale": {
+              "ru": "подушечка для булавок и иголок",
+              "uk": "подушечка для шпильок і голок"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-46:i13:p4",
+            "target": "knitting needles",
+            "meaningByLocale": {
+              "ru": "вязальные спицы",
+              "uk": "в’язальні спиці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "safety pin",
+          "sewing machine",
+          "pincushion",
+          "knitting needles"
+        ],
+        "rightColumn": [
+          "английская булавка с застёжкой",
+          "швейная машинка",
+          "подушечка для булавок и иголок",
+          "вязальные спицы"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:i14:audio",
+          "transcript": "I was reading while she was sewing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was reading while she was sewing.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "reading",
+          "while",
+          "she",
+          "was",
+          "sewing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:i15:audio",
+          "transcript": "They were making a bag when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were making a bag when I arrived.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "making",
+          "a",
+          "bag",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: она искала английскую булавку, пока я читал",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: она искала английскую булавку, пока я читал",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:i16:audio",
+          "transcript": "She was looking for a safety pin while I was reading."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was looking for a safety pin while I was reading.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я пользовался швейной машинкой, когда она пришла",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я пользовался швейной машинкой, когда она пришла",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-46:i17:audio",
+          "transcript": "I was using a sewing machine when she arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was using a sewing machine when she arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d83c5c01f4cb2b4e3cbae2f7b43438f498b5b423822a3e9972eaecb2dfe17558"
+}

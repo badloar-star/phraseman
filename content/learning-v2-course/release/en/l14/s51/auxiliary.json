@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-51:intro1:r2": {
+          "ru": "С you нужна were.",
+          "uk": "З you потрібна were."
+        },
+        "en:lesson-14:session-51:intro1:r3": {
+          "ru": "Первое действие тоже в прошлом: was.",
+          "uk": "Перша дія теж у минулому: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-51:intro2:r2": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        },
+        "en:lesson-14:session-51:intro2:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-51:intro3:r2": {
+          "ru": "Событие в прошлом: called.",
+          "uk": "Подія в минулому: called."
+        },
+        "en:lesson-14:session-51:intro3:r3": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2904c74678e53b1ebad369b6d8117491474551dc5febc127abc9557636b8bbd1"
+}

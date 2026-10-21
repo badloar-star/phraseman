@@ -1,0 +1,2353 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-52:word:prawns",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — prawns",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:word:prawns:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — prawns",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:word:prawns:audio",
+            "transcript": "prawns"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:word:prawns:r1",
+              "targetText": "prawns",
+              "meaningByLocale": {
+                "ru": "креветки.",
+                "uk": "креветки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "prawns",
+            "definitionByLocale": {
+              "ru": "креветки.",
+              "uk": "креветки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я готовил креветки, пока ты читал",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я готовил креветки, пока ты читал",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was cooking prawns while you were reading.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я готовил креветки, пока ты читал",
+            "uk": "Скажіть: Я готував креветки, поки ти читав"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "cooking",
+            "prawns",
+            "while",
+            "you",
+            "were",
+            "reading"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i02:r1",
+            "text": "You were cooking prawns while you were reading."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i02:r2",
+            "text": "I was cooking prawns while you were reading."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i02:r3",
+            "text": "They were cooking prawns while you were reading."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i02:audio",
+            "transcript": "You were cooking prawns while you were reading."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:i02:r1",
+              "targetText": "You were cooking prawns while you were reading.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i02:r2",
+              "targetText": "I was cooking prawns while you were reading.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i02:r3",
+              "targetText": "They were cooking prawns while you were reading.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking prawns while you were reading.",
+                "uk": "У записі звучить You were cooking prawns while you were reading."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking prawns while you were reading.",
+                "uk": "У записі звучить You were cooking prawns while you were reading."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ cooking prawns while you were reading.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-52:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:word:mussels",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mussels",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:word:mussels:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mussels",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:word:mussels:audio",
+            "transcript": "mussels"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:word:mussels:r1",
+              "targetText": "mussels",
+              "meaningByLocale": {
+                "ru": "мидии.",
+                "uk": "мідії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mussels",
+            "definitionByLocale": {
+              "ru": "мидии.",
+              "uk": "мідії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они мыли мидии, когда я пришёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они мыли мидии, когда я пришёл",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were washing mussels when I arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они мыли мидии, когда я пришёл",
+            "uk": "Скажіть: Вони мили мідії, коли я прийшов"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "washing",
+            "mussels",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i05:r1",
+            "text": "You were washing mussels when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i05:r2",
+            "text": "They were washing mussels when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i05:r3",
+            "text": "She was washing mussels when I arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i05:audio",
+            "transcript": "You were washing mussels when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:i05:r1",
+              "targetText": "You were washing mussels when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i05:r2",
+              "targetText": "They were washing mussels when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i05:r3",
+              "targetText": "She was washing mussels when I arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing mussels when I arrived.",
+                "uk": "У записі звучить You were washing mussels when I arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing mussels when I arrived.",
+                "uk": "У записі звучить You were washing mussels when I arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ washing mussels when I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-52:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:word:squid",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — squid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:word:squid:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — squid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:word:squid:audio",
+            "transcript": "squid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:word:squid:r1",
+              "targetText": "squid",
+              "meaningByLocale": {
+                "ru": "кальмар.",
+                "uk": "кальмар."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "squid",
+            "definitionByLocale": {
+              "ru": "кальмар.",
+              "uk": "кальмар."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она резала кальмара, пока я говорил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она резала кальмара, пока я говорил",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was cutting squid while I was talking.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она резала кальмара, пока я говорил",
+            "uk": "Скажіть: Вона різала кальмара, поки я говорив"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "cutting",
+            "squid",
+            "while",
+            "I",
+            "was",
+            "talking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i08:r1",
+            "text": "You were cutting squid while I was talking."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i08:r2",
+            "text": "She was cutting squid while I was talking."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i08:r3",
+            "text": "They were cutting squid while I was talking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i08:audio",
+            "transcript": "You were cutting squid while I was talking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:i08:r1",
+              "targetText": "You were cutting squid while I was talking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i08:r2",
+              "targetText": "She was cutting squid while I was talking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i08:r3",
+              "targetText": "They were cutting squid while I was talking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting squid while I was talking.",
+                "uk": "У записі звучить You were cutting squid while I was talking."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting squid while I was talking.",
+                "uk": "У записі звучить You were cutting squid while I was talking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ cutting squid while I was talking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-52:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:word:crab",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — crab",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:word:crab:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — crab",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:word:crab:audio",
+            "transcript": "crab"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:word:crab:r1",
+              "targetText": "crab",
+              "meaningByLocale": {
+                "ru": "краб.",
+                "uk": "краб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crab",
+            "definitionByLocale": {
+              "ru": "краб.",
+              "uk": "краб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы готовили краба, когда ты позвонил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы готовили краба, когда ты позвонил",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were cooking a crab when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы готовили краба, когда ты позвонил",
+            "uk": "Скажіть: Ми готували краба, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "cooking",
+            "a",
+            "crab",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i11:r1",
+            "text": "You were cooking a crab when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i11:r2",
+            "text": "We were cooking a crab when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i11:r3",
+            "text": "She was cooking a crab when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i11:audio",
+            "transcript": "You were cooking a crab when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:i11:r1",
+              "targetText": "You were cooking a crab when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i11:r2",
+              "targetText": "We were cooking a crab when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i11:r3",
+              "targetText": "She was cooking a crab when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking a crab when you called.",
+                "uk": "У записі звучить You were cooking a crab when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking a crab when you called.",
+                "uk": "У записі звучить You were cooking a crab when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ cooking a crab when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-52:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-52:i13:p1",
+              "target": "prawns",
+              "meaningByLocale": {
+                "ru": "креветки",
+                "uk": "креветки"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-52:i13:p2",
+              "target": "mussels",
+              "meaningByLocale": {
+                "ru": "мидии",
+                "uk": "мідії"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-52:i13:p3",
+              "target": "squid",
+              "meaningByLocale": {
+                "ru": "кальмар",
+                "uk": "кальмар"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-52:i13:p4",
+              "target": "crab",
+              "meaningByLocale": {
+                "ru": "краб",
+                "uk": "краб"
+              }
+            }
+          ],
+          "leftColumn": [
+            "prawns",
+            "mussels",
+            "squid",
+            "crab"
+          ],
+          "rightColumn": [
+            "креветки",
+            "мидии",
+            "кальмар",
+            "краб"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i14:audio",
+            "transcript": "I was cooking while she was washing the dishes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was cooking while she was washing the dishes.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "cooking",
+            "while",
+            "she",
+            "was",
+            "washing",
+            "the",
+            "dishes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i15:audio",
+            "transcript": "They were preparing dinner when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They were preparing dinner when I arrived.",
+          "orderedTokens": [
+            "They",
+            "were",
+            "preparing",
+            "dinner",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: она готовила креветки, пока я читал",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: она готовила креветки, пока я читал",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i16:audio",
+            "transcript": "She was cooking prawns while I was reading."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was cooking prawns while I was reading.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я мыл мидии, когда она пришла",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я мыл мидии, когда она пришла",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i17:audio",
+            "transcript": "I was washing mussels when she arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was washing mussels when she arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-52:word:prawns",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — prawns",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:word:prawns:audio"
+        ],
+        "accessibilityLabel": "Картка слова — prawns",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:word:prawns:audio",
+            "transcript": "prawns"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:word:prawns:r1",
+              "targetText": "prawns",
+              "meaningByLocale": {
+                "ru": "креветки.",
+                "uk": "креветки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "prawns",
+            "definitionByLocale": {
+              "ru": "креветки.",
+              "uk": "креветки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я готував креветки, поки ти читав",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я готував креветки, поки ти читав",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was cooking prawns while you were reading.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я готовил креветки, пока ты читал",
+            "uk": "Скажіть: Я готував креветки, поки ти читав"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "cooking",
+            "prawns",
+            "while",
+            "you",
+            "were",
+            "reading"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i02:r1",
+            "text": "You were cooking prawns while you were reading."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i02:r2",
+            "text": "I was cooking prawns while you were reading."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i02:r3",
+            "text": "They were cooking prawns while you were reading."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i02:audio",
+            "transcript": "You were cooking prawns while you were reading."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:i02:r1",
+              "targetText": "You were cooking prawns while you were reading.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i02:r2",
+              "targetText": "I was cooking prawns while you were reading.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i02:r3",
+              "targetText": "They were cooking prawns while you were reading.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking prawns while you were reading.",
+                "uk": "У записі звучить You were cooking prawns while you were reading."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking prawns while you were reading.",
+                "uk": "У записі звучить You were cooking prawns while you were reading."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ cooking prawns while you were reading.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-52:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:word:mussels",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mussels",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:word:mussels:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mussels",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:word:mussels:audio",
+            "transcript": "mussels"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:word:mussels:r1",
+              "targetText": "mussels",
+              "meaningByLocale": {
+                "ru": "мидии.",
+                "uk": "мідії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mussels",
+            "definitionByLocale": {
+              "ru": "мидии.",
+              "uk": "мідії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони мили мідії, коли я прийшов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони мили мідії, коли я прийшов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were washing mussels when I arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они мыли мидии, когда я пришёл",
+            "uk": "Скажіть: Вони мили мідії, коли я прийшов"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "washing",
+            "mussels",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i05:r1",
+            "text": "You were washing mussels when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i05:r2",
+            "text": "They were washing mussels when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i05:r3",
+            "text": "She was washing mussels when I arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i05:audio",
+            "transcript": "You were washing mussels when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:i05:r1",
+              "targetText": "You were washing mussels when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i05:r2",
+              "targetText": "They were washing mussels when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i05:r3",
+              "targetText": "She was washing mussels when I arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing mussels when I arrived.",
+                "uk": "У записі звучить You were washing mussels when I arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing mussels when I arrived.",
+                "uk": "У записі звучить You were washing mussels when I arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ washing mussels when I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-52:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:word:squid",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — squid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:word:squid:audio"
+        ],
+        "accessibilityLabel": "Картка слова — squid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:word:squid:audio",
+            "transcript": "squid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:word:squid:r1",
+              "targetText": "squid",
+              "meaningByLocale": {
+                "ru": "кальмар.",
+                "uk": "кальмар."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "squid",
+            "definitionByLocale": {
+              "ru": "кальмар.",
+              "uk": "кальмар."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона різала кальмара, поки я говорив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона різала кальмара, поки я говорив",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was cutting squid while I was talking.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она резала кальмара, пока я говорил",
+            "uk": "Скажіть: Вона різала кальмара, поки я говорив"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "cutting",
+            "squid",
+            "while",
+            "I",
+            "was",
+            "talking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i08:r1",
+            "text": "You were cutting squid while I was talking."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i08:r2",
+            "text": "She was cutting squid while I was talking."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i08:r3",
+            "text": "They were cutting squid while I was talking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i08:audio",
+            "transcript": "You were cutting squid while I was talking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:i08:r1",
+              "targetText": "You were cutting squid while I was talking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i08:r2",
+              "targetText": "She was cutting squid while I was talking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i08:r3",
+              "targetText": "They were cutting squid while I was talking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting squid while I was talking.",
+                "uk": "У записі звучить You were cutting squid while I was talking."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting squid while I was talking.",
+                "uk": "У записі звучить You were cutting squid while I was talking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ cutting squid while I was talking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-52:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:word:crab",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — crab",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:word:crab:audio"
+        ],
+        "accessibilityLabel": "Картка слова — crab",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:word:crab:audio",
+            "transcript": "crab"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:word:crab:r1",
+              "targetText": "crab",
+              "meaningByLocale": {
+                "ru": "краб.",
+                "uk": "краб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crab",
+            "definitionByLocale": {
+              "ru": "краб.",
+              "uk": "краб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми готували краба, коли ти зателефонував",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми готували краба, коли ти зателефонував",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were cooking a crab when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы готовили краба, когда ты позвонил",
+            "uk": "Скажіть: Ми готували краба, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "cooking",
+            "a",
+            "crab",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i11:r1",
+            "text": "You were cooking a crab when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i11:r2",
+            "text": "We were cooking a crab when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i11:r3",
+            "text": "She was cooking a crab when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i11:audio",
+            "transcript": "You were cooking a crab when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-52:i11:r1",
+              "targetText": "You were cooking a crab when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i11:r2",
+              "targetText": "We were cooking a crab when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i11:r3",
+              "targetText": "She was cooking a crab when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking a crab when you called.",
+                "uk": "У записі звучить You were cooking a crab when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cooking a crab when you called.",
+                "uk": "У записі звучить You were cooking a crab when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-52:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-52:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ cooking a crab when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-52:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-52:i13:p1",
+              "target": "prawns",
+              "meaningByLocale": {
+                "ru": "креветки",
+                "uk": "креветки"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-52:i13:p2",
+              "target": "mussels",
+              "meaningByLocale": {
+                "ru": "мидии",
+                "uk": "мідії"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-52:i13:p3",
+              "target": "squid",
+              "meaningByLocale": {
+                "ru": "кальмар",
+                "uk": "кальмар"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-52:i13:p4",
+              "target": "crab",
+              "meaningByLocale": {
+                "ru": "краб",
+                "uk": "краб"
+              }
+            }
+          ],
+          "leftColumn": [
+            "prawns",
+            "mussels",
+            "squid",
+            "crab"
+          ],
+          "rightColumn": [
+            "креветки",
+            "мідії",
+            "кальмар",
+            "краб"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i14:audio",
+            "transcript": "I was cooking while she was washing the dishes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was cooking while she was washing the dishes.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "cooking",
+            "while",
+            "she",
+            "was",
+            "washing",
+            "the",
+            "dishes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i15:audio",
+            "transcript": "They were preparing dinner when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They were preparing dinner when I arrived.",
+          "orderedTokens": [
+            "They",
+            "were",
+            "preparing",
+            "dinner",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: вона готувала креветки, поки я читав",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: вона готувала креветки, поки я читав",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i16:audio",
+            "transcript": "She was cooking prawns while I was reading."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was cooking prawns while I was reading.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я мив мідії, коли вона прийшла",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я мив мідії, коли вона прийшла",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-52:i17:audio",
+            "transcript": "I was washing mussels when she arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was washing mussels when she arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-52:word:prawns",
+      "correctText": "prawns",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i01",
+      "correctText": "I was cooking prawns while you were reading.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i02",
+      "correctText": "You were cooking prawns while you were reading.",
+      "correctResponseId": "en:lesson-14:session-52:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-52:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:word:mussels",
+      "correctText": "mussels",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i04",
+      "correctText": "They were washing mussels when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i05",
+      "correctText": "You were washing mussels when I arrived.",
+      "correctResponseId": "en:lesson-14:session-52:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i06",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-52:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:word:squid",
+      "correctText": "squid",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i07",
+      "correctText": "She was cutting squid while I was talking.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i08",
+      "correctText": "You were cutting squid while I was talking.",
+      "correctResponseId": "en:lesson-14:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-52:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:word:crab",
+      "correctText": "crab",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i10",
+      "correctText": "We were cooking a crab when you called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i11",
+      "correctText": "You were cooking a crab when you called.",
+      "correctResponseId": "en:lesson-14:session-52:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-52:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i14",
+      "correctText": "I was cooking while she was washing the dishes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i15",
+      "correctText": "They were preparing dinner when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i16",
+      "correctText": "She was cooking prawns while I was reading.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-52:i17",
+      "correctText": "I was washing mussels when she arrived.",
+      "correctResponseId": null
+    }
+  ]
+}

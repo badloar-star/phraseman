@@ -64,3 +64,39 @@ ru · uk · en · es · pt-BR · vi · id · tr · pl.
 ## Rollback
 
 Удалить файл.
+
+## Дополнение 21.10 (вечер): «Не могу говорить», шторка голоса, карточка «Продолжить»
+
+### «Не могу говорить» — сверено, верно на 9 языках
+
+`app/learning_v2_direct_session_player_v1.tsx:3831` и `LearningV2VoiceHeadsupSheet.tsx:98`:
+Не могу говорить · Не можу говорити · Can't speak now · Ahora no puedo hablar · Não posso falar agora ·
+Không thể nói lúc này · Tidak bisa bicara sekarang · Şu an konuşamam · Nie mogę teraz mówić — менять не нужно.
+
+### Шторка «Голоса не хватит» (`LearningV2VoiceHeadsupSheet.tsx`, copyFor) — всё ещё «занятие/session»
+
+В плеере нового курса это эпизод. Замена `title` и начала `lead`/`leadByForm` (окончания и остальное — как есть):
+
+| | title | начало lead (дальше без изменений) |
+|---|---|---|
+| ru | Голоса на весь эпизод не хватит | В этом эпизоде есть задания с голосом, а на сегодня у тебя осталось / осталась |
+| uk | Голосу на весь епізод не вистачить | У цьому епізоді є завдання з голосом, а на сьогодні в тебе залишилося / залишилася |
+| en | Not enough voice attempts for this episode | This episode has voice tasks, and you have |
+| es | Te faltan intentos de voz para este episodio | Este episodio tiene tareas de voz y hoy te quedan / queda |
+| pt-BR | Faltam tentativas de voz para este episódio | Este episódio tem tarefas de voz e hoje você tem |
+| vi | Không đủ lượt nói cho cả tập học | Tập học này có bài nói, nhưng hôm nay bạn chỉ còn |
+| id | Percobaan suara tak cukup untuk episode ini | Episode ini punya tugas suara, dan hari ini kamu punya |
+| tr | Ses hakkın bu bölüme yetmeyecek | Bu bölümde sesli görevler var, bugün ise |
+| pl | Głosu nie starczy na cały odcinek | W tym odcinku są zadania głosowe, a na dziś zostało / została / zostały ci |
+
+Важно для es: `tail` «no podrás terminar**la**» (sesión, ж. р.) → «no podrás terminar**lo**» (episodio, м. р.).
+
+### Карточка «Продолжить с задания N из M» (ключа ещё нет — для `lesson_exit_strings.ts`)
+
+Плейсхолдеры как в файле: `{n}` — номер задания, `{m}` — всего.
+
+| ru | uk | en | es | pt-BR | vi | id | tr | pl |
+|---|---|---|---|---|---|---|---|---|
+| Продолжить с задания {n} из {m} | Продовжити із завдання {n} з {m} | Continue from task {n} of {m} | Seguir desde la tarea {n} de {m} | Continuar da tarefa {n} de {m} | Tiếp tục từ bài {n}/{m} | Lanjutkan tugas {n} dari {m} | Görevlere devam et: {n}/{m} | Kontynuuj od zadania {n} z {m} |
+
+id без двойного «dari … dari»; tr — порядковое «{n}. görevden» с «{m}» звучит громоздко, поэтому счёт вынесен после двоеточия.

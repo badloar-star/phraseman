@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "number + unit + of + non-count noun",
+    "uk": "number + unit + of + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество через единицу",
+        "uk": "Кількість через одиницю"
+      },
+      "bodyByLocale": {
+        "ru": "bowl of rice — миска риса. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: bowl → bowls. Считаем единицы или порции, а не меняем название содержимого.",
+        "uk": "bowl of rice — миска рису. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: bowl → bowls. Рахуємо одиниці або порції, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-40:intro1:r1",
+              "text": "We need two bowls of rice."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro1:r2",
+              "text": "We need two bowl of rice."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro1:r3",
+              "text": "We need two bowls rice."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-40:intro1:r1",
+              "text": "We need two bowls of rice."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro1:r2",
+              "text": "We need two bowl of rice."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro1:r3",
+              "text": "We need two bowls rice."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Меняем форму единицы",
+        "uk": "Змінюємо форму одиниці"
+      },
+      "bodyByLocale": {
+        "ru": "bowl of pasta — миска макарон, порция пасты в глубокой посуде. bowl of cereal — миска хлопьев для завтрака. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: bowl → bowls. Считаем единицы или порции, а не меняем название содержимого.",
+        "uk": "bowl of pasta — миска макаронів, порція пасти в глибокому посуді. bowl of cereal — миска пластівців для сніданку. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: bowl → bowls. Рахуємо одиниці або порції, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-40:intro2:r1",
+              "text": "We need two bowls of pasta."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro2:r2",
+              "text": "We need two bowl of pasta."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro2:r3",
+              "text": "We need two bowls pasta."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-40:intro2:r1",
+              "text": "We need two bowls of pasta."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro2:r2",
+              "text": "We need two bowl of pasta."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro2:r3",
+              "text": "We need two bowls pasta."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Связываем единицу и содержимое",
+        "uk": "Пов’язуємо одиницю та вміст"
+      },
+      "bodyByLocale": {
+        "ru": "bowl of porridge — миска овсяной каши. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: bowl → bowls. Считаем единицы или порции, а не меняем название содержимого.",
+        "uk": "bowl of porridge — миска вівсяної каші. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: bowl → bowls. Рахуємо одиниці або порції, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-40:intro3:r1",
+              "text": "We need two bowls of porridge."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro3:r2",
+              "text": "We need two bowl of porridge."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro3:r3",
+              "text": "We need two bowls porridge."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-40:intro3:r1",
+              "text": "We need two bowls of porridge."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro3:r2",
+              "text": "We need two bowl of porridge."
+            },
+            {
+              "responseId": "en:lesson-17:session-40:intro3:r3",
+              "text": "We need two bowls porridge."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a405b0077f51ce081a0c7c3090e6d477a590cc1d88afa9a57956db74d3d6d6ee"
+}

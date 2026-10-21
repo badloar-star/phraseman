@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "number + unit + of + non-count noun",
+    "uk": "number + unit + of + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество через единицу",
+        "uk": "Кількість через одиницю"
+      },
+      "bodyByLocale": {
+        "ru": "bottle of shampoo — флакон шампуня. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: bottle → bottles. Считаем единицы или порции, а не меняем название содержимого.",
+        "uk": "bottle of shampoo — флакон шампуню. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: bottle → bottles. Рахуємо одиниці або порції, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-38:intro1:r1",
+              "text": "We need two bottles of shampoo."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro1:r2",
+              "text": "We need two bottle of shampoo."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro1:r3",
+              "text": "We need two bottles shampoo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-38:intro1:r1",
+              "text": "We need two bottles of shampoo."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro1:r2",
+              "text": "We need two bottle of shampoo."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro1:r3",
+              "text": "We need two bottles shampoo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Меняем форму единицы",
+        "uk": "Змінюємо форму одиниці"
+      },
+      "bodyByLocale": {
+        "ru": "bottle of conditioner — флакон кондиционера для волос. bottle of shower gel — флакон геля для душа. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: bottle → bottles. Считаем единицы или порции, а не меняем название содержимого.",
+        "uk": "bottle of conditioner — флакон кондиціонера для волосся. bottle of shower gel — флакон гелю для душу. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: bottle → bottles. Рахуємо одиниці або порції, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-38:intro2:r1",
+              "text": "We need two bottles of conditioner."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro2:r2",
+              "text": "We need two bottle of conditioner."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro2:r3",
+              "text": "We need two bottles conditioner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-38:intro2:r1",
+              "text": "We need two bottles of conditioner."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro2:r2",
+              "text": "We need two bottle of conditioner."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro2:r3",
+              "text": "We need two bottles conditioner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Связываем единицу и содержимое",
+        "uk": "Пов’язуємо одиницю та вміст"
+      },
+      "bodyByLocale": {
+        "ru": "tube of cream — тюбик крема. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: tube → tubes. Считаем единицы или порции, а не меняем название содержимого.",
+        "uk": "tube of cream — тюбик крему. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: tube → tubes. Рахуємо одиниці або порції, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-38:intro3:r1",
+              "text": "We need two tubes of cream."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro3:r2",
+              "text": "We need two tube of cream."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro3:r3",
+              "text": "We need two tubes cream."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-38:intro3:r1",
+              "text": "We need two tubes of cream."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro3:r2",
+              "text": "We need two tube of cream."
+            },
+            {
+              "responseId": "en:lesson-17:session-38:intro3:r3",
+              "text": "We need two tubes cream."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6381440ede87c908feaba75923aa32f6032d75765ea5fe1454e0bc137ef6af5f"
+}

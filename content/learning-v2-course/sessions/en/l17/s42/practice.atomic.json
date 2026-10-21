@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-42:word:payment-plan",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — payment plan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:word:payment-plan:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — payment plan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:word:payment-plan:audio",
+            "transcript": "payment plan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:word:payment-plan:r1",
+              "targetText": "payment plan",
+              "meaningByLocale": {
+                "ru": "план внесения платежей, график оплаты частями.",
+                "uk": "план внесення платежів, графік оплати частинами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "payment plan",
+            "definitionByLocale": {
+              "ru": "план внесения платежей, график оплаты частями.",
+              "uk": "план внесення платежів, графік оплати частинами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans. Скажите: «Мы предлагаем несколько вариантов оплаты частями».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans. Скажите: «Мы предлагаем несколько вариантов оплаты частями».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We offer some payment plans.",
+          "localizedMeaning": {
+            "ru": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans. Скажите: «Мы предлагаем несколько вариантов оплаты частями».",
+            "uk": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans. Скажіть: «Ми пропонуємо кілька варіантів оплати частинами»."
+          },
+          "orderedTokens": [
+            "We",
+            "offer",
+            "some",
+            "payment",
+            "plans"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i02:r1",
+            "text": "We offer some payment plans."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i02:r2",
+            "text": "We offer any payment plans."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i02:r3",
+            "text": "We offer a payment plans."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i02:audio",
+            "transcript": "We offer some payment plans."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:i02:r1",
+              "targetText": "We offer some payment plans.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i02:r2",
+              "targetText": "We offer any payment plans.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i02:r3",
+              "targetText": "We offer a payment plans.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We offer some payment plans.",
+                "uk": "У записі звучить We offer some payment plans."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We offer some payment plans.",
+                "uk": "У записі звучить We offer some payment plans."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans.",
+            "uk": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans."
+          },
+          "gappedTargetPhrase": "We offer ___ payment plans.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-42:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:word:late-fee",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — late fee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:word:late-fee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — late fee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:word:late-fee:audio",
+            "transcript": "late fee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:word:late-fee:r1",
+              "targetText": "late fee",
+              "meaningByLocale": {
+                "ru": "плата за просрочку платежа.",
+                "uk": "плата за прострочення платежу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "late fee",
+            "definitionByLocale": {
+              "ru": "плата за просрочку платежа.",
+              "uk": "плата за прострочення платежу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees. Скажите: «Никакой платы за просрочку нет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees. Скажите: «Никакой платы за просрочку нет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren't any late fees.",
+          "localizedMeaning": {
+            "ru": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees. Скажите: «Никакой платы за просрочку нет».",
+            "uk": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees. Скажіть: «Жодної плати за прострочення немає»."
+          },
+          "orderedTokens": [
+            "There",
+            "aren't",
+            "any",
+            "late",
+            "fees"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i05:r1",
+            "text": "There aren't any late fees."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i05:r2",
+            "text": "There aren't some late fees."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i05:r3",
+            "text": "There aren't a late fees."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i05:audio",
+            "transcript": "There aren't any late fees."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:i05:r1",
+              "targetText": "There aren't any late fees.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i05:r2",
+              "targetText": "There aren't some late fees.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i05:r3",
+              "targetText": "There aren't a late fees.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any late fees.",
+                "uk": "У записі звучить There aren't any late fees."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any late fees.",
+                "uk": "У записі звучить There aren't any late fees."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees.",
+            "uk": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees."
+          },
+          "gappedTargetPhrase": "There aren't ___ late fees.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-42:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:word:bank-statement",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bank statement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:word:bank-statement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bank statement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:word:bank-statement:audio",
+            "transcript": "bank statement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:word:bank-statement:r1",
+              "targetText": "bank statement",
+              "meaningByLocale": {
+                "ru": "банковская выписка.",
+                "uk": "банківська виписка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bank statement",
+            "definitionByLocale": {
+              "ru": "банковская выписка.",
+              "uk": "банківська виписка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements. Скажите: «Мне нужны несколько банковских выписок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements. Скажите: «Мне нужны несколько банковских выписок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need some bank statements.",
+          "localizedMeaning": {
+            "ru": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements. Скажите: «Мне нужны несколько банковских выписок».",
+            "uk": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements. Скажіть: «Мені потрібні кілька банківських виписок»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "some",
+            "bank",
+            "statements"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i08:r1",
+            "text": "I need some bank statements."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i08:r2",
+            "text": "I need any bank statements."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i08:r3",
+            "text": "I need a bank statements."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i08:audio",
+            "transcript": "I need some bank statements."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:i08:r1",
+              "targetText": "I need some bank statements.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i08:r2",
+              "targetText": "I need any bank statements.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i08:r3",
+              "targetText": "I need a bank statements.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need some bank statements.",
+                "uk": "У записі звучить I need some bank statements."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need some bank statements.",
+                "uk": "У записі звучить I need some bank statements."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements.",
+            "uk": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements."
+          },
+          "gappedTargetPhrase": "I need ___ bank statements.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-42:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:word:standing-order",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — standing order",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:word:standing-order:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — standing order",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:word:standing-order:audio",
+            "transcript": "standing order"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:word:standing-order:r1",
+              "targetText": "standing order",
+              "meaningByLocale": {
+                "ru": "поручение банку регулярно переводить заданную сумму.",
+                "uk": "доручення банку регулярно переказувати задану суму."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "standing order",
+            "definitionByLocale": {
+              "ru": "поручение банку регулярно переводить заданную сумму.",
+              "uk": "доручення банку регулярно переказувати задану суму."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders. Скажите: «У вас есть какие-либо поручения банку на регулярные переводы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders. Скажите: «У вас есть какие-либо поручения банку на регулярные переводы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have any standing orders?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders. Скажите: «У вас есть какие-либо поручения банку на регулярные переводы».",
+            "uk": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders. Скажіть: «У вас є якісь доручення банку на регулярні перекази»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "standing",
+            "orders"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i11:r1",
+            "text": "Do you have any standing orders?"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i11:r2",
+            "text": "Do you have some standing orders?"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i11:r3",
+            "text": "Do you have a standing orders?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i11:audio",
+            "transcript": "Do you have any standing orders?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:i11:r1",
+              "targetText": "Do you have any standing orders?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i11:r2",
+              "targetText": "Do you have some standing orders?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i11:r3",
+              "targetText": "Do you have a standing orders?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any standing orders?",
+                "uk": "У записі звучить Do you have any standing orders?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any standing orders?",
+                "uk": "У записі звучить Do you have any standing orders?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders.",
+            "uk": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders."
+          },
+          "gappedTargetPhrase": "Do you have ___ standing orders?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-42:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-42:i13:p1",
+              "target": "payment plan",
+              "meaningByLocale": {
+                "ru": "план внесения платежей, график оплаты частями",
+                "uk": "план внесення платежів, графік оплати частинами"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-42:i13:p2",
+              "target": "late fee",
+              "meaningByLocale": {
+                "ru": "плата за просрочку платежа",
+                "uk": "плата за прострочення платежу"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-42:i13:p3",
+              "target": "bank statement",
+              "meaningByLocale": {
+                "ru": "банковская выписка",
+                "uk": "банківська виписка"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-42:i13:p4",
+              "target": "standing order",
+              "meaningByLocale": {
+                "ru": "поручение банку регулярно переводить заданную сумму",
+                "uk": "доручення банку регулярно переказувати задану суму"
+              }
+            }
+          ],
+          "leftColumn": [
+            "payment plan",
+            "late fee",
+            "bank statement",
+            "standing order"
+          ],
+          "rightColumn": [
+            "план внесения платежей, график оплаты частями",
+            "плата за просрочку платежа",
+            "банковская выписка",
+            "поручение банку регулярно переводить заданную сумму"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное утверждение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное утверждение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i14:audio",
+            "transcript": "We offer some payment plans."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We offer some payment plans.",
+          "orderedTokens": [
+            "We",
+            "offer",
+            "some",
+            "payment",
+            "plans"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i15:audio",
+            "transcript": "Do you have any standing orders?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you have any standing orders?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "standing",
+            "orders"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что некоторое количество есть",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что некоторое количество есть",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i16:audio",
+            "transcript": "I need some bank statements."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need some bank statements.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Полностью отрицайте наличие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Полностью отрицайте наличие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i17:audio",
+            "transcript": "There aren't any late fees."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren't any late fees.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-42:word:payment-plan",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — payment plan",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:word:payment-plan:audio"
+        ],
+        "accessibilityLabel": "Картка слова — payment plan",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:word:payment-plan:audio",
+            "transcript": "payment plan"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:word:payment-plan:r1",
+              "targetText": "payment plan",
+              "meaningByLocale": {
+                "ru": "план внесения платежей, график оплаты частями.",
+                "uk": "план внесення платежів, графік оплати частинами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "payment plan",
+            "definitionByLocale": {
+              "ru": "план внесения платежей, график оплаты частями.",
+              "uk": "план внесення платежів, графік оплати частинами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans. Скажіть: «Ми пропонуємо кілька варіантів оплати частинами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans. Скажіть: «Ми пропонуємо кілька варіантів оплати частинами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We offer some payment plans.",
+          "localizedMeaning": {
+            "ru": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans. Скажите: «Мы предлагаем несколько вариантов оплаты частями».",
+            "uk": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans. Скажіть: «Ми пропонуємо кілька варіантів оплати частинами»."
+          },
+          "orderedTokens": [
+            "We",
+            "offer",
+            "some",
+            "payment",
+            "plans"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i02:r1",
+            "text": "We offer some payment plans."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i02:r2",
+            "text": "We offer any payment plans."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i02:r3",
+            "text": "We offer a payment plans."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i02:audio",
+            "transcript": "We offer some payment plans."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:i02:r1",
+              "targetText": "We offer some payment plans.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i02:r2",
+              "targetText": "We offer any payment plans.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i02:r3",
+              "targetText": "We offer a payment plans.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We offer some payment plans.",
+                "uk": "У записі звучить We offer some payment plans."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We offer some payment plans.",
+                "uk": "У записі звучить We offer some payment plans."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans.",
+            "uk": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans."
+          },
+          "gappedTargetPhrase": "We offer ___ payment plans.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-42:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:word:late-fee",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — late fee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:word:late-fee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — late fee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:word:late-fee:audio",
+            "transcript": "late fee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:word:late-fee:r1",
+              "targetText": "late fee",
+              "meaningByLocale": {
+                "ru": "плата за просрочку платежа.",
+                "uk": "плата за прострочення платежу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "late fee",
+            "definitionByLocale": {
+              "ru": "плата за просрочку платежа.",
+              "uk": "плата за прострочення платежу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees. Скажіть: «Жодної плати за прострочення немає».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees. Скажіть: «Жодної плати за прострочення немає».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There aren't any late fees.",
+          "localizedMeaning": {
+            "ru": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees. Скажите: «Никакой платы за просрочку нет».",
+            "uk": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees. Скажіть: «Жодної плати за прострочення немає»."
+          },
+          "orderedTokens": [
+            "There",
+            "aren't",
+            "any",
+            "late",
+            "fees"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i05:r1",
+            "text": "There aren't any late fees."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i05:r2",
+            "text": "There aren't some late fees."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i05:r3",
+            "text": "There aren't a late fees."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i05:audio",
+            "transcript": "There aren't any late fees."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:i05:r1",
+              "targetText": "There aren't any late fees.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i05:r2",
+              "targetText": "There aren't some late fees.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i05:r3",
+              "targetText": "There aren't a late fees.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any late fees.",
+                "uk": "У записі звучить There aren't any late fees."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There aren't any late fees.",
+                "uk": "У записі звучить There aren't any late fees."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees.",
+            "uk": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees."
+          },
+          "gappedTargetPhrase": "There aren't ___ late fees.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-42:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:word:bank-statement",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bank statement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:word:bank-statement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bank statement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:word:bank-statement:audio",
+            "transcript": "bank statement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:word:bank-statement:r1",
+              "targetText": "bank statement",
+              "meaningByLocale": {
+                "ru": "банковская выписка.",
+                "uk": "банківська виписка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bank statement",
+            "definitionByLocale": {
+              "ru": "банковская выписка.",
+              "uk": "банківська виписка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements. Скажіть: «Мені потрібні кілька банківських виписок».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements. Скажіть: «Мені потрібні кілька банківських виписок».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need some bank statements.",
+          "localizedMeaning": {
+            "ru": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements. Скажите: «Мне нужны несколько банковских выписок».",
+            "uk": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements. Скажіть: «Мені потрібні кілька банківських виписок»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "some",
+            "bank",
+            "statements"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i08:r1",
+            "text": "I need some bank statements."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i08:r2",
+            "text": "I need any bank statements."
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i08:r3",
+            "text": "I need a bank statements."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i08:audio",
+            "transcript": "I need some bank statements."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:i08:r1",
+              "targetText": "I need some bank statements.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i08:r2",
+              "targetText": "I need any bank statements.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i08:r3",
+              "targetText": "I need a bank statements.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need some bank statements.",
+                "uk": "У записі звучить I need some bank statements."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need some bank statements.",
+                "uk": "У записі звучить I need some bank statements."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам нужны выписки за несколько периодов. Сообщите о потребности. Bank statement → bank statements.",
+            "uk": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements."
+          },
+          "gappedTargetPhrase": "I need ___ bank statements.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-42:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Вам потрібні виписки за кілька періодів. Повідомте про потребу. Bank statement → bank statements.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:word:standing-order",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — standing order",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:word:standing-order:audio"
+        ],
+        "accessibilityLabel": "Картка слова — standing order",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:word:standing-order:audio",
+            "transcript": "standing order"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:word:standing-order:r1",
+              "targetText": "standing order",
+              "meaningByLocale": {
+                "ru": "поручение банку регулярно переводить заданную сумму.",
+                "uk": "доручення банку регулярно переказувати задану суму."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "standing order",
+            "definitionByLocale": {
+              "ru": "поручение банку регулярно переводить заданную сумму.",
+              "uk": "доручення банку регулярно переказувати задану суму."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders. Скажіть: «У вас є якісь доручення банку на регулярні перекази».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders. Скажіть: «У вас є якісь доручення банку на регулярні перекази».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have any standing orders?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders. Скажите: «У вас есть какие-либо поручения банку на регулярные переводы».",
+            "uk": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders. Скажіть: «У вас є якісь доручення банку на регулярні перекази»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "standing",
+            "orders"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i11:r1",
+            "text": "Do you have any standing orders?"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i11:r2",
+            "text": "Do you have some standing orders?"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i11:r3",
+            "text": "Do you have a standing orders?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i11:audio",
+            "transcript": "Do you have any standing orders?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-42:i11:r1",
+              "targetText": "Do you have any standing orders?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i11:r2",
+              "targetText": "Do you have some standing orders?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i11:r3",
+              "targetText": "Do you have a standing orders?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any standing orders?",
+                "uk": "У записі звучить Do you have any standing orders?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you have any standing orders?",
+                "uk": "У записі звучить Do you have any standing orders?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-42:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-42:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders.",
+            "uk": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders."
+          },
+          "gappedTargetPhrase": "Do you have ___ standing orders?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-42:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-42:i13:p1",
+              "target": "payment plan",
+              "meaningByLocale": {
+                "ru": "план внесения платежей, график оплаты частями",
+                "uk": "план внесення платежів, графік оплати частинами"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-42:i13:p2",
+              "target": "late fee",
+              "meaningByLocale": {
+                "ru": "плата за просрочку платежа",
+                "uk": "плата за прострочення платежу"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-42:i13:p3",
+              "target": "bank statement",
+              "meaningByLocale": {
+                "ru": "банковская выписка",
+                "uk": "банківська виписка"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-42:i13:p4",
+              "target": "standing order",
+              "meaningByLocale": {
+                "ru": "поручение банку регулярно переводить заданную сумму",
+                "uk": "доручення банку регулярно переказувати задану суму"
+              }
+            }
+          ],
+          "leftColumn": [
+            "payment plan",
+            "late fee",
+            "bank statement",
+            "standing order"
+          ],
+          "rightColumn": [
+            "план внесення платежів, графік оплати частинами",
+            "плата за прострочення платежу",
+            "банківська виписка",
+            "доручення банку регулярно переказувати задану суму"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте твердження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте твердження",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i14:audio",
+            "transcript": "We offer some payment plans."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We offer some payment plans.",
+          "orderedTokens": [
+            "We",
+            "offer",
+            "some",
+            "payment",
+            "plans"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i15:audio",
+            "transcript": "Do you have any standing orders?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you have any standing orders?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "any",
+            "standing",
+            "orders"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що певна кількість є",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що певна кількість є",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i16:audio",
+            "transcript": "I need some bank statements."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need some bank statements.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повністю заперечте наявність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Повністю заперечте наявність",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-42:i17:audio",
+            "transcript": "There aren't any late fees."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There aren't any late fees.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-42:word:payment-plan",
+      "correctText": "payment plan",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i01",
+      "correctText": "We offer some payment plans.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i02",
+      "correctText": "We offer some payment plans.",
+      "correctResponseId": "en:lesson-17:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i03",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:word:late-fee",
+      "correctText": "late fee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i04",
+      "correctText": "There aren't any late fees.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i05",
+      "correctText": "There aren't any late fees.",
+      "correctResponseId": "en:lesson-17:session-42:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i06",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-42:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:word:bank-statement",
+      "correctText": "bank statement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i07",
+      "correctText": "I need some bank statements.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i08",
+      "correctText": "I need some bank statements.",
+      "correctResponseId": "en:lesson-17:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i09",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:word:standing-order",
+      "correctText": "standing order",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i10",
+      "correctText": "Do you have any standing orders?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i11",
+      "correctText": "Do you have any standing orders?",
+      "correctResponseId": "en:lesson-17:session-42:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-42:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i14",
+      "correctText": "We offer some payment plans.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i15",
+      "correctText": "Do you have any standing orders?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i16",
+      "correctText": "I need some bank statements.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-42:i17",
+      "correctText": "There aren't any late fees.",
+      "correctResponseId": null
+    }
+  ]
+}

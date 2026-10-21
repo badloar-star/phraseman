@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-37:word:litre-of-milk",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — litre of milk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:word:litre-of-milk:audio"
+      ],
+      "accessibilityLabel": "Картка слова — litre of milk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:word:litre-of-milk:audio",
+          "transcript": "litre of milk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-37:word:litre-of-milk:r1",
+            "targetText": "litre of milk",
+            "meaningByLocale": {
+              "ru": "литр молока.",
+              "uk": "літр молока."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "litre of milk",
+          "definitionByLocale": {
+            "ru": "литр молока.",
+            "uk": "літр молока."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "litre of milk → litres of milk. Скажіть: «Нам потрібні два літри молока».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "litre of milk → litres of milk. Скажіть: «Нам потрібні два літри молока».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need two litres of milk.",
+        "localizedMeaning": {
+          "ru": "litre of milk → litres of milk. Скажите: «Нам нужны два литра молока».",
+          "uk": "litre of milk → litres of milk. Скажіть: «Нам потрібні два літри молока»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "litres",
+          "of",
+          "milk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-37:i02:r1",
+          "text": "We need two litres of milk."
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i02:r2",
+          "text": "We need two litre of milk."
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i02:r3",
+          "text": "We need two litres milk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:i02:audio",
+          "transcript": "We need two litres of milk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-37:i02:r1",
+            "targetText": "We need two litres of milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i02:r2",
+            "targetText": "We need two litre of milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i02:r3",
+            "targetText": "We need two litres milk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two litres of milk.",
+              "uk": "У записі звучить We need two litres of milk."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two litres of milk.",
+              "uk": "У записі звучить We need two litres of milk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після two.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-37:i03:r1",
+          "text": "litres"
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i03:r2",
+          "text": "litre"
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i03:r3",
+          "text": "a litre"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після two.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после two.",
+          "uk": "Виберіть форму після two."
+        },
+        "gappedTargetPhrase": "We need two ___ of milk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-37:i03:r1",
+            "text": "litres"
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i03:r2",
+            "text": "litre"
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i03:r3",
+            "text": "a litre"
+          }
+        ],
+        "testedDimension": "Виберіть форму після two.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після two.",
+            "feedbackByLocale": {
+              "ru": "После two нужна форма litres.",
+              "uk": "Після two потрібна форма litres."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після two.",
+            "feedbackByLocale": {
+              "ru": "Не ставьте a после two.",
+              "uk": "Не ставте a після two."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:word:litre-of-petrol",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — litre of petrol",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:word:litre-of-petrol:audio"
+      ],
+      "accessibilityLabel": "Картка слова — litre of petrol",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:word:litre-of-petrol:audio",
+          "transcript": "litre of petrol"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-37:word:litre-of-petrol:r1",
+            "targetText": "litre of petrol",
+            "meaningByLocale": {
+              "ru": "литр бензина.",
+              "uk": "літр бензину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "litre of petrol",
+          "definitionByLocale": {
+            "ru": "литр бензина.",
+            "uk": "літр бензину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "litre of petrol → litres of petrol. Скажіть: «Нам потрібні два літри бензину».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "litre of petrol → litres of petrol. Скажіть: «Нам потрібні два літри бензину».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need two litres of petrol.",
+        "localizedMeaning": {
+          "ru": "litre of petrol → litres of petrol. Скажите: «Нам нужны два литра бензина».",
+          "uk": "litre of petrol → litres of petrol. Скажіть: «Нам потрібні два літри бензину»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "litres",
+          "of",
+          "petrol"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-37:i05:r1",
+          "text": "We need two litres of petrol."
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i05:r2",
+          "text": "We need two litre of petrol."
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i05:r3",
+          "text": "We need two litres petrol."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:i05:audio",
+          "transcript": "We need two litres of petrol."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-37:i05:r1",
+            "targetText": "We need two litres of petrol.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i05:r2",
+            "targetText": "We need two litre of petrol.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i05:r3",
+            "targetText": "We need two litres petrol.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-37:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two litres of petrol.",
+              "uk": "У записі звучить We need two litres of petrol."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two litres of petrol.",
+              "uk": "У записі звучить We need two litres of petrol."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після two.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-37:i06:r1",
+          "text": "litres"
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i06:r2",
+          "text": "litre"
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i06:r3",
+          "text": "a litre"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після two.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после two.",
+          "uk": "Виберіть форму після two."
+        },
+        "gappedTargetPhrase": "We need two ___ of petrol.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-37:i06:r1",
+            "text": "litres"
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i06:r2",
+            "text": "litre"
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i06:r3",
+            "text": "a litre"
+          }
+        ],
+        "testedDimension": "Виберіть форму після two.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після two.",
+            "feedbackByLocale": {
+              "ru": "После two нужна форма litres.",
+              "uk": "Після two потрібна форма litres."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після two.",
+            "feedbackByLocale": {
+              "ru": "Не ставьте a после two.",
+              "uk": "Не ставте a після two."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:word:kilo-of-rice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — kilo of rice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:word:kilo-of-rice:audio"
+      ],
+      "accessibilityLabel": "Картка слова — kilo of rice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:word:kilo-of-rice:audio",
+          "transcript": "kilo of rice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-37:word:kilo-of-rice:r1",
+            "targetText": "kilo of rice",
+            "meaningByLocale": {
+              "ru": "килограмм риса.",
+              "uk": "кілограм рису."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kilo of rice",
+          "definitionByLocale": {
+            "ru": "килограмм риса.",
+            "uk": "кілограм рису."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "kilo of rice → kilos of rice. Скажіть: «Нам потрібні два кілограми рису».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "kilo of rice → kilos of rice. Скажіть: «Нам потрібні два кілограми рису».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need two kilos of rice.",
+        "localizedMeaning": {
+          "ru": "kilo of rice → kilos of rice. Скажите: «Нам нужны два килограмма риса».",
+          "uk": "kilo of rice → kilos of rice. Скажіть: «Нам потрібні два кілограми рису»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "kilos",
+          "of",
+          "rice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-37:i08:r1",
+          "text": "We need two kilos of rice."
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i08:r2",
+          "text": "We need two kilo of rice."
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i08:r3",
+          "text": "We need two kilos rice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:i08:audio",
+          "transcript": "We need two kilos of rice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-37:i08:r1",
+            "targetText": "We need two kilos of rice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i08:r2",
+            "targetText": "We need two kilo of rice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i08:r3",
+            "targetText": "We need two kilos rice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two kilos of rice.",
+              "uk": "У записі звучить We need two kilos of rice."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two kilos of rice.",
+              "uk": "У записі звучить We need two kilos of rice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після two.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-37:i09:r1",
+          "text": "kilos"
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i09:r2",
+          "text": "kilo"
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i09:r3",
+          "text": "a kilo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після two.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после two.",
+          "uk": "Виберіть форму після two."
+        },
+        "gappedTargetPhrase": "We need two ___ of rice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-37:i09:r1",
+            "text": "kilos"
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i09:r2",
+            "text": "kilo"
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i09:r3",
+            "text": "a kilo"
+          }
+        ],
+        "testedDimension": "Виберіть форму після two.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-37:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після two.",
+            "feedbackByLocale": {
+              "ru": "После two нужна форма kilos.",
+              "uk": "Після two потрібна форма kilos."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після two.",
+            "feedbackByLocale": {
+              "ru": "Не ставьте a после two.",
+              "uk": "Не ставте a після two."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:word:kilo-of-meat",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — kilo of meat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:word:kilo-of-meat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — kilo of meat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:word:kilo-of-meat:audio",
+          "transcript": "kilo of meat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-37:word:kilo-of-meat:r1",
+            "targetText": "kilo of meat",
+            "meaningByLocale": {
+              "ru": "килограмм мяса.",
+              "uk": "кілограм м’яса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kilo of meat",
+          "definitionByLocale": {
+            "ru": "килограмм мяса.",
+            "uk": "кілограм м’яса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "kilo of meat → kilos of meat. Скажіть: «Нам потрібні два кілограми м’яса».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "kilo of meat → kilos of meat. Скажіть: «Нам потрібні два кілограми м’яса».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need two kilos of meat.",
+        "localizedMeaning": {
+          "ru": "kilo of meat → kilos of meat. Скажите: «Нам нужны два килограмма мяса».",
+          "uk": "kilo of meat → kilos of meat. Скажіть: «Нам потрібні два кілограми м’яса»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "two",
+          "kilos",
+          "of",
+          "meat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-37:i11:r1",
+          "text": "We need two kilos of meat."
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i11:r2",
+          "text": "We need two kilo of meat."
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i11:r3",
+          "text": "We need two kilos meat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:i11:audio",
+          "transcript": "We need two kilos of meat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-37:i11:r1",
+            "targetText": "We need two kilos of meat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i11:r2",
+            "targetText": "We need two kilo of meat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i11:r3",
+            "targetText": "We need two kilos meat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two kilos of meat.",
+              "uk": "У записі звучить We need two kilos of meat."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need two kilos of meat.",
+              "uk": "У записі звучить We need two kilos of meat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після two.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-37:i12:r1",
+          "text": "kilos"
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i12:r2",
+          "text": "kilo"
+        },
+        {
+          "responseId": "en:lesson-17:session-37:i12:r3",
+          "text": "a kilo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після two.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после two.",
+          "uk": "Виберіть форму після two."
+        },
+        "gappedTargetPhrase": "We need two ___ of meat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-37:i12:r1",
+            "text": "kilos"
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i12:r2",
+            "text": "kilo"
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i12:r3",
+            "text": "a kilo"
+          }
+        ],
+        "testedDimension": "Виберіть форму після two.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після two.",
+            "feedbackByLocale": {
+              "ru": "После two нужна форма kilos.",
+              "uk": "Після two потрібна форма kilos."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після two.",
+            "feedbackByLocale": {
+              "ru": "Не ставьте a после two.",
+              "uk": "Не ставте a після two."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-37:i13:p1",
+            "target": "litre of milk",
+            "meaningByLocale": {
+              "ru": "литр молока",
+              "uk": "літр молока"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-37:i13:p2",
+            "target": "litre of petrol",
+            "meaningByLocale": {
+              "ru": "литр бензина",
+              "uk": "літр бензину"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-37:i13:p3",
+            "target": "kilo of rice",
+            "meaningByLocale": {
+              "ru": "килограмм риса",
+              "uk": "кілограм рису"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-37:i13:p4",
+            "target": "kilo of meat",
+            "meaningByLocale": {
+              "ru": "килограмм мяса",
+              "uk": "кілограм м’яса"
+            }
+          }
+        ],
+        "leftColumn": [
+          "litre of milk",
+          "litre of petrol",
+          "kilo of rice",
+          "kilo of meat"
+        ],
+        "rightColumn": [
+          "літр молока",
+          "літр бензину",
+          "кілограм рису",
+          "кілограм м’яса"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу про завтрашній план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу про завтрашній план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:i14:audio",
+          "transcript": "I am going to buy two kilos of rice tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to buy two kilos of rice tomorrow.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "two",
+          "kilos",
+          "of",
+          "rice",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу в минулому часі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу в минулому часі",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:i15:audio",
+          "transcript": "I bought two kilos of meat yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I bought two kilos of meat yesterday.",
+        "orderedTokens": [
+          "I",
+          "bought",
+          "two",
+          "kilos",
+          "of",
+          "meat",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Назвіть потрібну кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:i16:audio"
+      ],
+      "accessibilityLabel": "Назвіть потрібну кількість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:i16:audio",
+          "transcript": "We need two litres of milk."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two litres of milk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторіть фразу з of",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Повторіть фразу з of",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-37:i17:audio",
+          "transcript": "We need two litres of petrol."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two litres of petrol.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "822b856eca7ecb2bfbe29e149db9ff199cbab42d3cffd494b350f2972e2d8f90"
+}

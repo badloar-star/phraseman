@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "number + unit + of + non-count noun",
+    "uk": "number + unit + of + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество через единицу",
+        "uk": "Кількість через одиницю"
+      },
+      "bodyByLocale": {
+        "ru": "carton of juice — картонная упаковка сока. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: carton → cartons. Считаем упаковки, а не меняем название содержимого.",
+        "uk": "carton of juice — картонна упаковка соку. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: carton → cartons. Рахуємо упаковки, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-35:intro1:r1",
+              "text": "We need two cartons of juice."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro1:r2",
+              "text": "We need two carton of juice."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro1:r3",
+              "text": "We need two cartons juice."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-35:intro1:r1",
+              "text": "We need two cartons of juice."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro1:r2",
+              "text": "We need two carton of juice."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro1:r3",
+              "text": "We need two cartons juice."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Меняем форму единицы",
+        "uk": "Змінюємо форму одиниці"
+      },
+      "bodyByLocale": {
+        "ru": "bottle of oil — бутылка растительного масла. pot of yoghurt — стаканчик йогурта. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: bottle → bottles. Считаем упаковки, а не меняем название содержимого.",
+        "uk": "bottle of oil — пляшка олії. pot of yoghurt — стаканчик йогурту. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: bottle → bottles. Рахуємо упаковки, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-35:intro2:r1",
+              "text": "We need two bottles of oil."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro2:r2",
+              "text": "We need two bottle of oil."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro2:r3",
+              "text": "We need two bottles oil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-35:intro2:r1",
+              "text": "We need two bottles of oil."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro2:r2",
+              "text": "We need two bottle of oil."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro2:r3",
+              "text": "We need two bottles oil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Связываем единицу и содержимое",
+        "uk": "Пов’язуємо одиницю та вміст"
+      },
+      "bodyByLocale": {
+        "ru": "packet of pasta — пачка макарон. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: packet → packets. Считаем упаковки, а не меняем название содержимого.",
+        "uk": "packet of pasta — пачка макаронів. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: packet → packets. Рахуємо упаковки, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-35:intro3:r1",
+              "text": "We need two packets of pasta."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro3:r2",
+              "text": "We need two packet of pasta."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro3:r3",
+              "text": "We need two packets pasta."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-35:intro3:r1",
+              "text": "We need two packets of pasta."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro3:r2",
+              "text": "We need two packet of pasta."
+            },
+            {
+              "responseId": "en:lesson-17:session-35:intro3:r3",
+              "text": "We need two packets pasta."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fd149eb7912d38ee41e81522decc2c7b3e9920379da920a6e9d05be87d099693"
+}

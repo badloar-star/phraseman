@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-42:word:payment-plan",
+    "correctText": "payment plan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i01",
+    "correctText": "We offer some payment plans.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i02",
+    "correctText": "We offer some payment plans.",
+    "correctResponseId": "en:lesson-17:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:word:late-fee",
+    "correctText": "late fee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i04",
+    "correctText": "There aren't any late fees.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i05",
+    "correctText": "There aren't any late fees.",
+    "correctResponseId": "en:lesson-17:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:word:bank-statement",
+    "correctText": "bank statement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i07",
+    "correctText": "I need some bank statements.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i08",
+    "correctText": "I need some bank statements.",
+    "correctResponseId": "en:lesson-17:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:word:standing-order",
+    "correctText": "standing order",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i10",
+    "correctText": "Do you have any standing orders?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i11",
+    "correctText": "Do you have any standing orders?",
+    "correctResponseId": "en:lesson-17:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i13",
+    "correctText": "en:lesson-17:session-42:i13:p1=payment plan\nen:lesson-17:session-42:i13:p2=late fee\nen:lesson-17:session-42:i13:p3=bank statement\nen:lesson-17:session-42:i13:p4=standing order",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i14",
+    "correctText": "We offer some payment plans.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i15",
+    "correctText": "Do you have any standing orders?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i16",
+    "correctText": "I need some bank statements.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-42:i17",
+    "correctText": "There aren't any late fees.",
+    "correctResponseId": null
+  }
+]

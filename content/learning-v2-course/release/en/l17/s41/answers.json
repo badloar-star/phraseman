@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-41:word:reference",
+    "correctText": "reference",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i01",
+    "correctText": "We need some references.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i02",
+    "correctText": "We need some references.",
+    "correctResponseId": "en:lesson-17:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i03",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:word:cover-letter",
+    "correctText": "cover letter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i04",
+    "correctText": "We don't have any cover letters.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i05",
+    "correctText": "We don't have any cover letters.",
+    "correctResponseId": "en:lesson-17:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i06",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:word:job-security",
+    "correctText": "job security",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i07",
+    "correctText": "I need some job security.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i08",
+    "correctText": "I need some job security.",
+    "correctResponseId": "en:lesson-17:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i09",
+    "correctText": "some",
+    "correctResponseId": "en:lesson-17:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:word:flexible-working",
+    "correctText": "flexible working",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i10",
+    "correctText": "Do you offer any flexible working?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i11",
+    "correctText": "Do you offer any flexible working?",
+    "correctResponseId": "en:lesson-17:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i12",
+    "correctText": "any",
+    "correctResponseId": "en:lesson-17:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i13",
+    "correctText": "en:lesson-17:session-41:i13:p1=reference\nen:lesson-17:session-41:i13:p2=cover letter\nen:lesson-17:session-41:i13:p3=job security\nen:lesson-17:session-41:i13:p4=flexible working",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i14",
+    "correctText": "We need some references.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i15",
+    "correctText": "Do you offer any flexible working?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i16",
+    "correctText": "I need some job security.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-41:i17",
+    "correctText": "We don't have any cover letters.",
+    "correctResponseId": null
+  }
+]

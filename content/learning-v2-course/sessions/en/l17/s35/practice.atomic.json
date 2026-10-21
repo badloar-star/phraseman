@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-35",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-35:word:carton-of-juice",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — carton of juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:word:carton-of-juice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — carton of juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:word:carton-of-juice:audio",
+            "transcript": "carton of juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:word:carton-of-juice:r1",
+              "targetText": "carton of juice",
+              "meaningByLocale": {
+                "ru": "картонная упаковка сока.",
+                "uk": "картонна упаковка соку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carton of juice",
+            "definitionByLocale": {
+              "ru": "картонная упаковка сока.",
+              "uk": "картонна упаковка соку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "carton of juice → cartons of juice. Скажите: «Нам нужны две картонные упаковки сока».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "carton of juice → cartons of juice. Скажите: «Нам нужны две картонные упаковки сока».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two cartons of juice.",
+          "localizedMeaning": {
+            "ru": "carton of juice → cartons of juice. Скажите: «Нам нужны две картонные упаковки сока».",
+            "uk": "carton of juice → cartons of juice. Скажіть: «Нам потрібні дві картонні упаковки соку»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "cartons",
+            "of",
+            "juice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i02:r1",
+            "text": "We need two cartons of juice."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i02:r2",
+            "text": "We need two carton of juice."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i02:r3",
+            "text": "We need two cartons juice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i02:audio",
+            "transcript": "We need two cartons of juice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:i02:r1",
+              "targetText": "We need two cartons of juice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i02:r2",
+              "targetText": "We need two carton of juice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i02:r3",
+              "targetText": "We need two cartons juice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two cartons of juice.",
+                "uk": "У записі звучить We need two cartons of juice."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two cartons of juice.",
+                "uk": "У записі звучить We need two cartons of juice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i03:r1",
+            "text": "cartons"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i03:r2",
+            "text": "carton"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i03:r3",
+            "text": "a carton"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of juice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-35:i03:r1",
+              "text": "cartons"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i03:r2",
+              "text": "carton"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i03:r3",
+              "text": "a carton"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма cartons.",
+                "uk": "Після two потрібна форма cartons."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:word:bottle-of-oil",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bottle of oil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:word:bottle-of-oil:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bottle of oil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:word:bottle-of-oil:audio",
+            "transcript": "bottle of oil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:word:bottle-of-oil:r1",
+              "targetText": "bottle of oil",
+              "meaningByLocale": {
+                "ru": "бутылка растительного масла.",
+                "uk": "пляшка олії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle of oil",
+            "definitionByLocale": {
+              "ru": "бутылка растительного масла.",
+              "uk": "пляшка олії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bottle of oil → bottles of oil. Скажите: «Нам нужны две бутылки растительного масла».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bottle of oil → bottles of oil. Скажите: «Нам нужны две бутылки растительного масла».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bottles of oil.",
+          "localizedMeaning": {
+            "ru": "bottle of oil → bottles of oil. Скажите: «Нам нужны две бутылки растительного масла».",
+            "uk": "bottle of oil → bottles of oil. Скажіть: «Нам потрібні дві пляшки олії»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bottles",
+            "of",
+            "oil"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i05:r1",
+            "text": "We need two bottles of oil."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i05:r2",
+            "text": "We need two bottle of oil."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i05:r3",
+            "text": "We need two bottles oil."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i05:audio",
+            "transcript": "We need two bottles of oil."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:i05:r1",
+              "targetText": "We need two bottles of oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i05:r2",
+              "targetText": "We need two bottle of oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i05:r3",
+              "targetText": "We need two bottles oil.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of oil.",
+                "uk": "У записі звучить We need two bottles of oil."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of oil.",
+                "uk": "У записі звучить We need two bottles of oil."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i06:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i06:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i06:r3",
+            "text": "a bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of oil.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-35:i06:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i06:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i06:r3",
+              "text": "a bottle"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bottles.",
+                "uk": "Після two потрібна форма bottles."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:word:pot-of-yoghurt",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pot of yoghurt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:word:pot-of-yoghurt:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pot of yoghurt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:word:pot-of-yoghurt:audio",
+            "transcript": "pot of yoghurt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:word:pot-of-yoghurt:r1",
+              "targetText": "pot of yoghurt",
+              "meaningByLocale": {
+                "ru": "стаканчик йогурта.",
+                "uk": "стаканчик йогурту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pot of yoghurt",
+            "definitionByLocale": {
+              "ru": "стаканчик йогурта.",
+              "uk": "стаканчик йогурту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "pot of yoghurt → pots of yoghurt. Скажите: «Нам нужны два стаканчика йогурта».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "pot of yoghurt → pots of yoghurt. Скажите: «Нам нужны два стаканчика йогурта».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two pots of yoghurt.",
+          "localizedMeaning": {
+            "ru": "pot of yoghurt → pots of yoghurt. Скажите: «Нам нужны два стаканчика йогурта».",
+            "uk": "pot of yoghurt → pots of yoghurt. Скажіть: «Нам потрібні два стаканчики йогурту»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "pots",
+            "of",
+            "yoghurt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i08:r1",
+            "text": "We need two pots of yoghurt."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i08:r2",
+            "text": "We need two pot of yoghurt."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i08:r3",
+            "text": "We need two pots yoghurt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i08:audio",
+            "transcript": "We need two pots of yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:i08:r1",
+              "targetText": "We need two pots of yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i08:r2",
+              "targetText": "We need two pot of yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i08:r3",
+              "targetText": "We need two pots yoghurt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two pots of yoghurt.",
+                "uk": "У записі звучить We need two pots of yoghurt."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two pots of yoghurt.",
+                "uk": "У записі звучить We need two pots of yoghurt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i09:r1",
+            "text": "pots"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i09:r2",
+            "text": "pot"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i09:r3",
+            "text": "a pot"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of yoghurt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-35:i09:r1",
+              "text": "pots"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i09:r2",
+              "text": "pot"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i09:r3",
+              "text": "a pot"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pots.",
+                "uk": "Після two потрібна форма pots."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:word:packet-of-pasta",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — packet of pasta",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:word:packet-of-pasta:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — packet of pasta",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:word:packet-of-pasta:audio",
+            "transcript": "packet of pasta"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:word:packet-of-pasta:r1",
+              "targetText": "packet of pasta",
+              "meaningByLocale": {
+                "ru": "пачка макарон.",
+                "uk": "пачка макаронів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "packet of pasta",
+            "definitionByLocale": {
+              "ru": "пачка макарон.",
+              "uk": "пачка макаронів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "packet of pasta → packets of pasta. Скажите: «Нам нужны две пачки макарон».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "packet of pasta → packets of pasta. Скажите: «Нам нужны две пачки макарон».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two packets of pasta.",
+          "localizedMeaning": {
+            "ru": "packet of pasta → packets of pasta. Скажите: «Нам нужны две пачки макарон».",
+            "uk": "packet of pasta → packets of pasta. Скажіть: «Нам потрібні дві пачки макаронів»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "packets",
+            "of",
+            "pasta"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i11:r1",
+            "text": "We need two packets of pasta."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i11:r2",
+            "text": "We need two packet of pasta."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i11:r3",
+            "text": "We need two packets pasta."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i11:audio",
+            "transcript": "We need two packets of pasta."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:i11:r1",
+              "targetText": "We need two packets of pasta.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i11:r2",
+              "targetText": "We need two packet of pasta.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i11:r3",
+              "targetText": "We need two packets pasta.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two packets of pasta.",
+                "uk": "У записі звучить We need two packets of pasta."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two packets of pasta.",
+                "uk": "У записі звучить We need two packets of pasta."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i12:r1",
+            "text": "packets"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i12:r2",
+            "text": "packet"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i12:r3",
+            "text": "a packet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of pasta.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-35:i12:r1",
+              "text": "packets"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i12:r2",
+              "text": "packet"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i12:r3",
+              "text": "a packet"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма packets.",
+                "uk": "Після two потрібна форма packets."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-35:i13:p1",
+              "target": "carton of juice",
+              "meaningByLocale": {
+                "ru": "картонная упаковка сока",
+                "uk": "картонна упаковка соку"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-35:i13:p2",
+              "target": "bottle of oil",
+              "meaningByLocale": {
+                "ru": "бутылка растительного масла",
+                "uk": "пляшка олії"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-35:i13:p3",
+              "target": "pot of yoghurt",
+              "meaningByLocale": {
+                "ru": "стаканчик йогурта",
+                "uk": "стаканчик йогурту"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-35:i13:p4",
+              "target": "packet of pasta",
+              "meaningByLocale": {
+                "ru": "пачка макарон",
+                "uk": "пачка макаронів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carton of juice",
+            "bottle of oil",
+            "pot of yoghurt",
+            "packet of pasta"
+          ],
+          "rightColumn": [
+            "картонная упаковка сока",
+            "бутылка растительного масла",
+            "стаканчик йогурта",
+            "пачка макарон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу о завтрашнем плане",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу о завтрашнем плане",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i14:audio",
+            "transcript": "I am going to buy two pots of yoghurt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy two pots of yoghurt tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "two",
+            "pots",
+            "of",
+            "yoghurt",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу в прошедшем времени",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу в прошедшем времени",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i15:audio",
+            "transcript": "I bought two packets of pasta yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I bought two packets of pasta yesterday.",
+          "orderedTokens": [
+            "I",
+            "bought",
+            "two",
+            "packets",
+            "of",
+            "pasta",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назовите нужное количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Назовите нужное количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i16:audio",
+            "transcript": "We need two cartons of juice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two cartons of juice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторите фразу с of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Повторите фразу с of",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i17:audio",
+            "transcript": "We need two bottles of oil."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of oil.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-35:word:carton-of-juice",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — carton of juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:word:carton-of-juice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — carton of juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:word:carton-of-juice:audio",
+            "transcript": "carton of juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:word:carton-of-juice:r1",
+              "targetText": "carton of juice",
+              "meaningByLocale": {
+                "ru": "картонная упаковка сока.",
+                "uk": "картонна упаковка соку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carton of juice",
+            "definitionByLocale": {
+              "ru": "картонная упаковка сока.",
+              "uk": "картонна упаковка соку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "carton of juice → cartons of juice. Скажіть: «Нам потрібні дві картонні упаковки соку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "carton of juice → cartons of juice. Скажіть: «Нам потрібні дві картонні упаковки соку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two cartons of juice.",
+          "localizedMeaning": {
+            "ru": "carton of juice → cartons of juice. Скажите: «Нам нужны две картонные упаковки сока».",
+            "uk": "carton of juice → cartons of juice. Скажіть: «Нам потрібні дві картонні упаковки соку»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "cartons",
+            "of",
+            "juice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i02:r1",
+            "text": "We need two cartons of juice."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i02:r2",
+            "text": "We need two carton of juice."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i02:r3",
+            "text": "We need two cartons juice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i02:audio",
+            "transcript": "We need two cartons of juice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:i02:r1",
+              "targetText": "We need two cartons of juice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i02:r2",
+              "targetText": "We need two carton of juice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i02:r3",
+              "targetText": "We need two cartons juice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two cartons of juice.",
+                "uk": "У записі звучить We need two cartons of juice."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two cartons of juice.",
+                "uk": "У записі звучить We need two cartons of juice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i03:r1",
+            "text": "cartons"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i03:r2",
+            "text": "carton"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i03:r3",
+            "text": "a carton"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of juice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-35:i03:r1",
+              "text": "cartons"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i03:r2",
+              "text": "carton"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i03:r3",
+              "text": "a carton"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма cartons.",
+                "uk": "Після two потрібна форма cartons."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:word:bottle-of-oil",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bottle of oil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:word:bottle-of-oil:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bottle of oil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:word:bottle-of-oil:audio",
+            "transcript": "bottle of oil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:word:bottle-of-oil:r1",
+              "targetText": "bottle of oil",
+              "meaningByLocale": {
+                "ru": "бутылка растительного масла.",
+                "uk": "пляшка олії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle of oil",
+            "definitionByLocale": {
+              "ru": "бутылка растительного масла.",
+              "uk": "пляшка олії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bottle of oil → bottles of oil. Скажіть: «Нам потрібні дві пляшки олії».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bottle of oil → bottles of oil. Скажіть: «Нам потрібні дві пляшки олії».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bottles of oil.",
+          "localizedMeaning": {
+            "ru": "bottle of oil → bottles of oil. Скажите: «Нам нужны две бутылки растительного масла».",
+            "uk": "bottle of oil → bottles of oil. Скажіть: «Нам потрібні дві пляшки олії»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bottles",
+            "of",
+            "oil"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i05:r1",
+            "text": "We need two bottles of oil."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i05:r2",
+            "text": "We need two bottle of oil."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i05:r3",
+            "text": "We need two bottles oil."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i05:audio",
+            "transcript": "We need two bottles of oil."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:i05:r1",
+              "targetText": "We need two bottles of oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i05:r2",
+              "targetText": "We need two bottle of oil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i05:r3",
+              "targetText": "We need two bottles oil.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of oil.",
+                "uk": "У записі звучить We need two bottles of oil."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of oil.",
+                "uk": "У записі звучить We need two bottles of oil."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i06:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i06:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i06:r3",
+            "text": "a bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of oil.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-35:i06:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i06:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i06:r3",
+              "text": "a bottle"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bottles.",
+                "uk": "Після two потрібна форма bottles."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:word:pot-of-yoghurt",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pot of yoghurt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:word:pot-of-yoghurt:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pot of yoghurt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:word:pot-of-yoghurt:audio",
+            "transcript": "pot of yoghurt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:word:pot-of-yoghurt:r1",
+              "targetText": "pot of yoghurt",
+              "meaningByLocale": {
+                "ru": "стаканчик йогурта.",
+                "uk": "стаканчик йогурту."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pot of yoghurt",
+            "definitionByLocale": {
+              "ru": "стаканчик йогурта.",
+              "uk": "стаканчик йогурту."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "pot of yoghurt → pots of yoghurt. Скажіть: «Нам потрібні два стаканчики йогурту».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "pot of yoghurt → pots of yoghurt. Скажіть: «Нам потрібні два стаканчики йогурту».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two pots of yoghurt.",
+          "localizedMeaning": {
+            "ru": "pot of yoghurt → pots of yoghurt. Скажите: «Нам нужны два стаканчика йогурта».",
+            "uk": "pot of yoghurt → pots of yoghurt. Скажіть: «Нам потрібні два стаканчики йогурту»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "pots",
+            "of",
+            "yoghurt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i08:r1",
+            "text": "We need two pots of yoghurt."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i08:r2",
+            "text": "We need two pot of yoghurt."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i08:r3",
+            "text": "We need two pots yoghurt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i08:audio",
+            "transcript": "We need two pots of yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:i08:r1",
+              "targetText": "We need two pots of yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i08:r2",
+              "targetText": "We need two pot of yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i08:r3",
+              "targetText": "We need two pots yoghurt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two pots of yoghurt.",
+                "uk": "У записі звучить We need two pots of yoghurt."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two pots of yoghurt.",
+                "uk": "У записі звучить We need two pots of yoghurt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i09:r1",
+            "text": "pots"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i09:r2",
+            "text": "pot"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i09:r3",
+            "text": "a pot"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of yoghurt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-35:i09:r1",
+              "text": "pots"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i09:r2",
+              "text": "pot"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i09:r3",
+              "text": "a pot"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pots.",
+                "uk": "Після two потрібна форма pots."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:word:packet-of-pasta",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — packet of pasta",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:word:packet-of-pasta:audio"
+        ],
+        "accessibilityLabel": "Картка слова — packet of pasta",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:word:packet-of-pasta:audio",
+            "transcript": "packet of pasta"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:word:packet-of-pasta:r1",
+              "targetText": "packet of pasta",
+              "meaningByLocale": {
+                "ru": "пачка макарон.",
+                "uk": "пачка макаронів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "packet of pasta",
+            "definitionByLocale": {
+              "ru": "пачка макарон.",
+              "uk": "пачка макаронів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "packet of pasta → packets of pasta. Скажіть: «Нам потрібні дві пачки макаронів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "packet of pasta → packets of pasta. Скажіть: «Нам потрібні дві пачки макаронів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two packets of pasta.",
+          "localizedMeaning": {
+            "ru": "packet of pasta → packets of pasta. Скажите: «Нам нужны две пачки макарон».",
+            "uk": "packet of pasta → packets of pasta. Скажіть: «Нам потрібні дві пачки макаронів»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "packets",
+            "of",
+            "pasta"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i11:r1",
+            "text": "We need two packets of pasta."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i11:r2",
+            "text": "We need two packet of pasta."
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i11:r3",
+            "text": "We need two packets pasta."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i11:audio",
+            "transcript": "We need two packets of pasta."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-35:i11:r1",
+              "targetText": "We need two packets of pasta.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i11:r2",
+              "targetText": "We need two packet of pasta.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i11:r3",
+              "targetText": "We need two packets pasta.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two packets of pasta.",
+                "uk": "У записі звучить We need two packets of pasta."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two packets of pasta.",
+                "uk": "У записі звучить We need two packets of pasta."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-35:i12:r1",
+            "text": "packets"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i12:r2",
+            "text": "packet"
+          },
+          {
+            "responseId": "en:lesson-17:session-35:i12:r3",
+            "text": "a packet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of pasta.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-35:i12:r1",
+              "text": "packets"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i12:r2",
+              "text": "packet"
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i12:r3",
+              "text": "a packet"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма packets.",
+                "uk": "Після two потрібна форма packets."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-35:i13:p1",
+              "target": "carton of juice",
+              "meaningByLocale": {
+                "ru": "картонная упаковка сока",
+                "uk": "картонна упаковка соку"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-35:i13:p2",
+              "target": "bottle of oil",
+              "meaningByLocale": {
+                "ru": "бутылка растительного масла",
+                "uk": "пляшка олії"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-35:i13:p3",
+              "target": "pot of yoghurt",
+              "meaningByLocale": {
+                "ru": "стаканчик йогурта",
+                "uk": "стаканчик йогурту"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-35:i13:p4",
+              "target": "packet of pasta",
+              "meaningByLocale": {
+                "ru": "пачка макарон",
+                "uk": "пачка макаронів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carton of juice",
+            "bottle of oil",
+            "pot of yoghurt",
+            "packet of pasta"
+          ],
+          "rightColumn": [
+            "картонна упаковка соку",
+            "пляшка олії",
+            "стаканчик йогурту",
+            "пачка макаронів"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу про завтрашній план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу про завтрашній план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i14:audio",
+            "transcript": "I am going to buy two pots of yoghurt tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy two pots of yoghurt tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "two",
+            "pots",
+            "of",
+            "yoghurt",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу в минулому часі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу в минулому часі",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i15:audio",
+            "transcript": "I bought two packets of pasta yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I bought two packets of pasta yesterday.",
+          "orderedTokens": [
+            "I",
+            "bought",
+            "two",
+            "packets",
+            "of",
+            "pasta",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назвіть потрібну кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Назвіть потрібну кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i16:audio",
+            "transcript": "We need two cartons of juice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two cartons of juice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-35:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторіть фразу з of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Повторіть фразу з of",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-35:i17:audio",
+            "transcript": "We need two bottles of oil."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of oil.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-35:word:carton-of-juice",
+      "correctText": "carton of juice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i01",
+      "correctText": "We need two cartons of juice.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i02",
+      "correctText": "We need two cartons of juice.",
+      "correctResponseId": "en:lesson-17:session-35:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i03",
+      "correctText": "cartons",
+      "correctResponseId": "en:lesson-17:session-35:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:word:bottle-of-oil",
+      "correctText": "bottle of oil",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i04",
+      "correctText": "We need two bottles of oil.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i05",
+      "correctText": "We need two bottles of oil.",
+      "correctResponseId": "en:lesson-17:session-35:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i06",
+      "correctText": "bottles",
+      "correctResponseId": "en:lesson-17:session-35:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:word:pot-of-yoghurt",
+      "correctText": "pot of yoghurt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i07",
+      "correctText": "We need two pots of yoghurt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i08",
+      "correctText": "We need two pots of yoghurt.",
+      "correctResponseId": "en:lesson-17:session-35:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i09",
+      "correctText": "pots",
+      "correctResponseId": "en:lesson-17:session-35:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:word:packet-of-pasta",
+      "correctText": "packet of pasta",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i10",
+      "correctText": "We need two packets of pasta.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i11",
+      "correctText": "We need two packets of pasta.",
+      "correctResponseId": "en:lesson-17:session-35:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i12",
+      "correctText": "packets",
+      "correctResponseId": "en:lesson-17:session-35:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i14",
+      "correctText": "I am going to buy two pots of yoghurt tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i15",
+      "correctText": "I bought two packets of pasta yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i16",
+      "correctText": "We need two cartons of juice.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-35:i17",
+      "correctText": "We need two bottles of oil.",
+      "correctResponseId": null
+    }
+  ]
+}

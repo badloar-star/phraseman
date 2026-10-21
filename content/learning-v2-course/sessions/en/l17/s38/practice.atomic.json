@@ -1,0 +1,2345 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-38",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-38:word:bottle-of-shampoo",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bottle of shampoo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:word:bottle-of-shampoo:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bottle of shampoo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:word:bottle-of-shampoo:audio",
+            "transcript": "bottle of shampoo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:word:bottle-of-shampoo:r1",
+              "targetText": "bottle of shampoo",
+              "meaningByLocale": {
+                "ru": "флакон шампуня.",
+                "uk": "флакон шампуню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle of shampoo",
+            "definitionByLocale": {
+              "ru": "флакон шампуня.",
+              "uk": "флакон шампуню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bottle of shampoo → bottles of shampoo. Скажите: «Нам нужны два флакона шампуня».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bottle of shampoo → bottles of shampoo. Скажите: «Нам нужны два флакона шампуня».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bottles of shampoo.",
+          "localizedMeaning": {
+            "ru": "bottle of shampoo → bottles of shampoo. Скажите: «Нам нужны два флакона шампуня».",
+            "uk": "bottle of shampoo → bottles of shampoo. Скажіть: «Нам потрібні два флакони шампуню»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bottles",
+            "of",
+            "shampoo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i02:r1",
+            "text": "We need two bottles of shampoo."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i02:r2",
+            "text": "We need two bottle of shampoo."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i02:r3",
+            "text": "We need two bottles shampoo."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i02:audio",
+            "transcript": "We need two bottles of shampoo."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:i02:r1",
+              "targetText": "We need two bottles of shampoo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i02:r2",
+              "targetText": "We need two bottle of shampoo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i02:r3",
+              "targetText": "We need two bottles shampoo.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of shampoo.",
+                "uk": "У записі звучить We need two bottles of shampoo."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of shampoo.",
+                "uk": "У записі звучить We need two bottles of shampoo."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i03:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i03:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i03:r3",
+            "text": "a bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of shampoo.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-38:i03:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i03:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i03:r3",
+              "text": "a bottle"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bottles.",
+                "uk": "Після two потрібна форма bottles."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:word:bottle-of-conditioner",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bottle of conditioner",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:word:bottle-of-conditioner:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bottle of conditioner",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:word:bottle-of-conditioner:audio",
+            "transcript": "bottle of conditioner"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:word:bottle-of-conditioner:r1",
+              "targetText": "bottle of conditioner",
+              "meaningByLocale": {
+                "ru": "флакон кондиционера для волос.",
+                "uk": "флакон кондиціонера для волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle of conditioner",
+            "definitionByLocale": {
+              "ru": "флакон кондиционера для волос.",
+              "uk": "флакон кондиціонера для волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bottle of conditioner → bottles of conditioner. Скажите: «Нам нужны два флакона кондиционера для волос».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bottle of conditioner → bottles of conditioner. Скажите: «Нам нужны два флакона кондиционера для волос».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bottles of conditioner.",
+          "localizedMeaning": {
+            "ru": "bottle of conditioner → bottles of conditioner. Скажите: «Нам нужны два флакона кондиционера для волос».",
+            "uk": "bottle of conditioner → bottles of conditioner. Скажіть: «Нам потрібні два флакони кондиціонера для волосся»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bottles",
+            "of",
+            "conditioner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i05:r1",
+            "text": "We need two bottles of conditioner."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i05:r2",
+            "text": "We need two bottle of conditioner."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i05:r3",
+            "text": "We need two bottles conditioner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i05:audio",
+            "transcript": "We need two bottles of conditioner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:i05:r1",
+              "targetText": "We need two bottles of conditioner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i05:r2",
+              "targetText": "We need two bottle of conditioner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i05:r3",
+              "targetText": "We need two bottles conditioner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of conditioner.",
+                "uk": "У записі звучить We need two bottles of conditioner."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of conditioner.",
+                "uk": "У записі звучить We need two bottles of conditioner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i06:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i06:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i06:r3",
+            "text": "a bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of conditioner.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-38:i06:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i06:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i06:r3",
+              "text": "a bottle"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bottles.",
+                "uk": "Після two потрібна форма bottles."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:word:bottle-of-shower-gel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bottle of shower gel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:word:bottle-of-shower-gel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bottle of shower gel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:word:bottle-of-shower-gel:audio",
+            "transcript": "bottle of shower gel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:word:bottle-of-shower-gel:r1",
+              "targetText": "bottle of shower gel",
+              "meaningByLocale": {
+                "ru": "флакон геля для душа.",
+                "uk": "флакон гелю для душу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle of shower gel",
+            "definitionByLocale": {
+              "ru": "флакон геля для душа.",
+              "uk": "флакон гелю для душу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bottle of shower gel → bottles of shower gel. Скажите: «Нам нужны два флакона геля для душа».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bottle of shower gel → bottles of shower gel. Скажите: «Нам нужны два флакона геля для душа».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bottles of shower gel.",
+          "localizedMeaning": {
+            "ru": "bottle of shower gel → bottles of shower gel. Скажите: «Нам нужны два флакона геля для душа».",
+            "uk": "bottle of shower gel → bottles of shower gel. Скажіть: «Нам потрібні два флакони гелю для душу»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bottles",
+            "of",
+            "shower",
+            "gel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i08:r1",
+            "text": "We need two bottles of shower gel."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i08:r2",
+            "text": "We need two bottle of shower gel."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i08:r3",
+            "text": "We need two bottles shower gel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i08:audio",
+            "transcript": "We need two bottles of shower gel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:i08:r1",
+              "targetText": "We need two bottles of shower gel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i08:r2",
+              "targetText": "We need two bottle of shower gel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i08:r3",
+              "targetText": "We need two bottles shower gel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of shower gel.",
+                "uk": "У записі звучить We need two bottles of shower gel."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of shower gel.",
+                "uk": "У записі звучить We need two bottles of shower gel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i09:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i09:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i09:r3",
+            "text": "a bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of shower gel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-38:i09:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i09:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i09:r3",
+              "text": "a bottle"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bottles.",
+                "uk": "Після two потрібна форма bottles."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:word:tube-of-cream",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tube of cream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:word:tube-of-cream:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tube of cream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:word:tube-of-cream:audio",
+            "transcript": "tube of cream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:word:tube-of-cream:r1",
+              "targetText": "tube of cream",
+              "meaningByLocale": {
+                "ru": "тюбик крема.",
+                "uk": "тюбик крему."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tube of cream",
+            "definitionByLocale": {
+              "ru": "тюбик крема.",
+              "uk": "тюбик крему."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "tube of cream → tubes of cream. Скажите: «Нам нужны два тюбика крема».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "tube of cream → tubes of cream. Скажите: «Нам нужны два тюбика крема».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two tubes of cream.",
+          "localizedMeaning": {
+            "ru": "tube of cream → tubes of cream. Скажите: «Нам нужны два тюбика крема».",
+            "uk": "tube of cream → tubes of cream. Скажіть: «Нам потрібні два тюбики крему»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "tubes",
+            "of",
+            "cream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i11:r1",
+            "text": "We need two tubes of cream."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i11:r2",
+            "text": "We need two tube of cream."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i11:r3",
+            "text": "We need two tubes cream."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i11:audio",
+            "transcript": "We need two tubes of cream."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:i11:r1",
+              "targetText": "We need two tubes of cream.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i11:r2",
+              "targetText": "We need two tube of cream.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i11:r3",
+              "targetText": "We need two tubes cream.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two tubes of cream.",
+                "uk": "У записі звучить We need two tubes of cream."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two tubes of cream.",
+                "uk": "У записі звучить We need two tubes of cream."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i12:r1",
+            "text": "tubes"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i12:r2",
+            "text": "tube"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i12:r3",
+            "text": "a tube"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of cream.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-38:i12:r1",
+              "text": "tubes"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i12:r2",
+              "text": "tube"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i12:r3",
+              "text": "a tube"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма tubes.",
+                "uk": "Після two потрібна форма tubes."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-38:i13:p1",
+              "target": "bottle of shampoo",
+              "meaningByLocale": {
+                "ru": "флакон шампуня",
+                "uk": "флакон шампуню"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-38:i13:p2",
+              "target": "bottle of conditioner",
+              "meaningByLocale": {
+                "ru": "флакон кондиционера для волос",
+                "uk": "флакон кондиціонера для волосся"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-38:i13:p3",
+              "target": "bottle of shower gel",
+              "meaningByLocale": {
+                "ru": "флакон геля для душа",
+                "uk": "флакон гелю для душу"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-38:i13:p4",
+              "target": "tube of cream",
+              "meaningByLocale": {
+                "ru": "тюбик крема",
+                "uk": "тюбик крему"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bottle of shampoo",
+            "bottle of conditioner",
+            "bottle of shower gel",
+            "tube of cream"
+          ],
+          "rightColumn": [
+            "флакон шампуня",
+            "флакон кондиционера для волос",
+            "флакон геля для душа",
+            "тюбик крема"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу о завтрашнем плане",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу о завтрашнем плане",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i14:audio",
+            "transcript": "I am going to buy two bottles of shower gel tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy two bottles of shower gel tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "two",
+            "bottles",
+            "of",
+            "shower",
+            "gel",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу в прошедшем времени",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу в прошедшем времени",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i15:audio",
+            "transcript": "I bought two tubes of cream yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I bought two tubes of cream yesterday.",
+          "orderedTokens": [
+            "I",
+            "bought",
+            "two",
+            "tubes",
+            "of",
+            "cream",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назовите нужное количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i16:audio"
+        ],
+        "accessibilityLabel": "Назовите нужное количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i16:audio",
+            "transcript": "We need two bottles of shampoo."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of shampoo.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторите фразу с of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Повторите фразу с of",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i17:audio",
+            "transcript": "We need two bottles of conditioner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of conditioner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-38:word:bottle-of-shampoo",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bottle of shampoo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:word:bottle-of-shampoo:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bottle of shampoo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:word:bottle-of-shampoo:audio",
+            "transcript": "bottle of shampoo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:word:bottle-of-shampoo:r1",
+              "targetText": "bottle of shampoo",
+              "meaningByLocale": {
+                "ru": "флакон шампуня.",
+                "uk": "флакон шампуню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle of shampoo",
+            "definitionByLocale": {
+              "ru": "флакон шампуня.",
+              "uk": "флакон шампуню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bottle of shampoo → bottles of shampoo. Скажіть: «Нам потрібні два флакони шампуню».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bottle of shampoo → bottles of shampoo. Скажіть: «Нам потрібні два флакони шампуню».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bottles of shampoo.",
+          "localizedMeaning": {
+            "ru": "bottle of shampoo → bottles of shampoo. Скажите: «Нам нужны два флакона шампуня».",
+            "uk": "bottle of shampoo → bottles of shampoo. Скажіть: «Нам потрібні два флакони шампуню»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bottles",
+            "of",
+            "shampoo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i02:r1",
+            "text": "We need two bottles of shampoo."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i02:r2",
+            "text": "We need two bottle of shampoo."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i02:r3",
+            "text": "We need two bottles shampoo."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i02:audio",
+            "transcript": "We need two bottles of shampoo."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:i02:r1",
+              "targetText": "We need two bottles of shampoo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i02:r2",
+              "targetText": "We need two bottle of shampoo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i02:r3",
+              "targetText": "We need two bottles shampoo.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of shampoo.",
+                "uk": "У записі звучить We need two bottles of shampoo."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of shampoo.",
+                "uk": "У записі звучить We need two bottles of shampoo."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i03:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i03:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i03:r3",
+            "text": "a bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of shampoo.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-38:i03:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i03:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i03:r3",
+              "text": "a bottle"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bottles.",
+                "uk": "Після two потрібна форма bottles."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:word:bottle-of-conditioner",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bottle of conditioner",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:word:bottle-of-conditioner:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bottle of conditioner",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:word:bottle-of-conditioner:audio",
+            "transcript": "bottle of conditioner"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:word:bottle-of-conditioner:r1",
+              "targetText": "bottle of conditioner",
+              "meaningByLocale": {
+                "ru": "флакон кондиционера для волос.",
+                "uk": "флакон кондиціонера для волосся."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle of conditioner",
+            "definitionByLocale": {
+              "ru": "флакон кондиционера для волос.",
+              "uk": "флакон кондиціонера для волосся."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bottle of conditioner → bottles of conditioner. Скажіть: «Нам потрібні два флакони кондиціонера для волосся».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bottle of conditioner → bottles of conditioner. Скажіть: «Нам потрібні два флакони кондиціонера для волосся».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bottles of conditioner.",
+          "localizedMeaning": {
+            "ru": "bottle of conditioner → bottles of conditioner. Скажите: «Нам нужны два флакона кондиционера для волос».",
+            "uk": "bottle of conditioner → bottles of conditioner. Скажіть: «Нам потрібні два флакони кондиціонера для волосся»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bottles",
+            "of",
+            "conditioner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i05:r1",
+            "text": "We need two bottles of conditioner."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i05:r2",
+            "text": "We need two bottle of conditioner."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i05:r3",
+            "text": "We need two bottles conditioner."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i05:audio",
+            "transcript": "We need two bottles of conditioner."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:i05:r1",
+              "targetText": "We need two bottles of conditioner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i05:r2",
+              "targetText": "We need two bottle of conditioner.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i05:r3",
+              "targetText": "We need two bottles conditioner.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of conditioner.",
+                "uk": "У записі звучить We need two bottles of conditioner."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of conditioner.",
+                "uk": "У записі звучить We need two bottles of conditioner."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i06:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i06:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i06:r3",
+            "text": "a bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of conditioner.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-38:i06:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i06:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i06:r3",
+              "text": "a bottle"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bottles.",
+                "uk": "Після two потрібна форма bottles."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:word:bottle-of-shower-gel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bottle of shower gel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:word:bottle-of-shower-gel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bottle of shower gel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:word:bottle-of-shower-gel:audio",
+            "transcript": "bottle of shower gel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:word:bottle-of-shower-gel:r1",
+              "targetText": "bottle of shower gel",
+              "meaningByLocale": {
+                "ru": "флакон геля для душа.",
+                "uk": "флакон гелю для душу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bottle of shower gel",
+            "definitionByLocale": {
+              "ru": "флакон геля для душа.",
+              "uk": "флакон гелю для душу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bottle of shower gel → bottles of shower gel. Скажіть: «Нам потрібні два флакони гелю для душу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bottle of shower gel → bottles of shower gel. Скажіть: «Нам потрібні два флакони гелю для душу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bottles of shower gel.",
+          "localizedMeaning": {
+            "ru": "bottle of shower gel → bottles of shower gel. Скажите: «Нам нужны два флакона геля для душа».",
+            "uk": "bottle of shower gel → bottles of shower gel. Скажіть: «Нам потрібні два флакони гелю для душу»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bottles",
+            "of",
+            "shower",
+            "gel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i08:r1",
+            "text": "We need two bottles of shower gel."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i08:r2",
+            "text": "We need two bottle of shower gel."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i08:r3",
+            "text": "We need two bottles shower gel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i08:audio",
+            "transcript": "We need two bottles of shower gel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:i08:r1",
+              "targetText": "We need two bottles of shower gel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i08:r2",
+              "targetText": "We need two bottle of shower gel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i08:r3",
+              "targetText": "We need two bottles shower gel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of shower gel.",
+                "uk": "У записі звучить We need two bottles of shower gel."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bottles of shower gel.",
+                "uk": "У записі звучить We need two bottles of shower gel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i09:r1",
+            "text": "bottles"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i09:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i09:r3",
+            "text": "a bottle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of shower gel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-38:i09:r1",
+              "text": "bottles"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i09:r2",
+              "text": "bottle"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i09:r3",
+              "text": "a bottle"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bottles.",
+                "uk": "Після two потрібна форма bottles."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:word:tube-of-cream",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tube of cream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:word:tube-of-cream:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tube of cream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:word:tube-of-cream:audio",
+            "transcript": "tube of cream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:word:tube-of-cream:r1",
+              "targetText": "tube of cream",
+              "meaningByLocale": {
+                "ru": "тюбик крема.",
+                "uk": "тюбик крему."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tube of cream",
+            "definitionByLocale": {
+              "ru": "тюбик крема.",
+              "uk": "тюбик крему."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "tube of cream → tubes of cream. Скажіть: «Нам потрібні два тюбики крему».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "tube of cream → tubes of cream. Скажіть: «Нам потрібні два тюбики крему».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two tubes of cream.",
+          "localizedMeaning": {
+            "ru": "tube of cream → tubes of cream. Скажите: «Нам нужны два тюбика крема».",
+            "uk": "tube of cream → tubes of cream. Скажіть: «Нам потрібні два тюбики крему»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "tubes",
+            "of",
+            "cream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i11:r1",
+            "text": "We need two tubes of cream."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i11:r2",
+            "text": "We need two tube of cream."
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i11:r3",
+            "text": "We need two tubes cream."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i11:audio",
+            "transcript": "We need two tubes of cream."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-38:i11:r1",
+              "targetText": "We need two tubes of cream.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i11:r2",
+              "targetText": "We need two tube of cream.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i11:r3",
+              "targetText": "We need two tubes cream.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two tubes of cream.",
+                "uk": "У записі звучить We need two tubes of cream."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two tubes of cream.",
+                "uk": "У записі звучить We need two tubes of cream."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-38:i12:r1",
+            "text": "tubes"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i12:r2",
+            "text": "tube"
+          },
+          {
+            "responseId": "en:lesson-17:session-38:i12:r3",
+            "text": "a tube"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of cream.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-38:i12:r1",
+              "text": "tubes"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i12:r2",
+              "text": "tube"
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i12:r3",
+              "text": "a tube"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма tubes.",
+                "uk": "Після two потрібна форма tubes."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-38:i13:p1",
+              "target": "bottle of shampoo",
+              "meaningByLocale": {
+                "ru": "флакон шампуня",
+                "uk": "флакон шампуню"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-38:i13:p2",
+              "target": "bottle of conditioner",
+              "meaningByLocale": {
+                "ru": "флакон кондиционера для волос",
+                "uk": "флакон кондиціонера для волосся"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-38:i13:p3",
+              "target": "bottle of shower gel",
+              "meaningByLocale": {
+                "ru": "флакон геля для душа",
+                "uk": "флакон гелю для душу"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-38:i13:p4",
+              "target": "tube of cream",
+              "meaningByLocale": {
+                "ru": "тюбик крема",
+                "uk": "тюбик крему"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bottle of shampoo",
+            "bottle of conditioner",
+            "bottle of shower gel",
+            "tube of cream"
+          ],
+          "rightColumn": [
+            "флакон шампуню",
+            "флакон кондиціонера для волосся",
+            "флакон гелю для душу",
+            "тюбик крему"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу про завтрашній план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу про завтрашній план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i14:audio",
+            "transcript": "I am going to buy two bottles of shower gel tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy two bottles of shower gel tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "two",
+            "bottles",
+            "of",
+            "shower",
+            "gel",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу в минулому часі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу в минулому часі",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i15:audio",
+            "transcript": "I bought two tubes of cream yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I bought two tubes of cream yesterday.",
+          "orderedTokens": [
+            "I",
+            "bought",
+            "two",
+            "tubes",
+            "of",
+            "cream",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назвіть потрібну кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i16:audio"
+        ],
+        "accessibilityLabel": "Назвіть потрібну кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i16:audio",
+            "transcript": "We need two bottles of shampoo."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of shampoo.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-38:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторіть фразу з of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Повторіть фразу з of",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-38:i17:audio",
+            "transcript": "We need two bottles of conditioner."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of conditioner.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-38:word:bottle-of-shampoo",
+      "correctText": "bottle of shampoo",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i01",
+      "correctText": "We need two bottles of shampoo.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i02",
+      "correctText": "We need two bottles of shampoo.",
+      "correctResponseId": "en:lesson-17:session-38:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i03",
+      "correctText": "bottles",
+      "correctResponseId": "en:lesson-17:session-38:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:word:bottle-of-conditioner",
+      "correctText": "bottle of conditioner",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i04",
+      "correctText": "We need two bottles of conditioner.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i05",
+      "correctText": "We need two bottles of conditioner.",
+      "correctResponseId": "en:lesson-17:session-38:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i06",
+      "correctText": "bottles",
+      "correctResponseId": "en:lesson-17:session-38:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:word:bottle-of-shower-gel",
+      "correctText": "bottle of shower gel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i07",
+      "correctText": "We need two bottles of shower gel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i08",
+      "correctText": "We need two bottles of shower gel.",
+      "correctResponseId": "en:lesson-17:session-38:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i09",
+      "correctText": "bottles",
+      "correctResponseId": "en:lesson-17:session-38:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:word:tube-of-cream",
+      "correctText": "tube of cream",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i10",
+      "correctText": "We need two tubes of cream.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i11",
+      "correctText": "We need two tubes of cream.",
+      "correctResponseId": "en:lesson-17:session-38:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i12",
+      "correctText": "tubes",
+      "correctResponseId": "en:lesson-17:session-38:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i14",
+      "correctText": "I am going to buy two bottles of shower gel tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i15",
+      "correctText": "I bought two tubes of cream yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i16",
+      "correctText": "We need two bottles of shampoo.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:i17",
+      "correctText": "We need two bottles of conditioner.",
+      "correctResponseId": null
+    }
+  ]
+}

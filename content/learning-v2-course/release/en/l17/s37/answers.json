@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-37:word:litre-of-milk",
+    "correctText": "litre of milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i01",
+    "correctText": "We need two litres of milk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i02",
+    "correctText": "We need two litres of milk.",
+    "correctResponseId": "en:lesson-17:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i03",
+    "correctText": "litres",
+    "correctResponseId": "en:lesson-17:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:word:litre-of-petrol",
+    "correctText": "litre of petrol",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i04",
+    "correctText": "We need two litres of petrol.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i05",
+    "correctText": "We need two litres of petrol.",
+    "correctResponseId": "en:lesson-17:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i06",
+    "correctText": "litres",
+    "correctResponseId": "en:lesson-17:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:word:kilo-of-rice",
+    "correctText": "kilo of rice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i07",
+    "correctText": "We need two kilos of rice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i08",
+    "correctText": "We need two kilos of rice.",
+    "correctResponseId": "en:lesson-17:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i09",
+    "correctText": "kilos",
+    "correctResponseId": "en:lesson-17:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:word:kilo-of-meat",
+    "correctText": "kilo of meat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i10",
+    "correctText": "We need two kilos of meat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i11",
+    "correctText": "We need two kilos of meat.",
+    "correctResponseId": "en:lesson-17:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i12",
+    "correctText": "kilos",
+    "correctResponseId": "en:lesson-17:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i13",
+    "correctText": "en:lesson-17:session-37:i13:p1=litre of milk\nen:lesson-17:session-37:i13:p2=litre of petrol\nen:lesson-17:session-37:i13:p3=kilo of rice\nen:lesson-17:session-37:i13:p4=kilo of meat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i14",
+    "correctText": "I am going to buy two kilos of rice tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i15",
+    "correctText": "I bought two kilos of meat yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i16",
+    "correctText": "We need two litres of milk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-37:i17",
+    "correctText": "We need two litres of petrol.",
+    "correctResponseId": null
+  }
+]

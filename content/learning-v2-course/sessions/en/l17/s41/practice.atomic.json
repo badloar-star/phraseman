@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-41:word:reference",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reference",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:word:reference:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reference",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:word:reference:audio",
+            "transcript": "reference"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:word:reference:r1",
+              "targetText": "reference",
+              "meaningByLocale": {
+                "ru": "рекомендация о работнике от прежнего работодателя или другого рекомендателя.",
+                "uk": "рекомендація про працівника від попереднього роботодавця або іншого рекомендувача."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reference",
+            "definitionByLocale": {
+              "ru": "рекомендация о работнике от прежнего работодателя или другого рекомендателя.",
+              "uk": "рекомендація про працівника від попереднього роботодавця або іншого рекомендувача."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references. Скажите: «Нам нужны несколько рекомендаций».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references. Скажите: «Нам нужны несколько рекомендаций».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need some references.",
+          "localizedMeaning": {
+            "ru": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references. Скажите: «Нам нужны несколько рекомендаций».",
+            "uk": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references. Скажіть: «Нам потрібні кілька рекомендацій»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "some",
+            "references"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i02:r1",
+            "text": "We need some references."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i02:r2",
+            "text": "We need any references."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i02:r3",
+            "text": "We need a references."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i02:audio",
+            "transcript": "We need some references."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:i02:r1",
+              "targetText": "We need some references.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i02:r2",
+              "targetText": "We need any references.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i02:r3",
+              "targetText": "We need a references.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some references.",
+                "uk": "У записі звучить We need some references."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some references.",
+                "uk": "У записі звучить We need some references."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references.",
+            "uk": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references."
+          },
+          "gappedTargetPhrase": "We need ___ references.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-41:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:word:cover-letter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cover letter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:word:cover-letter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cover letter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:word:cover-letter:audio",
+            "transcript": "cover letter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:word:cover-letter:r1",
+              "targetText": "cover letter",
+              "meaningByLocale": {
+                "ru": "сопроводительное письмо к отклику на вакансию.",
+                "uk": "супровідний лист до відгуку на вакансію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cover letter",
+            "definitionByLocale": {
+              "ru": "сопроводительное письмо к отклику на вакансию.",
+              "uk": "супровідний лист до відгуку на вакансію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters. Скажите: «У нас нет никаких сопроводительных писем».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters. Скажите: «У нас нет никаких сопроводительных писем».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have any cover letters.",
+          "localizedMeaning": {
+            "ru": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters. Скажите: «У нас нет никаких сопроводительных писем».",
+            "uk": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters. Скажіть: «У нас немає жодних супровідних листів»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "any",
+            "cover",
+            "letters"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i05:r1",
+            "text": "We don't have any cover letters."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i05:r2",
+            "text": "We don't have some cover letters."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i05:r3",
+            "text": "We don't have a cover letters."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i05:audio",
+            "transcript": "We don't have any cover letters."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:i05:r1",
+              "targetText": "We don't have any cover letters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i05:r2",
+              "targetText": "We don't have some cover letters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i05:r3",
+              "targetText": "We don't have a cover letters.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any cover letters.",
+                "uk": "У записі звучить We don't have any cover letters."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any cover letters.",
+                "uk": "У записі звучить We don't have any cover letters."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters.",
+            "uk": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters."
+          },
+          "gappedTargetPhrase": "We don't have ___ cover letters.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-41:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:word:job-security",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — job security",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:word:job-security:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — job security",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:word:job-security:audio",
+            "transcript": "job security"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:word:job-security:r1",
+              "targetText": "job security",
+              "meaningByLocale": {
+                "ru": "уверенность в сохранении работы, стабильность занятости.",
+                "uk": "упевненість у збереженні роботи, стабільність зайнятості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "job security",
+            "definitionByLocale": {
+              "ru": "уверенность в сохранении работы, стабильность занятости.",
+              "uk": "упевненість у збереженні роботи, стабільність зайнятості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности. Скажите: «Мне нужна некоторая уверенность в сохранении работы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности. Скажите: «Мне нужна некоторая уверенность в сохранении работы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need some job security.",
+          "localizedMeaning": {
+            "ru": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности. Скажите: «Мне нужна некоторая уверенность в сохранении работы».",
+            "uk": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу. Скажіть: «Мені потрібна певна впевненість у збереженні роботи»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "some",
+            "job",
+            "security"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i08:r1",
+            "text": "I need some job security."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i08:r2",
+            "text": "I need any job security."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i08:r3",
+            "text": "I need a job security."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i08:audio",
+            "transcript": "I need some job security."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:i08:r1",
+              "targetText": "I need some job security.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i08:r2",
+              "targetText": "I need any job security.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i08:r3",
+              "targetText": "I need a job security.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need some job security.",
+                "uk": "У записі звучить I need some job security."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need some job security.",
+                "uk": "У записі звучить I need some job security."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности.",
+            "uk": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу."
+          },
+          "gappedTargetPhrase": "I need ___ job security.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-41:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:word:flexible-working",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flexible working",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:word:flexible-working:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flexible working",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:word:flexible-working:audio",
+            "transcript": "flexible working"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:word:flexible-working:r1",
+              "targetText": "flexible working",
+              "meaningByLocale": {
+                "ru": "работа с гибким графиком или условиями выбора места работы.",
+                "uk": "робота з гнучким графіком або умовами вибору місця роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flexible working",
+            "definitionByLocale": {
+              "ru": "работа с гибким графиком или условиями выбора места работы.",
+              "uk": "робота з гнучким графіком або умовами вибору місця роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да». Скажите: «Вы предлагаете какой-либо гибкий режим работы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да». Скажите: «Вы предлагаете какой-либо гибкий режим работы».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you offer any flexible working?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да». Скажите: «Вы предлагаете какой-либо гибкий режим работы».",
+            "uk": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так». Скажіть: «Ви пропонуєте якийсь гнучкий режим роботи»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "offer",
+            "any",
+            "flexible",
+            "working"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i11:r1",
+            "text": "Do you offer any flexible working?"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i11:r2",
+            "text": "Do you offer some flexible working?"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i11:r3",
+            "text": "Do you offer a flexible working?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i11:audio",
+            "transcript": "Do you offer any flexible working?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:i11:r1",
+              "targetText": "Do you offer any flexible working?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i11:r2",
+              "targetText": "Do you offer some flexible working?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i11:r3",
+              "targetText": "Do you offer a flexible working?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you offer any flexible working?",
+                "uk": "У записі звучить Do you offer any flexible working?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you offer any flexible working?",
+                "uk": "У записі звучить Do you offer any flexible working?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да».",
+            "uk": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так»."
+          },
+          "gappedTargetPhrase": "Do you offer ___ flexible working?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-41:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да».",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да».",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-41:i13:p1",
+              "target": "reference",
+              "meaningByLocale": {
+                "ru": "рекомендация о работнике от прежнего работодателя или другого рекомендателя",
+                "uk": "рекомендація про працівника від попереднього роботодавця або іншого рекомендувача"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-41:i13:p2",
+              "target": "cover letter",
+              "meaningByLocale": {
+                "ru": "сопроводительное письмо к отклику на вакансию",
+                "uk": "супровідний лист до відгуку на вакансію"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-41:i13:p3",
+              "target": "job security",
+              "meaningByLocale": {
+                "ru": "уверенность в сохранении работы, стабильность занятости",
+                "uk": "упевненість у збереженні роботи, стабільність зайнятості"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-41:i13:p4",
+              "target": "flexible working",
+              "meaningByLocale": {
+                "ru": "работа с гибким графиком или условиями выбора места работы",
+                "uk": "робота з гнучким графіком або умовами вибору місця роботи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reference",
+            "cover letter",
+            "job security",
+            "flexible working"
+          ],
+          "rightColumn": [
+            "рекомендация о работнике от прежнего работодателя или другого рекомендателя",
+            "сопроводительное письмо к отклику на вакансию",
+            "уверенность в сохранении работы, стабильность занятости",
+            "работа с гибким графиком или условиями выбора места работы"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное утверждение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное утверждение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i14:audio",
+            "transcript": "We need some references."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We need some references.",
+          "orderedTokens": [
+            "We",
+            "need",
+            "some",
+            "references"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i15:audio",
+            "transcript": "Do you offer any flexible working?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you offer any flexible working?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "offer",
+            "any",
+            "flexible",
+            "working"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что некоторое количество есть",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что некоторое количество есть",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i16:audio",
+            "transcript": "I need some job security."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need some job security.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Полностью отрицайте наличие",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Полностью отрицайте наличие",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i17:audio",
+            "transcript": "We don't have any cover letters."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't have any cover letters.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-41:word:reference",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reference",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:word:reference:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reference",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:word:reference:audio",
+            "transcript": "reference"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:word:reference:r1",
+              "targetText": "reference",
+              "meaningByLocale": {
+                "ru": "рекомендация о работнике от прежнего работодателя или другого рекомендателя.",
+                "uk": "рекомендація про працівника від попереднього роботодавця або іншого рекомендувача."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reference",
+            "definitionByLocale": {
+              "ru": "рекомендация о работнике от прежнего работодателя или другого рекомендателя.",
+              "uk": "рекомендація про працівника від попереднього роботодавця або іншого рекомендувача."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references. Скажіть: «Нам потрібні кілька рекомендацій».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references. Скажіть: «Нам потрібні кілька рекомендацій».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need some references.",
+          "localizedMeaning": {
+            "ru": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references. Скажите: «Нам нужны несколько рекомендаций».",
+            "uk": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references. Скажіть: «Нам потрібні кілька рекомендацій»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "some",
+            "references"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i02:r1",
+            "text": "We need some references."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i02:r2",
+            "text": "We need any references."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i02:r3",
+            "text": "We need a references."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i02:audio",
+            "transcript": "We need some references."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:i02:r1",
+              "targetText": "We need some references.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i02:r2",
+              "targetText": "We need any references.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i02:r3",
+              "targetText": "We need a references.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some references.",
+                "uk": "У записі звучить We need some references."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need some references.",
+                "uk": "У записі звучить We need some references."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i03:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i03:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i03:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Для заявки нужны несколько рекомендаций о работе человека. Reference → references.",
+            "uk": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references."
+          },
+          "gappedTargetPhrase": "We need ___ references.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-41:i03:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i03:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i03:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Для заявки потрібні кілька рекомендацій про роботу людини. Reference → references.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:word:cover-letter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cover letter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:word:cover-letter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cover letter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:word:cover-letter:audio",
+            "transcript": "cover letter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:word:cover-letter:r1",
+              "targetText": "cover letter",
+              "meaningByLocale": {
+                "ru": "сопроводительное письмо к отклику на вакансию.",
+                "uk": "супровідний лист до відгуку на вакансію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cover letter",
+            "definitionByLocale": {
+              "ru": "сопроводительное письмо к отклику на вакансию.",
+              "uk": "супровідний лист до відгуку на вакансію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters. Скажіть: «У нас немає жодних супровідних листів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters. Скажіть: «У нас немає жодних супровідних листів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We don't have any cover letters.",
+          "localizedMeaning": {
+            "ru": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters. Скажите: «У нас нет никаких сопроводительных писем».",
+            "uk": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters. Скажіть: «У нас немає жодних супровідних листів»."
+          },
+          "orderedTokens": [
+            "We",
+            "don't",
+            "have",
+            "any",
+            "cover",
+            "letters"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i05:r1",
+            "text": "We don't have any cover letters."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i05:r2",
+            "text": "We don't have some cover letters."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i05:r3",
+            "text": "We don't have a cover letters."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i05:audio",
+            "transcript": "We don't have any cover letters."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:i05:r1",
+              "targetText": "We don't have any cover letters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i05:r2",
+              "targetText": "We don't have some cover letters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i05:r3",
+              "targetText": "We don't have a cover letters.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any cover letters.",
+                "uk": "У записі звучить We don't have any cover letters."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We don't have any cover letters.",
+                "uk": "У записі звучить We don't have any cover letters."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i06:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i06:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i06:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В папке нет ни одного сопроводительного письма. Отрицайте наличие полностью. Cover letter → cover letters.",
+            "uk": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters."
+          },
+          "gappedTargetPhrase": "We don't have ___ cover letters.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-41:i06:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i06:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i06:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters.",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "У папці немає жодного супровідного листа. Повністю заперечте наявність. Cover letter → cover letters.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:word:job-security",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — job security",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:word:job-security:audio"
+        ],
+        "accessibilityLabel": "Картка слова — job security",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:word:job-security:audio",
+            "transcript": "job security"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:word:job-security:r1",
+              "targetText": "job security",
+              "meaningByLocale": {
+                "ru": "уверенность в сохранении работы, стабильность занятости.",
+                "uk": "упевненість у збереженні роботи, стабільність зайнятості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "job security",
+            "definitionByLocale": {
+              "ru": "уверенность в сохранении работы, стабильность занятости.",
+              "uk": "упевненість у збереженні роботи, стабільність зайнятості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу. Скажіть: «Мені потрібна певна впевненість у збереженні роботи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу. Скажіть: «Мені потрібна певна впевненість у збереженні роботи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need some job security.",
+          "localizedMeaning": {
+            "ru": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности. Скажите: «Мне нужна некоторая уверенность в сохранении работы».",
+            "uk": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу. Скажіть: «Мені потрібна певна впевненість у збереженні роботи»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "some",
+            "job",
+            "security"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i08:r1",
+            "text": "I need some job security."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i08:r2",
+            "text": "I need any job security."
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i08:r3",
+            "text": "I need a job security."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i08:audio",
+            "transcript": "I need some job security."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:i08:r1",
+              "targetText": "I need some job security.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i08:r2",
+              "targetText": "I need any job security.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i08:r3",
+              "targetText": "I need a job security.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need some job security.",
+                "uk": "У записі звучить I need some job security."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need some job security.",
+                "uk": "У записі звучить I need some job security."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i09:r1",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i09:r2",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i09:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы хотите хотя бы некоторой стабильности в работе. Сообщите о потребности.",
+            "uk": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу."
+          },
+          "gappedTargetPhrase": "I need ___ job security.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-41:i09:r1",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i09:r2",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i09:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу.",
+              "feedbackByLocale": {
+                "ru": "В утвердительном сообщении о некотором количестве используем some.",
+                "uk": "У стверджувальному повідомленні про певну кількість використовуємо some."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви хочете хоча б певної стабільності в роботі. Повідомте про потребу.",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:word:flexible-working",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flexible working",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:word:flexible-working:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flexible working",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:word:flexible-working:audio",
+            "transcript": "flexible working"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:word:flexible-working:r1",
+              "targetText": "flexible working",
+              "meaningByLocale": {
+                "ru": "работа с гибким графиком или условиями выбора места работы.",
+                "uk": "робота з гнучким графіком або умовами вибору місця роботи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flexible working",
+            "definitionByLocale": {
+              "ru": "работа с гибким графиком или условиями выбора места работы.",
+              "uk": "робота з гнучким графіком або умовами вибору місця роботи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так». Скажіть: «Ви пропонуєте якийсь гнучкий режим роботи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так». Скажіть: «Ви пропонуєте якийсь гнучкий режим роботи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you offer any flexible working?",
+          "localizedMeaning": {
+            "ru": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да». Скажите: «Вы предлагаете какой-либо гибкий режим работы».",
+            "uk": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так». Скажіть: «Ви пропонуєте якийсь гнучкий режим роботи»."
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "offer",
+            "any",
+            "flexible",
+            "working"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i11:r1",
+            "text": "Do you offer any flexible working?"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i11:r2",
+            "text": "Do you offer some flexible working?"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i11:r3",
+            "text": "Do you offer a flexible working?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i11:audio",
+            "transcript": "Do you offer any flexible working?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-41:i11:r1",
+              "targetText": "Do you offer any flexible working?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i11:r2",
+              "targetText": "Do you offer some flexible working?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i11:r3",
+              "targetText": "Do you offer a flexible working?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you offer any flexible working?",
+                "uk": "У записі звучить Do you offer any flexible working?"
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Do you offer any flexible working?",
+                "uk": "У записі звучить Do you offer any flexible working?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-41:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-17:session-41:i12:r3",
+            "text": "a"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете условий работодателя. Спросите нейтрально, без ожидания ответа «да».",
+            "uk": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так»."
+          },
+          "gappedTargetPhrase": "Do you offer ___ flexible working?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-41:i12:r1",
+              "text": "any"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i12:r2",
+              "text": "some"
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i12:r3",
+              "text": "a"
+            }
+          ],
+          "testedDimension": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так».",
+              "feedbackByLocale": {
+                "ru": "Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.",
+                "uk": "Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви не знаєте умов роботодавця. Запитайте нейтрально, без очікування відповіді «так».",
+              "feedbackByLocale": {
+                "ru": "A не ставится перед неисчисляемым или множественным числом.",
+                "uk": "A не ставиться перед незлічуваним або множиною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-41:i13:p1",
+              "target": "reference",
+              "meaningByLocale": {
+                "ru": "рекомендация о работнике от прежнего работодателя или другого рекомендателя",
+                "uk": "рекомендація про працівника від попереднього роботодавця або іншого рекомендувача"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-41:i13:p2",
+              "target": "cover letter",
+              "meaningByLocale": {
+                "ru": "сопроводительное письмо к отклику на вакансию",
+                "uk": "супровідний лист до відгуку на вакансію"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-41:i13:p3",
+              "target": "job security",
+              "meaningByLocale": {
+                "ru": "уверенность в сохранении работы, стабильность занятости",
+                "uk": "упевненість у збереженні роботи, стабільність зайнятості"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-41:i13:p4",
+              "target": "flexible working",
+              "meaningByLocale": {
+                "ru": "работа с гибким графиком или условиями выбора места работы",
+                "uk": "робота з гнучким графіком або умовами вибору місця роботи"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reference",
+            "cover letter",
+            "job security",
+            "flexible working"
+          ],
+          "rightColumn": [
+            "рекомендація про працівника від попереднього роботодавця або іншого рекомендувача",
+            "супровідний лист до відгуку на вакансію",
+            "упевненість у збереженні роботи, стабільність зайнятості",
+            "робота з гнучким графіком або умовами вибору місця роботи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте твердження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте твердження",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i14:audio",
+            "transcript": "We need some references."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We need some references.",
+          "orderedTokens": [
+            "We",
+            "need",
+            "some",
+            "references"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i15:audio",
+            "transcript": "Do you offer any flexible working?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you offer any flexible working?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "offer",
+            "any",
+            "flexible",
+            "working"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що певна кількість є",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що певна кількість є",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i16:audio",
+            "transcript": "I need some job security."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need some job security.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-41:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повністю заперечте наявність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Повністю заперечте наявність",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-41:i17:audio",
+            "transcript": "We don't have any cover letters."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We don't have any cover letters.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-41:word:reference",
+      "correctText": "reference",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i01",
+      "correctText": "We need some references.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i02",
+      "correctText": "We need some references.",
+      "correctResponseId": "en:lesson-17:session-41:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i03",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-41:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:word:cover-letter",
+      "correctText": "cover letter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i04",
+      "correctText": "We don't have any cover letters.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i05",
+      "correctText": "We don't have any cover letters.",
+      "correctResponseId": "en:lesson-17:session-41:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i06",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-41:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:word:job-security",
+      "correctText": "job security",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i07",
+      "correctText": "I need some job security.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i08",
+      "correctText": "I need some job security.",
+      "correctResponseId": "en:lesson-17:session-41:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i09",
+      "correctText": "some",
+      "correctResponseId": "en:lesson-17:session-41:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:word:flexible-working",
+      "correctText": "flexible working",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i10",
+      "correctText": "Do you offer any flexible working?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i11",
+      "correctText": "Do you offer any flexible working?",
+      "correctResponseId": "en:lesson-17:session-41:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i12",
+      "correctText": "any",
+      "correctResponseId": "en:lesson-17:session-41:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i14",
+      "correctText": "We need some references.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i15",
+      "correctText": "Do you offer any flexible working?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i16",
+      "correctText": "I need some job security.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-41:i17",
+      "correctText": "We don't have any cover letters.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-38:word:bottle-of-shampoo",
+    "correctText": "bottle of shampoo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i01",
+    "correctText": "We need two bottles of shampoo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i02",
+    "correctText": "We need two bottles of shampoo.",
+    "correctResponseId": "en:lesson-17:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i03",
+    "correctText": "bottles",
+    "correctResponseId": "en:lesson-17:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:word:bottle-of-conditioner",
+    "correctText": "bottle of conditioner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i04",
+    "correctText": "We need two bottles of conditioner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i05",
+    "correctText": "We need two bottles of conditioner.",
+    "correctResponseId": "en:lesson-17:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i06",
+    "correctText": "bottles",
+    "correctResponseId": "en:lesson-17:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:word:bottle-of-shower-gel",
+    "correctText": "bottle of shower gel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i07",
+    "correctText": "We need two bottles of shower gel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i08",
+    "correctText": "We need two bottles of shower gel.",
+    "correctResponseId": "en:lesson-17:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i09",
+    "correctText": "bottles",
+    "correctResponseId": "en:lesson-17:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:word:tube-of-cream",
+    "correctText": "tube of cream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i10",
+    "correctText": "We need two tubes of cream.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i11",
+    "correctText": "We need two tubes of cream.",
+    "correctResponseId": "en:lesson-17:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i12",
+    "correctText": "tubes",
+    "correctResponseId": "en:lesson-17:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i13",
+    "correctText": "en:lesson-17:session-38:i13:p1=bottle of shampoo\nen:lesson-17:session-38:i13:p2=bottle of conditioner\nen:lesson-17:session-38:i13:p3=bottle of shower gel\nen:lesson-17:session-38:i13:p4=tube of cream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i14",
+    "correctText": "I am going to buy two bottles of shower gel tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i15",
+    "correctText": "I bought two tubes of cream yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i16",
+    "correctText": "We need two bottles of shampoo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-38:i17",
+    "correctText": "We need two bottles of conditioner.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-39:word:slice-of-cheese",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — slice of cheese",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:word:slice-of-cheese:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — slice of cheese",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:word:slice-of-cheese:audio",
+            "transcript": "slice of cheese"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:word:slice-of-cheese:r1",
+              "targetText": "slice of cheese",
+              "meaningByLocale": {
+                "ru": "ломтик сыра.",
+                "uk": "скибка сиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slice of cheese",
+            "definitionByLocale": {
+              "ru": "ломтик сыра.",
+              "uk": "скибка сиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "slice of cheese → slices of cheese. Скажите: «Нам нужны два ломтика сыра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "slice of cheese → slices of cheese. Скажите: «Нам нужны два ломтика сыра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two slices of cheese.",
+          "localizedMeaning": {
+            "ru": "slice of cheese → slices of cheese. Скажите: «Нам нужны два ломтика сыра».",
+            "uk": "slice of cheese → slices of cheese. Скажіть: «Нам потрібні дві скибки сиру»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "slices",
+            "of",
+            "cheese"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i02:r1",
+            "text": "We need two slices of cheese."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i02:r2",
+            "text": "We need two slice of cheese."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i02:r3",
+            "text": "We need two slices cheese."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i02:audio",
+            "transcript": "We need two slices of cheese."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:i02:r1",
+              "targetText": "We need two slices of cheese.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i02:r2",
+              "targetText": "We need two slice of cheese.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i02:r3",
+              "targetText": "We need two slices cheese.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two slices of cheese.",
+                "uk": "У записі звучить We need two slices of cheese."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two slices of cheese.",
+                "uk": "У записі звучить We need two slices of cheese."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i03:r1",
+            "text": "slices"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i03:r2",
+            "text": "slice"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i03:r3",
+            "text": "a slice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of cheese.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-39:i03:r1",
+              "text": "slices"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i03:r2",
+              "text": "slice"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i03:r3",
+              "text": "a slice"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма slices.",
+                "uk": "Після two потрібна форма slices."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:word:slice-of-ham",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — slice of ham",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:word:slice-of-ham:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — slice of ham",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:word:slice-of-ham:audio",
+            "transcript": "slice of ham"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:word:slice-of-ham:r1",
+              "targetText": "slice of ham",
+              "meaningByLocale": {
+                "ru": "ломтик ветчины.",
+                "uk": "скибка шинки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slice of ham",
+            "definitionByLocale": {
+              "ru": "ломтик ветчины.",
+              "uk": "скибка шинки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "slice of ham → slices of ham. Скажите: «Нам нужны два ломтика ветчины».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "slice of ham → slices of ham. Скажите: «Нам нужны два ломтика ветчины».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two slices of ham.",
+          "localizedMeaning": {
+            "ru": "slice of ham → slices of ham. Скажите: «Нам нужны два ломтика ветчины».",
+            "uk": "slice of ham → slices of ham. Скажіть: «Нам потрібні дві скибки шинки»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "slices",
+            "of",
+            "ham"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i05:r1",
+            "text": "We need two slices of ham."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i05:r2",
+            "text": "We need two slice of ham."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i05:r3",
+            "text": "We need two slices ham."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i05:audio",
+            "transcript": "We need two slices of ham."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:i05:r1",
+              "targetText": "We need two slices of ham.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i05:r2",
+              "targetText": "We need two slice of ham.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i05:r3",
+              "targetText": "We need two slices ham.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two slices of ham.",
+                "uk": "У записі звучить We need two slices of ham."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two slices of ham.",
+                "uk": "У записі звучить We need two slices of ham."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i06:r1",
+            "text": "slices"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i06:r2",
+            "text": "slice"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i06:r3",
+            "text": "a slice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of ham.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-39:i06:r1",
+              "text": "slices"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i06:r2",
+              "text": "slice"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i06:r3",
+              "text": "a slice"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма slices.",
+                "uk": "Після two потрібна форма slices."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:word:piece-of-cake",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — piece of cake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:word:piece-of-cake:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — piece of cake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:word:piece-of-cake:audio",
+            "transcript": "piece of cake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:word:piece-of-cake:r1",
+              "targetText": "piece of cake",
+              "meaningByLocale": {
+                "ru": "кусок торта, здесь в буквальном значении.",
+                "uk": "шматок торта, тут у буквальному значенні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "piece of cake",
+            "definitionByLocale": {
+              "ru": "кусок торта, здесь в буквальном значении.",
+              "uk": "шматок торта, тут у буквальному значенні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "piece of cake → pieces of cake. Скажите: «Нам нужны два куска торта».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "piece of cake → pieces of cake. Скажите: «Нам нужны два куска торта».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two pieces of cake.",
+          "localizedMeaning": {
+            "ru": "piece of cake → pieces of cake. Скажите: «Нам нужны два куска торта».",
+            "uk": "piece of cake → pieces of cake. Скажіть: «Нам потрібні два шматки торта»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "pieces",
+            "of",
+            "cake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i08:r1",
+            "text": "We need two pieces of cake."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i08:r2",
+            "text": "We need two piece of cake."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i08:r3",
+            "text": "We need two pieces cake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i08:audio",
+            "transcript": "We need two pieces of cake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:i08:r1",
+              "targetText": "We need two pieces of cake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i08:r2",
+              "targetText": "We need two piece of cake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i08:r3",
+              "targetText": "We need two pieces cake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two pieces of cake.",
+                "uk": "У записі звучить We need two pieces of cake."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two pieces of cake.",
+                "uk": "У записі звучить We need two pieces of cake."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i09:r1",
+            "text": "pieces"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i09:r2",
+            "text": "piece"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i09:r3",
+            "text": "a piece"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of cake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-39:i09:r1",
+              "text": "pieces"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i09:r2",
+              "text": "piece"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i09:r3",
+              "text": "a piece"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pieces.",
+                "uk": "Після two потрібна форма pieces."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:word:bowl-of-soup",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bowl of soup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:word:bowl-of-soup:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bowl of soup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:word:bowl-of-soup:audio",
+            "transcript": "bowl of soup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:word:bowl-of-soup:r1",
+              "targetText": "bowl of soup",
+              "meaningByLocale": {
+                "ru": "миска супа, порция в глубокой посуде.",
+                "uk": "миска супу, порція в глибокому посуді."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bowl of soup",
+            "definitionByLocale": {
+              "ru": "миска супа, порция в глубокой посуде.",
+              "uk": "миска супу, порція в глибокому посуді."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bowl of soup → bowls of soup. Скажите: «Нам нужны две миски супа».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bowl of soup → bowls of soup. Скажите: «Нам нужны две миски супа».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bowls of soup.",
+          "localizedMeaning": {
+            "ru": "bowl of soup → bowls of soup. Скажите: «Нам нужны две миски супа».",
+            "uk": "bowl of soup → bowls of soup. Скажіть: «Нам потрібні дві миски супу»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bowls",
+            "of",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i11:r1",
+            "text": "We need two bowls of soup."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i11:r2",
+            "text": "We need two bowl of soup."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i11:r3",
+            "text": "We need two bowls soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i11:audio",
+            "transcript": "We need two bowls of soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:i11:r1",
+              "targetText": "We need two bowls of soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i11:r2",
+              "targetText": "We need two bowl of soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i11:r3",
+              "targetText": "We need two bowls soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bowls of soup.",
+                "uk": "У записі звучить We need two bowls of soup."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bowls of soup.",
+                "uk": "У записі звучить We need two bowls of soup."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i12:r1",
+            "text": "bowls"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i12:r2",
+            "text": "bowl"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i12:r3",
+            "text": "a bowl"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-39:i12:r1",
+              "text": "bowls"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i12:r2",
+              "text": "bowl"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i12:r3",
+              "text": "a bowl"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bowls.",
+                "uk": "Після two потрібна форма bowls."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-39:i13:p1",
+              "target": "slice of cheese",
+              "meaningByLocale": {
+                "ru": "ломтик сыра",
+                "uk": "скибка сиру"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-39:i13:p2",
+              "target": "slice of ham",
+              "meaningByLocale": {
+                "ru": "ломтик ветчины",
+                "uk": "скибка шинки"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-39:i13:p3",
+              "target": "piece of cake",
+              "meaningByLocale": {
+                "ru": "кусок торта, здесь в буквальном значении",
+                "uk": "шматок торта, тут у буквальному значенні"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-39:i13:p4",
+              "target": "bowl of soup",
+              "meaningByLocale": {
+                "ru": "миска супа, порция в глубокой посуде",
+                "uk": "миска супу, порція в глибокому посуді"
+              }
+            }
+          ],
+          "leftColumn": [
+            "slice of cheese",
+            "slice of ham",
+            "piece of cake",
+            "bowl of soup"
+          ],
+          "rightColumn": [
+            "ломтик сыра",
+            "ломтик ветчины",
+            "кусок торта, здесь в буквальном значении",
+            "миска супа, порция в глубокой посуде"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу о завтрашнем плане",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу о завтрашнем плане",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i14:audio",
+            "transcript": "I am going to buy two pieces of cake tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy two pieces of cake tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "two",
+            "pieces",
+            "of",
+            "cake",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу в прошедшем времени",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу в прошедшем времени",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i15:audio",
+            "transcript": "I bought two bowls of soup yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I bought two bowls of soup yesterday.",
+          "orderedTokens": [
+            "I",
+            "bought",
+            "two",
+            "bowls",
+            "of",
+            "soup",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назовите нужное количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Назовите нужное количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i16:audio",
+            "transcript": "We need two slices of cheese."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two slices of cheese.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторите фразу с of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Повторите фразу с of",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i17:audio",
+            "transcript": "We need two slices of ham."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two slices of ham.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-39:word:slice-of-cheese",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — slice of cheese",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:word:slice-of-cheese:audio"
+        ],
+        "accessibilityLabel": "Картка слова — slice of cheese",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:word:slice-of-cheese:audio",
+            "transcript": "slice of cheese"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:word:slice-of-cheese:r1",
+              "targetText": "slice of cheese",
+              "meaningByLocale": {
+                "ru": "ломтик сыра.",
+                "uk": "скибка сиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slice of cheese",
+            "definitionByLocale": {
+              "ru": "ломтик сыра.",
+              "uk": "скибка сиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "slice of cheese → slices of cheese. Скажіть: «Нам потрібні дві скибки сиру».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "slice of cheese → slices of cheese. Скажіть: «Нам потрібні дві скибки сиру».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two slices of cheese.",
+          "localizedMeaning": {
+            "ru": "slice of cheese → slices of cheese. Скажите: «Нам нужны два ломтика сыра».",
+            "uk": "slice of cheese → slices of cheese. Скажіть: «Нам потрібні дві скибки сиру»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "slices",
+            "of",
+            "cheese"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i02:r1",
+            "text": "We need two slices of cheese."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i02:r2",
+            "text": "We need two slice of cheese."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i02:r3",
+            "text": "We need two slices cheese."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i02:audio",
+            "transcript": "We need two slices of cheese."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:i02:r1",
+              "targetText": "We need two slices of cheese.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i02:r2",
+              "targetText": "We need two slice of cheese.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i02:r3",
+              "targetText": "We need two slices cheese.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two slices of cheese.",
+                "uk": "У записі звучить We need two slices of cheese."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two slices of cheese.",
+                "uk": "У записі звучить We need two slices of cheese."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i03:r1",
+            "text": "slices"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i03:r2",
+            "text": "slice"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i03:r3",
+            "text": "a slice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of cheese.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-39:i03:r1",
+              "text": "slices"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i03:r2",
+              "text": "slice"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i03:r3",
+              "text": "a slice"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма slices.",
+                "uk": "Після two потрібна форма slices."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:word:slice-of-ham",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — slice of ham",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:word:slice-of-ham:audio"
+        ],
+        "accessibilityLabel": "Картка слова — slice of ham",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:word:slice-of-ham:audio",
+            "transcript": "slice of ham"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:word:slice-of-ham:r1",
+              "targetText": "slice of ham",
+              "meaningByLocale": {
+                "ru": "ломтик ветчины.",
+                "uk": "скибка шинки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slice of ham",
+            "definitionByLocale": {
+              "ru": "ломтик ветчины.",
+              "uk": "скибка шинки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "slice of ham → slices of ham. Скажіть: «Нам потрібні дві скибки шинки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "slice of ham → slices of ham. Скажіть: «Нам потрібні дві скибки шинки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two slices of ham.",
+          "localizedMeaning": {
+            "ru": "slice of ham → slices of ham. Скажите: «Нам нужны два ломтика ветчины».",
+            "uk": "slice of ham → slices of ham. Скажіть: «Нам потрібні дві скибки шинки»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "slices",
+            "of",
+            "ham"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i05:r1",
+            "text": "We need two slices of ham."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i05:r2",
+            "text": "We need two slice of ham."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i05:r3",
+            "text": "We need two slices ham."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i05:audio",
+            "transcript": "We need two slices of ham."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:i05:r1",
+              "targetText": "We need two slices of ham.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i05:r2",
+              "targetText": "We need two slice of ham.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i05:r3",
+              "targetText": "We need two slices ham.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two slices of ham.",
+                "uk": "У записі звучить We need two slices of ham."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two slices of ham.",
+                "uk": "У записі звучить We need two slices of ham."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i06:r1",
+            "text": "slices"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i06:r2",
+            "text": "slice"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i06:r3",
+            "text": "a slice"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of ham.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-39:i06:r1",
+              "text": "slices"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i06:r2",
+              "text": "slice"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i06:r3",
+              "text": "a slice"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма slices.",
+                "uk": "Після two потрібна форма slices."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:word:piece-of-cake",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — piece of cake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:word:piece-of-cake:audio"
+        ],
+        "accessibilityLabel": "Картка слова — piece of cake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:word:piece-of-cake:audio",
+            "transcript": "piece of cake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:word:piece-of-cake:r1",
+              "targetText": "piece of cake",
+              "meaningByLocale": {
+                "ru": "кусок торта, здесь в буквальном значении.",
+                "uk": "шматок торта, тут у буквальному значенні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "piece of cake",
+            "definitionByLocale": {
+              "ru": "кусок торта, здесь в буквальном значении.",
+              "uk": "шматок торта, тут у буквальному значенні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "piece of cake → pieces of cake. Скажіть: «Нам потрібні два шматки торта».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "piece of cake → pieces of cake. Скажіть: «Нам потрібні два шматки торта».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two pieces of cake.",
+          "localizedMeaning": {
+            "ru": "piece of cake → pieces of cake. Скажите: «Нам нужны два куска торта».",
+            "uk": "piece of cake → pieces of cake. Скажіть: «Нам потрібні два шматки торта»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "pieces",
+            "of",
+            "cake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i08:r1",
+            "text": "We need two pieces of cake."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i08:r2",
+            "text": "We need two piece of cake."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i08:r3",
+            "text": "We need two pieces cake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i08:audio",
+            "transcript": "We need two pieces of cake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:i08:r1",
+              "targetText": "We need two pieces of cake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i08:r2",
+              "targetText": "We need two piece of cake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i08:r3",
+              "targetText": "We need two pieces cake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two pieces of cake.",
+                "uk": "У записі звучить We need two pieces of cake."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two pieces of cake.",
+                "uk": "У записі звучить We need two pieces of cake."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i09:r1",
+            "text": "pieces"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i09:r2",
+            "text": "piece"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i09:r3",
+            "text": "a piece"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of cake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-39:i09:r1",
+              "text": "pieces"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i09:r2",
+              "text": "piece"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i09:r3",
+              "text": "a piece"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pieces.",
+                "uk": "Після two потрібна форма pieces."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:word:bowl-of-soup",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bowl of soup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:word:bowl-of-soup:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bowl of soup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:word:bowl-of-soup:audio",
+            "transcript": "bowl of soup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:word:bowl-of-soup:r1",
+              "targetText": "bowl of soup",
+              "meaningByLocale": {
+                "ru": "миска супа, порция в глубокой посуде.",
+                "uk": "миска супу, порція в глибокому посуді."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bowl of soup",
+            "definitionByLocale": {
+              "ru": "миска супа, порция в глубокой посуде.",
+              "uk": "миска супу, порція в глибокому посуді."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "bowl of soup → bowls of soup. Скажіть: «Нам потрібні дві миски супу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "bowl of soup → bowls of soup. Скажіть: «Нам потрібні дві миски супу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need two bowls of soup.",
+          "localizedMeaning": {
+            "ru": "bowl of soup → bowls of soup. Скажите: «Нам нужны две миски супа».",
+            "uk": "bowl of soup → bowls of soup. Скажіть: «Нам потрібні дві миски супу»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "two",
+            "bowls",
+            "of",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i11:r1",
+            "text": "We need two bowls of soup."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i11:r2",
+            "text": "We need two bowl of soup."
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i11:r3",
+            "text": "We need two bowls soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i11:audio",
+            "transcript": "We need two bowls of soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-39:i11:r1",
+              "targetText": "We need two bowls of soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i11:r2",
+              "targetText": "We need two bowl of soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i11:r3",
+              "targetText": "We need two bowls soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bowls of soup.",
+                "uk": "У записі звучить We need two bowls of soup."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need two bowls of soup.",
+                "uk": "У записі звучить We need two bowls of soup."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-39:i12:r1",
+            "text": "bowls"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i12:r2",
+            "text": "bowl"
+          },
+          {
+            "responseId": "en:lesson-17:session-39:i12:r3",
+            "text": "a bowl"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "We need two ___ of soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-39:i12:r1",
+              "text": "bowls"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i12:r2",
+              "text": "bowl"
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i12:r3",
+              "text": "a bowl"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма bowls.",
+                "uk": "Після two потрібна форма bowls."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-39:i13:p1",
+              "target": "slice of cheese",
+              "meaningByLocale": {
+                "ru": "ломтик сыра",
+                "uk": "скибка сиру"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-39:i13:p2",
+              "target": "slice of ham",
+              "meaningByLocale": {
+                "ru": "ломтик ветчины",
+                "uk": "скибка шинки"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-39:i13:p3",
+              "target": "piece of cake",
+              "meaningByLocale": {
+                "ru": "кусок торта, здесь в буквальном значении",
+                "uk": "шматок торта, тут у буквальному значенні"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-39:i13:p4",
+              "target": "bowl of soup",
+              "meaningByLocale": {
+                "ru": "миска супа, порция в глубокой посуде",
+                "uk": "миска супу, порція в глибокому посуді"
+              }
+            }
+          ],
+          "leftColumn": [
+            "slice of cheese",
+            "slice of ham",
+            "piece of cake",
+            "bowl of soup"
+          ],
+          "rightColumn": [
+            "скибка сиру",
+            "скибка шинки",
+            "шматок торта, тут у буквальному значенні",
+            "миска супу, порція в глибокому посуді"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу про завтрашній план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу про завтрашній план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i14:audio",
+            "transcript": "I am going to buy two pieces of cake tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy two pieces of cake tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "two",
+            "pieces",
+            "of",
+            "cake",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу в минулому часі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу в минулому часі",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i15:audio",
+            "transcript": "I bought two bowls of soup yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I bought two bowls of soup yesterday.",
+          "orderedTokens": [
+            "I",
+            "bought",
+            "two",
+            "bowls",
+            "of",
+            "soup",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назвіть потрібну кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Назвіть потрібну кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i16:audio",
+            "transcript": "We need two slices of cheese."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two slices of cheese.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторіть фразу з of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Повторіть фразу з of",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-39:i17:audio",
+            "transcript": "We need two slices of ham."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two slices of ham.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-39:word:slice-of-cheese",
+      "correctText": "slice of cheese",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i01",
+      "correctText": "We need two slices of cheese.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i02",
+      "correctText": "We need two slices of cheese.",
+      "correctResponseId": "en:lesson-17:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i03",
+      "correctText": "slices",
+      "correctResponseId": "en:lesson-17:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:word:slice-of-ham",
+      "correctText": "slice of ham",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i04",
+      "correctText": "We need two slices of ham.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i05",
+      "correctText": "We need two slices of ham.",
+      "correctResponseId": "en:lesson-17:session-39:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i06",
+      "correctText": "slices",
+      "correctResponseId": "en:lesson-17:session-39:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:word:piece-of-cake",
+      "correctText": "piece of cake",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i07",
+      "correctText": "We need two pieces of cake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i08",
+      "correctText": "We need two pieces of cake.",
+      "correctResponseId": "en:lesson-17:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i09",
+      "correctText": "pieces",
+      "correctResponseId": "en:lesson-17:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:word:bowl-of-soup",
+      "correctText": "bowl of soup",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i10",
+      "correctText": "We need two bowls of soup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i11",
+      "correctText": "We need two bowls of soup.",
+      "correctResponseId": "en:lesson-17:session-39:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i12",
+      "correctText": "bowls",
+      "correctResponseId": "en:lesson-17:session-39:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i14",
+      "correctText": "I am going to buy two pieces of cake tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i15",
+      "correctText": "I bought two bowls of soup yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i16",
+      "correctText": "We need two slices of cheese.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-39:i17",
+      "correctText": "We need two slices of ham.",
+      "correctResponseId": null
+    }
+  ]
+}

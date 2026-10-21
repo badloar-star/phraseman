@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-36:word:piece-of-advice",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — piece of advice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:word:piece-of-advice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — piece of advice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:word:piece-of-advice:audio",
+            "transcript": "piece of advice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:word:piece-of-advice:r1",
+              "targetText": "piece of advice",
+              "meaningByLocale": {
+                "ru": "один совет.",
+                "uk": "одна порада."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "piece of advice",
+            "definitionByLocale": {
+              "ru": "один совет.",
+              "uk": "одна порада."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "piece of advice → pieces of advice. Скажите: «Мне нужны два совета».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "piece of advice → pieces of advice. Скажите: «Мне нужны два совета».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need two pieces of advice.",
+          "localizedMeaning": {
+            "ru": "piece of advice → pieces of advice. Скажите: «Мне нужны два совета».",
+            "uk": "piece of advice → pieces of advice. Скажіть: «Мені потрібні дві поради»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "two",
+            "pieces",
+            "of",
+            "advice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i02:r1",
+            "text": "I need two pieces of advice."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i02:r2",
+            "text": "I need two piece of advice."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i02:r3",
+            "text": "I need two pieces advice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i02:audio",
+            "transcript": "I need two pieces of advice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:i02:r1",
+              "targetText": "I need two pieces of advice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i02:r2",
+              "targetText": "I need two piece of advice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i02:r3",
+              "targetText": "I need two pieces advice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of advice.",
+                "uk": "У записі звучить I need two pieces of advice."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of advice.",
+                "uk": "У записі звучить I need two pieces of advice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i03:r1",
+            "text": "pieces"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i03:r2",
+            "text": "piece"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i03:r3",
+            "text": "a piece"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "I need two ___ of advice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-36:i03:r1",
+              "text": "pieces"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i03:r2",
+              "text": "piece"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i03:r3",
+              "text": "a piece"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pieces.",
+                "uk": "Після two потрібна форма pieces."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:word:piece-of-information",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — piece of information",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:word:piece-of-information:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — piece of information",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:word:piece-of-information:audio",
+            "transcript": "piece of information"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:word:piece-of-information:r1",
+              "targetText": "piece of information",
+              "meaningByLocale": {
+                "ru": "одно сведение, отдельная часть информации.",
+                "uk": "окремий факт, частина інформації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "piece of information",
+            "definitionByLocale": {
+              "ru": "одно сведение, отдельная часть информации.",
+              "uk": "окремий факт, частина інформації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "piece of information → pieces of information. Скажите: «Мне нужны два отдельных сведения».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "piece of information → pieces of information. Скажите: «Мне нужны два отдельных сведения».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need two pieces of information.",
+          "localizedMeaning": {
+            "ru": "piece of information → pieces of information. Скажите: «Мне нужны два отдельных сведения».",
+            "uk": "piece of information → pieces of information. Скажіть: «Мені потрібні дві окремі частини інформації»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "two",
+            "pieces",
+            "of",
+            "information"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i05:r1",
+            "text": "I need two pieces of information."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i05:r2",
+            "text": "I need two piece of information."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i05:r3",
+            "text": "I need two pieces information."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i05:audio",
+            "transcript": "I need two pieces of information."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:i05:r1",
+              "targetText": "I need two pieces of information.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i05:r2",
+              "targetText": "I need two piece of information.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i05:r3",
+              "targetText": "I need two pieces information.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of information.",
+                "uk": "У записі звучить I need two pieces of information."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of information.",
+                "uk": "У записі звучить I need two pieces of information."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i06:r1",
+            "text": "pieces"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i06:r2",
+            "text": "piece"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i06:r3",
+            "text": "a piece"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "I need two ___ of information.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-36:i06:r1",
+              "text": "pieces"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i06:r2",
+              "text": "piece"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i06:r3",
+              "text": "a piece"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pieces.",
+                "uk": "Після two потрібна форма pieces."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:word:piece-of-furniture",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — piece of furniture",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:word:piece-of-furniture:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — piece of furniture",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:word:piece-of-furniture:audio",
+            "transcript": "piece of furniture"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:word:piece-of-furniture:r1",
+              "targetText": "piece of furniture",
+              "meaningByLocale": {
+                "ru": "один предмет мебели.",
+                "uk": "один предмет меблів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "piece of furniture",
+            "definitionByLocale": {
+              "ru": "один предмет мебели.",
+              "uk": "один предмет меблів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "piece of furniture → pieces of furniture. Скажите: «Мне нужны два предмета мебели».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "piece of furniture → pieces of furniture. Скажите: «Мне нужны два предмета мебели».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need two pieces of furniture.",
+          "localizedMeaning": {
+            "ru": "piece of furniture → pieces of furniture. Скажите: «Мне нужны два предмета мебели».",
+            "uk": "piece of furniture → pieces of furniture. Скажіть: «Мені потрібні два предмети меблів»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "two",
+            "pieces",
+            "of",
+            "furniture"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i08:r1",
+            "text": "I need two pieces of furniture."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i08:r2",
+            "text": "I need two piece of furniture."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i08:r3",
+            "text": "I need two pieces furniture."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i08:audio",
+            "transcript": "I need two pieces of furniture."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:i08:r1",
+              "targetText": "I need two pieces of furniture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i08:r2",
+              "targetText": "I need two piece of furniture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i08:r3",
+              "targetText": "I need two pieces furniture.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of furniture.",
+                "uk": "У записі звучить I need two pieces of furniture."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of furniture.",
+                "uk": "У записі звучить I need two pieces of furniture."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i09:r1",
+            "text": "pieces"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i09:r2",
+            "text": "piece"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i09:r3",
+            "text": "a piece"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "I need two ___ of furniture.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-36:i09:r1",
+              "text": "pieces"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i09:r2",
+              "text": "piece"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i09:r3",
+              "text": "a piece"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pieces.",
+                "uk": "Після two потрібна форма pieces."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:word:item-of-clothing",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — item of clothing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:word:item-of-clothing:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — item of clothing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:word:item-of-clothing:audio",
+            "transcript": "item of clothing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:word:item-of-clothing:r1",
+              "targetText": "item of clothing",
+              "meaningByLocale": {
+                "ru": "один предмет одежды.",
+                "uk": "один предмет одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "item of clothing",
+            "definitionByLocale": {
+              "ru": "один предмет одежды.",
+              "uk": "один предмет одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "item of clothing → items of clothing. Скажите: «Мне нужны два предмета одежды».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "item of clothing → items of clothing. Скажите: «Мне нужны два предмета одежды».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need two items of clothing.",
+          "localizedMeaning": {
+            "ru": "item of clothing → items of clothing. Скажите: «Мне нужны два предмета одежды».",
+            "uk": "item of clothing → items of clothing. Скажіть: «Мені потрібні два предмети одягу»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "two",
+            "items",
+            "of",
+            "clothing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i11:r1",
+            "text": "I need two items of clothing."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i11:r2",
+            "text": "I need two item of clothing."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i11:r3",
+            "text": "I need two items clothing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i11:audio",
+            "transcript": "I need two items of clothing."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:i11:r1",
+              "targetText": "I need two items of clothing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i11:r2",
+              "targetText": "I need two item of clothing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i11:r3",
+              "targetText": "I need two items clothing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two items of clothing.",
+                "uk": "У записі звучить I need two items of clothing."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two items of clothing.",
+                "uk": "У записі звучить I need two items of clothing."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i12:r1",
+            "text": "items"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i12:r2",
+            "text": "item"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i12:r3",
+            "text": "a item"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "I need two ___ of clothing.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-36:i12:r1",
+              "text": "items"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i12:r2",
+              "text": "item"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i12:r3",
+              "text": "a item"
+            }
+          ],
+          "testedDimension": "Выберите форму после two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма items.",
+                "uk": "Після two потрібна форма items."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-36:i13:p1",
+              "target": "piece of advice",
+              "meaningByLocale": {
+                "ru": "один совет",
+                "uk": "одна порада"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-36:i13:p2",
+              "target": "piece of information",
+              "meaningByLocale": {
+                "ru": "одно сведение, отдельная часть информации",
+                "uk": "окремий факт, частина інформації"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-36:i13:p3",
+              "target": "piece of furniture",
+              "meaningByLocale": {
+                "ru": "один предмет мебели",
+                "uk": "один предмет меблів"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-36:i13:p4",
+              "target": "item of clothing",
+              "meaningByLocale": {
+                "ru": "один предмет одежды",
+                "uk": "один предмет одягу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "piece of advice",
+            "piece of information",
+            "piece of furniture",
+            "item of clothing"
+          ],
+          "rightColumn": [
+            "один совет",
+            "одно сведение, отдельная часть информации",
+            "один предмет мебели",
+            "один предмет одежды"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу о завтрашнем плане",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу о завтрашнем плане",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i14:audio",
+            "transcript": "I am going to buy two pieces of furniture tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy two pieces of furniture tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "two",
+            "pieces",
+            "of",
+            "furniture",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу в прошедшем времени",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу в прошедшем времени",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i15:audio",
+            "transcript": "I bought two items of clothing yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I bought two items of clothing yesterday.",
+          "orderedTokens": [
+            "I",
+            "bought",
+            "two",
+            "items",
+            "of",
+            "clothing",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назовите нужное количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Назовите нужное количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i16:audio",
+            "transcript": "I need two pieces of advice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need two pieces of advice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторите фразу с of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Повторите фразу с of",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i17:audio",
+            "transcript": "I need two pieces of information."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need two pieces of information.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-36:word:piece-of-advice",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — piece of advice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:word:piece-of-advice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — piece of advice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:word:piece-of-advice:audio",
+            "transcript": "piece of advice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:word:piece-of-advice:r1",
+              "targetText": "piece of advice",
+              "meaningByLocale": {
+                "ru": "один совет.",
+                "uk": "одна порада."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "piece of advice",
+            "definitionByLocale": {
+              "ru": "один совет.",
+              "uk": "одна порада."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "piece of advice → pieces of advice. Скажіть: «Мені потрібні дві поради».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "piece of advice → pieces of advice. Скажіть: «Мені потрібні дві поради».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need two pieces of advice.",
+          "localizedMeaning": {
+            "ru": "piece of advice → pieces of advice. Скажите: «Мне нужны два совета».",
+            "uk": "piece of advice → pieces of advice. Скажіть: «Мені потрібні дві поради»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "two",
+            "pieces",
+            "of",
+            "advice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i02:r1",
+            "text": "I need two pieces of advice."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i02:r2",
+            "text": "I need two piece of advice."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i02:r3",
+            "text": "I need two pieces advice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i02:audio",
+            "transcript": "I need two pieces of advice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:i02:r1",
+              "targetText": "I need two pieces of advice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i02:r2",
+              "targetText": "I need two piece of advice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i02:r3",
+              "targetText": "I need two pieces advice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of advice.",
+                "uk": "У записі звучить I need two pieces of advice."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of advice.",
+                "uk": "У записі звучить I need two pieces of advice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i03:r1",
+            "text": "pieces"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i03:r2",
+            "text": "piece"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i03:r3",
+            "text": "a piece"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "I need two ___ of advice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-36:i03:r1",
+              "text": "pieces"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i03:r2",
+              "text": "piece"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i03:r3",
+              "text": "a piece"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pieces.",
+                "uk": "Після two потрібна форма pieces."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:word:piece-of-information",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — piece of information",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:word:piece-of-information:audio"
+        ],
+        "accessibilityLabel": "Картка слова — piece of information",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:word:piece-of-information:audio",
+            "transcript": "piece of information"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:word:piece-of-information:r1",
+              "targetText": "piece of information",
+              "meaningByLocale": {
+                "ru": "одно сведение, отдельная часть информации.",
+                "uk": "окремий факт, частина інформації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "piece of information",
+            "definitionByLocale": {
+              "ru": "одно сведение, отдельная часть информации.",
+              "uk": "окремий факт, частина інформації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "piece of information → pieces of information. Скажіть: «Мені потрібні дві окремі частини інформації».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "piece of information → pieces of information. Скажіть: «Мені потрібні дві окремі частини інформації».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need two pieces of information.",
+          "localizedMeaning": {
+            "ru": "piece of information → pieces of information. Скажите: «Мне нужны два отдельных сведения».",
+            "uk": "piece of information → pieces of information. Скажіть: «Мені потрібні дві окремі частини інформації»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "two",
+            "pieces",
+            "of",
+            "information"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i05:r1",
+            "text": "I need two pieces of information."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i05:r2",
+            "text": "I need two piece of information."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i05:r3",
+            "text": "I need two pieces information."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i05:audio",
+            "transcript": "I need two pieces of information."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:i05:r1",
+              "targetText": "I need two pieces of information.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i05:r2",
+              "targetText": "I need two piece of information.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i05:r3",
+              "targetText": "I need two pieces information.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of information.",
+                "uk": "У записі звучить I need two pieces of information."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of information.",
+                "uk": "У записі звучить I need two pieces of information."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i06:r1",
+            "text": "pieces"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i06:r2",
+            "text": "piece"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i06:r3",
+            "text": "a piece"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "I need two ___ of information.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-36:i06:r1",
+              "text": "pieces"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i06:r2",
+              "text": "piece"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i06:r3",
+              "text": "a piece"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pieces.",
+                "uk": "Після two потрібна форма pieces."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:word:piece-of-furniture",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — piece of furniture",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:word:piece-of-furniture:audio"
+        ],
+        "accessibilityLabel": "Картка слова — piece of furniture",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:word:piece-of-furniture:audio",
+            "transcript": "piece of furniture"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:word:piece-of-furniture:r1",
+              "targetText": "piece of furniture",
+              "meaningByLocale": {
+                "ru": "один предмет мебели.",
+                "uk": "один предмет меблів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "piece of furniture",
+            "definitionByLocale": {
+              "ru": "один предмет мебели.",
+              "uk": "один предмет меблів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "piece of furniture → pieces of furniture. Скажіть: «Мені потрібні два предмети меблів».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "piece of furniture → pieces of furniture. Скажіть: «Мені потрібні два предмети меблів».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need two pieces of furniture.",
+          "localizedMeaning": {
+            "ru": "piece of furniture → pieces of furniture. Скажите: «Мне нужны два предмета мебели».",
+            "uk": "piece of furniture → pieces of furniture. Скажіть: «Мені потрібні два предмети меблів»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "two",
+            "pieces",
+            "of",
+            "furniture"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i08:r1",
+            "text": "I need two pieces of furniture."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i08:r2",
+            "text": "I need two piece of furniture."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i08:r3",
+            "text": "I need two pieces furniture."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i08:audio",
+            "transcript": "I need two pieces of furniture."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:i08:r1",
+              "targetText": "I need two pieces of furniture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i08:r2",
+              "targetText": "I need two piece of furniture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i08:r3",
+              "targetText": "I need two pieces furniture.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of furniture.",
+                "uk": "У записі звучить I need two pieces of furniture."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two pieces of furniture.",
+                "uk": "У записі звучить I need two pieces of furniture."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i09:r1",
+            "text": "pieces"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i09:r2",
+            "text": "piece"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i09:r3",
+            "text": "a piece"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "I need two ___ of furniture.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-36:i09:r1",
+              "text": "pieces"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i09:r2",
+              "text": "piece"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i09:r3",
+              "text": "a piece"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма pieces.",
+                "uk": "Після two потрібна форма pieces."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:word:item-of-clothing",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — item of clothing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:word:item-of-clothing:audio"
+        ],
+        "accessibilityLabel": "Картка слова — item of clothing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:word:item-of-clothing:audio",
+            "transcript": "item of clothing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:word:item-of-clothing:r1",
+              "targetText": "item of clothing",
+              "meaningByLocale": {
+                "ru": "один предмет одежды.",
+                "uk": "один предмет одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "item of clothing",
+            "definitionByLocale": {
+              "ru": "один предмет одежды.",
+              "uk": "один предмет одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "item of clothing → items of clothing. Скажіть: «Мені потрібні два предмети одягу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "item of clothing → items of clothing. Скажіть: «Мені потрібні два предмети одягу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need two items of clothing.",
+          "localizedMeaning": {
+            "ru": "item of clothing → items of clothing. Скажите: «Мне нужны два предмета одежды».",
+            "uk": "item of clothing → items of clothing. Скажіть: «Мені потрібні два предмети одягу»."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "two",
+            "items",
+            "of",
+            "clothing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i11:r1",
+            "text": "I need two items of clothing."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i11:r2",
+            "text": "I need two item of clothing."
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i11:r3",
+            "text": "I need two items clothing."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i11:audio",
+            "transcript": "I need two items of clothing."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-36:i11:r1",
+              "targetText": "I need two items of clothing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i11:r2",
+              "targetText": "I need two item of clothing.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i11:r3",
+              "targetText": "I need two items clothing.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two items of clothing.",
+                "uk": "У записі звучить I need two items of clothing."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I need two items of clothing.",
+                "uk": "У записі звучить I need two items of clothing."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після two.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-36:i12:r1",
+            "text": "items"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i12:r2",
+            "text": "item"
+          },
+          {
+            "responseId": "en:lesson-17:session-36:i12:r3",
+            "text": "a item"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після two.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после two.",
+            "uk": "Виберіть форму після two."
+          },
+          "gappedTargetPhrase": "I need two ___ of clothing.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-36:i12:r1",
+              "text": "items"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i12:r2",
+              "text": "item"
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i12:r3",
+              "text": "a item"
+            }
+          ],
+          "testedDimension": "Виберіть форму після two.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "После two нужна форма items.",
+                "uk": "Після two потрібна форма items."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після two.",
+              "feedbackByLocale": {
+                "ru": "Не ставьте a после two.",
+                "uk": "Не ставте a після two."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-36:i13:p1",
+              "target": "piece of advice",
+              "meaningByLocale": {
+                "ru": "один совет",
+                "uk": "одна порада"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-36:i13:p2",
+              "target": "piece of information",
+              "meaningByLocale": {
+                "ru": "одно сведение, отдельная часть информации",
+                "uk": "окремий факт, частина інформації"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-36:i13:p3",
+              "target": "piece of furniture",
+              "meaningByLocale": {
+                "ru": "один предмет мебели",
+                "uk": "один предмет меблів"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-36:i13:p4",
+              "target": "item of clothing",
+              "meaningByLocale": {
+                "ru": "один предмет одежды",
+                "uk": "один предмет одягу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "piece of advice",
+            "piece of information",
+            "piece of furniture",
+            "item of clothing"
+          ],
+          "rightColumn": [
+            "одна порада",
+            "окремий факт, частина інформації",
+            "один предмет меблів",
+            "один предмет одягу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу про завтрашній план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу про завтрашній план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i14:audio",
+            "transcript": "I am going to buy two pieces of furniture tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy two pieces of furniture tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "two",
+            "pieces",
+            "of",
+            "furniture",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу в минулому часі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу в минулому часі",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i15:audio",
+            "transcript": "I bought two items of clothing yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I bought two items of clothing yesterday.",
+          "orderedTokens": [
+            "I",
+            "bought",
+            "two",
+            "items",
+            "of",
+            "clothing",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назвіть потрібну кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Назвіть потрібну кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i16:audio",
+            "transcript": "I need two pieces of advice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need two pieces of advice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторіть фразу з of",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Повторіть фразу з of",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-36:i17:audio",
+            "transcript": "I need two pieces of information."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I need two pieces of information.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-36:word:piece-of-advice",
+      "correctText": "piece of advice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i01",
+      "correctText": "I need two pieces of advice.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i02",
+      "correctText": "I need two pieces of advice.",
+      "correctResponseId": "en:lesson-17:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i03",
+      "correctText": "pieces",
+      "correctResponseId": "en:lesson-17:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:word:piece-of-information",
+      "correctText": "piece of information",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i04",
+      "correctText": "I need two pieces of information.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i05",
+      "correctText": "I need two pieces of information.",
+      "correctResponseId": "en:lesson-17:session-36:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i06",
+      "correctText": "pieces",
+      "correctResponseId": "en:lesson-17:session-36:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:word:piece-of-furniture",
+      "correctText": "piece of furniture",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i07",
+      "correctText": "I need two pieces of furniture.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i08",
+      "correctText": "I need two pieces of furniture.",
+      "correctResponseId": "en:lesson-17:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i09",
+      "correctText": "pieces",
+      "correctResponseId": "en:lesson-17:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:word:item-of-clothing",
+      "correctText": "item of clothing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i10",
+      "correctText": "I need two items of clothing.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i11",
+      "correctText": "I need two items of clothing.",
+      "correctResponseId": "en:lesson-17:session-36:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i12",
+      "correctText": "items",
+      "correctResponseId": "en:lesson-17:session-36:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i14",
+      "correctText": "I am going to buy two pieces of furniture tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i15",
+      "correctText": "I bought two items of clothing yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i16",
+      "correctText": "I need two pieces of advice.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-36:i17",
+      "correctText": "I need two pieces of information.",
+      "correctResponseId": null
+    }
+  ]
+}

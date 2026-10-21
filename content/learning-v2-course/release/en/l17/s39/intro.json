@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "number + unit + of + non-count noun",
+    "uk": "number + unit + of + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество через единицу",
+        "uk": "Кількість через одиницю"
+      },
+      "bodyByLocale": {
+        "ru": "slice of cheese — ломтик сыра. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: slice → slices. Считаем единицы или порции, а не меняем название содержимого.",
+        "uk": "slice of cheese — скибка сиру. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: slice → slices. Рахуємо одиниці або порції, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-39:intro1:r1",
+              "text": "We need two slices of cheese."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro1:r2",
+              "text": "We need two slice of cheese."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro1:r3",
+              "text": "We need two slices cheese."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-39:intro1:r1",
+              "text": "We need two slices of cheese."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro1:r2",
+              "text": "We need two slice of cheese."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro1:r3",
+              "text": "We need two slices cheese."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Меняем форму единицы",
+        "uk": "Змінюємо форму одиниці"
+      },
+      "bodyByLocale": {
+        "ru": "slice of ham — ломтик ветчины. piece of cake — кусок торта, здесь в буквальном значении. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: slice → slices. Считаем единицы или порции, а не меняем название содержимого.",
+        "uk": "slice of ham — скибка шинки. piece of cake — шматок торта, тут у буквальному значенні. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: slice → slices. Рахуємо одиниці або порції, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-39:intro2:r1",
+              "text": "We need two slices of ham."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro2:r2",
+              "text": "We need two slice of ham."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro2:r3",
+              "text": "We need two slices ham."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-39:intro2:r1",
+              "text": "We need two slices of ham."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro2:r2",
+              "text": "We need two slice of ham."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro2:r3",
+              "text": "We need two slices ham."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Связываем единицу и содержимое",
+        "uk": "Пов’язуємо одиницю та вміст"
+      },
+      "bodyByLocale": {
+        "ru": "bowl of soup — миска супа, порция в глубокой посуде. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: bowl → bowls. Считаем единицы или порции, а не меняем название содержимого.",
+        "uk": "bowl of soup — миска супу, порція в глибокому посуді. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: bowl → bowls. Рахуємо одиниці або порції, а не змінюємо назву вмісту."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-39:intro3:r1",
+              "text": "We need two bowls of soup."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro3:r2",
+              "text": "We need two bowl of soup."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro3:r3",
+              "text": "We need two bowls soup."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-39:intro3:r1",
+              "text": "We need two bowls of soup."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro3:r2",
+              "text": "We need two bowl of soup."
+            },
+            {
+              "responseId": "en:lesson-17:session-39:intro3:r3",
+              "text": "We need two bowls soup."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9c3d7f5fc14b57b446fab2da95ee8ebddabfe05522e8ea2ea07086c9bba110ef"
+}

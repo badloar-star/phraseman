@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-39:word:slice-of-cheese",
+    "correctText": "slice of cheese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i01",
+    "correctText": "We need two slices of cheese.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i02",
+    "correctText": "We need two slices of cheese.",
+    "correctResponseId": "en:lesson-17:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i03",
+    "correctText": "slices",
+    "correctResponseId": "en:lesson-17:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:word:slice-of-ham",
+    "correctText": "slice of ham",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i04",
+    "correctText": "We need two slices of ham.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i05",
+    "correctText": "We need two slices of ham.",
+    "correctResponseId": "en:lesson-17:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i06",
+    "correctText": "slices",
+    "correctResponseId": "en:lesson-17:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:word:piece-of-cake",
+    "correctText": "piece of cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i07",
+    "correctText": "We need two pieces of cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i08",
+    "correctText": "We need two pieces of cake.",
+    "correctResponseId": "en:lesson-17:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i09",
+    "correctText": "pieces",
+    "correctResponseId": "en:lesson-17:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:word:bowl-of-soup",
+    "correctText": "bowl of soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i10",
+    "correctText": "We need two bowls of soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i11",
+    "correctText": "We need two bowls of soup.",
+    "correctResponseId": "en:lesson-17:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i12",
+    "correctText": "bowls",
+    "correctResponseId": "en:lesson-17:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i13",
+    "correctText": "en:lesson-17:session-39:i13:p1=slice of cheese\nen:lesson-17:session-39:i13:p2=slice of ham\nen:lesson-17:session-39:i13:p3=piece of cake\nen:lesson-17:session-39:i13:p4=bowl of soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i14",
+    "correctText": "I am going to buy two pieces of cake tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i15",
+    "correctText": "I bought two bowls of soup yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i16",
+    "correctText": "We need two slices of cheese.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-39:i17",
+    "correctText": "We need two slices of ham.",
+    "correctResponseId": null
+  }
+]

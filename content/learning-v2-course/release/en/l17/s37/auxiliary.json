@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-37:intro1:r2": {
+          "ru": "После two нужна форма litres.",
+          "uk": "Після two потрібна форма litres."
+        },
+        "en:lesson-17:session-37:intro1:r3": {
+          "ru": "Между единицей и общим названием нужно of.",
+          "uk": "Між одиницею та загальною назвою потрібне of."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-37:intro2:r2": {
+          "ru": "После two нужна форма litres.",
+          "uk": "Після two потрібна форма litres."
+        },
+        "en:lesson-17:session-37:intro2:r3": {
+          "ru": "Между единицей и общим названием нужно of.",
+          "uk": "Між одиницею та загальною назвою потрібне of."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-37:intro3:r2": {
+          "ru": "После two нужна форма kilos.",
+          "uk": "Після two потрібна форма kilos."
+        },
+        "en:lesson-17:session-37:intro3:r3": {
+          "ru": "Между единицей и общим названием нужно of.",
+          "uk": "Між одиницею та загальною назвою потрібне of."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "52802689224b03de77f57b0e8765da11e931e12dbeffe60609322e0109358a19"
+}

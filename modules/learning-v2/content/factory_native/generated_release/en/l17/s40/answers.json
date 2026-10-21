@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-40:word:bowl-of-rice",
+    "correctText": "bowl of rice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i01",
+    "correctText": "We need two bowls of rice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i02",
+    "correctText": "We need two bowls of rice.",
+    "correctResponseId": "en:lesson-17:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i03",
+    "correctText": "bowls",
+    "correctResponseId": "en:lesson-17:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:word:bowl-of-pasta",
+    "correctText": "bowl of pasta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i04",
+    "correctText": "We need two bowls of pasta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i05",
+    "correctText": "We need two bowls of pasta.",
+    "correctResponseId": "en:lesson-17:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i06",
+    "correctText": "bowls",
+    "correctResponseId": "en:lesson-17:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:word:bowl-of-cereal",
+    "correctText": "bowl of cereal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i07",
+    "correctText": "We need two bowls of cereal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i08",
+    "correctText": "We need two bowls of cereal.",
+    "correctResponseId": "en:lesson-17:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i09",
+    "correctText": "bowls",
+    "correctResponseId": "en:lesson-17:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:word:bowl-of-porridge",
+    "correctText": "bowl of porridge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i10",
+    "correctText": "We need two bowls of porridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i11",
+    "correctText": "We need two bowls of porridge.",
+    "correctResponseId": "en:lesson-17:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i12",
+    "correctText": "bowls",
+    "correctResponseId": "en:lesson-17:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i13",
+    "correctText": "en:lesson-17:session-40:i13:p1=bowl of rice\nen:lesson-17:session-40:i13:p2=bowl of pasta\nen:lesson-17:session-40:i13:p3=bowl of cereal\nen:lesson-17:session-40:i13:p4=bowl of porridge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i14",
+    "correctText": "I am going to buy two bowls of cereal tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i15",
+    "correctText": "I bought two bowls of porridge yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i16",
+    "correctText": "We need two bowls of rice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-40:i17",
+    "correctText": "We need two bowls of pasta.",
+    "correctResponseId": null
+  }
+]

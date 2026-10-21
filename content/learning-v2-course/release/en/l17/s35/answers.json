@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-35:word:carton-of-juice",
+    "correctText": "carton of juice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i01",
+    "correctText": "We need two cartons of juice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i02",
+    "correctText": "We need two cartons of juice.",
+    "correctResponseId": "en:lesson-17:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i03",
+    "correctText": "cartons",
+    "correctResponseId": "en:lesson-17:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:word:bottle-of-oil",
+    "correctText": "bottle of oil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i04",
+    "correctText": "We need two bottles of oil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i05",
+    "correctText": "We need two bottles of oil.",
+    "correctResponseId": "en:lesson-17:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i06",
+    "correctText": "bottles",
+    "correctResponseId": "en:lesson-17:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:word:pot-of-yoghurt",
+    "correctText": "pot of yoghurt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i07",
+    "correctText": "We need two pots of yoghurt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i08",
+    "correctText": "We need two pots of yoghurt.",
+    "correctResponseId": "en:lesson-17:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i09",
+    "correctText": "pots",
+    "correctResponseId": "en:lesson-17:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:word:packet-of-pasta",
+    "correctText": "packet of pasta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i10",
+    "correctText": "We need two packets of pasta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i11",
+    "correctText": "We need two packets of pasta.",
+    "correctResponseId": "en:lesson-17:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i12",
+    "correctText": "packets",
+    "correctResponseId": "en:lesson-17:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i13",
+    "correctText": "en:lesson-17:session-35:i13:p1=carton of juice\nen:lesson-17:session-35:i13:p2=bottle of oil\nen:lesson-17:session-35:i13:p3=pot of yoghurt\nen:lesson-17:session-35:i13:p4=packet of pasta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i14",
+    "correctText": "I am going to buy two pots of yoghurt tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i15",
+    "correctText": "I bought two packets of pasta yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i16",
+    "correctText": "We need two cartons of juice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-35:i17",
+    "correctText": "We need two bottles of oil.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "number + unit + of + non-count noun",
+    "uk": "number + unit + of + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество через единицу",
+        "uk": "Кількість через одиницю"
+      },
+      "bodyByLocale": {
+        "ru": "litre of milk — литр молока. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: litre → litres. Считаем единицы измерения, а не меняем название вещества. Kilo — обычное сокращение kilogram.",
+        "uk": "litre of milk — літр молока. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: litre → litres. Рахуємо одиниці вимірювання, а не змінюємо назву речовини. Kilo — звичайне скорочення kilogram."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-37:intro1:r1",
+              "text": "We need two litres of milk."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro1:r2",
+              "text": "We need two litre of milk."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro1:r3",
+              "text": "We need two litres milk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-37:intro1:r1",
+              "text": "We need two litres of milk."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro1:r2",
+              "text": "We need two litre of milk."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro1:r3",
+              "text": "We need two litres milk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Меняем форму единицы",
+        "uk": "Змінюємо форму одиниці"
+      },
+      "bodyByLocale": {
+        "ru": "litre of petrol — литр бензина. kilo of rice — килограмм риса. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: litre → litres. Считаем единицы измерения, а не меняем название вещества. Kilo — обычное сокращение kilogram.",
+        "uk": "litre of petrol — літр бензину. kilo of rice — кілограм рису. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: litre → litres. Рахуємо одиниці вимірювання, а не змінюємо назву речовини. Kilo — звичайне скорочення kilogram."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-37:intro2:r1",
+              "text": "We need two litres of petrol."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro2:r2",
+              "text": "We need two litre of petrol."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro2:r3",
+              "text": "We need two litres petrol."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-37:intro2:r1",
+              "text": "We need two litres of petrol."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro2:r2",
+              "text": "We need two litre of petrol."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro2:r3",
+              "text": "We need two litres petrol."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Связываем единицу и содержимое",
+        "uk": "Пов’язуємо одиницю та вміст"
+      },
+      "bodyByLocale": {
+        "ru": "kilo of meat — килограмм мяса. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: kilo → kilos. Считаем единицы измерения, а не меняем название вещества. Kilo — обычное сокращение kilogram.",
+        "uk": "kilo of meat — кілограм м’яса. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: kilo → kilos. Рахуємо одиниці вимірювання, а не змінюємо назву речовини. Kilo — звичайне скорочення kilogram."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-37:intro3:r1",
+              "text": "We need two kilos of meat."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro3:r2",
+              "text": "We need two kilo of meat."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro3:r3",
+              "text": "We need two kilos meat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-37:intro3:r1",
+              "text": "We need two kilos of meat."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro3:r2",
+              "text": "We need two kilo of meat."
+            },
+            {
+              "responseId": "en:lesson-17:session-37:intro3:r3",
+              "text": "We need two kilos meat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ccb0fb512b04b9bc82bec3467b42c4d02f19b156769fce2590367233beb225a1"
+}

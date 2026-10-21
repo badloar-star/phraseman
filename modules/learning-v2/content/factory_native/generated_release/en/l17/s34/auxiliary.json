@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-34:intro1:r2": {
+          "ru": "После two нужна форма bags.",
+          "uk": "Після two потрібна форма bags."
+        },
+        "en:lesson-17:session-34:intro1:r3": {
+          "ru": "Между единицей и общим названием нужно of.",
+          "uk": "Між одиницею та загальною назвою потрібне of."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-34:intro2:r2": {
+          "ru": "После two нужна форма bags.",
+          "uk": "Після two потрібна форма bags."
+        },
+        "en:lesson-17:session-34:intro2:r3": {
+          "ru": "Между единицей и общим названием нужно of.",
+          "uk": "Між одиницею та загальною назвою потрібне of."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-34:intro3:r2": {
+          "ru": "После two нужна форма jars.",
+          "uk": "Після two потрібна форма jars."
+        },
+        "en:lesson-17:session-34:intro3:r3": {
+          "ru": "Между единицей и общим названием нужно of.",
+          "uk": "Між одиницею та загальною назвою потрібне of."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1011742553eb0df17a0b0e4417ebc585c5e77bc9d30996e90c759b194124692c"
+}

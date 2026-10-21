@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "some / any + plural count noun or non-count noun",
+    "uk": "some / any + plural count noun or non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сообщить о наличии",
+        "uk": "Повідомити про наявність"
+      },
+      "bodyByLocale": {
+        "ru": "payment plan — план внесения платежей, график оплаты частями. В учебном диалоге доступны несколько вариантов оплаты. Сообщите об их наличии. Payment plan → payment plans. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
+        "uk": "payment plan — план внесення платежів, графік оплати частинами. У навчальному діалозі доступні кілька варіантів оплати. Повідомте про їхню наявність. Payment plan → payment plans. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-42:intro1:r1",
+              "text": "We offer some payment plans."
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro1:r2",
+              "text": "We offer any payment plans."
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro1:r3",
+              "text": "We offer a payment plans."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-42:intro1:r1",
+              "text": "We offer some payment plans."
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro1:r2",
+              "text": "We offer any payment plans."
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro1:r3",
+              "text": "We offer a payment plans."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полностью отрицать наличие",
+        "uk": "Повністю заперечити наявність"
+      },
+      "bodyByLocale": {
+        "ru": "late fee — плата за просрочку платежа. В условиях этого учебного примера доплаты за просрочку нет вообще. Late fee → late fees. bank statement — банковская выписка. Some используется с множественным числом исчисляемых и с неисчисляемыми. В отрицании со значением «никакого» обычно выбираем any.",
+        "uk": "late fee — плата за прострочення платежу. В умовах цього навчального прикладу доплати за прострочення немає взагалі. Late fee → late fees. bank statement — банківська виписка. Some використовується з множиною злічуваних та з незлічуваними. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-42:intro2:r1",
+              "text": "There aren't any late fees."
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro2:r2",
+              "text": "There aren't some late fees."
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro2:r3",
+              "text": "There aren't a late fees."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-42:intro2:r1",
+              "text": "There aren't any late fees."
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro2:r2",
+              "text": "There aren't some late fees."
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro2:r3",
+              "text": "There aren't a late fees."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить без предположения",
+        "uk": "Запитати без припущення"
+      },
+      "bodyByLocale": {
+        "ru": "standing order — поручение банку регулярно переводить заданную сумму. Вы не знаете, настроены ли регулярные переводы. Спросите нейтрально, без ожидания ответа «да». Standing order → standing orders. В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
+        "uk": "standing order — доручення банку регулярно переказувати задану суму. Ви не знаєте, чи налаштовано регулярні перекази. Запитайте нейтрально, без очікування відповіді «так». Standing order → standing orders. У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-42:intro3:r1",
+              "text": "Do you have any standing orders?"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro3:r2",
+              "text": "Do you have some standing orders?"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro3:r3",
+              "text": "Do you have a standing orders?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-42:intro3:r1",
+              "text": "Do you have any standing orders?"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro3:r2",
+              "text": "Do you have some standing orders?"
+            },
+            {
+              "responseId": "en:lesson-17:session-42:intro3:r3",
+              "text": "Do you have a standing orders?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b91f1755702685e270dc698bc2ae2a54d5dfc6eb999331174aa8bd2d7c456100"
+}

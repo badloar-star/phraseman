@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-36:word:piece-of-advice",
+    "correctText": "piece of advice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i01",
+    "correctText": "I need two pieces of advice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i02",
+    "correctText": "I need two pieces of advice.",
+    "correctResponseId": "en:lesson-17:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i03",
+    "correctText": "pieces",
+    "correctResponseId": "en:lesson-17:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:word:piece-of-information",
+    "correctText": "piece of information",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i04",
+    "correctText": "I need two pieces of information.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i05",
+    "correctText": "I need two pieces of information.",
+    "correctResponseId": "en:lesson-17:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i06",
+    "correctText": "pieces",
+    "correctResponseId": "en:lesson-17:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:word:piece-of-furniture",
+    "correctText": "piece of furniture",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i07",
+    "correctText": "I need two pieces of furniture.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i08",
+    "correctText": "I need two pieces of furniture.",
+    "correctResponseId": "en:lesson-17:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i09",
+    "correctText": "pieces",
+    "correctResponseId": "en:lesson-17:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:word:item-of-clothing",
+    "correctText": "item of clothing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i10",
+    "correctText": "I need two items of clothing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i11",
+    "correctText": "I need two items of clothing.",
+    "correctResponseId": "en:lesson-17:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i12",
+    "correctText": "items",
+    "correctResponseId": "en:lesson-17:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i13",
+    "correctText": "en:lesson-17:session-36:i13:p1=piece of advice\nen:lesson-17:session-36:i13:p2=piece of information\nen:lesson-17:session-36:i13:p3=piece of furniture\nen:lesson-17:session-36:i13:p4=item of clothing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i14",
+    "correctText": "I am going to buy two pieces of furniture tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i15",
+    "correctText": "I bought two items of clothing yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i16",
+    "correctText": "I need two pieces of advice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-36:i17",
+    "correctText": "I need two pieces of information.",
+    "correctResponseId": null
+  }
+]

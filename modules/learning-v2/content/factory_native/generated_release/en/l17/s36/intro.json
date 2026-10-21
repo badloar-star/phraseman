@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "number + unit + of + non-count noun",
+    "uk": "number + unit + of + non-count noun"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Количество через единицу",
+        "uk": "Кількість через одиницю"
+      },
+      "bodyByLocale": {
+        "ru": "piece of advice — один совет. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: piece → pieces. Piece здесь не обязательно физический кусок: это отдельный совет, сведение или предмет.",
+        "uk": "piece of advice — одна порада. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: piece → pieces. Piece тут не обов’язково фізичний шматок: це окрема порада, частина інформації або предмет."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-36:intro1:r1",
+              "text": "I need two pieces of advice."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro1:r2",
+              "text": "I need two piece of advice."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro1:r3",
+              "text": "I need two pieces advice."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-36:intro1:r1",
+              "text": "I need two pieces of advice."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro1:r2",
+              "text": "I need two piece of advice."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro1:r3",
+              "text": "I need two pieces advice."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Меняем форму единицы",
+        "uk": "Змінюємо форму одиниці"
+      },
+      "bodyByLocale": {
+        "ru": "piece of information — одно сведение, отдельная часть информации. piece of furniture — один предмет мебели. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: piece → pieces. Piece здесь не обязательно физический кусок: это отдельный совет, сведение или предмет.",
+        "uk": "piece of information — окремий факт, частина інформації. piece of furniture — один предмет меблів. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: piece → pieces. Piece тут не обов’язково фізичний шматок: це окрема порада, частина інформації або предмет."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-36:intro2:r1",
+              "text": "I need two pieces of information."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro2:r2",
+              "text": "I need two piece of information."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro2:r3",
+              "text": "I need two pieces information."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-36:intro2:r1",
+              "text": "I need two pieces of information."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro2:r2",
+              "text": "I need two piece of information."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro2:r3",
+              "text": "I need two pieces information."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Связываем единицу и содержимое",
+        "uk": "Пов’язуємо одиницю та вміст"
+      },
+      "bodyByLocale": {
+        "ru": "item of clothing — один предмет одежды. Используйте число + единица + of + общее название. После two форму множественного числа получает единица: item → items. Piece здесь не обязательно физический кусок: это отдельный совет, сведение или предмет.",
+        "uk": "item of clothing — один предмет одягу. Використовуйте число + одиниця + of + загальна назва. Після two форму множини отримує одиниця: item → items. Piece тут не обов’язково фізичний шматок: це окрема порада, частина інформації або предмет."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-36:intro3:r1",
+              "text": "I need two items of clothing."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro3:r2",
+              "text": "I need two item of clothing."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro3:r3",
+              "text": "I need two items clothing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-36:intro3:r1",
+              "text": "I need two items of clothing."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro3:r2",
+              "text": "I need two item of clothing."
+            },
+            {
+              "responseId": "en:lesson-17:session-36:intro3:r3",
+              "text": "I need two items clothing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8bdb5fb412bc92fbcfca1b3612d497e74b3163876d67b4558fa44572d148858b"
+}

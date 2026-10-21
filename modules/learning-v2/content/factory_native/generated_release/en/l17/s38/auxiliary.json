@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-38:intro1:r2": {
+          "ru": "После two нужна форма bottles.",
+          "uk": "Після two потрібна форма bottles."
+        },
+        "en:lesson-17:session-38:intro1:r3": {
+          "ru": "Между единицей и общим названием нужно of.",
+          "uk": "Між одиницею та загальною назвою потрібне of."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-38:intro2:r2": {
+          "ru": "После two нужна форма bottles.",
+          "uk": "Після two потрібна форма bottles."
+        },
+        "en:lesson-17:session-38:intro2:r3": {
+          "ru": "Между единицей и общим названием нужно of.",
+          "uk": "Між одиницею та загальною назвою потрібне of."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-38:intro3:r2": {
+          "ru": "После two нужна форма tubes.",
+          "uk": "Після two потрібна форма tubes."
+        },
+        "en:lesson-17:session-38:intro3:r3": {
+          "ru": "Между единицей и общим названием нужно of.",
+          "uk": "Між одиницею та загальною назвою потрібне of."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fe7a71ee7a4c1889497a94bd3120d705677e9b6c7d1417ea93282e1a10daef42"
+}

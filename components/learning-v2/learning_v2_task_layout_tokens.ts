@@ -49,3 +49,56 @@ export function lv2TaskTrackColor(g: Lv2Glass): string {
 export function lv2TaskTitleTileColor(g: Lv2Glass): string {
   return lv2Alpha(g.text, 0.09);
 }
+
+// ════════════════════════════════════════════════════════════════════════════
+// Плитки ответов и блок разбора — ЭТАЛОН ЭКЗАМЕНА (chapter-exam-season.html; владелец 21.10: «мне нравится именно вот тень — вообще очень красиво, и цвета да!»).
+// зачем: это эталон плиток ответов для ВСЕХ заданий V2. Значения — из CSS экзамена (.opt/.opt.ok/.opt.no/.lane/.rv/--amber), общие для «2 · ДИЗАЙН» и «4 · ТЕМЫ».
+// Неверный ответ и блок «Правильно: …» у экзамена — ТЁПЛЫЙ бледный (--amber), а не розовый: берём как в макете, не из токена bad.
+// ════════════════════════════════════════════════════════════════════════════
+
+/** `.opt`: высота от 58, радиус 14, текст 16 жирный по центру, поля 0 48 (место под отметку), `.opts` gap 13; выбранная приподнята на 2; `.mk` 20 на right 16. */
+export const LV2_TASK_TILE = {
+  minHeight: 58, radius: 14, gap: 13, padH: 48, textSize: 16, textWeight: '700', lift: 2, markSize: 20, markRight: 16, dimOpacity: 0.45,
+} as const;
+
+/** `.lane` / `.rv`: блок разбора — радиус 18, поля 14/16, заголовок 16/22, пояснение 15/21 (`.rv`-карточка: радиус 20, 14/16). */
+export const LV2_TASK_VERDICT_BLOCK = { radius: 18, padV: 14, padH: 16, marginTop: 18, titleSize: 16, titleLine: 22, bodySize: 15, bodyLine: 21, bodyGap: 4 } as const;
+
+export type Lv2TaskTileVerdict = 'neutral' | 'selected' | 'ok' | 'no';
+
+/**
+ * `--amber` и кольцо неверного: тёмная («Океан») rgba(230,160,60,.14), светлая («Чернила») rgba(190,118,28,.12); линия — тот же цвет с α .45.
+ * Тёплый тон не часть темы: одинаков во всех светлых и во всех тёмных.
+ */
+export function lv2TaskAmber(g: Lv2Glass): { fill: string; edge: string } {
+  return g.isLight
+    ? { fill: 'rgba(190,118,28,0.12)', edge: 'rgba(190,118,28,0.45)' } // theme-exempt: --amber эталона экзамена (светлый)
+    : { fill: 'rgba(230,160,60,0.14)', edge: 'rgba(230,160,60,0.45)' }; // theme-exempt: --amber эталона экзамена (тёмный)
+}
+
+export type Lv2TaskTileLook = Readonly<{
+  backgroundColor: string;
+  /** Цвет текста: верная — зелёный (--good), остальные — основной. */
+  color: string;
+  /** Тонкая линия-кольцо исхода (inset 1px) — только у верной/неверной, иначе null; на плитке нейтральной её нет. */
+  edgeColor: string | null;
+  /** Рельефный нижний край (--sh) — у нейтральной и выбранной; у исхода вместо него линия. */
+  boxShadow: ReturnType<typeof plateBoxShadow> | undefined;
+  /** Приподнятость выбранной (translateY −lift). */
+  lifted: boolean;
+}>;
+
+/** Вид плитки ответа: нейтральная — светлый тон карточки + рельефный край; верная — бледно-зелёный + зелёный текст; неверная — бледно-тёплый. */
+export function lv2TaskTileLook(g: Lv2Glass, verdict: Lv2TaskTileVerdict): Lv2TaskTileLook {
+  if (verdict === 'ok') return { backgroundColor: g.goodSoft, color: g.good, edgeColor: g.goodEdge, boxShadow: undefined, lifted: false };
+  if (verdict === 'no') return { backgroundColor: lv2TaskAmber(g).fill, color: g.text, edgeColor: lv2TaskAmber(g).edge, boxShadow: undefined, lifted: false };
+  if (verdict === 'selected') {
+    return { backgroundColor: g.accentSoft, color: g.text, edgeColor: null, boxShadow: lv2TaskTileRelief(g), lifted: true };
+  }
+  return { backgroundColor: g.opaqueCard, color: g.text, edgeColor: null, boxShadow: lv2TaskTileRelief(g), lifted: false };
+}
+
+/** Блок «Правильно: … / объяснение» (`.lane`): верный — бледно-зелёный с зелёным заголовком, неверный — тот же тёплый бледный тон; без рамки. */
+export function lv2TaskVerdictBlockLook(g: Lv2Glass, ok: boolean): Readonly<{ backgroundColor: string; titleColor: string; bodyColor: string }> {
+  return { backgroundColor: ok ? g.goodSoft : lv2TaskAmber(g).fill, titleColor: ok ? g.good : g.text, bodyColor: g.secondary };
+}

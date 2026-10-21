@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-02:intro1:r2": {
+          "ru": "Do спрашивает о настоящем, а здесь речь о прошлом.",
+          "uk": "Do запитує про теперішнє, а тут ідеться про минуле."
+        },
+        "en:lesson-13:session-02:intro1:r3": {
+          "ru": "После did нужна wash.",
+          "uk": "Після did потрібна wash."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-02:intro2:r2": {
+          "ru": "Это маслёнка.",
+          "uk": "Це маслянка для масла."
+        },
+        "en:lesson-13:session-02:intro2:r3": {
+          "ru": "После did нужна use.",
+          "uk": "Після did потрібна use."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-02:intro3:r2": {
+          "ru": "Wash — мыть, а нужно open — открыть.",
+          "uk": "Wash — мити, а потрібно open — відкрити."
+        },
+        "en:lesson-13:session-02:intro3:r3": {
+          "ru": "После did нужна open.",
+          "uk": "Після did потрібна open."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "61134c2a6c5ec5cc393a96d3978322cac8adc686438c4fadc7dc6d5f62998292"
+}

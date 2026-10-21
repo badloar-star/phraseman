@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-04:word:nectarine",
+    "correctText": "nectarine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i01",
+    "correctText": "Did you try a nectarine?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i02",
+    "correctText": "Did she try a nectarine?",
+    "correctResponseId": "en:lesson-13:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:word:blackberry",
+    "correctText": "blackberry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i04",
+    "correctText": "Did you try a blackberry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i05",
+    "correctText": "Did she try a blackberry?",
+    "correctResponseId": "en:lesson-13:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:word:fig",
+    "correctText": "fig",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i07",
+    "correctText": "Did you try a fig?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i08",
+    "correctText": "Did she try a fig?",
+    "correctResponseId": "en:lesson-13:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:word:pomegranate",
+    "correctText": "pomegranate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i10",
+    "correctText": "Did you try a pomegranate?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i11",
+    "correctText": "Did she try a pomegranate?",
+    "correctResponseId": "en:lesson-13:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i13",
+    "correctText": "en:lesson-13:session-04:i13:p1=nectarine\nen:lesson-13:session-04:i13:p2=blackberry\nen:lesson-13:session-04:i13:p3=fig\nen:lesson-13:session-04:i13:p4=pomegranate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i14",
+    "correctText": "Did they visit the market?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i15",
+    "correctText": "Did he buy any fruit?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i16",
+    "correctText": "Did you try a nectarine yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-04:i17",
+    "correctText": "Did she try a pomegranate yesterday?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "review: Did + subject + base verb?",
+    "uk": "review: Did + subject + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваза для фруктов",
+        "uk": "Ваза для фруктів"
+      },
+      "bodyByLocale": {
+        "ru": "Fruit bowl — ваза или миска для фруктов. Did you wash the fruit bowl? — Ты помыл вазу для фруктов? Для прошлого вопрос начинается с did. Выберите такой вопрос.",
+        "uk": "Fruit bowl — ваза або миска для фруктів. Did you wash the fruit bowl? — Ти помив вазу для фруктів? Для минулого запитання починається з did. Виберіть таке запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-02:intro1:r1",
+              "text": "Did you wash the fruit bowl?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro1:r2",
+              "text": "Do you wash the fruit bowl?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro1:r3",
+              "text": "Did you washed the fruit bowl?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-02:intro1:r1",
+              "text": "Did you wash the fruit bowl?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro1:r2",
+              "text": "Do you wash the fruit bowl?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro1:r3",
+              "text": "Did you washed the fruit bowl?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посуда для завтрака",
+        "uk": "Посуд для сніданку"
+      },
+      "bodyByLocale": {
+        "ru": "Butter dish — маслёнка; egg cup — подставка для варёного яйца. Did she use the egg cup? — Она использовала подставку для яйца? Выберите подставку для яйца.",
+        "uk": "Butter dish — маслянка для масла; egg cup — підставка для вареного яйця. Did she use the egg cup? — Вона використала підставку для яйця? Виберіть підставку для яйця."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-02:intro2:r1",
+              "text": "Did she use the egg cup?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro2:r2",
+              "text": "Did she use the butter dish?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro2:r3",
+              "text": "Did she used the egg cup?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-02:intro2:r1",
+              "text": "Did she use the egg cup?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro2:r2",
+              "text": "Did she use the butter dish?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro2:r3",
+              "text": "Did she used the egg cup?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Коробка для печенья",
+        "uk": "Коробка для печива"
+      },
+      "bodyByLocale": {
+        "ru": "Biscuit tin — жестяная коробка для печенья. Did you open the biscuit tin? — Ты открыл коробку для печенья? Выберите вопрос об открывании коробки.",
+        "uk": "Biscuit tin — бляшана коробка для печива. Did you open the biscuit tin? — Ти відкрив коробку для печива? Виберіть запитання про відкривання коробки."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-02:intro3:r1",
+              "text": "Did you open the biscuit tin?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro3:r2",
+              "text": "Did you wash the biscuit tin?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro3:r3",
+              "text": "Did you opened the biscuit tin?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-02:intro3:r1",
+              "text": "Did you open the biscuit tin?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro3:r2",
+              "text": "Did you wash the biscuit tin?"
+            },
+            {
+              "responseId": "en:lesson-13:session-02:intro3:r3",
+              "text": "Did you opened the biscuit tin?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cb0e560b4a36293858aea18192e89a700ac9204d2efb9eaed06e5f3ff7747c38"
+}

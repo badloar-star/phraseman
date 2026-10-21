@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "review: Did + subject + base verb?",
+    "uk": "review: Did + subject + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нектарин",
+        "uk": "Нектарин"
+      },
+      "bodyByLocale": {
+        "ru": "Nectarine — нектарин. Did you try a nectarine? — Ты попробовал нектарин? Хотя в сообщении было tried, после did нужна try. Выберите вопрос о прошлом.",
+        "uk": "Nectarine — нектарин. Did you try a nectarine? — Ти скуштував нектарин? Хоча в повідомленні було tried, після did потрібна try. Виберіть запитання про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-04:intro1:r1",
+              "text": "Did you try a nectarine?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro1:r2",
+              "text": "Did you tried a nectarine?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro1:r3",
+              "text": "Do you try a nectarine?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-04:intro1:r1",
+              "text": "Did you try a nectarine?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro1:r2",
+              "text": "Did you tried a nectarine?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro1:r3",
+              "text": "Do you try a nectarine?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тёмная ягода",
+        "uk": "Темна ягода"
+      },
+      "bodyByLocale": {
+        "ru": "Blackberry — ежевика. Did she try a blackberry? — Она попробовала ежевику? Выберите вопрос о ней, не о вас.",
+        "uk": "Blackberry — ожина. Did she try a blackberry? — Вона скуштувала ожину? Виберіть запитання про неї, не про вас."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-04:intro2:r1",
+              "text": "Did she try a blackberry?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro2:r2",
+              "text": "Did you try a blackberry?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro2:r3",
+              "text": "Did she tried a blackberry?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-04:intro2:r1",
+              "text": "Did she try a blackberry?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro2:r2",
+              "text": "Did you try a blackberry?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro2:r3",
+              "text": "Did she tried a blackberry?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Инжир и гранат",
+        "uk": "Інжир і гранат"
+      },
+      "bodyByLocale": {
+        "ru": "Fig — инжир; pomegranate — гранат. Did you try a fig? — Ты попробовал инжир? Выберите инжир, не гранат.",
+        "uk": "Fig — інжир; pomegranate — гранат. Did you try a fig? — Ти скуштував інжир? Виберіть інжир, не гранат."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-04:intro3:r1",
+              "text": "Did you try a fig?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro3:r2",
+              "text": "Did you try a pomegranate?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro3:r3",
+              "text": "Did you tried a fig?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-04:intro3:r1",
+              "text": "Did you try a fig?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro3:r2",
+              "text": "Did you try a pomegranate?"
+            },
+            {
+              "responseId": "en:lesson-13:session-04:intro3:r3",
+              "text": "Did you tried a fig?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b9e24ef04d97ce7bd38ef58eeec8d93edb872a6f81c06cf65559e0ac5deb236f"
+}

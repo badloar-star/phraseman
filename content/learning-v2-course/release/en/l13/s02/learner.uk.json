@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-02:word:fruit-bowl",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fruit bowl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:word:fruit-bowl:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fruit bowl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:word:fruit-bowl:audio",
+          "transcript": "fruit bowl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-02:word:fruit-bowl:r1",
+            "targetText": "fruit bowl",
+            "meaningByLocale": {
+              "ru": "ваза для фруктов.",
+              "uk": "ваза для фруктів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fruit bowl",
+          "definitionByLocale": {
+            "ru": "ваза для фруктов.",
+            "uk": "ваза для фруктів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти помив вазу для фруктів?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти помив вазу для фруктів?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you wash the fruit bowl?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты помыл вазу для фруктов?",
+          "uk": "Скажіть: Ти помив вазу для фруктів?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "wash",
+          "the",
+          "fruit",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-02:i02:r1",
+          "text": "Did she wash the fruit bowl?"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i02:r2",
+          "text": "Did you wash the fruit bowl?"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i02:r3",
+          "text": "Did they wash the fruit bowl?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:i02:audio",
+          "transcript": "Did she wash the fruit bowl?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-02:i02:r1",
+            "targetText": "Did she wash the fruit bowl?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i02:r2",
+            "targetText": "Did you wash the fruit bowl?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i02:r3",
+            "targetText": "Did they wash the fruit bowl?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the fruit bowl?",
+              "uk": "У записі звучить Did she wash the fruit bowl?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the fruit bowl?",
+              "uk": "У записі звучить Did she wash the fruit bowl?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-02:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you wash the fruit bowl?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-02:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:word:butter-dish",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — butter dish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:word:butter-dish:audio"
+      ],
+      "accessibilityLabel": "Картка слова — butter dish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:word:butter-dish:audio",
+          "transcript": "butter dish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-02:word:butter-dish:r1",
+            "targetText": "butter dish",
+            "meaningByLocale": {
+              "ru": "маслёнка.",
+              "uk": "маслянка для масла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "butter dish",
+          "definitionByLocale": {
+            "ru": "маслёнка.",
+            "uk": "маслянка для масла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти помив маслянку для масла?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти помив маслянку для масла?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you wash the butter dish?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты помыл маслёнку?",
+          "uk": "Скажіть: Ти помив маслянку для масла?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "wash",
+          "the",
+          "butter",
+          "dish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-02:i05:r1",
+          "text": "Did she wash the butter dish?"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i05:r2",
+          "text": "Did you wash the butter dish?"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i05:r3",
+          "text": "Did they wash the butter dish?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:i05:audio",
+          "transcript": "Did she wash the butter dish?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-02:i05:r1",
+            "targetText": "Did she wash the butter dish?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i05:r2",
+            "targetText": "Did you wash the butter dish?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i05:r3",
+            "targetText": "Did they wash the butter dish?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the butter dish?",
+              "uk": "У записі звучить Did she wash the butter dish?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the butter dish?",
+              "uk": "У записі звучить Did she wash the butter dish?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-02:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you wash the butter dish?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-02:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:word:egg-cup",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — egg cup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:word:egg-cup:audio"
+      ],
+      "accessibilityLabel": "Картка слова — egg cup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:word:egg-cup:audio",
+          "transcript": "egg cup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-02:word:egg-cup:r1",
+            "targetText": "egg cup",
+            "meaningByLocale": {
+              "ru": "подставка для варёного яйца.",
+              "uk": "підставка для вареного яйця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "egg cup",
+          "definitionByLocale": {
+            "ru": "подставка для варёного яйца.",
+            "uk": "підставка для вареного яйця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти використав підставку для яйця?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти використав підставку для яйця?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you use the egg cup?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты использовал подставку для яйца?",
+          "uk": "Скажіть: Ти використав підставку для яйця?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "use",
+          "the",
+          "egg",
+          "cup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-02:i08:r1",
+          "text": "Did she use the egg cup?"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i08:r2",
+          "text": "Did you use the egg cup?"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i08:r3",
+          "text": "Did they use the egg cup?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:i08:audio",
+          "transcript": "Did she use the egg cup?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-02:i08:r1",
+            "targetText": "Did she use the egg cup?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i08:r2",
+            "targetText": "Did you use the egg cup?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i08:r3",
+            "targetText": "Did they use the egg cup?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she use the egg cup?",
+              "uk": "У записі звучить Did she use the egg cup?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she use the egg cup?",
+              "uk": "У записі звучить Did she use the egg cup?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-02:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you use the egg cup?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-02:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:word:biscuit-tin",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — biscuit tin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:word:biscuit-tin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — biscuit tin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:word:biscuit-tin:audio",
+          "transcript": "biscuit tin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-02:word:biscuit-tin:r1",
+            "targetText": "biscuit tin",
+            "meaningByLocale": {
+              "ru": "жестяная коробка для печенья.",
+              "uk": "бляшана коробка для печива."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "biscuit tin",
+          "definitionByLocale": {
+            "ru": "жестяная коробка для печенья.",
+            "uk": "бляшана коробка для печива."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти відкрив коробку для печива?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти відкрив коробку для печива?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you open the biscuit tin?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты открыл коробку для печенья?",
+          "uk": "Скажіть: Ти відкрив коробку для печива?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "open",
+          "the",
+          "biscuit",
+          "tin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-02:i11:r1",
+          "text": "Did she open the biscuit tin?"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i11:r2",
+          "text": "Did you open the biscuit tin?"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i11:r3",
+          "text": "Did they open the biscuit tin?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:i11:audio",
+          "transcript": "Did she open the biscuit tin?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-02:i11:r1",
+            "targetText": "Did she open the biscuit tin?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i11:r2",
+            "targetText": "Did you open the biscuit tin?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i11:r3",
+            "targetText": "Did they open the biscuit tin?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she open the biscuit tin?",
+              "uk": "У записі звучить Did she open the biscuit tin?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she open the biscuit tin?",
+              "uk": "У записі звучить Did she open the biscuit tin?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-02:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-02:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you open the biscuit tin?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-02:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-02:i13:p1",
+            "target": "fruit bowl",
+            "meaningByLocale": {
+              "ru": "ваза для фруктов",
+              "uk": "ваза для фруктів"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-02:i13:p2",
+            "target": "butter dish",
+            "meaningByLocale": {
+              "ru": "маслёнка",
+              "uk": "маслянка для масла"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-02:i13:p3",
+            "target": "egg cup",
+            "meaningByLocale": {
+              "ru": "подставка для варёного яйца",
+              "uk": "підставка для вареного яйця"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-02:i13:p4",
+            "target": "biscuit tin",
+            "meaningByLocale": {
+              "ru": "жестяная коробка для печенья",
+              "uk": "бляшана коробка для печива"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fruit bowl",
+          "butter dish",
+          "egg cup",
+          "biscuit tin"
+        ],
+        "rightColumn": [
+          "ваза для фруктів",
+          "маслянка для масла",
+          "підставка для вареного яйця",
+          "бляшана коробка для печива"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:i14:audio",
+          "transcript": "Did they have breakfast?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did they have breakfast?",
+        "orderedTokens": [
+          "Did",
+          "they",
+          "have",
+          "breakfast"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:i15:audio",
+          "transcript": "Did he wash the table?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he wash the table?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "wash",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: ти вчора відкрив коробку для печива?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: ти вчора відкрив коробку для печива?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:i16:audio",
+          "transcript": "Did you open the biscuit tin yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you open the biscuit tin yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-02:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: вона вчора помила маслянку для масла?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: вона вчора помила маслянку для масла?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-02:i17:audio",
+          "transcript": "Did she wash the butter dish yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did she wash the butter dish yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "00d4bf8920835c15a49117b79f4f668ca47f1bcb64cafb65470405aad20961e8"
+}

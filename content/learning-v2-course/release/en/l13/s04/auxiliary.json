@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-04:intro1:r2": {
+          "ru": "После did нужна try.",
+          "uk": "Після did потрібна try."
+        },
+        "en:lesson-13:session-04:intro1:r3": {
+          "ru": "Do не обозначает прошлое.",
+          "uk": "Do не позначає минуле."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-04:intro2:r2": {
+          "ru": "You — ты или вы, а здесь она.",
+          "uk": "You — ти або ви, а тут вона."
+        },
+        "en:lesson-13:session-04:intro2:r3": {
+          "ru": "После did нужна try.",
+          "uk": "Після did потрібна try."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-04:intro3:r2": {
+          "ru": "Это гранат.",
+          "uk": "Це гранат."
+        },
+        "en:lesson-13:session-04:intro3:r3": {
+          "ru": "После did нужна try.",
+          "uk": "Після did потрібна try."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "caa4c9a99481143c5792ffbce52421202d4d9fad1575f4855946629c23f30a79"
+}

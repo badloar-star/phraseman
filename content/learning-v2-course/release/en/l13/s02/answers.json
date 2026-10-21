@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-02:word:fruit-bowl",
+    "correctText": "fruit bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i01",
+    "correctText": "Did you wash the fruit bowl?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i02",
+    "correctText": "Did she wash the fruit bowl?",
+    "correctResponseId": "en:lesson-13:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:word:butter-dish",
+    "correctText": "butter dish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i04",
+    "correctText": "Did you wash the butter dish?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i05",
+    "correctText": "Did she wash the butter dish?",
+    "correctResponseId": "en:lesson-13:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:word:egg-cup",
+    "correctText": "egg cup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i07",
+    "correctText": "Did you use the egg cup?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i08",
+    "correctText": "Did she use the egg cup?",
+    "correctResponseId": "en:lesson-13:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:word:biscuit-tin",
+    "correctText": "biscuit tin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i10",
+    "correctText": "Did you open the biscuit tin?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i11",
+    "correctText": "Did she open the biscuit tin?",
+    "correctResponseId": "en:lesson-13:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i13",
+    "correctText": "en:lesson-13:session-02:i13:p1=fruit bowl\nen:lesson-13:session-02:i13:p2=butter dish\nen:lesson-13:session-02:i13:p3=egg cup\nen:lesson-13:session-02:i13:p4=biscuit tin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i14",
+    "correctText": "Did they have breakfast?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i15",
+    "correctText": "Did he wash the table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i16",
+    "correctText": "Did you open the biscuit tin yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-02:i17",
+    "correctText": "Did she wash the butter dish yesterday?",
+    "correctResponseId": null
+  }
+]

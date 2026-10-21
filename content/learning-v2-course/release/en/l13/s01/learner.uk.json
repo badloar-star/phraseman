@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-01:word:bread-bin",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bread bin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:word:bread-bin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bread bin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:word:bread-bin:audio",
+          "transcript": "bread bin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-01:word:bread-bin:r1",
+            "targetText": "bread bin",
+            "meaningByLocale": {
+              "ru": "хлебница.",
+              "uk": "хлібниця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread bin",
+          "definitionByLocale": {
+            "ru": "хлебница.",
+            "uk": "хлібниця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти почистив хлібницю?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти почистив хлібницю?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you clean the bread bin?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты почистил хлебницу?",
+          "uk": "Скажіть: Ти почистив хлібницю?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "clean",
+          "the",
+          "bread",
+          "bin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-01:i02:r1",
+          "text": "Did she clean the bread bin?"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i02:r2",
+          "text": "Did you clean the bread bin?"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i02:r3",
+          "text": "Did they clean the bread bin?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:i02:audio",
+          "transcript": "Did she clean the bread bin?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-01:i02:r1",
+            "targetText": "Did she clean the bread bin?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i02:r2",
+            "targetText": "Did you clean the bread bin?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i02:r3",
+            "targetText": "Did they clean the bread bin?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she clean the bread bin?",
+              "uk": "У записі звучить Did she clean the bread bin?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she clean the bread bin?",
+              "uk": "У записі звучить Did she clean the bread bin?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-01:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you clean the bread bin?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-01:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:word:coffee-mug",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coffee mug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:word:coffee-mug:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coffee mug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:word:coffee-mug:audio",
+          "transcript": "coffee mug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-01:word:coffee-mug:r1",
+            "targetText": "coffee mug",
+            "meaningByLocale": {
+              "ru": "кофейная кружка.",
+              "uk": "кухоль для кави."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coffee mug",
+          "definitionByLocale": {
+            "ru": "кофейная кружка.",
+            "uk": "кухоль для кави."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти помив кухоль для кави?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти помив кухоль для кави?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you wash the coffee mug?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты помыл кофейную кружку?",
+          "uk": "Скажіть: Ти помив кухоль для кави?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "wash",
+          "the",
+          "coffee",
+          "mug"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-01:i05:r1",
+          "text": "Did she wash the coffee mug?"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i05:r2",
+          "text": "Did you wash the coffee mug?"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i05:r3",
+          "text": "Did they wash the coffee mug?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:i05:audio",
+          "transcript": "Did she wash the coffee mug?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-01:i05:r1",
+            "targetText": "Did she wash the coffee mug?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i05:r2",
+            "targetText": "Did you wash the coffee mug?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i05:r3",
+            "targetText": "Did they wash the coffee mug?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the coffee mug?",
+              "uk": "У записі звучить Did she wash the coffee mug?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the coffee mug?",
+              "uk": "У записі звучить Did she wash the coffee mug?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-01:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you wash the coffee mug?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-01:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:word:dish-rack",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dish rack",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:word:dish-rack:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dish rack",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:word:dish-rack:audio",
+          "transcript": "dish rack"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-01:word:dish-rack:r1",
+            "targetText": "dish rack",
+            "meaningByLocale": {
+              "ru": "сушилка для посуды.",
+              "uk": "сушарка для посуду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dish rack",
+          "definitionByLocale": {
+            "ru": "сушилка для посуды.",
+            "uk": "сушарка для посуду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти почистив сушарку для посуду?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти почистив сушарку для посуду?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you clean the dish rack?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты почистил сушилку для посуды?",
+          "uk": "Скажіть: Ти почистив сушарку для посуду?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "clean",
+          "the",
+          "dish",
+          "rack"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-01:i08:r1",
+          "text": "Did she clean the dish rack?"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i08:r2",
+          "text": "Did you clean the dish rack?"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i08:r3",
+          "text": "Did they clean the dish rack?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:i08:audio",
+          "transcript": "Did she clean the dish rack?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-01:i08:r1",
+            "targetText": "Did she clean the dish rack?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i08:r2",
+            "targetText": "Did you clean the dish rack?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i08:r3",
+            "targetText": "Did they clean the dish rack?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she clean the dish rack?",
+              "uk": "У записі звучить Did she clean the dish rack?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she clean the dish rack?",
+              "uk": "У записі звучить Did she clean the dish rack?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-01:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you clean the dish rack?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-01:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:word:tea-strainer",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tea strainer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:word:tea-strainer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tea strainer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:word:tea-strainer:audio",
+          "transcript": "tea strainer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-01:word:tea-strainer:r1",
+            "targetText": "tea strainer",
+            "meaningByLocale": {
+              "ru": "ситечко для чая.",
+              "uk": "ситечко для чаю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tea strainer",
+          "definitionByLocale": {
+            "ru": "ситечко для чая.",
+            "uk": "ситечко для чаю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти помив ситечко для чаю?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти помив ситечко для чаю?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you wash the tea strainer?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты помыл ситечко для чая?",
+          "uk": "Скажіть: Ти помив ситечко для чаю?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "wash",
+          "the",
+          "tea",
+          "strainer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-01:i11:r1",
+          "text": "Did she wash the tea strainer?"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i11:r2",
+          "text": "Did you wash the tea strainer?"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i11:r3",
+          "text": "Did they wash the tea strainer?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:i11:audio",
+          "transcript": "Did she wash the tea strainer?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-01:i11:r1",
+            "targetText": "Did she wash the tea strainer?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i11:r2",
+            "targetText": "Did you wash the tea strainer?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i11:r3",
+            "targetText": "Did they wash the tea strainer?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the tea strainer?",
+              "uk": "У записі звучить Did she wash the tea strainer?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the tea strainer?",
+              "uk": "У записі звучить Did she wash the tea strainer?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-01:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-01:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you wash the tea strainer?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-01:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-01:i13:p1",
+            "target": "bread bin",
+            "meaningByLocale": {
+              "ru": "хлебница",
+              "uk": "хлібниця"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-01:i13:p2",
+            "target": "coffee mug",
+            "meaningByLocale": {
+              "ru": "кофейная кружка",
+              "uk": "кухоль для кави"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-01:i13:p3",
+            "target": "dish rack",
+            "meaningByLocale": {
+              "ru": "сушилка для посуды",
+              "uk": "сушарка для посуду"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-01:i13:p4",
+            "target": "tea strainer",
+            "meaningByLocale": {
+              "ru": "ситечко для чая",
+              "uk": "ситечко для чаю"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bread bin",
+          "coffee mug",
+          "dish rack",
+          "tea strainer"
+        ],
+        "rightColumn": [
+          "хлібниця",
+          "кухоль для кави",
+          "сушарка для посуду",
+          "ситечко для чаю"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:i14:audio",
+          "transcript": "Did they clean the kitchen?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did they clean the kitchen?",
+        "orderedTokens": [
+          "Did",
+          "they",
+          "clean",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:i15:audio",
+          "transcript": "Did he wash the plates?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he wash the plates?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "wash",
+          "the",
+          "plates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: ти вчора помив кухоль для кави?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: ти вчора помив кухоль для кави?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:i16:audio",
+          "transcript": "Did you wash the coffee mug yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you wash the coffee mug yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: вона почистила хлібницю?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: вона почистила хлібницю?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-01:i17:audio",
+          "transcript": "Did she clean the bread bin?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did she clean the bread bin?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "03151473b48c3f790f86106e160e0b36933997bc7dc129b48909b613885d409c"
+}

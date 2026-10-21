@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-01:intro1:r2": {
+          "ru": "Это сообщение, а нужен вопрос.",
+          "uk": "Це повідомлення, а потрібне запитання."
+        },
+        "en:lesson-13:session-01:intro1:r3": {
+          "ru": "После did нужна clean, без -ed.",
+          "uk": "Після did потрібна clean, без -ed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-01:intro2:r2": {
+          "ru": "Здесь спрашивают о хлебнице.",
+          "uk": "Тут запитують про хлібницю."
+        },
+        "en:lesson-13:session-01:intro2:r3": {
+          "ru": "После did нужна wash.",
+          "uk": "Після did потрібна wash."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-01:intro3:r2": {
+          "ru": "После did нужна wash, без -ed.",
+          "uk": "Після did потрібна wash, без -ed."
+        },
+        "en:lesson-13:session-01:intro3:r3": {
+          "ru": "Это вопрос о сушилке для посуды.",
+          "uk": "Це запитання про сушарку для посуду."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "eecb790341fe496d2c360712e51ae1e57bf604f967984b7dd8f8e8ae423b7a90"
+}

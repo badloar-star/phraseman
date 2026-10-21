@@ -4711,4 +4711,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: found, used, packed; was/were","uk":"review: found, used, packed; was/were"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 1,
+    sourceFingerprint: "91bd54eac1fb1b33632d02114408a4974a78f0bb4122eb8dba289d1823903a57",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"new: Did + subject + base verb?; review: past events","uk":"new: Did + subject + base verb?; review: past events"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 2,
+    sourceFingerprint: "b35536ae0799a5cb51f38953ad2a5bec199e2b01330cddad74be2c37e153fc41",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Did + subject + base verb?","uk":"review: Did + subject + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 3,
+    sourceFingerprint: "601449db68d47da316a73137c545258e6ea3c9bf111c8bd652d3478a96149e98",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Did + subject + base verb?","uk":"review: Did + subject + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 4,
+    sourceFingerprint: "ac249e439004826fea90aeb871f5ed9e3f025de43a5134c60ac81324207e26c1",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Did + subject + base verb?","uk":"review: Did + subject + base verb?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
 ]);

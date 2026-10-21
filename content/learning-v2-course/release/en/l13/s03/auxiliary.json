@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-03:intro1:r2": {
+          "ru": "После did нужна cook.",
+          "uk": "Після did потрібна cook."
+        },
+        "en:lesson-13:session-03:intro1:r3": {
+          "ru": "Do не обозначает вопрос о прошлом.",
+          "uk": "Do не позначає запитання про минуле."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-03:intro2:r2": {
+          "ru": "Cook — готовить.",
+          "uk": "Cook — готувати."
+        },
+        "en:lesson-13:session-03:intro2:r3": {
+          "ru": "После did нужна wash.",
+          "uk": "Після did потрібна wash."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-03:intro3:r2": {
+          "ru": "Это брюссельская капуста.",
+          "uk": "Це брюссельська капуста."
+        },
+        "en:lesson-13:session-03:intro3:r3": {
+          "ru": "После did нужна wash.",
+          "uk": "Після did потрібна wash."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bbb3e09003b8e7b111b703e6528fdef2f02fe7cd940e1f6fde417ef89822cb8d"
+}

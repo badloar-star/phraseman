@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-03:word:aubergine",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — aubergine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:word:aubergine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — aubergine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:word:aubergine:audio",
+          "transcript": "aubergine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-03:word:aubergine:r1",
+            "targetText": "aubergine",
+            "meaningByLocale": {
+              "ru": "баклажан.",
+              "uk": "баклажан."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aubergine",
+          "definitionByLocale": {
+            "ru": "баклажан.",
+            "uk": "баклажан."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты приготовил баклажан?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты приготовил баклажан?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you cook the aubergine?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты приготовил баклажан?",
+          "uk": "Скажіть: Ти приготував баклажан?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "cook",
+          "the",
+          "aubergine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-03:i02:r1",
+          "text": "Did she cook the aubergine?"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i02:r2",
+          "text": "Did you cook the aubergine?"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i02:r3",
+          "text": "Did they cook the aubergine?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:i02:audio",
+          "transcript": "Did she cook the aubergine?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-03:i02:r1",
+            "targetText": "Did she cook the aubergine?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i02:r2",
+            "targetText": "Did you cook the aubergine?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i02:r3",
+            "targetText": "Did they cook the aubergine?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she cook the aubergine?",
+              "uk": "У записі звучить Did she cook the aubergine?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she cook the aubergine?",
+              "uk": "У записі звучить Did she cook the aubergine?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-03:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you cook the aubergine?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-03:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:word:courgette",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — courgette",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:word:courgette:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — courgette",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:word:courgette:audio",
+          "transcript": "courgette"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-03:word:courgette:r1",
+            "targetText": "courgette",
+            "meaningByLocale": {
+              "ru": "кабачок.",
+              "uk": "кабачок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "courgette",
+          "definitionByLocale": {
+            "ru": "кабачок.",
+            "uk": "кабачок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты помыл кабачок?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты помыл кабачок?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you wash the courgette?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты помыл кабачок?",
+          "uk": "Скажіть: Ти помив кабачок?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "wash",
+          "the",
+          "courgette"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-03:i05:r1",
+          "text": "Did she wash the courgette?"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i05:r2",
+          "text": "Did you wash the courgette?"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i05:r3",
+          "text": "Did they wash the courgette?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:i05:audio",
+          "transcript": "Did she wash the courgette?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-03:i05:r1",
+            "targetText": "Did she wash the courgette?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i05:r2",
+            "targetText": "Did you wash the courgette?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i05:r3",
+            "targetText": "Did they wash the courgette?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the courgette?",
+              "uk": "У записі звучить Did she wash the courgette?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the courgette?",
+              "uk": "У записі звучить Did she wash the courgette?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-03:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you wash the courgette?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-03:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:word:Brussels-sprouts",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Brussels sprouts",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:word:Brussels-sprouts:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Brussels sprouts",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:word:Brussels-sprouts:audio",
+          "transcript": "Brussels sprouts"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-03:word:Brussels-sprouts:r1",
+            "targetText": "Brussels sprouts",
+            "meaningByLocale": {
+              "ru": "брюссельская капуста.",
+              "uk": "брюссельська капуста."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Brussels sprouts",
+          "definitionByLocale": {
+            "ru": "брюссельская капуста.",
+            "uk": "брюссельська капуста."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты приготовил брюссельскую капусту?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты приготовил брюссельскую капусту?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you cook the Brussels sprouts?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты приготовил брюссельскую капусту?",
+          "uk": "Скажіть: Ти приготував брюссельську капусту?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "cook",
+          "the",
+          "Brussels",
+          "sprouts"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-03:i08:r1",
+          "text": "Did she cook the Brussels sprouts?"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i08:r2",
+          "text": "Did you cook the Brussels sprouts?"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i08:r3",
+          "text": "Did they cook the Brussels sprouts?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:i08:audio",
+          "transcript": "Did she cook the Brussels sprouts?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-03:i08:r1",
+            "targetText": "Did she cook the Brussels sprouts?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i08:r2",
+            "targetText": "Did you cook the Brussels sprouts?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i08:r3",
+            "targetText": "Did they cook the Brussels sprouts?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she cook the Brussels sprouts?",
+              "uk": "У записі звучить Did she cook the Brussels sprouts?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she cook the Brussels sprouts?",
+              "uk": "У записі звучить Did she cook the Brussels sprouts?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-03:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you cook the Brussels sprouts?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-03:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:word:spring-onion",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spring onion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:word:spring-onion:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spring onion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:word:spring-onion:audio",
+          "transcript": "spring onion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-03:word:spring-onion:r1",
+            "targetText": "spring onion",
+            "meaningByLocale": {
+              "ru": "зелёный лук.",
+              "uk": "зелена цибуля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spring onion",
+          "definitionByLocale": {
+            "ru": "зелёный лук.",
+            "uk": "зелена цибуля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты помыл зелёный лук?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты помыл зелёный лук?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you wash the spring onion?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты помыл зелёный лук?",
+          "uk": "Скажіть: Ти помив зелену цибулю?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "wash",
+          "the",
+          "spring",
+          "onion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-03:i11:r1",
+          "text": "Did she wash the spring onion?"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i11:r2",
+          "text": "Did you wash the spring onion?"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i11:r3",
+          "text": "Did they wash the spring onion?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:i11:audio",
+          "transcript": "Did she wash the spring onion?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-03:i11:r1",
+            "targetText": "Did she wash the spring onion?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i11:r2",
+            "targetText": "Did you wash the spring onion?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i11:r3",
+            "targetText": "Did they wash the spring onion?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the spring onion?",
+              "uk": "У записі звучить Did she wash the spring onion?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she wash the spring onion?",
+              "uk": "У записі звучить Did she wash the spring onion?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-03:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-03:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you wash the spring onion?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-03:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-03:i13:p1",
+            "target": "aubergine",
+            "meaningByLocale": {
+              "ru": "баклажан",
+              "uk": "баклажан"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-03:i13:p2",
+            "target": "courgette",
+            "meaningByLocale": {
+              "ru": "кабачок",
+              "uk": "кабачок"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-03:i13:p3",
+            "target": "Brussels sprouts",
+            "meaningByLocale": {
+              "ru": "брюссельская капуста",
+              "uk": "брюссельська капуста"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-03:i13:p4",
+            "target": "spring onion",
+            "meaningByLocale": {
+              "ru": "зелёный лук",
+              "uk": "зелена цибуля"
+            }
+          }
+        ],
+        "leftColumn": [
+          "aubergine",
+          "courgette",
+          "Brussels sprouts",
+          "spring onion"
+        ],
+        "rightColumn": [
+          "баклажан",
+          "кабачок",
+          "брюссельская капуста",
+          "зелёный лук"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:i14:audio",
+          "transcript": "Did they cook dinner?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did they cook dinner?",
+        "orderedTokens": [
+          "Did",
+          "they",
+          "cook",
+          "dinner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:i15:audio",
+          "transcript": "Did he wash the vegetables?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he wash the vegetables?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "wash",
+          "the",
+          "vegetables"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга: ты вчера приготовил баклажан?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите друга: ты вчера приготовил баклажан?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:i16:audio",
+          "transcript": "Did you cook the aubergine yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you cook the aubergine yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга: она вчера помыла кабачок?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите друга: она вчера помыла кабачок?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-03:i17:audio",
+          "transcript": "Did she wash the courgette yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did she wash the courgette yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e38721bf71d28017866589b643a4f0836c76c60058119b03cc478188d7e2568e"
+}

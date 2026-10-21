@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-12:intro1:r2": {
+          "ru": "Are using — сейчас.",
+          "uk": "Are using — зараз."
+        },
+        "en:lesson-14:session-12:intro1:r3": {
+          "ru": "Здесь вопрос начинается с Were you.",
+          "uk": "Тут запитання починається з Were you."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-12:intro2:r2": {
+          "ru": "С he нужна was.",
+          "uk": "З he потрібна was."
+        },
+        "en:lesson-14:session-12:intro2:r3": {
+          "ru": "Здесь нужна Was he reading.",
+          "uk": "Тут потрібна Was he reading."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-12:intro3:r2": {
+          "ru": "Was writing утверждает действие.",
+          "uk": "Was writing стверджує дію."
+        },
+        "en:lesson-14:session-12:intro3:r3": {
+          "ru": "С I нужна wasn’t.",
+          "uk": "З I потрібна wasn’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a1db20e99beddeb2775c9aafbff07dc8ff2c74bee46f3051da23289b1403ef4e"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous questions and negatives",
+    "uk": "review: Past Continuous questions and negatives"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место оплаты",
+        "uk": "Місце оплати"
+      },
+      "bodyByLocale": {
+        "ru": "Checkout counter — стойка кассы, место оплаты покупок. Were you waiting at the checkout counter? — Ты ждал у кассы? Выберите вопрос о прошлом моменте.",
+        "uk": "Checkout counter — стійка каси, місце оплати покупок. Were you waiting at the checkout counter? — Ти чекав біля каси? Виберіть запитання про минулий момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-11:intro1:r1",
+              "text": "Were you waiting at the checkout counter?"
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro1:r2",
+              "text": "Are you waiting at the checkout counter?"
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro1:r3",
+              "text": "Did you waiting at the checkout counter?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-11:intro1:r1",
+              "text": "Were you waiting at the checkout counter?"
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro1:r2",
+              "text": "Are you waiting at the checkout counter?"
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro1:r3",
+              "text": "Did you waiting at the checkout counter?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ценник на полке и кассовый аппарат",
+        "uk": "Цінник на полиці й касовий апарат"
+      },
+      "bodyByLocale": {
+        "ru": "Shelf label — ценник или этикетка на полке; cash register — кассовый аппарат. I wasn’t using the cash register. — Я не пользовался кассовым аппаратом. Выберите отрицание.",
+        "uk": "Shelf label — цінник або етикетка на полиці; cash register — касовий апарат. I wasn’t using the cash register. — Я не користувався касовим апаратом. Виберіть заперечення."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-11:intro2:r1",
+              "text": "I wasn’t using the cash register."
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro2:r2",
+              "text": "I was using the cash register."
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro2:r3",
+              "text": "I weren’t using the cash register."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-11:intro2:r1",
+              "text": "I wasn’t using the cash register."
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro2:r2",
+              "text": "I was using the cash register."
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro2:r3",
+              "text": "I weren’t using the cash register."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Лента для покупок",
+        "uk": "Стрічка для покупок"
+      },
+      "bodyByLocale": {
+        "ru": "Conveyor belt — движущаяся лента; здесь лента у кассы, куда кладут покупки. They weren’t cleaning the conveyor belt. — Они не чистили ленту у кассы. Выберите отрицание с they.",
+        "uk": "Conveyor belt — рухома стрічка; тут стрічка біля каси, куди кладуть покупки. They weren’t cleaning the conveyor belt. — Вони не чистили стрічку біля каси. Виберіть заперечення з they."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-11:intro3:r1",
+              "text": "They weren’t cleaning the conveyor belt."
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro3:r2",
+              "text": "They were cleaning the conveyor belt."
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro3:r3",
+              "text": "They wasn’t cleaning the conveyor belt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-11:intro3:r1",
+              "text": "They weren’t cleaning the conveyor belt."
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro3:r2",
+              "text": "They were cleaning the conveyor belt."
+            },
+            {
+              "responseId": "en:lesson-14:session-11:intro3:r3",
+              "text": "They wasn’t cleaning the conveyor belt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "64186010ff3f192c553a86a2753af3a3832cc3e7d7557a64690d9fd4325bc401"
+}

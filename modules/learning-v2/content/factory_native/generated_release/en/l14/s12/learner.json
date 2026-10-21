@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-12:word:workbook",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — workbook",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:word:workbook:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — workbook",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:word:workbook:audio",
+          "transcript": "workbook"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-12:word:workbook:r1",
+            "targetText": "workbook",
+            "meaningByLocale": {
+              "ru": "рабочая тетрадь с упражнениями.",
+              "uk": "робочий зошит із вправами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "workbook",
+          "definitionByLocale": {
+            "ru": "рабочая тетрадь с упражнениями.",
+            "uk": "робочий зошит із вправами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты работал с рабочей тетрадью?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты работал с рабочей тетрадью?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Were you using the workbook?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты работал с рабочей тетрадью?",
+          "uk": "Скажіть: Ти працював із робочим зошитом?"
+        },
+        "orderedTokens": [
+          "Were",
+          "you",
+          "using",
+          "the",
+          "workbook"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-12:i02:r1",
+          "text": "Were you using the workbook?"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i02:r2",
+          "text": "Were we using the workbook?"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i02:r3",
+          "text": "Was she using the workbook?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:i02:audio",
+          "transcript": "Were you using the workbook?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-12:i02:r1",
+            "targetText": "Were you using the workbook?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i02:r2",
+            "targetText": "Were we using the workbook?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i02:r3",
+            "targetText": "Was she using the workbook?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Were you using the workbook?",
+              "uk": "У записі звучить Were you using the workbook?"
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Were you using the workbook?",
+              "uk": "У записі звучить Were you using the workbook?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Ты работал с рабочей тетрадью?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-12:i03:r1",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i03:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i03:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Ты работал с рабочей тетрадью?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Ты работал с рабочей тетрадью?",
+          "uk": "Виберіть форму для змісту: Ти працював із робочим зошитом?"
+        },
+        "gappedTargetPhrase": "___ you using the workbook?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-12:i03:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Ты работал с рабочей тетрадью?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Ты работал с рабочей тетрадью?",
+            "feedbackByLocale": {
+              "ru": "Речь о прошлом моменте. Нужно Were.",
+              "uk": "Йдеться про минулий момент. Потрібно Were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Ты работал с рабочей тетрадью?",
+            "feedbackByLocale": {
+              "ru": "Did не используется с этой формой действия. Нужно Were.",
+              "uk": "Did не вживається з цією формою дії. Потрібно Were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:word:school-report",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — school report",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:word:school-report:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — school report",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:word:school-report:audio",
+          "transcript": "school report"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-12:word:school-report:r1",
+            "targetText": "school report",
+            "meaningByLocale": {
+              "ru": "школьный отчёт об успеваемости.",
+              "uk": "шкільний звіт про успішність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "school report",
+          "definitionByLocale": {
+            "ru": "школьный отчёт об успеваемости.",
+            "uk": "шкільний звіт про успішність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Он читал школьный отчёт?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Он читал школьный отчёт?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was he reading the school report?",
+        "localizedMeaning": {
+          "ru": "Скажите: Он читал школьный отчёт?",
+          "uk": "Скажіть: Він читав шкільний звіт?"
+        },
+        "orderedTokens": [
+          "Was",
+          "he",
+          "reading",
+          "the",
+          "school",
+          "report"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-12:i05:r1",
+          "text": "Was he reading the school report?"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i05:r2",
+          "text": "Was I reading the school report?"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i05:r3",
+          "text": "Was she reading the school report?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:i05:audio",
+          "transcript": "Was he reading the school report?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-12:i05:r1",
+            "targetText": "Was he reading the school report?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i05:r2",
+            "targetText": "Was I reading the school report?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i05:r3",
+            "targetText": "Was she reading the school report?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was he reading the school report?",
+              "uk": "У записі звучить Was he reading the school report?"
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was he reading the school report?",
+              "uk": "У записі звучить Was he reading the school report?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Он читал школьный отчёт?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-12:i06:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i06:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i06:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Он читал школьный отчёт?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Он читал школьный отчёт?",
+          "uk": "Виберіть форму для змісту: Він читав шкільний звіт?"
+        },
+        "gappedTargetPhrase": "___ he reading the school report?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-12:i06:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i06:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Он читал школьный отчёт?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Он читал школьный отчёт?",
+            "feedbackByLocale": {
+              "ru": "Речь о прошлом моменте. Нужно Was.",
+              "uk": "Йдеться про минулий момент. Потрібно Was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Он читал школьный отчёт?",
+            "feedbackByLocale": {
+              "ru": "Did не используется с этой формой действия. Нужно Was.",
+              "uk": "Did не вживається з цією формою дії. Потрібно Was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:word:homework-diary",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — homework diary",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:word:homework-diary:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — homework diary",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:word:homework-diary:audio",
+          "transcript": "homework diary"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-12:word:homework-diary:r1",
+            "targetText": "homework diary",
+            "meaningByLocale": {
+              "ru": "дневник для записи домашних заданий.",
+              "uk": "щоденник для запису домашніх завдань."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "homework diary",
+          "definitionByLocale": {
+            "ru": "дневник для записи домашних заданий.",
+            "uk": "щоденник для запису домашніх завдань."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не писал в дневнике домашних заданий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не писал в дневнике домашних заданий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wasn’t writing in the homework diary.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не писал в дневнике домашних заданий",
+          "uk": "Скажіть: Я не писав у щоденнику домашніх завдань"
+        },
+        "orderedTokens": [
+          "I",
+          "wasn’t",
+          "writing",
+          "in",
+          "the",
+          "homework",
+          "diary"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-12:i08:r1",
+          "text": "I wasn’t writing in the homework diary."
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i08:r2",
+          "text": "She wasn’t writing in the homework diary."
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i08:r3",
+          "text": "I was writing in the homework diary."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:i08:audio",
+          "transcript": "I wasn’t writing in the homework diary."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-12:i08:r1",
+            "targetText": "I wasn’t writing in the homework diary.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i08:r2",
+            "targetText": "She wasn’t writing in the homework diary.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i08:r3",
+            "targetText": "I was writing in the homework diary.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wasn’t writing in the homework diary.",
+              "uk": "У записі звучить I wasn’t writing in the homework diary."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wasn’t writing in the homework diary.",
+              "uk": "У записі звучить I wasn’t writing in the homework diary."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Я не писал в дневнике домашних заданий",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-12:i09:r1",
+          "text": "wasn’t"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i09:r3",
+          "text": "weren’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Я не писал в дневнике домашних заданий",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Я не писал в дневнике домашних заданий",
+          "uk": "Виберіть форму для змісту: Я не писав у щоденнику домашніх завдань"
+        },
+        "gappedTargetPhrase": "I ___ writing in the homework diary.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-12:i09:r1",
+            "text": "wasn’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i09:r3",
+            "text": "weren’t"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Я не писал в дневнике домашних заданий",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Я не писал в дневнике домашних заданий",
+            "feedbackByLocale": {
+              "ru": "Без not смысл меняется на утверждение. Нужно wasn’t.",
+              "uk": "Без not зміст змінюється на ствердження. Потрібно wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Я не писал в дневнике домашних заданий",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна wasn’t.",
+              "uk": "З цим підметом потрібна wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:word:answer-sheet",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — answer sheet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:word:answer-sheet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — answer sheet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:word:answer-sheet:audio",
+          "transcript": "answer sheet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-12:word:answer-sheet:r1",
+            "targetText": "answer sheet",
+            "meaningByLocale": {
+              "ru": "лист для ответов.",
+              "uk": "аркуш для відповідей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "answer sheet",
+          "definitionByLocale": {
+            "ru": "лист для ответов.",
+            "uk": "аркуш для відповідей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они не пользовались листом для ответов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они не пользовались листом для ответов",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They weren’t using the answer sheet.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они не пользовались листом для ответов",
+          "uk": "Скажіть: Вони не користувалися аркушем для відповідей"
+        },
+        "orderedTokens": [
+          "They",
+          "weren’t",
+          "using",
+          "the",
+          "answer",
+          "sheet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-12:i11:r1",
+          "text": "They weren’t using the answer sheet."
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i11:r2",
+          "text": "We weren’t using the answer sheet."
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i11:r3",
+          "text": "They were using the answer sheet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:i11:audio",
+          "transcript": "They weren’t using the answer sheet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-12:i11:r1",
+            "targetText": "They weren’t using the answer sheet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i11:r2",
+            "targetText": "We weren’t using the answer sheet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i11:r3",
+            "targetText": "They were using the answer sheet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They weren’t using the answer sheet.",
+              "uk": "У записі звучить They weren’t using the answer sheet."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They weren’t using the answer sheet.",
+              "uk": "У записі звучить They weren’t using the answer sheet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для смысла: Они не пользовались листом для ответов",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-12:i12:r1",
+          "text": "weren’t"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i12:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-12:i12:r3",
+          "text": "wasn’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для смысла: Они не пользовались листом для ответов",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Они не пользовались листом для ответов",
+          "uk": "Виберіть форму для змісту: Вони не користувалися аркушем для відповідей"
+        },
+        "gappedTargetPhrase": "They ___ using the answer sheet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-12:i12:r1",
+            "text": "weren’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i12:r3",
+            "text": "wasn’t"
+          }
+        ],
+        "testedDimension": "Выберите форму для смысла: Они не пользовались листом для ответов",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Они не пользовались листом для ответов",
+            "feedbackByLocale": {
+              "ru": "Без not смысл меняется на утверждение. Нужно weren’t.",
+              "uk": "Без not зміст змінюється на ствердження. Потрібно weren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для смысла: Они не пользовались листом для ответов",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна weren’t.",
+              "uk": "З цим підметом потрібна weren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-12:i13:p1",
+            "target": "workbook",
+            "meaningByLocale": {
+              "ru": "рабочая тетрадь с упражнениями",
+              "uk": "робочий зошит із вправами"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-12:i13:p2",
+            "target": "school report",
+            "meaningByLocale": {
+              "ru": "школьный отчёт об успеваемости",
+              "uk": "шкільний звіт про успішність"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-12:i13:p3",
+            "target": "homework diary",
+            "meaningByLocale": {
+              "ru": "дневник для записи домашних заданий",
+              "uk": "щоденник для запису домашніх завдань"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-12:i13:p4",
+            "target": "answer sheet",
+            "meaningByLocale": {
+              "ru": "лист для ответов",
+              "uk": "аркуш для відповідей"
+            }
+          }
+        ],
+        "leftColumn": [
+          "workbook",
+          "school report",
+          "homework diary",
+          "answer sheet"
+        ],
+        "rightColumn": [
+          "рабочая тетрадь с упражнениями",
+          "школьный отчёт об успеваемости",
+          "дневник для записи домашних заданий",
+          "лист для ответов"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:i14:audio",
+          "transcript": "Were you reading at six?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Were you reading at six?",
+        "orderedTokens": [
+          "Were",
+          "you",
+          "reading",
+          "at",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:i15:audio",
+          "transcript": "I wasn’t doing my homework."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wasn’t doing my homework.",
+        "orderedTokens": [
+          "I",
+          "wasn’t",
+          "doing",
+          "my",
+          "homework"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера в шесть читал школьный отчёт?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера в шесть читал школьный отчёт?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:i16:audio",
+          "transcript": "Were you reading the school report at six yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were you reading the school report at six yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-12:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера в шесть я не пользовался листом для ответов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера в шесть я не пользовался листом для ответов",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-12:i17:audio",
+          "transcript": "I wasn’t using the answer sheet at six yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wasn’t using the answer sheet at six yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3ed0372a5fd9c6fdabe6d86958de6195dbd63d37203e04de089b72fd4b21b74d"
+}

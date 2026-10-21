@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-09:word:paddling-pool",
+    "correctText": "paddling pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i01",
+    "correctText": "Were you playing in the paddling pool?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i02",
+    "correctText": "Were you playing in the paddling pool?",
+    "correctResponseId": "en:lesson-14:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i03",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-14:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:word:trampoline",
+    "correctText": "trampoline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i04",
+    "correctText": "Was he jumping on the trampoline?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i05",
+    "correctText": "Was he jumping on the trampoline?",
+    "correctResponseId": "en:lesson-14:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i06",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-14:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:word:climbing-frame",
+    "correctText": "climbing frame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i07",
+    "correctText": "They weren’t climbing on the climbing frame.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i08",
+    "correctText": "They weren’t climbing on the climbing frame.",
+    "correctResponseId": "en:lesson-14:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i09",
+    "correctText": "weren’t",
+    "correctResponseId": "en:lesson-14:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:word:bouncy-castle",
+    "correctText": "bouncy castle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i10",
+    "correctText": "I wasn’t playing on the bouncy castle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i11",
+    "correctText": "I wasn’t playing on the bouncy castle.",
+    "correctResponseId": "en:lesson-14:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i12",
+    "correctText": "wasn’t",
+    "correctResponseId": "en:lesson-14:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i13",
+    "correctText": "en:lesson-14:session-09:i13:p1=paddling pool\nen:lesson-14:session-09:i13:p2=trampoline\nen:lesson-14:session-09:i13:p3=climbing frame\nen:lesson-14:session-09:i13:p4=bouncy castle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i14",
+    "correctText": "Were you playing at four?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i15",
+    "correctText": "I wasn’t playing at four.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i16",
+    "correctText": "Were you jumping on the trampoline at four yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-09:i17",
+    "correctText": "I wasn’t playing in the paddling pool at four yesterday.",
+    "correctResponseId": null
+  }
+]

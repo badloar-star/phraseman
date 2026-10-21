@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-10:intro1:r2": {
+          "ru": "С you нужна were.",
+          "uk": "З you потрібна were."
+        },
+        "en:lesson-14:session-10:intro1:r3": {
+          "ru": "Для этой конструкции did не нужен.",
+          "uk": "Для цієї конструкції did не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-10:intro2:r2": {
+          "ru": "Was using — пользовался.",
+          "uk": "Was using — користувався."
+        },
+        "en:lesson-14:session-10:intro2:r3": {
+          "ru": "С I нужна wasn’t.",
+          "uk": "З I потрібна wasn’t."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-10:intro3:r2": {
+          "ru": "Were using утверждает действие.",
+          "uk": "Were using стверджує дію."
+        },
+        "en:lesson-14:session-10:intro3:r3": {
+          "ru": "С they нужна weren’t.",
+          "uk": "З they потрібна weren’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "48578cbbf5ca94f2293c91904f3df2c5bf4b62f0bd9cdfa4b658168f251a6a9d"
+}

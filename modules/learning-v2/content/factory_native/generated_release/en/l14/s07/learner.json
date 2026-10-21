@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-07:word:fried-rice",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fried rice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:word:fried-rice:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fried rice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:word:fried-rice:audio",
+          "transcript": "fried rice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-07:word:fried-rice:r1",
+            "targetText": "fried rice",
+            "meaningByLocale": {
+              "ru": "жареный рис — блюдо.",
+              "uk": "смажений рис — страва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fried rice",
+          "definitionByLocale": {
+            "ru": "жареный рис — блюдо.",
+            "uk": "смажений рис — страва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я готовил жареный рис",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я готовил жареный рис",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was cooking fried rice.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я готовил жареный рис",
+          "uk": "Скажіть: Я готував смажений рис"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "cooking",
+          "fried",
+          "rice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-07:i02:r1",
+          "text": "You were cooking fried rice."
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i02:r2",
+          "text": "I was cooking fried rice."
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i02:r3",
+          "text": "They were cooking fried rice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:i02:audio",
+          "transcript": "You were cooking fried rice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-07:i02:r1",
+            "targetText": "You were cooking fried rice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i02:r2",
+            "targetText": "I was cooking fried rice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i02:r3",
+            "targetText": "They were cooking fried rice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking fried rice.",
+              "uk": "У записі звучить You were cooking fried rice."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking fried rice.",
+              "uk": "У записі звучить You were cooking fried rice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-07:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ cooking fried rice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-07:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:word:noodle-soup",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — noodle soup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:word:noodle-soup:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — noodle soup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:word:noodle-soup:audio",
+          "transcript": "noodle soup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-07:word:noodle-soup:r1",
+            "targetText": "noodle soup",
+            "meaningByLocale": {
+              "ru": "суп с лапшой.",
+              "uk": "суп із локшиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "noodle soup",
+          "definitionByLocale": {
+            "ru": "суп с лапшой.",
+            "uk": "суп із локшиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они готовили суп с лапшой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они готовили суп с лапшой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were cooking noodle soup.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они готовили суп с лапшой",
+          "uk": "Скажіть: Вони готували суп із локшиною"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "cooking",
+          "noodle",
+          "soup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-07:i05:r1",
+          "text": "You were cooking noodle soup."
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i05:r2",
+          "text": "They were cooking noodle soup."
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i05:r3",
+          "text": "She was cooking noodle soup."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:i05:audio",
+          "transcript": "You were cooking noodle soup."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-07:i05:r1",
+            "targetText": "You were cooking noodle soup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i05:r2",
+            "targetText": "They were cooking noodle soup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i05:r3",
+            "targetText": "She was cooking noodle soup.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking noodle soup.",
+              "uk": "У записі звучить You were cooking noodle soup."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking noodle soup.",
+              "uk": "У записі звучить You were cooking noodle soup."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-07:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ cooking noodle soup.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-07:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i06:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:word:fishcake",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fishcake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:word:fishcake:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fishcake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:word:fishcake:audio",
+          "transcript": "fishcake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-07:word:fishcake:r1",
+            "targetText": "fishcake",
+            "meaningByLocale": {
+              "ru": "рыбная котлета.",
+              "uk": "рибна котлета."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fishcake",
+          "definitionByLocale": {
+            "ru": "рыбная котлета.",
+            "uk": "рибна котлета."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она ела рыбную котлету",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она ела рыбную котлету",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was eating a fishcake.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она ела рыбную котлету",
+          "uk": "Скажіть: Вона їла рибну котлету"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "eating",
+          "a",
+          "fishcake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-07:i08:r1",
+          "text": "You were eating a fishcake."
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i08:r2",
+          "text": "She was eating a fishcake."
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i08:r3",
+          "text": "They were eating a fishcake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:i08:audio",
+          "transcript": "You were eating a fishcake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-07:i08:r1",
+            "targetText": "You were eating a fishcake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i08:r2",
+            "targetText": "She was eating a fishcake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i08:r3",
+            "targetText": "They were eating a fishcake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were eating a fishcake.",
+              "uk": "У записі звучить You were eating a fishcake."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were eating a fishcake.",
+              "uk": "У записі звучить You were eating a fishcake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-07:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ eating a fishcake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-07:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:word:spring-roll",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spring roll",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:word:spring-roll:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spring roll",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:word:spring-roll:audio",
+          "transcript": "spring roll"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-07:word:spring-roll:r1",
+            "targetText": "spring roll",
+            "meaningByLocale": {
+              "ru": "небольшой рулетик с начинкой в тонкой оболочке.",
+              "uk": "невеликий рулетик із начинкою в тонкій оболонці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spring roll",
+          "definitionByLocale": {
+            "ru": "небольшой рулетик с начинкой в тонкой оболочке.",
+            "uk": "невеликий рулетик із начинкою в тонкій оболонці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы ели спринг-ролл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы ели спринг-ролл",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were eating a spring roll.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы ели спринг-ролл",
+          "uk": "Скажіть: Ми їли спринг-рол"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "eating",
+          "a",
+          "spring",
+          "roll"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-07:i11:r1",
+          "text": "You were eating a spring roll."
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i11:r2",
+          "text": "We were eating a spring roll."
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i11:r3",
+          "text": "She was eating a spring roll."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:i11:audio",
+          "transcript": "You were eating a spring roll."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-07:i11:r1",
+            "targetText": "You were eating a spring roll.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i11:r2",
+            "targetText": "We were eating a spring roll.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i11:r3",
+            "targetText": "She was eating a spring roll.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-07:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were eating a spring roll.",
+              "uk": "У записі звучить You were eating a spring roll."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were eating a spring roll.",
+              "uk": "У записі звучить You were eating a spring roll."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-07:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-07:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ eating a spring roll.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-07:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-07:i13:p1",
+            "target": "fried rice",
+            "meaningByLocale": {
+              "ru": "жареный рис",
+              "uk": "смажений рис"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-07:i13:p2",
+            "target": "noodle soup",
+            "meaningByLocale": {
+              "ru": "суп с лапшой",
+              "uk": "суп із локшиною"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-07:i13:p3",
+            "target": "fishcake",
+            "meaningByLocale": {
+              "ru": "рыбная котлета",
+              "uk": "рибна котлета"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-07:i13:p4",
+            "target": "spring roll",
+            "meaningByLocale": {
+              "ru": "небольшой рулетик с начинкой в тонкой оболочке",
+              "uk": "невеликий рулетик із начинкою в тонкій оболонці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fried rice",
+          "noodle soup",
+          "fishcake",
+          "spring roll"
+        ],
+        "rightColumn": [
+          "жареный рис",
+          "суп с лапшой",
+          "рыбная котлета",
+          "небольшой рулетик с начинкой в тонкой оболочке"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:i14:audio",
+          "transcript": "I was cooking at seven."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was cooking at seven.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "cooking",
+          "at",
+          "seven"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:i15:audio",
+          "transcript": "They were eating in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were eating in the kitchen.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "eating",
+          "in",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера в семь она готовила суп с лапшой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера в семь она готовила суп с лапшой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:i16:audio",
+          "transcript": "She was cooking noodle soup at seven yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was cooking noodle soup at seven yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-07:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера в семь я ел рыбную котлету",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера в семь я ел рыбную котлету",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-07:i17:audio",
+          "transcript": "I was eating a fishcake at seven yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was eating a fishcake at seven yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a0d5acecb64106b1401e695164d5f1b42e2baf93beec6f10bb6cfdf8e613ea01"
+}

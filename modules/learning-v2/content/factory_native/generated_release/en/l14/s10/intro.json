@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous questions and negatives",
+    "uk": "review: Past Continuous questions and negatives"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Замок для велосипеда",
+        "uk": "Замок для велосипеда"
+      },
+      "bodyByLocale": {
+        "ru": "Bike lock — замок для велосипеда. Were you looking for the bike lock? — Ты искал велосипедный замок? Вопрос о вчерашнем моменте начинается с were перед you.",
+        "uk": "Bike lock — замок для велосипеда. Were you looking for the bike lock? — Ти шукав велосипедний замок? Запитання про вчорашній момент починається з were перед you."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-10:intro1:r1",
+              "text": "Were you looking for the bike lock?"
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro1:r2",
+              "text": "Was you looking for the bike lock?"
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro1:r3",
+              "text": "Did you looking for the bike lock?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-10:intro1:r1",
+              "text": "Were you looking for the bike lock?"
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro1:r2",
+              "text": "Was you looking for the bike lock?"
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro1:r3",
+              "text": "Did you looking for the bike lock?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шлем и насос",
+        "uk": "Шолом і насос"
+      },
+      "bodyByLocale": {
+        "ru": "Cycle helmet — велосипедный шлем; bike pump — велосипедный насос. I wasn’t using the bike pump. — Я не пользовался велосипедным насосом. Выберите отрицание.",
+        "uk": "Cycle helmet — велосипедний шолом; bike pump — велосипедний насос. I wasn’t using the bike pump. — Я не користувався велосипедним насосом. Виберіть заперечення."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-10:intro2:r1",
+              "text": "I wasn’t using the bike pump."
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro2:r2",
+              "text": "I was using the bike pump."
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro2:r3",
+              "text": "I weren’t using the bike pump."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-10:intro2:r1",
+              "text": "I wasn’t using the bike pump."
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro2:r2",
+              "text": "I was using the bike pump."
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro2:r3",
+              "text": "I weren’t using the bike pump."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Велосипедный звонок",
+        "uk": "Велосипедний дзвінок"
+      },
+      "bodyByLocale": {
+        "ru": "Bike bell — велосипедный звонок. They weren’t using the bike bell. — Они не пользовались велосипедным звонком. С they нужна weren’t. Выберите отрицание.",
+        "uk": "Bike bell — велосипедний дзвінок. They weren’t using the bike bell. — Вони не користувалися велосипедним дзвінком. З they потрібна weren’t. Виберіть заперечення."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-10:intro3:r1",
+              "text": "They weren’t using the bike bell."
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro3:r2",
+              "text": "They were using the bike bell."
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro3:r3",
+              "text": "They wasn’t using the bike bell."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-10:intro3:r1",
+              "text": "They weren’t using the bike bell."
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro3:r2",
+              "text": "They were using the bike bell."
+            },
+            {
+              "responseId": "en:lesson-14:session-10:intro3:r3",
+              "text": "They wasn’t using the bike bell."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "31c4c62d2679314a2e623b405b9b3d9487fa368d18e2272e0b4f12d8feb38288"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "Past Continuous: Was/Were + subject + verb-ing?; wasn’t/weren’t + verb-ing",
+    "uk": "Past Continuous: Was/Were + subject + verb-ing?; wasn’t/weren’t + verb-ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросить о том моменте",
+        "uk": "Запитати про той момент"
+      },
+      "bodyByLocale": {
+        "ru": "Paddling pool — неглубокий детский бассейн. You were playing in the paddling pool. — Ты играл в детском бассейне. Для вопроса переносим were перед you: Were you playing in the paddling pool? — Ты играл в детском бассейне в тот момент? Did не нужен.",
+        "uk": "Paddling pool — неглибокий дитячий басейн. You were playing in the paddling pool. — Ти грався в дитячому басейні. Для запитання переносимо were перед you: Were you playing in the paddling pool? — Ти грався в дитячому басейні в той момент? Did не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-09:intro1:r1",
+              "text": "Were you playing in the paddling pool?"
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro1:r2",
+              "text": "Did you playing in the paddling pool?"
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro1:r3",
+              "text": "Was you playing in the paddling pool?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-09:intro1:r1",
+              "text": "Were you playing in the paddling pool?"
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro1:r2",
+              "text": "Did you playing in the paddling pool?"
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro1:r3",
+              "text": "Was you playing in the paddling pool?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Was he…?",
+        "uk": "Was he…?"
+      },
+      "bodyByLocale": {
+        "ru": "Trampoline — батут; climbing frame — конструкция для лазания на детской площадке. Was he jumping on the trampoline? — Он прыгал на батуте? С he вопрос начинается с was, затем jumping. Выберите вопрос о батуте.",
+        "uk": "Trampoline — батут; climbing frame — конструкція для лазіння на дитячому майданчику. Was he jumping on the trampoline? — Він стрибав на батуті? З he запитання починається з was, потім jumping. Виберіть запитання про батут."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-09:intro2:r1",
+              "text": "Was he jumping on the trampoline?"
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro2:r2",
+              "text": "Was he climbing on the climbing frame?"
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro2:r3",
+              "text": "Were he jumping on the trampoline?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-09:intro2:r1",
+              "text": "Was he jumping on the trampoline?"
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro2:r2",
+              "text": "Was he climbing on the climbing frame?"
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro2:r3",
+              "text": "Were he jumping on the trampoline?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не занимались этим",
+        "uk": "Не займалися цим"
+      },
+      "bodyByLocale": {
+        "ru": "Bouncy castle — надувной замок для прыжков. I wasn’t playing on the bouncy castle. — Я не играл на надувном замке. Wasn’t = was not; weren’t = were not. С they: They weren’t playing. После отрицания остаётся -ing. Выберите отрицание с I.",
+        "uk": "Bouncy castle — надувний замок для стрибків. I wasn’t playing on the bouncy castle. — Я не грався на надувному замку. Wasn’t = was not; weren’t = were not. З they: They weren’t playing. Після заперечення залишається -ing. Виберіть заперечення з I."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-09:intro3:r1",
+              "text": "I wasn’t playing on the bouncy castle."
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro3:r2",
+              "text": "I was playing on the bouncy castle."
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro3:r3",
+              "text": "I weren’t playing on the bouncy castle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-09:intro3:r1",
+              "text": "I wasn’t playing on the bouncy castle."
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro3:r2",
+              "text": "I was playing on the bouncy castle."
+            },
+            {
+              "responseId": "en:lesson-14:session-09:intro3:r3",
+              "text": "I weren’t playing on the bouncy castle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5bec393e99273583ce962bbd05f1845e0d27c0694b1cf391420638e41eccea14"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-05:word:toy-train",
+    "correctText": "toy train",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i01",
+    "correctText": "I was playing with a toy train.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i02",
+    "correctText": "You were playing with a toy train.",
+    "correctResponseId": "en:lesson-14:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:word:toy-boat",
+    "correctText": "toy boat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i04",
+    "correctText": "They were playing with a toy boat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i05",
+    "correctText": "You were playing with a toy boat.",
+    "correctResponseId": "en:lesson-14:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:word:dollhouse",
+    "correctText": "dollhouse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i07",
+    "correctText": "She was playing with a dollhouse.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i08",
+    "correctText": "You were playing with a dollhouse.",
+    "correctResponseId": "en:lesson-14:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:word:rocking-horse",
+    "correctText": "rocking horse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i10",
+    "correctText": "He was sitting on a rocking horse.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i11",
+    "correctText": "You were sitting on a rocking horse.",
+    "correctResponseId": "en:lesson-14:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i13",
+    "correctText": "en:lesson-14:session-05:i13:p1=toy train\nen:lesson-14:session-05:i13:p2=toy boat\nen:lesson-14:session-05:i13:p3=dollhouse\nen:lesson-14:session-05:i13:p4=rocking horse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i14",
+    "correctText": "We were playing at five.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i15",
+    "correctText": "She was sitting on the floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i16",
+    "correctText": "I was playing with a toy boat at five yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-05:i17",
+    "correctText": "She was sitting on a rocking horse at five yesterday.",
+    "correctResponseId": null
+  }
+]

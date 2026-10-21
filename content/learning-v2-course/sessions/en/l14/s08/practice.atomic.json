@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-08",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-08:word:bedside-lamp",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bedside lamp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:word:bedside-lamp:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bedside lamp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:word:bedside-lamp:audio",
+            "transcript": "bedside lamp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:word:bedside-lamp:r1",
+              "targetText": "bedside lamp",
+              "meaningByLocale": {
+                "ru": "прикроватная лампа.",
+                "uk": "приліжкова лампа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bedside lamp",
+            "definitionByLocale": {
+              "ru": "прикроватная лампа.",
+              "uk": "приліжкова лампа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я протирал прикроватную лампу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я протирал прикроватную лампу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was cleaning the bedside lamp.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я протирал прикроватную лампу",
+            "uk": "Скажіть: Я протирав приліжкову лампу"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "cleaning",
+            "the",
+            "bedside",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i02:r1",
+            "text": "You were cleaning the bedside lamp."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i02:r2",
+            "text": "I was cleaning the bedside lamp."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i02:r3",
+            "text": "They were cleaning the bedside lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i02:audio",
+            "transcript": "You were cleaning the bedside lamp."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:i02:r1",
+              "targetText": "You were cleaning the bedside lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i02:r2",
+              "targetText": "I was cleaning the bedside lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i02:r3",
+              "targetText": "They were cleaning the bedside lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the bedside lamp.",
+                "uk": "У записі звучить You were cleaning the bedside lamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the bedside lamp.",
+                "uk": "У записі звучить You were cleaning the bedside lamp."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ cleaning the bedside lamp.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-08:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:word:night-light",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — night light",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:word:night-light:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — night light",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:word:night-light:audio",
+            "transcript": "night light"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:word:night-light:r1",
+              "targetText": "night light",
+              "meaningByLocale": {
+                "ru": "ночник.",
+                "uk": "нічник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "night light",
+            "definitionByLocale": {
+              "ru": "ночник.",
+              "uk": "нічник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она искала ночник",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она искала ночник",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was looking for the night light.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она искала ночник",
+            "uk": "Скажіть: Вона шукала нічник"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "looking",
+            "for",
+            "the",
+            "night",
+            "light"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i05:r1",
+            "text": "You were looking for the night light."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i05:r2",
+            "text": "She was looking for the night light."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i05:r3",
+            "text": "They were looking for the night light."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i05:audio",
+            "transcript": "You were looking for the night light."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:i05:r1",
+              "targetText": "You were looking for the night light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i05:r2",
+              "targetText": "She was looking for the night light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i05:r3",
+              "targetText": "They were looking for the night light.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the night light.",
+                "uk": "У записі звучить You were looking for the night light."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the night light.",
+                "uk": "У записі звучить You were looking for the night light."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ looking for the night light.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-08:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:word:electric-blanket",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — electric blanket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:word:electric-blanket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — electric blanket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:word:electric-blanket:audio",
+            "transcript": "electric blanket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:word:electric-blanket:r1",
+              "targetText": "electric blanket",
+              "meaningByLocale": {
+                "ru": "электроодеяло.",
+                "uk": "електроковдра."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electric blanket",
+            "definitionByLocale": {
+              "ru": "электроодеяло.",
+              "uk": "електроковдра."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы искали электроодеяло",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы искали электроодеяло",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were looking for the electric blanket.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы искали электроодеяло",
+            "uk": "Скажіть: Ми шукали електроковдру"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "looking",
+            "for",
+            "the",
+            "electric",
+            "blanket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i08:r1",
+            "text": "You were looking for the electric blanket."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i08:r2",
+            "text": "We were looking for the electric blanket."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i08:r3",
+            "text": "She was looking for the electric blanket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i08:audio",
+            "transcript": "You were looking for the electric blanket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:i08:r1",
+              "targetText": "You were looking for the electric blanket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i08:r2",
+              "targetText": "We were looking for the electric blanket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i08:r3",
+              "targetText": "She was looking for the electric blanket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the electric blanket.",
+                "uk": "У записі звучить You were looking for the electric blanket."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the electric blanket.",
+                "uk": "У записі звучить You were looking for the electric blanket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ looking for the electric blanket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-08:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:word:hot-water-bottle",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hot-water bottle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:word:hot-water-bottle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hot-water bottle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:word:hot-water-bottle:audio",
+            "transcript": "hot-water bottle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:word:hot-water-bottle:r1",
+              "targetText": "hot-water bottle",
+              "meaningByLocale": {
+                "ru": "грелка для воды.",
+                "uk": "грілка для води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hot-water bottle",
+            "definitionByLocale": {
+              "ru": "грелка для воды.",
+              "uk": "грілка для води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они искали грелку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они искали грелку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were looking for the hot-water bottle.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они искали грелку",
+            "uk": "Скажіть: Вони шукали грілку"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "looking",
+            "for",
+            "the",
+            "hot-water",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i11:r1",
+            "text": "You were looking for the hot-water bottle."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i11:r2",
+            "text": "They were looking for the hot-water bottle."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i11:r3",
+            "text": "She was looking for the hot-water bottle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i11:audio",
+            "transcript": "You were looking for the hot-water bottle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:i11:r1",
+              "targetText": "You were looking for the hot-water bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i11:r2",
+              "targetText": "They were looking for the hot-water bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i11:r3",
+              "targetText": "She was looking for the hot-water bottle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the hot-water bottle.",
+                "uk": "У записі звучить You were looking for the hot-water bottle."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the hot-water bottle.",
+                "uk": "У записі звучить You were looking for the hot-water bottle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ looking for the hot-water bottle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-08:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-08:i13:p1",
+              "target": "bedside lamp",
+              "meaningByLocale": {
+                "ru": "прикроватная лампа",
+                "uk": "приліжкова лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-08:i13:p2",
+              "target": "night light",
+              "meaningByLocale": {
+                "ru": "ночник",
+                "uk": "нічник"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-08:i13:p3",
+              "target": "electric blanket",
+              "meaningByLocale": {
+                "ru": "электроодеяло",
+                "uk": "електроковдра"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-08:i13:p4",
+              "target": "hot-water bottle",
+              "meaningByLocale": {
+                "ru": "грелка для воды",
+                "uk": "грілка для води"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bedside lamp",
+            "night light",
+            "electric blanket",
+            "hot-water bottle"
+          ],
+          "rightColumn": [
+            "прикроватная лампа",
+            "ночник",
+            "электроодеяло",
+            "грелка для воды"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i14:audio",
+            "transcript": "She was getting dressed at nine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She was getting dressed at nine.",
+          "orderedTokens": [
+            "She",
+            "was",
+            "getting",
+            "dressed",
+            "at",
+            "nine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i15:audio",
+            "transcript": "I was reading in bed."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was reading in bed.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "reading",
+            "in",
+            "bed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера в девять я искал ночник",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера в девять я искал ночник",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i16:audio",
+            "transcript": "I was looking for the night light at nine yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was looking for the night light at nine yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера в девять она искала грелку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера в девять она искала грелку",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i17:audio",
+            "transcript": "She was looking for the hot-water bottle at nine yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was looking for the hot-water bottle at nine yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-08:word:bedside-lamp",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bedside lamp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:word:bedside-lamp:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bedside lamp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:word:bedside-lamp:audio",
+            "transcript": "bedside lamp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:word:bedside-lamp:r1",
+              "targetText": "bedside lamp",
+              "meaningByLocale": {
+                "ru": "прикроватная лампа.",
+                "uk": "приліжкова лампа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bedside lamp",
+            "definitionByLocale": {
+              "ru": "прикроватная лампа.",
+              "uk": "приліжкова лампа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я протирав приліжкову лампу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я протирав приліжкову лампу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was cleaning the bedside lamp.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я протирал прикроватную лампу",
+            "uk": "Скажіть: Я протирав приліжкову лампу"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "cleaning",
+            "the",
+            "bedside",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i02:r1",
+            "text": "You were cleaning the bedside lamp."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i02:r2",
+            "text": "I was cleaning the bedside lamp."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i02:r3",
+            "text": "They were cleaning the bedside lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i02:audio",
+            "transcript": "You were cleaning the bedside lamp."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:i02:r1",
+              "targetText": "You were cleaning the bedside lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i02:r2",
+              "targetText": "I was cleaning the bedside lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i02:r3",
+              "targetText": "They were cleaning the bedside lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the bedside lamp.",
+                "uk": "У записі звучить You were cleaning the bedside lamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning the bedside lamp.",
+                "uk": "У записі звучить You were cleaning the bedside lamp."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ cleaning the bedside lamp.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-08:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:word:night-light",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — night light",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:word:night-light:audio"
+        ],
+        "accessibilityLabel": "Картка слова — night light",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:word:night-light:audio",
+            "transcript": "night light"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:word:night-light:r1",
+              "targetText": "night light",
+              "meaningByLocale": {
+                "ru": "ночник.",
+                "uk": "нічник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "night light",
+            "definitionByLocale": {
+              "ru": "ночник.",
+              "uk": "нічник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона шукала нічник",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона шукала нічник",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was looking for the night light.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она искала ночник",
+            "uk": "Скажіть: Вона шукала нічник"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "looking",
+            "for",
+            "the",
+            "night",
+            "light"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i05:r1",
+            "text": "You were looking for the night light."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i05:r2",
+            "text": "She was looking for the night light."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i05:r3",
+            "text": "They were looking for the night light."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i05:audio",
+            "transcript": "You were looking for the night light."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:i05:r1",
+              "targetText": "You were looking for the night light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i05:r2",
+              "targetText": "She was looking for the night light.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i05:r3",
+              "targetText": "They were looking for the night light.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the night light.",
+                "uk": "У записі звучить You were looking for the night light."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the night light.",
+                "uk": "У записі звучить You were looking for the night light."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ looking for the night light.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-08:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:word:electric-blanket",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — electric blanket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:word:electric-blanket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — electric blanket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:word:electric-blanket:audio",
+            "transcript": "electric blanket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:word:electric-blanket:r1",
+              "targetText": "electric blanket",
+              "meaningByLocale": {
+                "ru": "электроодеяло.",
+                "uk": "електроковдра."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electric blanket",
+            "definitionByLocale": {
+              "ru": "электроодеяло.",
+              "uk": "електроковдра."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми шукали електроковдру",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми шукали електроковдру",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were looking for the electric blanket.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы искали электроодеяло",
+            "uk": "Скажіть: Ми шукали електроковдру"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "looking",
+            "for",
+            "the",
+            "electric",
+            "blanket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i08:r1",
+            "text": "You were looking for the electric blanket."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i08:r2",
+            "text": "We were looking for the electric blanket."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i08:r3",
+            "text": "She was looking for the electric blanket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i08:audio",
+            "transcript": "You were looking for the electric blanket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:i08:r1",
+              "targetText": "You were looking for the electric blanket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i08:r2",
+              "targetText": "We were looking for the electric blanket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i08:r3",
+              "targetText": "She was looking for the electric blanket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the electric blanket.",
+                "uk": "У записі звучить You were looking for the electric blanket."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the electric blanket.",
+                "uk": "У записі звучить You were looking for the electric blanket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ looking for the electric blanket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-08:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:word:hot-water-bottle",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hot-water bottle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:word:hot-water-bottle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hot-water bottle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:word:hot-water-bottle:audio",
+            "transcript": "hot-water bottle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:word:hot-water-bottle:r1",
+              "targetText": "hot-water bottle",
+              "meaningByLocale": {
+                "ru": "грелка для воды.",
+                "uk": "грілка для води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hot-water bottle",
+            "definitionByLocale": {
+              "ru": "грелка для воды.",
+              "uk": "грілка для води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони шукали грілку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони шукали грілку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were looking for the hot-water bottle.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они искали грелку",
+            "uk": "Скажіть: Вони шукали грілку"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "looking",
+            "for",
+            "the",
+            "hot-water",
+            "bottle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i11:r1",
+            "text": "You were looking for the hot-water bottle."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i11:r2",
+            "text": "They were looking for the hot-water bottle."
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i11:r3",
+            "text": "She was looking for the hot-water bottle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i11:audio",
+            "transcript": "You were looking for the hot-water bottle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-08:i11:r1",
+              "targetText": "You were looking for the hot-water bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i11:r2",
+              "targetText": "They were looking for the hot-water bottle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i11:r3",
+              "targetText": "She was looking for the hot-water bottle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the hot-water bottle.",
+                "uk": "У записі звучить You were looking for the hot-water bottle."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for the hot-water bottle.",
+                "uk": "У записі звучить You were looking for the hot-water bottle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-08:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-08:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ looking for the hot-water bottle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-08:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-08:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-08:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-08:i13:p1",
+              "target": "bedside lamp",
+              "meaningByLocale": {
+                "ru": "прикроватная лампа",
+                "uk": "приліжкова лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-08:i13:p2",
+              "target": "night light",
+              "meaningByLocale": {
+                "ru": "ночник",
+                "uk": "нічник"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-08:i13:p3",
+              "target": "electric blanket",
+              "meaningByLocale": {
+                "ru": "электроодеяло",
+                "uk": "електроковдра"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-08:i13:p4",
+              "target": "hot-water bottle",
+              "meaningByLocale": {
+                "ru": "грелка для воды",
+                "uk": "грілка для води"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bedside lamp",
+            "night light",
+            "electric blanket",
+            "hot-water bottle"
+          ],
+          "rightColumn": [
+            "приліжкова лампа",
+            "нічник",
+            "електроковдра",
+            "грілка для води"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i14:audio",
+            "transcript": "She was getting dressed at nine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She was getting dressed at nine.",
+          "orderedTokens": [
+            "She",
+            "was",
+            "getting",
+            "dressed",
+            "at",
+            "nine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i15:audio",
+            "transcript": "I was reading in bed."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was reading in bed.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "reading",
+            "in",
+            "bed"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора о дев’ятій я шукав нічник",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора о дев’ятій я шукав нічник",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i16:audio",
+            "transcript": "I was looking for the night light at nine yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was looking for the night light at nine yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-08:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора о дев’ятій вона шукала грілку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-08:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора о дев’ятій вона шукала грілку",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-08:i17:audio",
+            "transcript": "She was looking for the hot-water bottle at nine yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was looking for the hot-water bottle at nine yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-08:word:bedside-lamp",
+      "correctText": "bedside lamp",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i01",
+      "correctText": "I was cleaning the bedside lamp.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i02",
+      "correctText": "You were cleaning the bedside lamp.",
+      "correctResponseId": "en:lesson-14:session-08:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-08:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:word:night-light",
+      "correctText": "night light",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i04",
+      "correctText": "She was looking for the night light.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i05",
+      "correctText": "You were looking for the night light.",
+      "correctResponseId": "en:lesson-14:session-08:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-08:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:word:electric-blanket",
+      "correctText": "electric blanket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i07",
+      "correctText": "We were looking for the electric blanket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i08",
+      "correctText": "You were looking for the electric blanket.",
+      "correctResponseId": "en:lesson-14:session-08:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i09",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-08:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:word:hot-water-bottle",
+      "correctText": "hot-water bottle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i10",
+      "correctText": "They were looking for the hot-water bottle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i11",
+      "correctText": "You were looking for the hot-water bottle.",
+      "correctResponseId": "en:lesson-14:session-08:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-08:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i14",
+      "correctText": "She was getting dressed at nine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i15",
+      "correctText": "I was reading in bed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i16",
+      "correctText": "I was looking for the night light at nine yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-08:i17",
+      "correctText": "She was looking for the hot-water bottle at nine yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

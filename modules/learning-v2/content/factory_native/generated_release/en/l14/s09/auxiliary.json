@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-09:intro1:r2": {
+          "ru": "Здесь вопрос начинается с Were you.",
+          "uk": "Тут запитання починається з Were you."
+        },
+        "en:lesson-14:session-09:intro1:r3": {
+          "ru": "С you нужна were.",
+          "uk": "З you потрібна were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-09:intro2:r2": {
+          "ru": "Это лазание на конструкции.",
+          "uk": "Це лазіння на конструкції."
+        },
+        "en:lesson-14:session-09:intro2:r3": {
+          "ru": "С he нужна was.",
+          "uk": "З he потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-09:intro3:r2": {
+          "ru": "Was playing утверждает, что играл.",
+          "uk": "Was playing стверджує, що грався."
+        },
+        "en:lesson-14:session-09:intro3:r3": {
+          "ru": "С I нужна wasn’t.",
+          "uk": "З I потрібна wasn’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7c6c7be0e5df5e2b37c13e0f7b6bb08d33af80b78ef0d6670ce324bc39a7b49d"
+}

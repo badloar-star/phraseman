@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-12:word:workbook",
+    "correctText": "workbook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i01",
+    "correctText": "Were you using the workbook?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i02",
+    "correctText": "Were you using the workbook?",
+    "correctResponseId": "en:lesson-14:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i03",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-14:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:word:school-report",
+    "correctText": "school report",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i04",
+    "correctText": "Was he reading the school report?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i05",
+    "correctText": "Was he reading the school report?",
+    "correctResponseId": "en:lesson-14:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i06",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-14:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:word:homework-diary",
+    "correctText": "homework diary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i07",
+    "correctText": "I wasn’t writing in the homework diary.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i08",
+    "correctText": "I wasn’t writing in the homework diary.",
+    "correctResponseId": "en:lesson-14:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i09",
+    "correctText": "wasn’t",
+    "correctResponseId": "en:lesson-14:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:word:answer-sheet",
+    "correctText": "answer sheet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i10",
+    "correctText": "They weren’t using the answer sheet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i11",
+    "correctText": "They weren’t using the answer sheet.",
+    "correctResponseId": "en:lesson-14:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i12",
+    "correctText": "weren’t",
+    "correctResponseId": "en:lesson-14:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i13",
+    "correctText": "en:lesson-14:session-12:i13:p1=workbook\nen:lesson-14:session-12:i13:p2=school report\nen:lesson-14:session-12:i13:p3=homework diary\nen:lesson-14:session-12:i13:p4=answer sheet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i14",
+    "correctText": "Were you reading at six?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i15",
+    "correctText": "I wasn’t doing my homework.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i16",
+    "correctText": "Were you reading the school report at six yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-12:i17",
+    "correctText": "I wasn’t using the answer sheet at six yesterday.",
+    "correctResponseId": null
+  }
+]

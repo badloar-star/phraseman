@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-08:word:bedside-lamp",
+    "correctText": "bedside lamp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i01",
+    "correctText": "I was cleaning the bedside lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i02",
+    "correctText": "You were cleaning the bedside lamp.",
+    "correctResponseId": "en:lesson-14:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:word:night-light",
+    "correctText": "night light",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i04",
+    "correctText": "She was looking for the night light.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i05",
+    "correctText": "You were looking for the night light.",
+    "correctResponseId": "en:lesson-14:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:word:electric-blanket",
+    "correctText": "electric blanket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i07",
+    "correctText": "We were looking for the electric blanket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i08",
+    "correctText": "You were looking for the electric blanket.",
+    "correctResponseId": "en:lesson-14:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:word:hot-water-bottle",
+    "correctText": "hot-water bottle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i10",
+    "correctText": "They were looking for the hot-water bottle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i11",
+    "correctText": "You were looking for the hot-water bottle.",
+    "correctResponseId": "en:lesson-14:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i13",
+    "correctText": "en:lesson-14:session-08:i13:p1=bedside lamp\nen:lesson-14:session-08:i13:p2=night light\nen:lesson-14:session-08:i13:p3=electric blanket\nen:lesson-14:session-08:i13:p4=hot-water bottle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i14",
+    "correctText": "She was getting dressed at nine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i15",
+    "correctText": "I was reading in bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i16",
+    "correctText": "I was looking for the night light at nine yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-08:i17",
+    "correctText": "She was looking for the hot-water bottle at nine yesterday.",
+    "correctResponseId": null
+  }
+]

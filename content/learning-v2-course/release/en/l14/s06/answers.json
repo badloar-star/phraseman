@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-06:word:tennis-court",
+    "correctText": "tennis court",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i01",
+    "correctText": "We were playing on the tennis court.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i02",
+    "correctText": "You were playing on the tennis court.",
+    "correctResponseId": "en:lesson-14:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:word:teammate",
+    "correctText": "teammate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i04",
+    "correctText": "I was talking to a teammate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i05",
+    "correctText": "You were talking to a teammate.",
+    "correctResponseId": "en:lesson-14:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:word:spectator",
+    "correctText": "spectator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i07",
+    "correctText": "She was talking to a spectator.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i08",
+    "correctText": "You were talking to a spectator.",
+    "correctResponseId": "en:lesson-14:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:word:sports-hall",
+    "correctText": "sports hall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i10",
+    "correctText": "They were waiting in the sports hall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i11",
+    "correctText": "You were waiting in the sports hall.",
+    "correctResponseId": "en:lesson-14:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i13",
+    "correctText": "en:lesson-14:session-06:i13:p1=tennis court\nen:lesson-14:session-06:i13:p2=teammate\nen:lesson-14:session-06:i13:p3=spectator\nen:lesson-14:session-06:i13:p4=sports hall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i14",
+    "correctText": "We were playing at six.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i15",
+    "correctText": "I was talking to my friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i16",
+    "correctText": "I was waiting in the sports hall at six yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-06:i17",
+    "correctText": "She was talking to a teammate at six yesterday.",
+    "correctResponseId": null
+  }
+]

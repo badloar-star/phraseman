@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-06:word:tennis-court",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tennis court",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:word:tennis-court:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tennis court",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:word:tennis-court:audio",
+          "transcript": "tennis court"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-06:word:tennis-court:r1",
+            "targetText": "tennis court",
+            "meaningByLocale": {
+              "ru": "теннисный корт.",
+              "uk": "тенісний корт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tennis court",
+          "definitionByLocale": {
+            "ru": "теннисный корт.",
+            "uk": "тенісний корт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы играли на теннисном корте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы играли на теннисном корте",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were playing on the tennis court.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы играли на теннисном корте",
+          "uk": "Скажіть: Ми грали на тенісному корті"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "playing",
+          "on",
+          "the",
+          "tennis",
+          "court"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-06:i02:r1",
+          "text": "You were playing on the tennis court."
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i02:r2",
+          "text": "We were playing on the tennis court."
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i02:r3",
+          "text": "She was playing on the tennis court."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:i02:audio",
+          "transcript": "You were playing on the tennis court."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-06:i02:r1",
+            "targetText": "You were playing on the tennis court.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i02:r2",
+            "targetText": "We were playing on the tennis court.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i02:r3",
+            "targetText": "She was playing on the tennis court.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing on the tennis court.",
+              "uk": "У записі звучить You were playing on the tennis court."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing on the tennis court.",
+              "uk": "У записі звучить You were playing on the tennis court."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-06:i03:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i03:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ playing on the tennis court.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-06:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:word:teammate",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — teammate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:word:teammate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — teammate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:word:teammate:audio",
+          "transcript": "teammate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-06:word:teammate:r1",
+            "targetText": "teammate",
+            "meaningByLocale": {
+              "ru": "товарищ по команде.",
+              "uk": "товариш по команді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "teammate",
+          "definitionByLocale": {
+            "ru": "товарищ по команде.",
+            "uk": "товариш по команді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я разговаривал с товарищем по команде",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я разговаривал с товарищем по команде",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was talking to a teammate.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я разговаривал с товарищем по команде",
+          "uk": "Скажіть: Я розмовляв із товаришем по команді"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "talking",
+          "to",
+          "a",
+          "teammate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-06:i05:r1",
+          "text": "You were talking to a teammate."
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i05:r2",
+          "text": "I was talking to a teammate."
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i05:r3",
+          "text": "They were talking to a teammate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:i05:audio",
+          "transcript": "You were talking to a teammate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-06:i05:r1",
+            "targetText": "You were talking to a teammate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i05:r2",
+            "targetText": "I was talking to a teammate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i05:r3",
+            "targetText": "They were talking to a teammate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-06:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were talking to a teammate.",
+              "uk": "У записі звучить You were talking to a teammate."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were talking to a teammate.",
+              "uk": "У записі звучить You were talking to a teammate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-06:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ talking to a teammate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-06:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-06:i06:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i06:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:word:spectator",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spectator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:word:spectator:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spectator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:word:spectator:audio",
+          "transcript": "spectator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-06:word:spectator:r1",
+            "targetText": "spectator",
+            "meaningByLocale": {
+              "ru": "зритель на спортивном событии.",
+              "uk": "глядач на спортивній події."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spectator",
+          "definitionByLocale": {
+            "ru": "зритель на спортивном событии.",
+            "uk": "глядач на спортивній події."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она разговаривала со зрителем",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она разговаривала со зрителем",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was talking to a spectator.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она разговаривала со зрителем",
+          "uk": "Скажіть: Вона розмовляла з глядачем"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "talking",
+          "to",
+          "a",
+          "spectator"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-06:i08:r1",
+          "text": "You were talking to a spectator."
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i08:r2",
+          "text": "She was talking to a spectator."
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i08:r3",
+          "text": "They were talking to a spectator."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:i08:audio",
+          "transcript": "You were talking to a spectator."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-06:i08:r1",
+            "targetText": "You were talking to a spectator.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i08:r2",
+            "targetText": "She was talking to a spectator.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i08:r3",
+            "targetText": "They were talking to a spectator.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were talking to a spectator.",
+              "uk": "У записі звучить You were talking to a spectator."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were talking to a spectator.",
+              "uk": "У записі звучить You were talking to a spectator."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-06:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ talking to a spectator.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-06:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:word:sports-hall",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sports hall",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:word:sports-hall:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sports hall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:word:sports-hall:audio",
+          "transcript": "sports hall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-06:word:sports-hall:r1",
+            "targetText": "sports hall",
+            "meaningByLocale": {
+              "ru": "спортивный зал.",
+              "uk": "спортивна зала."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sports hall",
+          "definitionByLocale": {
+            "ru": "спортивный зал.",
+            "uk": "спортивна зала."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они ждали в спортивном зале",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они ждали в спортивном зале",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were waiting in the sports hall.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они ждали в спортивном зале",
+          "uk": "Скажіть: Вони чекали у спортивній залі"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "waiting",
+          "in",
+          "the",
+          "sports",
+          "hall"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-06:i11:r1",
+          "text": "You were waiting in the sports hall."
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i11:r2",
+          "text": "They were waiting in the sports hall."
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i11:r3",
+          "text": "She was waiting in the sports hall."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:i11:audio",
+          "transcript": "You were waiting in the sports hall."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-06:i11:r1",
+            "targetText": "You were waiting in the sports hall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i11:r2",
+            "targetText": "They were waiting in the sports hall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i11:r3",
+            "targetText": "She was waiting in the sports hall.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were waiting in the sports hall.",
+              "uk": "У записі звучить You were waiting in the sports hall."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were waiting in the sports hall.",
+              "uk": "У записі звучить You were waiting in the sports hall."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-06:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-06:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ waiting in the sports hall.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-06:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-06:i13:p1",
+            "target": "tennis court",
+            "meaningByLocale": {
+              "ru": "теннисный корт",
+              "uk": "тенісний корт"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-06:i13:p2",
+            "target": "teammate",
+            "meaningByLocale": {
+              "ru": "товарищ по команде",
+              "uk": "товариш по команді"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-06:i13:p3",
+            "target": "spectator",
+            "meaningByLocale": {
+              "ru": "зритель на спортивном событии",
+              "uk": "глядач на спортивній події"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-06:i13:p4",
+            "target": "sports hall",
+            "meaningByLocale": {
+              "ru": "спортивный зал",
+              "uk": "спортивна зала"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tennis court",
+          "teammate",
+          "spectator",
+          "sports hall"
+        ],
+        "rightColumn": [
+          "теннисный корт",
+          "товарищ по команде",
+          "зритель на спортивном событии",
+          "спортивный зал"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:i14:audio",
+          "transcript": "We were playing at six."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We were playing at six.",
+        "orderedTokens": [
+          "We",
+          "were",
+          "playing",
+          "at",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:i15:audio",
+          "transcript": "I was talking to my friend."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was talking to my friend.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "talking",
+          "to",
+          "my",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера в шесть я ждал в спортивном зале",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера в шесть я ждал в спортивном зале",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:i16:audio",
+          "transcript": "I was waiting in the sports hall at six yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was waiting in the sports hall at six yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера в шесть она разговаривала с товарищем по команде",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера в шесть она разговаривала с товарищем по команде",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-06:i17:audio",
+          "transcript": "She was talking to a teammate at six yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was talking to a teammate at six yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "219824c4891f0b2710d6ff930c28444e8a6cb4f1c7d029fcd9428ae90358edbc"
+}

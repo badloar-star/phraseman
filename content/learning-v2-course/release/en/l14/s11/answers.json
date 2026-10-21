@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-11:word:checkout-counter",
+    "correctText": "checkout counter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i01",
+    "correctText": "Were you waiting at the checkout counter?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i02",
+    "correctText": "Were you waiting at the checkout counter?",
+    "correctResponseId": "en:lesson-14:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i03",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-14:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:word:shelf-label",
+    "correctText": "shelf label",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i04",
+    "correctText": "Was he reading the shelf label?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i05",
+    "correctText": "Was he reading the shelf label?",
+    "correctResponseId": "en:lesson-14:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i06",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-14:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:word:cash-register",
+    "correctText": "cash register",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i07",
+    "correctText": "I wasn’t using the cash register.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i08",
+    "correctText": "I wasn’t using the cash register.",
+    "correctResponseId": "en:lesson-14:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i09",
+    "correctText": "wasn’t",
+    "correctResponseId": "en:lesson-14:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:word:conveyor-belt",
+    "correctText": "conveyor belt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i10",
+    "correctText": "They weren’t cleaning the conveyor belt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i11",
+    "correctText": "They weren’t cleaning the conveyor belt.",
+    "correctResponseId": "en:lesson-14:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i12",
+    "correctText": "weren’t",
+    "correctResponseId": "en:lesson-14:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i13",
+    "correctText": "en:lesson-14:session-11:i13:p1=checkout counter\nen:lesson-14:session-11:i13:p2=shelf label\nen:lesson-14:session-11:i13:p3=cash register\nen:lesson-14:session-11:i13:p4=conveyor belt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i14",
+    "correctText": "Were you waiting at noon?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i15",
+    "correctText": "I wasn’t working in the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i16",
+    "correctText": "Were you reading the shelf label at noon yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-11:i17",
+    "correctText": "I wasn’t using the cash register at noon yesterday.",
+    "correctResponseId": null
+  }
+]

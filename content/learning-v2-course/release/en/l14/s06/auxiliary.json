@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-06:intro1:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-14:session-06:intro1:r3": {
+          "ru": "Are playing — сейчас.",
+          "uk": "Are playing — зараз."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-06:intro2:r2": {
+          "ru": "Это зритель.",
+          "uk": "Це глядач."
+        },
+        "en:lesson-14:session-06:intro2:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-06:intro3:r2": {
+          "ru": "С they нужна were.",
+          "uk": "З they потрібна were."
+        },
+        "en:lesson-14:session-06:intro3:r3": {
+          "ru": "Are waiting — настоящее.",
+          "uk": "Are waiting — теперішній час."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "744f49b2b41e9033473e48454af6da224fd54d9c6266413aab1588b99f61c25d"
+}

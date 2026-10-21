@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-11:intro1:r2": {
+          "ru": "Are waiting — сейчас.",
+          "uk": "Are waiting — зараз."
+        },
+        "en:lesson-14:session-11:intro1:r3": {
+          "ru": "Здесь нужна Were you waiting.",
+          "uk": "Тут потрібна Were you waiting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-11:intro2:r2": {
+          "ru": "Was using — пользовался.",
+          "uk": "Was using — користувався."
+        },
+        "en:lesson-14:session-11:intro2:r3": {
+          "ru": "С I нужна wasn’t.",
+          "uk": "З I потрібна wasn’t."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-11:intro3:r2": {
+          "ru": "Were cleaning утверждает действие.",
+          "uk": "Were cleaning стверджує дію."
+        },
+        "en:lesson-14:session-11:intro3:r3": {
+          "ru": "С they нужна weren’t.",
+          "uk": "З they потрібна weren’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4394c9c1eabc60a22f4995abb53be43c3425cf1d49f1f038e9aae58185bbb4d1"
+}

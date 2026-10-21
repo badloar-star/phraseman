@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-07:word:fried-rice",
+    "correctText": "fried rice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i01",
+    "correctText": "I was cooking fried rice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i02",
+    "correctText": "You were cooking fried rice.",
+    "correctResponseId": "en:lesson-14:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:word:noodle-soup",
+    "correctText": "noodle soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i04",
+    "correctText": "They were cooking noodle soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i05",
+    "correctText": "You were cooking noodle soup.",
+    "correctResponseId": "en:lesson-14:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:word:fishcake",
+    "correctText": "fishcake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i07",
+    "correctText": "She was eating a fishcake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i08",
+    "correctText": "You were eating a fishcake.",
+    "correctResponseId": "en:lesson-14:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:word:spring-roll",
+    "correctText": "spring roll",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i10",
+    "correctText": "We were eating a spring roll.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i11",
+    "correctText": "You were eating a spring roll.",
+    "correctResponseId": "en:lesson-14:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i13",
+    "correctText": "en:lesson-14:session-07:i13:p1=fried rice\nen:lesson-14:session-07:i13:p2=noodle soup\nen:lesson-14:session-07:i13:p3=fishcake\nen:lesson-14:session-07:i13:p4=spring roll",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i14",
+    "correctText": "I was cooking at seven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i15",
+    "correctText": "They were eating in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i16",
+    "correctText": "She was cooking noodle soup at seven yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-07:i17",
+    "correctText": "I was eating a fishcake at seven yesterday.",
+    "correctResponseId": null
+  }
+]

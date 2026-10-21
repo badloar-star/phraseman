@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "review: was/were + verb-ing",
+    "uk": "review: was/were + verb-ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Игрушечный поезд",
+        "uk": "Іграшковий потяг"
+      },
+      "bodyByLocale": {
+        "ru": "Toy train — игрушечный поезд. I was playing with a toy train. — Я играл с игрушечным поездом. Выберите действие, которое шло вчера в пять.",
+        "uk": "Toy train — іграшковий потяг. I was playing with a toy train. — Я грався з іграшковим потягом. Виберіть дію, яка тривала вчора о п’ятій."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-05:intro1:r1",
+              "text": "I was playing with a toy train."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro1:r2",
+              "text": "I am playing with a toy train."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro1:r3",
+              "text": "I were playing with a toy train."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-05:intro1:r1",
+              "text": "I was playing with a toy train."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro1:r2",
+              "text": "I am playing with a toy train."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro1:r3",
+              "text": "I were playing with a toy train."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Лодка и домик",
+        "uk": "Човен і будиночок"
+      },
+      "bodyByLocale": {
+        "ru": "Toy boat — игрушечная лодка; dollhouse — кукольный домик. She was playing with a dollhouse. — Она играла с кукольным домиком. Выберите домик.",
+        "uk": "Toy boat — іграшковий човен; dollhouse — ляльковий будиночок. She was playing with a dollhouse. — Вона гралася з ляльковим будиночком. Виберіть будиночок."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-05:intro2:r1",
+              "text": "She was playing with a dollhouse."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro2:r2",
+              "text": "She was playing with a toy boat."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro2:r3",
+              "text": "She were playing with a dollhouse."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-05:intro2:r1",
+              "text": "She was playing with a dollhouse."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro2:r2",
+              "text": "She was playing with a toy boat."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro2:r3",
+              "text": "She were playing with a dollhouse."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Лошадка-качалка",
+        "uk": "Коник-гойдалка"
+      },
+      "bodyByLocale": {
+        "ru": "Rocking horse — лошадка-качалка. He was sitting on a rocking horse. — Он сидел на лошадке-качалке. Выберите сообщение о том моменте прошлого.",
+        "uk": "Rocking horse — коник-гойдалка. He was sitting on a rocking horse. — Він сидів на конику-гойдалці. Виберіть повідомлення про той момент минулого."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-05:intro3:r1",
+              "text": "He was sitting on a rocking horse."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro3:r2",
+              "text": "He is sitting on a rocking horse."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro3:r3",
+              "text": "He were sitting on a rocking horse."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-05:intro3:r1",
+              "text": "He was sitting on a rocking horse."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro3:r2",
+              "text": "He is sitting on a rocking horse."
+            },
+            {
+              "responseId": "en:lesson-14:session-05:intro3:r3",
+              "text": "He were sitting on a rocking horse."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fa2af4f62d9fd5d27df9ae2c97adea3778b09b6146f1351fb2a133490c8faa14"
+}

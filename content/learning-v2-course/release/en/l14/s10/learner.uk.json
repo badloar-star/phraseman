@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-10:word:bike-lock",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bike lock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:word:bike-lock:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bike lock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:word:bike-lock:audio",
+          "transcript": "bike lock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-10:word:bike-lock:r1",
+            "targetText": "bike lock",
+            "meaningByLocale": {
+              "ru": "замок для велосипеда.",
+              "uk": "замок для велосипеда."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bike lock",
+          "definitionByLocale": {
+            "ru": "замок для велосипеда.",
+            "uk": "замок для велосипеда."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти шукав велосипедний замок?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти шукав велосипедний замок?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Were you looking for the bike lock?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты искал велосипедный замок?",
+          "uk": "Скажіть: Ти шукав велосипедний замок?"
+        },
+        "orderedTokens": [
+          "Were",
+          "you",
+          "looking",
+          "for",
+          "the",
+          "bike",
+          "lock"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-10:i02:r1",
+          "text": "Were you looking for the bike lock?"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i02:r2",
+          "text": "Were we looking for the bike lock?"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i02:r3",
+          "text": "Was she looking for the bike lock?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:i02:audio",
+          "transcript": "Were you looking for the bike lock?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-10:i02:r1",
+            "targetText": "Were you looking for the bike lock?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i02:r2",
+            "targetText": "Were we looking for the bike lock?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i02:r3",
+            "targetText": "Was she looking for the bike lock?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Were you looking for the bike lock?",
+              "uk": "У записі звучить Were you looking for the bike lock?"
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Were you looking for the bike lock?",
+              "uk": "У записі звучить Were you looking for the bike lock?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для змісту: Ти шукав велосипедний замок?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-10:i03:r1",
+          "text": "Were"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i03:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i03:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для змісту: Ти шукав велосипедний замок?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Ты искал велосипедный замок?",
+          "uk": "Виберіть форму для змісту: Ти шукав велосипедний замок?"
+        },
+        "gappedTargetPhrase": "___ you looking for the bike lock?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-10:i03:r1",
+            "text": "Were"
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i03:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Виберіть форму для змісту: Ти шукав велосипедний замок?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для змісту: Ти шукав велосипедний замок?",
+            "feedbackByLocale": {
+              "ru": "Речь о прошлом моменте. Нужно Were.",
+              "uk": "Йдеться про минулий момент. Потрібно Were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для змісту: Ти шукав велосипедний замок?",
+            "feedbackByLocale": {
+              "ru": "Did не используется с этой формой действия. Нужно Were.",
+              "uk": "Did не вживається з цією формою дії. Потрібно Were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:word:cycle-helmet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cycle helmet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:word:cycle-helmet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cycle helmet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:word:cycle-helmet:audio",
+          "transcript": "cycle helmet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-10:word:cycle-helmet:r1",
+            "targetText": "cycle helmet",
+            "meaningByLocale": {
+              "ru": "велосипедный шлем.",
+              "uk": "велосипедний шолом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cycle helmet",
+          "definitionByLocale": {
+            "ru": "велосипедный шлем.",
+            "uk": "велосипедний шолом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: На ньому був велосипедний шолом?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: На ньому був велосипедний шолом?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was he wearing a cycle helmet?",
+        "localizedMeaning": {
+          "ru": "Скажите: На нём был велосипедный шлем?",
+          "uk": "Скажіть: На ньому був велосипедний шолом?"
+        },
+        "orderedTokens": [
+          "Was",
+          "he",
+          "wearing",
+          "a",
+          "cycle",
+          "helmet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-10:i05:r1",
+          "text": "Was he wearing a cycle helmet?"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i05:r2",
+          "text": "Was I wearing a cycle helmet?"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i05:r3",
+          "text": "Was she wearing a cycle helmet?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:i05:audio",
+          "transcript": "Was he wearing a cycle helmet?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-10:i05:r1",
+            "targetText": "Was he wearing a cycle helmet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i05:r2",
+            "targetText": "Was I wearing a cycle helmet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i05:r3",
+            "targetText": "Was she wearing a cycle helmet?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was he wearing a cycle helmet?",
+              "uk": "У записі звучить Was he wearing a cycle helmet?"
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was he wearing a cycle helmet?",
+              "uk": "У записі звучить Was he wearing a cycle helmet?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для змісту: На ньому був велосипедний шолом?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-10:i06:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i06:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i06:r3",
+          "text": "Did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для змісту: На ньому був велосипедний шолом?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: На нём был велосипедный шлем?",
+          "uk": "Виберіть форму для змісту: На ньому був велосипедний шолом?"
+        },
+        "gappedTargetPhrase": "___ he wearing a cycle helmet?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-10:i06:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i06:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i06:r3",
+            "text": "Did"
+          }
+        ],
+        "testedDimension": "Виберіть форму для змісту: На ньому був велосипедний шолом?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для змісту: На ньому був велосипедний шолом?",
+            "feedbackByLocale": {
+              "ru": "Речь о прошлом моменте. Нужно Was.",
+              "uk": "Йдеться про минулий момент. Потрібно Was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для змісту: На ньому був велосипедний шолом?",
+            "feedbackByLocale": {
+              "ru": "Did не используется с этой формой действия. Нужно Was.",
+              "uk": "Did не вживається з цією формою дії. Потрібно Was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:word:bike-pump",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bike pump",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:word:bike-pump:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bike pump",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:word:bike-pump:audio",
+          "transcript": "bike pump"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-10:word:bike-pump:r1",
+            "targetText": "bike pump",
+            "meaningByLocale": {
+              "ru": "велосипедный насос.",
+              "uk": "велосипедний насос."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bike pump",
+          "definitionByLocale": {
+            "ru": "велосипедный насос.",
+            "uk": "велосипедний насос."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не користувався велосипедним насосом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не користувався велосипедним насосом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wasn’t using the bike pump.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не пользовался велосипедным насосом",
+          "uk": "Скажіть: Я не користувався велосипедним насосом"
+        },
+        "orderedTokens": [
+          "I",
+          "wasn’t",
+          "using",
+          "the",
+          "bike",
+          "pump"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-10:i08:r1",
+          "text": "I wasn’t using the bike pump."
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i08:r2",
+          "text": "She wasn’t using the bike pump."
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i08:r3",
+          "text": "I was using the bike pump."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:i08:audio",
+          "transcript": "I wasn’t using the bike pump."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-10:i08:r1",
+            "targetText": "I wasn’t using the bike pump.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i08:r2",
+            "targetText": "She wasn’t using the bike pump.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i08:r3",
+            "targetText": "I was using the bike pump.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wasn’t using the bike pump.",
+              "uk": "У записі звучить I wasn’t using the bike pump."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I wasn’t using the bike pump.",
+              "uk": "У записі звучить I wasn’t using the bike pump."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для змісту: Я не користувався велосипедним насосом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-10:i09:r1",
+          "text": "wasn’t"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i09:r3",
+          "text": "weren’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для змісту: Я не користувався велосипедним насосом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Я не пользовался велосипедным насосом",
+          "uk": "Виберіть форму для змісту: Я не користувався велосипедним насосом"
+        },
+        "gappedTargetPhrase": "I ___ using the bike pump.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-10:i09:r1",
+            "text": "wasn’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i09:r3",
+            "text": "weren’t"
+          }
+        ],
+        "testedDimension": "Виберіть форму для змісту: Я не користувався велосипедним насосом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для змісту: Я не користувався велосипедним насосом",
+            "feedbackByLocale": {
+              "ru": "Без not смысл меняется на утверждение. Нужно wasn’t.",
+              "uk": "Без not зміст змінюється на ствердження. Потрібно wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для змісту: Я не користувався велосипедним насосом",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна wasn’t.",
+              "uk": "З цим підметом потрібна wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:word:bike-bell",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bike bell",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:word:bike-bell:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bike bell",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:word:bike-bell:audio",
+          "transcript": "bike bell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-10:word:bike-bell:r1",
+            "targetText": "bike bell",
+            "meaningByLocale": {
+              "ru": "велосипедный звонок.",
+              "uk": "велосипедний дзвінок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bike bell",
+          "definitionByLocale": {
+            "ru": "велосипедный звонок.",
+            "uk": "велосипедний дзвінок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони не користувалися велосипедним дзвінком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони не користувалися велосипедним дзвінком",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They weren’t using the bike bell.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они не пользовались велосипедным звонком",
+          "uk": "Скажіть: Вони не користувалися велосипедним дзвінком"
+        },
+        "orderedTokens": [
+          "They",
+          "weren’t",
+          "using",
+          "the",
+          "bike",
+          "bell"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-10:i11:r1",
+          "text": "They weren’t using the bike bell."
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i11:r2",
+          "text": "We weren’t using the bike bell."
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i11:r3",
+          "text": "They were using the bike bell."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:i11:audio",
+          "transcript": "They weren’t using the bike bell."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-10:i11:r1",
+            "targetText": "They weren’t using the bike bell.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i11:r2",
+            "targetText": "We weren’t using the bike bell.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i11:r3",
+            "targetText": "They were using the bike bell.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They weren’t using the bike bell.",
+              "uk": "У записі звучить They weren’t using the bike bell."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They weren’t using the bike bell.",
+              "uk": "У записі звучить They weren’t using the bike bell."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для змісту: Вони не користувалися велосипедним дзвінком",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-10:i12:r1",
+          "text": "weren’t"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i12:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-10:i12:r3",
+          "text": "wasn’t"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для змісту: Вони не користувалися велосипедним дзвінком",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для смысла: Они не пользовались велосипедным звонком",
+          "uk": "Виберіть форму для змісту: Вони не користувалися велосипедним дзвінком"
+        },
+        "gappedTargetPhrase": "They ___ using the bike bell.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-10:i12:r1",
+            "text": "weren’t"
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i12:r3",
+            "text": "wasn’t"
+          }
+        ],
+        "testedDimension": "Виберіть форму для змісту: Вони не користувалися велосипедним дзвінком",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для змісту: Вони не користувалися велосипедним дзвінком",
+            "feedbackByLocale": {
+              "ru": "Без not смысл меняется на утверждение. Нужно weren’t.",
+              "uk": "Без not зміст змінюється на ствердження. Потрібно weren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для змісту: Вони не користувалися велосипедним дзвінком",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна weren’t.",
+              "uk": "З цим підметом потрібна weren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-10:i13:p1",
+            "target": "bike lock",
+            "meaningByLocale": {
+              "ru": "замок для велосипеда",
+              "uk": "замок для велосипеда"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-10:i13:p2",
+            "target": "cycle helmet",
+            "meaningByLocale": {
+              "ru": "велосипедный шлем",
+              "uk": "велосипедний шолом"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-10:i13:p3",
+            "target": "bike pump",
+            "meaningByLocale": {
+              "ru": "велосипедный насос",
+              "uk": "велосипедний насос"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-10:i13:p4",
+            "target": "bike bell",
+            "meaningByLocale": {
+              "ru": "велосипедный звонок",
+              "uk": "велосипедний дзвінок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bike lock",
+          "cycle helmet",
+          "bike pump",
+          "bike bell"
+        ],
+        "rightColumn": [
+          "замок для велосипеда",
+          "велосипедний шолом",
+          "велосипедний насос",
+          "велосипедний дзвінок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:i14:audio",
+          "transcript": "Were you fixing the bike?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Were you fixing the bike?",
+        "orderedTokens": [
+          "Were",
+          "you",
+          "fixing",
+          "the",
+          "bike"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:i15:audio",
+          "transcript": "I wasn’t riding at three."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wasn’t riding at three.",
+        "orderedTokens": [
+          "I",
+          "wasn’t",
+          "riding",
+          "at",
+          "three"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: ти вчора о третій шукав велосипедний насос?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: ти вчора о третій шукав велосипедний насос?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:i16:audio",
+          "transcript": "Were you looking for the bike pump at three yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were you looking for the bike pump at three yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-10:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора о третій я не користувався велосипедним дзвінком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора о третій я не користувався велосипедним дзвінком",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-10:i17:audio",
+          "transcript": "I wasn’t using the bike bell at three yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wasn’t using the bike bell at three yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "06e80e1d1c10349bbf266f1e5b65c52cff5d2db75b3d5d8f081913914f28f8dc"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous questions and negatives",
+    "uk": "review: Past Continuous questions and negatives"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рабочая тетрадь",
+        "uk": "Робочий зошит"
+      },
+      "bodyByLocale": {
+        "ru": "Workbook — рабочая тетрадь с упражнениями. Were you using the workbook? — Ты работал с рабочей тетрадью? Выберите вопрос о вчерашнем моменте.",
+        "uk": "Workbook — робочий зошит із вправами. Were you using the workbook? — Ти працював із робочим зошитом? Виберіть запитання про вчорашній момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-12:intro1:r1",
+              "text": "Were you using the workbook?"
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro1:r2",
+              "text": "Are you using the workbook?"
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro1:r3",
+              "text": "Did you using the workbook?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-12:intro1:r1",
+              "text": "Were you using the workbook?"
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro1:r2",
+              "text": "Are you using the workbook?"
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro1:r3",
+              "text": "Did you using the workbook?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Отчёт об успеваемости",
+        "uk": "Звіт про успішність"
+      },
+      "bodyByLocale": {
+        "ru": "School report — школьный отчёт об успеваемости, с оценками и замечаниями учителей. Was he reading the school report? — Он читал школьный отчёт? Выберите правильный вопрос с he.",
+        "uk": "School report — шкільний звіт про успішність, з оцінками та зауваженнями вчителів. Was he reading the school report? — Він читав шкільний звіт? Виберіть правильне запитання з he."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-12:intro2:r1",
+              "text": "Was he reading the school report?"
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro2:r2",
+              "text": "Were he reading the school report?"
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro2:r3",
+              "text": "Did he reading the school report?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-12:intro2:r1",
+              "text": "Was he reading the school report?"
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro2:r2",
+              "text": "Were he reading the school report?"
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro2:r3",
+              "text": "Did he reading the school report?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дневник и лист ответов",
+        "uk": "Щоденник і аркуш відповідей"
+      },
+      "bodyByLocale": {
+        "ru": "Homework diary — дневник для записи домашних заданий; answer sheet — лист для ответов. I wasn’t writing in the homework diary. — Я не писал в дневнике домашних заданий. Выберите отрицание.",
+        "uk": "Homework diary — щоденник для запису домашніх завдань; answer sheet — аркуш для відповідей. I wasn’t writing in the homework diary. — Я не писав у щоденнику домашніх завдань. Виберіть заперечення."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-12:intro3:r1",
+              "text": "I wasn’t writing in the homework diary."
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro3:r2",
+              "text": "I was writing in the homework diary."
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro3:r3",
+              "text": "I weren’t writing in the homework diary."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-12:intro3:r1",
+              "text": "I wasn’t writing in the homework diary."
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro3:r2",
+              "text": "I was writing in the homework diary."
+            },
+            {
+              "responseId": "en:lesson-14:session-12:intro3:r3",
+              "text": "I weren’t writing in the homework diary."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "95353dbfd1f930bda391df9b0675be098789a7fb292d1beaa583dabdde1299af"
+}

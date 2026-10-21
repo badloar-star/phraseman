@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "review: was/were + verb-ing",
+    "uk": "review: was/were + verb-ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Жареный рис",
+        "uk": "Смажений рис"
+      },
+      "bodyByLocale": {
+        "ru": "Fried rice — жареный рис, блюдо из риса, обжаренного с другими продуктами. I was cooking fried rice. — Я готовил жареный рис. Выберите действие в прошлом моменте.",
+        "uk": "Fried rice — смажений рис, страва з рису, обсмаженого з іншими продуктами. I was cooking fried rice. — Я готував смажений рис. Виберіть дію в минулий момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-07:intro1:r1",
+              "text": "I was cooking fried rice."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro1:r2",
+              "text": "I am cooking fried rice."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro1:r3",
+              "text": "I were cooking fried rice."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-07:intro1:r1",
+              "text": "I was cooking fried rice."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro1:r2",
+              "text": "I am cooking fried rice."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro1:r3",
+              "text": "I were cooking fried rice."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Суп и рыбная котлета",
+        "uk": "Суп і рибна котлета"
+      },
+      "bodyByLocale": {
+        "ru": "Noodle soup — суп с лапшой; fishcake — рыбная котлета. She was eating a fishcake. — Она ела рыбную котлету. Выберите котлету.",
+        "uk": "Noodle soup — суп із локшиною; fishcake — рибна котлета. She was eating a fishcake. — Вона їла рибну котлету. Виберіть котлету."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-07:intro2:r1",
+              "text": "She was eating a fishcake."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro2:r2",
+              "text": "She was eating noodle soup."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro2:r3",
+              "text": "She were eating a fishcake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-07:intro2:r1",
+              "text": "She was eating a fishcake."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro2:r2",
+              "text": "She was eating noodle soup."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro2:r3",
+              "text": "She were eating a fishcake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рулетик с начинкой",
+        "uk": "Рулетик із начинкою"
+      },
+      "bodyByLocale": {
+        "ru": "Spring roll — небольшой рулетик с начинкой в тонкой оболочке, блюдо азиатской кухни. We were eating a spring roll. — Мы ели спринг-ролл. Выберите прошлое действие.",
+        "uk": "Spring roll — невеликий рулетик із начинкою в тонкій оболонці, страва азійської кухні. We were eating a spring roll. — Ми їли спринг-рол. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-07:intro3:r1",
+              "text": "We were eating a spring roll."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro3:r2",
+              "text": "We was eating a spring roll."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro3:r3",
+              "text": "We are eating a spring roll."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-07:intro3:r1",
+              "text": "We were eating a spring roll."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro3:r2",
+              "text": "We was eating a spring roll."
+            },
+            {
+              "responseId": "en:lesson-14:session-07:intro3:r3",
+              "text": "We are eating a spring roll."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3374ead9eeda8d30bde55e9bbaddc07e688b0943f0b06643f56ae63db0df66ca"
+}

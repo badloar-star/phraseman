@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-05:word:toy-train",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — toy train",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:word:toy-train:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — toy train",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:word:toy-train:audio",
+          "transcript": "toy train"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-05:word:toy-train:r1",
+            "targetText": "toy train",
+            "meaningByLocale": {
+              "ru": "игрушечный поезд.",
+              "uk": "іграшковий потяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toy train",
+          "definitionByLocale": {
+            "ru": "игрушечный поезд.",
+            "uk": "іграшковий потяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я играл с игрушечным поездом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я играл с игрушечным поездом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was playing with a toy train.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я играл с игрушечным поездом",
+          "uk": "Скажіть: Я грався з іграшковим потягом"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "playing",
+          "with",
+          "a",
+          "toy",
+          "train"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-05:i02:r1",
+          "text": "You were playing with a toy train."
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i02:r2",
+          "text": "I was playing with a toy train."
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i02:r3",
+          "text": "They were playing with a toy train."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:i02:audio",
+          "transcript": "You were playing with a toy train."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-05:i02:r1",
+            "targetText": "You were playing with a toy train.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i02:r2",
+            "targetText": "I was playing with a toy train.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i02:r3",
+            "targetText": "They were playing with a toy train.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing with a toy train.",
+              "uk": "У записі звучить You were playing with a toy train."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing with a toy train.",
+              "uk": "У записі звучить You were playing with a toy train."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-05:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ playing with a toy train.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-05:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i03:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:word:toy-boat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — toy boat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:word:toy-boat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — toy boat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:word:toy-boat:audio",
+          "transcript": "toy boat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-05:word:toy-boat:r1",
+            "targetText": "toy boat",
+            "meaningByLocale": {
+              "ru": "игрушечная лодка.",
+              "uk": "іграшковий човен."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toy boat",
+          "definitionByLocale": {
+            "ru": "игрушечная лодка.",
+            "uk": "іграшковий човен."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они играли с игрушечной лодкой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они играли с игрушечной лодкой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were playing with a toy boat.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они играли с игрушечной лодкой",
+          "uk": "Скажіть: Вони гралися з іграшковим човном"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "playing",
+          "with",
+          "a",
+          "toy",
+          "boat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-05:i05:r1",
+          "text": "You were playing with a toy boat."
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i05:r2",
+          "text": "They were playing with a toy boat."
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i05:r3",
+          "text": "She was playing with a toy boat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:i05:audio",
+          "transcript": "You were playing with a toy boat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-05:i05:r1",
+            "targetText": "You were playing with a toy boat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i05:r2",
+            "targetText": "They were playing with a toy boat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i05:r3",
+            "targetText": "She was playing with a toy boat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing with a toy boat.",
+              "uk": "У записі звучить You were playing with a toy boat."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing with a toy boat.",
+              "uk": "У записі звучить You were playing with a toy boat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-05:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ playing with a toy boat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-05:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i06:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:word:dollhouse",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dollhouse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:word:dollhouse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dollhouse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:word:dollhouse:audio",
+          "transcript": "dollhouse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-05:word:dollhouse:r1",
+            "targetText": "dollhouse",
+            "meaningByLocale": {
+              "ru": "кукольный домик.",
+              "uk": "ляльковий будиночок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dollhouse",
+          "definitionByLocale": {
+            "ru": "кукольный домик.",
+            "uk": "ляльковий будиночок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она играла с кукольным домиком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она играла с кукольным домиком",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was playing with a dollhouse.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она играла с кукольным домиком",
+          "uk": "Скажіть: Вона гралася з ляльковим будиночком"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "playing",
+          "with",
+          "a",
+          "dollhouse"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-05:i08:r1",
+          "text": "You were playing with a dollhouse."
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i08:r2",
+          "text": "She was playing with a dollhouse."
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i08:r3",
+          "text": "They were playing with a dollhouse."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:i08:audio",
+          "transcript": "You were playing with a dollhouse."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-05:i08:r1",
+            "targetText": "You were playing with a dollhouse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i08:r2",
+            "targetText": "She was playing with a dollhouse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i08:r3",
+            "targetText": "They were playing with a dollhouse.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing with a dollhouse.",
+              "uk": "У записі звучить You were playing with a dollhouse."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing with a dollhouse.",
+              "uk": "У записі звучить You were playing with a dollhouse."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-05:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ playing with a dollhouse.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-05:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-05:i09:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i09:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:word:rocking-horse",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rocking horse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:word:rocking-horse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rocking horse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:word:rocking-horse:audio",
+          "transcript": "rocking horse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-05:word:rocking-horse:r1",
+            "targetText": "rocking horse",
+            "meaningByLocale": {
+              "ru": "лошадка-качалка.",
+              "uk": "коник-гойдалка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rocking horse",
+          "definitionByLocale": {
+            "ru": "лошадка-качалка.",
+            "uk": "коник-гойдалка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Он сидел на лошадке-качалке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Он сидел на лошадке-качалке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He was sitting on a rocking horse.",
+        "localizedMeaning": {
+          "ru": "Скажите: Он сидел на лошадке-качалке",
+          "uk": "Скажіть: Він сидів на конику-гойдалці"
+        },
+        "orderedTokens": [
+          "He",
+          "was",
+          "sitting",
+          "on",
+          "a",
+          "rocking",
+          "horse"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-05:i11:r1",
+          "text": "You were sitting on a rocking horse."
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i11:r2",
+          "text": "He was sitting on a rocking horse."
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i11:r3",
+          "text": "They were sitting on a rocking horse."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:i11:audio",
+          "transcript": "You were sitting on a rocking horse."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-05:i11:r1",
+            "targetText": "You were sitting on a rocking horse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i11:r2",
+            "targetText": "He was sitting on a rocking horse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i11:r3",
+            "targetText": "They were sitting on a rocking horse.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were sitting on a rocking horse.",
+              "uk": "У записі звучить You were sitting on a rocking horse."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were sitting on a rocking horse.",
+              "uk": "У записі звучить You were sitting on a rocking horse."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-05:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i12:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-05:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "He ___ sitting on a rocking horse.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-05:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-05:i12:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-05:i12:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-05:i13:p1",
+            "target": "toy train",
+            "meaningByLocale": {
+              "ru": "игрушечный поезд",
+              "uk": "іграшковий потяг"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-05:i13:p2",
+            "target": "toy boat",
+            "meaningByLocale": {
+              "ru": "игрушечная лодка",
+              "uk": "іграшковий човен"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-05:i13:p3",
+            "target": "dollhouse",
+            "meaningByLocale": {
+              "ru": "кукольный домик",
+              "uk": "ляльковий будиночок"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-05:i13:p4",
+            "target": "rocking horse",
+            "meaningByLocale": {
+              "ru": "лошадка-качалка",
+              "uk": "коник-гойдалка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "toy train",
+          "toy boat",
+          "dollhouse",
+          "rocking horse"
+        ],
+        "rightColumn": [
+          "игрушечный поезд",
+          "игрушечная лодка",
+          "кукольный домик",
+          "лошадка-качалка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:i14:audio",
+          "transcript": "We were playing at five."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We were playing at five.",
+        "orderedTokens": [
+          "We",
+          "were",
+          "playing",
+          "at",
+          "five"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:i15:audio",
+          "transcript": "She was sitting on the floor."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She was sitting on the floor.",
+        "orderedTokens": [
+          "She",
+          "was",
+          "sitting",
+          "on",
+          "the",
+          "floor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера в пять я играл с игрушечной лодкой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера в пять я играл с игрушечной лодкой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:i16:audio",
+          "transcript": "I was playing with a toy boat at five yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was playing with a toy boat at five yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-05:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера в пять она сидела на лошадке-качалке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера в пять она сидела на лошадке-качалке",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-05:i17:audio",
+          "transcript": "She was sitting on a rocking horse at five yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was sitting on a rocking horse at five yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d21f5fe43dc432289e3ac9865c00a494f86832e04ea6fe70f98f60e1db3634e7"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-10:word:bike-lock",
+    "correctText": "bike lock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i01",
+    "correctText": "Were you looking for the bike lock?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i02",
+    "correctText": "Were you looking for the bike lock?",
+    "correctResponseId": "en:lesson-14:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i03",
+    "correctText": "Were",
+    "correctResponseId": "en:lesson-14:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:word:cycle-helmet",
+    "correctText": "cycle helmet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i04",
+    "correctText": "Was he wearing a cycle helmet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i05",
+    "correctText": "Was he wearing a cycle helmet?",
+    "correctResponseId": "en:lesson-14:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i06",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-14:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:word:bike-pump",
+    "correctText": "bike pump",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i07",
+    "correctText": "I wasn’t using the bike pump.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i08",
+    "correctText": "I wasn’t using the bike pump.",
+    "correctResponseId": "en:lesson-14:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i09",
+    "correctText": "wasn’t",
+    "correctResponseId": "en:lesson-14:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:word:bike-bell",
+    "correctText": "bike bell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i10",
+    "correctText": "They weren’t using the bike bell.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i11",
+    "correctText": "They weren’t using the bike bell.",
+    "correctResponseId": "en:lesson-14:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i12",
+    "correctText": "weren’t",
+    "correctResponseId": "en:lesson-14:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i13",
+    "correctText": "en:lesson-14:session-10:i13:p1=bike lock\nen:lesson-14:session-10:i13:p2=cycle helmet\nen:lesson-14:session-10:i13:p3=bike pump\nen:lesson-14:session-10:i13:p4=bike bell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i14",
+    "correctText": "Were you fixing the bike?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i15",
+    "correctText": "I wasn’t riding at three.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i16",
+    "correctText": "Were you looking for the bike pump at three yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-10:i17",
+    "correctText": "I wasn’t using the bike bell at three yesterday.",
+    "correctResponseId": null
+  }
+]

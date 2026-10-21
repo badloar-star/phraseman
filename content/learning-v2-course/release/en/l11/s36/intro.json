@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Зеркало в ванной",
+        "uk": "Дзеркало у ванній"
+      },
+      "bodyByLocale": {
+        "ru": "Bathroom mirror — «зеркало в ванной». Вчера оно было грязным: The bathroom mirror was dirty yesterday. После уборки оно чистое: It is clean now. Выберите фразу о вчерашнем состоянии зеркала.",
+        "uk": "Bathroom mirror — «дзеркало у ванній». Учора воно було брудне: The bathroom mirror was dirty yesterday. Після прибирання воно чисте: It is clean now. Виберіть фразу про вчорашній стан дзеркала."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-36:intro1:r1",
+              "text": "The bathroom mirror was dirty yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro1:r2",
+              "text": "The bathroom mirror is dirty yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro1:r3",
+              "text": "The bathroom mirror were dirty yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-36:intro1:r1",
+              "text": "The bathroom mirror was dirty yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro1:r2",
+              "text": "The bathroom mirror is dirty yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro1:r3",
+              "text": "The bathroom mirror were dirty yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шторка и щётка",
+        "uk": "Шторка й щітка"
+      },
+      "bodyByLocale": {
+        "ru": "Shower curtain — «шторка для душа». Toilet brush — «ёршик для унитаза». Вчера шторка была мокрой: The shower curtain was wet. Сейчас сухая: The shower curtain is dry now. Выберите сообщение о сухой шторке сейчас.",
+        "uk": "Shower curtain — «шторка для душу». Toilet brush — «йоржик для унітаза». Учора шторка була мокра: The shower curtain was wet. Зараз суха: The shower curtain is dry now. Виберіть повідомлення про суху шторку зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-36:intro2:r1",
+              "text": "The shower curtain is dry now."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro2:r2",
+              "text": "The shower curtain was dry now."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro2:r3",
+              "text": "The shower curtain are dry now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-36:intro2:r1",
+              "text": "The shower curtain is dry now."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro2:r2",
+              "text": "The shower curtain was dry now."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro2:r3",
+              "text": "The shower curtain are dry now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мыльница",
+        "uk": "Мильниця"
+      },
+      "bodyByLocale": {
+        "ru": "Soap dish — «мыльница», небольшая подставка для куска мыла. Вчера она была рядом с умывальником: There was a soap dish next to the washbasin. С двумя мыльницами было бы there were two soap dishes. Сейчас говорим об одной. Выберите фразу.",
+        "uk": "Soap dish — «мильниця», невелика підставка для шматка мила. Учора вона була поруч з умивальником: There was a soap dish next to the washbasin. Із двома мильницями було б there were two soap dishes. Зараз говоримо про одну. Виберіть фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-36:intro3:r1",
+              "text": "There was a soap dish next to the washbasin."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro3:r2",
+              "text": "There were a soap dish next to the washbasin."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro3:r3",
+              "text": "There was soap dish next to the washbasin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-36:intro3:r1",
+              "text": "There was a soap dish next to the washbasin."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro3:r2",
+              "text": "There were a soap dish next to the washbasin."
+            },
+            {
+              "responseId": "en:lesson-11:session-36:intro3:r3",
+              "text": "There was soap dish next to the washbasin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d815be5cc8dad8e43fdc0e3fe7939ba1f83519c463a4a4312c352219c50abc79"
+}

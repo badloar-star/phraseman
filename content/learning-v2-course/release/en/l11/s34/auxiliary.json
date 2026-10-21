@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-34:intro1:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-34:intro1:r3": {
+          "ru": "Одна лампа: was.",
+          "uk": "Одна лампа: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-34:intro2:r2": {
+          "ru": "Off означает «выключен», а свет горел.",
+          "uk": "Off означає «вимкнений», а світло горіло."
+        },
+        "en:lesson-11:session-34:intro2:r3": {
+          "ru": "Один светильник: was.",
+          "uk": "Один світильник: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-34:intro3:r2": {
+          "ru": "Два предмета: were.",
+          "uk": "Два предмети: were."
+        },
+        "en:lesson-11:session-34:intro3:r3": {
+          "ru": "Перед two не ставим a.",
+          "uk": "Перед two не ставимо a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6f40fea13e357547bc3c709da989c56a8a082b51b0db24febdb40665e641e60f"
+}

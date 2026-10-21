@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-36:intro1:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-36:intro1:r3": {
+          "ru": "Одно зеркало: was.",
+          "uk": "Одне дзеркало: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-36:intro2:r2": {
+          "ru": "Сейчас: is.",
+          "uk": "Зараз: is."
+        },
+        "en:lesson-11:session-36:intro2:r3": {
+          "ru": "Одна шторка: is.",
+          "uk": "Одна шторка: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-36:intro3:r2": {
+          "ru": "Одна мыльница: was.",
+          "uk": "Одна мильниця: was."
+        },
+        "en:lesson-11:session-36:intro3:r3": {
+          "ru": "Здесь перед одним предметом нужен a.",
+          "uk": "Тут перед одним предметом потрібне a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4311effe71c68560b855e34e6328e5d887eaed6c8a6ca5fe52c3c36d650650a4"
+}

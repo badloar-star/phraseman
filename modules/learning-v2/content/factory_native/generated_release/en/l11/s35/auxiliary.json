@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-35:intro1:r2": {
+          "ru": "Две кровати: were.",
+          "uk": "Два ліжка: were."
+        },
+        "en:lesson-11:session-35:intro1:r3": {
+          "ru": "Перед two не ставим a.",
+          "uk": "Перед two не ставимо a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-35:intro2:r2": {
+          "ru": "Один будильник: was.",
+          "uk": "Один будильник: was."
+        },
+        "en:lesson-11:session-35:intro2:r3": {
+          "ru": "С was не нужен did.",
+          "uk": "Із was не потрібен did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-35:intro3:r2": {
+          "ru": "Один комод: was.",
+          "uk": "Один комод: was."
+        },
+        "en:lesson-11:session-35:intro3:r3": {
+          "ru": "Описываем один предмет в прошлом: was.",
+          "uk": "Описуємо один предмет у минулому: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f7cd446acbd606afbe44ef0ba9dc2b5c49c9f4b9a9b38a208875eec59cfbd7e3"
+}

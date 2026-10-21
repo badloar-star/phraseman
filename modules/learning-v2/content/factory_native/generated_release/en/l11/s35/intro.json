@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Односпальная кровать",
+        "uk": "Односпальне ліжко"
+      },
+      "bodyByLocale": {
+        "ru": "Single bed — «односпальная кровать», для одного человека. Вчера в комнате были две такие кровати: There were two single beds in the room. Single описывает размер каждой кровати; two сообщает их количество. Поэтому were. Выберите эту фразу.",
+        "uk": "Single bed — «односпальне ліжко», для однієї людини. Учора в кімнаті було два такі ліжка: There were two single beds in the room. Single описує розмір кожного ліжка; two повідомляє їхню кількість. Тому were. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-35:intro1:r1",
+              "text": "There were two single beds in the room."
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro1:r2",
+              "text": "There was two single beds in the room."
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro1:r3",
+              "text": "There were a two single beds in the room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-35:intro1:r1",
+              "text": "There were two single beds in the room."
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro1:r2",
+              "text": "There was two single beds in the room."
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro1:r3",
+              "text": "There were a two single beds in the room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Будильник",
+        "uk": "Будильник"
+      },
+      "bodyByLocale": {
+        "ru": "Alarm clock — «будильник». Перед начальным гласным звуком используем an: There was an alarm clock next to the bed — «Рядом с кроватью был будильник». Если спрашиваем о знакомом будильнике: Was the alarm clock on the table? Выберите вопрос о столе.",
+        "uk": "Alarm clock — «будильник». Перед початковим голосним звуком використовуємо an: There was an alarm clock next to the bed — «Поруч із ліжком був будильник». Якщо запитуємо про знайомий будильник: Was the alarm clock on the table? Виберіть запитання про стіл."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-35:intro2:r1",
+              "text": "Was the alarm clock on the table?"
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro2:r2",
+              "text": "Were the alarm clock on the table?"
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro2:r3",
+              "text": "Did the alarm clock was on the table?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-35:intro2:r1",
+              "text": "Was the alarm clock on the table?"
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro2:r2",
+              "text": "Were the alarm clock on the table?"
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro2:r3",
+              "text": "Did the alarm clock was on the table?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Столик и комод",
+        "uk": "Столик і комод"
+      },
+      "bodyByLocale": {
+        "ru": "Dressing table — «туалетный столик», за которым причёсываются и собираются. Chest of drawers — «комод», предмет мебели с выдвижными ящиками. Несмотря на drawers во множественном числе, один комод — a chest of drawers: The chest of drawers was near the door. Главное слово chest обозначает один предмет. Выберите фразу об одном комоде.",
+        "uk": "Dressing table — «туалетний столик», за яким зачісуються та збираються. Chest of drawers — «комод», предмет меблів із висувними шухлядами. Попри drawers у множині, один комод — a chest of drawers: The chest of drawers was near the door. Головне слово chest означає один предмет. Виберіть фразу про один комод."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-35:intro3:r1",
+              "text": "The chest of drawers was near the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro3:r2",
+              "text": "The chest of drawers were near the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro3:r3",
+              "text": "The chest of drawers are near the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-35:intro3:r1",
+              "text": "The chest of drawers was near the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro3:r2",
+              "text": "The chest of drawers were near the door."
+            },
+            {
+              "responseId": "en:lesson-11:session-35:intro3:r3",
+              "text": "The chest of drawers are near the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6053154ae63ee9ce679794a5e8b24291b125c8f5ecd7d5239105c35bbf73f932"
+}

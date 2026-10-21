@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Настольная лампа",
+        "uk": "Настільна лампа"
+      },
+      "bodyByLocale": {
+        "ru": "Table lamp — «настольная лампа». Вчера она стояла у кровати: The table lamp was next to the bed yesterday. Сейчас она на столе: It is on the table now. Время меняет форму be: вчера was, сейчас is. Выберите сообщение о вчерашнем месте лампы.",
+        "uk": "Table lamp — «настільна лампа». Учора вона стояла біля ліжка: The table lamp was next to the bed yesterday. Зараз вона на столі: It is on the table now. Час змінює форму be: учора was, зараз is. Виберіть повідомлення про вчорашнє місце лампи."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-34:intro1:r1",
+              "text": "The table lamp was next to the bed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro1:r2",
+              "text": "The table lamp is next to the bed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro1:r3",
+              "text": "The table lamp were next to the bed yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-34:intro1:r1",
+              "text": "The table lamp was next to the bed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro1:r2",
+              "text": "The table lamp is next to the bed yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro1:r3",
+              "text": "The table lamp were next to the bed yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Светильник и выключатель",
+        "uk": "Світильник і вимикач"
+      },
+      "bodyByLocale": {
+        "ru": "Ceiling light — «потолочный светильник», light switch — «выключатель света». Светильник был включён: The ceiling light was on. Был выключен: The ceiling light was off. Вчера, когда вы вошли, свет горел. Выберите сообщение о включённом светильнике.",
+        "uk": "Ceiling light — «стельовий світильник», light switch — «вимикач світла». Світильник був увімкнений: The ceiling light was on. Був вимкнений: The ceiling light was off. Учора, коли ви ввійшли, світло горіло. Виберіть повідомлення про ввімкнений світильник."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-34:intro2:r1",
+              "text": "The ceiling light was on."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro2:r2",
+              "text": "The ceiling light was off."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro2:r3",
+              "text": "The ceiling light were on."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-34:intro2:r1",
+              "text": "The ceiling light was on."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro2:r2",
+              "text": "The ceiling light was off."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro2:r3",
+              "text": "The ceiling light were on."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Розетка на стене",
+        "uk": "Розетка на стіні"
+      },
+      "bodyByLocale": {
+        "ru": "Wall socket — «электрическая розетка на стене». Вчера рядом со столом было две розетки: There were two wall sockets near the table. В названии во множественное число ставим socket: sockets. Выберите сообщение о двух розетках.",
+        "uk": "Wall socket — «електрична розетка на стіні». Учора поруч зі столом було дві розетки: There were two wall sockets near the table. У назві в множину ставимо socket: sockets. Виберіть повідомлення про дві розетки."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-34:intro3:r1",
+              "text": "There were two wall sockets near the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro3:r2",
+              "text": "There was two wall sockets near the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro3:r3",
+              "text": "There were a two wall sockets near the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-34:intro3:r1",
+              "text": "There were two wall sockets near the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro3:r2",
+              "text": "There was two wall sockets near the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-34:intro3:r3",
+              "text": "There were a two wall sockets near the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ee893ea3d47ee25f01ca36cbf09c789e5dc50c8064f9e54339ccc06aa07046ca"
+}

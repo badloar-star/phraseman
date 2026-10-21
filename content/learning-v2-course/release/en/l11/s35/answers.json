@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-35:word:single-bed",
+    "correctText": "single bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i01",
+    "correctText": "Was the single bed comfortable?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i02",
+    "correctText": "The single bed was near the window.",
+    "correctResponseId": "en:lesson-11:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:word:alarm-clock",
+    "correctText": "alarm clock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i04",
+    "correctText": "There was an alarm clock next to the bed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i05",
+    "correctText": "The alarm clock was on the table.",
+    "correctResponseId": "en:lesson-11:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:word:dressing-table",
+    "correctText": "dressing table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i07",
+    "correctText": "Was the dressing table clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i08",
+    "correctText": "There was a mirror on the dressing table.",
+    "correctResponseId": "en:lesson-11:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:word:chest-of-drawers",
+    "correctText": "chest of drawers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i10",
+    "correctText": "There was a chest of drawers near the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i11",
+    "correctText": "The chest of drawers was in the bedroom.",
+    "correctResponseId": "en:lesson-11:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i13",
+    "correctText": "en:lesson-11:session-35:i13:p1=single bed\nen:lesson-11:session-35:i13:p2=alarm clock\nen:lesson-11:session-35:i13:p3=dressing table\nen:lesson-11:session-35:i13:p4=chest of drawers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i14",
+    "correctText": "Please don't move my clock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i15",
+    "correctText": "I am looking for my clock right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i16",
+    "correctText": "The alarm clock was not on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-35:i17",
+    "correctText": "Was the chest of drawers in the bedroom?",
+    "correctResponseId": null
+  }
+]

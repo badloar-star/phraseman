@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-36:word:bathroom-mirror",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bathroom mirror",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:word:bathroom-mirror:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bathroom mirror",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:word:bathroom-mirror:audio",
+            "transcript": "bathroom mirror"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:word:bathroom-mirror:r1",
+              "targetText": "bathroom mirror",
+              "meaningByLocale": {
+                "ru": "зеркало в ванной.",
+                "uk": "дзеркало у ванній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bathroom mirror",
+            "definitionByLocale": {
+              "ru": "зеркало в ванной.",
+              "uk": "дзеркало у ванній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, было ли зеркало в ванной чистым",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, было ли зеркало в ванной чистым",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the bathroom mirror clean?",
+          "localizedMeaning": {
+            "ru": "Спросите, было ли зеркало в ванной чистым",
+            "uk": "Запитайте, чи було дзеркало у ванній чисте"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "bathroom",
+            "mirror",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i02:r1",
+            "text": "The bathroom mirror was dirty."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i02:r2",
+            "text": "The bathroom mirror is dirty."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i02:r3",
+            "text": "Was the bathroom mirror dirty?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i02:audio",
+            "transcript": "The bathroom mirror was dirty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:i02:r1",
+              "targetText": "The bathroom mirror was dirty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i02:r2",
+              "targetText": "The bathroom mirror is dirty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i02:r3",
+              "targetText": "Was the bathroom mirror dirty?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bathroom mirror was dirty.",
+                "uk": "У записі звучить The bathroom mirror was dirty."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bathroom mirror was dirty.",
+                "uk": "У записі звучить The bathroom mirror was dirty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сейчас зеркало чистое. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сейчас зеркало чистое. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас зеркало чистое. Выберите форму",
+            "uk": "Зараз дзеркало чисте. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The bathroom mirror ___ clean now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-36:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сейчас зеркало чистое. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Сейчас зеркало чистое. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас, нужна is.",
+                "uk": "Now — зараз, потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Сейчас зеркало чистое. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один предмет: is.",
+                "uk": "Один предмет: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:word:shower-curtain",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shower curtain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:word:shower-curtain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shower curtain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:word:shower-curtain:audio",
+            "transcript": "shower curtain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:word:shower-curtain:r1",
+              "targetText": "shower curtain",
+              "meaningByLocale": {
+                "ru": "шторка для душа.",
+                "uk": "шторка для душу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shower curtain",
+            "definitionByLocale": {
+              "ru": "шторка для душа.",
+              "uk": "шторка для душу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что шторка для душа была мокрой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что шторка для душа была мокрой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The shower curtain was wet.",
+          "localizedMeaning": {
+            "ru": "Скажите, что шторка для душа была мокрой",
+            "uk": "Скажіть, що шторка для душу була мокра"
+          },
+          "orderedTokens": [
+            "The",
+            "shower",
+            "curtain",
+            "was",
+            "wet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i05:r1",
+            "text": "The shower curtain is dry now."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i05:r2",
+            "text": "The shower curtain was dry yesterday."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i05:r3",
+            "text": "The shower curtain is wet now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i05:audio",
+            "transcript": "The shower curtain is dry now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:i05:r1",
+              "targetText": "The shower curtain is dry now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i05:r2",
+              "targetText": "The shower curtain was dry yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i05:r3",
+              "targetText": "The shower curtain is wet now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The shower curtain is dry now.",
+                "uk": "У записі звучить The shower curtain is dry now."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The shower curtain is dry now.",
+                "uk": "У записі звучить The shower curtain is dry now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера шторка была грязной. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера шторка была грязной. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера шторка была грязной. Выберите форму",
+            "uk": "Учора шторка була брудна. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The shower curtain ___ dirty yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-36:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера шторка была грязной. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Вчера шторка была грязной. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was, не is.",
+                "uk": "Учора: was, не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Вчера шторка была грязной. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один предмет: was.",
+                "uk": "Один предмет: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:word:toilet-brush",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — toilet brush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:word:toilet-brush:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — toilet brush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:word:toilet-brush:audio",
+            "transcript": "toilet brush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:word:toilet-brush:r1",
+              "targetText": "toilet brush",
+              "meaningByLocale": {
+                "ru": "ёршик для унитаза.",
+                "uk": "йоржик для унітаза."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toilet brush",
+            "definitionByLocale": {
+              "ru": "ёршик для унитаза.",
+              "uk": "йоржик для унітаза."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: рядом с унитазом был ёршик. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: рядом с унитазом был ёршик. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a toilet brush next to the toilet.",
+          "localizedMeaning": {
+            "ru": "Сообщите: рядом с унитазом был ёршик. Начните с There",
+            "uk": "Повідомте: поруч з унітазом був йоржик. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "toilet",
+            "brush",
+            "next",
+            "to",
+            "the",
+            "toilet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i08:r1",
+            "text": "The toilet brush was near the door."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i08:r2",
+            "text": "The toilet brush is near the door."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i08:r3",
+            "text": "The toilet brush was next to the washbasin."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i08:audio",
+            "transcript": "The toilet brush was near the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:i08:r1",
+              "targetText": "The toilet brush was near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i08:r2",
+              "targetText": "The toilet brush is near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i08:r3",
+              "targetText": "The toilet brush was next to the washbasin.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The toilet brush was near the door.",
+                "uk": "У записі звучить The toilet brush was near the door."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The toilet brush was near the door.",
+                "uk": "У записі звучить The toilet brush was near the door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера рядом с унитазом был ёршик. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i09:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера рядом с унитазом был ёршик. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера рядом с унитазом был ёршик. Выберите форму",
+            "uk": "Учора поруч з унітазом був йоржик. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ a toilet brush next to the toilet yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-36:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i09:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i09:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера рядом с унитазом был ёршик. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Вчера рядом с унитазом был ёршик. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was, не is.",
+                "uk": "Учора: was, не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Вчера рядом с унитазом был ёршик. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один предмет: was.",
+                "uk": "Один предмет: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:word:soap-dish",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soap dish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:word:soap-dish:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soap dish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:word:soap-dish:audio",
+            "transcript": "soap dish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:word:soap-dish:r1",
+              "targetText": "soap dish",
+              "meaningByLocale": {
+                "ru": "мыльница.",
+                "uk": "мильниця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soap dish",
+            "definitionByLocale": {
+              "ru": "мыльница.",
+              "uk": "мильниця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, была ли мыльница пустой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, была ли мыльница пустой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the soap dish empty?",
+          "localizedMeaning": {
+            "ru": "Спросите, была ли мыльница пустой",
+            "uk": "Запитайте, чи була мильниця порожня"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "soap",
+            "dish",
+            "empty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i11:r1",
+            "text": "There were two soap dishes in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i11:r2",
+            "text": "There was a soap dish in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i11:r3",
+            "text": "There were two soap dishes in the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i11:audio",
+            "transcript": "There were two soap dishes in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:i11:r1",
+              "targetText": "There were two soap dishes in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i11:r2",
+              "targetText": "There was a soap dish in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i11:r3",
+              "targetText": "There were two soap dishes in the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two soap dishes in the bathroom.",
+                "uk": "У записі звучить There were two soap dishes in the bathroom."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two soap dishes in the bathroom.",
+                "uk": "У записі звучить There were two soap dishes in the bathroom."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В сумке были две мыльницы. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В сумке были две мыльницы. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В сумке были две мыльницы. Выберите форму",
+            "uk": "У сумці були дві мильниці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two soap dishes in the bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-36:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В сумке были две мыльницы. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "В сумке были две мыльницы. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Несколько предметов: were.",
+                "uk": "Кілька предметів: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "В сумке были две мыльницы. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом нужна were.",
+                "uk": "У минулому потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-36:i13:p1",
+              "target": "bathroom mirror",
+              "meaningByLocale": {
+                "ru": "зеркало в ванной",
+                "uk": "дзеркало у ванній"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-36:i13:p2",
+              "target": "shower curtain",
+              "meaningByLocale": {
+                "ru": "шторка для душа",
+                "uk": "шторка для душу"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-36:i13:p3",
+              "target": "toilet brush",
+              "meaningByLocale": {
+                "ru": "ёршик для унитаза",
+                "uk": "йоржик для унітаза"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-36:i13:p4",
+              "target": "soap dish",
+              "meaningByLocale": {
+                "ru": "мыльница",
+                "uk": "мильниця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bathroom mirror",
+            "shower curtain",
+            "toilet brush",
+            "soap dish"
+          ],
+          "rightColumn": [
+            "зеркало в ванной",
+            "шторка для душа",
+            "ёршик для унитаза",
+            "мыльница"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i14:audio",
+            "transcript": "Please don't move the towels."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't move the towels.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "move",
+            "the",
+            "towels"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i15:audio",
+            "transcript": "I am cleaning right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am cleaning right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "cleaning",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что мыльница была не пустой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что мыльница была не пустой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i16:audio",
+            "transcript": "The soap dish was not empty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The soap dish was not empty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, была ли шторка для душа сухой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите, была ли шторка для душа сухой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i17:audio",
+            "transcript": "Was the shower curtain dry?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the shower curtain dry?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-36:word:bathroom-mirror",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bathroom mirror",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:word:bathroom-mirror:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bathroom mirror",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:word:bathroom-mirror:audio",
+            "transcript": "bathroom mirror"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:word:bathroom-mirror:r1",
+              "targetText": "bathroom mirror",
+              "meaningByLocale": {
+                "ru": "зеркало в ванной.",
+                "uk": "дзеркало у ванній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bathroom mirror",
+            "definitionByLocale": {
+              "ru": "зеркало в ванной.",
+              "uk": "дзеркало у ванній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи було дзеркало у ванній чисте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи було дзеркало у ванній чисте",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the bathroom mirror clean?",
+          "localizedMeaning": {
+            "ru": "Спросите, было ли зеркало в ванной чистым",
+            "uk": "Запитайте, чи було дзеркало у ванній чисте"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "bathroom",
+            "mirror",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i02:r1",
+            "text": "The bathroom mirror was dirty."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i02:r2",
+            "text": "The bathroom mirror is dirty."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i02:r3",
+            "text": "Was the bathroom mirror dirty?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i02:audio",
+            "transcript": "The bathroom mirror was dirty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:i02:r1",
+              "targetText": "The bathroom mirror was dirty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i02:r2",
+              "targetText": "The bathroom mirror is dirty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i02:r3",
+              "targetText": "Was the bathroom mirror dirty?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bathroom mirror was dirty.",
+                "uk": "У записі звучить The bathroom mirror was dirty."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The bathroom mirror was dirty.",
+                "uk": "У записі звучить The bathroom mirror was dirty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зараз дзеркало чисте. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зараз дзеркало чисте. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас зеркало чистое. Выберите форму",
+            "uk": "Зараз дзеркало чисте. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The bathroom mirror ___ clean now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-36:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Зараз дзеркало чисте. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Зараз дзеркало чисте. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас, нужна is.",
+                "uk": "Now — зараз, потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Зараз дзеркало чисте. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один предмет: is.",
+                "uk": "Один предмет: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:word:shower-curtain",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shower curtain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:word:shower-curtain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shower curtain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:word:shower-curtain:audio",
+            "transcript": "shower curtain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:word:shower-curtain:r1",
+              "targetText": "shower curtain",
+              "meaningByLocale": {
+                "ru": "шторка для душа.",
+                "uk": "шторка для душу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shower curtain",
+            "definitionByLocale": {
+              "ru": "шторка для душа.",
+              "uk": "шторка для душу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що шторка для душу була мокра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що шторка для душу була мокра",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The shower curtain was wet.",
+          "localizedMeaning": {
+            "ru": "Скажите, что шторка для душа была мокрой",
+            "uk": "Скажіть, що шторка для душу була мокра"
+          },
+          "orderedTokens": [
+            "The",
+            "shower",
+            "curtain",
+            "was",
+            "wet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i05:r1",
+            "text": "The shower curtain is dry now."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i05:r2",
+            "text": "The shower curtain was dry yesterday."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i05:r3",
+            "text": "The shower curtain is wet now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i05:audio",
+            "transcript": "The shower curtain is dry now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:i05:r1",
+              "targetText": "The shower curtain is dry now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i05:r2",
+              "targetText": "The shower curtain was dry yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i05:r3",
+              "targetText": "The shower curtain is wet now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The shower curtain is dry now.",
+                "uk": "У записі звучить The shower curtain is dry now."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The shower curtain is dry now.",
+                "uk": "У записі звучить The shower curtain is dry now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора шторка була брудна. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора шторка була брудна. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера шторка была грязной. Выберите форму",
+            "uk": "Учора шторка була брудна. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The shower curtain ___ dirty yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-36:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора шторка була брудна. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Учора шторка була брудна. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was, не is.",
+                "uk": "Учора: was, не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Учора шторка була брудна. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один предмет: was.",
+                "uk": "Один предмет: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:word:toilet-brush",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — toilet brush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:word:toilet-brush:audio"
+        ],
+        "accessibilityLabel": "Картка слова — toilet brush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:word:toilet-brush:audio",
+            "transcript": "toilet brush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:word:toilet-brush:r1",
+              "targetText": "toilet brush",
+              "meaningByLocale": {
+                "ru": "ёршик для унитаза.",
+                "uk": "йоржик для унітаза."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toilet brush",
+            "definitionByLocale": {
+              "ru": "ёршик для унитаза.",
+              "uk": "йоржик для унітаза."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: поруч з унітазом був йоржик. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: поруч з унітазом був йоржик. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a toilet brush next to the toilet.",
+          "localizedMeaning": {
+            "ru": "Сообщите: рядом с унитазом был ёршик. Начните с There",
+            "uk": "Повідомте: поруч з унітазом був йоржик. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "toilet",
+            "brush",
+            "next",
+            "to",
+            "the",
+            "toilet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i08:r1",
+            "text": "The toilet brush was near the door."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i08:r2",
+            "text": "The toilet brush is near the door."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i08:r3",
+            "text": "The toilet brush was next to the washbasin."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i08:audio",
+            "transcript": "The toilet brush was near the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:i08:r1",
+              "targetText": "The toilet brush was near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i08:r2",
+              "targetText": "The toilet brush is near the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i08:r3",
+              "targetText": "The toilet brush was next to the washbasin.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The toilet brush was near the door.",
+                "uk": "У записі звучить The toilet brush was near the door."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The toilet brush was near the door.",
+                "uk": "У записі звучить The toilet brush was near the door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора поруч з унітазом був йоржик. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i09:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора поруч з унітазом був йоржик. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера рядом с унитазом был ёршик. Выберите форму",
+            "uk": "Учора поруч з унітазом був йоржик. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ a toilet brush next to the toilet yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-36:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i09:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i09:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора поруч з унітазом був йоржик. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Учора поруч з унітазом був йоржик. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was, не is.",
+                "uk": "Учора: was, не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Учора поруч з унітазом був йоржик. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один предмет: was.",
+                "uk": "Один предмет: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:word:soap-dish",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soap dish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:word:soap-dish:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soap dish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:word:soap-dish:audio",
+            "transcript": "soap dish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:word:soap-dish:r1",
+              "targetText": "soap dish",
+              "meaningByLocale": {
+                "ru": "мыльница.",
+                "uk": "мильниця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soap dish",
+            "definitionByLocale": {
+              "ru": "мыльница.",
+              "uk": "мильниця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи була мильниця порожня",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи була мильниця порожня",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the soap dish empty?",
+          "localizedMeaning": {
+            "ru": "Спросите, была ли мыльница пустой",
+            "uk": "Запитайте, чи була мильниця порожня"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "soap",
+            "dish",
+            "empty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i11:r1",
+            "text": "There were two soap dishes in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i11:r2",
+            "text": "There was a soap dish in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i11:r3",
+            "text": "There were two soap dishes in the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i11:audio",
+            "transcript": "There were two soap dishes in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-36:i11:r1",
+              "targetText": "There were two soap dishes in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i11:r2",
+              "targetText": "There was a soap dish in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i11:r3",
+              "targetText": "There were two soap dishes in the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two soap dishes in the bathroom.",
+                "uk": "У записі звучить There were two soap dishes in the bathroom."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There were two soap dishes in the bathroom.",
+                "uk": "У записі звучить There were two soap dishes in the bathroom."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У сумці були дві мильниці. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-36:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-36:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У сумці були дві мильниці. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В сумке были две мыльницы. Выберите форму",
+            "uk": "У сумці були дві мильниці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two soap dishes in the bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-36:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У сумці були дві мильниці. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "У сумці були дві мильниці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Несколько предметов: were.",
+                "uk": "Кілька предметів: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "У сумці були дві мильниці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом нужна were.",
+                "uk": "У минулому потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-36:i13:p1",
+              "target": "bathroom mirror",
+              "meaningByLocale": {
+                "ru": "зеркало в ванной",
+                "uk": "дзеркало у ванній"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-36:i13:p2",
+              "target": "shower curtain",
+              "meaningByLocale": {
+                "ru": "шторка для душа",
+                "uk": "шторка для душу"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-36:i13:p3",
+              "target": "toilet brush",
+              "meaningByLocale": {
+                "ru": "ёршик для унитаза",
+                "uk": "йоржик для унітаза"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-36:i13:p4",
+              "target": "soap dish",
+              "meaningByLocale": {
+                "ru": "мыльница",
+                "uk": "мильниця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bathroom mirror",
+            "shower curtain",
+            "toilet brush",
+            "soap dish"
+          ],
+          "rightColumn": [
+            "дзеркало у ванній",
+            "шторка для душу",
+            "йоржик для унітаза",
+            "мильниця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i14:audio",
+            "transcript": "Please don't move the towels."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't move the towels.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "move",
+            "the",
+            "towels"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i15:audio",
+            "transcript": "I am cleaning right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am cleaning right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "cleaning",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що мильниця була не порожня",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що мильниця була не порожня",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i16:audio",
+            "transcript": "The soap dish was not empty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The soap dish was not empty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, чи була шторка для душу суха",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте, чи була шторка для душу суха",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-36:i17:audio",
+            "transcript": "Was the shower curtain dry?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the shower curtain dry?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-36:word:bathroom-mirror",
+      "correctText": "bathroom mirror",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i01",
+      "correctText": "Was the bathroom mirror clean?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i02",
+      "correctText": "The bathroom mirror was dirty.",
+      "correctResponseId": "en:lesson-11:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-11:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:word:shower-curtain",
+      "correctText": "shower curtain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i04",
+      "correctText": "The shower curtain was wet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i05",
+      "correctText": "The shower curtain is dry now.",
+      "correctResponseId": "en:lesson-11:session-36:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-36:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:word:toilet-brush",
+      "correctText": "toilet brush",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i07",
+      "correctText": "There was a toilet brush next to the toilet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i08",
+      "correctText": "The toilet brush was near the door.",
+      "correctResponseId": "en:lesson-11:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:word:soap-dish",
+      "correctText": "soap dish",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i10",
+      "correctText": "Was the soap dish empty?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i11",
+      "correctText": "There were two soap dishes in the bathroom.",
+      "correctResponseId": "en:lesson-11:session-36:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-36:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i14",
+      "correctText": "Please don't move the towels.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i15",
+      "correctText": "I am cleaning right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i16",
+      "correctText": "The soap dish was not empty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-36:i17",
+      "correctText": "Was the shower curtain dry?",
+      "correctResponseId": null
+    }
+  ]
+}

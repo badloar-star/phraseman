@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-36:word:bathroom-mirror",
+    "correctText": "bathroom mirror",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i01",
+    "correctText": "Was the bathroom mirror clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i02",
+    "correctText": "The bathroom mirror was dirty.",
+    "correctResponseId": "en:lesson-11:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:word:shower-curtain",
+    "correctText": "shower curtain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i04",
+    "correctText": "The shower curtain was wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i05",
+    "correctText": "The shower curtain is dry now.",
+    "correctResponseId": "en:lesson-11:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:word:toilet-brush",
+    "correctText": "toilet brush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i07",
+    "correctText": "There was a toilet brush next to the toilet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i08",
+    "correctText": "The toilet brush was near the door.",
+    "correctResponseId": "en:lesson-11:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:word:soap-dish",
+    "correctText": "soap dish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i10",
+    "correctText": "Was the soap dish empty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i11",
+    "correctText": "There were two soap dishes in the bathroom.",
+    "correctResponseId": "en:lesson-11:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i13",
+    "correctText": "en:lesson-11:session-36:i13:p1=bathroom mirror\nen:lesson-11:session-36:i13:p2=shower curtain\nen:lesson-11:session-36:i13:p3=toilet brush\nen:lesson-11:session-36:i13:p4=soap dish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i14",
+    "correctText": "Please don't move the towels.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i15",
+    "correctText": "I am cleaning right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i16",
+    "correctText": "The soap dish was not empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-36:i17",
+    "correctText": "Was the shower curtain dry?",
+    "correctResponseId": null
+  }
+]

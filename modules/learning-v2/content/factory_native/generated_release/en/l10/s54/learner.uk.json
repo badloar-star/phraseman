@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-54:word:reschedule",
+      "interactionId": "en:lesson-10:session-54:word:excuse-me",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — reschedule",
+      "prompt": "Картка слова — excuse me",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-54:word:reschedule:audio"
+        "en:lesson-10:session-54:word:excuse-me:audio"
       ],
-      "accessibilityLabel": "Картка слова — reschedule",
+      "accessibilityLabel": "Картка слова — excuse me",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-54:word:reschedule:audio",
-          "transcript": "reschedule"
+          "audioTargetId": "en:lesson-10:session-54:word:excuse-me:audio",
+          "transcript": "excuse me"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-54:word:reschedule:r1",
-            "targetText": "reschedule",
+            "responseId": "en:lesson-10:session-54:word:excuse-me:r1",
+            "targetText": "excuse me",
             "meaningByLocale": {
-              "ru": "«переносить на другое время». I am rescheduling my appointment. — «Я переношу свою встречу». Меняем назначенное время, а не отменяем встречу совсем.",
-              "uk": "«переносити на інший час». I am rescheduling my appointment. — «Я переношу свою зустріч». Змінюємо призначений час, а не скасовуємо зустріч зовсім."
+              "ru": "«Извините». Вежливо привлечь внимание перед вопросом.",
+              "uk": "«Вибачте». Ввічливо привернути увагу перед запитанням."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "reschedule",
+          "word": "excuse me",
           "definitionByLocale": {
-            "ru": "«переносить на другое время». I am rescheduling my appointment. — «Я переношу свою встречу». Меняем назначенное время, а не отменяем встречу совсем.",
-            "uk": "«переносити на інший час». I am rescheduling my appointment. — «Я переношу свою зустріч». Змінюємо призначений час, а не скасовуємо зустріч зовсім."
+            "ru": "«Извините». Вежливо привлечь внимание перед вопросом.",
+            "uk": "«Вибачте». Ввічливо привернути увагу перед запитанням."
           }
         }
       },
@@ -52,24 +52,21 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Адміністратори щотижня змінюють час деяких зустрічей. Скажіть: «Ми переносимо зустрічі щотижня». Поставте every week у кінці",
+      "prompt": "Ввічливо зверніться до перехожого: вибачте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Адміністратори щотижня змінюють час деяких зустрічей. Скажіть: «Ми переносимо зустрічі щотижня». Поставте every week у кінці",
+      "accessibilityLabel": "Ввічливо зверніться до перехожого: вибачте",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We reschedule appointments every week.",
+        "targetPhrase": "Excuse me.",
         "localizedMeaning": {
-          "ru": "Администраторы каждую неделю меняют время некоторых встреч. Скажите: «Мы переносим встречи каждую неделю». Поставьте every week в конце",
-          "uk": "Адміністратори щотижня змінюють час деяких зустрічей. Скажіть: «Ми переносимо зустрічі щотижня». Поставте every week у кінці"
+          "ru": "Вежливо обратитесь к прохожему: извините",
+          "uk": "Ввічливо зверніться до перехожого: вибачте"
         },
         "orderedTokens": [
-          "We",
-          "reschedule",
-          "appointments",
-          "every",
-          "week"
+          "Excuse",
+          "me"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +87,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-54:i02:r1",
-          "text": "We are rescheduling the meeting."
+          "text": "Excuse me, Anna."
         },
         {
           "responseId": "en:lesson-10:session-54:i02:r2",
-          "text": "They are rescheduling the meeting."
+          "text": "Excuse me, Tom."
         },
         {
           "responseId": "en:lesson-10:session-54:i02:r3",
-          "text": "We are cancelling the meeting."
+          "text": "Excuse me, Ben."
         }
       ],
       "mediaIds": [],
@@ -110,23 +107,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-54:i02:audio",
-          "transcript": "We are rescheduling the meeting."
+          "transcript": "Excuse me, Anna."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-54:i02:r1",
-            "targetText": "We are rescheduling the meeting.",
+            "targetText": "Excuse me, Anna.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-54:i02:r2",
-            "targetText": "They are rescheduling the meeting.",
+            "targetText": "Excuse me, Tom.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-54:i02:r3",
-            "targetText": "We are cancelling the meeting.",
+            "targetText": "Excuse me, Ben.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +134,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We are rescheduling the meeting.",
-              "uk": "У записі звучить We are rescheduling the meeting."
+              "ru": "В записи звучит Excuse me, Anna.",
+              "uk": "У записі звучить Excuse me, Anna."
             }
           },
           {
@@ -146,8 +143,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We are rescheduling the meeting.",
-              "uk": "У записі звучить We are rescheduling the meeting."
+              "ru": "В записи звучит Excuse me, Anna.",
+              "uk": "У записі звучить Excuse me, Anna."
             }
           }
         ],
@@ -162,63 +159,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть правильне написання форми reschedule",
+      "prompt": "Закінчіть фразу «Вибачте»",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-54:i03:r1",
-          "text": "rescheduling"
+          "text": "me"
         },
         {
           "responseId": "en:lesson-10:session-54:i03:r2",
-          "text": "rescheduleing"
+          "text": "I"
         },
         {
           "responseId": "en:lesson-10:session-54:i03:r3",
-          "text": "reschedule"
+          "text": "my"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть правильне написання форми reschedule",
+      "accessibilityLabel": "Закінчіть фразу «Вибачте»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите правильное написание формы reschedule",
-          "uk": "Виберіть правильне написання форми reschedule"
+          "ru": "Закончите фразу «Извините»",
+          "uk": "Закінчіть фразу «Вибачте»"
         },
-        "gappedTargetPhrase": "I am ___ my appointment.",
+        "gappedTargetPhrase": "Excuse ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-54:i03:r1",
-            "text": "rescheduling"
+            "text": "me"
           },
           {
             "responseId": "en:lesson-10:session-54:i03:r2",
-            "text": "rescheduleing"
+            "text": "I"
           },
           {
             "responseId": "en:lesson-10:session-54:i03:r3",
-            "text": "reschedule"
+            "text": "my"
           }
         ],
-        "testedDimension": "Виберіть правильне написання форми reschedule",
+        "testedDimension": "Закінчіть фразу «Вибачте»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-54:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть правильне написання форми reschedule",
+            "testedDimension": "Закінчіть фразу «Вибачте»",
             "feedbackByLocale": {
-              "ru": "Перед ing убираем e: rescheduling.",
-              "uk": "Перед ing прибираємо e: rescheduling."
+              "ru": "В готовой фразе нужно me.",
+              "uk": "У готовій фразі потрібно me."
             }
           },
           {
             "responseId": "en:lesson-10:session-54:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть правильне написання форми reschedule",
+            "testedDimension": "Закінчіть фразу «Вибачте»",
             "feedbackByLocale": {
-              "ru": "После am для текущей работы нужна rescheduling.",
-              "uk": "Після am для поточної роботи потрібна rescheduling."
+              "ru": "My означает «мой». Здесь нужно me.",
+              "uk": "My означає «мій». Тут потрібно me."
             }
           }
         ]
@@ -226,32 +223,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-54:word:availability",
+      "interactionId": "en:lesson-10:session-54:word:you-are-welcome",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — availability",
+      "prompt": "Картка слова — you are welcome",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-54:word:availability:audio"
+        "en:lesson-10:session-54:word:you-are-welcome:audio"
       ],
-      "accessibilityLabel": "Картка слова — availability",
+      "accessibilityLabel": "Картка слова — you are welcome",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-54:word:availability:audio",
-          "transcript": "availability"
+          "audioTargetId": "en:lesson-10:session-54:word:you-are-welcome:audio",
+          "transcript": "you are welcome"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-54:word:availability:r1",
-            "targetText": "availability",
+            "responseId": "en:lesson-10:session-54:word:you-are-welcome:r1",
+            "targetText": "you are welcome",
             "meaningByLocale": {
-              "ru": "«наличие свободного времени». We check availability every morning. — «Мы проверяем наличие свободного времени каждое утро». Здесь свободное время для записи на встречу.",
-              "uk": "«наявність вільного часу». We check availability every morning. — «Ми перевіряємо наявність вільного часу щоранку». Тут вільний час для запису на зустріч."
+              "ru": "«Пожалуйста, не за что». Ответ на благодарность.",
+              "uk": "«Будь ласка, нема за що». Відповідь на подяку."
             }
           }
         ],
@@ -259,10 +256,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "availability",
+          "word": "you are welcome",
           "definitionByLocale": {
-            "ru": "«наличие свободного времени». We check availability every morning. — «Мы проверяем наличие свободного времени каждое утро». Здесь свободное время для записи на встречу.",
-            "uk": "«наявність вільного часу». We check availability every morning. — «Ми перевіряємо наявність вільного часу щоранку». Тут вільний час для запису на зустріч."
+            "ru": "«Пожалуйста, не за что». Ответ на благодарность.",
+            "uk": "«Будь ласка, нема за що». Відповідь на подяку."
           }
         }
       },
@@ -274,24 +271,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Адміністратори щоранку перевіряють вільний час для запису. Скажіть: «Ми перевіряємо наявність вільного часу щоранку». Поставте every morning у кінці",
+      "prompt": "Дайте відповідь на подяку фразою You are welcome",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Адміністратори щоранку перевіряють вільний час для запису. Скажіть: «Ми перевіряємо наявність вільного часу щоранку». Поставте every morning у кінці",
+      "accessibilityLabel": "Дайте відповідь на подяку фразою You are welcome",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We check availability every morning.",
+        "targetPhrase": "You are welcome.",
         "localizedMeaning": {
-          "ru": "Администраторы каждое утро проверяют свободное время для записи. Скажите: «Мы проверяем наличие свободного времени каждое утро». Поставьте every morning в конце",
-          "uk": "Адміністратори щоранку перевіряють вільний час для запису. Скажіть: «Ми перевіряємо наявність вільного часу щоранку». Поставте every morning у кінці"
+          "ru": "Ответьте на благодарность фразой You are welcome",
+          "uk": "Дайте відповідь на подяку фразою You are welcome"
         },
         "orderedTokens": [
-          "We",
-          "check",
-          "availability",
-          "every",
-          "morning"
+          "You",
+          "are",
+          "welcome"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -312,15 +307,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-54:i05:r1",
-          "text": "I am checking availability."
+          "text": "You are welcome."
         },
         {
           "responseId": "en:lesson-10:session-54:i05:r2",
-          "text": "We are checking availability."
+          "text": "Excuse me."
         },
         {
           "responseId": "en:lesson-10:session-54:i05:r3",
-          "text": "I am checking the forecast."
+          "text": "Thank you."
         }
       ],
       "mediaIds": [],
@@ -332,23 +327,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-54:i05:audio",
-          "transcript": "I am checking availability."
+          "transcript": "You are welcome."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-54:i05:r1",
-            "targetText": "I am checking availability.",
+            "targetText": "You are welcome.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-54:i05:r2",
-            "targetText": "We are checking availability.",
+            "targetText": "Excuse me.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-54:i05:r3",
-            "targetText": "I am checking the forecast.",
+            "targetText": "Thank you.",
             "meaningByLocale": null
           }
         ],
@@ -359,8 +354,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am checking availability.",
-              "uk": "У записі звучить I am checking availability."
+              "ru": "В записи звучит You are welcome.",
+              "uk": "У записі звучить You are welcome."
             }
           },
           {
@@ -368,8 +363,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am checking availability.",
-              "uk": "У записі звучить I am checking availability."
+              "ru": "В записи звучит You are welcome.",
+              "uk": "У записі звучить You are welcome."
             }
           }
         ],
@@ -384,63 +379,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Це ранкова звичка. Виберіть форму check",
+      "prompt": "Виберіть форму be з you",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-54:i06:r1",
-          "text": "check"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-54:i06:r2",
-          "text": "checks"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-54:i06:r3",
-          "text": "checking"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Це ранкова звичка. Виберіть форму check",
+      "accessibilityLabel": "Виберіть форму be з you",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это утренняя привычка. Выберите форму check",
-          "uk": "Це ранкова звичка. Виберіть форму check"
+          "ru": "Выберите форму be с you",
+          "uk": "Виберіть форму be з you"
         },
-        "gappedTargetPhrase": "We ___ availability every morning.",
+        "gappedTargetPhrase": "You ___ welcome.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-54:i06:r1",
-            "text": "check"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-54:i06:r2",
-            "text": "checks"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-54:i06:r3",
-            "text": "checking"
+            "text": "am"
           }
         ],
-        "testedDimension": "Це ранкова звичка. Виберіть форму check",
+        "testedDimension": "Виберіть форму be з you",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-54:i06:r2",
             "correct": false,
-            "testedDimension": "Це ранкова звичка. Виберіть форму check",
+            "testedDimension": "Виберіть форму be з you",
             "feedbackByLocale": {
-              "ru": "С we нужна check без s.",
-              "uk": "З we потрібна check без s."
+              "ru": "С you нужна are.",
+              "uk": "З you потрібна are."
             }
           },
           {
             "responseId": "en:lesson-10:session-54:i06:r3",
             "correct": false,
-            "testedDimension": "Це ранкова звичка. Виберіть форму check",
+            "testedDimension": "Виберіть форму be з you",
             "feedbackByLocale": {
-              "ru": "Здесь нужна check.",
-              "uk": "Тут потрібна check."
+              "ru": "С you нужна are.",
+              "uk": "З you потрібна are."
             }
           }
         ]
@@ -448,32 +443,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-54:word:time-slot",
+      "interactionId": "en:lesson-10:session-54:word:no-problem",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — time slot",
+      "prompt": "Картка слова — no problem",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-54:word:time-slot:audio"
+        "en:lesson-10:session-54:word:no-problem:audio"
       ],
-      "accessibilityLabel": "Картка слова — time slot",
+      "accessibilityLabel": "Картка слова — no problem",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-54:word:time-slot:audio",
-          "transcript": "time slot"
+          "audioTargetId": "en:lesson-10:session-54:word:no-problem:audio",
+          "transcript": "no problem"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-54:word:time-slot:r1",
-            "targetText": "time slot",
+            "responseId": "en:lesson-10:session-54:word:no-problem:r1",
+            "targetText": "no problem",
             "meaningByLocale": {
-              "ru": "«временной интервал для записи». This time slot is available. — «Этот временной интервал для записи свободен». Time slot — выделенное время в расписании, например с двух до половины третьего.",
-              "uk": "«часовий проміжок для запису». This time slot is available. — «Цей часовий проміжок для запису вільний». Time slot — виділений час у розкладі, наприклад із другої до пів на третю."
+              "ru": "«Без проблем». Можно так согласиться помочь.",
+              "uk": "«Без проблем». Можна так погодитися допомогти."
             }
           }
         ],
@@ -481,10 +476,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "time slot",
+          "word": "no problem",
           "definitionByLocale": {
-            "ru": "«временной интервал для записи». This time slot is available. — «Этот временной интервал для записи свободен». Time slot — выделенное время в расписании, например с двух до половины третьего.",
-            "uk": "«часовий проміжок для запису». This time slot is available. — «Цей часовий проміжок для запису вільний». Time slot — виділений час у розкладі, наприклад із другої до пів на третю."
+            "ru": "«Без проблем». Можно так согласиться помочь.",
+            "uk": "«Без проблем». Можна так погодитися допомогти."
           }
         }
       },
@@ -496,24 +491,21 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажіть вільний час у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»",
+      "prompt": "Погодьтеся допомогти: без проблем",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажіть вільний час у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»",
+      "accessibilityLabel": "Погодьтеся допомогти: без проблем",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This time slot is available.",
+        "targetPhrase": "No problem.",
         "localizedMeaning": {
-          "ru": "Покажите свободное время в расписании. Скажите: «Этот временной интервал для записи свободен»",
-          "uk": "Покажіть вільний час у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»"
+          "ru": "Согласитесь помочь: без проблем",
+          "uk": "Погодьтеся допомогти: без проблем"
         },
         "orderedTokens": [
-          "This",
-          "time",
-          "slot",
-          "is",
-          "available"
+          "No",
+          "problem"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +526,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-54:i08:r1",
-          "text": "The time slot is thirty minutes."
+          "text": "No problem, Tom."
         },
         {
           "responseId": "en:lesson-10:session-54:i08:r2",
-          "text": "The time slot is twenty minutes."
+          "text": "No problem, Anna."
         },
         {
           "responseId": "en:lesson-10:session-54:i08:r3",
-          "text": "The interval is thirty minutes."
+          "text": "No problem, Ben."
         }
       ],
       "mediaIds": [],
@@ -554,23 +546,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-54:i08:audio",
-          "transcript": "The time slot is thirty minutes."
+          "transcript": "No problem, Tom."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-54:i08:r1",
-            "targetText": "The time slot is thirty minutes.",
+            "targetText": "No problem, Tom.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-54:i08:r2",
-            "targetText": "The time slot is twenty minutes.",
+            "targetText": "No problem, Anna.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-54:i08:r3",
-            "targetText": "The interval is thirty minutes.",
+            "targetText": "No problem, Ben.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +573,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The time slot is thirty minutes.",
-              "uk": "У записі звучить The time slot is thirty minutes."
+              "ru": "В записи звучит No problem, Tom.",
+              "uk": "У записі звучить No problem, Tom."
             }
           },
           {
@@ -590,8 +582,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The time slot is thirty minutes.",
-              "uk": "У записі звучить The time slot is thirty minutes."
+              "ru": "В записи звучит No problem, Tom.",
+              "uk": "У записі звучить No problem, Tom."
             }
           }
         ],
@@ -606,63 +598,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ідеться про один проміжок. Виберіть зв’язку",
+      "prompt": "Виберіть початок фрази «Без проблем»",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-54:i09:r1",
-          "text": "is"
+          "text": "No"
         },
         {
           "responseId": "en:lesson-10:session-54:i09:r2",
-          "text": "are"
+          "text": "Not"
         },
         {
           "responseId": "en:lesson-10:session-54:i09:r3",
-          "text": "am"
+          "text": "Does"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ідеться про один проміжок. Виберіть зв’язку",
+      "accessibilityLabel": "Виберіть початок фрази «Без проблем»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь об одном интервале. Выберите связку",
-          "uk": "Ідеться про один проміжок. Виберіть зв’язку"
+          "ru": "Выберите начало фразы «Без проблем»",
+          "uk": "Виберіть початок фрази «Без проблем»"
         },
-        "gappedTargetPhrase": "This time slot ___ available.",
+        "gappedTargetPhrase": "___ problem.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-54:i09:r1",
-            "text": "is"
+            "text": "No"
           },
           {
             "responseId": "en:lesson-10:session-54:i09:r2",
-            "text": "are"
+            "text": "Not"
           },
           {
             "responseId": "en:lesson-10:session-54:i09:r3",
-            "text": "am"
+            "text": "Does"
           }
         ],
-        "testedDimension": "Ідеться про один проміжок. Виберіть зв’язку",
+        "testedDimension": "Виберіть початок фрази «Без проблем»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-54:i09:r2",
             "correct": false,
-            "testedDimension": "Ідеться про один проміжок. Виберіть зв’язку",
+            "testedDimension": "Виберіть початок фрази «Без проблем»",
             "feedbackByLocale": {
-              "ru": "Один интервал: is.",
-              "uk": "Один проміжок: is."
+              "ru": "Готовая фраза — No problem.",
+              "uk": "Готова фраза — No problem."
             }
           },
           {
             "responseId": "en:lesson-10:session-54:i09:r3",
             "correct": false,
-            "testedDimension": "Ідеться про один проміжок. Виберіть зв’язку",
+            "testedDimension": "Виберіть початок фрази «Без проблем»",
             "feedbackByLocale": {
-              "ru": "Am используется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Does — не начало этой фразы. Нужно No problem.",
+              "uk": "Does — не початок цієї фрази. Потрібно No problem."
             }
           }
         ]
@@ -670,32 +662,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-54:word:waiting-list",
+      "interactionId": "en:lesson-10:session-54:word:take-care",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — waiting list",
+      "prompt": "Картка слова — take care",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-54:word:waiting-list:audio"
+        "en:lesson-10:session-54:word:take-care:audio"
       ],
-      "accessibilityLabel": "Картка слова — waiting list",
+      "accessibilityLabel": "Картка слова — take care",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-54:word:waiting-list:audio",
-          "transcript": "waiting list"
+          "audioTargetId": "en:lesson-10:session-54:word:take-care:audio",
+          "transcript": "take care"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-54:word:waiting-list:r1",
-            "targetText": "waiting list",
+            "responseId": "en:lesson-10:session-54:word:take-care:r1",
+            "targetText": "take care",
             "meaningByLocale": {
-              "ru": "«список ожидания». I am on the waiting list. — «Я в списке ожидания». Список людей, ожидающих свободного места.",
-              "uk": "«список очікування». I am on the waiting list. — «Я у списку очікування». Список людей, які чекають на вільне місце."
+              "ru": "«Береги себя». Дружеское пожелание при прощании.",
+              "uk": "«Бережи себе». Дружнє побажання при прощанні."
             }
           }
         ],
@@ -703,10 +695,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "waiting list",
+          "word": "take care",
           "definitionByLocale": {
-            "ru": "«список ожидания». I am on the waiting list. — «Я в списке ожидания». Список людей, ожидающих свободного места.",
-            "uk": "«список очікування». I am on the waiting list. — «Я у списку очікування». Список людей, які чекають на вільне місце."
+            "ru": "«Береги себя». Дружеское пожелание при прощании.",
+            "uk": "«Бережи себе». Дружнє побажання при прощанні."
           }
         }
       },
@@ -718,25 +710,21 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вільних місць поки немає, але вас уже записали до списку. Скажіть: «Я у списку очікування»",
+      "prompt": "Попрощайтеся з другом: бережи себе",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вільних місць поки немає, але вас уже записали до списку. Скажіть: «Я у списку очікування»",
+      "accessibilityLabel": "Попрощайтеся з другом: бережи себе",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am on the waiting list.",
+        "targetPhrase": "Take care.",
         "localizedMeaning": {
-          "ru": "Свободных мест пока нет, но вас уже записали в список. Скажите: «Я в списке ожидания»",
-          "uk": "Вільних місць поки немає, але вас уже записали до списку. Скажіть: «Я у списку очікування»"
+          "ru": "Попрощайтесь с другом: береги себя",
+          "uk": "Попрощайтеся з другом: бережи себе"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "on",
-          "the",
-          "waiting",
-          "list"
+          "Take",
+          "care"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -757,15 +745,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-54:i11:r1",
-          "text": "The waiting list is long."
+          "text": "Take care, Ben."
         },
         {
           "responseId": "en:lesson-10:session-54:i11:r2",
-          "text": "The waiting list is short."
+          "text": "Take care, Anna."
         },
         {
           "responseId": "en:lesson-10:session-54:i11:r3",
-          "text": "The queue is long."
+          "text": "Take care, Tom."
         }
       ],
       "mediaIds": [],
@@ -777,23 +765,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-54:i11:audio",
-          "transcript": "The waiting list is long."
+          "transcript": "Take care, Ben."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-54:i11:r1",
-            "targetText": "The waiting list is long.",
+            "targetText": "Take care, Ben.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-54:i11:r2",
-            "targetText": "The waiting list is short.",
+            "targetText": "Take care, Anna.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-54:i11:r3",
-            "targetText": "The queue is long.",
+            "targetText": "Take care, Tom.",
             "meaningByLocale": null
           }
         ],
@@ -804,8 +792,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The waiting list is long.",
-              "uk": "У записі звучить The waiting list is long."
+              "ru": "В записи звучит Take care, Ben.",
+              "uk": "У записі звучить Take care, Ben."
             }
           },
           {
@@ -813,8 +801,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The waiting list is long.",
-              "uk": "У записі звучить The waiting list is long."
+              "ru": "В записи звучит Take care, Ben.",
+              "uk": "У записі звучить Take care, Ben."
             }
           }
         ],
@@ -829,63 +817,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку після I",
+      "prompt": "Виберіть форму take в побажанні «Бережи себе»",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-54:i12:r1",
-          "text": "am"
+          "text": "Take"
         },
         {
           "responseId": "en:lesson-10:session-54:i12:r2",
-          "text": "is"
+          "text": "Takes"
         },
         {
           "responseId": "en:lesson-10:session-54:i12:r3",
-          "text": "are"
+          "text": "Taking"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку після I",
+      "accessibilityLabel": "Виберіть форму take в побажанні «Бережи себе»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку после I",
-          "uk": "Виберіть зв’язку після I"
+          "ru": "Выберите форму take в пожелании «Береги себя»",
+          "uk": "Виберіть форму take в побажанні «Бережи себе»"
         },
-        "gappedTargetPhrase": "I ___ on the waiting list.",
+        "gappedTargetPhrase": "___ care.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-54:i12:r1",
-            "text": "am"
+            "text": "Take"
           },
           {
             "responseId": "en:lesson-10:session-54:i12:r2",
-            "text": "is"
+            "text": "Takes"
           },
           {
             "responseId": "en:lesson-10:session-54:i12:r3",
-            "text": "are"
+            "text": "Taking"
           }
         ],
-        "testedDimension": "Виберіть зв’язку після I",
+        "testedDimension": "Виберіть форму take в побажанні «Бережи себе»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-54:i12:r2",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку після I",
+            "testedDimension": "Виберіть форму take в побажанні «Бережи себе»",
             "feedbackByLocale": {
-              "ru": "С I нужна am.",
-              "uk": "З I потрібна am."
+              "ru": "Пожелание начинается с Take без s.",
+              "uk": "Побажання починається з Take без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-54:i12:r3",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку після I",
+            "testedDimension": "Виберіть форму take в побажанні «Бережи себе»",
             "feedbackByLocale": {
-              "ru": "Здесь нужна am, не are.",
-              "uk": "Тут потрібна am, не are."
+              "ru": "В готовой фразе нужна Take.",
+              "uk": "У готовій фразі потрібна Take."
             }
           }
         ]
@@ -898,58 +886,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "Поєднайте фрази з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Поєднайте фрази з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-54:i13:p1",
-            "target": "reschedule",
+            "target": "excuse me",
             "meaningByLocale": {
-              "ru": "переносить на другое время",
-              "uk": "переносити на інший час"
+              "ru": "извините",
+              "uk": "вибачте"
             }
           },
           {
             "pairId": "en:lesson-10:session-54:i13:p2",
-            "target": "availability",
+            "target": "you are welcome",
             "meaningByLocale": {
-              "ru": "наличие свободного времени",
-              "uk": "наявність вільного часу"
+              "ru": "не за что",
+              "uk": "нема за що"
             }
           },
           {
             "pairId": "en:lesson-10:session-54:i13:p3",
-            "target": "time slot",
+            "target": "no problem",
             "meaningByLocale": {
-              "ru": "временной интервал для записи",
-              "uk": "часовий проміжок для запису"
+              "ru": "без проблем",
+              "uk": "без проблем"
             }
           },
           {
             "pairId": "en:lesson-10:session-54:i13:p4",
-            "target": "waiting list",
+            "target": "take care",
             "meaningByLocale": {
-              "ru": "список ожидания",
-              "uk": "список очікування"
+              "ru": "береги себя",
+              "uk": "бережи себе"
             }
           }
         ],
         "leftColumn": [
-          "reschedule",
-          "availability",
-          "time slot",
-          "waiting list"
+          "excuse me",
+          "you are welcome",
+          "no problem",
+          "take care"
         ],
         "rightColumn": [
-          "переносити на інший час",
-          "наявність вільного часу",
-          "часовий проміжок для запису",
-          "список очікування"
+          "вибачте",
+          "нема за що",
+          "без проблем",
+          "бережи себе"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -971,27 +959,25 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-54:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-54:i14:audio",
-          "transcript": "I am rescheduling my appointment."
+          "transcript": "You are welcome."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I am rescheduling my appointment.",
+        "hiddenTargetPhrase": "You are welcome.",
         "orderedTokens": [
-          "I",
-          "am",
-          "rescheduling",
-          "my",
-          "appointment"
+          "You",
+          "are",
+          "welcome"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1005,24 +991,58 @@
     {
       "interactionId": "en:lesson-10:session-54:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, чи вдалося вам отримати місце. Ви поки чекаєте. Скажіть: «Я у списку очікування»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-54:i15:audio"
       ],
-      "accessibilityLabel": "Друг запитує, чи вдалося вам отримати місце. Ви поки чекаєте. Скажіть: «Я у списку очікування»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-54:i15:audio",
+          "transcript": "Take care."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Take care.",
+        "orderedTokens": [
+          "Take",
+          "care"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зверніться до Тома: вибачте, Томе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Зверніться до Тома: вибачте, Томе",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-54:i15:audio",
-          "transcript": "I am on the waiting list."
+          "audioTargetId": "en:lesson-10:session-54:i16:audio",
+          "transcript": "Excuse me, Tom."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am on the waiting list.",
+        "targetPhrase": "Excuse me, Tom.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1036,71 +1056,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-54:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ви показуєте клієнту вільний проміжок у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ви показуєте клієнту вільний проміжок у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This time slot is available.",
-        "localizedMeaning": {
-          "ru": "Вы показываете клиенту свободный интервал в расписании. Скажите: «Этот временной интервал для записи свободен»",
-          "uk": "Ви показуєте клієнту вільний проміжок у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»"
-        },
-        "orderedTokens": [
-          "This",
-          "time",
-          "slot",
-          "is",
-          "available"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-54:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви відкрили форму запису й зараз змінюєте час зустрічі. Друг запитує, чим ви зайняті. Скажіть: «Я переношу свою зустріч»",
+      "prompt": "Погодьтеся допомогти Анні: без проблем, Анно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-54:i17:audio"
       ],
-      "accessibilityLabel": "Ви відкрили форму запису й зараз змінюєте час зустрічі. Друг запитує, чим ви зайняті. Скажіть: «Я переношу свою зустріч»",
+      "accessibilityLabel": "Погодьтеся допомогти Анні: без проблем, Анно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-54:i17:audio",
-          "transcript": "I am rescheduling my appointment."
+          "transcript": "No problem, Anna."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am rescheduling my appointment.",
+        "targetPhrase": "No problem, Anna.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1117,5 +1095,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "acae3dfa92f7e15151dc434cc8064ea39c0f5e62baee6578174cdc7ad45e2c79"
+  "learnerFingerprint": "d63e617995686a967a192aa7bb385d20effbc25dac588d8e430865861515f6f6"
 }

@@ -37,7 +37,7 @@
 
 ### Подпись на открытке
 
-Signature — «подпись». На общей открытке стоит подпись, которая кажется знакомой. Вы спрашиваете друга: Do you recognize the signature? — «Ты узнаёшь эту подпись?» В вопросе используем do + you + recognize. Узнать знакомый вид подписи — не то же самое, что проверить подлинность документа.
+Signature — «подпись». На общей открытке стоит подпись, которая кажется знакомой. Вы спрашиваете друга: Do you recognize the signature? — «Ты узнаёшь эту подпись?» В вопросе используем do + you + recognize.
 
 **Выберите фразу для этой ситуации.**
 
@@ -145,7 +145,6 @@ recognize — узнавать · handwriting — почерк · signature — 
 <!-- interaction_id: en:lesson-10:session-22:i16; family: phrase_builder -->
 Плитки: `accent` `the` `recognizes` `She` → **She recognizes the accent.**
 
-**21 · Друг показывает записку вашей бывшей коллеги. Вы сразу понимаете, кто её написал, по знакомым буквам. Сообщите об узнавании: «Я узнаю её почерк»**
+**21 · Друг включает голосовое сообщение вашего брата. Скажите, что узнаёте его голос**
 <!-- interaction_id: en:lesson-10:session-22:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I recognize her handwriting.**
-
+🎙 **I recognize his voice.**

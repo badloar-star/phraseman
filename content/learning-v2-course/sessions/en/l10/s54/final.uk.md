@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 54 — Переносимо зустріч
+# Англійська · Урок 10 · Заняття 54 — Ввічливі фрази на щодень
 
-**Ситуація.** Уточнити вільний час і перенести призначену зустріч.
+**Ситуація.** Звернутися до людини, відповісти на подяку, погодитися допомогти й попрощатися.
 
-**Що ви опануєте:** I am rescheduling my appointment; We check availability every morning; I am on the waiting list
-**Нові слова:** reschedule, availability, time slot, waiting list
+**Що ви опануєте:** Excuse me; You are welcome; No problem; Take care
+**Нові слова:** excuse me, you are welcome, no problem, take care
 
 ## Інтро 1
 
-### Змінюю час зустрічі
+### Привернути увагу
 
-Appointment — знайоме слово «призначена зустріч». Reschedule — «переносити на інший час». Ви зараз змінюєте час своєї зустрічі у формі запису: I am rescheduling my appointment — «Я переношу свою зустріч». Поточна дія: am + rescheduling. У reschedule перед ing прибираємо e.
+Ви хочете запитати перехожого про дорогу. Почніть ввічливо: Excuse me — «Вибачте». Тут фраза допомагає звернутися до людини й привернути її увагу. Вчимо excuse me цілком; у кінці me, не I.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am rescheduling my appointment.**
-- ❌ I rescheduling my appointment. — *Перед rescheduling потрібна am.*
-- ❌ I am rescheduleing my appointment. — *Правильно rescheduling, без e.*
+- ✅ **Excuse me.**
+- ❌ Excuse I. — *У цій фразі потрібно me, не I.*
+- ❌ Excuses me. — *Фраза починається з Excuse без s.*
 
 ---
 
 ## Інтро 2
 
-### Перевіряємо вільний час
+### Після подяки
 
-Availability тут — «наявність вільного часу» для запису. Адміністратори перевіряють його щоранку: We check availability every morning — «Ми перевіряємо наявність вільного часу щоранку». Це звичка: Present Simple. Availability тут незлічуване, без a.
+Ви допомогли другу, і він каже Thank you. Можна відповісти You are welcome — «Будь ласка, нема за що». Це відповідь на подяку. У розмові часто скорочують: You’re welcome. Тут вчимо повну форму You are welcome.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We check availability every morning.**
-- ❌ We checks availability every morning. — *З we потрібна check без s.*
-- ❌ We checking availability every morning. — *Тут потрібна check.*
+- ✅ **You are welcome.**
+- ❌ You is welcome. — *З you потрібна are.*
+- ❌ You am welcome. — *З you потрібна are, не am.*
 
 ---
 
 ## Інтро 3
 
-### Поки чекаю на вільне місце
+### Допомогти й попрощатися
 
-Waiting list — «список очікування»: список людей, які чекають на вільне місце. Ви вже в ньому: I am on the waiting list — «Я у списку очікування». Am тут поєднує I з описом становища; це не Continuous, бо після am немає дієслова з ing.
+Друг просить потримати двері. Ви згодні: No problem — «Без проблем». Пізніше, прощаючись, можна сказати Take care — «Бережи себе». Це дружнє побажання при розставанні. Зараз друг іде: виберіть фразу зі значенням «Бережи себе».
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am on the waiting list.**
-- ❌ I is on the waiting list. — *З I потрібна am.*
-- ❌ I on the waiting list. — *Потрібна зв’язка am.*
+- ✅ **Take care.**
+- ❌ No problem. — *No problem — без проблем, а тут побажання берегти себе.*
+- ❌ You are welcome. — *You are welcome — відповідь на подяку. Тут потрібно Take care.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — reschedule**
-<!-- interaction_id: en:lesson-10:session-54:word:reschedule; family: word_card -->
-> **reschedule** — «переносити на інший час». I am rescheduling my appointment. — «Я переношу свою зустріч». Змінюємо призначений час, а не скасовуємо зустріч зовсім.
+**1 · Картка слова — excuse me**
+<!-- interaction_id: en:lesson-10:session-54:word:excuse-me; family: word_card -->
+> **excuse me** — «Вибачте». Ввічливо привернути увагу перед запитанням.
 
-**2 · Адміністратори щотижня змінюють час деяких зустрічей. Скажіть: «Ми переносимо зустрічі щотижня». Поставте every week у кінці**
+**2 · Ввічливо зверніться до перехожого: вибачте**
 <!-- interaction_id: en:lesson-10:session-54:i01; family: phrase_builder -->
-Плитки: `week` `every` `appointments` `reschedule` `We` → **We reschedule appointments every week.**
+Плитки: `me` `Excuse` → **Excuse me.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-54:i02; family: listen_choose -->
-🔊 *We are rescheduling the meeting.* → **We are rescheduling the meeting.** · They are rescheduling the meeting. · We are cancelling the meeting.
-- They are rescheduling the meeting. — *У записі звучить We are rescheduling the meeting.*
-- We are cancelling the meeting. — *У записі звучить We are rescheduling the meeting.*
+🔊 *Excuse me, Anna.* → **Excuse me, Anna.** · Excuse me, Tom. · Excuse me, Ben.
+- Excuse me, Tom. — *У записі звучить Excuse me, Anna.*
+- Excuse me, Ben. — *У записі звучить Excuse me, Anna.*
 
-**4 · Виберіть правильне написання форми reschedule**
+**4 · Закінчіть фразу «Вибачте»**
 <!-- interaction_id: en:lesson-10:session-54:i03; family: context_gap_grammar -->
-I am ___ my appointment. → **rescheduling** · rescheduleing · reschedule
-- rescheduleing — *Перед ing прибираємо e: rescheduling.*
-- reschedule — *Після am для поточної роботи потрібна rescheduling.*
+Excuse ___. → **me** · I · my
+- I — *У готовій фразі потрібно me.*
+- my — *My означає «мій». Тут потрібно me.*
 
-**5 · Картка слова — availability**
-<!-- interaction_id: en:lesson-10:session-54:word:availability; family: word_card -->
-> **availability** — «наявність вільного часу». We check availability every morning. — «Ми перевіряємо наявність вільного часу щоранку». Тут вільний час для запису на зустріч.
+**5 · Картка слова — you are welcome**
+<!-- interaction_id: en:lesson-10:session-54:word:you-are-welcome; family: word_card -->
+> **you are welcome** — «Будь ласка, нема за що». Відповідь на подяку.
 
-**6 · Адміністратори щоранку перевіряють вільний час для запису. Скажіть: «Ми перевіряємо наявність вільного часу щоранку». Поставте every morning у кінці**
+**6 · Дайте відповідь на подяку фразою You are welcome**
 <!-- interaction_id: en:lesson-10:session-54:i04; family: phrase_builder -->
-Плитки: `morning` `every` `availability` `check` `We` → **We check availability every morning.**
+Плитки: `welcome` `are` `You` → **You are welcome.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-54:i05; family: listen_choose -->
-🔊 *I am checking availability.* → **I am checking availability.** · We are checking availability. · I am checking the forecast.
-- We are checking availability. — *У записі звучить I am checking availability.*
-- I am checking the forecast. — *У записі звучить I am checking availability.*
+🔊 *You are welcome.* → **You are welcome.** · Excuse me. · Thank you.
+- Excuse me. — *У записі звучить You are welcome.*
+- Thank you. — *У записі звучить You are welcome.*
 
-**8 · Це ранкова звичка. Виберіть форму check**
+**8 · Виберіть форму be з you**
 <!-- interaction_id: en:lesson-10:session-54:i06; family: context_gap_grammar -->
-We ___ availability every morning. → **check** · checks · checking
-- checks — *З we потрібна check без s.*
-- checking — *Тут потрібна check.*
+You ___ welcome. → **are** · is · am
+- is — *З you потрібна are.*
+- am — *З you потрібна are.*
 
-**9 · Картка слова — time slot**
-<!-- interaction_id: en:lesson-10:session-54:word:time-slot; family: word_card -->
-> **time slot** — «часовий проміжок для запису». This time slot is available. — «Цей часовий проміжок для запису вільний». Time slot — виділений час у розкладі, наприклад із другої до пів на третю.
+**9 · Картка слова — no problem**
+<!-- interaction_id: en:lesson-10:session-54:word:no-problem; family: word_card -->
+> **no problem** — «Без проблем». Можна так погодитися допомогти.
 
-**10 · Покажіть вільний час у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»**
+**10 · Погодьтеся допомогти: без проблем**
 <!-- interaction_id: en:lesson-10:session-54:i07; family: phrase_builder -->
-Плитки: `available` `is` `slot` `time` `This` → **This time slot is available.**
+Плитки: `problem` `No` → **No problem.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-54:i08; family: listen_choose -->
-🔊 *The time slot is thirty minutes.* → **The time slot is thirty minutes.** · The time slot is twenty minutes. · The interval is thirty minutes.
-- The time slot is twenty minutes. — *У записі звучить The time slot is thirty minutes.*
-- The interval is thirty minutes. — *У записі звучить The time slot is thirty minutes.*
+🔊 *No problem, Tom.* → **No problem, Tom.** · No problem, Anna. · No problem, Ben.
+- No problem, Anna. — *У записі звучить No problem, Tom.*
+- No problem, Ben. — *У записі звучить No problem, Tom.*
 
-**12 · Ідеться про один проміжок. Виберіть зв’язку**
+**12 · Виберіть початок фрази «Без проблем»**
 <!-- interaction_id: en:lesson-10:session-54:i09; family: context_gap_grammar -->
-This time slot ___ available. → **is** · are · am
-- are — *Один проміжок: is.*
-- am — *Am уживається з I.*
+___ problem. → **No** · Not · Does
+- Not — *Готова фраза — No problem.*
+- Does — *Does — не початок цієї фрази. Потрібно No problem.*
 
-**13 · Картка слова — waiting list**
-<!-- interaction_id: en:lesson-10:session-54:word:waiting-list; family: word_card -->
-> **waiting list** — «список очікування». I am on the waiting list. — «Я у списку очікування». Список людей, які чекають на вільне місце.
+**13 · Картка слова — take care**
+<!-- interaction_id: en:lesson-10:session-54:word:take-care; family: word_card -->
+> **take care** — «Бережи себе». Дружнє побажання при прощанні.
 
-**14 · Вільних місць поки немає, але вас уже записали до списку. Скажіть: «Я у списку очікування»**
+**14 · Попрощайтеся з другом: бережи себе**
 <!-- interaction_id: en:lesson-10:session-54:i10; family: phrase_builder -->
-Плитки: `list` `waiting` `the` `on` `am` `I` → **I am on the waiting list.**
+Плитки: `care` `Take` → **Take care.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-54:i11; family: listen_choose -->
-🔊 *The waiting list is long.* → **The waiting list is long.** · The waiting list is short. · The queue is long.
-- The waiting list is short. — *У записі звучить The waiting list is long.*
-- The queue is long. — *У записі звучить The waiting list is long.*
+🔊 *Take care, Ben.* → **Take care, Ben.** · Take care, Anna. · Take care, Tom.
+- Take care, Anna. — *У записі звучить Take care, Ben.*
+- Take care, Tom. — *У записі звучить Take care, Ben.*
 
-**16 · Виберіть зв’язку після I**
+**16 · Виберіть форму take в побажанні «Бережи себе»**
 <!-- interaction_id: en:lesson-10:session-54:i12; family: context_gap_grammar -->
-I ___ on the waiting list. → **am** · is · are
-- is — *З I потрібна am.*
-- are — *Тут потрібна am, не are.*
+___ care. → **Take** · Takes · Taking
+- Takes — *Побажання починається з Take без s.*
+- Taking — *У готовій фразі потрібна Take.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте фрази з перекладом**
 <!-- interaction_id: en:lesson-10:session-54:i13; family: speed_match -->
-reschedule — переносити на інший час · availability — наявність вільного часу · time slot — часовий проміжок для запису · waiting list — список очікування
+excuse me — вибачте · you are welcome — нема за що · no problem — без проблем · take care — бережи себе
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-54:i14; family: listen_build_dictation -->
-🔊 *I am rescheduling my appointment.* Плитки: `appointment` `my` `rescheduling` `am` `I` → **I am rescheduling my appointment.**
+🔊 *You are welcome.* Плитки: `welcome` `are` `You` → **You are welcome.**
 
-**19 · Друг запитує, чи вдалося вам отримати місце. Ви поки чекаєте. Скажіть: «Я у списку очікування»**
-<!-- interaction_id: en:lesson-10:session-54:i15; family: scripted_repeat_compare -->
-🎙 **I am on the waiting list.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-54:i15; family: listen_build_dictation -->
+🔊 *Take care.* Плитки: `care` `Take` → **Take care.**
 
-**20 · Ви показуєте клієнту вільний проміжок у розкладі. Скажіть: «Цей часовий проміжок для запису вільний»**
-<!-- interaction_id: en:lesson-10:session-54:i16; family: phrase_builder -->
-Плитки: `available` `is` `slot` `time` `This` → **This time slot is available.**
+**20 · Зверніться до Тома: вибачте, Томе**
+<!-- interaction_id: en:lesson-10:session-54:i16; family: scripted_repeat_compare -->
+🎙 **Excuse me, Tom.**
 
-**21 · Ви відкрили форму запису й зараз змінюєте час зустрічі. Друг запитує, чим ви зайняті. Скажіть: «Я переношу свою зустріч»**
-<!-- interaction_id: en:lesson-10:session-54:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am rescheduling my appointment.**
+**21 · Погодьтеся допомогти Анні: без проблем, Анно**
+<!-- interaction_id: en:lesson-10:session-54:i17; family: scripted_repeat_compare -->
+🎙 **No problem, Anna.**
 

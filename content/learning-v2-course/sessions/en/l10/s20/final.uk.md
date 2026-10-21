@@ -1,9 +1,9 @@
 # Англійська · Урок 10 · Заняття 20 — Коли прийде посилка
 
-**Ситуація.** Повідомити, що ви очікуєте доставку, і розібратися в повідомленні про відправлення.
+**Ситуація.** Повідомити, що ви очікуєте доставку, і розібратися в повідомленні про доставку.
 
 **Що ви опануєте:** I expect the parcel today; She expects confirmation; Do you have the tracking number?
-**Нові слова:** confirmation, arrival, dispatch, tracking number
+**Нові слова:** confirmation, arrival, delivery, tracking number
 
 ## Інтро 1
 
@@ -35,9 +35,9 @@ Confirmation — «підтвердження». Колега оформила �
 
 ## Інтро 3
 
-### Відправлення ще не прибуття
+### Дата доставки
 
-Dispatch — «відправлення», arrival — «прибуття». Магазин може повідомити про відправлення посилки сьогодні, хоча прибуття очікується завтра. Arrival is tomorrow — «Прибуття завтра». Тут is поєднує подію з часом. Dispatch і arrival позначають різні етапи: посилку відправили й посилка прибула.
+Delivery — «доставка», arrival — «прибуття». Ви читаєте повідомлення магазину: Delivery is today — «Доставка сьогодні». В іншому рядку може бути вказано час прибуття кур’єра. Друг запитує, коли прибуде інша посилка; у повідомленні написано, що завтра. Дайте відповідь: Arrival is tomorrow — «Прибуття завтра». Тут is поєднує подію з часом.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -89,23 +89,23 @@ Does she ___ the parcel today? → **expect** · expects · expecting
 - expects — *Після does дієслово без s: expect.*
 - expecting — *Після does потрібна початкова форма expect.*
 
-**9 · Картка слова — dispatch**
-<!-- interaction_id: en:lesson-10:session-20:word:dispatch; family: word_card -->
-> **dispatch** — «відправлення». Dispatch is today. — «Відправлення сьогодні». Тут відправлення посилки з магазину, а не її прибуття до вас.
+**9 · Картка слова — delivery**
+<!-- interaction_id: en:lesson-10:session-20:word:delivery; family: word_card -->
+> **delivery** — «доставка». Delivery is today. — «Доставка сьогодні». Посилку привозять одержувачу.
 
-**10 · Колега запитує, коли магазин відправляє посилку. Скажіть: «Відправлення сьогодні»**
+**10 · Друг запитує, коли привезуть посилку. Скажіть: «Доставка сьогодні»**
 <!-- interaction_id: en:lesson-10:session-20:i07; family: phrase_builder -->
-Плитки: `today` `is` `Dispatch` → **Dispatch is today.**
+Плитки: `today` `is` `Delivery` → **Delivery is today.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-20:i08; family: listen_choose -->
-🔊 *Dispatch is tomorrow.* → **Dispatch is tomorrow.** · Dispatch is today. · Arrival is tomorrow.
-- Dispatch is today. — *У записі звучить Dispatch is tomorrow.*
-- Arrival is tomorrow. — *У записі звучить Dispatch is tomorrow.*
+🔊 *Delivery is tomorrow.* → **Delivery is tomorrow.** · Delivery is today. · Arrival is tomorrow.
+- Delivery is today. — *У записі звучить Delivery is tomorrow.*
+- Arrival is tomorrow. — *У записі звучить Delivery is tomorrow.*
 
-**12 · Виберіть зв’язку з dispatch у повідомленні про дату**
+**12 · Виберіть зв’язку з delivery у повідомленні про дату**
 <!-- interaction_id: en:lesson-10:session-20:i09; family: context_gap_grammar -->
-Dispatch ___ today. → **is** · are · am
+Delivery ___ today. → **is** · are · am
 - are — *Тут потрібна is.*
 - am — *Am уживається з I.*
 
@@ -131,7 +131,7 @@ Do you ___ the tracking number? → **have** · has · having
 
 **17 · З’єднайте нові слова зі значеннями**
 <!-- interaction_id: en:lesson-10:session-20:i13; family: speed_match -->
-confirmation — підтвердження · arrival — прибуття · dispatch — відправлення · tracking number — номер відстеження
+confirmation — підтвердження · arrival — прибуття · delivery — доставка · tracking number — номер відстеження
 
 **18 · Послухайте й складіть запитання; today поставте наприкінці**
 <!-- interaction_id: en:lesson-10:session-20:i14; family: listen_build_dictation -->

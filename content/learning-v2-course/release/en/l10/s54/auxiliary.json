@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-54:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-54:intro1:r2": {
-          "ru": "Перед rescheduling нужна am.",
-          "uk": "Перед rescheduling потрібна am."
+          "ru": "В этой фразе нужно me, не I.",
+          "uk": "У цій фразі потрібно me, не I."
         },
         "en:lesson-10:session-54:intro1:r3": {
-          "ru": "Правильно rescheduling, без e.",
-          "uk": "Правильно rescheduling, без e."
+          "ru": "Фраза начинается с Excuse без s.",
+          "uk": "Фраза починається з Excuse без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-54:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-54:intro2:r2": {
-          "ru": "С we нужна check без s.",
-          "uk": "З we потрібна check без s."
+          "ru": "С you нужна are.",
+          "uk": "З you потрібна are."
         },
         "en:lesson-10:session-54:intro2:r3": {
-          "ru": "Здесь нужна check.",
-          "uk": "Тут потрібна check."
+          "ru": "С you нужна are, не am.",
+          "uk": "З you потрібна are, не am."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-54:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-54:intro3:r2": {
-          "ru": "С I нужна am.",
-          "uk": "З I потрібна am."
+          "ru": "No problem — без проблем, а здесь пожелание беречь себя.",
+          "uk": "No problem — без проблем, а тут побажання берегти себе."
         },
         "en:lesson-10:session-54:intro3:r3": {
-          "ru": "Нужна связка am.",
-          "uk": "Потрібна зв’язка am."
+          "ru": "You are welcome — ответ на благодарность. Здесь нужно Take care.",
+          "uk": "You are welcome — відповідь на подяку. Тут потрібно Take care."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4aac56b308ddc31f853ba8bfe82b03cb1fca66ba2c7ff65b47004562c613f63a"
+  "auxiliaryFingerprint": "955b54b3fc0de76b5b57cc641fb242f53949750c361fe8b9e77a5855efb88576"
 }

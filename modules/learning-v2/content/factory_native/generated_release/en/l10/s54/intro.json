@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-54",
   "learningOutcomeByLocale": {
-    "ru": "I am rescheduling my appointment; We check availability every morning; I am on the waiting list",
-    "uk": "I am rescheduling my appointment; We check availability every morning; I am on the waiting list"
+    "ru": "Excuse me; You are welcome; No problem; Take care",
+    "uk": "Excuse me; You are welcome; No problem; Take care"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Меняю время встречи",
-        "uk": "Змінюю час зустрічі"
+        "ru": "Привлечь внимание",
+        "uk": "Привернути увагу"
       },
       "bodyByLocale": {
-        "ru": "Appointment — знакомое слово «назначенная встреча». Reschedule — «переносить на другое время». Вы сейчас меняете время своей встречи в форме записи: I am rescheduling my appointment — «Я переношу свою встречу». Текущее действие: am + rescheduling. У reschedule перед ing убираем e.",
-        "uk": "Appointment — знайоме слово «призначена зустріч». Reschedule — «переносити на інший час». Ви зараз змінюєте час своєї зустрічі у формі запису: I am rescheduling my appointment — «Я переношу свою зустріч». Поточна дія: am + rescheduling. У reschedule перед ing прибираємо e."
+        "ru": "Вы хотите спросить прохожего о дороге. Начните вежливо: Excuse me — «Извините». Здесь фраза помогает обратиться к человеку и привлечь его внимание. Учим excuse me целиком; в конце me, не I.",
+        "uk": "Ви хочете запитати перехожого про дорогу. Почніть ввічливо: Excuse me — «Вибачте». Тут фраза допомагає звернутися до людини й привернути її увагу. Вчимо excuse me цілком; у кінці me, не I."
       },
       "question": {
         "interactionId": "en:lesson-10:session-54:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-54:intro1:r1",
-              "text": "I am rescheduling my appointment."
+              "text": "Excuse me."
             },
             {
               "responseId": "en:lesson-10:session-54:intro1:r2",
-              "text": "I rescheduling my appointment."
+              "text": "Excuse I."
             },
             {
               "responseId": "en:lesson-10:session-54:intro1:r3",
-              "text": "I am rescheduleing my appointment."
+              "text": "Excuses me."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-54:intro1:r1",
-              "text": "I am rescheduling my appointment."
+              "text": "Excuse me."
             },
             {
               "responseId": "en:lesson-10:session-54:intro1:r2",
-              "text": "I rescheduling my appointment."
+              "text": "Excuse I."
             },
             {
               "responseId": "en:lesson-10:session-54:intro1:r3",
-              "text": "I am rescheduleing my appointment."
+              "text": "Excuses me."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Проверяем свободное время",
-        "uk": "Перевіряємо вільний час"
+        "ru": "После благодарности",
+        "uk": "Після подяки"
       },
       "bodyByLocale": {
-        "ru": "Availability здесь — «наличие свободного времени» для записи. Администраторы проверяют его каждое утро: We check availability every morning — «Мы проверяем наличие свободного времени каждое утро». Это привычка: Present Simple. Availability здесь неисчисляемое, без a.",
-        "uk": "Availability тут — «наявність вільного часу» для запису. Адміністратори перевіряють його щоранку: We check availability every morning — «Ми перевіряємо наявність вільного часу щоранку». Це звичка: Present Simple. Availability тут незлічуване, без a."
+        "ru": "Вы помогли другу, и он говорит Thank you. Можно ответить You are welcome — «Пожалуйста, не за что». Это ответ на благодарность. В разговоре часто сокращают: You’re welcome. Здесь учим полную форму You are welcome.",
+        "uk": "Ви допомогли другу, і він каже Thank you. Можна відповісти You are welcome — «Будь ласка, нема за що». Це відповідь на подяку. У розмові часто скорочують: You’re welcome. Тут вчимо повну форму You are welcome."
       },
       "question": {
         "interactionId": "en:lesson-10:session-54:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-54:intro2:r1",
-              "text": "We check availability every morning."
+              "text": "You are welcome."
             },
             {
               "responseId": "en:lesson-10:session-54:intro2:r2",
-              "text": "We checks availability every morning."
+              "text": "You is welcome."
             },
             {
               "responseId": "en:lesson-10:session-54:intro2:r3",
-              "text": "We checking availability every morning."
+              "text": "You am welcome."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-54:intro2:r1",
-              "text": "We check availability every morning."
+              "text": "You are welcome."
             },
             {
               "responseId": "en:lesson-10:session-54:intro2:r2",
-              "text": "We checks availability every morning."
+              "text": "You is welcome."
             },
             {
               "responseId": "en:lesson-10:session-54:intro2:r3",
-              "text": "We checking availability every morning."
+              "text": "You am welcome."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пока жду свободного места",
-        "uk": "Поки чекаю на вільне місце"
+        "ru": "Помочь и попрощаться",
+        "uk": "Допомогти й попрощатися"
       },
       "bodyByLocale": {
-        "ru": "Waiting list — «список ожидания»: список людей, которые ждут свободного места. Вы уже в нём: I am on the waiting list — «Я в списке ожидания». Am здесь связывает I с описанием положения; это не Continuous, потому что после am нет глагола с ing.",
-        "uk": "Waiting list — «список очікування»: список людей, які чекають на вільне місце. Ви вже в ньому: I am on the waiting list — «Я у списку очікування». Am тут поєднує I з описом становища; це не Continuous, бо після am немає дієслова з ing."
+        "ru": "Друг просит подержать дверь. Вы согласны: No problem — «Без проблем». Позже, прощаясь, можно сказать Take care — «Береги себя». Это дружеское пожелание при расставании. Сейчас друг уходит: выберите фразу со значением «Береги себя».",
+        "uk": "Друг просить потримати двері. Ви згодні: No problem — «Без проблем». Пізніше, прощаючись, можна сказати Take care — «Бережи себе». Це дружнє побажання при розставанні. Зараз друг іде: виберіть фразу зі значенням «Бережи себе»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-54:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-54:intro3:r1",
-              "text": "I am on the waiting list."
+              "text": "Take care."
             },
             {
               "responseId": "en:lesson-10:session-54:intro3:r2",
-              "text": "I is on the waiting list."
+              "text": "No problem."
             },
             {
               "responseId": "en:lesson-10:session-54:intro3:r3",
-              "text": "I on the waiting list."
+              "text": "You are welcome."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-54:intro3:r1",
-              "text": "I am on the waiting list."
+              "text": "Take care."
             },
             {
               "responseId": "en:lesson-10:session-54:intro3:r2",
-              "text": "I is on the waiting list."
+              "text": "No problem."
             },
             {
               "responseId": "en:lesson-10:session-54:intro3:r3",
-              "text": "I on the waiting list."
+              "text": "You are welcome."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3e5246572134e4399ce0024e0d3091b2cfe680bb040494c98a19fbbb9e7a7595"
+  "introFingerprint": "0377d8ca0ccb37c38c9f1df3ab7af38b2133348bf8248422ef0c6f11469308f2"
 }

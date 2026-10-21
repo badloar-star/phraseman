@@ -1069,21 +1069,21 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг показывает записку вашей бывшей коллеги. Вы сразу понимаете, кто её написал, по знакомым буквам. Сообщите об узнавании: «Я узнаю её почерк»",
+        "prompt": "Друг включает голосовое сообщение вашего брата. Скажите, что узнаёте его голос",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-22:i17:audio"
         ],
-        "accessibilityLabel": "Друг показывает записку вашей бывшей коллеги. Вы сразу понимаете, кто её написал, по знакомым буквам. Сообщите об узнавании: «Я узнаю её почерк»",
+        "accessibilityLabel": "Друг включает голосовое сообщение вашего брата. Скажите, что узнаёте его голос",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-22:i17:audio",
-            "transcript": "I recognize her handwriting."
+            "transcript": "I recognize his voice."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I recognize her handwriting.",
+          "targetPhrase": "I recognize his voice.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2172,21 +2172,21 @@
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг показує записку вашої колишньої колеги. Ви відразу розумієте, хто її написав, за знайомими літерами. Повідомте про впізнавання: «Я впізнаю її почерк»",
+        "prompt": "Друг вмикає голосове повідомлення вашого брата. Скажіть, що впізнаєте його голос",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-22:i17:audio"
         ],
-        "accessibilityLabel": "Друг показує записку вашої колишньої колеги. Ви відразу розумієте, хто її написав, за знайомими літерами. Повідомте про впізнавання: «Я впізнаю її почерк»",
+        "accessibilityLabel": "Друг вмикає голосове повідомлення вашого брата. Скажіть, що впізнаєте його голос",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-22:i17:audio",
-            "transcript": "I recognize her handwriting."
+            "transcript": "I recognize his voice."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I recognize her handwriting.",
+          "targetPhrase": "I recognize his voice.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2312,7 +2312,7 @@
     },
     {
       "interactionId": "en:lesson-10:session-22:i17",
-      "correctText": "I recognize her handwriting.",
+      "correctText": "I recognize his voice.",
       "correctResponseId": null
     }
   ]

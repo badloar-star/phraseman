@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-10:session-23:i01",
-    "correctText": "I trust her.",
+    "correctText": "I trust you.",
     "correctResponseId": null
   },
   {
@@ -16,92 +16,92 @@
   },
   {
     "interactionId": "en:lesson-10:session-23:i03",
-    "correctText": "trusts",
+    "correctText": "trust",
     "correctResponseId": "en:lesson-10:session-23:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-23:word:reliability",
-    "correctText": "reliability",
+    "interactionId": "en:lesson-10:session-23:word:truth",
+    "correctText": "truth",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i04",
-    "correctText": "I value her reliability.",
+    "correctText": "Tell me the truth.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i05",
-    "correctText": "Her reliability is important.",
+    "correctText": "Please tell me the truth.",
     "correctResponseId": "en:lesson-10:session-23:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-23:i06",
-    "correctText": "her",
+    "correctText": "me",
     "correctResponseId": "en:lesson-10:session-23:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-23:word:loyalty",
-    "correctText": "loyalty",
+    "interactionId": "en:lesson-10:session-23:word:advice",
+    "correctText": "advice",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i07",
-    "correctText": "I value her loyalty.",
+    "correctText": "Can I ask for advice?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i08",
-    "correctText": "We value your loyalty.",
+    "correctText": "I need advice.",
     "correctResponseId": "en:lesson-10:session-23:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-23:i09",
-    "correctText": "value",
+    "correctText": "advice",
     "correctResponseId": "en:lesson-10:session-23:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-23:word:judgement",
-    "correctText": "judgement",
+    "interactionId": "en:lesson-10:session-23:word:permission",
+    "correctText": "permission",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i10",
-    "correctText": "I trust her judgement.",
+    "correctText": "Do I need permission?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i11",
-    "correctText": "He trusts her judgement.",
+    "correctText": "You need permission.",
     "correctResponseId": "en:lesson-10:session-23:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-23:i12",
-    "correctText": "Do",
+    "correctText": "need",
     "correctResponseId": "en:lesson-10:session-23:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-23:i13",
-    "correctText": "en:lesson-10:session-23:i13:p1=trust\nen:lesson-10:session-23:i13:p2=reliability\nen:lesson-10:session-23:i13:p3=loyalty\nen:lesson-10:session-23:i13:p4=judgement",
+    "correctText": "en:lesson-10:session-23:i13:p1=trust\nen:lesson-10:session-23:i13:p2=truth\nen:lesson-10:session-23:i13:p3=advice\nen:lesson-10:session-23:i13:p4=permission",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i14",
-    "correctText": "Do you trust her judgement?",
+    "correctText": "Can I ask for advice?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i15",
-    "correctText": "I value your reliability.",
+    "correctText": "Do I need permission?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i16",
-    "correctText": "He trusts her.",
+    "correctText": "I trust my sister.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-23:i17",
-    "correctText": "I trust her judgement.",
+    "correctText": "I need advice.",
     "correctResponseId": null
   }
 ]

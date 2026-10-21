@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-23",
   "learningOutcomeByLocale": {
-    "ru": "I trust her; I value her reliability; Do you trust her judgement?",
-    "uk": "I trust her; I value her reliability; Do you trust her judgement?"
+    "ru": "I trust you; Tell me the truth; Can I ask for advice; Do I need permission",
+    "uk": "I trust you; Tell me the truth; Can I ask for advice; Do I need permission"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Я ей доверяю",
-        "uk": "Я їй довіряю"
+        "ru": "Доверять и говорить правду",
+        "uk": "Довіряти й казати правду"
       },
       "bodyByLocale": {
-        "ru": "Коллега всегда выполняет обещания. Вы говорите: I trust her — «Я ей доверяю». Trust — «доверять». В английском после trust сразу называем человека: trust her, без to. Здесь это ваше устойчивое отношение, поэтому используем Present Simple.",
-        "uk": "Колега завжди виконує обіцянки. Ви кажете: I trust her — «Я їй довіряю». Trust — «довіряти». В англійській після trust відразу називаємо людину: trust her, без to. Тут це ваше стале ставлення, тому використовуємо Present Simple."
+        "ru": "Друг обещает вернуть вашу книгу. Trust — «доверять»: I trust you — «Я тебе доверяю». Это отношение, поэтому здесь trust, без am. Truth — «правда»: Tell me the truth — «Скажи мне правду». В этом выражении перед truth стоит the. Сейчас ответьте другу, что доверяете ему.",
+        "uk": "Друг обіцяє повернути вашу книжку. Trust — «довіряти»: I trust you — «Я тобі довіряю». Це ставлення, тому тут trust, без am. Truth — «правда»: Tell me the truth — «Скажи мені правду». У цьому вислові перед truth стоїть the. Зараз дайте другові відповідь, що довіряєте йому."
       },
       "question": {
         "interactionId": "en:lesson-10:session-23:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-23:intro1:r1",
-              "text": "I trust her."
+              "text": "I trust you."
             },
             {
               "responseId": "en:lesson-10:session-23:intro1:r2",
-              "text": "I trust to her."
+              "text": "I trusts you."
             },
             {
               "responseId": "en:lesson-10:session-23:intro1:r3",
-              "text": "I trusts her."
+              "text": "I am trust you."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-23:intro1:r1",
-              "text": "I trust her."
+              "text": "I trust you."
             },
             {
               "responseId": "en:lesson-10:session-23:intro1:r2",
-              "text": "I trust to her."
+              "text": "I trusts you."
             },
             {
               "responseId": "en:lesson-10:session-23:intro1:r3",
-              "text": "I trusts her."
+              "text": "I am trust you."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "На человека можно положиться",
-        "uk": "На людину можна покластися"
+        "ru": "Попросить совета",
+        "uk": "Попросити поради"
       },
       "bodyByLocale": {
-        "ru": "Reliability — «надёжность». Коллега приходит вовремя и делает то, что обещала. I value her reliability — «Я ценю её надёжность». Здесь reliability — качество человека, неисчисляемое существительное. Her показывает, чью надёжность вы цените.",
-        "uk": "Reliability — «надійність». Колега приходить вчасно й робить те, що обіцяла. I value her reliability — «Я ціную її надійність». Тут reliability — риса людини, незлічуваний іменник. Her показує, чию надійність ви цінуєте."
+        "ru": "Вы выбираете подарок и хотите посоветоваться с другом. Advice — «совет, советы»: Can I ask for advice? — «Можно попросить совета?» Здесь advice неисчисляемое: без a и без окончания s. После can — ask без to.",
+        "uk": "Ви обираєте подарунок і хочете порадитися з другом. Advice — «порада, поради»: Can I ask for advice? — «Можна попросити поради?» Тут advice незлічуване: без a й без закінчення s. Після can — ask без to."
       },
       "question": {
         "interactionId": "en:lesson-10:session-23:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-23:intro2:r1",
-              "text": "I value her reliability."
+              "text": "Can I ask for advice?"
             },
             {
               "responseId": "en:lesson-10:session-23:intro2:r2",
-              "text": "I value she reliability."
+              "text": "Can I to ask for advice?"
             },
             {
               "responseId": "en:lesson-10:session-23:intro2:r3",
-              "text": "I values her reliability."
+              "text": "Can I asks for advice?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-23:intro2:r1",
-              "text": "I value her reliability."
+              "text": "Can I ask for advice?"
             },
             {
               "responseId": "en:lesson-10:session-23:intro2:r2",
-              "text": "I value she reliability."
+              "text": "Can I to ask for advice?"
             },
             {
               "responseId": "en:lesson-10:session-23:intro2:r3",
-              "text": "I values her reliability."
+              "text": "Can I asks for advice?"
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Доверять рассудительности",
-        "uk": "Довіряти розсудливості"
+        "ru": "Нужно ли разрешение",
+        "uk": "Чи потрібен дозвіл"
       },
       "bodyByLocale": {
-        "ru": "Judgement — «рассудительность», способность взвешивать обстоятельства и принимать разумные решения. Друг спрашивает о вашей коллеге: Do you trust her judgement? — «Ты доверяешь её рассудительности?» После do нужна базовая форма trust. Написание judgment тоже встречается; здесь используем judgement.",
-        "uk": "Judgement — «розсудливість», здатність зважувати обставини й ухвалювати розумні рішення. Друг запитує про вашу колегу: Do you trust her judgement? — «Ти довіряєш її розсудливості?» Після do потрібна початкова форма trust. Написання judgment теж трапляється; тут використовуємо judgement."
+        "ru": "Вы хотите фотографировать в библиотеке и уточняете правила у сотрудника. Permission — «разрешение»: Do I need permission? — «Мне нужно разрешение?» В этом вопросе do стоит перед I. Здесь permission без a: речь о разрешении как согласии.",
+        "uk": "Ви хочете фотографувати в бібліотеці й уточнюєте правила у працівника. Permission — «дозвіл»: Do I need permission? — «Мені потрібен дозвіл?» У цьому запитанні do стоїть перед I. Тут permission без a: йдеться про дозвіл як згоду."
       },
       "question": {
         "interactionId": "en:lesson-10:session-23:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-23:intro3:r1",
-              "text": "Do you trust her judgement?"
+              "text": "Do I need permission?"
             },
             {
               "responseId": "en:lesson-10:session-23:intro3:r2",
-              "text": "Do you trusts her judgement?"
+              "text": "Does I need permission?"
             },
             {
               "responseId": "en:lesson-10:session-23:intro3:r3",
-              "text": "Are you trust her judgement?"
+              "text": "Do I needs permission?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-23:intro3:r1",
-              "text": "Do you trust her judgement?"
+              "text": "Do I need permission?"
             },
             {
               "responseId": "en:lesson-10:session-23:intro3:r2",
-              "text": "Do you trusts her judgement?"
+              "text": "Does I need permission?"
             },
             {
               "responseId": "en:lesson-10:session-23:intro3:r3",
-              "text": "Are you trust her judgement?"
+              "text": "Do I needs permission?"
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7aeb8e1987a5483ca76fb1c805924d019aa83217ccc97f09a91c8b8c1ec89e4f"
+  "introFingerprint": "225af8a475330f1e234ca7a2935f8438be8b5f163631d9f6d35b474183cd8f0c"
 }

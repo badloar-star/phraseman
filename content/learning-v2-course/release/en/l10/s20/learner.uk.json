@@ -444,32 +444,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-20:word:dispatch",
+      "interactionId": "en:lesson-10:session-20:word:delivery",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — dispatch",
+      "prompt": "Картка слова — delivery",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-20:word:dispatch:audio"
+        "en:lesson-10:session-20:word:delivery:audio"
       ],
-      "accessibilityLabel": "Картка слова — dispatch",
+      "accessibilityLabel": "Картка слова — delivery",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-20:word:dispatch:audio",
-          "transcript": "dispatch"
+          "audioTargetId": "en:lesson-10:session-20:word:delivery:audio",
+          "transcript": "delivery"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-20:word:dispatch:r1",
-            "targetText": "dispatch",
+            "responseId": "en:lesson-10:session-20:word:delivery:r1",
+            "targetText": "delivery",
             "meaningByLocale": {
-              "ru": "«отправка». Dispatch is today. — «Отправка сегодня». Здесь отправка посылки из магазина, а не её прибытие к вам.",
-              "uk": "«відправлення». Dispatch is today. — «Відправлення сьогодні». Тут відправлення посилки з магазину, а не її прибуття до вас."
+              "ru": "«доставка». Delivery is today. — «Доставка сегодня». Посылку привозят получателю.",
+              "uk": "«доставка». Delivery is today. — «Доставка сьогодні». Посилку привозять одержувачу."
             }
           }
         ],
@@ -477,10 +477,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "dispatch",
+          "word": "delivery",
           "definitionByLocale": {
-            "ru": "«отправка». Dispatch is today. — «Отправка сегодня». Здесь отправка посылки из магазина, а не её прибытие к вам.",
-            "uk": "«відправлення». Dispatch is today. — «Відправлення сьогодні». Тут відправлення посилки з магазину, а не її прибуття до вас."
+            "ru": "«доставка». Delivery is today. — «Доставка сегодня». Посылку привозят получателю.",
+            "uk": "«доставка». Delivery is today. — «Доставка сьогодні». Посилку привозять одержувачу."
           }
         }
       },
@@ -492,20 +492,20 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега запитує, коли магазин відправляє посилку. Скажіть: «Відправлення сьогодні»",
+      "prompt": "Друг запитує, коли привезуть посилку. Скажіть: «Доставка сьогодні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега запитує, коли магазин відправляє посилку. Скажіть: «Відправлення сьогодні»",
+      "accessibilityLabel": "Друг запитує, коли привезуть посилку. Скажіть: «Доставка сьогодні»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Dispatch is today.",
+        "targetPhrase": "Delivery is today.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, когда магазин отправляет посылку. Скажите: «Отправка сегодня»",
-          "uk": "Колега запитує, коли магазин відправляє посилку. Скажіть: «Відправлення сьогодні»"
+          "ru": "Друг спрашивает, когда привезут посылку. Скажите: «Доставка сегодня»",
+          "uk": "Друг запитує, коли привезуть посилку. Скажіть: «Доставка сьогодні»"
         },
         "orderedTokens": [
-          "Dispatch",
+          "Delivery",
           "is",
           "today"
         ],
@@ -528,11 +528,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-20:i08:r1",
-          "text": "Dispatch is tomorrow."
+          "text": "Delivery is tomorrow."
         },
         {
           "responseId": "en:lesson-10:session-20:i08:r2",
-          "text": "Dispatch is today."
+          "text": "Delivery is today."
         },
         {
           "responseId": "en:lesson-10:session-20:i08:r3",
@@ -548,18 +548,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-20:i08:audio",
-          "transcript": "Dispatch is tomorrow."
+          "transcript": "Delivery is tomorrow."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-20:i08:r1",
-            "targetText": "Dispatch is tomorrow.",
+            "targetText": "Delivery is tomorrow.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-20:i08:r2",
-            "targetText": "Dispatch is today.",
+            "targetText": "Delivery is today.",
             "meaningByLocale": null
           },
           {
@@ -575,8 +575,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Dispatch is tomorrow.",
-              "uk": "У записі звучить Dispatch is tomorrow."
+              "ru": "В записи звучит Delivery is tomorrow.",
+              "uk": "У записі звучить Delivery is tomorrow."
             }
           },
           {
@@ -584,8 +584,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Dispatch is tomorrow.",
-              "uk": "У записі звучить Dispatch is tomorrow."
+              "ru": "В записи звучит Delivery is tomorrow.",
+              "uk": "У записі звучить Delivery is tomorrow."
             }
           }
         ],
@@ -600,7 +600,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку з dispatch у повідомленні про дату",
+      "prompt": "Виберіть зв’язку з delivery у повідомленні про дату",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-20:i09:r1",
@@ -617,14 +617,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку з dispatch у повідомленні про дату",
+      "accessibilityLabel": "Виберіть зв’язку з delivery у повідомленні про дату",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку с dispatch в сообщении о дате",
-          "uk": "Виберіть зв’язку з dispatch у повідомленні про дату"
+          "ru": "Выберите связку с delivery в сообщении о дате",
+          "uk": "Виберіть зв’язку з delivery у повідомленні про дату"
         },
-        "gappedTargetPhrase": "Dispatch ___ today.",
+        "gappedTargetPhrase": "Delivery ___ today.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-20:i09:r1",
@@ -639,12 +639,12 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Виберіть зв’язку з dispatch у повідомленні про дату",
+        "testedDimension": "Виберіть зв’язку з delivery у повідомленні про дату",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-20:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку з dispatch у повідомленні про дату",
+            "testedDimension": "Виберіть зв’язку з delivery у повідомленні про дату",
             "feedbackByLocale": {
               "ru": "Здесь нужна is.",
               "uk": "Тут потрібна is."
@@ -653,7 +653,7 @@
           {
             "responseId": "en:lesson-10:session-20:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть зв’язку з dispatch у повідомленні про дату",
+            "testedDimension": "Виберіть зв’язку з delivery у повідомленні про дату",
             "feedbackByLocale": {
               "ru": "Am употребляется с I.",
               "uk": "Am уживається з I."
@@ -918,10 +918,10 @@
           },
           {
             "pairId": "en:lesson-10:session-20:i13:p3",
-            "target": "dispatch",
+            "target": "delivery",
             "meaningByLocale": {
-              "ru": "отправка",
-              "uk": "відправлення"
+              "ru": "доставка",
+              "uk": "доставка"
             }
           },
           {
@@ -936,13 +936,13 @@
         "leftColumn": [
           "confirmation",
           "arrival",
-          "dispatch",
+          "delivery",
           "tracking number"
         ],
         "rightColumn": [
           "підтвердження",
           "прибуття",
-          "відправлення",
+          "доставка",
           "номер відстеження"
         ],
         "pairingKey": "pair_id",
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "414afd2db10a422d078e0f397eab616370093adfdf648d6f413295fc4aa00114"
+  "learnerFingerprint": "8bb0e2b5cab3e367f9fe8968320312256a7c808237a179eca5990452b50fb545"
 }

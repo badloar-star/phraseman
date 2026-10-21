@@ -1,9 +1,9 @@
 # Английский · Урок 10 · Занятие 20 — Когда придёт посылка
 
-**Ситуация.** Сообщить, что вы ожидаете доставку, и разобраться в сообщении об отправке.
+**Ситуация.** Сообщить, что вы ожидаете доставку, и разобраться в сообщении о доставке.
 
 **Что вы освоите:** I expect the parcel today; She expects confirmation; Do you have the tracking number?
-**Новые слова:** confirmation, arrival, dispatch, tracking number
+**Новые слова:** confirmation, arrival, delivery, tracking number
 
 ## Интро 1
 
@@ -35,9 +35,9 @@ Confirmation — «подтверждение». Коллега оформила
 
 ## Интро 3
 
-### Отправка ещё не прибытие
+### Дата доставки
 
-Dispatch — «отправка», arrival — «прибытие». Магазин может сообщить об отправке посылки сегодня, хотя прибытие ожидается завтра. Arrival is tomorrow — «Прибытие завтра». Здесь is связывает событие со временем. Dispatch и arrival обозначают разные этапы: посылку отправили и посылка прибыла.
+Delivery — «доставка», arrival — «прибытие». Вы читаете уведомление магазина: Delivery is today — «Доставка сегодня». В другой строке может быть указано время прибытия курьера. Друг спрашивает, когда прибудет другая посылка; в сообщении написано, что завтра. Ответьте: Arrival is tomorrow — «Прибытие завтра». Здесь is связывает событие со временем.
 
 **Выберите фразу для этой ситуации.**
 
@@ -89,23 +89,23 @@ Does she ___ the parcel today? → **expect** · expects · expecting
 - expects — *После does глагол без s: expect.*
 - expecting — *После does нужна базовая форма expect.*
 
-**9 · Карточка слова — dispatch**
-<!-- interaction_id: en:lesson-10:session-20:word:dispatch; family: word_card -->
-> **dispatch** — «отправка». Dispatch is today. — «Отправка сегодня». Здесь отправка посылки из магазина, а не её прибытие к вам.
+**9 · Карточка слова — delivery**
+<!-- interaction_id: en:lesson-10:session-20:word:delivery; family: word_card -->
+> **delivery** — «доставка». Delivery is today. — «Доставка сегодня». Посылку привозят получателю.
 
-**10 · Коллега спрашивает, когда магазин отправляет посылку. Скажите: «Отправка сегодня»**
+**10 · Друг спрашивает, когда привезут посылку. Скажите: «Доставка сегодня»**
 <!-- interaction_id: en:lesson-10:session-20:i07; family: phrase_builder -->
-Плитки: `today` `is` `Dispatch` → **Dispatch is today.**
+Плитки: `today` `is` `Delivery` → **Delivery is today.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-20:i08; family: listen_choose -->
-🔊 *Dispatch is tomorrow.* → **Dispatch is tomorrow.** · Dispatch is today. · Arrival is tomorrow.
-- Dispatch is today. — *В записи звучит Dispatch is tomorrow.*
-- Arrival is tomorrow. — *В записи звучит Dispatch is tomorrow.*
+🔊 *Delivery is tomorrow.* → **Delivery is tomorrow.** · Delivery is today. · Arrival is tomorrow.
+- Delivery is today. — *В записи звучит Delivery is tomorrow.*
+- Arrival is tomorrow. — *В записи звучит Delivery is tomorrow.*
 
-**12 · Выберите связку с dispatch в сообщении о дате**
+**12 · Выберите связку с delivery в сообщении о дате**
 <!-- interaction_id: en:lesson-10:session-20:i09; family: context_gap_grammar -->
-Dispatch ___ today. → **is** · are · am
+Delivery ___ today. → **is** · are · am
 - are — *Здесь нужна is.*
 - am — *Am употребляется с I.*
 
@@ -131,7 +131,7 @@ Do you ___ the tracking number? → **have** · has · having
 
 **17 · Соедините новые слова со значениями**
 <!-- interaction_id: en:lesson-10:session-20:i13; family: speed_match -->
-confirmation — подтверждение · arrival — прибытие · dispatch — отправка · tracking number — номер отслеживания
+confirmation — подтверждение · arrival — прибытие · delivery — доставка · tracking number — номер отслеживания
 
 **18 · Послушайте и соберите вопрос; today поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-20:i14; family: listen_build_dictation -->

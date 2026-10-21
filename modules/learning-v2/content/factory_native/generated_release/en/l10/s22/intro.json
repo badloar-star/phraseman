@@ -123,8 +123,8 @@
         "uk": "Підпис на листівці"
       },
       "bodyByLocale": {
-        "ru": "Signature — «подпись». На общей открытке стоит подпись, которая кажется знакомой. Вы спрашиваете друга: Do you recognize the signature? — «Ты узнаёшь эту подпись?» В вопросе используем do + you + recognize. Узнать знакомый вид подписи — не то же самое, что проверить подлинность документа.",
-        "uk": "Signature — «підпис». На спільній листівці є підпис, який здається знайомим. Ви запитуєте друга: Do you recognize the signature? — «Ти впізнаєш цей підпис?» У запитанні використовуємо do + you + recognize. Упізнати знайомий вигляд підпису — не те саме, що перевірити справжність документа."
+        "ru": "Signature — «подпись». На общей открытке стоит подпись, которая кажется знакомой. Вы спрашиваете друга: Do you recognize the signature? — «Ты узнаёшь эту подпись?» В вопросе используем do + you + recognize.",
+        "uk": "Signature — «підпис». На спільній листівці є підпис, який здається знайомим. Ви запитуєте друга: Do you recognize the signature? — «Ти впізнаєш цей підпис?» У запитанні використовуємо do + you + recognize."
       },
       "question": {
         "interactionId": "en:lesson-10:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ef902ea0554ffb4dfa97c3038689ebcdb9dee8833702a7cfd271a8ed540f0b63"
+  "introFingerprint": "2f34f4ba88cc1bf019a4b7c210c08c9d464501527ef8facdf370b7a5faa2b80b"
 }

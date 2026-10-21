@@ -1069,21 +1069,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг показывает записку вашей бывшей коллеги. Вы сразу понимаете, кто её написал, по знакомым буквам. Сообщите об узнавании: «Я узнаю её почерк»",
+      "prompt": "Друг включает голосовое сообщение вашего брата. Скажите, что узнаёте его голос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-22:i17:audio"
       ],
-      "accessibilityLabel": "Друг показывает записку вашей бывшей коллеги. Вы сразу понимаете, кто её написал, по знакомым буквам. Сообщите об узнавании: «Я узнаю её почерк»",
+      "accessibilityLabel": "Друг включает голосовое сообщение вашего брата. Скажите, что узнаёте его голос",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-22:i17:audio",
-          "transcript": "I recognize her handwriting."
+          "transcript": "I recognize his voice."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I recognize her handwriting.",
+        "targetPhrase": "I recognize his voice.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1eecde8bbe0056a33d62eb3ad774adf2cd04e899b620936badce1a5e9a3a59bf"
+  "learnerFingerprint": "6d47b5e06419a2e2a7a1e54ebb95f50d488daffc2115e44caeba0a29ef5e1bd3"
 }

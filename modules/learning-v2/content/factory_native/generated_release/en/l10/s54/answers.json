@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-54:word:reschedule",
-    "correctText": "reschedule",
+    "interactionId": "en:lesson-10:session-54:word:excuse-me",
+    "correctText": "excuse me",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i01",
-    "correctText": "We reschedule appointments every week.",
+    "correctText": "Excuse me.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i02",
-    "correctText": "We are rescheduling the meeting.",
+    "correctText": "Excuse me, Anna.",
     "correctResponseId": "en:lesson-10:session-54:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-54:i03",
-    "correctText": "rescheduling",
+    "correctText": "me",
     "correctResponseId": "en:lesson-10:session-54:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-54:word:availability",
-    "correctText": "availability",
+    "interactionId": "en:lesson-10:session-54:word:you-are-welcome",
+    "correctText": "you are welcome",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i04",
-    "correctText": "We check availability every morning.",
+    "correctText": "You are welcome.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i05",
-    "correctText": "I am checking availability.",
+    "correctText": "You are welcome.",
     "correctResponseId": "en:lesson-10:session-54:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-54:i06",
-    "correctText": "check",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-54:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-54:word:time-slot",
-    "correctText": "time slot",
+    "interactionId": "en:lesson-10:session-54:word:no-problem",
+    "correctText": "no problem",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i07",
-    "correctText": "This time slot is available.",
+    "correctText": "No problem.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i08",
-    "correctText": "The time slot is thirty minutes.",
+    "correctText": "No problem, Tom.",
     "correctResponseId": "en:lesson-10:session-54:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-54:i09",
-    "correctText": "is",
+    "correctText": "No",
     "correctResponseId": "en:lesson-10:session-54:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-54:word:waiting-list",
-    "correctText": "waiting list",
+    "interactionId": "en:lesson-10:session-54:word:take-care",
+    "correctText": "take care",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i10",
-    "correctText": "I am on the waiting list.",
+    "correctText": "Take care.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i11",
-    "correctText": "The waiting list is long.",
+    "correctText": "Take care, Ben.",
     "correctResponseId": "en:lesson-10:session-54:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-54:i12",
-    "correctText": "am",
+    "correctText": "Take",
     "correctResponseId": "en:lesson-10:session-54:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-54:i13",
-    "correctText": "en:lesson-10:session-54:i13:p1=reschedule\nen:lesson-10:session-54:i13:p2=availability\nen:lesson-10:session-54:i13:p3=time slot\nen:lesson-10:session-54:i13:p4=waiting list",
+    "correctText": "en:lesson-10:session-54:i13:p1=excuse me\nen:lesson-10:session-54:i13:p2=you are welcome\nen:lesson-10:session-54:i13:p3=no problem\nen:lesson-10:session-54:i13:p4=take care",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i14",
-    "correctText": "I am rescheduling my appointment.",
+    "correctText": "You are welcome.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i15",
-    "correctText": "I am on the waiting list.",
+    "correctText": "Take care.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i16",
-    "correctText": "This time slot is available.",
+    "correctText": "Excuse me, Tom.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-54:i17",
-    "correctText": "I am rescheduling my appointment.",
+    "correctText": "No problem, Anna.",
     "correctResponseId": null
   }
 ]

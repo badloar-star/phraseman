@@ -1,49 +1,49 @@
-# Англійська · Урок 10 · Заняття 23 — Довіряти колезі
+# Англійська · Урок 10 · Заняття 23 — Довіра, порада й дозвіл
 
-**Ситуація.** Пояснити, чому ви довіряєте колезі та її рішенням.
+**Ситуація.** Сказати, що довіряєте другу, попросити поради й уточнити, чи потрібен дозвіл.
 
-**Що ви опануєте:** I trust her; I value her reliability; Do you trust her judgement?
-**Нові слова:** trust, reliability, loyalty, judgement
+**Що ви опануєте:** I trust you; Tell me the truth; Can I ask for advice; Do I need permission
+**Нові слова:** trust, truth, advice, permission
 
 ## Інтро 1
 
-### Я їй довіряю
+### Довіряти й казати правду
 
-Колега завжди виконує обіцянки. Ви кажете: I trust her — «Я їй довіряю». Trust — «довіряти». В англійській після trust відразу називаємо людину: trust her, без to. Тут це ваше стале ставлення, тому використовуємо Present Simple.
+Друг обіцяє повернути вашу книжку. Trust — «довіряти»: I trust you — «Я тобі довіряю». Це ставлення, тому тут trust, без am. Truth — «правда»: Tell me the truth — «Скажи мені правду». У цьому вислові перед truth стоїть the. Зараз дайте другові відповідь, що довіряєте йому.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I trust her.**
-- ❌ I trust to her. — *Після trust тут не потрібне to.*
-- ❌ I trusts her. — *З I використовуємо trust без s.*
+- ✅ **I trust you.**
+- ❌ I trusts you. — *З I потрібна trust без s.*
+- ❌ I am trust you. — *У цій фразі trust без am.*
 
 ---
 
 ## Інтро 2
 
-### На людину можна покластися
+### Попросити поради
 
-Reliability — «надійність». Колега приходить вчасно й робить те, що обіцяла. I value her reliability — «Я ціную її надійність». Тут reliability — риса людини, незлічуваний іменник. Her показує, чию надійність ви цінуєте.
+Ви обираєте подарунок і хочете порадитися з другом. Advice — «порада, поради»: Can I ask for advice? — «Можна попросити поради?» Тут advice незлічуване: без a й без закінчення s. Після can — ask без to.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I value her reliability.**
-- ❌ I value she reliability. — *Перед reliability потрібне her.*
-- ❌ I values her reliability. — *З I використовуємо value без s.*
+- ✅ **Can I ask for advice?**
+- ❌ Can I to ask for advice? — *Після can потрібна ask без to.*
+- ❌ Can I asks for advice? — *Після can потрібна ask без s.*
 
 ---
 
 ## Інтро 3
 
-### Довіряти розсудливості
+### Чи потрібен дозвіл
 
-Judgement — «розсудливість», здатність зважувати обставини й ухвалювати розумні рішення. Друг запитує про вашу колегу: Do you trust her judgement? — «Ти довіряєш її розсудливості?» Після do потрібна початкова форма trust. Написання judgment теж трапляється; тут використовуємо judgement.
+Ви хочете фотографувати в бібліотеці й уточнюєте правила у працівника. Permission — «дозвіл»: Do I need permission? — «Мені потрібен дозвіл?» У цьому запитанні do стоїть перед I. Тут permission без a: йдеться про дозвіл як згоду.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **Do you trust her judgement?**
-- ❌ Do you trusts her judgement? — *Після do використовуємо trust без s.*
-- ❌ Are you trust her judgement? — *У цьому запитанні потрібне do, не are.*
+- ✅ **Do I need permission?**
+- ❌ Does I need permission? — *З I потрібна do.*
+- ❌ Do I needs permission? — *Після do потрібна need без s.*
 
 ---
 
@@ -51,101 +51,101 @@ Judgement — «розсудливість», здатність зважува�
 
 **1 · Картка слова — trust**
 <!-- interaction_id: en:lesson-10:session-23:word:trust; family: word_card -->
-> **trust** — «довіряти». I trust her. — «Я їй довіряю». Вважати людину надійною.
+> **trust** — «довіряти». I trust you. — «Я тобі довіряю».
 
-**2 · Колега завжди виконує обіцянки. Скажіть: «Я їй довіряю»**
+**2 · Скажіть другові, що довіряєте йому**
 <!-- interaction_id: en:lesson-10:session-23:i01; family: phrase_builder -->
-Плитки: `her` `trust` `I` → **I trust her.**
+Плитки: `you` `trust` `I` → **I trust you.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-23:i02; family: listen_choose -->
-🔊 *I trust her.* → **I trust her.** · We trust her. · I trust him.
-- We trust her. — *У записі звучить I trust her.*
+🔊 *I trust her.* → **I trust her.** · I trust him. · We trust her.
 - I trust him. — *У записі звучить I trust her.*
+- We trust her. — *У записі звучить I trust her.*
 
-**4 · Виберіть форму trust з he**
+**4 · Виберіть форму trust з I**
 <!-- interaction_id: en:lesson-10:session-23:i03; family: context_gap_grammar -->
-He ___ her. → **trusts** · trust · is trust
-- trust — *З he потрібна trusts.*
-- is trust — *Is trust неправильно; тут потрібна trusts.*
+I ___ you. → **trust** · trusts · am trust
+- trusts — *З I потрібна trust без s.*
+- am trust — *У цій фразі trust без am.*
 
-**5 · Картка слова — reliability**
-<!-- interaction_id: en:lesson-10:session-23:word:reliability; family: word_card -->
-> **reliability** — «надійність». I value her reliability. — «Я ціную її надійність». На цю людину можна покластися.
+**5 · Картка слова — truth**
+<!-- interaction_id: en:lesson-10:session-23:word:truth; family: word_card -->
+> **truth** — «правда». Tell me the truth. — «Скажи мені правду».
 
-**6 · Колега виконує роботу в обіцяний термін. Скажіть: «Я ціную її надійність»**
+**6 · Попросіть друга сказати вам правду**
 <!-- interaction_id: en:lesson-10:session-23:i04; family: phrase_builder -->
-Плитки: `reliability` `her` `value` `I` → **I value her reliability.**
+Плитки: `truth` `the` `me` `Tell` → **Tell me the truth.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-23:i05; family: listen_choose -->
-🔊 *Her reliability is important.* → **Her reliability is important.** · His reliability is important. · Her reliability is excellent.
-- His reliability is important. — *У записі звучить Her reliability is important.*
-- Her reliability is excellent. — *У записі звучить Her reliability is important.*
+🔊 *Please tell me the truth.* → **Please tell me the truth.** · Please tell her the truth. · Please tell him the truth.
+- Please tell her the truth. — *У записі звучить Please tell me the truth.*
+- Please tell him the truth. — *У записі звучить Please tell me the truth.*
 
-**8 · Виберіть слово для «її надійність»**
+**8 · Виберіть займенник для «скажи мені»**
 <!-- interaction_id: en:lesson-10:session-23:i06; family: context_gap_grammar -->
-I value ___ reliability. → **her** · she · hers
-- she — *Перед іменником потрібне her.*
-- hers — *Hers стоїть самостійно; тут потрібне her.*
+Tell ___ the truth. → **me** · I · my
+- I — *Після tell для «мені» потрібна me.*
+- my — *My — «мій». Тут потрібно me.*
 
-**9 · Картка слова — loyalty**
-<!-- interaction_id: en:lesson-10:session-23:word:loyalty; family: word_card -->
-> **loyalty** — «вірність». I value her loyalty. — «Я ціную її вірність». Тут готовність підтримувати друзів або команду.
+**9 · Картка слова — advice**
+<!-- interaction_id: en:lesson-10:session-23:word:advice; family: word_card -->
+> **advice** — «порада, поради». Can I ask for advice? — «Можна попросити поради?»
 
-**10 · Колега підтримує вашу команду й у складні дні. Скажіть: «Я ціную її вірність»**
+**10 · Ви обираєте подарунок. Запитайте, чи можна попросити поради**
 <!-- interaction_id: en:lesson-10:session-23:i07; family: phrase_builder -->
-Плитки: `loyalty` `her` `value` `I` → **I value her loyalty.**
+Плитки: `advice` `for` `ask` `I` `Can` → **Can I ask for advice?**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-23:i08; family: listen_choose -->
-🔊 *We value your loyalty.* → **We value your loyalty.** · I value your loyalty. · We value her loyalty.
-- I value your loyalty. — *У записі звучить We value your loyalty.*
-- We value her loyalty. — *У записі звучить We value your loyalty.*
+🔊 *I need advice.* → **I need advice.** · We need advice. · She needs advice.
+- We need advice. — *У записі звучить I need advice.*
+- She needs advice. — *У записі звучить I need advice.*
 
-**12 · Виберіть форму value після does**
+**12 · Виберіть форму advice: тут це незлічуване слово**
 <!-- interaction_id: en:lesson-10:session-23:i09; family: context_gap_grammar -->
-Does he ___ her loyalty? → **value** · values · valuing
-- values — *Після does потрібна value без s.*
-- valuing — *Після does потрібна початкова форма value.*
+I need ___. → **advice** · an advice · advices
+- an advice — *Advice тут без неозначеного артикля.*
+- advices — *У advice тут немає закінчення s.*
 
-**13 · Картка слова — judgement**
-<!-- interaction_id: en:lesson-10:session-23:word:judgement; family: word_card -->
-> **judgement** — «розсудливість». I trust her judgement. — «Я довіряю її розсудливості». Здатність ухвалювати розумні рішення.
+**13 · Картка слова — permission**
+<!-- interaction_id: en:lesson-10:session-23:word:permission; family: word_card -->
+> **permission** — «дозвіл». Do I need permission? — «Мені потрібен дозвіл?»
 
-**14 · Колега ретельно обмірковує рішення. Скажіть: «Я довіряю її розсудливості»**
+**14 · Перед зніманням у бібліотеці запитайте, чи потрібен вам дозвіл**
 <!-- interaction_id: en:lesson-10:session-23:i10; family: phrase_builder -->
-Плитки: `judgement` `her` `trust` `I` → **I trust her judgement.**
+Плитки: `permission` `need` `I` `Do` → **Do I need permission?**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-23:i11; family: listen_choose -->
-🔊 *He trusts her judgement.* → **He trusts her judgement.** · She trusts her judgement. · He trusts your judgement.
-- She trusts her judgement. — *У записі звучить He trusts her judgement.*
-- He trusts your judgement. — *У записі звучить He trusts her judgement.*
+🔊 *You need permission.* → **You need permission.** · We need permission. · Do you need permission?
+- We need permission. — *У записі звучить You need permission.*
+- Do you need permission? — *У записі звучить You need permission.*
 
-**16 · Виберіть допоміжне дієслово для запитання з you**
+**16 · Виберіть форму need після do**
 <!-- interaction_id: en:lesson-10:session-23:i12; family: context_gap_grammar -->
-___ you trust her judgement? → **Do** · Does · Are
-- Does — *З you потрібне do.*
-- Are — *Для цього запитання з trust потрібне do.*
+Do I ___ permission? → **need** · needs · needing
+- needs — *Після do потрібна need без s.*
+- needing — *Після do потрібна need без ing.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-23:i13; family: speed_match -->
-trust — довіряти · reliability — надійність · loyalty — вірність · judgement — розсудливість
+trust — довіряти · truth — правда · advice — порада · permission — дозвіл
 
-**18 · Послухайте й складіть запитання**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-23:i14; family: listen_build_dictation -->
-🔊 *Do you trust her judgement?* Плитки: `judgement` `her` `trust` `you` `Do` → **Do you trust her judgement?**
+🔊 *Can I ask for advice?* Плитки: `advice` `for` `ask` `I` `Can` → **Can I ask for advice?**
 
-**19 · Колега запитує, що ви цінуєте в її роботі. Скажіть: «Я ціную твою надійність»**
-<!-- interaction_id: en:lesson-10:session-23:i15; family: scripted_repeat_compare -->
-🎙 **I value your reliability.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-23:i15; family: listen_build_dictation -->
+🔊 *Do I need permission?* Плитки: `permission` `need` `I` `Do` → **Do I need permission?**
 
-**20 · Друг сумнівається, чи довіряє ваш брат цій колезі. Скажіть: «Він їй довіряє»**
-<!-- interaction_id: en:lesson-10:session-23:i16; family: phrase_builder -->
-Плитки: `her` `trusts` `He` → **He trusts her.**
+**20 · Скажіть, що довіряєте сестрі**
+<!-- interaction_id: en:lesson-10:session-23:i16; family: scripted_repeat_compare -->
+🎙 **I trust my sister.**
 
-**21 · Друг запитує, чому ви погоджуєтеся з рішенням колеги. Вона уважно все обміркувала. Скажіть: «Я довіряю її розсудливості»**
-<!-- interaction_id: en:lesson-10:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I trust her judgement.**
+**21 · Скажіть, що вам потрібна порада**
+<!-- interaction_id: en:lesson-10:session-23:i17; family: scripted_repeat_compare -->
+🎙 **I need advice.**
 

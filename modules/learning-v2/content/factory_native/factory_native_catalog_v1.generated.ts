@@ -3670,7 +3670,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 20,
-    sourceFingerprint: "cab4b1a8d6ec30c80b2ce7caa2c5cf9493ef7c250e59c7720b1708bba080715f",
+    sourceFingerprint: "b0dcdb9161b1144ca09ddb4bbbf3ef0724b978da96d28de1fad2c607d92fa040",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I expect the parcel today; She expects confirmation; Do you have the tracking number?","uk":"I expect the parcel today; She expects confirmation; Do you have the tracking number?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
@@ -3684,16 +3684,16 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 22,
-    sourceFingerprint: "ab7803a25b788ee8c2bc493216a25b80116a82efcba84fd34431cb278056f62b",
+    sourceFingerprint: "7b7a46aefa7192ad6e40ece48b01611a3ab04dfa4b23dd0fc3f16a52e86de482",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I recognize her; I recognize her handwriting; Do you recognize the signature?","uk":"I recognize her; I recognize her handwriting; Do you recognize the signature?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 23,
-    sourceFingerprint: "7e951b5ce1f7a6cae2ebb76dbe00db6079296087cd6473d304c7061146d821d6",
+    sourceFingerprint: "89b254d269da492f9182181679b3798524d637a27c6ef981e0c134cde97ef367",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I trust her; I value her reliability; Do you trust her judgement?","uk":"I trust her; I value her reliability; Do you trust her judgement?"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I trust you; Tell me the truth; Can I ask for advice; Do I need permission","uk":"I trust you; Tell me the truth; Can I ask for advice; Do I need permission"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3908,9 +3908,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 54,
-    sourceFingerprint: "2529449315c24625d2935cc05a474ff0067e76020859be2ab1afe7c79209ee0f",
+    sourceFingerprint: "0eda4824e8700697675dc2f5266149d88da67cc05c9d7e808d195ac6b604d16d",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am rescheduling my appointment; We check availability every morning; I am on the waiting list","uk":"I am rescheduling my appointment; We check availability every morning; I am on the waiting list"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Excuse me; You are welcome; No problem; Take care","uk":"Excuse me; You are welcome; No problem; Take care"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

@@ -37,7 +37,7 @@
 
 ### Підпис на листівці
 
-Signature — «підпис». На спільній листівці є підпис, який здається знайомим. Ви запитуєте друга: Do you recognize the signature? — «Ти впізнаєш цей підпис?» У запитанні використовуємо do + you + recognize. Упізнати знайомий вигляд підпису — не те саме, що перевірити справжність документа.
+Signature — «підпис». На спільній листівці є підпис, який здається знайомим. Ви запитуєте друга: Do you recognize the signature? — «Ти впізнаєш цей підпис?» У запитанні використовуємо do + you + recognize.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -145,7 +145,6 @@ recognize — упізнавати · handwriting — почерк · signature 
 <!-- interaction_id: en:lesson-10:session-22:i16; family: phrase_builder -->
 Плитки: `accent` `the` `recognizes` `She` → **She recognizes the accent.**
 
-**21 · Друг показує записку вашої колишньої колеги. Ви відразу розумієте, хто її написав, за знайомими літерами. Повідомте про впізнавання: «Я впізнаю її почерк»**
+**21 · Друг вмикає голосове повідомлення вашого брата. Скажіть, що впізнаєте його голос**
 <!-- interaction_id: en:lesson-10:session-22:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I recognize her handwriting.**
-
+🎙 **I recognize his voice.**

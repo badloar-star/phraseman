@@ -40,18 +40,18 @@
     "correctResponseId": "en:lesson-10:session-20:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-20:word:dispatch",
-    "correctText": "dispatch",
+    "interactionId": "en:lesson-10:session-20:word:delivery",
+    "correctText": "delivery",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-20:i07",
-    "correctText": "Dispatch is today.",
+    "correctText": "Delivery is today.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-20:i08",
-    "correctText": "Dispatch is tomorrow.",
+    "correctText": "Delivery is tomorrow.",
     "correctResponseId": "en:lesson-10:session-20:i08:r1"
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-10:session-20:i13",
-    "correctText": "en:lesson-10:session-20:i13:p1=confirmation\nen:lesson-10:session-20:i13:p2=arrival\nen:lesson-10:session-20:i13:p3=dispatch\nen:lesson-10:session-20:i13:p4=tracking number",
+    "correctText": "en:lesson-10:session-20:i13:p1=confirmation\nen:lesson-10:session-20:i13:p2=arrival\nen:lesson-10:session-20:i13:p3=delivery\nen:lesson-10:session-20:i13:p4=tracking number",
     "correctResponseId": null
   },
   {

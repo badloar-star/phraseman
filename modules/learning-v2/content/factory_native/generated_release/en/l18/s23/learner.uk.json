@@ -1,0 +1,1133 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-23:word:glass-jar",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — glass jar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:word:glass-jar:audio"
+      ],
+      "accessibilityLabel": "Картка слова — glass jar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:word:glass-jar:audio",
+          "transcript": "glass jar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-23:word:glass-jar:r1",
+            "targetText": "glass jar",
+            "meaningByLocale": {
+              "ru": "стеклянная банка.",
+              "uk": "скляна банка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glass jar",
+          "definitionByLocale": {
+            "ru": "стеклянная банка.",
+            "uk": "скляна банка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Якості однакові. Скажіть: «Ця скляна банка така сама велика, як твоя».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якості однакові. Скажіть: «Ця скляна банка така сама велика, як твоя».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This glass jar is as large as yours.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Эта стеклянная банка такая же большая, как твоя».",
+          "uk": "Якості однакові. Скажіть: «Ця скляна банка така сама велика, як твоя»."
+        },
+        "orderedTokens": [
+          "This",
+          "glass",
+          "jar",
+          "is",
+          "as",
+          "large",
+          "as",
+          "yours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-23:i02:r1",
+          "text": "This glass jar is as large as yours."
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i02:r2",
+          "text": "This glass jar is as larger as yours."
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i02:r3",
+          "text": "This glass jar is as large than yours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:i02:audio",
+          "transcript": "This glass jar is as large as yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-23:i02:r1",
+            "targetText": "This glass jar is as large as yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i02:r2",
+            "targetText": "This glass jar is as larger as yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i02:r3",
+            "targetText": "This glass jar is as large than yours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This glass jar is as large as yours.",
+              "uk": "У записі звучить This glass jar is as large as yours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This glass jar is as large as yours.",
+              "uk": "У записі звучить This glass jar is as large as yours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть однакову якість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-23:i03:r1",
+          "text": "as large as"
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i03:r2",
+          "text": "as larger as"
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i03:r3",
+          "text": "as large than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть однакову якість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This glass jar is ___ yours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-23:i03:r1",
+            "text": "as large as"
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i03:r2",
+            "text": "as larger as"
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i03:r3",
+            "text": "as large than"
+          }
+        ],
+        "testedDimension": "Висловіть однакову якість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма large.",
+              "uk": "Потрібна звичайна форма large."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:word:water-jug",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — water jug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:word:water-jug:audio"
+      ],
+      "accessibilityLabel": "Картка слова — water jug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:word:water-jug:audio",
+          "transcript": "water jug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-23:word:water-jug:r1",
+            "targetText": "water jug",
+            "meaningByLocale": {
+              "ru": "кувшин для воды.",
+              "uk": "глечик для води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "water jug",
+          "definitionByLocale": {
+            "ru": "кувшин для воды.",
+            "uk": "глечик для води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Якості однакові. Скажіть: «Цей глечик для води такий самий важкий, як твій».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якості однакові. Скажіть: «Цей глечик для води такий самий важкий, як твій».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This water jug is as heavy as yours.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Этот кувшин для воды такой же тяжёлый, как твой».",
+          "uk": "Якості однакові. Скажіть: «Цей глечик для води такий самий важкий, як твій»."
+        },
+        "orderedTokens": [
+          "This",
+          "water",
+          "jug",
+          "is",
+          "as",
+          "heavy",
+          "as",
+          "yours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-23:i05:r1",
+          "text": "This water jug is as heavy as yours."
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i05:r2",
+          "text": "This water jug is as heavier as yours."
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i05:r3",
+          "text": "This water jug is as heavy than yours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:i05:audio",
+          "transcript": "This water jug is as heavy as yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-23:i05:r1",
+            "targetText": "This water jug is as heavy as yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i05:r2",
+            "targetText": "This water jug is as heavier as yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i05:r3",
+            "targetText": "This water jug is as heavy than yours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This water jug is as heavy as yours.",
+              "uk": "У записі звучить This water jug is as heavy as yours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This water jug is as heavy as yours.",
+              "uk": "У записі звучить This water jug is as heavy as yours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть однакову якість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-23:i06:r1",
+          "text": "as heavy as"
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i06:r2",
+          "text": "as heavier as"
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i06:r3",
+          "text": "as heavy than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть однакову якість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This water jug is ___ yours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-23:i06:r1",
+            "text": "as heavy as"
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i06:r2",
+            "text": "as heavier as"
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i06:r3",
+            "text": "as heavy than"
+          }
+        ],
+        "testedDimension": "Висловіть однакову якість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма heavy.",
+              "uk": "Потрібна звичайна форма heavy."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:word:storage-box",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — storage box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:word:storage-box:audio"
+      ],
+      "accessibilityLabel": "Картка слова — storage box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:word:storage-box:audio",
+          "transcript": "storage box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-23:word:storage-box:r1",
+            "targetText": "storage box",
+            "meaningByLocale": {
+              "ru": "коробка для хранения.",
+              "uk": "коробка для зберігання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "storage box",
+          "definitionByLocale": {
+            "ru": "коробка для хранения.",
+            "uk": "коробка для зберігання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Якості однакові. Скажіть: «Ця коробка для зберігання така сама міцна, як наша».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якості однакові. Скажіть: «Ця коробка для зберігання така сама міцна, як наша».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This storage box is as strong as ours.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Эта коробка для хранения такая же прочная, как наша».",
+          "uk": "Якості однакові. Скажіть: «Ця коробка для зберігання така сама міцна, як наша»."
+        },
+        "orderedTokens": [
+          "This",
+          "storage",
+          "box",
+          "is",
+          "as",
+          "strong",
+          "as",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-23:i08:r1",
+          "text": "This storage box is as strong as ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i08:r2",
+          "text": "This storage box is as stronger as ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i08:r3",
+          "text": "This storage box is as strong than ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:i08:audio",
+          "transcript": "This storage box is as strong as ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-23:i08:r1",
+            "targetText": "This storage box is as strong as ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i08:r2",
+            "targetText": "This storage box is as stronger as ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i08:r3",
+            "targetText": "This storage box is as strong than ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This storage box is as strong as ours.",
+              "uk": "У записі звучить This storage box is as strong as ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This storage box is as strong as ours.",
+              "uk": "У записі звучить This storage box is as strong as ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть однакову якість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-23:i09:r1",
+          "text": "as strong as"
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i09:r2",
+          "text": "as stronger as"
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i09:r3",
+          "text": "as strong than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть однакову якість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This storage box is ___ ours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-23:i09:r1",
+            "text": "as strong as"
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i09:r2",
+            "text": "as stronger as"
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i09:r3",
+            "text": "as strong than"
+          }
+        ],
+        "testedDimension": "Висловіть однакову якість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма strong.",
+              "uk": "Потрібна звичайна форма strong."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:word:lunch-bag",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lunch bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:word:lunch-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lunch bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:word:lunch-bag:audio",
+          "transcript": "lunch bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-23:word:lunch-bag:r1",
+            "targetText": "lunch bag",
+            "meaningByLocale": {
+              "ru": "сумка для обеда с собой.",
+              "uk": "сумка для обіду із собою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lunch bag",
+          "definitionByLocale": {
+            "ru": "сумка для обеда с собой.",
+            "uk": "сумка для обіду із собою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Якості однакові. Скажіть: «Ця сумка для обіду така сама легка, як моя».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якості однакові. Скажіть: «Ця сумка для обіду така сама легка, як моя».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This lunch bag is as light as mine.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Эта сумка для обеда такая же лёгкая, как моя».",
+          "uk": "Якості однакові. Скажіть: «Ця сумка для обіду така сама легка, як моя»."
+        },
+        "orderedTokens": [
+          "This",
+          "lunch",
+          "bag",
+          "is",
+          "as",
+          "light",
+          "as",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-23:i11:r1",
+          "text": "This lunch bag is as light as mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i11:r2",
+          "text": "This lunch bag is as lighter as mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i11:r3",
+          "text": "This lunch bag is as light than mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:i11:audio",
+          "transcript": "This lunch bag is as light as mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-23:i11:r1",
+            "targetText": "This lunch bag is as light as mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i11:r2",
+            "targetText": "This lunch bag is as lighter as mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i11:r3",
+            "targetText": "This lunch bag is as light than mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This lunch bag is as light as mine.",
+              "uk": "У записі звучить This lunch bag is as light as mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This lunch bag is as light as mine.",
+              "uk": "У записі звучить This lunch bag is as light as mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть однакову якість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-23:i12:r1",
+          "text": "as light as"
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i12:r2",
+          "text": "as lighter as"
+        },
+        {
+          "responseId": "en:lesson-18:session-23:i12:r3",
+          "text": "as light than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть однакову якість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This lunch bag is ___ mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-23:i12:r1",
+            "text": "as light as"
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i12:r2",
+            "text": "as lighter as"
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i12:r3",
+            "text": "as light than"
+          }
+        ],
+        "testedDimension": "Висловіть однакову якість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма light.",
+              "uk": "Потрібна звичайна форма light."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-23:i13:p1",
+            "target": "glass jar",
+            "meaningByLocale": {
+              "ru": "стеклянная банка",
+              "uk": "скляна банка"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-23:i13:p2",
+            "target": "water jug",
+            "meaningByLocale": {
+              "ru": "кувшин для воды",
+              "uk": "глечик для води"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-23:i13:p3",
+            "target": "storage box",
+            "meaningByLocale": {
+              "ru": "коробка для хранения",
+              "uk": "коробка для зберігання"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-23:i13:p4",
+            "target": "lunch bag",
+            "meaningByLocale": {
+              "ru": "сумка для обеда с собой",
+              "uk": "сумка для обіду із собою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "glass jar",
+          "water jug",
+          "storage box",
+          "lunch bag"
+        ],
+        "rightColumn": [
+          "скляна банка",
+          "глечик для води",
+          "коробка для зберігання",
+          "сумка для обіду із собою"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:i14:audio",
+          "transcript": "We are going to buy a storage box."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to buy a storage box.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "storage",
+          "box"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:i15:audio",
+          "transcript": "We are meeting at the shop at ten."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the shop at ten.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "shop",
+          "at",
+          "ten"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:i16:audio",
+          "transcript": "This water jug is heavier than mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This water jug is heavier than mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-23:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть кількість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-23:i17:audio",
+          "transcript": "We need two jars of jam."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two jars of jam.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d548731feed149081568dd538aac9d8868641a0f5d5f6562fa49110de0b9889a"
+}

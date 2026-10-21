@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "as + adjective + as",
+    "uk": "as + adjective + as"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 1",
+        "uk": "Однакова якість 1"
+      },
+      "bodyByLocale": {
+        "ru": "fabric softener — кондиционер для белья. stain remover — пятновыводитель. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as cheap as.",
+        "uk": "fabric softener — кондиціонер для білизни. stain remover — плямовивідник. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as cheap as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-18:intro1:r1",
+              "text": "This fabric softener is as cheap as yours."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro1:r2",
+              "text": "This fabric softener is as cheaper as yours."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro1:r3",
+              "text": "This fabric softener is as cheap than yours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-18:intro1:r1",
+              "text": "This fabric softener is as cheap as yours."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro1:r2",
+              "text": "This fabric softener is as cheaper as yours."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro1:r3",
+              "text": "This fabric softener is as cheap than yours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 2",
+        "uk": "Однакова якість 2"
+      },
+      "bodyByLocale": {
+        "ru": "laundry detergent — средство для стирки. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as cheap as.",
+        "uk": "laundry detergent — засіб для прання. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as cheap as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-18:intro2:r1",
+              "text": "This laundry detergent is as cheap as that one."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro2:r2",
+              "text": "This laundry detergent is as cheaper as that one."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro2:r3",
+              "text": "This laundry detergent is as cheap than that one."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-18:intro2:r1",
+              "text": "This laundry detergent is as cheap as that one."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro2:r2",
+              "text": "This laundry detergent is as cheaper as that one."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro2:r3",
+              "text": "This laundry detergent is as cheap than that one."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 3",
+        "uk": "Однакова якість 3"
+      },
+      "bodyByLocale": {
+        "ru": "cleaning spray — чистящий спрей. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as strong as.",
+        "uk": "cleaning spray — спрей для чищення. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as strong as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-18:intro3:r1",
+              "text": "This cleaning spray is as strong as that one."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro3:r2",
+              "text": "This cleaning spray is as stronger as that one."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro3:r3",
+              "text": "This cleaning spray is as strong than that one."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-18:intro3:r1",
+              "text": "This cleaning spray is as strong as that one."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro3:r2",
+              "text": "This cleaning spray is as stronger as that one."
+            },
+            {
+              "responseId": "en:lesson-18:session-18:intro3:r3",
+              "text": "This cleaning spray is as strong than that one."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0252e3596cba692b054d09ec794d7c2fd09697db97f8efeacb4974f171c4584e"
+}

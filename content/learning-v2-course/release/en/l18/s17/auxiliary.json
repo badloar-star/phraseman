@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-17:intro1:r2": {
+          "ru": "Между as и as обычная форма strong, без -er.",
+          "uk": "Між as та as звичайна форма strong, без -er."
+        },
+        "en:lesson-18:session-17:intro1:r3": {
+          "ru": "Для равенства нужно второе as, не than.",
+          "uk": "Для рівності потрібне друге as, не than."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-17:intro2:r2": {
+          "ru": "Здесь нужна обычная форма fresh.",
+          "uk": "Тут потрібна звичайна форма fresh."
+        },
+        "en:lesson-18:session-17:intro2:r3": {
+          "ru": "Нужно два as: as fresh as.",
+          "uk": "Потрібні два as: as fresh as."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-17:intro3:r2": {
+          "ru": "После as обычная форма cheap, не cheaper.",
+          "uk": "Після as звичайна форма cheap, не cheaper."
+        },
+        "en:lesson-18:session-17:intro3:r3": {
+          "ru": "Равенство: as cheap as.",
+          "uk": "Рівність: as cheap as."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fe4c196225fac5b5d99f09abee959bcb465033e7ef4cbf6d2fc82b8893525b21"
+}

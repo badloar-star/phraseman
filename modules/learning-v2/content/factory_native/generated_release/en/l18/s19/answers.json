@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-19:word:reading-glasses",
+    "correctText": "reading glasses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i01",
+    "correctText": "These reading glasses are as light as mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i02",
+    "correctText": "These reading glasses are as light as mine.",
+    "correctResponseId": "en:lesson-18:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i03",
+    "correctText": "as light as",
+    "correctResponseId": "en:lesson-18:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:word:contact-lenses",
+    "correctText": "contact lenses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i04",
+    "correctText": "These contact lenses are as cheap as mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i05",
+    "correctText": "These contact lenses are as cheap as mine.",
+    "correctResponseId": "en:lesson-18:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i06",
+    "correctText": "as cheap as",
+    "correctResponseId": "en:lesson-18:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:word:eye-drops",
+    "correctText": "eye drops",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i07",
+    "correctText": "These eye drops are as expensive as those ones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i08",
+    "correctText": "These eye drops are as expensive as those ones.",
+    "correctResponseId": "en:lesson-18:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i09",
+    "correctText": "as expensive as",
+    "correctResponseId": "en:lesson-18:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:word:glasses-case",
+    "correctText": "glasses case",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i10",
+    "correctText": "This glasses case is as soft as mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i11",
+    "correctText": "This glasses case is as soft as mine.",
+    "correctResponseId": "en:lesson-18:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i12",
+    "correctText": "as soft as",
+    "correctResponseId": "en:lesson-18:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i13",
+    "correctText": "en:lesson-18:session-19:i13:p1=reading glasses\nen:lesson-18:session-19:i13:p2=contact lenses\nen:lesson-18:session-19:i13:p3=eye drops\nen:lesson-18:session-19:i13:p4=glasses case",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i14",
+    "correctText": "We are going to buy a glasses case.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i15",
+    "correctText": "We are meeting at the shop tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i16",
+    "correctText": "These reading glasses are lighter than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-19:i17",
+    "correctText": "We need two bottles of eye drops.",
+    "correctResponseId": null
+  }
+]

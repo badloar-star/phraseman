@@ -1,0 +1,2355 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-22:word:electric-kettle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — electric kettle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:word:electric-kettle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — electric kettle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:word:electric-kettle:audio",
+            "transcript": "electric kettle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:word:electric-kettle:r1",
+              "targetText": "electric kettle",
+              "meaningByLocale": {
+                "ru": "электрический чайник.",
+                "uk": "електричний чайник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electric kettle",
+            "definitionByLocale": {
+              "ru": "электрический чайник.",
+              "uk": "електричний чайник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Качества одинаковые. Скажите: «Этот электрический чайник такой же быстрый, как наш».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Качества одинаковые. Скажите: «Этот электрический чайник такой же быстрый, как наш».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This electric kettle is as fast as ours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот электрический чайник такой же быстрый, как наш».",
+            "uk": "Якості однакові. Скажіть: «Цей електричний чайник такий самий швидкий, як наш»."
+          },
+          "orderedTokens": [
+            "This",
+            "electric",
+            "kettle",
+            "is",
+            "as",
+            "fast",
+            "as",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i02:r1",
+            "text": "This electric kettle is as fast as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i02:r2",
+            "text": "This electric kettle is as faster as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i02:r3",
+            "text": "This electric kettle is as fast than ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i02:audio",
+            "transcript": "This electric kettle is as fast as ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:i02:r1",
+              "targetText": "This electric kettle is as fast as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i02:r2",
+              "targetText": "This electric kettle is as faster as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i02:r3",
+              "targetText": "This electric kettle is as fast than ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric kettle is as fast as ours.",
+                "uk": "У записі звучить This electric kettle is as fast as ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric kettle is as fast as ours.",
+                "uk": "У записі звучить This electric kettle is as fast as ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите одинаковое качество.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i03:r1",
+            "text": "as fast as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i03:r2",
+            "text": "as faster as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i03:r3",
+            "text": "as fast than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите одинаковое качество.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This electric kettle is ___ ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-22:i03:r1",
+              "text": "as fast as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i03:r2",
+              "text": "as faster as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i03:r3",
+              "text": "as fast than"
+            }
+          ],
+          "testedDimension": "Выразите одинаковое качество.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма fast.",
+                "uk": "Потрібна звичайна форма fast."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:word:electric-oven",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — electric oven",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:word:electric-oven:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — electric oven",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:word:electric-oven:audio",
+            "transcript": "electric oven"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:word:electric-oven:r1",
+              "targetText": "electric oven",
+              "meaningByLocale": {
+                "ru": "электрическая духовка.",
+                "uk": "електрична духовка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electric oven",
+            "definitionByLocale": {
+              "ru": "электрическая духовка.",
+              "uk": "електрична духовка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Качества одинаковые. Скажите: «Эта электрическая духовка такая же большая, как наша».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Качества одинаковые. Скажите: «Эта электрическая духовка такая же большая, как наша».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This electric oven is as large as ours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Эта электрическая духовка такая же большая, как наша».",
+            "uk": "Якості однакові. Скажіть: «Ця електрична духовка така сама велика, як наша»."
+          },
+          "orderedTokens": [
+            "This",
+            "electric",
+            "oven",
+            "is",
+            "as",
+            "large",
+            "as",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i05:r1",
+            "text": "This electric oven is as large as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i05:r2",
+            "text": "This electric oven is as larger as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i05:r3",
+            "text": "This electric oven is as large than ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i05:audio",
+            "transcript": "This electric oven is as large as ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:i05:r1",
+              "targetText": "This electric oven is as large as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i05:r2",
+              "targetText": "This electric oven is as larger as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i05:r3",
+              "targetText": "This electric oven is as large than ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric oven is as large as ours.",
+                "uk": "У записі звучить This electric oven is as large as ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric oven is as large as ours.",
+                "uk": "У записі звучить This electric oven is as large as ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите одинаковое качество.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i06:r1",
+            "text": "as large as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i06:r2",
+            "text": "as larger as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i06:r3",
+            "text": "as large than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите одинаковое качество.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This electric oven is ___ ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-22:i06:r1",
+              "text": "as large as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i06:r2",
+              "text": "as larger as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i06:r3",
+              "text": "as large than"
+            }
+          ],
+          "testedDimension": "Выразите одинаковое качество.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма large.",
+                "uk": "Потрібна звичайна форма large."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:word:gas-cooker",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gas cooker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:word:gas-cooker:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gas cooker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:word:gas-cooker:audio",
+            "transcript": "gas cooker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:word:gas-cooker:r1",
+              "targetText": "gas cooker",
+              "meaningByLocale": {
+                "ru": "газовая плита.",
+                "uk": "газова плита."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gas cooker",
+            "definitionByLocale": {
+              "ru": "газовая плита.",
+              "uk": "газова плита."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Качества одинаковые. Скажите: «Эта газовая плита такая же широкая, как наша».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Качества одинаковые. Скажите: «Эта газовая плита такая же широкая, как наша».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This gas cooker is as wide as ours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Эта газовая плита такая же широкая, как наша».",
+            "uk": "Якості однакові. Скажіть: «Ця газова плита така сама широка, як наша»."
+          },
+          "orderedTokens": [
+            "This",
+            "gas",
+            "cooker",
+            "is",
+            "as",
+            "wide",
+            "as",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i08:r1",
+            "text": "This gas cooker is as wide as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i08:r2",
+            "text": "This gas cooker is as wider as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i08:r3",
+            "text": "This gas cooker is as wide than ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i08:audio",
+            "transcript": "This gas cooker is as wide as ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:i08:r1",
+              "targetText": "This gas cooker is as wide as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i08:r2",
+              "targetText": "This gas cooker is as wider as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i08:r3",
+              "targetText": "This gas cooker is as wide than ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This gas cooker is as wide as ours.",
+                "uk": "У записі звучить This gas cooker is as wide as ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This gas cooker is as wide as ours.",
+                "uk": "У записі звучить This gas cooker is as wide as ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите одинаковое качество.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i09:r1",
+            "text": "as wide as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i09:r2",
+            "text": "as wider as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i09:r3",
+            "text": "as wide than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите одинаковое качество.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This gas cooker is ___ ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-22:i09:r1",
+              "text": "as wide as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i09:r2",
+              "text": "as wider as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i09:r3",
+              "text": "as wide than"
+            }
+          ],
+          "testedDimension": "Выразите одинаковое качество.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма wide.",
+                "uk": "Потрібна звичайна форма wide."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:word:electric-hob",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — electric hob",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:word:electric-hob:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — electric hob",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:word:electric-hob:audio",
+            "transcript": "electric hob"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:word:electric-hob:r1",
+              "targetText": "electric hob",
+              "meaningByLocale": {
+                "ru": "электрическая варочная панель.",
+                "uk": "електрична варильна поверхня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electric hob",
+            "definitionByLocale": {
+              "ru": "электрическая варочная панель.",
+              "uk": "електрична варильна поверхня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Качества одинаковые. Скажите: «Эта электрическая варочная панель такая же дешёвая, как та».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Качества одинаковые. Скажите: «Эта электрическая варочная панель такая же дешёвая, как та».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This electric hob is as cheap as that one.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Эта электрическая варочная панель такая же дешёвая, как та».",
+            "uk": "Якості однакові. Скажіть: «Ця електрична варильна поверхня така сама дешева, як та»."
+          },
+          "orderedTokens": [
+            "This",
+            "electric",
+            "hob",
+            "is",
+            "as",
+            "cheap",
+            "as",
+            "that",
+            "one"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i11:r1",
+            "text": "This electric hob is as cheap as that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i11:r2",
+            "text": "This electric hob is as cheaper as that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i11:r3",
+            "text": "This electric hob is as cheap than that one."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i11:audio",
+            "transcript": "This electric hob is as cheap as that one."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:i11:r1",
+              "targetText": "This electric hob is as cheap as that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i11:r2",
+              "targetText": "This electric hob is as cheaper as that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i11:r3",
+              "targetText": "This electric hob is as cheap than that one.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric hob is as cheap as that one.",
+                "uk": "У записі звучить This electric hob is as cheap as that one."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric hob is as cheap as that one.",
+                "uk": "У записі звучить This electric hob is as cheap as that one."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите одинаковое качество.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i12:r1",
+            "text": "as cheap as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i12:r2",
+            "text": "as cheaper as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i12:r3",
+            "text": "as cheap than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите одинаковое качество.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This electric hob is ___ that one.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-22:i12:r1",
+              "text": "as cheap as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i12:r2",
+              "text": "as cheaper as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i12:r3",
+              "text": "as cheap than"
+            }
+          ],
+          "testedDimension": "Выразите одинаковое качество.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма cheap.",
+                "uk": "Потрібна звичайна форма cheap."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-22:i13:p1",
+              "target": "electric kettle",
+              "meaningByLocale": {
+                "ru": "электрический чайник",
+                "uk": "електричний чайник"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-22:i13:p2",
+              "target": "electric oven",
+              "meaningByLocale": {
+                "ru": "электрическая духовка",
+                "uk": "електрична духовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-22:i13:p3",
+              "target": "gas cooker",
+              "meaningByLocale": {
+                "ru": "газовая плита",
+                "uk": "газова плита"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-22:i13:p4",
+              "target": "electric hob",
+              "meaningByLocale": {
+                "ru": "электрическая варочная панель",
+                "uk": "електрична варильна поверхня"
+              }
+            }
+          ],
+          "leftColumn": [
+            "electric kettle",
+            "electric oven",
+            "gas cooker",
+            "electric hob"
+          ],
+          "rightColumn": [
+            "электрический чайник",
+            "электрическая духовка",
+            "газовая плита",
+            "электрическая варочная панель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i14:audio",
+            "transcript": "We are going to buy an electric kettle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to buy an electric kettle.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "buy",
+            "an",
+            "electric",
+            "kettle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i15:audio",
+            "transcript": "We are collecting the electric oven tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are collecting the electric oven tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "electric",
+            "oven",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: сравните два варианта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: сравните два варианта",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i16:audio",
+            "transcript": "This gas cooker is wider than ours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This gas cooker is wider than ours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: назовите количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: назовите количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-22:word:electric-kettle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — electric kettle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:word:electric-kettle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — electric kettle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:word:electric-kettle:audio",
+            "transcript": "electric kettle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:word:electric-kettle:r1",
+              "targetText": "electric kettle",
+              "meaningByLocale": {
+                "ru": "электрический чайник.",
+                "uk": "електричний чайник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electric kettle",
+            "definitionByLocale": {
+              "ru": "электрический чайник.",
+              "uk": "електричний чайник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Якості однакові. Скажіть: «Цей електричний чайник такий самий швидкий, як наш».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Якості однакові. Скажіть: «Цей електричний чайник такий самий швидкий, як наш».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This electric kettle is as fast as ours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот электрический чайник такой же быстрый, как наш».",
+            "uk": "Якості однакові. Скажіть: «Цей електричний чайник такий самий швидкий, як наш»."
+          },
+          "orderedTokens": [
+            "This",
+            "electric",
+            "kettle",
+            "is",
+            "as",
+            "fast",
+            "as",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i02:r1",
+            "text": "This electric kettle is as fast as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i02:r2",
+            "text": "This electric kettle is as faster as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i02:r3",
+            "text": "This electric kettle is as fast than ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i02:audio",
+            "transcript": "This electric kettle is as fast as ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:i02:r1",
+              "targetText": "This electric kettle is as fast as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i02:r2",
+              "targetText": "This electric kettle is as faster as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i02:r3",
+              "targetText": "This electric kettle is as fast than ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric kettle is as fast as ours.",
+                "uk": "У записі звучить This electric kettle is as fast as ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric kettle is as fast as ours.",
+                "uk": "У записі звучить This electric kettle is as fast as ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть однакову якість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i03:r1",
+            "text": "as fast as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i03:r2",
+            "text": "as faster as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i03:r3",
+            "text": "as fast than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть однакову якість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This electric kettle is ___ ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-22:i03:r1",
+              "text": "as fast as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i03:r2",
+              "text": "as faster as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i03:r3",
+              "text": "as fast than"
+            }
+          ],
+          "testedDimension": "Висловіть однакову якість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма fast.",
+                "uk": "Потрібна звичайна форма fast."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:word:electric-oven",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — electric oven",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:word:electric-oven:audio"
+        ],
+        "accessibilityLabel": "Картка слова — electric oven",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:word:electric-oven:audio",
+            "transcript": "electric oven"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:word:electric-oven:r1",
+              "targetText": "electric oven",
+              "meaningByLocale": {
+                "ru": "электрическая духовка.",
+                "uk": "електрична духовка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electric oven",
+            "definitionByLocale": {
+              "ru": "электрическая духовка.",
+              "uk": "електрична духовка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Якості однакові. Скажіть: «Ця електрична духовка така сама велика, як наша».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Якості однакові. Скажіть: «Ця електрична духовка така сама велика, як наша».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This electric oven is as large as ours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Эта электрическая духовка такая же большая, как наша».",
+            "uk": "Якості однакові. Скажіть: «Ця електрична духовка така сама велика, як наша»."
+          },
+          "orderedTokens": [
+            "This",
+            "electric",
+            "oven",
+            "is",
+            "as",
+            "large",
+            "as",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i05:r1",
+            "text": "This electric oven is as large as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i05:r2",
+            "text": "This electric oven is as larger as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i05:r3",
+            "text": "This electric oven is as large than ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i05:audio",
+            "transcript": "This electric oven is as large as ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:i05:r1",
+              "targetText": "This electric oven is as large as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i05:r2",
+              "targetText": "This electric oven is as larger as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i05:r3",
+              "targetText": "This electric oven is as large than ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric oven is as large as ours.",
+                "uk": "У записі звучить This electric oven is as large as ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric oven is as large as ours.",
+                "uk": "У записі звучить This electric oven is as large as ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть однакову якість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i06:r1",
+            "text": "as large as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i06:r2",
+            "text": "as larger as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i06:r3",
+            "text": "as large than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть однакову якість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This electric oven is ___ ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-22:i06:r1",
+              "text": "as large as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i06:r2",
+              "text": "as larger as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i06:r3",
+              "text": "as large than"
+            }
+          ],
+          "testedDimension": "Висловіть однакову якість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма large.",
+                "uk": "Потрібна звичайна форма large."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:word:gas-cooker",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gas cooker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:word:gas-cooker:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gas cooker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:word:gas-cooker:audio",
+            "transcript": "gas cooker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:word:gas-cooker:r1",
+              "targetText": "gas cooker",
+              "meaningByLocale": {
+                "ru": "газовая плита.",
+                "uk": "газова плита."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gas cooker",
+            "definitionByLocale": {
+              "ru": "газовая плита.",
+              "uk": "газова плита."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Якості однакові. Скажіть: «Ця газова плита така сама широка, як наша».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Якості однакові. Скажіть: «Ця газова плита така сама широка, як наша».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This gas cooker is as wide as ours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Эта газовая плита такая же широкая, как наша».",
+            "uk": "Якості однакові. Скажіть: «Ця газова плита така сама широка, як наша»."
+          },
+          "orderedTokens": [
+            "This",
+            "gas",
+            "cooker",
+            "is",
+            "as",
+            "wide",
+            "as",
+            "ours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i08:r1",
+            "text": "This gas cooker is as wide as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i08:r2",
+            "text": "This gas cooker is as wider as ours."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i08:r3",
+            "text": "This gas cooker is as wide than ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i08:audio",
+            "transcript": "This gas cooker is as wide as ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:i08:r1",
+              "targetText": "This gas cooker is as wide as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i08:r2",
+              "targetText": "This gas cooker is as wider as ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i08:r3",
+              "targetText": "This gas cooker is as wide than ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This gas cooker is as wide as ours.",
+                "uk": "У записі звучить This gas cooker is as wide as ours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This gas cooker is as wide as ours.",
+                "uk": "У записі звучить This gas cooker is as wide as ours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть однакову якість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i09:r1",
+            "text": "as wide as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i09:r2",
+            "text": "as wider as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i09:r3",
+            "text": "as wide than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть однакову якість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This gas cooker is ___ ours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-22:i09:r1",
+              "text": "as wide as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i09:r2",
+              "text": "as wider as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i09:r3",
+              "text": "as wide than"
+            }
+          ],
+          "testedDimension": "Висловіть однакову якість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма wide.",
+                "uk": "Потрібна звичайна форма wide."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:word:electric-hob",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — electric hob",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:word:electric-hob:audio"
+        ],
+        "accessibilityLabel": "Картка слова — electric hob",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:word:electric-hob:audio",
+            "transcript": "electric hob"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:word:electric-hob:r1",
+              "targetText": "electric hob",
+              "meaningByLocale": {
+                "ru": "электрическая варочная панель.",
+                "uk": "електрична варильна поверхня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "electric hob",
+            "definitionByLocale": {
+              "ru": "электрическая варочная панель.",
+              "uk": "електрична варильна поверхня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Якості однакові. Скажіть: «Ця електрична варильна поверхня така сама дешева, як та».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Якості однакові. Скажіть: «Ця електрична варильна поверхня така сама дешева, як та».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This electric hob is as cheap as that one.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Эта электрическая варочная панель такая же дешёвая, как та».",
+            "uk": "Якості однакові. Скажіть: «Ця електрична варильна поверхня така сама дешева, як та»."
+          },
+          "orderedTokens": [
+            "This",
+            "electric",
+            "hob",
+            "is",
+            "as",
+            "cheap",
+            "as",
+            "that",
+            "one"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i11:r1",
+            "text": "This electric hob is as cheap as that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i11:r2",
+            "text": "This electric hob is as cheaper as that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i11:r3",
+            "text": "This electric hob is as cheap than that one."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i11:audio",
+            "transcript": "This electric hob is as cheap as that one."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-22:i11:r1",
+              "targetText": "This electric hob is as cheap as that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i11:r2",
+              "targetText": "This electric hob is as cheaper as that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i11:r3",
+              "targetText": "This electric hob is as cheap than that one.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric hob is as cheap as that one.",
+                "uk": "У записі звучить This electric hob is as cheap as that one."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This electric hob is as cheap as that one.",
+                "uk": "У записі звучить This electric hob is as cheap as that one."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть однакову якість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-22:i12:r1",
+            "text": "as cheap as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i12:r2",
+            "text": "as cheaper as"
+          },
+          {
+            "responseId": "en:lesson-18:session-22:i12:r3",
+            "text": "as cheap than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть однакову якість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This electric hob is ___ that one.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-22:i12:r1",
+              "text": "as cheap as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i12:r2",
+              "text": "as cheaper as"
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i12:r3",
+              "text": "as cheap than"
+            }
+          ],
+          "testedDimension": "Висловіть однакову якість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма cheap.",
+                "uk": "Потрібна звичайна форма cheap."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-22:i13:p1",
+              "target": "electric kettle",
+              "meaningByLocale": {
+                "ru": "электрический чайник",
+                "uk": "електричний чайник"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-22:i13:p2",
+              "target": "electric oven",
+              "meaningByLocale": {
+                "ru": "электрическая духовка",
+                "uk": "електрична духовка"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-22:i13:p3",
+              "target": "gas cooker",
+              "meaningByLocale": {
+                "ru": "газовая плита",
+                "uk": "газова плита"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-22:i13:p4",
+              "target": "electric hob",
+              "meaningByLocale": {
+                "ru": "электрическая варочная панель",
+                "uk": "електрична варильна поверхня"
+              }
+            }
+          ],
+          "leftColumn": [
+            "electric kettle",
+            "electric oven",
+            "gas cooker",
+            "electric hob"
+          ],
+          "rightColumn": [
+            "електричний чайник",
+            "електрична духовка",
+            "газова плита",
+            "електрична варильна поверхня"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i14:audio",
+            "transcript": "We are going to buy an electric kettle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to buy an electric kettle.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "buy",
+            "an",
+            "electric",
+            "kettle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i15:audio",
+            "transcript": "We are collecting the electric oven tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are collecting the electric oven tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "the",
+            "electric",
+            "oven",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: порівняйте два варіанти",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: порівняйте два варіанти",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i16:audio",
+            "transcript": "This gas cooker is wider than ours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This gas cooker is wider than ours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: назвіть кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: назвіть кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-22:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-22:word:electric-kettle",
+      "correctText": "electric kettle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i01",
+      "correctText": "This electric kettle is as fast as ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i02",
+      "correctText": "This electric kettle is as fast as ours.",
+      "correctResponseId": "en:lesson-18:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i03",
+      "correctText": "as fast as",
+      "correctResponseId": "en:lesson-18:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:word:electric-oven",
+      "correctText": "electric oven",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i04",
+      "correctText": "This electric oven is as large as ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i05",
+      "correctText": "This electric oven is as large as ours.",
+      "correctResponseId": "en:lesson-18:session-22:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i06",
+      "correctText": "as large as",
+      "correctResponseId": "en:lesson-18:session-22:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:word:gas-cooker",
+      "correctText": "gas cooker",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i07",
+      "correctText": "This gas cooker is as wide as ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i08",
+      "correctText": "This gas cooker is as wide as ours.",
+      "correctResponseId": "en:lesson-18:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i09",
+      "correctText": "as wide as",
+      "correctResponseId": "en:lesson-18:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:word:electric-hob",
+      "correctText": "electric hob",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i10",
+      "correctText": "This electric hob is as cheap as that one.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i11",
+      "correctText": "This electric hob is as cheap as that one.",
+      "correctResponseId": "en:lesson-18:session-22:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i12",
+      "correctText": "as cheap as",
+      "correctResponseId": "en:lesson-18:session-22:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i14",
+      "correctText": "We are going to buy an electric kettle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i15",
+      "correctText": "We are collecting the electric oven tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i16",
+      "correctText": "This gas cooker is wider than ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:i17",
+      "correctText": "We need two bottles of water.",
+      "correctResponseId": null
+    }
+  ]
+}

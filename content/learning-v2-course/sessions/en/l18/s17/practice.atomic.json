@@ -1,0 +1,2359 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-17",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-17:word:instant-coffee",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — instant coffee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:word:instant-coffee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — instant coffee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:word:instant-coffee:audio",
+            "transcript": "instant coffee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:word:instant-coffee:r1",
+              "targetText": "instant coffee",
+              "meaningByLocale": {
+                "ru": "растворимый кофе.",
+                "uk": "розчинна кава."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "instant coffee",
+            "definitionByLocale": {
+              "ru": "растворимый кофе.",
+              "uk": "розчинна кава."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Качества одинаковые. Скажите: «Этот растворимый кофе такой же крепкий, как твой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Качества одинаковые. Скажите: «Этот растворимый кофе такой же крепкий, как твой».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This instant coffee is as strong as yours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот растворимый кофе такой же крепкий, как твой».",
+            "uk": "Якості однакові. Скажіть: «Ця розчинна кава така сама міцна, як твоя»."
+          },
+          "orderedTokens": [
+            "This",
+            "instant",
+            "coffee",
+            "is",
+            "as",
+            "strong",
+            "as",
+            "yours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i02:r1",
+            "text": "This instant coffee is as strong as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i02:r2",
+            "text": "This instant coffee is as stronger as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i02:r3",
+            "text": "This instant coffee is as strong than yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i02:audio",
+            "transcript": "This instant coffee is as strong as yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:i02:r1",
+              "targetText": "This instant coffee is as strong as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i02:r2",
+              "targetText": "This instant coffee is as stronger as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i02:r3",
+              "targetText": "This instant coffee is as strong than yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This instant coffee is as strong as yours.",
+                "uk": "У записі звучить This instant coffee is as strong as yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This instant coffee is as strong as yours.",
+                "uk": "У записі звучить This instant coffee is as strong as yours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите одинаковое качество.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i03:r1",
+            "text": "as strong as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i03:r2",
+            "text": "as stronger as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i03:r3",
+            "text": "as strong than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите одинаковое качество.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This instant coffee is ___ yours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-17:i03:r1",
+              "text": "as strong as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i03:r2",
+              "text": "as stronger as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i03:r3",
+              "text": "as strong than"
+            }
+          ],
+          "testedDimension": "Выразите одинаковое качество.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма strong.",
+                "uk": "Потрібна звичайна форма strong."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:word:ground-coffee",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ground coffee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:word:ground-coffee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ground coffee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:word:ground-coffee:audio",
+            "transcript": "ground coffee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:word:ground-coffee:r1",
+              "targetText": "ground coffee",
+              "meaningByLocale": {
+                "ru": "молотый кофе.",
+                "uk": "мелена кава."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ground coffee",
+            "definitionByLocale": {
+              "ru": "молотый кофе.",
+              "uk": "мелена кава."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Качества одинаковые. Скажите: «Этот молотый кофе такой же свежий, как твой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Качества одинаковые. Скажите: «Этот молотый кофе такой же свежий, как твой».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This ground coffee is as fresh as yours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот молотый кофе такой же свежий, как твой».",
+            "uk": "Якості однакові. Скажіть: «Ця мелена кава така сама свіжа, як твоя»."
+          },
+          "orderedTokens": [
+            "This",
+            "ground",
+            "coffee",
+            "is",
+            "as",
+            "fresh",
+            "as",
+            "yours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i05:r1",
+            "text": "This ground coffee is as fresh as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i05:r2",
+            "text": "This ground coffee is as fresher as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i05:r3",
+            "text": "This ground coffee is as fresh than yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i05:audio",
+            "transcript": "This ground coffee is as fresh as yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:i05:r1",
+              "targetText": "This ground coffee is as fresh as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i05:r2",
+              "targetText": "This ground coffee is as fresher as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i05:r3",
+              "targetText": "This ground coffee is as fresh than yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This ground coffee is as fresh as yours.",
+                "uk": "У записі звучить This ground coffee is as fresh as yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This ground coffee is as fresh as yours.",
+                "uk": "У записі звучить This ground coffee is as fresh as yours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите одинаковое качество.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i06:r1",
+            "text": "as fresh as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i06:r2",
+            "text": "as fresher as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i06:r3",
+            "text": "as fresh than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите одинаковое качество.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This ground coffee is ___ yours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-17:i06:r1",
+              "text": "as fresh as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i06:r2",
+              "text": "as fresher as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i06:r3",
+              "text": "as fresh than"
+            }
+          ],
+          "testedDimension": "Выразите одинаковое качество.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма fresh.",
+                "uk": "Потрібна звичайна форма fresh."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:word:black-tea",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — black tea",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:word:black-tea:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — black tea",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:word:black-tea:audio",
+            "transcript": "black tea"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:word:black-tea:r1",
+              "targetText": "black tea",
+              "meaningByLocale": {
+                "ru": "чёрный чай.",
+                "uk": "чорний чай."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "black tea",
+            "definitionByLocale": {
+              "ru": "чёрный чай.",
+              "uk": "чорний чай."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Качества одинаковые. Скажите: «Этот чёрный чай такой же горячий, как твой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Качества одинаковые. Скажите: «Этот чёрный чай такой же горячий, как твой».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This black tea is as hot as yours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот чёрный чай такой же горячий, как твой».",
+            "uk": "Якості однакові. Скажіть: «Цей чорний чай такий самий гарячий, як твій»."
+          },
+          "orderedTokens": [
+            "This",
+            "black",
+            "tea",
+            "is",
+            "as",
+            "hot",
+            "as",
+            "yours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i08:r1",
+            "text": "This black tea is as hot as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i08:r2",
+            "text": "This black tea is as hotter as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i08:r3",
+            "text": "This black tea is as hot than yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i08:audio",
+            "transcript": "This black tea is as hot as yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:i08:r1",
+              "targetText": "This black tea is as hot as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i08:r2",
+              "targetText": "This black tea is as hotter as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i08:r3",
+              "targetText": "This black tea is as hot than yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This black tea is as hot as yours.",
+                "uk": "У записі звучить This black tea is as hot as yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This black tea is as hot as yours.",
+                "uk": "У записі звучить This black tea is as hot as yours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите одинаковое качество.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i09:r1",
+            "text": "as hot as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i09:r2",
+            "text": "as hotter as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i09:r3",
+            "text": "as hot than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите одинаковое качество.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This black tea is ___ yours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-17:i09:r1",
+              "text": "as hot as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i09:r2",
+              "text": "as hotter as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i09:r3",
+              "text": "as hot than"
+            }
+          ],
+          "testedDimension": "Выразите одинаковое качество.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма hot.",
+                "uk": "Потрібна звичайна форма hot."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:word:green-tea",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — green tea",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:word:green-tea:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — green tea",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:word:green-tea:audio",
+            "transcript": "green tea"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:word:green-tea:r1",
+              "targetText": "green tea",
+              "meaningByLocale": {
+                "ru": "зелёный чай.",
+                "uk": "зелений чай."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "green tea",
+            "definitionByLocale": {
+              "ru": "зелёный чай.",
+              "uk": "зелений чай."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Качества одинаковые. Скажите: «Этот зелёный чай такой же дешёвый, как тот».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Качества одинаковые. Скажите: «Этот зелёный чай такой же дешёвый, как тот».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This green tea is as cheap as that one.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот зелёный чай такой же дешёвый, как тот».",
+            "uk": "Якості однакові. Скажіть: «Цей зелений чай такий самий дешевий, як той»."
+          },
+          "orderedTokens": [
+            "This",
+            "green",
+            "tea",
+            "is",
+            "as",
+            "cheap",
+            "as",
+            "that",
+            "one"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i11:r1",
+            "text": "This green tea is as cheap as that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i11:r2",
+            "text": "This green tea is as cheaper as that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i11:r3",
+            "text": "This green tea is as cheap than that one."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i11:audio",
+            "transcript": "This green tea is as cheap as that one."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:i11:r1",
+              "targetText": "This green tea is as cheap as that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i11:r2",
+              "targetText": "This green tea is as cheaper as that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i11:r3",
+              "targetText": "This green tea is as cheap than that one.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This green tea is as cheap as that one.",
+                "uk": "У записі звучить This green tea is as cheap as that one."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This green tea is as cheap as that one.",
+                "uk": "У записі звучить This green tea is as cheap as that one."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выразите одинаковое качество.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i12:r1",
+            "text": "as cheap as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i12:r2",
+            "text": "as cheaper as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i12:r3",
+            "text": "as cheap than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выразите одинаковое качество.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This green tea is ___ that one.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-17:i12:r1",
+              "text": "as cheap as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i12:r2",
+              "text": "as cheaper as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i12:r3",
+              "text": "as cheap than"
+            }
+          ],
+          "testedDimension": "Выразите одинаковое качество.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма cheap.",
+                "uk": "Потрібна звичайна форма cheap."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Выразите одинаковое качество.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-17:i13:p1",
+              "target": "instant coffee",
+              "meaningByLocale": {
+                "ru": "растворимый кофе",
+                "uk": "розчинна кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-17:i13:p2",
+              "target": "ground coffee",
+              "meaningByLocale": {
+                "ru": "молотый кофе",
+                "uk": "мелена кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-17:i13:p3",
+              "target": "black tea",
+              "meaningByLocale": {
+                "ru": "чёрный чай",
+                "uk": "чорний чай"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-17:i13:p4",
+              "target": "green tea",
+              "meaningByLocale": {
+                "ru": "зелёный чай",
+                "uk": "зелений чай"
+              }
+            }
+          ],
+          "leftColumn": [
+            "instant coffee",
+            "ground coffee",
+            "black tea",
+            "green tea"
+          ],
+          "rightColumn": [
+            "растворимый кофе",
+            "молотый кофе",
+            "чёрный чай",
+            "зелёный чай"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное о крепости кофе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное о крепости кофе",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i14:audio",
+            "transcript": "This instant coffee is as strong as yours."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This instant coffee is as strong as yours.",
+          "orderedTokens": [
+            "This",
+            "instant",
+            "coffee",
+            "is",
+            "as",
+            "strong",
+            "as",
+            "yours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное о цене чая",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное о цене чая",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i15:audio",
+            "transcript": "This green tea is as cheap as that one."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This green tea is as cheap as that one.",
+          "orderedTokens": [
+            "This",
+            "green",
+            "tea",
+            "is",
+            "as",
+            "cheap",
+            "as",
+            "that",
+            "one"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сравните температуру чая",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Сравните температуру чая",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i16:audio",
+            "transcript": "This black tea is as hot as yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This black tea is as hot as yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сравните свежесть кофе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Сравните свежесть кофе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i17:audio",
+            "transcript": "This ground coffee is as fresh as yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This ground coffee is as fresh as yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-17:word:instant-coffee",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — instant coffee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:word:instant-coffee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — instant coffee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:word:instant-coffee:audio",
+            "transcript": "instant coffee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:word:instant-coffee:r1",
+              "targetText": "instant coffee",
+              "meaningByLocale": {
+                "ru": "растворимый кофе.",
+                "uk": "розчинна кава."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "instant coffee",
+            "definitionByLocale": {
+              "ru": "растворимый кофе.",
+              "uk": "розчинна кава."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Якості однакові. Скажіть: «Ця розчинна кава така сама міцна, як твоя».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Якості однакові. Скажіть: «Ця розчинна кава така сама міцна, як твоя».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This instant coffee is as strong as yours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот растворимый кофе такой же крепкий, как твой».",
+            "uk": "Якості однакові. Скажіть: «Ця розчинна кава така сама міцна, як твоя»."
+          },
+          "orderedTokens": [
+            "This",
+            "instant",
+            "coffee",
+            "is",
+            "as",
+            "strong",
+            "as",
+            "yours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i02:r1",
+            "text": "This instant coffee is as strong as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i02:r2",
+            "text": "This instant coffee is as stronger as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i02:r3",
+            "text": "This instant coffee is as strong than yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i02:audio",
+            "transcript": "This instant coffee is as strong as yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:i02:r1",
+              "targetText": "This instant coffee is as strong as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i02:r2",
+              "targetText": "This instant coffee is as stronger as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i02:r3",
+              "targetText": "This instant coffee is as strong than yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This instant coffee is as strong as yours.",
+                "uk": "У записі звучить This instant coffee is as strong as yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This instant coffee is as strong as yours.",
+                "uk": "У записі звучить This instant coffee is as strong as yours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть однакову якість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i03:r1",
+            "text": "as strong as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i03:r2",
+            "text": "as stronger as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i03:r3",
+            "text": "as strong than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть однакову якість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This instant coffee is ___ yours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-17:i03:r1",
+              "text": "as strong as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i03:r2",
+              "text": "as stronger as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i03:r3",
+              "text": "as strong than"
+            }
+          ],
+          "testedDimension": "Висловіть однакову якість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма strong.",
+                "uk": "Потрібна звичайна форма strong."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:word:ground-coffee",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ground coffee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:word:ground-coffee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ground coffee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:word:ground-coffee:audio",
+            "transcript": "ground coffee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:word:ground-coffee:r1",
+              "targetText": "ground coffee",
+              "meaningByLocale": {
+                "ru": "молотый кофе.",
+                "uk": "мелена кава."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ground coffee",
+            "definitionByLocale": {
+              "ru": "молотый кофе.",
+              "uk": "мелена кава."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Якості однакові. Скажіть: «Ця мелена кава така сама свіжа, як твоя».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Якості однакові. Скажіть: «Ця мелена кава така сама свіжа, як твоя».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This ground coffee is as fresh as yours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот молотый кофе такой же свежий, как твой».",
+            "uk": "Якості однакові. Скажіть: «Ця мелена кава така сама свіжа, як твоя»."
+          },
+          "orderedTokens": [
+            "This",
+            "ground",
+            "coffee",
+            "is",
+            "as",
+            "fresh",
+            "as",
+            "yours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i05:r1",
+            "text": "This ground coffee is as fresh as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i05:r2",
+            "text": "This ground coffee is as fresher as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i05:r3",
+            "text": "This ground coffee is as fresh than yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i05:audio",
+            "transcript": "This ground coffee is as fresh as yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:i05:r1",
+              "targetText": "This ground coffee is as fresh as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i05:r2",
+              "targetText": "This ground coffee is as fresher as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i05:r3",
+              "targetText": "This ground coffee is as fresh than yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This ground coffee is as fresh as yours.",
+                "uk": "У записі звучить This ground coffee is as fresh as yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This ground coffee is as fresh as yours.",
+                "uk": "У записі звучить This ground coffee is as fresh as yours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть однакову якість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i06:r1",
+            "text": "as fresh as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i06:r2",
+            "text": "as fresher as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i06:r3",
+            "text": "as fresh than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть однакову якість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This ground coffee is ___ yours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-17:i06:r1",
+              "text": "as fresh as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i06:r2",
+              "text": "as fresher as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i06:r3",
+              "text": "as fresh than"
+            }
+          ],
+          "testedDimension": "Висловіть однакову якість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма fresh.",
+                "uk": "Потрібна звичайна форма fresh."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:word:black-tea",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — black tea",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:word:black-tea:audio"
+        ],
+        "accessibilityLabel": "Картка слова — black tea",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:word:black-tea:audio",
+            "transcript": "black tea"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:word:black-tea:r1",
+              "targetText": "black tea",
+              "meaningByLocale": {
+                "ru": "чёрный чай.",
+                "uk": "чорний чай."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "black tea",
+            "definitionByLocale": {
+              "ru": "чёрный чай.",
+              "uk": "чорний чай."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Якості однакові. Скажіть: «Цей чорний чай такий самий гарячий, як твій».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Якості однакові. Скажіть: «Цей чорний чай такий самий гарячий, як твій».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This black tea is as hot as yours.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот чёрный чай такой же горячий, как твой».",
+            "uk": "Якості однакові. Скажіть: «Цей чорний чай такий самий гарячий, як твій»."
+          },
+          "orderedTokens": [
+            "This",
+            "black",
+            "tea",
+            "is",
+            "as",
+            "hot",
+            "as",
+            "yours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i08:r1",
+            "text": "This black tea is as hot as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i08:r2",
+            "text": "This black tea is as hotter as yours."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i08:r3",
+            "text": "This black tea is as hot than yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i08:audio",
+            "transcript": "This black tea is as hot as yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:i08:r1",
+              "targetText": "This black tea is as hot as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i08:r2",
+              "targetText": "This black tea is as hotter as yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i08:r3",
+              "targetText": "This black tea is as hot than yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This black tea is as hot as yours.",
+                "uk": "У записі звучить This black tea is as hot as yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This black tea is as hot as yours.",
+                "uk": "У записі звучить This black tea is as hot as yours."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть однакову якість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i09:r1",
+            "text": "as hot as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i09:r2",
+            "text": "as hotter as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i09:r3",
+            "text": "as hot than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть однакову якість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This black tea is ___ yours.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-17:i09:r1",
+              "text": "as hot as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i09:r2",
+              "text": "as hotter as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i09:r3",
+              "text": "as hot than"
+            }
+          ],
+          "testedDimension": "Висловіть однакову якість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма hot.",
+                "uk": "Потрібна звичайна форма hot."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:word:green-tea",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — green tea",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:word:green-tea:audio"
+        ],
+        "accessibilityLabel": "Картка слова — green tea",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:word:green-tea:audio",
+            "transcript": "green tea"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:word:green-tea:r1",
+              "targetText": "green tea",
+              "meaningByLocale": {
+                "ru": "зелёный чай.",
+                "uk": "зелений чай."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "green tea",
+            "definitionByLocale": {
+              "ru": "зелёный чай.",
+              "uk": "зелений чай."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Якості однакові. Скажіть: «Цей зелений чай такий самий дешевий, як той».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Якості однакові. Скажіть: «Цей зелений чай такий самий дешевий, як той».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This green tea is as cheap as that one.",
+          "localizedMeaning": {
+            "ru": "Качества одинаковые. Скажите: «Этот зелёный чай такой же дешёвый, как тот».",
+            "uk": "Якості однакові. Скажіть: «Цей зелений чай такий самий дешевий, як той»."
+          },
+          "orderedTokens": [
+            "This",
+            "green",
+            "tea",
+            "is",
+            "as",
+            "cheap",
+            "as",
+            "that",
+            "one"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i11:r1",
+            "text": "This green tea is as cheap as that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i11:r2",
+            "text": "This green tea is as cheaper as that one."
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i11:r3",
+            "text": "This green tea is as cheap than that one."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i11:audio",
+            "transcript": "This green tea is as cheap as that one."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-17:i11:r1",
+              "targetText": "This green tea is as cheap as that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i11:r2",
+              "targetText": "This green tea is as cheaper as that one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i11:r3",
+              "targetText": "This green tea is as cheap than that one.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This green tea is as cheap as that one.",
+                "uk": "У записі звучить This green tea is as cheap as that one."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This green tea is as cheap as that one.",
+                "uk": "У записі звучить This green tea is as cheap as that one."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Висловіть однакову якість.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-17:i12:r1",
+            "text": "as cheap as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i12:r2",
+            "text": "as cheaper as"
+          },
+          {
+            "responseId": "en:lesson-18:session-17:i12:r3",
+            "text": "as cheap than"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Висловіть однакову якість.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выразите одинаковое качество.",
+            "uk": "Висловіть однакову якість."
+          },
+          "gappedTargetPhrase": "This green tea is ___ that one.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-17:i12:r1",
+              "text": "as cheap as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i12:r2",
+              "text": "as cheaper as"
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i12:r3",
+              "text": "as cheap than"
+            }
+          ],
+          "testedDimension": "Висловіть однакову якість.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Нужна обычная форма cheap.",
+                "uk": "Потрібна звичайна форма cheap."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Висловіть однакову якість.",
+              "feedbackByLocale": {
+                "ru": "Для равенства используем as … as.",
+                "uk": "Для рівності використовуємо as … as."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-17:i13:p1",
+              "target": "instant coffee",
+              "meaningByLocale": {
+                "ru": "растворимый кофе",
+                "uk": "розчинна кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-17:i13:p2",
+              "target": "ground coffee",
+              "meaningByLocale": {
+                "ru": "молотый кофе",
+                "uk": "мелена кава"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-17:i13:p3",
+              "target": "black tea",
+              "meaningByLocale": {
+                "ru": "чёрный чай",
+                "uk": "чорний чай"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-17:i13:p4",
+              "target": "green tea",
+              "meaningByLocale": {
+                "ru": "зелёный чай",
+                "uk": "зелений чай"
+              }
+            }
+          ],
+          "leftColumn": [
+            "instant coffee",
+            "ground coffee",
+            "black tea",
+            "green tea"
+          ],
+          "rightColumn": [
+            "розчинна кава",
+            "мелена кава",
+            "чорний чай",
+            "зелений чай"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте про міцність кави",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте про міцність кави",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i14:audio",
+            "transcript": "This instant coffee is as strong as yours."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This instant coffee is as strong as yours.",
+          "orderedTokens": [
+            "This",
+            "instant",
+            "coffee",
+            "is",
+            "as",
+            "strong",
+            "as",
+            "yours"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте про ціну чаю",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте про ціну чаю",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i15:audio",
+            "transcript": "This green tea is as cheap as that one."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This green tea is as cheap as that one.",
+          "orderedTokens": [
+            "This",
+            "green",
+            "tea",
+            "is",
+            "as",
+            "cheap",
+            "as",
+            "that",
+            "one"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порівняйте температуру чаю",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Порівняйте температуру чаю",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i16:audio",
+            "transcript": "This black tea is as hot as yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This black tea is as hot as yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порівняйте свіжість кави",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Порівняйте свіжість кави",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-17:i17:audio",
+            "transcript": "This ground coffee is as fresh as yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This ground coffee is as fresh as yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-17:word:instant-coffee",
+      "correctText": "instant coffee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i01",
+      "correctText": "This instant coffee is as strong as yours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i02",
+      "correctText": "This instant coffee is as strong as yours.",
+      "correctResponseId": "en:lesson-18:session-17:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i03",
+      "correctText": "as strong as",
+      "correctResponseId": "en:lesson-18:session-17:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:word:ground-coffee",
+      "correctText": "ground coffee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i04",
+      "correctText": "This ground coffee is as fresh as yours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i05",
+      "correctText": "This ground coffee is as fresh as yours.",
+      "correctResponseId": "en:lesson-18:session-17:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i06",
+      "correctText": "as fresh as",
+      "correctResponseId": "en:lesson-18:session-17:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:word:black-tea",
+      "correctText": "black tea",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i07",
+      "correctText": "This black tea is as hot as yours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i08",
+      "correctText": "This black tea is as hot as yours.",
+      "correctResponseId": "en:lesson-18:session-17:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i09",
+      "correctText": "as hot as",
+      "correctResponseId": "en:lesson-18:session-17:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:word:green-tea",
+      "correctText": "green tea",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i10",
+      "correctText": "This green tea is as cheap as that one.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i11",
+      "correctText": "This green tea is as cheap as that one.",
+      "correctResponseId": "en:lesson-18:session-17:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i12",
+      "correctText": "as cheap as",
+      "correctResponseId": "en:lesson-18:session-17:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i14",
+      "correctText": "This instant coffee is as strong as yours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i15",
+      "correctText": "This green tea is as cheap as that one.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i16",
+      "correctText": "This black tea is as hot as yours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-17:i17",
+      "correctText": "This ground coffee is as fresh as yours.",
+      "correctResponseId": null
+    }
+  ]
+}

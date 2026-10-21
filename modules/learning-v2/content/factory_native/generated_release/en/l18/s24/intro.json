@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "as + adjective + as",
+    "uk": "as + adjective + as"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 1",
+        "uk": "Однакова якість 1"
+      },
+      "bodyByLocale": {
+        "ru": "weekend break — короткая поездка на выходные. city break — короткий отдых в городе. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as long as.",
+        "uk": "weekend break — коротка поїздка на вихідні. city break — короткий відпочинок у місті. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as long as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-24:intro1:r1",
+              "text": "Your weekend break is as long as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro1:r2",
+              "text": "Your weekend break is as longer as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro1:r3",
+              "text": "Your weekend break is as long than ours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-24:intro1:r1",
+              "text": "Your weekend break is as long as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro1:r2",
+              "text": "Your weekend break is as longer as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro1:r3",
+              "text": "Your weekend break is as long than ours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 2",
+        "uk": "Однакова якість 2"
+      },
+      "bodyByLocale": {
+        "ru": "camping trip — поездка с ночёвкой в палатке. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as short as.",
+        "uk": "camping trip — поїздка з ночівлею в наметі. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as short as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-24:intro2:r1",
+              "text": "This camping trip is as short as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro2:r2",
+              "text": "This camping trip is as shorter as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro2:r3",
+              "text": "This camping trip is as short than ours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-24:intro2:r1",
+              "text": "This camping trip is as short as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro2:r2",
+              "text": "This camping trip is as shorter as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro2:r3",
+              "text": "This camping trip is as short than ours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 3",
+        "uk": "Однакова якість 3"
+      },
+      "bodyByLocale": {
+        "ru": "beach holiday — пляжный отдых. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as quiet as.",
+        "uk": "beach holiday — пляжний відпочинок. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as quiet as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-24:intro3:r1",
+              "text": "Your beach holiday is as quiet as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro3:r2",
+              "text": "Your beach holiday is as quieter as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro3:r3",
+              "text": "Your beach holiday is as quiet than ours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-24:intro3:r1",
+              "text": "Your beach holiday is as quiet as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro3:r2",
+              "text": "Your beach holiday is as quieter as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-24:intro3:r3",
+              "text": "Your beach holiday is as quiet than ours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cb0734dc4521f1955d0d1b13e200591557cefd26b78e6980a4631e5a882c2334"
+}

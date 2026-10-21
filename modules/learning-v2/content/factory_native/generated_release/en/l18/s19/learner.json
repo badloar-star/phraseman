@@ -1,0 +1,1133 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-19:word:reading-glasses",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reading glasses",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:word:reading-glasses:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reading glasses",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:word:reading-glasses:audio",
+          "transcript": "reading glasses"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-19:word:reading-glasses:r1",
+            "targetText": "reading glasses",
+            "meaningByLocale": {
+              "ru": "очки для чтения.",
+              "uk": "окуляри для читання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reading glasses",
+          "definitionByLocale": {
+            "ru": "очки для чтения.",
+            "uk": "окуляри для читання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Качества одинаковые. Скажите: «Эти очки для чтения такие же лёгкие, как мои».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Качества одинаковые. Скажите: «Эти очки для чтения такие же лёгкие, как мои».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These reading glasses are as light as mine.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Эти очки для чтения такие же лёгкие, как мои».",
+          "uk": "Якості однакові. Скажіть: «Ці окуляри для читання такі самі легкі, як мої»."
+        },
+        "orderedTokens": [
+          "These",
+          "reading",
+          "glasses",
+          "are",
+          "as",
+          "light",
+          "as",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-19:i02:r1",
+          "text": "These reading glasses are as light as mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i02:r2",
+          "text": "These reading glasses are as lighter as mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i02:r3",
+          "text": "These reading glasses are as light than mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:i02:audio",
+          "transcript": "These reading glasses are as light as mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-19:i02:r1",
+            "targetText": "These reading glasses are as light as mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i02:r2",
+            "targetText": "These reading glasses are as lighter as mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i02:r3",
+            "targetText": "These reading glasses are as light than mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These reading glasses are as light as mine.",
+              "uk": "У записі звучить These reading glasses are as light as mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These reading glasses are as light as mine.",
+              "uk": "У записі звучить These reading glasses are as light as mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите одинаковое качество.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-19:i03:r1",
+          "text": "as light as"
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i03:r2",
+          "text": "as lighter as"
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i03:r3",
+          "text": "as light than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите одинаковое качество.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "These reading glasses are ___ mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-19:i03:r1",
+            "text": "as light as"
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i03:r2",
+            "text": "as lighter as"
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i03:r3",
+            "text": "as light than"
+          }
+        ],
+        "testedDimension": "Выразите одинаковое качество.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма light.",
+              "uk": "Потрібна звичайна форма light."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:word:contact-lenses",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — contact lenses",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:word:contact-lenses:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — contact lenses",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:word:contact-lenses:audio",
+          "transcript": "contact lenses"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-19:word:contact-lenses:r1",
+            "targetText": "contact lenses",
+            "meaningByLocale": {
+              "ru": "контактные линзы.",
+              "uk": "контактні лінзи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "contact lenses",
+          "definitionByLocale": {
+            "ru": "контактные линзы.",
+            "uk": "контактні лінзи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Качества одинаковые. Скажите: «Эти контактные линзы такие же дешёвые, как мои».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Качества одинаковые. Скажите: «Эти контактные линзы такие же дешёвые, как мои».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These contact lenses are as cheap as mine.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Эти контактные линзы такие же дешёвые, как мои».",
+          "uk": "Якості однакові. Скажіть: «Ці контактні лінзи такі самі дешеві, як мої»."
+        },
+        "orderedTokens": [
+          "These",
+          "contact",
+          "lenses",
+          "are",
+          "as",
+          "cheap",
+          "as",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-19:i05:r1",
+          "text": "These contact lenses are as cheap as mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i05:r2",
+          "text": "These contact lenses are as cheaper as mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i05:r3",
+          "text": "These contact lenses are as cheap than mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:i05:audio",
+          "transcript": "These contact lenses are as cheap as mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-19:i05:r1",
+            "targetText": "These contact lenses are as cheap as mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i05:r2",
+            "targetText": "These contact lenses are as cheaper as mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i05:r3",
+            "targetText": "These contact lenses are as cheap than mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-19:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These contact lenses are as cheap as mine.",
+              "uk": "У записі звучить These contact lenses are as cheap as mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These contact lenses are as cheap as mine.",
+              "uk": "У записі звучить These contact lenses are as cheap as mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите одинаковое качество.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-19:i06:r1",
+          "text": "as cheap as"
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i06:r2",
+          "text": "as cheaper as"
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i06:r3",
+          "text": "as cheap than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите одинаковое качество.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "These contact lenses are ___ mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-19:i06:r1",
+            "text": "as cheap as"
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i06:r2",
+            "text": "as cheaper as"
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i06:r3",
+            "text": "as cheap than"
+          }
+        ],
+        "testedDimension": "Выразите одинаковое качество.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-19:i06:r2",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма cheap.",
+              "uk": "Потрібна звичайна форма cheap."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i06:r3",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:word:eye-drops",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eye drops",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:word:eye-drops:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eye drops",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:word:eye-drops:audio",
+          "transcript": "eye drops"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-19:word:eye-drops:r1",
+            "targetText": "eye drops",
+            "meaningByLocale": {
+              "ru": "глазные капли.",
+              "uk": "очні краплі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eye drops",
+          "definitionByLocale": {
+            "ru": "глазные капли.",
+            "uk": "очні краплі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Качества одинаковые. Скажите: «Эти глазные капли такие же дорогие, как те».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Качества одинаковые. Скажите: «Эти глазные капли такие же дорогие, как те».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These eye drops are as expensive as those ones.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Эти глазные капли такие же дорогие, как те».",
+          "uk": "Якості однакові. Скажіть: «Ці очні краплі такі самі дорогі, як ті»."
+        },
+        "orderedTokens": [
+          "These",
+          "eye",
+          "drops",
+          "are",
+          "as",
+          "expensive",
+          "as",
+          "those",
+          "ones"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-19:i08:r1",
+          "text": "These eye drops are as expensive as those ones."
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i08:r2",
+          "text": "These eye drops are as more expensive as those ones."
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i08:r3",
+          "text": "These eye drops are as expensive than those ones."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:i08:audio",
+          "transcript": "These eye drops are as expensive as those ones."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-19:i08:r1",
+            "targetText": "These eye drops are as expensive as those ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i08:r2",
+            "targetText": "These eye drops are as more expensive as those ones.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i08:r3",
+            "targetText": "These eye drops are as expensive than those ones.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These eye drops are as expensive as those ones.",
+              "uk": "У записі звучить These eye drops are as expensive as those ones."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит These eye drops are as expensive as those ones.",
+              "uk": "У записі звучить These eye drops are as expensive as those ones."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите одинаковое качество.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-19:i09:r1",
+          "text": "as expensive as"
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i09:r2",
+          "text": "as more expensive as"
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i09:r3",
+          "text": "as expensive than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите одинаковое качество.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "These eye drops are ___ those ones.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-19:i09:r1",
+            "text": "as expensive as"
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i09:r2",
+            "text": "as more expensive as"
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i09:r3",
+            "text": "as expensive than"
+          }
+        ],
+        "testedDimension": "Выразите одинаковое качество.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма expensive.",
+              "uk": "Потрібна звичайна форма expensive."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:word:glasses-case",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — glasses case",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:word:glasses-case:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — glasses case",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:word:glasses-case:audio",
+          "transcript": "glasses case"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-19:word:glasses-case:r1",
+            "targetText": "glasses case",
+            "meaningByLocale": {
+              "ru": "футляр для очков.",
+              "uk": "футляр для окулярів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glasses case",
+          "definitionByLocale": {
+            "ru": "футляр для очков.",
+            "uk": "футляр для окулярів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Качества одинаковые. Скажите: «Этот футляр для очков такой же мягкий, как мой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Качества одинаковые. Скажите: «Этот футляр для очков такой же мягкий, как мой».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This glasses case is as soft as mine.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Этот футляр для очков такой же мягкий, как мой».",
+          "uk": "Якості однакові. Скажіть: «Цей футляр для окулярів такий самий м’який, як мій»."
+        },
+        "orderedTokens": [
+          "This",
+          "glasses",
+          "case",
+          "is",
+          "as",
+          "soft",
+          "as",
+          "mine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-19:i11:r1",
+          "text": "This glasses case is as soft as mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i11:r2",
+          "text": "This glasses case is as softer as mine."
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i11:r3",
+          "text": "This glasses case is as soft than mine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:i11:audio",
+          "transcript": "This glasses case is as soft as mine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-19:i11:r1",
+            "targetText": "This glasses case is as soft as mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i11:r2",
+            "targetText": "This glasses case is as softer as mine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i11:r3",
+            "targetText": "This glasses case is as soft than mine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-19:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This glasses case is as soft as mine.",
+              "uk": "У записі звучить This glasses case is as soft as mine."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This glasses case is as soft as mine.",
+              "uk": "У записі звучить This glasses case is as soft as mine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите одинаковое качество.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-19:i12:r1",
+          "text": "as soft as"
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i12:r2",
+          "text": "as softer as"
+        },
+        {
+          "responseId": "en:lesson-18:session-19:i12:r3",
+          "text": "as soft than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите одинаковое качество.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This glasses case is ___ mine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-19:i12:r1",
+            "text": "as soft as"
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i12:r2",
+            "text": "as softer as"
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i12:r3",
+            "text": "as soft than"
+          }
+        ],
+        "testedDimension": "Выразите одинаковое качество.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-19:i12:r2",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма soft.",
+              "uk": "Потрібна звичайна форма soft."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-19:i12:r3",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-19:i13:p1",
+            "target": "reading glasses",
+            "meaningByLocale": {
+              "ru": "очки для чтения",
+              "uk": "окуляри для читання"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-19:i13:p2",
+            "target": "contact lenses",
+            "meaningByLocale": {
+              "ru": "контактные линзы",
+              "uk": "контактні лінзи"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-19:i13:p3",
+            "target": "eye drops",
+            "meaningByLocale": {
+              "ru": "глазные капли",
+              "uk": "очні краплі"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-19:i13:p4",
+            "target": "glasses case",
+            "meaningByLocale": {
+              "ru": "футляр для очков",
+              "uk": "футляр для окулярів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "reading glasses",
+          "contact lenses",
+          "eye drops",
+          "glasses case"
+        ],
+        "rightColumn": [
+          "очки для чтения",
+          "контактные линзы",
+          "глазные капли",
+          "футляр для очков"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:i14:audio",
+          "transcript": "We are going to buy a glasses case."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to buy a glasses case.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "glasses",
+          "case"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:i15:audio",
+          "transcript": "We are meeting at the shop tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the shop tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "shop",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:i16:audio",
+          "transcript": "These reading glasses are lighter than mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These reading glasses are lighter than mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-19:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите количество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-19:i17:audio",
+          "transcript": "We need two bottles of eye drops."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of eye drops.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a49a66ff2474cc6a96a3b6e4dde3d492893c24aa28c435871b383c6a85618cf7"
+}

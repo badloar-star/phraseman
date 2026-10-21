@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-22:intro1:r2": {
+          "ru": "В конструкции равенства нужна обычная форма fast.",
+          "uk": "У конструкції рівності потрібна звичайна форма fast."
+        },
+        "en:lesson-18:session-22:intro1:r3": {
+          "ru": "Нужно два as: as … as.",
+          "uk": "Потрібні два as: as … as."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-22:intro2:r2": {
+          "ru": "В конструкции равенства нужна обычная форма wide.",
+          "uk": "У конструкції рівності потрібна звичайна форма wide."
+        },
+        "en:lesson-18:session-22:intro2:r3": {
+          "ru": "Нужно два as: as … as.",
+          "uk": "Потрібні два as: as … as."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-22:intro3:r2": {
+          "ru": "В конструкции равенства нужна обычная форма cheap.",
+          "uk": "У конструкції рівності потрібна звичайна форма cheap."
+        },
+        "en:lesson-18:session-22:intro3:r3": {
+          "ru": "Нужно два as: as … as.",
+          "uk": "Потрібні два as: as … as."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "715606af094a99d834c145f10286ceb4f4d7d89a55599ce56abe41791a572c9e"
+}

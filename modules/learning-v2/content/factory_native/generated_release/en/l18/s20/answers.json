@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-20:word:lunch-menu",
+    "correctText": "lunch menu",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i01",
+    "correctText": "This lunch menu is as cheap as that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i02",
+    "correctText": "This lunch menu is as cheap as that one.",
+    "correctResponseId": "en:lesson-18:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i03",
+    "correctText": "as cheap as",
+    "correctResponseId": "en:lesson-18:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:word:vegetarian-option",
+    "correctText": "vegetarian option",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i04",
+    "correctText": "The vegetarian option is as tasty as the chicken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i05",
+    "correctText": "The vegetarian option is as tasty as the chicken.",
+    "correctResponseId": "en:lesson-18:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i06",
+    "correctText": "as tasty as",
+    "correctResponseId": "en:lesson-18:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:word:daily-special",
+    "correctText": "daily special",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i07",
+    "correctText": "The daily special is as fresh as the salad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i08",
+    "correctText": "The daily special is as fresh as the salad.",
+    "correctResponseId": "en:lesson-18:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i09",
+    "correctText": "as fresh as",
+    "correctResponseId": "en:lesson-18:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:word:takeaway-meal",
+    "correctText": "takeaway meal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i10",
+    "correctText": "This takeaway meal is as hot as yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i11",
+    "correctText": "This takeaway meal is as hot as yours.",
+    "correctResponseId": "en:lesson-18:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i12",
+    "correctText": "as hot as",
+    "correctResponseId": "en:lesson-18:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i13",
+    "correctText": "en:lesson-18:session-20:i13:p1=lunch menu\nen:lesson-18:session-20:i13:p2=vegetarian option\nen:lesson-18:session-20:i13:p3=daily special\nen:lesson-18:session-20:i13:p4=takeaway meal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i14",
+    "correctText": "We are going to order the daily special.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i15",
+    "correctText": "We are having lunch with friends at one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i16",
+    "correctText": "The daily special is cheaper than the salad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-20:i17",
+    "correctText": "We need two bowls of soup.",
+    "correctResponseId": null
+  }
+]

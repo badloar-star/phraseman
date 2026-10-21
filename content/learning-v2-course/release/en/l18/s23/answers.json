@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-23:word:glass-jar",
+    "correctText": "glass jar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i01",
+    "correctText": "This glass jar is as large as yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i02",
+    "correctText": "This glass jar is as large as yours.",
+    "correctResponseId": "en:lesson-18:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i03",
+    "correctText": "as large as",
+    "correctResponseId": "en:lesson-18:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:word:water-jug",
+    "correctText": "water jug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i04",
+    "correctText": "This water jug is as heavy as yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i05",
+    "correctText": "This water jug is as heavy as yours.",
+    "correctResponseId": "en:lesson-18:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i06",
+    "correctText": "as heavy as",
+    "correctResponseId": "en:lesson-18:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:word:storage-box",
+    "correctText": "storage box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i07",
+    "correctText": "This storage box is as strong as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i08",
+    "correctText": "This storage box is as strong as ours.",
+    "correctResponseId": "en:lesson-18:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i09",
+    "correctText": "as strong as",
+    "correctResponseId": "en:lesson-18:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:word:lunch-bag",
+    "correctText": "lunch bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i10",
+    "correctText": "This lunch bag is as light as mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i11",
+    "correctText": "This lunch bag is as light as mine.",
+    "correctResponseId": "en:lesson-18:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i12",
+    "correctText": "as light as",
+    "correctResponseId": "en:lesson-18:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i13",
+    "correctText": "en:lesson-18:session-23:i13:p1=glass jar\nen:lesson-18:session-23:i13:p2=water jug\nen:lesson-18:session-23:i13:p3=storage box\nen:lesson-18:session-23:i13:p4=lunch bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i14",
+    "correctText": "We are going to buy a storage box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i15",
+    "correctText": "We are meeting at the shop at ten.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i16",
+    "correctText": "This water jug is heavier than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-23:i17",
+    "correctText": "We need two jars of jam.",
+    "correctResponseId": null
+  }
+]

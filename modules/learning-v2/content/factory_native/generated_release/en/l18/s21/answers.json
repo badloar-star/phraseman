@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-21:word:dog-food",
+    "correctText": "dog food",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i01",
+    "correctText": "This dog food is as cheap as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i02",
+    "correctText": "This dog food is as cheap as ours.",
+    "correctResponseId": "en:lesson-18:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i03",
+    "correctText": "as cheap as",
+    "correctResponseId": "en:lesson-18:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:word:cat-food",
+    "correctText": "cat food",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i04",
+    "correctText": "This cat food is as fresh as yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i05",
+    "correctText": "This cat food is as fresh as yours.",
+    "correctResponseId": "en:lesson-18:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i06",
+    "correctText": "as fresh as",
+    "correctResponseId": "en:lesson-18:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:word:cat-litter",
+    "correctText": "cat litter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i07",
+    "correctText": "This cat litter is as cheap as that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i08",
+    "correctText": "This cat litter is as cheap as that one.",
+    "correctResponseId": "en:lesson-18:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i09",
+    "correctText": "as cheap as",
+    "correctResponseId": "en:lesson-18:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:word:litter-tray",
+    "correctText": "litter tray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i10",
+    "correctText": "This litter tray is as wide as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i11",
+    "correctText": "This litter tray is as wide as ours.",
+    "correctResponseId": "en:lesson-18:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i12",
+    "correctText": "as wide as",
+    "correctResponseId": "en:lesson-18:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i13",
+    "correctText": "en:lesson-18:session-21:i13:p1=dog food\nen:lesson-18:session-21:i13:p2=cat food\nen:lesson-18:session-21:i13:p3=cat litter\nen:lesson-18:session-21:i13:p4=litter tray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i14",
+    "correctText": "We are going to buy a litter tray.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i15",
+    "correctText": "We are meeting at the pet shop tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i16",
+    "correctText": "This litter tray is wider than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-21:i17",
+    "correctText": "We need two bags of cat food.",
+    "correctResponseId": null
+  }
+]

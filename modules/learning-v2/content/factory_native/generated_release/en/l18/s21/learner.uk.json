@@ -1,0 +1,1134 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-21:word:dog-food",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dog food",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:word:dog-food:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dog food",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:word:dog-food:audio",
+          "transcript": "dog food"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-21:word:dog-food:r1",
+            "targetText": "dog food",
+            "meaningByLocale": {
+              "ru": "корм для собак.",
+              "uk": "корм для собак."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dog food",
+          "definitionByLocale": {
+            "ru": "корм для собак.",
+            "uk": "корм для собак."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Якості однакові. Скажіть: «Цей корм для собак такий самий дешевий, як наш».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якості однакові. Скажіть: «Цей корм для собак такий самий дешевий, як наш».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This dog food is as cheap as ours.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Этот корм для собак такой же дешёвый, как наш».",
+          "uk": "Якості однакові. Скажіть: «Цей корм для собак такий самий дешевий, як наш»."
+        },
+        "orderedTokens": [
+          "This",
+          "dog",
+          "food",
+          "is",
+          "as",
+          "cheap",
+          "as",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-21:i02:r1",
+          "text": "This dog food is as cheap as ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i02:r2",
+          "text": "This dog food is as cheaper as ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i02:r3",
+          "text": "This dog food is as cheap than ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:i02:audio",
+          "transcript": "This dog food is as cheap as ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-21:i02:r1",
+            "targetText": "This dog food is as cheap as ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i02:r2",
+            "targetText": "This dog food is as cheaper as ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i02:r3",
+            "targetText": "This dog food is as cheap than ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This dog food is as cheap as ours.",
+              "uk": "У записі звучить This dog food is as cheap as ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This dog food is as cheap as ours.",
+              "uk": "У записі звучить This dog food is as cheap as ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть однакову якість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-21:i03:r1",
+          "text": "as cheap as"
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i03:r2",
+          "text": "as cheaper as"
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i03:r3",
+          "text": "as cheap than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть однакову якість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This dog food is ___ ours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-21:i03:r1",
+            "text": "as cheap as"
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i03:r2",
+            "text": "as cheaper as"
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i03:r3",
+            "text": "as cheap than"
+          }
+        ],
+        "testedDimension": "Висловіть однакову якість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма cheap.",
+              "uk": "Потрібна звичайна форма cheap."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:word:cat-food",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cat food",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:word:cat-food:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cat food",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:word:cat-food:audio",
+          "transcript": "cat food"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-21:word:cat-food:r1",
+            "targetText": "cat food",
+            "meaningByLocale": {
+              "ru": "корм для кошек.",
+              "uk": "корм для котів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cat food",
+          "definitionByLocale": {
+            "ru": "корм для кошек.",
+            "uk": "корм для котів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Якості однакові. Скажіть: «Цей корм для котів такий самий свіжий, як твій».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якості однакові. Скажіть: «Цей корм для котів такий самий свіжий, як твій».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This cat food is as fresh as yours.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Этот корм для кошек такой же свежий, как твой».",
+          "uk": "Якості однакові. Скажіть: «Цей корм для котів такий самий свіжий, як твій»."
+        },
+        "orderedTokens": [
+          "This",
+          "cat",
+          "food",
+          "is",
+          "as",
+          "fresh",
+          "as",
+          "yours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-21:i05:r1",
+          "text": "This cat food is as fresh as yours."
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i05:r2",
+          "text": "This cat food is as fresher as yours."
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i05:r3",
+          "text": "This cat food is as fresh than yours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:i05:audio",
+          "transcript": "This cat food is as fresh as yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-21:i05:r1",
+            "targetText": "This cat food is as fresh as yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i05:r2",
+            "targetText": "This cat food is as fresher as yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i05:r3",
+            "targetText": "This cat food is as fresh than yours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cat food is as fresh as yours.",
+              "uk": "У записі звучить This cat food is as fresh as yours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cat food is as fresh as yours.",
+              "uk": "У записі звучить This cat food is as fresh as yours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть однакову якість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-21:i06:r1",
+          "text": "as fresh as"
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i06:r2",
+          "text": "as fresher as"
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i06:r3",
+          "text": "as fresh than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть однакову якість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This cat food is ___ yours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-21:i06:r1",
+            "text": "as fresh as"
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i06:r2",
+            "text": "as fresher as"
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i06:r3",
+            "text": "as fresh than"
+          }
+        ],
+        "testedDimension": "Висловіть однакову якість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма fresh.",
+              "uk": "Потрібна звичайна форма fresh."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:word:cat-litter",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cat litter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:word:cat-litter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cat litter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:word:cat-litter:audio",
+          "transcript": "cat litter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-21:word:cat-litter:r1",
+            "targetText": "cat litter",
+            "meaningByLocale": {
+              "ru": "наполнитель для кошачьего туалета.",
+              "uk": "наповнювач для котячого туалету."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cat litter",
+          "definitionByLocale": {
+            "ru": "наполнитель для кошачьего туалета.",
+            "uk": "наповнювач для котячого туалету."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Якості однакові. Скажіть: «Цей наповнювач для котячого туалету такий самий дешевий, як той».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якості однакові. Скажіть: «Цей наповнювач для котячого туалету такий самий дешевий, як той».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This cat litter is as cheap as that one.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Этот наполнитель для кошачьего туалета такой же дешёвый, как тот».",
+          "uk": "Якості однакові. Скажіть: «Цей наповнювач для котячого туалету такий самий дешевий, як той»."
+        },
+        "orderedTokens": [
+          "This",
+          "cat",
+          "litter",
+          "is",
+          "as",
+          "cheap",
+          "as",
+          "that",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-21:i08:r1",
+          "text": "This cat litter is as cheap as that one."
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i08:r2",
+          "text": "This cat litter is as cheaper as that one."
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i08:r3",
+          "text": "This cat litter is as cheap than that one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:i08:audio",
+          "transcript": "This cat litter is as cheap as that one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-21:i08:r1",
+            "targetText": "This cat litter is as cheap as that one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i08:r2",
+            "targetText": "This cat litter is as cheaper as that one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i08:r3",
+            "targetText": "This cat litter is as cheap than that one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cat litter is as cheap as that one.",
+              "uk": "У записі звучить This cat litter is as cheap as that one."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cat litter is as cheap as that one.",
+              "uk": "У записі звучить This cat litter is as cheap as that one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть однакову якість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-21:i09:r1",
+          "text": "as cheap as"
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i09:r2",
+          "text": "as cheaper as"
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i09:r3",
+          "text": "as cheap than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть однакову якість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This cat litter is ___ that one.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-21:i09:r1",
+            "text": "as cheap as"
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i09:r2",
+            "text": "as cheaper as"
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i09:r3",
+            "text": "as cheap than"
+          }
+        ],
+        "testedDimension": "Висловіть однакову якість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма cheap.",
+              "uk": "Потрібна звичайна форма cheap."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:word:litter-tray",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — litter tray",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:word:litter-tray:audio"
+      ],
+      "accessibilityLabel": "Картка слова — litter tray",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:word:litter-tray:audio",
+          "transcript": "litter tray"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-21:word:litter-tray:r1",
+            "targetText": "litter tray",
+            "meaningByLocale": {
+              "ru": "лоток для кошки.",
+              "uk": "лоток для кота."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "litter tray",
+          "definitionByLocale": {
+            "ru": "лоток для кошки.",
+            "uk": "лоток для кота."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Якості однакові. Скажіть: «Цей лоток для кота такий самий широкий, як наш».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Якості однакові. Скажіть: «Цей лоток для кота такий самий широкий, як наш».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This litter tray is as wide as ours.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Этот лоток для кошки такой же широкий, как наш».",
+          "uk": "Якості однакові. Скажіть: «Цей лоток для кота такий самий широкий, як наш»."
+        },
+        "orderedTokens": [
+          "This",
+          "litter",
+          "tray",
+          "is",
+          "as",
+          "wide",
+          "as",
+          "ours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-21:i11:r1",
+          "text": "This litter tray is as wide as ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i11:r2",
+          "text": "This litter tray is as wider as ours."
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i11:r3",
+          "text": "This litter tray is as wide than ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:i11:audio",
+          "transcript": "This litter tray is as wide as ours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-21:i11:r1",
+            "targetText": "This litter tray is as wide as ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i11:r2",
+            "targetText": "This litter tray is as wider as ours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i11:r3",
+            "targetText": "This litter tray is as wide than ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This litter tray is as wide as ours.",
+              "uk": "У записі звучить This litter tray is as wide as ours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This litter tray is as wide as ours.",
+              "uk": "У записі звучить This litter tray is as wide as ours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Висловіть однакову якість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-21:i12:r1",
+          "text": "as wide as"
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i12:r2",
+          "text": "as wider as"
+        },
+        {
+          "responseId": "en:lesson-18:session-21:i12:r3",
+          "text": "as wide than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Висловіть однакову якість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This litter tray is ___ ours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-21:i12:r1",
+            "text": "as wide as"
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i12:r2",
+            "text": "as wider as"
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i12:r3",
+            "text": "as wide than"
+          }
+        ],
+        "testedDimension": "Висловіть однакову якість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-21:i12:r2",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма wide.",
+              "uk": "Потрібна звичайна форма wide."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-21:i12:r3",
+            "correct": false,
+            "testedDimension": "Висловіть однакову якість.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-21:i13:p1",
+            "target": "dog food",
+            "meaningByLocale": {
+              "ru": "корм для собак",
+              "uk": "корм для собак"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-21:i13:p2",
+            "target": "cat food",
+            "meaningByLocale": {
+              "ru": "корм для кошек",
+              "uk": "корм для котів"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-21:i13:p3",
+            "target": "cat litter",
+            "meaningByLocale": {
+              "ru": "наполнитель для кошачьего туалета",
+              "uk": "наповнювач для котячого туалету"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-21:i13:p4",
+            "target": "litter tray",
+            "meaningByLocale": {
+              "ru": "лоток для кошки",
+              "uk": "лоток для кота"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dog food",
+          "cat food",
+          "cat litter",
+          "litter tray"
+        ],
+        "rightColumn": [
+          "корм для собак",
+          "корм для котів",
+          "наповнювач для котячого туалету",
+          "лоток для кота"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:i14:audio",
+          "transcript": "We are going to buy a litter tray."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to buy a litter tray.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "litter",
+          "tray"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:i15:audio",
+          "transcript": "We are meeting at the pet shop tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the pet shop tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "pet",
+          "shop",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:i16:audio",
+          "transcript": "This litter tray is wider than ours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This litter tray is wider than ours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-21:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть кількість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-21:i17:audio",
+          "transcript": "We need two bags of cat food."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bags of cat food.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9cf76994fed5aedfeb8760502d80c65090816e8c0bc288577a8d575c0db3f5b9"
+}

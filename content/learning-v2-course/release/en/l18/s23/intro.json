@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "as + adjective + as",
+    "uk": "as + adjective + as"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 1",
+        "uk": "Однакова якість 1"
+      },
+      "bodyByLocale": {
+        "ru": "glass jar — стеклянная банка. water jug — кувшин для воды. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as large as.",
+        "uk": "glass jar — скляна банка. water jug — глечик для води. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as large as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-23:intro1:r1",
+              "text": "This glass jar is as large as yours."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro1:r2",
+              "text": "This glass jar is as larger as yours."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro1:r3",
+              "text": "This glass jar is as large than yours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-23:intro1:r1",
+              "text": "This glass jar is as large as yours."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro1:r2",
+              "text": "This glass jar is as larger as yours."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro1:r3",
+              "text": "This glass jar is as large than yours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 2",
+        "uk": "Однакова якість 2"
+      },
+      "bodyByLocale": {
+        "ru": "storage box — коробка для хранения. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as strong as.",
+        "uk": "storage box — коробка для зберігання. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as strong as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-23:intro2:r1",
+              "text": "This storage box is as strong as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro2:r2",
+              "text": "This storage box is as stronger as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro2:r3",
+              "text": "This storage box is as strong than ours."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-23:intro2:r1",
+              "text": "This storage box is as strong as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro2:r2",
+              "text": "This storage box is as stronger as ours."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro2:r3",
+              "text": "This storage box is as strong than ours."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 3",
+        "uk": "Однакова якість 3"
+      },
+      "bodyByLocale": {
+        "ru": "lunch bag — сумка для обеда с собой. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as light as.",
+        "uk": "lunch bag — сумка для обіду із собою. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as light as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-23:intro3:r1",
+              "text": "This lunch bag is as light as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro3:r2",
+              "text": "This lunch bag is as lighter as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro3:r3",
+              "text": "This lunch bag is as light than mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-23:intro3:r1",
+              "text": "This lunch bag is as light as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro3:r2",
+              "text": "This lunch bag is as lighter as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-23:intro3:r3",
+              "text": "This lunch bag is as light than mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "09a0cf709adc5a0601823d076fce2d26502e1af7cdcc3a2f2caac7e0e2996a89"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-22:word:electric-kettle",
+    "correctText": "electric kettle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i01",
+    "correctText": "This electric kettle is as fast as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i02",
+    "correctText": "This electric kettle is as fast as ours.",
+    "correctResponseId": "en:lesson-18:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i03",
+    "correctText": "as fast as",
+    "correctResponseId": "en:lesson-18:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:word:electric-oven",
+    "correctText": "electric oven",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i04",
+    "correctText": "This electric oven is as large as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i05",
+    "correctText": "This electric oven is as large as ours.",
+    "correctResponseId": "en:lesson-18:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i06",
+    "correctText": "as large as",
+    "correctResponseId": "en:lesson-18:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:word:gas-cooker",
+    "correctText": "gas cooker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i07",
+    "correctText": "This gas cooker is as wide as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i08",
+    "correctText": "This gas cooker is as wide as ours.",
+    "correctResponseId": "en:lesson-18:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i09",
+    "correctText": "as wide as",
+    "correctResponseId": "en:lesson-18:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:word:electric-hob",
+    "correctText": "electric hob",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i10",
+    "correctText": "This electric hob is as cheap as that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i11",
+    "correctText": "This electric hob is as cheap as that one.",
+    "correctResponseId": "en:lesson-18:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i12",
+    "correctText": "as cheap as",
+    "correctResponseId": "en:lesson-18:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i13",
+    "correctText": "en:lesson-18:session-22:i13:p1=electric kettle\nen:lesson-18:session-22:i13:p2=electric oven\nen:lesson-18:session-22:i13:p3=gas cooker\nen:lesson-18:session-22:i13:p4=electric hob",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i14",
+    "correctText": "We are going to buy an electric kettle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i15",
+    "correctText": "We are collecting the electric oven tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i16",
+    "correctText": "This gas cooker is wider than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-22:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

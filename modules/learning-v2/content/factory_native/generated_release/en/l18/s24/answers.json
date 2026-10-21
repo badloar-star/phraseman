@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-24:word:weekend-break",
+    "correctText": "weekend break",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i01",
+    "correctText": "Your weekend break is as long as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i02",
+    "correctText": "Your weekend break is as long as ours.",
+    "correctResponseId": "en:lesson-18:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i03",
+    "correctText": "as long as",
+    "correctResponseId": "en:lesson-18:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:word:city-break",
+    "correctText": "city break",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i04",
+    "correctText": "This city break is as cheap as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i05",
+    "correctText": "This city break is as cheap as ours.",
+    "correctResponseId": "en:lesson-18:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i06",
+    "correctText": "as cheap as",
+    "correctResponseId": "en:lesson-18:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:word:camping-trip",
+    "correctText": "camping trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i07",
+    "correctText": "This camping trip is as short as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i08",
+    "correctText": "This camping trip is as short as ours.",
+    "correctResponseId": "en:lesson-18:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i09",
+    "correctText": "as short as",
+    "correctResponseId": "en:lesson-18:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:word:beach-holiday",
+    "correctText": "beach holiday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i10",
+    "correctText": "Your beach holiday is as quiet as ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i11",
+    "correctText": "Your beach holiday is as quiet as ours.",
+    "correctResponseId": "en:lesson-18:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i12",
+    "correctText": "as quiet as",
+    "correctResponseId": "en:lesson-18:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i13",
+    "correctText": "en:lesson-18:session-24:i13:p1=weekend break\nen:lesson-18:session-24:i13:p2=city break\nen:lesson-18:session-24:i13:p3=camping trip\nen:lesson-18:session-24:i13:p4=beach holiday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i14",
+    "correctText": "We are going to book a city break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i15",
+    "correctText": "We are leaving for our camping trip on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i16",
+    "correctText": "This weekend break is longer than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-24:i17",
+    "correctText": "We need two bags of rice.",
+    "correctResponseId": null
+  }
+]

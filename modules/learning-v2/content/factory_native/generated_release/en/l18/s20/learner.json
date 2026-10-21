@@ -1,0 +1,1136 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-20:word:lunch-menu",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lunch menu",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:word:lunch-menu:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lunch menu",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:word:lunch-menu:audio",
+          "transcript": "lunch menu"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-20:word:lunch-menu:r1",
+            "targetText": "lunch menu",
+            "meaningByLocale": {
+              "ru": "обеденное меню.",
+              "uk": "обіднє меню."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lunch menu",
+          "definitionByLocale": {
+            "ru": "обеденное меню.",
+            "uk": "обіднє меню."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Качества одинаковые. Скажите: «Это обеденное меню такое же дешёвое, как то».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Качества одинаковые. Скажите: «Это обеденное меню такое же дешёвое, как то».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This lunch menu is as cheap as that one.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Это обеденное меню такое же дешёвое, как то».",
+          "uk": "Якості однакові. Скажіть: «Це обіднє меню таке саме дешеве, як те»."
+        },
+        "orderedTokens": [
+          "This",
+          "lunch",
+          "menu",
+          "is",
+          "as",
+          "cheap",
+          "as",
+          "that",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-20:i02:r1",
+          "text": "This lunch menu is as cheap as that one."
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i02:r2",
+          "text": "This lunch menu is as cheaper as that one."
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i02:r3",
+          "text": "This lunch menu is as cheap than that one."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:i02:audio",
+          "transcript": "This lunch menu is as cheap as that one."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-20:i02:r1",
+            "targetText": "This lunch menu is as cheap as that one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i02:r2",
+            "targetText": "This lunch menu is as cheaper as that one.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i02:r3",
+            "targetText": "This lunch menu is as cheap than that one.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This lunch menu is as cheap as that one.",
+              "uk": "У записі звучить This lunch menu is as cheap as that one."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This lunch menu is as cheap as that one.",
+              "uk": "У записі звучить This lunch menu is as cheap as that one."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите одинаковое качество.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-20:i03:r1",
+          "text": "as cheap as"
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i03:r2",
+          "text": "as cheaper as"
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i03:r3",
+          "text": "as cheap than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите одинаковое качество.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This lunch menu is ___ that one.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-20:i03:r1",
+            "text": "as cheap as"
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i03:r2",
+            "text": "as cheaper as"
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i03:r3",
+            "text": "as cheap than"
+          }
+        ],
+        "testedDimension": "Выразите одинаковое качество.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма cheap.",
+              "uk": "Потрібна звичайна форма cheap."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:word:vegetarian-option",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vegetarian option",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:word:vegetarian-option:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vegetarian option",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:word:vegetarian-option:audio",
+          "transcript": "vegetarian option"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-20:word:vegetarian-option:r1",
+            "targetText": "vegetarian option",
+            "meaningByLocale": {
+              "ru": "вегетарианский вариант блюда.",
+              "uk": "вегетаріанський варіант страви."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vegetarian option",
+          "definitionByLocale": {
+            "ru": "вегетарианский вариант блюда.",
+            "uk": "вегетаріанський варіант страви."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Качества одинаковые. Скажите: «Вегетарианский вариант такой же вкусный, как курица».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Качества одинаковые. Скажите: «Вегетарианский вариант такой же вкусный, как курица».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The vegetarian option is as tasty as the chicken.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Вегетарианский вариант такой же вкусный, как курица».",
+          "uk": "Якості однакові. Скажіть: «Вегетаріанський варіант такий самий смачний, як курка»."
+        },
+        "orderedTokens": [
+          "The",
+          "vegetarian",
+          "option",
+          "is",
+          "as",
+          "tasty",
+          "as",
+          "the",
+          "chicken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-20:i05:r1",
+          "text": "The vegetarian option is as tasty as the chicken."
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i05:r2",
+          "text": "The vegetarian option is as tastier as the chicken."
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i05:r3",
+          "text": "The vegetarian option is as tasty than the chicken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:i05:audio",
+          "transcript": "The vegetarian option is as tasty as the chicken."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-20:i05:r1",
+            "targetText": "The vegetarian option is as tasty as the chicken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i05:r2",
+            "targetText": "The vegetarian option is as tastier as the chicken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i05:r3",
+            "targetText": "The vegetarian option is as tasty than the chicken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The vegetarian option is as tasty as the chicken.",
+              "uk": "У записі звучить The vegetarian option is as tasty as the chicken."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The vegetarian option is as tasty as the chicken.",
+              "uk": "У записі звучить The vegetarian option is as tasty as the chicken."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите одинаковое качество.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-20:i06:r1",
+          "text": "as tasty as"
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i06:r2",
+          "text": "as tastier as"
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i06:r3",
+          "text": "as tasty than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите одинаковое качество.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "The vegetarian option is ___ the chicken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-20:i06:r1",
+            "text": "as tasty as"
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i06:r2",
+            "text": "as tastier as"
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i06:r3",
+            "text": "as tasty than"
+          }
+        ],
+        "testedDimension": "Выразите одинаковое качество.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма tasty.",
+              "uk": "Потрібна звичайна форма tasty."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:word:daily-special",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — daily special",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:word:daily-special:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — daily special",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:word:daily-special:audio",
+          "transcript": "daily special"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-20:word:daily-special:r1",
+            "targetText": "daily special",
+            "meaningByLocale": {
+              "ru": "блюдо дня.",
+              "uk": "страва дня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "daily special",
+          "definitionByLocale": {
+            "ru": "блюдо дня.",
+            "uk": "страва дня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Качества одинаковые. Скажите: «Блюдо дня такое же свежее, как салат».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Качества одинаковые. Скажите: «Блюдо дня такое же свежее, как салат».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The daily special is as fresh as the salad.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Блюдо дня такое же свежее, как салат».",
+          "uk": "Якості однакові. Скажіть: «Страва дня така сама свіжа, як салат»."
+        },
+        "orderedTokens": [
+          "The",
+          "daily",
+          "special",
+          "is",
+          "as",
+          "fresh",
+          "as",
+          "the",
+          "salad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-20:i08:r1",
+          "text": "The daily special is as fresh as the salad."
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i08:r2",
+          "text": "The daily special is as fresher as the salad."
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i08:r3",
+          "text": "The daily special is as fresh than the salad."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:i08:audio",
+          "transcript": "The daily special is as fresh as the salad."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-20:i08:r1",
+            "targetText": "The daily special is as fresh as the salad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i08:r2",
+            "targetText": "The daily special is as fresher as the salad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i08:r3",
+            "targetText": "The daily special is as fresh than the salad.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The daily special is as fresh as the salad.",
+              "uk": "У записі звучить The daily special is as fresh as the salad."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The daily special is as fresh as the salad.",
+              "uk": "У записі звучить The daily special is as fresh as the salad."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите одинаковое качество.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-20:i09:r1",
+          "text": "as fresh as"
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i09:r2",
+          "text": "as fresher as"
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i09:r3",
+          "text": "as fresh than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите одинаковое качество.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "The daily special is ___ the salad.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-20:i09:r1",
+            "text": "as fresh as"
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i09:r2",
+            "text": "as fresher as"
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i09:r3",
+            "text": "as fresh than"
+          }
+        ],
+        "testedDimension": "Выразите одинаковое качество.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма fresh.",
+              "uk": "Потрібна звичайна форма fresh."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:word:takeaway-meal",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — takeaway meal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:word:takeaway-meal:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — takeaway meal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:word:takeaway-meal:audio",
+          "transcript": "takeaway meal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-20:word:takeaway-meal:r1",
+            "targetText": "takeaway meal",
+            "meaningByLocale": {
+              "ru": "еда навынос.",
+              "uk": "їжа із собою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "takeaway meal",
+          "definitionByLocale": {
+            "ru": "еда навынос.",
+            "uk": "їжа із собою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Качества одинаковые. Скажите: «Эта еда навынос такая же горячая, как твоя».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Качества одинаковые. Скажите: «Эта еда навынос такая же горячая, как твоя».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This takeaway meal is as hot as yours.",
+        "localizedMeaning": {
+          "ru": "Качества одинаковые. Скажите: «Эта еда навынос такая же горячая, как твоя».",
+          "uk": "Якості однакові. Скажіть: «Ця їжа із собою така сама гаряча, як твоя»."
+        },
+        "orderedTokens": [
+          "This",
+          "takeaway",
+          "meal",
+          "is",
+          "as",
+          "hot",
+          "as",
+          "yours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-20:i11:r1",
+          "text": "This takeaway meal is as hot as yours."
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i11:r2",
+          "text": "This takeaway meal is as hotter as yours."
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i11:r3",
+          "text": "This takeaway meal is as hot than yours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:i11:audio",
+          "transcript": "This takeaway meal is as hot as yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-20:i11:r1",
+            "targetText": "This takeaway meal is as hot as yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i11:r2",
+            "targetText": "This takeaway meal is as hotter as yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i11:r3",
+            "targetText": "This takeaway meal is as hot than yours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This takeaway meal is as hot as yours.",
+              "uk": "У записі звучить This takeaway meal is as hot as yours."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This takeaway meal is as hot as yours.",
+              "uk": "У записі звучить This takeaway meal is as hot as yours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выразите одинаковое качество.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-20:i12:r1",
+          "text": "as hot as"
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i12:r2",
+          "text": "as hotter as"
+        },
+        {
+          "responseId": "en:lesson-18:session-20:i12:r3",
+          "text": "as hot than"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите одинаковое качество.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выразите одинаковое качество.",
+          "uk": "Висловіть однакову якість."
+        },
+        "gappedTargetPhrase": "This takeaway meal is ___ yours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-20:i12:r1",
+            "text": "as hot as"
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i12:r2",
+            "text": "as hotter as"
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i12:r3",
+            "text": "as hot than"
+          }
+        ],
+        "testedDimension": "Выразите одинаковое качество.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Нужна обычная форма hot.",
+              "uk": "Потрібна звичайна форма hot."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Выразите одинаковое качество.",
+            "feedbackByLocale": {
+              "ru": "Для равенства используем as … as.",
+              "uk": "Для рівності використовуємо as … as."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-20:i13:p1",
+            "target": "lunch menu",
+            "meaningByLocale": {
+              "ru": "обеденное меню",
+              "uk": "обіднє меню"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-20:i13:p2",
+            "target": "vegetarian option",
+            "meaningByLocale": {
+              "ru": "вегетарианский вариант блюда",
+              "uk": "вегетаріанський варіант страви"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-20:i13:p3",
+            "target": "daily special",
+            "meaningByLocale": {
+              "ru": "блюдо дня",
+              "uk": "страва дня"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-20:i13:p4",
+            "target": "takeaway meal",
+            "meaningByLocale": {
+              "ru": "еда навынос",
+              "uk": "їжа із собою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lunch menu",
+          "vegetarian option",
+          "daily special",
+          "takeaway meal"
+        ],
+        "rightColumn": [
+          "обеденное меню",
+          "вегетарианский вариант блюда",
+          "блюдо дня",
+          "еда навынос"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:i14:audio",
+          "transcript": "We are going to order the daily special."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to order the daily special.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "order",
+          "the",
+          "daily",
+          "special"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:i15:audio",
+          "transcript": "We are having lunch with friends at one."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are having lunch with friends at one.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "having",
+          "lunch",
+          "with",
+          "friends",
+          "at",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:i16:audio",
+          "transcript": "The daily special is cheaper than the salad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The daily special is cheaper than the salad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите количество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-20:i17:audio",
+          "transcript": "We need two bowls of soup."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bowls of soup.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "89836c06eefba60beebdf21a0eb8e76d081adf6b35e9d67c8efc3483c4cb064c"
+}

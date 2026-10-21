@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-18:word:fabric-softener",
+    "correctText": "fabric softener",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i01",
+    "correctText": "This fabric softener is as cheap as yours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i02",
+    "correctText": "This fabric softener is as cheap as yours.",
+    "correctResponseId": "en:lesson-18:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i03",
+    "correctText": "as cheap as",
+    "correctResponseId": "en:lesson-18:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:word:stain-remover",
+    "correctText": "stain remover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i04",
+    "correctText": "This stain remover is as expensive as that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i05",
+    "correctText": "This stain remover is as expensive as that one.",
+    "correctResponseId": "en:lesson-18:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i06",
+    "correctText": "as expensive as",
+    "correctResponseId": "en:lesson-18:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:word:laundry-detergent",
+    "correctText": "laundry detergent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i07",
+    "correctText": "This laundry detergent is as cheap as that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i08",
+    "correctText": "This laundry detergent is as cheap as that one.",
+    "correctResponseId": "en:lesson-18:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i09",
+    "correctText": "as cheap as",
+    "correctResponseId": "en:lesson-18:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:word:cleaning-spray",
+    "correctText": "cleaning spray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i10",
+    "correctText": "This cleaning spray is as strong as that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i11",
+    "correctText": "This cleaning spray is as strong as that one.",
+    "correctResponseId": "en:lesson-18:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i12",
+    "correctText": "as strong as",
+    "correctResponseId": "en:lesson-18:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i13",
+    "correctText": "en:lesson-18:session-18:i13:p1=fabric softener\nen:lesson-18:session-18:i13:p2=stain remover\nen:lesson-18:session-18:i13:p3=laundry detergent\nen:lesson-18:session-18:i13:p4=cleaning spray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i14",
+    "correctText": "We are going to buy laundry detergent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i15",
+    "correctText": "We are meeting at the shop at five.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i16",
+    "correctText": "This stain remover is cheaper than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-18:i17",
+    "correctText": "We need two bottles of cleaning spray.",
+    "correctResponseId": null
+  }
+]

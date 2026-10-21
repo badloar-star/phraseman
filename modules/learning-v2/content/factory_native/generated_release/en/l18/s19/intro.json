@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "as + adjective + as",
+    "uk": "as + adjective + as"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 1",
+        "uk": "Однакова якість 1"
+      },
+      "bodyByLocale": {
+        "ru": "reading glasses — очки для чтения. contact lenses — контактные линзы. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as light as.",
+        "uk": "reading glasses — окуляри для читання. contact lenses — контактні лінзи. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as light as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-19:intro1:r1",
+              "text": "These reading glasses are as light as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro1:r2",
+              "text": "These reading glasses are as lighter as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro1:r3",
+              "text": "These reading glasses are as light than mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-19:intro1:r1",
+              "text": "These reading glasses are as light as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro1:r2",
+              "text": "These reading glasses are as lighter as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro1:r3",
+              "text": "These reading glasses are as light than mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 2",
+        "uk": "Однакова якість 2"
+      },
+      "bodyByLocale": {
+        "ru": "eye drops — глазные капли. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as expensive as.",
+        "uk": "eye drops — очні краплі. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as expensive as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-19:intro2:r1",
+              "text": "These eye drops are as expensive as those ones."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro2:r2",
+              "text": "These eye drops are as more expensive as those ones."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro2:r3",
+              "text": "These eye drops are as expensive than those ones."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-19:intro2:r1",
+              "text": "These eye drops are as expensive as those ones."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro2:r2",
+              "text": "These eye drops are as more expensive as those ones."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro2:r3",
+              "text": "These eye drops are as expensive than those ones."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одинаковое качество 3",
+        "uk": "Однакова якість 3"
+      },
+      "bodyByLocale": {
+        "ru": "glasses case — футляр для очков. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as soft as.",
+        "uk": "glasses case — футляр для окулярів. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as soft as."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-19:intro3:r1",
+              "text": "This glasses case is as soft as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro3:r2",
+              "text": "This glasses case is as softer as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro3:r3",
+              "text": "This glasses case is as soft than mine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-19:intro3:r1",
+              "text": "This glasses case is as soft as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro3:r2",
+              "text": "This glasses case is as softer as mine."
+            },
+            {
+              "responseId": "en:lesson-18:session-19:intro3:r3",
+              "text": "This glasses case is as soft than mine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "215b7e3ee14899c137546997f35e5cc1e3675482ac36b62050bf4e1ccbf01a38"
+}

@@ -3,13 +3,13 @@
 //
 // зачем: пакет недели несёт три вида ответа (spire_pack_contract.ts, §4.4):
 //   • choice — фраза и 4 варианта (угадай перевод / вставь слово / найди лишнее);
-//   • translate — собери перевод из банка слов (готово, когда слов столько, сколько нужно);
+//   • translate — собери перевод из банка слов в ячейки (по числу слов), ответ уходит по кнопке «Проверить», когда заполнены все;
 //   • match / timeattack — несколько пунктов, у каждого свои варианты (пары).
 // Вердикт считает раннер по отпечаткам, здесь только ввод и подсветка:
 // «верно» — тон correct, «неверно» — тон wrong, верный вариант после ошибки — correct.
 // Все варианты — полноширинные плиты ≥56dp; текст переносится, не обрезается.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useAudio } from '../../hooks/use-audio';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -92,38 +92,77 @@ function ChoiceTask({ task, feedback, disabled, onChoice }: Props) {
   );
 }
 
-function BuildTask({ task, feedback, disabled, onTokens }: Props) {
+type CellTone = 'idle' | 'ok' | 'bad';
+
+// зачем (владелец 21.10, эталон peak-phrase-builder.html, вариант A): ответ — ячейки-плашки по числу слов, пустая показывает номер;
+// слова можно переставлять (тап по слову в ячейке возвращает его в банк), проверка — только по кнопке «Проверить»,
+// она активна, когда заполнены все ячейки. Автоотправки на последнем слове больше нет. Ошибка подсвечивает неверные ячейки.
+function BuildTask({ lang, task, feedback, disabled, onTokens }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const bank = useMemo(() => strings(task.payload.wordBank), [task]);
   const need = Math.max(1, Number(task.payload.correctTokenCount) || 1);
-  const [picked, setPicked] = useState<readonly number[]>([]);
-  const add = useCallback((i: number) => {
-    if (disabled || picked.includes(i)) return;
-    const next = [...picked, i];
-    setPicked(next);
-    if (next.length === need) onTokens(next.map((k) => bank[k]));
-  }, [bank, disabled, need, onTokens, picked]);
-  const remove = useCallback((i: number) => {
-    if (disabled) return;
-    setPicked((cur) => cur.filter((k) => k !== i));
+  // зачем (логи первым делом): ячеек больше, чем слов в банке, не заполнить никогда — «Проверить» осталась бы глухой
+  const cellCount = Math.min(need, bank.length);
+  useEffect(() => {
+    if (cellCount !== need) console.warn('[SPIRE] build: cells exceed bank', JSON.stringify({ taskId: task.taskId, need, bank: bank.length })); // guard-ok: сбой данных, причина обязана быть в логе
+  }, [bank.length, cellCount, need, task.taskId]);
+  const [slots, setSlots] = useState<readonly (number | null)[]>(() => Array.from({ length: cellCount }, () => null));
+  const filledCount = slots.filter((k) => k !== null).length;
+  const complete = slots.length > 0 && filledCount === slots.length;
+  const place = useCallback((i: number) => {
+    if (disabled) { console.warn('[SPIRE] build: place ignored (disabled)', i); return; }
+    if (slots.includes(i)) return;
+    const empty = slots.indexOf(null);
+    if (empty < 0) { console.warn('[SPIRE] build: place ignored (no empty cell)', JSON.stringify({ i, slots })); return; }
+    setSlots((cur) => cur.map((k, at) => (at === empty ? i : k)));
+  }, [disabled, slots]);
+  const take = useCallback((cell: number) => {
+    if (disabled) { console.warn('[SPIRE] build: take ignored (disabled)', cell); return; }
+    setSlots((cur) => cur.map((k, at) => (at === cell ? null : k)));
   }, [disabled]);
-  const answerBg = feedback ? lv2Alpha(feedback.ok ? p.correct : p.wrong, 0.12) : p.card;
+  const check = useCallback(() => {
+    if (disabled || !complete) { console.warn('[SPIRE] build: check ignored', JSON.stringify({ disabled, complete, filledCount, cells: slots.length })); return; }
+    onTokens(slots.map((k) => bank[k as number]));
+  }, [bank, complete, disabled, filledCount, onTokens, slots]);
+  // зачем: после ответа подсвечиваем ячейки — верные зелёным, неверные красным; без восстановленного порядка подсвечивать нечем (лог причины)
+  const tones = useMemo<readonly CellTone[]>(() => {
+    if (!feedback) return slots.map(() => 'idle');
+    if (feedback.ok) return slots.map(() => 'ok');
+    const right = feedback.correctText ? feedback.correctText.split(' ') : null;
+    if (!right || right.length !== slots.length) {
+      console.warn('[SPIRE] build: no per-cell highlight', JSON.stringify({ taskId: task.taskId, correct: feedback.correctText, cells: slots.length }));
+      return slots.map(() => 'idle');
+    }
+    return slots.map((k, at) => (k !== null && bank[k] === right[at] ? 'ok' : 'bad'));
+  }, [bank, feedback, slots, task.taskId]);
   return (
-    <View style={s.stack}>
-      <View style={[s.answer, { backgroundColor: answerBg }]} accessibilityLabel={picked.map((k) => bank[k]).join(' ')}>
-        {picked.map((k) => (
-          <V2Pressable key={`a${k}`} onPress={() => remove(k)} disabled={disabled} accessibilityRole="button" accessibilityLabel={bank[k]} style={[s.token, { backgroundColor: p.cardRaised }, sh.nested]}>
-            <Text style={[s.tokenText, { color: p.text }]}>{bank[k]}</Text>
-          </V2Pressable>
-        ))}
+    <View>
+      <View style={s.cells}>
+        {slots.map((k, at) => {
+          const tone = tones[at];
+          const ink = tone === 'bad' ? p.wrong : tone === 'ok' ? p.correct : p.text;
+          const fill = tone === 'bad' ? lv2Alpha(p.wrong, 0.18) : tone === 'ok' ? lv2Alpha(p.correct, 0.18) : p.cardRaised;
+          return (
+            // guard-ok: число ячеек фиксировано на задание, порядок не меняется
+            <View key={`cell${at}`} style={[s.cell, { backgroundColor: lv2Alpha(p.text, 0.06) }]} testID={`spire-cell-${at}`}>
+              {k === null ? (
+                <Text style={[s.cellNum, { color: p.textMuted }]} accessibilityLabel={String(at + 1)}>{at + 1}</Text>
+              ) : (
+                <V2Pressable onPress={() => take(at)} disabled={disabled} accessibilityRole="button" accessibilityLabel={bank[k]} style={[s.cellToken, { backgroundColor: fill }, tone === 'idle' ? sh.nested : null]}>
+                  <Text style={[s.tokenText, { color: ink }]}>{bank[k]}</Text>
+                </V2Pressable>
+              )}
+            </View>
+          );
+        })}
       </View>
       <View style={s.bank}>
         {bank.map((word, i) => {
-          const used = picked.includes(i);
+          const used = slots.includes(i);
           return (
             <V2Pressable
               key={`b${i}`}
-              onPress={() => add(i)}
+              onPress={() => place(i)}
               disabled={disabled || used}
               accessibilityRole="button"
               accessibilityLabel={word}
@@ -136,6 +175,24 @@ function BuildTask({ task, feedback, disabled, onTokens }: Props) {
           );
         })}
       </View>
+      {feedback ? null : (
+        <>
+          <V2Pressable
+            onPress={check}
+            disabled={disabled || !complete}
+            accessibilityRole="button"
+            accessibilityLabel={spireGameText(lang, 'check')}
+            accessibilityState={{ disabled: disabled || !complete }}
+            style={[s.check, complete ? [{ backgroundColor: p.cta }, sh.action(p.cta)] : [{ backgroundColor: p.control }, sh.nested]]}
+            testID="spire-build-check"
+          >
+            <Text style={[s.checkText, { color: complete ? p.ctaText : p.textSecondary }]}>{spireGameText(lang, 'check')}</Text>
+          </V2Pressable>
+          <Text style={[s.count, { color: p.textSecondary }]} testID="spire-build-count">
+            {complete ? spireGameText(lang, 'buildReorder') : spireGameText(lang, 'buildCount', { k: filledCount, n: slots.length })}
+          </Text>
+        </>
+      )}
     </View>
   );
 }
@@ -261,10 +318,17 @@ const s = StyleSheet.create({
   stack: { gap: 13 },
   opt: { minHeight: 58, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 12, justifyContent: 'center' },
   optText: { fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
-  answer: { minHeight: 64, borderRadius: 16, padding: 10, flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center' },
-  bank: { marginTop: 5, flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
+  // сборка перевода (эталон peak-phrase-builder.html, A): ячейки flex 1 1 22 % от 64, высота 52, радиус 12; банк gap 8, отступ 13
+  cells: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  cell: { flexGrow: 1, flexShrink: 1, flexBasis: '22%', minWidth: 64, minHeight: 52, borderRadius: 12, padding: 4, alignItems: 'center', justifyContent: 'center' },
+  cellNum: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
+  cellToken: { width: '100%', minHeight: 44, borderRadius: 12, paddingHorizontal: 14, alignItems: 'center', justifyContent: 'center' },
+  bank: { marginTop: 13, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   token: { minHeight: 44, borderRadius: 12, paddingHorizontal: 14, justifyContent: 'center' },
   tokenText: { fontSize: 16, fontWeight: '700' },
+  check: { marginTop: 20, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },
+  checkText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  count: { marginTop: 10, fontSize: 13, lineHeight: 17, fontWeight: '600', textAlign: 'center' },
   itemHead: { minHeight: 60, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   itemPrompt: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
   itemCount: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },

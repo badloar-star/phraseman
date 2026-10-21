@@ -107,6 +107,7 @@ function useSpeedMatchTimerV1(
 
 function SpeedMatchCardV1({
   label,
+  side,
   picked,
   verdict,
   reducedMotion,
@@ -150,10 +151,12 @@ function SpeedMatchCardV1({
     transform: [{ scale: scale.value }, { translateY: picked ? -3 : 0 }] as const,
   }));
 
+  const right = side === "right";
   return (
-    <Animated.View style={[styles.tileFrame, style]}>
-      {/* зачем (learning-v2.html, .mc): плитка пары — от 72 dp, слово по центру 16/600,
-          выбранная светлее, найденная зелёная, неверная красная; длинное слово переносится. */}
+    <Animated.View style={[styles.tileFrame, right ? styles.frameRight : styles.frameLeft, style]}>
+      {/* зачем (эталон speed-match-long-pairs.html, вариант 2, владелец 21.10): слово — узкая колонка 36 %, перевод — широкая;
+          длинный перевод переносится на 2–3 строки, а плитка слова в этом же ряду растягивается до той же высоты
+          (ряды не разъезжаются). Слово по центру 16/700, перевод слева 16/600; плитки от 64 dp. */}
       <Lv2Option
         compact={compact}
         accessibilityLabel={label}
@@ -161,8 +164,8 @@ function SpeedMatchCardV1({
         onPress={onPress}
         selected={picked}
         showMark={false}
-        style={[styles.card, compact && styles.cardCompact]}
-        textStyle={[styles.cardText, { lineHeight: lh(21) }]}
+        style={[styles.card, compact && styles.cardCompact, right ? styles.cardRight : styles.cardLeft]}
+        textStyle={[styles.cardText, right ? styles.cardTextRight : styles.cardTextLeft, { lineHeight: lh(21) }]}
         verdict={verdict === "bad" ? "bad" : "idle"}
         label={label}
       />
@@ -333,42 +336,46 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
       <Text style={[sx.hero, { color: g.text }, compact && { marginTop: 6 }]}>{prompt}</Text>
 
       <SpeedMatchGridV1>
-        <View style={[styles.column, compact && { gap: 6 }]}>
-          {payload.leftColumn.map((pairId) => {
-            const pair = payload.pairGrid.find((entry) => entry.pairId === pairId);
-            if (!pair) throw new Error(`learning_v2_speed_match_pair_missing:${pairId}`);
-            return (
-            <SpeedMatchCardV1
-              key={`left-${pair.pairId}`}
-              label={pair.target}
-              side="left"
-              picked={pickedLeft === pair.pairId}
-              verdict={matchedPairIds.has(pair.pairId) ? "ok" : wrongPairIds.has(pair.pairId) ? "bad" : "none"}
-              reducedMotion={reducedMotion}
-              disabled={resolved || phase === "processing" || !canPick}
-              onPress={() => chooseLeft(pair.pairId)}
-            />
-            );
-          })}
-        </View>
-        <View style={[styles.column, compact && { gap: 6 }]}>
-          {payload.rightColumn.map((pairId) => {
-            const pair = payload.pairGrid.find((entry) => entry.pairId === pairId);
-            if (!pair) throw new Error(`learning_v2_speed_match_pair_missing:${pairId}`);
-            return (
+        {payload.leftColumn.map((leftId, index) => {
+          const leftPair = payload.pairGrid.find((entry) => entry.pairId === leftId);
+          if (!leftPair) throw new Error(`learning_v2_speed_match_pair_missing:${leftId}`);
+          const rightId = payload.rightColumn[index];
+          const rightPair = rightId === undefined ? undefined : payload.pairGrid.find((entry) => entry.pairId === rightId);
+          if (rightId !== undefined && !rightPair) throw new Error(`learning_v2_speed_match_pair_missing:${rightId}`);
+          if (!rightPair) {
+            // зачем (логи первым делом): колонки разной длины — ряд без перевода, а не немой пропуск
+            // guard-ok: редкий сбой данных, причина обязана попасть в лог
+            console.warn("[SPEED-MATCH] row without right tile", JSON.stringify({ index, leftId, left: payload.leftColumn.length, right: payload.rightColumn.length }));
+          }
+          const disabled = resolved || phase === "processing" || !canPick;
+          const verdictOf = (pairId: string) => (matchedPairIds.has(pairId) ? "ok" : wrongPairIds.has(pairId) ? "bad" : "none");
+          return (
+            // зачем (эталон speed-match-long-pairs.html, вариант 2): одна строка = слово слева + перевод справа;
+            // строка сама выравнивает высоту обеих плиток, поэтому длинный перевод не разводит колонки.
+            <View key={`row-${leftPair.pairId}`} style={[styles.row, compact && { gap: 6 }]}>
               <SpeedMatchCardV1
-                key={`right-${pair.pairId}`}
-                label={pair.meaningByLocale[interfaceLocale]}
-                side="right"
-                picked={pickedRight === pair.pairId}
-                verdict={matchedPairIds.has(pair.pairId) ? "ok" : wrongPairIds.has(pair.pairId) ? "bad" : "none"}
+                label={leftPair.target}
+                side="left"
+                picked={pickedLeft === leftPair.pairId}
+                verdict={verdictOf(leftPair.pairId)}
                 reducedMotion={reducedMotion}
-                disabled={resolved || phase === "processing" || !canPick}
-                onPress={() => chooseRight(pair.pairId)}
+                disabled={disabled}
+                onPress={() => chooseLeft(leftPair.pairId)}
               />
-            );
-          })}
-        </View>
+              {rightPair ? (
+                <SpeedMatchCardV1
+                  label={rightPair.meaningByLocale[interfaceLocale]}
+                  side="right"
+                  picked={pickedRight === rightPair.pairId}
+                  verdict={verdictOf(rightPair.pairId)}
+                  reducedMotion={reducedMotion}
+                  disabled={disabled}
+                  onPress={() => chooseRight(rightPair.pairId)}
+                />
+              ) : null}
+            </View>
+          );
+        })}
       </SpeedMatchGridV1>
 
       {mismatchExplanation ? (
@@ -446,16 +453,25 @@ const styles = StyleSheet.create({
   // `.thero` margin-top 10; `.grid2` margin-top 22.
   hero: { fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3, marginTop: 10, marginBottom: 22 },
   gridScroll: { flexGrow: 0, maxHeight: 470 },
-  grid: { flexDirection: "row", gap: 10, paddingBottom: 4 },
-  column: { flex: 1, gap: 10 },
+  // эталон speed-match-long-pairs.html (вариант 2): строки одна под другой, в строке слово 36 % + перевод на остаток, gap 10.
+  grid: { flexDirection: "column", gap: 10, paddingBottom: 4 },
+  row: { flexDirection: "row", gap: 10, alignItems: "stretch" },
   tileFrame: { width: "100%" },
+  frameLeft: { width: "36%" },
+  frameRight: { flex: 1, minWidth: 0 },
   card: {
     width: "100%",
-    minHeight: 72,
+    flexGrow: 1,
+    minHeight: 64,
     maxWidth: "100%",
   },
   cardCompact: { minHeight: 56 },
+  // слово — по центру с полями 12; перевод — слева с полями 14, плитки в строке одной высоты
+  cardLeft: { paddingHorizontal: 12 },
+  cardRight: { alignItems: "flex-start", paddingHorizontal: 14 },
   cardText: { fontSize: 16, lineHeight: 21, fontWeight: "600" },
+  cardTextLeft: { fontWeight: "700" },
+  cardTextRight: { textAlign: "left" },
   // `.expl` margin-top 18, padding 14/16, в колонку через 14.
   timeoutCard: { paddingVertical: 14, paddingHorizontal: 16, gap: 14, marginTop: 18 },
   explainWrap: { marginTop: 18 },

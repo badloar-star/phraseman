@@ -40,6 +40,10 @@ const S = {
   // зачем (владелец 18.10 через координатора): после ступени две кнопки — «Следующее задание» и «В раздел Пик»; переводы кроме RU — предложение, ревью — «Переводчик»
   nextTask: ['Следующее задание', 'Наступне завдання', 'Next task', 'Siguiente tarea', 'Próxima tarefa', 'Nhiệm vụ tiếp theo', 'Tugas berikutnya', 'Sonraki görev', 'Następne zadanie'],
   toSpire: ['В раздел Пик', 'У розділ Пік', 'Back to Peak', 'Al Pico', 'Para o Pico', 'Về Đỉnh', 'Ke Puncak', "Zirve'ye", 'Do Szczytu'],
+  // зачем (владелец 21.10, эталон peak-phrase-builder.html): «Собери перевод» — ячейки по числу слов и кнопка «Проверить»; переводы кроме RU — предложение, ревью — «Переводчик»
+  check: ['Проверить', 'Перевірити', 'Check', 'Comprobar', 'Verificar', 'Kiểm tra', 'Periksa', 'Kontrol et', 'Sprawdź'],
+  buildCount: ['{k} из {n} слов', '{k} з {n} слів', '{k} of {n} words', '{k} de {n} palabras', '{k} de {n} palavras', '{k}/{n} từ', '{k} dari {n} kata', '{k}/{n} kelime', '{k} z {n} słów'],
+  buildReorder: ['Можно переставить: тап по слову вернёт его', 'Можна переставити: тап по слову поверне його', 'You can reorder: tap a word to take it back', 'Puedes reordenar: toca una palabra para quitarla', 'Dá para reordenar: toque numa palavra para tirá-la', 'Có thể đổi chỗ: chạm vào từ để bỏ ra', 'Bisa ditukar: ketuk kata untuk mengembalikannya', 'Sırayı değiştirebilirsin: kelimeye dokunup geri al', 'Można przestawić: dotknij słowa, by je cofnąć'],
   onward: ['Дальше', 'Далі', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjut', 'Devam', 'Dalej'],
   correctIs: ['Правильно:', 'Правильно:', 'Correct:', 'Correcto:', 'Correto:', 'Đáp án:', 'Benar:', 'Doğrusu:', 'Poprawnie:'],
   mistakeSaved: ['Ошибка сохранена в «Мои ошибки»', 'Помилку збережено в «Мої помилки»', 'Saved to “My mistakes”', 'Guardado en «Mis errores»', 'Salvo em “Meus erros”', 'Đã lưu vào “Lỗi của tôi”', 'Disimpan di “Kesalahanku”', '“Hatalarım”a kaydedildi', 'Zapisano w „Moje błędy”'],

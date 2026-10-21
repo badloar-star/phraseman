@@ -1,178 +1,228 @@
 <!doctype html>
+<html lang="ru">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Экзамен главы</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="kit.css">
 <style>
-/* Блок H вводных владельца 21.10: кнопка «Экзамен» внизу главы из 8 занятий. Экзамен можно сдать ДО прохождения всех занятий —
-   сдал → открывается следующая глава. Карта V2 как в эталоне fd6d10db8 (плашка главы, плитка Ionicons 55/14) и в коде
-   LearningV2ChaptersCourse (развёрнутая глава: 8 узлов 64 в сетке 4×2, подпись 13/17; 8-е занятие сейчас «Проверка главы»). */
-:root {
-  --page: #F4F4F7; --page-ink: #17181E; --page-sec: #5B5C66; --page-chip: rgba(23,24,30,.06);
-  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif; color-scheme: light;
-}
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-chip: rgba(255,255,255,.07); color-scheme: dark; } }
-:root[data-theme="dark"] { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-chip: rgba(255,255,255,.07); color-scheme: dark; }
+/* ───────── PhraseMan 2.0 · иконки уроков и глав курса V2 + узор плашки главы ─────────
+   зачем (владелец 17.10, через координатора): у каждого урока и каждой главы на карте V2 — своя пиктограмма по смыслу, «не генерация, а именно
+   создание, как в диалогах»; плашка главы — со своим узором по теме, «чтобы они не были все одинаковые, а было интересно».
+   Система иконок — та же, что у нарисованных иконок макетов Диалогов (kit.js / dialogs.html): холст 24, линия 1,8, концы и стыки скруглены,
+   заливки нет, цвет — currentColor. Плитка — как плитка главы в коде (LearningV2ChaptersCourse.tsx: 55×55, радиус 16), значок 26.
+   Узор — SVG-pattern тонкой линией 1,2 по теме главы, низкий контраст, тает к тексту (маска слева направо): текст плашки ≥ 4,5:1.
+   У каждой главы свой оттенок акцента в пределах палитры темы (OKLCH: та же светлота и насыщенность, сдвиг тона ±50°).
+   Состояния: открыта — полным цветом; закрыта — приглушена + замок в углу плитки; пройдена — галочка в углу. Без обводок, стиль «Тень».
+   Темы по умолчанию: «Сумерки» (ink) и «Океан» (marine), токены liquidGlass. Урок 1 — первая партия; уроки 2–8 — следующими партиями. */
+.ph.th-ink, .pane.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --ctl: #E6E7F4;
+  --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9); --sb: #111; --L: .52; --C: .14; --Lt: .93; --Ct: .045; --pa: .22; --pal: .09; --badge-bg: #FFFFFF; }
+.ph.th-marine, .pane.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --ctl: #123037;
+  --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); --sb: #fff; --L: .82; --C: .11; --Lt: .33; --Ct: .06; --pa: .22; --pal: .08; --badge-bg: #02242B; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.ph.th-ink .sb .bat, .ph.th-marine .sb .bat { border-color: currentColor; }
+.ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
+.ph.th-ink .sb .sys svg { filter: brightness(0); }
+.ph.th-marine .sb svg { filter: none; }
+
+/* оттенок главы: --h задаётся на элементе; акцент, тон плитки и узор — из него */
+.hue { --ac: oklch(var(--L) var(--C) var(--h)); --tint: oklch(var(--Lt) var(--Ct) var(--h)); }
+.ico { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.itile { position: relative; flex: none; width: 55px; height: 55px; border-radius: 16px; background: var(--tint); color: var(--ac); display: flex; align-items: center; justify-content: center; }
+.itile.ism { width: 48px; height: 48px; border-radius: 14px; }
+.itile.ism .ico { width: 24px; height: 24px; }
+/* закрыта: значок приглушён (тон текста, низкая непрозрачность), плитка — нейтральная; замок в углу */
+.st-locked .itile { background: var(--ctl); color: var(--sec); }
+.st-locked .itile .ico { opacity: .55; }
+.bdg { position: absolute; right: -4px; bottom: -4px; width: 22px; height: 22px; border-radius: 11px; background: var(--badge-bg); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; }
+.bdg svg { width: 13px; height: 13px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.st-done .bdg svg { stroke: var(--ac); }
+.st-locked .bdg svg { stroke: var(--sec); }
+
+/* плашка главы — как в коде: карточка r22, плитка 55, «Глава N» 19/700, «Занятия a–b», счёт n/8, шеврон, дорожка прогресса */
+.chap { position: relative; overflow: hidden; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; margin-top: 12px; isolation: isolate; }
+.chap .pat { position: absolute; inset: 0; z-index: -1; color: var(--ac); opacity: var(--pa);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 36%, #000 60%, #000 70%, rgba(0,0,0,.25) 100%); mask-image: linear-gradient(90deg, transparent 0%, transparent 36%, #000 60%, #000 70%, rgba(0,0,0,.25) 100%); }
+.st-locked .pat { color: var(--sec); opacity: var(--pal); }
+.chap .crow { display: flex; align-items: center; gap: 14px; }
+.chap .cp { flex: 1; min-width: 0; }
+.chap .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.chap .csub { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.chap .cfr { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.chap .cfr b { color: var(--tx); }
+.chap .chev { width: 20px; height: 20px; fill: none; stroke: var(--sec); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chap .ctrk { height: 6px; border-radius: 3px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
+.chap .ctrk i { display: block; height: 100%; border-radius: 3px; background: var(--ac); }
+.st-locked .tl { color: var(--sec); }
+
+/* шапка карты (код: строка «Урок N» + «Классический курс», ниже тема 22/700); иконка урока — слева от темы */
+.mh { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.mrb { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--tx); }
+.mrb svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh { margin-top: 14px; }
+.lh .kr { display: flex; align-items: center; justify-content: space-between; min-height: 36px; }
+.lh .lk { font-size: 13px; letter-spacing: 1.6px; font-weight: 700; color: var(--sec); text-transform: uppercase; }
+.lh .clc { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 18px; background: var(--ctl); font-size: 13px; font-weight: 700; }
+.lh .clc svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh .tr { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.lh .ltt { font-size: 22px; line-height: 27px; font-weight: 700; text-wrap: balance; }
+
+/* сетка иконок вне телефона — на панели темы */
+.pane { border-radius: 28px; padding: 22px; background: var(--bg); color: var(--tx); max-width: 980px; flex: 1 1 520px; }
+.pane h3 { margin: 0 0 4px; font-size: 16px; font-weight: 700; }
+.pane .pnote { font-size: 13px; color: var(--sec); margin-bottom: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 12px; }
+.cell { border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 14px 10px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.cell .cn { font-size: 12px; font-weight: 700; color: var(--sec); }
+.cell .nm { font-size: 13px; line-height: 17px; font-weight: 600; }
+.states { display: flex; gap: 14px; }
+.panes { display: flex; flex-wrap: wrap; gap: 24px; }
+.lrow2 { margin-top: 18px; }
+.lhd2 { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.lk2 { font-size: 13px; letter-spacing: 1.4px; font-weight: 700; color: var(--sec); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.lt2 { font-size: 17px; font-weight: 700; margin-top: 2px; }
+.arcflag { text-transform: none; letter-spacing: 0; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 8px; background: var(--ctl); color: var(--sec); }
+.pane.narrow { flex: 0 1 420px; }
+.pl2 { color: #A6A6A8; font-size: 14px; margin: -6px 0 14px; }
+.blk2 { margin-top: 48px; }
+.blk2 h2 { font-size: 20px; margin: 0 0 14px; }
+.ph .t { transition: transform 160ms cubic-bezier(.23, 1, .32, 1); }
+.ph .t:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) { .ph .t { transition: none; } }
+/* ───────── РЕШЕНИЕ ВЛАДЕЛЬЦА 18.10 (эталон) ─────────
+   зачем: плашки глав без узора и без оттенков; иконка главы — как в Диалогах: плитка 55×55, радиус 14, фон — цвет текста 9 %,
+   значок Ionicons 26 цветом текста; у каждой главы свой значок; замков и значков-уголков нет. Закрытая глава — тот же значок вторым цветом.
+   Плитка урока у заголовка — 46×46, радиус 12, значок 22. Дорожка прогресса — акцент темы. */
 @font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
-body { margin: 0; background: var(--page); color: var(--page-ink); font-family: var(--font); }
-.wrap { max-width: 1280px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-h1 { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.5px; margin: 0; text-wrap: balance; }
-h2 { font-size: 21px; line-height: 27px; font-weight: 700; margin: 52px 0 0; text-wrap: balance; }
-.lead { font-size: 15px; line-height: 22px; color: var(--page-sec); margin: 8px 0 0; max-width: 74ch; }
-.rec { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 8px; background: rgba(110,200,140,.16); color: #3FA86A; font-size: 12px; font-weight: 700; vertical-align: middle; }
-.row { display: flex; flex-wrap: wrap; gap: 26px; margin-top: 20px; justify-content: center; }
-.col { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
-.cap { font-size: 14px; font-weight: 600; color: var(--page-sec); }
-.spec { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px 28px; }
-.spec div { font-size: 14px; line-height: 21px; color: var(--page-sec); }
-.spec b { color: var(--page-ink); font-weight: 600; }
-.verdict { margin-top: 28px; padding: 18px 20px; border-radius: 18px; background: var(--page-chip); max-width: 860px; font-size: 15px; line-height: 23px; color: var(--page-sec); }
-.verdict b { color: var(--page-ink); }
-table { border-collapse: collapse; margin-top: 14px; font-size: 14px; line-height: 20px; max-width: 860px; width: 100%; }
-td, th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--page-chip); vertical-align: top; }
-th { color: var(--page-sec); font-size: 13px; font-weight: 600; }
-
-/* ── телефон: темы карты V2 «Сумерки» и «Океан» (как learning-v2-icons.html) ── */
-.ph { position: relative; width: 360px; max-width: 100%; aspect-ratio: 360 / 760; border-radius: 48px; overflow: hidden; font-family: var(--font); color: var(--tx); background: var(--bg); }
-.ph.ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --ctl: #E6E7F4; --acc: #5E5BB6; --sb: #111;
-  --sh: 0 10px 26px -14px rgba(51,51,87,.30), inset 0 1px 0 rgba(255,255,255,.9); --face-cur: #17181E; --ink-cur: #FFFFFF; --face: #E9EAF6; --cta: #1D1D2F; --cta-ink: #FFFFFF; --sheet: #FCFCFF; --scrim: rgba(23,24,30,.38);
-  box-shadow: 0 0 0 9px #D9DAE6, 0 30px 60px -30px rgba(51,51,87,.45); }
-.ph.marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --ctl: #123037; --acc: #63D6F1; --sb: #fff;
-  --sh: 0 12px 28px -14px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06); --face-cur: #F6FBFD; --ink-cur: #00151C; --face: #0E2A31; --cta: #F6FBFD; --cta-ink: #00151C; --sheet: #032A33; --scrim: rgba(0,0,0,.55);
-  box-shadow: 0 0 0 9px #0B1F25, 0 30px 60px -30px rgba(0,0,0,.6); }
-.sbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; padding: 15px 28px 0; display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; color: var(--sb); z-index: 5; }
-.scr { position: absolute; inset: 46px 0 0; padding: 4px 12px; }
-.hi { position: absolute; left: 50%; bottom: 8px; width: 124px; height: 5px; margin-left: -62px; border-radius: 3px; background: var(--tx); opacity: .9; z-index: 40; }
-.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
-.mh { display: flex; justify-content: space-between; }
-.mrb { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; font-size: 20px; }
-.lk { font-size: 13px; letter-spacing: 1.6px; font-weight: 700; color: var(--sec); margin-top: 12px; }
-.tr { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
-.ich { flex: none; width: 55px; height: 55px; border-radius: 14px; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; align-items: center; justify-content: center; font-size: 26px; }
-.ich.les { width: 46px; height: 46px; border-radius: 12px; font-size: 22px; }
-.ltt { font-size: 22px; line-height: 27px; font-weight: 700; }
-.chap { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 14px 12px; margin-top: 12px; }
-.crow { display: flex; align-items: center; gap: 14px; }
-.crow .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
-.crow .cs { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
-.crow .fr { font-size: 15px; font-weight: 700; color: var(--sec); }
-.crow .fr b { color: var(--tx); }
-.grow { flex: 1; min-width: 0; }
-.ses { display: flex; flex-wrap: wrap; row-gap: 14px; padding: 12px 0 2px; }
-.s { width: 25%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.nd { position: relative; width: 60px; height: 60px; border-radius: 50%; background: var(--face); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: var(--tx); }
-.nd .io { font-size: 22px; }
-.nd b { font-size: 12px; line-height: 14px; }
-.nd.cur { background: var(--face-cur); color: var(--ink-cur); box-shadow: 0 0 0 4px color-mix(in srgb, var(--tx) 14%, transparent); }
-.nd.lock { color: var(--sec); opacity: .7; }
-.nd.exam { background: var(--acc); color: var(--cta-ink); box-shadow: 0 0 0 4px color-mix(in srgb, var(--acc) 30%, transparent); }
-.ph.ink .nd.exam { color: #FFFFFF; }
-.nd.passed { background: color-mix(in srgb, var(--acc) 22%, var(--face)); color: var(--tx); }
-.s .lb { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); text-align: center; }
-.s .lb.on { color: var(--tx); }
-.stars { position: absolute; bottom: -8px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--ctl); display: flex; gap: 1px; align-items: center; font-size: 9px; color: var(--tx); }
-/* зачем: правило .nd .io (22px) перебивало звёзды */
-.nd .stars .io { font-size: 10px; }
-.trk { height: 6px; border-radius: 3px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
-.trk i { display: block; height: 100%; background: var(--acc); border-radius: 3px; }
-/* вариант 1 — кнопка под сеткой */
-.exb { margin-top: 14px; height: 52px; border-radius: 26px; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
-.exb .io { font-size: 19px; }
-.exn { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 8px; }
-.exdone { margin-top: 14px; height: 48px; border-radius: 24px; background: var(--ctl); color: var(--tx); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; }
-.exdone .io { color: var(--acc); font-size: 18px; }
-.minichap { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; margin-top: 12px; display: flex; align-items: center; gap: 14px; }
-/* шторка перед экзаменом */
-.scrim { position: absolute; inset: 0; background: var(--scrim); z-index: 20; }
-.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--sheet); border-radius: 30px 30px 0 0; padding: 10px 20px 32px; box-shadow: 0 -18px 40px -18px rgba(0,0,0,.5); }
-.grab { width: 40px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 0 auto; }
-.sh-ic { width: 60px; height: 60px; border-radius: 18px; background: color-mix(in srgb, var(--acc) 22%, transparent); color: var(--acc); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 20px auto 0; }
-.ph.ink .sh-ic { color: #4A47A8; }
-.sh-t { font-size: 22px; line-height: 28px; font-weight: 700; text-align: center; margin-top: 14px; }
-.facts { display: flex; gap: 8px; margin-top: 16px; }
-.facts div { flex: 1; border-radius: 14px; background: var(--ctl); padding: 10px 6px; text-align: center; }
-.facts b { display: block; font-size: 18px; line-height: 22px; }
-.facts small { font-size: 12px; line-height: 16px; color: var(--sec); }
-.sh-p { font-size: 15px; line-height: 21px; color: var(--sec); text-align: center; margin-top: 14px; }
-.sh-cta { margin-top: 18px; height: 52px; border-radius: 26px; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
-.sh-sec { margin-top: 10px; height: 48px; border-radius: 24px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+.ph.th-ink, .pane.th-ink { --acc: oklch(.52 .14 282); }
+.ph.th-marine, .pane.th-marine { --acc: oklch(.82 .11 215); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: block; }
+.ich { flex: none; width: 55px; height: 55px; border-radius: 14px; background: color-mix(in srgb, var(--tx) 9%, transparent); color: var(--tx); display: flex; align-items: center; justify-content: center; }
+.ich .io { font-size: 26px; }
+.ich.les { width: 46px; height: 46px; border-radius: 12px; }
+.ich.les .io { font-size: 22px; }
+.st-locked .ich { color: var(--sec); }
+.chap2 { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; margin-top: 12px; }
+.chap2 .crow { display: flex; align-items: center; gap: 14px; }
+.chap2 .cp { flex: 1; min-width: 0; }
+.chap2 .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.chap2 .csub { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.chap2 .cfr { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.chap2 .cfr b { color: var(--tx); }
+.chap2 .chev { width: 20px; height: 20px; fill: none; stroke: var(--sec); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chap2 .ctrk { height: 6px; border-radius: 3px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
+.chap2 .ctrk i { display: block; height: 100%; border-radius: 3px; background: var(--acc); }
+.chap2.st-locked .tl { color: var(--sec); }
+.cell .inm { font-size: 11px; line-height: 14px; color: var(--sec); font-family: ui-monospace, Consolas, monospace; }
+.old-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(242,118,107,.16); color: #F2766B; font-size: 12px; font-weight: 700; vertical-align: middle; letter-spacing: 0; text-transform: none; }
+.new-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(110,200,140,.16); color: #4FB97A; font-size: 12px; font-weight: 700; vertical-align: middle; }
 </style>
-
-<div class="wrap">
-  <h1>Экзамен главы — 2 варианта</h1>
-  <p class="lead">Решение владельца 21.10: в главе 8 занятий, внизу — «Экзамен» по этой главе. Его можно сдать сразу, не проходя все занятия: сдал — открывается следующая глава. Это ответ на отзыв «не могу пропустить то, что знаю». Ниже два способа показать экзамен на карте; числа в окне перед экзаменом — предложение для макета, окончательно их решает сессия Learning V2.</p>
-
-  <h2>Вариант 1 · Кнопка «Экзамен главы» под занятиями<span class="rec">рекомендую</span></h2>
-  <div class="row" id="v1"></div>
-  <div class="spec">
-    <div><b>Где.</b> В развёрнутой главе под сеткой из 8 занятий — главная кнопка «Экзамен главы» с кубком, 52/26, и одна короткая строка «Сдашь — откроется глава 2». Восьмое занятие остаётся «Проверкой главы», как сейчас.</div>
-    <div><b>Состояния.</b> Доступна с первого дня главы. Сдан — кнопка становится спокойной строкой «Экзамен сдан · 9 из 10» с галочкой, следующая глава открыта. Пройдены все 8 занятий — кнопка остаётся (пересдать можно), но уже не главная.</div>
-  </div>
-
-  <h2>Вариант 2 · Восьмое занятие становится экзаменом</h2>
-  <div class="row" id="v2"></div>
-  <div class="spec">
-    <div><b>Где.</b> Последний узел главы — «Экзамен» цветом акцента, открыт с самого начала, даже когда занятия 5–7 ещё закрыты. Отдельной кнопки нет — экзамен на своём месте в пути.</div>
-    <div><b>Плюсы и минусы.</b> Компактно и логично («в конце главы — экзамен»), но пропадает нынешняя «Проверка главы», а открытый узел в конце ряда закрытых выглядит как ошибка в порядке — нужен явный акцент.</div>
-  </div>
-
-  <h2>Окно перед экзаменом (общее для обоих)</h2>
-  <div class="row" id="vs"></div>
-
-  <h2>Предложение по правилам — для сессии Learning V2</h2>
-  <table>
-    <tr><th>Вопрос</th><th>Предложение</th></tr>
-    <tr><td>Сколько вопросов</td><td>10 — по 1–2 на каждое занятие главы, задания тех же механик (сборка фразы, выбор, диктант).</td></tr>
-    <tr><td>Порог</td><td>8 из 10.</td></tr>
-    <tr><td>Провал</td><td>Спокойный итог «7 из 10 — почти», какие темы просели, кнопка «Повторить занятия». Пересдать можно сразу, без штрафа.</td></tr>
-    <tr><td>Энергия / сердечки</td><td>Free: 1 энергия, как обычное занятие. Plus: не тратит. Сердечек нет — экзамен не обрывается на ошибках.</td></tr>
-    <tr><td>Награда</td><td>Открывается следующая глава + монеты как за 8 занятий; пройденные экзаменом занятия считаются «пропущенными», их можно пройти позже.</td></tr>
-    <tr><td>Откуда вопросы</td><td>Из банка заданий восьми занятий главы, случайная выборка, без повторов подряд.</td></tr>
+<style>
+/* зачем (владелец 21.10, реестр №8): экзамен внизу главы из 8 занятий; сдать можно сразу — откроется следующая глава.
+   Развёрнутая глава — как в коде LearningV2ChaptersCourse: узлы 64 в сетке 4×2, номер 13/700, подпись 13/17 под узлом. */
+.ses { display: flex; flex-wrap: wrap; row-gap: 18px; padding: 14px 6px 6px; }
+.s { width: 25%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.nd { position: relative; width: 64px; height: 64px; border-radius: 50%; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: var(--tx); }
+.nd .io { font-size: 24px; }
+.nd b { font-size: 13px; line-height: 16px; font-weight: 700; }
+.nd.cur { background: var(--tx); color: var(--card); box-shadow: 0 0 0 5px color-mix(in srgb, var(--tx) 14%, transparent); }
+.nd.lock { color: var(--sec); }
+.nd.exam { background: var(--acc); color: #fff; box-shadow: 0 0 0 5px color-mix(in srgb, var(--acc) 30%, transparent); }
+.ph.th-marine .nd.exam { color: #00151C; }
+.nd .stars { position: absolute; bottom: -10px; min-height: 20px; padding: 0 6px; border-radius: 10px; background: var(--ctl); display: flex; align-items: center; gap: 1px; }
+.nd .stars .io { font-size: 11px; }
+.s .lb2 { width: 82px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); text-align: center; }
+.s .lb2.on { color: var(--tx); font-weight: 800; }
+.exb { margin-top: 16px; height: 52px; border-radius: 26px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
+.exb .io { font-size: 20px; }
+.exn { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 8px; }
+.exdone { margin-top: 16px; height: 48px; border-radius: 24px; background: var(--ctl); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.exdone .io { color: var(--acc); font-size: 20px; }
+.ph.th-ink .exdone .io { color: #4A47A8; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110,200,140,.16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.note { margin: 30px 0 0; max-width: 900px; font-size: 15px; line-height: 23px; color: #A6A6AE; }
+.note b { color: #F2F2F4; }
+.tb { border-collapse: collapse; margin-top: 12px; font-size: 14px; line-height: 20px; max-width: 900px; width: 100%; color: #C9C9CF; }
+.tb td, .tb th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); vertical-align: top; }
+.tb th { color: #8E8E96; font-size: 13px; font-weight: 600; }
+/* шторка перед экзаменом — как окна 2.0 */
+.xsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 30px 30px 0 0; padding: 12px 22px 40px; background: var(--card); box-shadow: 0 -18px 40px -18px rgba(0,0,0,.5); }
+.xdim { position: absolute; inset: 0; z-index: 25; background: rgba(0,0,0,.45); }
+.ph.th-ink .xdim { background: rgba(23,24,30,.38); }
+.xsh .grab { width: 42px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 0 auto; }
+.xsh .ic { width: 64px; height: 64px; border-radius: 18px; margin: 22px auto 0; background: color-mix(in srgb, var(--acc) 22%, transparent); display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--acc); }
+.ph.th-ink .xsh .ic { color: #4A47A8; }
+.xsh .t { font-size: 25px; line-height: 31px; font-weight: 700; text-align: center; margin-top: 16px; }
+.facts { display: flex; gap: 10px; margin-top: 18px; }
+.facts div { flex: 1; border-radius: 16px; background: var(--ctl); padding: 12px 6px; text-align: center; }
+.facts b { display: block; font-size: 22px; line-height: 26px; }
+.facts small { font-size: 13px; line-height: 17px; color: var(--sec); }
+.xsh .p { font-size: 16px; line-height: 22px; color: var(--sec); text-align: center; margin-top: 16px; }
+.xsh .c1 { margin-top: 20px; height: 54px; border-radius: 27px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; }
+.xsh .c2 { margin-top: 12px; height: 50px; border-radius: 25px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Экзамен главы — 2 варианта</h1>
+  <p class="page-lead">Реестр владельца №8: в главе 8 занятий, внизу — «Экзамен» по этой главе. Сдать можно сразу, не проходя все занятия: сдал — открывается следующая глава, пропущенные занятия засчитаны без звёзд. Экраны — карта V2 по эталону 18.10 (плитки Ionicons, плашки без узоров), развёрнутая глава — как в коде. Числа экзамена — из реестра: 12 вопросов из занятий 1–7, сдать — от 10.</p>
+  <div id="root"></div>
+  <table class="tb">
+    <tr><th>Правило (реестр №8)</th><th>Что видно на экране</th></tr>
+    <tr><td>12 вопросов из заданий занятий 1–7</td><td>«12 вопросов» в окне перед экзаменом</td></tr>
+    <tr><td>Порог 10 из 12</td><td>«10 чтобы сдать»; после — «Экзамен сдан · 11 из 12»</td></tr>
+    <tr><td>Сердечки не тратит</td><td>в окне нет сердечек и энергии</td></tr>
+    <tr><td>Провал → пауза</td><td>итог «9 из 12 — почти», пересдача позже (время паузы решает Learning V2)</td></tr>
+    <tr><td>Сдал → следующая глава, пропущенные засчитаны без звёзд</td><td>глава 2 открыта; узлы 5–7 с галочкой, без звёзд</td></tr>
   </table>
-
-  <div class="verdict"><b>Рекомендация: вариант 1.</b> Кнопка видна сразу, не ломает порядок узлов и не убирает «Проверку главы». Главная заливка говорит «можно сразу», а одна строка под ней объясняет выгоду. Вариант 2 компактнее, но открытый узел после закрытых путает.</div>
+  <p class="note"><b>Рекомендация: вариант 1.</b> Кнопка видна сразу, не ломает порядок узлов и оставляет восьмое занятие «Проверкой главы» — по реестру оно вводит новые слова, поэтому экзамен строится из занятий 1–7 и живёт отдельно. Вариант 2 компактнее, но превращает восьмое занятие в экзамен (новые слова пропадут) и даёт открытый узел после закрытых.</p>
 </div>
-
+<script src="kit.js"></script>
 <script>
-const IO = {back:'f127',book:'f1a6',lib:'f3b6',brief:'f1b2',business:'f1c7',cafe:'f1ca',people:'f4a3',chevD:'f232',chevU:'f241',check:'f21d',play:'f4c6',lock:'f3c7',trophy:'f601',star:'f595',ok:'f21e',time:'f5de',home:'f383'};
-const io = (k) => `<i class="io" aria-hidden="true">&#x${IO[k]};</i>`;
-const sbar = '<div class="sbar"><span>9:41</span><span>●●●</span></div>';
-const head = () => `<div class="mh"><span class="mrb">${io('back')}</span><span class="mrb">${io('book')}</span></div>
-  <div class="lk">УРОК 1</div><div class="tr"><span class="ich les">${io('brief')}</span><div class="ltt">Present be: утверждение + not</div></div>`;
+(() => {
+const { phone, block, col } = K;
+const ION = [["briefcase-outline",["business-outline","cafe-outline","people-outline","home-outline","restaurant-outline","chatbubbles-outline","calendar-outline"]],["help-circle-outline",["bed-outline","eye-outline","navigate-outline","pricetag-outline","balloon-outline","cloudy-outline","ribbon-outline"]],["cube-outline",["archive-outline","storefront-outline","car-outline","bulb-outline","bag-handle-outline","receipt-outline","leaf-outline"]],["map-outline",["trail-sign-outline","search-outline","nutrition-outline","compass-outline","key-outline","mail-outline","gift-outline"]],["id-card-outline",["people-circle-outline","bag-outline","happy-outline","folder-open-outline","shirt-outline","images-outline","git-network-outline"]],["sunny-outline",["alarm-outline","bus-outline","laptop-outline","fast-food-outline","barbell-outline","cart-outline","moon-outline"]],["repeat-outline",["color-palette-outline","football-outline","book-outline","hourglass-outline","pizza-outline","airplane-outline","call-outline"]],["school-outline",["star-outline","bicycle-outline","hand-left-outline","list-outline","flame-outline","egg-outline","heart-outline"]]];
+const ICODE = {"briefcase-outline":61874,"business-outline":61895,"cafe-outline":61898,"people-outline":62627,"home-outline":62339,"restaurant-outline":62774,"chatbubbles-outline":61976,"calendar-outline":61910,"help-circle-outline":62334,"bed-outline":61841,"eye-outline":62186,"navigate-outline":62576,"pricetag-outline":62699,"balloon-outline":61799,"cloudy-outline":62054,"ribbon-outline":62789,"cube-outline":62105,"archive-outline":61733,"storefront-outline":62888,"car-outline":61922,"bulb-outline":61889,"bag-handle-outline":61791,"receipt-outline":62735,"leaf-outline":62387,"map-outline":62531,"trail-sign-outline":62954,"search-outline":62819,"nutrition-outline":62597,"compass-outline":62084,"key-outline":62372,"mail-outline":62516,"gift-outline":62264,"id-card-outline":62348,"people-circle-outline":62625,"bag-outline":61793,"happy-outline":62306,"folder-open-outline":62247,"shirt-outline":62849,"images-outline":62354,"git-network-outline":62279,"sunny-outline":62894,"alarm-outline":61709,"bus-outline":61892,"laptop-outline":62381,"fast-food-outline":62192,"barbell-outline":61811,"cart-outline":61955,"moon-outline":62561,"repeat-outline":62768,"color-palette-outline":62078,"football-outline":62252,"book-outline":61862,"hourglass-outline":62342,"pizza-outline":62657,"airplane-outline":61706,"call-outline":61913,"school-outline":62813,"star-outline":62873,"bicycle-outline":61847,"hand-left-outline":62300,"list-outline":62399,"flame-outline":62228,"egg-outline":62153,"heart-outline":62327};
+const io = (name) => `<i class="io" aria-hidden="true">&#x${ICODE[name].toString(16)};</i>`;
+const ich = (name, cls = '') => `<span class="ich ${cls}">${io(name)}</span>`;
+const back = '<svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+const bookI = '<svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-1 8 .8 2.8-1.8 5.4-1.8 8-.8v13c-2.6-1-5.2-1-8 .8-2.8-1.8-5.4-1.8-8-.8z"/><path d="M12 6.3v13"/></svg>';
+const libI = '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="16" rx="1"/><rect x="9.5" y="6" width="4" height="14" rx="1"/><path d="M15.2 7.2l3.6-1 3 13.4-3.6 1z"/></svg>';
+const thc = (th) => th === 'ink' ? 'th-ink' : 'th-marine';
+const IC = { check: 'f21d', play: 'f4c6', lock: 'f3c7', trophy: 'f601', star: 'f595', ok: 'f21e', chevU: 'f241' };
+const gi = (k, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${IC[k]};</i>`;
+const head = () => `<div class="mh"><span class="mrb">${back}</span><span class="mrb">${bookI}</span></div>
+  <div class="lh"><div class="kr"><span class="lk">Урок 1</span><span class="clc">${libI}Классический курс</span></div>
+  <div class="tr">${ich(ION[0][0], 'les')}<div class="ltt">Present be: утверждение + not</div></div></div>`;
 const node = (n, st, o = {}) => {
-  const ic = st === 'done' ? 'check' : st === 'cur' ? 'play' : st === 'exam' ? 'trophy' : st === 'passed' ? 'trophy' : st === 'chk' ? 'trophy' : 'lock';
-  const cls = st === 'done' ? '' : st === 'cur' ? ' cur' : st === 'exam' ? ' exam' : st === 'passed' ? ' passed' : st === 'chk' ? ' lock' : ' lock';
-  const stars = o.stars ? `<span class="stars">${[0, 1, 2].map((i) => `<i class="io" style="opacity:${i < o.stars ? 1 : .25}">&#x${IO.star};</i>`).join('')}</span>` : '';
-  const label = o.label || `Занятие ${n}`;
-  return `<div class="s"><div class="nd${cls}">${io(ic)}<b>${st === 'exam' || st === 'passed' ? '' : n}</b>${stars}</div><div class="lb${st === 'cur' || st === 'exam' ? ' on' : ''}">${label}</div></div>`;
+  const ic = { done: 'check', cur: 'play', lock: 'lock', chk: 'trophy', exam: 'trophy' }[st];
+  const cls = { done: '', cur: ' cur', lock: ' lock', chk: ' lock', exam: ' exam' }[st];
+  const stars = o.stars ? `<span class="stars">${[0, 1, 2].map((i) => gi('star', `opacity:${i < o.stars ? 1 : .25}`)).join('')}</span>` : '';
+  const lb = o.label || `Занятие ${n}`;
+  return `<div class="s"><div class="nd${cls}">${gi(ic)}${st === 'exam' ? '' : `<b>${n}</b>`}${stars}</div><div class="lb2${st === 'cur' || st === 'exam' ? ' on' : ''}">${lb}</div></div>`;
 };
-const chapter = (o) => `<div class="chap"><div class="crow"><span class="ich">${io('business')}</span><div class="grow"><div class="tl">Глава 1</div><div class="cs">Занятия 1–8</div></div><span class="fr"><b>${o.done}</b>/8</span><span class="io" style="font-size:20px;color:var(--sec)">&#x${IO.chevU};</span></div>
-  <div class="ses">${o.nodes}</div>${o.after || ''}</div>`;
-const nodes1 = (passed) => [node(1, 'done', { stars: 3 }), node(2, 'done', { stars: 2 }), node(3, 'done', { stars: 3 }), node(4, passed ? 'done' : 'cur', passed ? { stars: 0 } : {}),
-  node(5, passed ? 'next' : 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'chk', { label: 'Проверка главы' })].join('');
-const nextChap = (open) => `<div class="minichap"><span class="ich" style="${open ? '' : 'color:var(--sec)'}">${io('cafe')}</span><div class="grow"><div class="tl" style="font-size:19px;font-weight:700;${open ? '' : 'color:var(--sec)'}">Глава 2</div><div class="cs" style="font-size:14px;color:var(--sec);margin-top:2px">Занятия 9–16</div></div><span class="fr" style="font-weight:700;color:var(--sec)"><b style="color:var(--tx)">0</b>/8</span></div>`;
-
-const v1 = (th, passed) => `<div class="ph ${th}" role="img" aria-label="Вариант 1">${sbar}<div class="scr">${head()}
-  ${chapter({ done: passed ? 4 : 3, nodes: nodes1(passed), after: passed
-    ? `<div class="exdone">${io('ok')}Экзамен сдан · 9 из 10</div>`
-    : `<div class="exb">${io('trophy')}Экзамен главы</div><div class="exn">Сдашь — откроется глава 2</div>` })}
-  ${nextChap(passed)}</div><div class="hi"></div></div>`;
-
-const v2 = (th) => `<div class="ph ${th}" role="img" aria-label="Вариант 2">${sbar}<div class="scr">${head()}
-  ${chapter({ done: 3, nodes: [node(1, 'done', { stars: 3 }), node(2, 'done', { stars: 2 }), node(3, 'done', { stars: 3 }), node(4, 'cur'), node(5, 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'exam', { label: 'Экзамен' })].join(''),
-    after: '<div class="trk"><i style="width:37%"></i></div>' })}
-  ${nextChap(false)}</div><div class="hi"></div></div>`;
-
-const sheet = (th) => `<div class="ph ${th}" role="img" aria-label="Окно перед экзаменом">${sbar}<div class="scr">${head()}${chapter({ done: 3, nodes: nodes1(false) })}</div>
-  <div class="scrim"></div><div class="sheet"><div class="grab"></div><div class="sh-ic">${io('trophy')}</div><div class="sh-t">Экзамен главы 1</div>
-  <div class="facts"><div><b>10</b><small>вопросов</small></div><div><b>8</b><small>чтобы сдать</small></div><div><b>~6</b><small>минут</small></div></div>
-  <div class="sh-p">Сдашь — сразу откроется глава 2. Не получится — пересдай когда угодно.</div>
-  <div class="sh-cta">Начать экзамен</div><div class="sh-sec">Позже</div></div><div class="hi"></div></div>`;
-
-const col = (cap, html) => `<div class="col">${html}<div class="cap">${cap}</div></div>`;
-document.getElementById('v1').innerHTML = col('Доступен · «Сумерки»', v1('ink', false)) + col('Доступен · «Океан»', v1('marine', false)) + col('Сдан · «Сумерки»', v1('ink', true));
-document.getElementById('v2').innerHTML = col('«Сумерки»', v2('ink')) + col('«Океан»', v2('marine'));
-document.getElementById('vs').innerHTML = col('«Сумерки»', sheet('ink')) + col('«Океан»', sheet('marine'));
+const plateOpen = (done, nodes, after = '') => `<div class="chap2"><div class="crow">${ich(ION[0][1][0])}<div class="cp"><div class="tl">Глава 1</div><div class="csub">Занятия 1–8</div></div><span class="cfr"><b>${done}</b>/8</span>${gi('chevU', 'font-size:20px;color:var(--sec)')}</div><div class="ses">${nodes}</div>${after}</div>`;
+const plateNext = (open) => `<div class="chap2${open ? '' : ' st-locked'}"><div class="crow">${ich(ION[0][1][1])}<div class="cp"><div class="tl">Глава 2</div><div class="csub">Занятия 9–16</div></div><span class="cfr"><b>0</b>/8</span></div><div class="ctrk"></div></div>`;
+const base = [node(1, 'done', { stars: 3 }), node(2, 'done', { stars: 2 }), node(3, 'done', { stars: 3 })];
+const v1 = (th, passed) => {
+  const nodes = passed
+    ? [...base, node(4, 'done', { stars: 1 }), node(5, 'done'), node(6, 'done'), node(7, 'done'), node(8, 'chk', { label: 'Проверка главы' })].join('')
+    : [...base, node(4, 'cur'), node(5, 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'chk', { label: 'Проверка главы' })].join('');
+  const after = passed ? `<div class="exdone">${gi('ok')}Экзамен сдан · 11 из 12</div>` : `<div class="exb">${gi('trophy')}Экзамен главы</div><div class="exn">Сдашь — откроется глава 2</div>`;
+  return phone(`${head()}${plateOpen(passed ? 7 : 3, nodes, after)}${plateNext(passed)}<div style="height:30px"></div>`, { time: '9:41' }).replace('class="ph"', `class="ph ${thc(th)}"`);
+};
+const v2 = (th) => phone(`${head()}${plateOpen(3, [...base, node(4, 'cur'), node(5, 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'exam', { label: 'Экзамен' })].join(''), '<div class="ctrk"><i style="width:37%"></i></div>')}${plateNext(false)}`, { time: '9:41' }).replace('class="ph"', `class="ph ${thc(th)}"`);
+const sheet = (th) => phone(`${head()}${plateOpen(3, [...base, node(4, 'cur'), node(5, 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'chk', { label: 'Проверка главы' })].join(''))}`, { time: '9:41',
+  overlay: `<div class="xdim"></div><div class="xsh"><div class="grab"></div><div class="ic">${gi('trophy')}</div><div class="t">Экзамен главы 1</div>
+  <div class="facts"><div><b>12</b><small>вопросов</small></div><div><b>10</b><small>чтобы сдать</small></div><div><b>~7</b><small>минут</small></div></div>
+  <div class="p">По занятиям 1–7. Сдашь — сразу откроется глава 2.</div><div class="c1">Начать экзамен</div><div class="c2">Позже</div></div>` }).replace('class="ph"', `class="ph ${thc(th)}"`);
+document.getElementById('root').innerHTML =
+  block('v1', 'Вариант 1 · Кнопка «Экзамен главы» под занятиями<span class="rec">рекомендую</span>', 'Под сеткой из 8 занятий — главная кнопка «Экзамен главы» с кубком и одна строка «Сдашь — откроется глава 2». Доступна с первого дня главы. Сдан — спокойная строка «Экзамен сдан · 11 из 12», занятия 5–7 засчитаны без звёзд, глава 2 открыта.', [col('Доступен · «Сумерки»', v1('ink', false)), col('Доступен · «Океан»', v1('marine', false)), col('Сдан · «Сумерки»', v1('ink', true))]) +
+  block('v2', 'Вариант 2 · Восьмое занятие становится экзаменом', 'Последний узел — «Экзамен» цветом акцента, открыт с начала, даже когда 5–7 закрыты. Компактно, но восьмое занятие перестаёт вводить новые слова, а открытый узел после закрытых выглядит как ошибка порядка.', [col('«Сумерки»', v2('ink')), col('«Океан»', v2('marine'))]) +
+  block('vs', 'Окно перед экзаменом — общее', 'По тапу — шторка: что будет и сколько нужно. Сердечки и энергия не показываются: экзамен их не тратит.', [col('«Сумерки»', sheet('ink')), col('«Океан»', sheet('marine'))]);
+K.init();
+})();
 </script>
+</body>
+</html>

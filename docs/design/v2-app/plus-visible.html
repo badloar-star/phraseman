@@ -1,194 +1,290 @@
 <!doctype html>
+<html lang="ru">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plus заметно</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-<style>
-/* Блок D вводных владельца 21.10: как заметно показать, что у человека Plus — чтобы он знал сам и видели другие.
-   Места: профиль/настройки, аватар в шапке, рейтинг этажа Пика, сообщество. Стиль «Тень», графит и «Сумерки».
-   Признак Plus других людей уже приходит в публичной проекции (isPremium) — нужна только отрисовка. Без жёлтого. */
-:root {
-  --page: #F4F4F7; --page-ink: #17181E; --page-sec: #5B5C66; --page-line: rgba(23,24,30,.10); --page-chip: rgba(23,24,30,.06);
-  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif; color-scheme: light;
-}
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); --page-chip: rgba(255,255,255,.07); color-scheme: dark; } }
-:root[data-theme="dark"] { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); --page-chip: rgba(255,255,255,.07); color-scheme: dark; }
-@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
-body { margin: 0; background: var(--page); color: var(--page-ink); font-family: var(--font); }
-.wrap { max-width: 1280px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-h1 { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.5px; margin: 0; text-wrap: balance; }
-h2 { font-size: 21px; line-height: 27px; font-weight: 700; margin: 52px 0 0; text-wrap: balance; }
-.lead { font-size: 15px; line-height: 22px; color: var(--page-sec); margin: 8px 0 0; max-width: 72ch; }
-.rec { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 8px; background: rgba(110,200,140,.16); color: #3FA86A; font-size: 12px; font-weight: 700; vertical-align: middle; }
-.row { display: flex; flex-wrap: wrap; gap: 26px; margin-top: 20px; justify-content: center; }
-.col { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
-.cap { font-size: 14px; font-weight: 600; color: var(--page-sec); }
-.spec { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px 28px; }
-.spec div { font-size: 14px; line-height: 21px; color: var(--page-sec); }
-.spec b { color: var(--page-ink); font-weight: 600; }
-.verdict { margin-top: 28px; padding: 18px 20px; border-radius: 18px; background: var(--page-chip); max-width: 820px; font-size: 15px; line-height: 23px; color: var(--page-sec); }
-.verdict b { color: var(--page-ink); }
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="extension.css">
+<style>/* зачем: стекло «Авроры» — только у телефона «Наборы», как в приложении */
+/* Карточки 2.0 — «стекло и градиент» для ВСЕХ экранов, состояний и окон раздела.
+   зачем (владелец 04.10): «в таком же стиле все остальные состояния, экраны, карточки — все модали раздела»; «карточки одного цвета темы, градиент внутри»; «наборы из видео
+   равнозначны другим разделам». Слой поверх cards-v2.html: те же экраны и тексты, другой вид — аврора на фоне, стеклянные поверхности с блеском, градиент цвета темы
+   внутри карточек, акцентная главная кнопка. Тема меняется чипами вверху (все телефоны сразу). */
 
-/* ── телефон ── */
-.ph { --bg: #0C0C0D; --bg-top: #151516; --text: #FFFFFF; --sec: #A6A6A8; --muted: #7C7C80; --card: #161618; --tile: #242426; --line: rgba(255,255,255,.07); --sb: #fff;
-  --card-sh: inset 0 1px 0 rgba(255,255,255,.05), 0 10px 24px -16px rgba(0,0,0,.9); --me: #202024;
-  --plus-ink: #C2B8FF; --plus-tint: rgba(142,124,255,.16);
-  position: relative; width: 360px; max-width: 100%; aspect-ratio: 360 / 760; border-radius: 48px; overflow: hidden;
-  background: radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%); color: var(--text);
-  box-shadow: 0 0 0 9px #1A1A1C, 0 30px 60px -30px rgba(0,0,0,.6); font-family: var(--font); }
-.ph.lt { --bg: #ECEEF9; --bg-top: #F3F4FD; --text: #17181E; --sec: #595A63; --muted: #7E7F8A; --card: #FFFFFF; --tile: #E4E5F3; --line: rgba(23,24,30,.07); --sb: #111;
-  --card-sh: 0 8px 22px -14px rgba(51,51,87,.40); --me: #F1F0FF; --plus-ink: #5442D8; --plus-tint: rgba(110,92,240,.11);
-  background: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); box-shadow: 0 0 0 9px #D9DAE6, 0 30px 60px -30px rgba(51,51,87,.45); }
-.sbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; padding: 15px 28px 0; display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; color: var(--sb); z-index: 5; }
-.scr { position: absolute; inset: 46px 0 0; padding: 6px 16px; }
-.hi { position: absolute; left: 50%; bottom: 8px; width: 124px; height: 5px; margin-left: -62px; border-radius: 3px; background: var(--text); opacity: .9; }
-.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
-.hrow { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
-.ttl { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; }
-.sub { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
-.eb { font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sec); margin: 20px 4px 8px; }
-.card { border-radius: 16px; background: var(--card); box-shadow: var(--card-sh); }
-.pcard { display: flex; align-items: center; gap: 12px; padding: 12px 14px; margin-top: 16px; }
-.pcard .nm { font-size: 17px; line-height: 22px; font-weight: 700; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-.pcard .ds { font-size: 13px; line-height: 18px; color: var(--sec); margin-top: 2px; }
-.grow { flex: 1; min-width: 0; }
-.chev { color: var(--muted); font-size: 18px; }
-.setrow { display: flex; align-items: center; gap: 12px; padding: 11px 14px; margin-top: 8px; min-height: 40px; }
-.setrow .tl { width: 36px; height: 36px; border-radius: 10px; background: var(--tile); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text); flex: none; }
-.setrow .t { font-size: 15px; font-weight: 700; }
-.setrow .v { font-size: 13px; color: var(--sec); }
+.ph.com { background: var(--bg) !important; --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; --t: var(--g1); }
+.ph.com::before { content: ""; position: absolute; inset: -18%; z-index: 0; pointer-events: none; opacity: .62;
+  background: radial-gradient(38% 26% at 18% 16%, var(--g1), transparent 70%), radial-gradient(40% 28% at 88% 44%, var(--g2), transparent 70%), radial-gradient(48% 28% at 32% 96%, var(--g1), transparent 72%);
+  animation: gdrift 18s ease-in-out infinite alternate; }
+@keyframes gdrift { to { transform: translate3d(3%, -2%, 0) scale(1.06); } }
 
-/* аватар-монета */
-.av { position: relative; flex: none; display: inline-flex; border-radius: 50%; }
-.av img { display: block; border-radius: 50%; }
-/* рейтинг этажа */
-.lb { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
-.lr { display: flex; align-items: center; gap: 11px; padding: 8px 12px; min-height: 52px; border-radius: 14px; background: var(--card); box-shadow: var(--card-sh); position: relative; overflow: hidden; }
-.lr.me { background: var(--me); }
-.lr .pl { width: 20px; text-align: center; font-size: 14px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; flex: none; }
-.lr .nm { font-size: 15px; line-height: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px; min-width: 0; }
-.lr .nm span.t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.lr .sc { font-size: 14px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; flex: none; }
-.floor { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding: 0 2px; }
-.floor .f { font-size: 13px; font-weight: 700; color: var(--sec); letter-spacing: .3px; }
-/* сообщество */
-.pk { display: flex; gap: 12px; align-items: center; padding: 12px; margin-top: 8px; }
-.pk .cnt { width: 54px; height: 62px; border-radius: 12px; background: var(--tile); display: flex; flex-direction: column; align-items: center; justify-content: center; flex: none; }
-.pk .cnt b { font-size: 19px; line-height: 22px; }
-.pk .cnt small { font-size: 10px; color: var(--sec); }
-.pk .pt { font-size: 15px; line-height: 20px; font-weight: 700; }
-.pk .au { display: flex; align-items: center; gap: 6px; margin-top: 5px; font-size: 13px; color: var(--sec); flex-wrap: wrap; }
-.pk .add { width: 34px; height: 34px; border-radius: 50%; background: var(--tile); display: flex; align-items: center; justify-content: center; font-size: 18px; flex: none; }
+/* стеклянные поверхности: градиент темы внутри, блик по кромке, размытие под ними */
+.ph.com .card, .ph.com .note, .ph.com .qc, .ph.com .field, .ph.com .seg3, .ph.com .toast, .ph.com .week, .ph.com .acts .card {
+  background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 18%, rgba(24,24,30,.62)) 0%, rgba(14,14,18,.58) 60%, color-mix(in srgb, var(--g2) 14%, rgba(14,14,18,.58)) 100%) !important;
+  border-color: rgba(255,255,255,.07) !important; }
+.ph.com .card.c2 { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(24,24,30,.6)) 0%, rgba(14,14,18,.56) 58%, color-mix(in srgb, var(--g2) 20%, rgba(14,14,18,.56)) 100%) !important; }
+.ph.com .qc { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 46%, rgba(10,10,14,.9)) 0%, rgba(8,8,12,.86) 56%, color-mix(in srgb, var(--g2) 40%, rgba(8,8,12,.86)) 100%) !important; }
+.ph.com .srch, .ph.com .chipbtn, .ph.com .rb, .ph.com .pill, .ph.com .cntp, .ph.com .lvl { background: rgba(255,255,255,.07) !important; border-color: rgba(255,255,255,.1) !important; }
+.ph.com .rb.fill { background: rgba(255,255,255,.14) !important; }
+.ph.com .tile { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 30%, #0b0b0f)) !important; }
+.ph.com .tile.t61, .ph.com .empty .tile { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 55%, #1a1a20), color-mix(in srgb, var(--g2) 35%, #0b0b0f)) !important; color: #fff !important; }
 
-/* ── A · метка Plus у имени ── */
-.tagp { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 7px; border-radius: 10px; background: var(--plus-tint); color: var(--plus-ink); font-size: 12px; font-weight: 800; letter-spacing: .1px; flex: none; }
-.tagp .io { font-size: 10px; }
-.tagp.s { height: 18px; padding: 0 6px; font-size: 11px; }
-/* ── B · сияющее кольцо + значок ── */
-.ring { padding: 3px; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
-.ring img { box-shadow: 0 0 0 2px var(--bg); }
-.pin { position: absolute; right: -2px; bottom: -2px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px var(--card); }
-.pin .io { font-size: 60%; }
-/* ── C · подсветка строки ── */
-.lr.cp::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--plus-tint), transparent 70%); pointer-events: none; }
-.dia { color: var(--plus-ink); font-size: 13px; flex: none; }
-.pluscard { margin-top: 16px; padding: 14px; border-radius: 18px; background: linear-gradient(135deg, rgba(142,124,255,.30), rgba(111,168,255,.16) 55%, rgba(127,224,216,.12)), var(--card); box-shadow: var(--card-sh); display: flex; gap: 12px; align-items: center; }
-.pluscard .k { font-size: 12px; font-weight: 800; letter-spacing: 1.2px; color: var(--plus-ink); text-transform: uppercase; }
-/* ── D · рамка на выбор ── */
-.fr-double { padding: 2px; background: var(--plus-ink); }
-.fr-double img { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--plus-ink); }
-.fr-dash { padding: 3px; background: repeating-conic-gradient(var(--plus-ink) 0 14deg, transparent 14deg 30deg); }
-.fr-dash img { box-shadow: 0 0 0 2px var(--bg); }
-.frames { display: flex; gap: 10px; margin-top: 10px; }
-.frames .o { flex: 1; border-radius: 14px; background: var(--tile); padding: 10px 6px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--sec); }
-.frames .o.on { background: var(--me); color: var(--text); box-shadow: inset 0 0 0 1.5px var(--plus-ink); }
+/* главная кнопка — цвет акцента темы, как в градиентных темах */
+.ph.com .cta:not(.gh):not(.dis):not(.red) { background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)) !important; color: var(--on) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 30px -12px color-mix(in srgb, var(--acc) 70%, transparent) !important; }
+.ph.com .cta.gh { background: rgba(255,255,255,.06) !important; border-color: color-mix(in srgb, var(--acc) 45%, rgba(255,255,255,.2)) !important; color: #fff !important; }
+.ph.com .chipbtn.on, .ph.com .seg3 span.on { background: var(--acc) !important; color: var(--on) !important; border-color: transparent !important; }
+.ph.com .trk i { background: var(--acc) !important; }
+.ph.com .ov { color: color-mix(in srgb, var(--acc) 78%, #fff); }
+
+/* окна и шторки */
+.ph.com .sheet { background: linear-gradient(160deg, color-mix(in srgb, var(--g1) 16%, rgba(26,26,32,.9)), rgba(16,16,20,.9) 55%, color-mix(in srgb, var(--g2) 14%, rgba(16,16,20,.9))) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(150%); backdrop-filter: blur(26px) saturate(150%); border-color: rgba(255,255,255,.1) !important; }
+.ph.com .dim { background: rgba(2,2,4,.62) !important; }
+.ph.com .toast { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(30,30,36,.85)), rgba(18,18,22,.85)) !important; }
+.ph.com .bot { background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.9) 34%) !important; }
+.ph.com .opt { background: rgba(255,255,255,.05) !important; }
+.ph.com .opt.ok { background: rgba(111,208,140,.14) !important; }
+.ph.com .opt.no { background: rgba(242,118,107,.14) !important; }
+
+/* ---------- общий стеклянный язык (хаб и «Из видео») ---------- */
+.gl { position: relative; border-radius: 26px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 18%, rgba(24,24,30,.62)) 0%, rgba(14,14,18,.58) 60%, color-mix(in srgb, var(--g2) 14%, rgba(14,14,18,.58)) 100%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%); backdrop-filter: blur(22px) saturate(150%); overflow: hidden;
+  box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.26), inset -1px -1.5px 0 -.2px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.07), 0 18px 40px -18px rgba(0,0,0,.85); }
+.gl::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,0) 46%); }
+.gl.pad { padding: 18px; }
+.gl.sm { border-radius: 20px; }
+.ac-cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 26px; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--on); font-size: 17px; font-weight: 700; width: 100%;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 30px -12px color-mix(in srgb, var(--acc) 70%, transparent); position: relative; }
+.ac-cta.sm { height: 42px; border-radius: 21px; width: auto; padding: 0 18px; font-size: 16px; }
+.ac-cta .ar { position: absolute; right: 20px; }
+.ov2 { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: color-mix(in srgb, var(--acc) 80%, #fff); }
+.mc { position: relative; border-radius: 18px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 600; letter-spacing: -.2px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 48%, rgba(10,10,14,.9)), rgba(8,8,12,.86) 58%, color-mix(in srgb, var(--g2) 38%, rgba(8,8,12,.86)));
+  box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.3), inset 0 0 0 1px color-mix(in srgb, var(--g1) 42%, rgba(255,255,255,.08)), 0 14px 26px -12px rgba(0,0,0,.85); }
+.mc::before { content: ""; position: absolute; inset: 0; background: linear-gradient(150deg, rgba(255,255,255,.18), rgba(255,255,255,0) 52%); }
+.mc > span { position: relative; z-index: 1; padding: 0 8px; }
+.gpk { display: flex; align-items: center; gap: 14px; padding: 12px 14px 12px 12px; margin-top: 10px; }
+.gtile { width: 52px; height: 52px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; flex: none; position: relative; overflow: hidden;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 30%, #0b0b0f)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.32), inset 0 0 0 1px rgba(255,255,255,.08); }
+.rise > * { animation: grise 640ms cubic-bezier(.2,1,.3,1) both; }
+.rise > *:nth-child(2) { animation-delay: 70ms; } .rise > *:nth-child(3) { animation-delay: 140ms; } .rise > *:nth-child(4) { animation-delay: 210ms; } .rise > *:nth-child(5) { animation-delay: 280ms; } .rise > *:nth-child(6) { animation-delay: 350ms; }
+@keyframes grise { from { opacity: 0; transform: translateY(22px) scale(.97); } }
+.vrow { display: flex; align-items: center; gap: 12px; padding: 12px 14px 12px 12px; margin-top: 10px; min-height: 87px; }
+.vth { position: relative; width: 112px; height: 63px; border-radius: 12px; flex: none; overflow: hidden; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--g1) 55%, #0c0c10), color-mix(in srgb, var(--g2) 40%, #0a0a0d)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+.vth .pl { width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; }
+.vth .du { position: absolute; right: 5px; bottom: 5px; font-size: 11px; font-weight: 700; padding: 1px 5px; border-radius: 5px; background: rgba(0,0,0,.6); }
+.vadd { height: 34px; padding: 0 14px; border-radius: 17px; background: var(--acc); color: var(--on); font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; flex: none; }
+.vhero { position: relative; height: 218px; border-radius: 24px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-top: 18px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--g1) 55%, #0c0c10), color-mix(in srgb, var(--g2) 42%, #0a0a0d)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 20px 40px -20px rgba(0,0,0,.8); }
+.vhero .pl { width: 64px; height: 64px; border-radius: 50%; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; }
+.gtime { font-size: 14px; font-weight: 700; color: var(--acc); min-width: 40px; font-variant-numeric: tabular-nums; }
+
+/* панель управления страницы */
+.ctl { position: sticky; top: 0; z-index: 90; background: rgba(5,5,6,.9); backdrop-filter: blur(14px); padding: 14px 0; margin-top: 18px; border-bottom: 1px solid var(--line); }
+.chips2 { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: flex; align-items: center; gap: 8px; font-size: 14px; padding: 7px 12px 7px 8px; border-radius: 999px; background: #161618; border: 1px solid var(--line); color: var(--sec); cursor: pointer; user-select: none; }
+.chip.on { color: #fff; border-color: rgba(255,255,255,.4); background: #222224; }
+.sw { width: 22px; height: 22px; border-radius: 50%; flex: none; }
+.float { animation: gfloat 5s ease-in-out infinite alternate; }
+@keyframes gfloat { to { translate: 0 -8px; } }
 </style>
+<style>
+  /* зачем (владелец 11.10: «наборы должны быть компактными плашечками, как были, но дизайн плашки — удобнее и красивее, в стиле 2.0»):
+     список остаётся списком компактных плашек, меняется сама плашка. Три варианта плашки: 1 · Плитка-счётчик, 2 · Билет, 3 · С превью слов.
+     Что чиним по скриншоту: число справа («500») было без подписи; название ужималось бейджем «Топ»; нижняя плавающая плашка «Новые / + / Топ» налезала на список;
+     добавить набор себе можно было только изнутри. Только существующее: название, «Топ», автор с монетой, лайки / добавили / комментарии, число карточек,
+     слова набора, «Новые / Топ», поиск, «Добавить себе», создать, «Пожаловаться» и «Не показывать мне». Цвет — только тема. Текст не обрезается. */
+  .scr > .in { min-height: 100%; }
+  .acc { color: var(--acc); } .sec2 { color: var(--sec); } .grow { flex: 1; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 22px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.95) 42%); }
+  .ib { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; color: #fff; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .ib.bare { background: transparent; box-shadow: none; } .ib.ac { background: var(--acc); color: var(--on); box-shadow: none; }
+  .lg { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border-radius: 22px; flex: none; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); font-size: 15px; font-weight: 700; }
+  .lg img { width: 24px; height: 15px; border-radius: 3px; object-fit: cover; display: block; }
+  .t1 { display: flex; align-items: center; gap: 14px; height: 48px; margin-top: 4px; }
+  .t1 .tb { height: 44px; display: flex; align-items: center; font-size: 16px; font-weight: 600; color: var(--sec); position: relative; } .t1 .tb.on { color: #fff; }
+  .t1 .tb.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: 1px; height: 3px; border-radius: 2px; background: var(--acc); }
+  .h1c { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.6px; }
+  .tp { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 11px; background: var(--acc); color: var(--on); font-size: 12px; font-weight: 700; flex: none; vertical-align: 2px; margin-left: 8px; }
+  .chp { display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: 13px; background: rgba(255,255,255,.1); font-size: 13px; font-weight: 700; flex: none; white-space: nowrap; }
+  .mt { display: flex; gap: 14px; font-size: 13px; line-height: 17px; color: var(--sec); align-items: center; white-space: nowrap; } .mt span { display: inline-flex; align-items: center; gap: 4px; }
+  .au { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; font-size: 14px; color: rgba(255,255,255,.78); margin-top: 6px; } .au > span { display: inline-flex; align-items: center; gap: 7px; } .au img { border-radius: 50%; display: block; }
+  .sg { display: flex; gap: 4px; padding: 4px; border-radius: 18px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .sg span { flex: 1; height: 38px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: var(--sec); padding: 0 14px; } .sg span.on { background: var(--acc); color: var(--on); }
+  .pillb { white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--acc); color: var(--on); font-size: 15px; font-weight: 700; flex: none; }
+  .pillb.gh { background: rgba(255,255,255,.08); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); } .pillb.ok { background: rgba(255,255,255,.08); color: var(--acc); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 50%, transparent); }
+  .rd { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--acc) 22%, rgba(255,255,255,.06)); color: var(--acc); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 30%, transparent); flex: none; }
+  .rd.on { background: transparent; color: var(--acc); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 55%, transparent); }
+  .sf { flex: 1; display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 6px 0 16px; border-radius: 26px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); font-size: 17px; color: var(--sec); } .sf .q { flex: 1; color: #fff; }
+  .cta2 { display: flex; align-items: center; justify-content: center; gap: 10px; height: 54px; border-radius: 27px; background: var(--acc); color: var(--on); font-size: 17px; font-weight: 700; }
+  .lab { font-size: 15px; font-weight: 600; color: var(--sec); margin: 18px 0 10px; }
+  .glass { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(24,24,30,.72)), rgba(14,14,18,.68) 58%, color-mix(in srgb, var(--g2) 20%, rgba(14,14,18,.68))); box-shadow: inset 0 0 0 1px rgba(255,255,255,.11), inset 0 1.5px 0 -.2px rgba(255,255,255,.2); }
+  .hl { color: var(--acc); }
+  .wr { display: flex; align-items: center; gap: 12px; min-height: 62px; } .wr + .wr { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); } .wr .w { font-size: 20px; font-weight: 700; flex: 1; } .wr .w i { display: block; font-style: normal; font-size: 14px; font-weight: 500; color: var(--sec); margin-top: 2px; }
+  .menu { margin-top: 8px; padding: 6px; border-radius: 20px; background: rgba(34,34,38,.97); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), 0 18px 40px rgba(0,0,0,.5); }
+  .menu div { display: flex; align-items: center; gap: 12px; height: 52px; padding: 0 14px; font-size: 17px; font-weight: 600; }
+  .dock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 22px 20px 30px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.95) 50%); }
 
-<div class="wrap">
-  <h1>Plus заметно — 4 варианта</h1>
-  <p class="lead">Задача владельца 21.10: человек с Plus должен сам видеть, что у него Plus, а другие — замечать это в профиле, на аватаре, в рейтинге Пика и в сообществе. В каждом варианте одни и те же два экрана: настройки с профилем и аватаром в шапке, и Пик с жителями этажа и наборами сообщества. Plus у Алекса (это вы), Ирины и Марка. Цвет Plus — свой фиолетово-голубой, одинаковый во всех темах, без жёлтого.</p>
+  /* ---------- ПЛАШКА (общее) ---------- */
+  .pl { position: relative; margin-top: 10px; border-radius: 22px; }
+  .pl .tt { font-size: 18px; line-height: 23px; font-weight: 700; letter-spacing: -.2px; }
+  .pl.up { transform: scale(1.025); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 20px 44px rgba(0,0,0,.55); z-index: 3; } .pl.dm { opacity: .32; }
 
-  <h2>A · Метка «Plus» у имени</h2>
-  <div class="row" id="vA"></div>
-  <div class="spec"><div><b>Что видно.</b> Маленькая пилюля «◆ Plus» сразу после имени — везде, где есть имя. Читается словом, без догадок.</div><div><b>Плюсы и минусы.</b> Просто и честно, но мелко: на аватаре в шапке и на башне Пика без имени не видно; в узких строках съедает место под имя.</div></div>
+  /* 1 · Плитка-счётчик: слева плитка с числом и подписью, справа «+» */
+  .p1 { display: flex; align-items: center; gap: 14px; padding: 12px 14px 12px 12px; }
+  .p1 .ct { width: 68px; min-height: 68px; border-radius: 18px; flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; align-self: stretch; background: linear-gradient(150deg, color-mix(in srgb, var(--acc) 30%, #14141a), color-mix(in srgb, var(--g2) 34%, #0e0e12)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), inset 0 1.5px 0 -.2px rgba(255,255,255,.28); }
+  .p1 .ct b { font-size: 23px; line-height: 26px; font-weight: 700; letter-spacing: -.4px; } .p1 .ct span { font-size: 11px; line-height: 14px; font-weight: 600; color: rgba(255,255,255,.72); margin-top: 1px; }
+  .p1 .bx { flex: 1; min-width: 0; }
 
-  <h2>B · Сияющее кольцо аватара + значок<span class="rec">рекомендую</span></h2>
-  <div class="row" id="vB"></div>
-  <div class="spec"><div><b>Что видно.</b> У аватара Plus — тонкое переливающееся кольцо и круглый значок ◆ в углу. Аватар есть везде — в шапке, на этаже Пика, в строках, у автора набора, — поэтому Plus виден даже там, где имени нет.</div><div><b>В профиле</b> к кольцу добавляется слово «Plus» у имени: человек точно знает, что подписка его.</div></div>
+  /* 2 · Билет: слева описание, справа отрывной корешок с числом и «Добавить» */
+  .p2 { display: flex; overflow: hidden; }
+  .p2 .bx { flex: 1; min-width: 0; padding: 14px 14px 14px 16px; }
+  .p2 .tk { width: 116px; flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 10px 8px; position: relative; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 20%, transparent), color-mix(in srgb, var(--g2) 16%, transparent)); }
+  .p2 .tk::before { content: ""; position: absolute; left: 0; top: 12px; bottom: 12px; width: 0; border-left: 1.5px dashed rgba(255,255,255,.22); }
+  .p2 .tk b { font-size: 26px; line-height: 30px; font-weight: 700; letter-spacing: -.5px; } .p2 .tk > span { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.72); }
+  .p2 .tk .pillb { height: 34px; padding: 0 12px; font-size: 14px; margin-top: 8px; }
 
-  <h2>C · Подсветка строки и карточка Plus</h2>
-  <div class="row" id="vC"></div>
-  <div class="spec"><div><b>Что видно.</b> Строка Plus в рейтинге мягко подсвечена слева, после имени — ◆. В настройках сверху — цветная карточка «Plus · с 12 августа».</div><div><b>Плюсы и минусы.</b> Очень заметно в списках, но подсветка похожа на «выделенную» строку (как «я»), а у аватара в шапке и на башне признака нет.</div></div>
-
-  <h2>D · Рамка аватара на выбор</h2>
-  <div class="row" id="vD"></div>
-  <div class="spec"><div><b>Что видно.</b> Plus открывает выбор рамки аватара: «Сияние», «Двойная», «Пунктир». Другие видят выбранную рамку везде, где аватар.</div><div><b>Плюсы и минусы.</b> Самый «дорогой» и личный вариант, повод купить Plus. Но рамки нужно рисовать, нужен выбор в настройках и поле в профиле — больше работы.</div></div>
-
-  <h2>Рекомендованный B — светлая тема</h2>
-  <div class="row" id="vBl"></div>
-
-  <div class="verdict"><b>Рекомендация: B.</b> Кольцо работает там, где имени нет (шапка, башня Пика, автор набора), и не спорит с выделением «я» в рейтинге. Данные уже есть: признак Plus приходит в публичном профиле, друзьях, лиге и жителях Пика — сервер не трогаем. Если нужен повод купить — следующим шагом добавить D (выбор рамки) поверх B: «Сияние» станет рамкой по умолчанию.</div>
+  /* 3 · С превью слов: название и «N карточек» сверху, слова набора чипами, автор и счётчики снизу */
+  .p3 { padding: 14px 14px 12px 16px; }
+  .p3 .hd3 { display: flex; align-items: flex-start; gap: 10px; } .p3 .hd3 .tt { flex: 1; min-width: 0; }
+  .p3 .wds { display: flex; gap: 6px; margin-top: 10px; } .wch { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 15px; background: rgba(255,255,255,.1); font-size: 14px; font-weight: 600; white-space: nowrap; }
+  .p3 .ft3 { display: flex; align-items: center; gap: 10px; margin-top: 10px; } .p3 .ft3 .au { margin: 0; flex: 1; min-width: 0; }
+</style>
+<style>
+/* зачем (владелец 21.10, реестр №6): как заметно показать Plus самому и другим. Экраны — настоящие эталоны 2.0:
+   «Настройки» (profile.html), «Пик» (spire-leagues.html + spire-tower-render.js), «Наборы» (community-redesign.html, тема «Аврора»).
+   Признак Plus других людей уже приходит в публичной проекции (isPremium) — нужна только отрисовка. Без жёлтого. */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.lg-title { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.5px; }
+.lg-sub { font-size: 16px; line-height: 20px; color: var(--sec); margin-top: 6px; }
+.hd { display: flex; align-items: flex-start; gap: 12px; margin-top: 6px; }
+.hd .grow { flex: 1; min-width: 0; }
+.tv { position: relative; height: 520px; overflow-y: auto; overflow-x: hidden; border-radius: 22px; scrollbar-width: none; box-shadow: 0 14px 34px rgba(0,0,0,.45); }
+.tv::-webkit-scrollbar { display: none; }
+.tv svg { display: block; width: 100%; }
+.dockb { position: absolute; left: 20px; right: 20px; bottom: 40px; z-index: 20; }
+.dockb::before { content: ""; position: absolute; left: -20px; right: -20px; bottom: -40px; height: 150px; background: linear-gradient(180deg, rgba(12,13,16,0), rgba(12,13,16,.96) 32%, #0C0D10); z-index: -1; pointer-events: none; }
+.dockb .cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 56px; border-radius: 28px; background: #F2F1F6; color: #0B0C0E; font-size: 17px; font-weight: 700; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
+.ph.pik { --bg: #0C0D10; --bg-top: #181A1F; }
+.ph.com { --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110,200,140,.16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+.verdict { margin: 34px 0 10px; padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,.06); max-width: 860px; font-size: 15px; line-height: 23px; color: #A6A6AE; }
+.verdict b { color: #F2F2F4; }
+/* аватар Plus */
+.pav { position: relative; display: inline-flex; flex: none; border-radius: 50%; vertical-align: middle; }
+.pav img { display: block; border-radius: 50%; }
+.pv-ring { padding: 2.5px; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
+.pv-ring img { box-shadow: 0 0 0 2px #0C0D10; }
+.pv-pin { position: absolute; right: -3px; bottom: -3px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #0C0D10; }
+.pv-pin i, .ptag i, .pdia, .pcard i { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; }
+.pv-double { padding: 2px; background: #9B8CFF; } .pv-double img { box-shadow: 0 0 0 2px #0C0D10; }
+.pv-dash img { outline: 2px dashed #9B8CFF; outline-offset: 2px; }
+.ptag { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 11px; background: rgba(142,124,255,.20); color: #C9C0FF; font-size: 13px; font-weight: 800; vertical-align: middle; margin-left: 8px; }
+.ptag.s { height: 20px; padding: 0 7px; font-size: 12px; margin-left: 4px; }
+.ptag i { font-size: 11px; }
+.pdia { color: #C9C0FF; font-size: 13px; margin-left: 6px; vertical-align: 0; }
+.pcard { margin-top: 24px; padding: 14px 16px; border-radius: 22px; background: linear-gradient(135deg, rgba(142,124,255,.34), rgba(111,168,255,.18) 55%, rgba(127,224,216,.12)), #1C1C1F; display: flex; align-items: center; gap: 14px; }
+.pcard .k { font-size: 13px; font-weight: 800; letter-spacing: 1.5px; color: #C9C0FF; }
+.pcard .v { font-size: 17px; line-height: 22px; font-weight: 700; margin-top: 3px; }
+.frames { display: flex; gap: 10px; margin-top: 10px; }
+.frames .o { flex: 1; border-radius: 18px; background: var(--card, #161618); padding: 12px 6px 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--sec); }
+.frames .o.on { color: #fff; box-shadow: inset 0 0 0 1.5px #9B8CFF; }
+/* аватары на башне Пика — рендер даёт img, отмечаем Plus по рангу монеты (9 — Ирина, 11 — Марк, 5 — вы) */
+.pk-B img[src$="coin_rank_09.webp"], .pk-B img[src$="coin_rank_11.webp"], .pk-B img[src$="coin_rank_05.webp"] { box-shadow: 0 0 0 2px #0C0D10, 0 0 0 5px #9B8CFF; }
+.pk-D img[src$="coin_rank_09.webp"] { box-shadow: 0 0 0 2px #0C0D10, 0 0 0 5px #9B8CFF; }
+.pk-D img[src$="coin_rank_11.webp"] { outline: 2px dashed #9B8CFF; outline-offset: 2px; }
+.pk-D img[src$="coin_rank_05.webp"] { box-shadow: 0 0 0 2px #0C0D10, 0 0 0 5px #7FE0D8; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Plus заметно — 4 варианта</h1>
+  <p class="page-lead">Реестр владельца №6: человек с Plus сам видит, что у него Plus, а другие замечают это в профиле, на аватаре, на Пике и в сообществе. Экраны — настоящие эталоны 2.0: «Настройки», «Пик» с башней и жителями этажей, «Наборы сообщества». Plus у вас (Алекс), Ирины и Марка. Цвет Plus — свой фиолетово-голубой, одинаковый во всех темах, без жёлтого.</p>
+  <div id="root"></div>
+  <div class="verdict"><b>Рекомендация: B.</b> Кольцо работает там, где имени нет — аватар в шапке, жители на башне Пика, автор набора — и не спорит с выделением «я». Данные уже есть: isPremium приходит в публичном профиле, друзьях, группах лиги и жителях Пика (functions/src/public_profile_projection.ts, friends_profiles.ts, league_groups.ts, spire_residents.ts) — сервер не трогаем. Если нужен повод купить — следующим шагом D поверх B: «Сияние» станет рамкой по умолчанию.</div>
 </div>
-
+<script src="kit.js"></script>
+<script src="spire-tower-render.js"></script>
 <script>
-const IO = { dia: 'f2a1', chev: 'f23b', heart: 'f377', people: 'f4a3', add: 'f103', person: 'f4ac', book: 'f1a6', star: 'f595' };
-const io = (k, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${IO[k]};</i>`;
-const coin = (r) => `assets/coin_rank_${String(r).padStart(2, '0')}.webp`;
-const sbar = '<div class="sbar"><span>9:41</span><span>●●●</span></div>';
-const PEOPLE = [
-  { n: 'Ирина', r: 9, s: 2480, plus: true }, { n: 'Дима', r: 6, s: 2310 }, { n: 'Алекс', r: 5, s: 2140, plus: true, me: true },
-  { n: 'Марк', r: 11, s: 1980, plus: true }, { n: 'Olena', r: 3, s: 1720 }, { n: 'Лидия', r: 7, s: 1505 },
+(() => {
+const { icon, phone, block, coinImg, col } = K;
+const chevron=`<span class="ch">${icon('fwd','s18')}</span>`;
+const back=(title,close=false)=>`<div class="topbar"><button class="rb${close?'':' bare'} t" type="button" aria-label="${close?'Закрыть':'Назад'}">${icon(close?'close':'back','s21')}</button></div><div class="screen-title" style="margin-top:10px">${title}</div>`;
+const row=(ic,title,sub='',value='',opts={})=>`<div class="card list-row t"><div class="tile">${ic.startsWith('<')?ic:icon(ic,'s20')}</div><div class="copy"><div class="title">${title}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>${opts.toggle?`<button type="button" class="switch${opts.on?' on':''}" aria-label="${title}" aria-pressed="${opts.on?'true':'false'}"></button>`:value?`<div class="value">${value}</div>${chevron}`:chevron}</div>`;
+const group=(title,rows)=>`<div class="eyebrow" style="margin:24px 4px 10px">${title}</div><div class="list">${rows.join('')}</div>`;
+const groupMain=(title,rows)=>group(title,rows).replace('class="eyebrow" style="','class="eyebrow" style="font-size:13px;line-height:16px;letter-spacing:3px;');
+const DIA = '&#xf2a1;';
+/* аватар варианта: ранг монеты, размер, Plus ли, рамка (D), свой ли */
+const AV = (v, rank, size, plus, frame = 'ring', me = false) => {
+  const img = coinImg(rank, size);
+  if (!plus || v === 'A' || v === 'C') return img;
+  if (v === 'B') { const p = Math.max(14, Math.round(size * 0.4)); return `<span class="pav pv-ring">${img}${size >= 26 ? `<span class="pv-pin" style="width:${p}px;height:${p}px"><i style="font-size:${Math.round(p * 0.58)}px">${DIA}</i></span>` : ''}</span>`; }
+  return `<span class="pav pv-${frame}">${img}</span>`;
+};
+const NM = (v, plus, big) => !plus ? '' : v === 'A' ? `<span class="ptag${big ? '' : ' s'}"><i>${DIA}</i>Plus</span>` : v === 'C' ? `<span class="pdia">${DIA}</span>` : (v === 'B' || v === 'D') && big ? `<span class="ptag"><i>${DIA}</i>Plus</span>` : '';
+const PLUSCARD = `<div class="pcard"><div class="grow"><div class="k"><i style="font-size:12px;margin-right:5px">${DIA}</i>PLUS</div><div class="v">Всё открыто · с 12 августа</div></div><span class="ch">${icon('fwd','s18')}</span></div>`;
+function settings(v){return phone(`<div class="flex" style="align-items:flex-start;margin-top:12px"><div class="grow"><div class="screen-title" style="font-size:40px;line-height:46px;letter-spacing:-.6px">Настройки</div><div class="screen-sub">Профиль и приложение</div></div>${AV(v,5,48,true,"ring",true)}</div>
+  ${v==='C'?PLUSCARD:''}<div class="card list-row" style="margin-top:${v==='C'?12:24}px">${AV(v,5,48,true,"ring",true)}<div class="copy"><div class="title" style="font-size:19px;line-height:24px">Алекс${NM(v,true,true)}</div><div class="sub">Лектор · аккаунт привязан</div></div>${chevron}</div>
+  ${groupMain('Профиль',[row('user','Аккаунт','Данные, вход и удаление','Google'),row('flag','Язык интерфейса','','Русский'),`<div class="card list-row t"><img src="assets/language_en.webp" alt="" style="width:40px;height:40px;border-radius:11px;object-fit:cover"><div class="copy"><div class="title">Язык изучения</div><div class="sub">Прогресс хранится отдельно</div></div><div class="value">English</div>${chevron}</div>`])}
+  ${groupMain('Обучение',[row('edit','Настройки обучения','Проверка, ввод и озвучка'),row('chat','Уведомления','Напоминания и итоги')])}
+  ${groupMain('Внешний вид и помощь',[row('layers','Темы','Только тёмные варианты'),row('flag','Приватность и данные'),row('chat','Написать в поддержку')])}`,{time:'13:10'}).replace('class="ph"','class="ph prof"');}
+const FRAMES = (v) => v !== 'D' ? '' : `<div class="eyebrow" style="margin:24px 4px 10px;font-size:13px;line-height:16px;letter-spacing:3px">Рамка аватара · Plus</div><div class="frames"><div class="o on">${AV('D',5,44,true,'ring')}Сияние</div><div class="o">${AV('D',5,44,true,'double')}Двойная</div><div class="o">${AV('D',5,44,true,'dash')}Пунктир</div></div>`;
+const settingsV = (v) => { const h = settings(v); return v === 'D' ? h.replace('<div class="eyebrow"', FRAMES(v) + '<div class="eyebrow"') : h; };
+
+/* «Пик» — как phoneSpire эталона: башня Оникса, я на 7-м этаже; жители на 6–8 этажах (Ирина 9, Марк 11 — Plus; остальные нет) */
+const R = SpireTowerRender;
+const pik = (v) => {
+  const head = `<div class="hd"><div class="grow"><div class="lg-title">Пик</div><div class="lg-sub">Оникс · до конца недели 2 д 14 ч</div></div></div>`;
+  const tv = `<div style="margin-top:14px">${R.windowHtml({ tier: 6, myFloor: 7, selected: 7, width: 390, height: 520, myRank: 5, coin: K.coin, rivals: { 8: [9, 6], 7: [3], 6: [11, 7] } })}</div>`;
+  const dock = `<div class="dockb"><div class="cta">Играть<span class="ar">${icon('arrowR', 's20')}</span></div></div>`;
+  return phone(head + tv + '<div style="height:110px"></div>', { fixed: dock }).replace('class="ph"', `class="ph pik pk-${v}"`);
+};
+
+/* «Наборы» — плашка 1 эталона community-redesign, автор с аватаром варианта */
+const A = 'assets/';
+const lang = `<span class="lg t"><img src="${A}language_en.webp" alt="">EN${icon('down', 's16')}</span>`;
+const ib = (n, x = '') => `<span class="ib t${x}">${icon(n, 's20')}</span>`;
+const coin = (n, s = 18) => `<img src="${K.coin(n)}" width="${s}" height="${s}" style="width:${s}px;height:${s}px" alt="">`;
+const bot = (i) => `<div class="bot2">${i}</div>`;
+// данные — со скриншота владельца (каталог «Наборы сообщества»)
+const PK = [
+  { t: 'Английский по-человечески — 500 фраз.docx', n: 500, a: 'Автор сообщества', l: 4, p: 17, c: 0, top: 1, k: 3, w: ['I’m on it', 'Fair enough', 'No big deal'] },
+  { t: 'Phrasal verbs from lesson N 16', n: 16, a: 'Ol Zar', l: 2, p: 11, c: 0, top: 0, k: 5, w: ['Look up', 'Give in', 'Carry on'] },
+  { t: 'Forest berry', n: 15, a: 'Лидия', l: 1, p: 4, c: 0, top: 0, k: 9, w: ['Blueberry', 'Moss', 'Fern'] },
+  { t: 'Антоніми дієслів', n: 30, a: 'Natalia', l: 4, p: 13, c: 0, top: 0, k: 7, w: ['Open', 'Close', 'Win'] },
+  { t: 'B2 глаголы', n: 49, a: 'Ирина', l: 10, p: 49, c: 1, top: 1, k: 12, w: ['Lay', 'Claim', 'Convince'] },
+  { t: 'Family', n: 20, a: 'Лидия', l: 7, p: 24, c: 0, top: 1, k: 9, w: ['Cousin', 'Nephew', 'In-laws'] },
+  { t: 'Фразовые глаголы с get', n: 40, a: 'Марк', l: 12, p: 31, c: 4, top: 1, k: 7, w: ['Get over', 'Get along', 'Get away'] },
+  { t: 'Глаголы движения', n: 18, a: 'Olena', l: 6, p: 14, c: 0, top: 0, k: 4, w: ['Hurry', 'Wander', 'Rush'] }];
+const EN = (p) => `<span>${icon('heart', 's16')}${p.l}</span><span>${icon('people', 's16')}${p.p}</span>${p.c ? `<span>${icon('chat', 's16')}${p.c}</span>` : ''}`;
+const tp = (p) => (p.top ? '<span class="tp">Топ</span>' : '');
+const hl = (t, q) => (q ? t.replace(new RegExp(q, 'i'), (m) => `<span class="hl">${m}</span>`) : t);
+const top = `<div class="t1"><span class="tb t">Пик</span><span class="tb t">Друзья</span><span class="tb on t">Наборы</span><span class="grow"></span>${ib('search')}${lang}</div>`;
+const backC = (r = '') => `<div class="topbar"><span class="ib bare t">${icon('back', 's22')}</span><div class="flex">${r}</div></div>`;
+const searchBar = (q) => `<div class="flex" style="margin-top:4px;gap:8px"><span class="ib bare t">${icon('back', 's22')}</span><div class="sf">${icon('search', 's20')}<span class="q">${q}</span><span class="ib bare t">${icon('close', 's18')}</span></div></div>`;
+const sgm = (on, st = '') => `<div class="sg" style="${st}"><span class="t${on === 0 ? ' on' : ''}">Новые</span><span class="t${on === 1 ? ' on' : ''}">Топ</span></div>`;
+const wrows = (n = 6) => [['Lay', 'класть'], ['Claim', 'утверждать'], ['Convince', 'убеждать'], ['Insist', 'настаивать'], ['Admit', 'признавать'], ['Refuse', 'отказываться']].slice(0, n).map(([e, r]) => `<div class="wr t"><span class="ib bare">${icon('vol', 's20')}</span><div class="w">${e}<i>${r}</i></div></div>`).join('');
+
+// ---------- три плашки ----------
+const meta = (p) => `<div class="au"><span>${coin(p.k)}${p.a}</span><div class="mt">${EN(p)}</div></div>`;
+const plate1 = (p, o = {}) => `<div class="pl p1 glass t${o.up ? ' up' : ''}${o.dm ? ' dm' : ''}"><div class="ct"><b>${p.n}</b><span>карточек</span></div><div class="bx"><div class="tt">${hl(p.t, o.q)}${tp(p)}</div>${meta(p)}</div>${o.noadd ? '' : `<span class="rd t${o.added ? ' on' : ''}">${icon(o.added ? 'check' : 'plus', 's22')}</span>`}</div>`;
+const PLUS_AUTH = { 'Ирина': 'double', 'Марк': 'dash' };
+PK.forEach((p) => { if (p.a === 'Ирина') p.k = 9; if (p.a === 'Марк') p.k = 11; });
+const metaV = (v, p) => `<div class="au"><span>${PLUS_AUTH[p.a] ? AV(v, p.k, 18, true, v === 'D' ? PLUS_AUTH[p.a] : 'ring') : coin(p.k)}${p.a}${NM(v, !!PLUS_AUTH[p.a], false)}</span><div class="mt">${EN(p)}</div></div>`;
+const plateV = (v, p, o = {}) => plate1(p, o).replace(meta(p), metaV(v, p));
+const sets = (v) => phone(`${top}<div class="lt" style="margin-top:6px"><div class="ti" style="font-size:34px;line-height:40px">Наборы сообщества</div></div>${sgm(0, 'margin-top:14px')}${[4, 6, 2, 3, 5].map((i) => plateV(v, PK[i], { added: i === 4 })).join('')}<div style="height:40px"></div>`).replace('class="ph"', 'class="ph com"');
+
+const V = [
+  ['A', 'A · Метка «Plus» у имени', 'Маленькая пилюля «◆ Plus» сразу после имени — в профиле и у автора набора. Читается словом. Минус: где имени нет — аватар в шапке, жители на башне Пика — Plus не видно.'],
+  ['B', 'B · Сияющее кольцо аватара + значок<span class="rec">рекомендую</span>', 'У аватара Plus — переливающееся кольцо и круглый значок ◆ в углу (на мелких аватарах — только кольцо). Аватар есть везде — в шапке, на башне Пика, у автора набора, — поэтому Plus виден даже без имени. В профиле к кольцу добавляется слово «Plus».'],
+  ['C', 'C · Карточка Plus и ◆ у имени', 'В «Настройках» сверху — цветная карточка «PLUS · Всё открыто · с 12 августа», у имени — ◆. Самому видно отлично, другим — только маленький ◆ у имени; на башне Пика ничего.'],
+  ['D', 'D · Рамка аватара на выбор', 'Plus открывает выбор рамки: «Сияние», «Двойная», «Пунктир». Другие видят выбранную рамку везде, где аватар (Ирина — «Двойная», Марк — «Пунктир»). Самый личный и «дорогой» вариант, повод купить; больше работы — рамки, выбор в настройках, поле в профиле.'],
 ];
-
-/* аватар по варианту: размер, Plus, рамка */
-const avatar = (v, p, size, o = {}) => {
-  const img = `<img src="${coin(p.r)}" width="${size}" height="${size}" alt="">`;
-  if (!p.plus) return `<span class="av">${img}</span>`;
-  if (v === 'B') { const pin = Math.max(16, Math.round(size * 0.42)); return `<span class="av ring">${img}<span class="pin" style="width:${pin}px;height:${pin}px;font-size:${pin}px">${io('dia')}</span></span>`; }
-  if (v === 'D') { const fr = o.frame || p.frame || 'ring'; return `<span class="av ${fr === 'ring' ? 'ring' : fr === 'double' ? 'fr-double' : 'fr-dash'}">${img}</span>`; }
-  return `<span class="av">${img}</span>`;
-};
-const nameMark = (v, p, small) => {
-  if (!p.plus) return '';
-  if (v === 'A') return `<span class="tagp${small ? ' s' : ''}">${io('dia')}Plus</span>`;
-  if (v === 'C') return `<span class="dia">${io('dia')}</span>`;
-  return '';
-};
-
-const settings = (v, cls = '') => {
-  const me = PEOPLE[2];
-  const plusCard = v === 'C' ? `<div class="pluscard"><div class="grow"><div class="k">${io('dia', 'font-size:11px;margin-right:4px')}Plus</div><div style="font-size:15px;font-weight:700;margin-top:3px">Всё открыто · с 12 августа</div></div><span class="chev">${io('chev')}</span></div>` : '';
-  const frames = v === 'D' ? `<div class="eb">Рамка аватара · Plus</div><div class="frames"><div class="o on">${avatar('D', me, 38, { frame: 'ring' })}Сияние</div><div class="o">${avatar('D', me, 38, { frame: 'double' })}Двойная</div><div class="o">${avatar('D', me, 38, { frame: 'dash' })}Пунктир</div></div>` : '';
-  const profMark = v === 'B' || v === 'D' ? `<span class="tagp">${io('dia')}Plus</span>` : nameMark(v, me);
-  return `<div class="ph ${cls}" role="img" aria-label="Настройки, вариант ${v}">${sbar}<div class="scr">
-    <div class="hrow"><div><div class="ttl">Настройки</div><div class="sub">Профиль и приложение</div></div>${avatar(v, me, 44)}</div>
-    ${plusCard}
-    <div class="card pcard">${avatar(v, me, 46)}<div class="grow"><div class="nm">Алекс${profMark}</div><div class="ds">Лектор · аккаунт привязан</div></div><span class="chev">${io('chev')}</span></div>
-    ${frames}
-    <div class="eb">Профиль</div>
-    <div class="card setrow"><span class="tl">${io('person')}</span><div class="grow"><div class="t">Аккаунт</div></div><span class="v">Google</span></div>
-    <div class="card setrow"><span class="tl">${io('dia')}</span><div class="grow"><div class="t">Подписка Plus</div></div><span class="v">до 12.09</span></div>
-    <div class="card setrow"><span class="tl">${io('book')}</span><div class="grow"><div class="t">Язык изучения</div></div><span class="v">English</span></div>
-  </div><div class="hi"></div></div>`;
-};
-
-const board = (v, cls = '') => `<div class="ph ${cls}" role="img" aria-label="Пик и сообщество, вариант ${v}">${sbar}<div class="scr">
-    <div class="ttl">Пик</div><div class="sub">Оникс · до конца недели 2 д 14 ч</div>
-    <div class="floor"><span class="f">ЭТАЖ 7 · ЖИТЕЛИ</span><span class="f">очки</span></div>
-    <div class="lb">${PEOPLE.map((p, i) => {
-      const d = v === 'D' ? { ...p, frame: p.n === 'Ирина' ? 'double' : p.n === 'Марк' ? 'dash' : 'ring' } : p;
-      return `<div class="lr${p.me ? ' me' : ''}${v === 'C' && p.plus ? ' cp' : ''}"><span class="pl">${i + 1}</span>${avatar(v, d, 34)}<div class="grow"><div class="nm"><span class="t">${p.n}${p.me ? ' · вы' : ''}</span>${nameMark(v, p, true)}</div></div><span class="sc">${p.s.toLocaleString('ru-RU')}</span></div>`;
-    }).join('')}</div>
-    <div class="eb" style="margin-top:18px">Наборы сообщества</div>
-    ${[['B2 глаголы', 49, PEOPLE[0], 10]].map(([t, c, p, h]) => {
-      const d = v === 'D' ? { ...p, frame: p.n === 'Ирина' ? 'double' : 'dash' } : p;
-      return `<div class="card pk"><div class="cnt"><b>${c}</b><small>карточек</small></div><div class="grow"><div class="pt">${t}</div><div class="au">${avatar(v, d, 20)}${p.n}${nameMark(v, p, true)}<span>${io('heart', 'font-size:13px;vertical-align:-2px')} ${h}</span></div></div><span class="add">${io('add')}</span></div>`;
-    }).join('')}
-  </div><div class="hi"></div></div>`;
-
-const col = (cap, html) => `<div class="col">${html}<div class="cap">${cap}</div></div>`;
-for (const v of ['A', 'B', 'C', 'D']) document.getElementById('v' + v).innerHTML = col('Настройки и шапка', settings(v)) + col('Пик и сообщество', board(v));
-document.getElementById('vBl').innerHTML = col('Настройки · светлая', settings('B', 'lt')) + col('Пик и сообщество · светлая', board('B', 'lt'));
+document.getElementById('root').innerHTML = V.map(([v, t, lead]) => block('v' + v, t, lead, [col('Настройки', settingsV(v)), col('Пик · жители этажей', pik(v)), col('Наборы сообщества', sets(v))])).join('');
+K.init();
+})();
 </script>
+</body>
+</html>

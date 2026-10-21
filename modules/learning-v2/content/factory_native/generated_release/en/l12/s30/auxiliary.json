@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-30:intro1:r2": {
+          "ru": "Для прошлого нужна kicked.",
+          "uk": "Для минулого потрібна kicked."
+        },
+        "en:lesson-12:session-30:intro1:r3": {
+          "ru": "Kicks — не прошлое и не форма с I.",
+          "uk": "Kicks — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-30:intro2:r2": {
+          "ru": "Это чистка бутс, не наблюдение за вратарём.",
+          "uk": "Це чищення бутс, не спостереження за воротарем."
+        },
+        "en:lesson-12:session-30:intro2:r3": {
+          "ru": "Для прошлого нужна noticed.",
+          "uk": "Для минулого потрібна noticed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-30:intro3:r2": {
+          "ru": "Это цвет стойки, не действие.",
+          "uk": "Це колір стійки, не дія."
+        },
+        "en:lesson-12:session-30:intro3:r3": {
+          "ru": "Для прошлого нужна checked.",
+          "uk": "Для минулого потрібна checked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0fe2b23ff073ed8d4ab6a3243c467e2de7cce17078d302b8ebfeb4f4b52dcfac"
+}

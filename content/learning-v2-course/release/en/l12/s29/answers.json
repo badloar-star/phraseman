@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-29:word:scone",
+    "correctText": "scone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i01",
+    "correctText": "I loved the scone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i02",
+    "correctText": "She loved the scone.",
+    "correctResponseId": "en:lesson-12:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i03",
+    "correctText": "loved",
+    "correctResponseId": "en:lesson-12:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:word:shortbread",
+    "correctText": "shortbread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i04",
+    "correctText": "We loved the shortbread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i05",
+    "correctText": "I loved the shortbread.",
+    "correctResponseId": "en:lesson-12:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i06",
+    "correctText": "loved",
+    "correctResponseId": "en:lesson-12:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:word:jelly",
+    "correctText": "jelly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i07",
+    "correctText": "I loved the jelly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i08",
+    "correctText": "He loved the jelly.",
+    "correctResponseId": "en:lesson-12:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i09",
+    "correctText": "loved",
+    "correctResponseId": "en:lesson-12:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:word:pudding",
+    "correctText": "pudding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i10",
+    "correctText": "I wanted the pudding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i11",
+    "correctText": "We wanted the pudding.",
+    "correctResponseId": "en:lesson-12:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i12",
+    "correctText": "wanted",
+    "correctResponseId": "en:lesson-12:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i13",
+    "correctText": "en:lesson-12:session-29:i13:p1=scone\nen:lesson-12:session-29:i13:p2=shortbread\nen:lesson-12:session-29:i13:p3=jelly\nen:lesson-12:session-29:i13:p4=pudding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i14",
+    "correctText": "She loved the birthday cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i15",
+    "correctText": "We had tea after lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i16",
+    "correctText": "The jelly was cold yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-29:i17",
+    "correctText": "I loved the shortbread in the cafe.",
+    "correctResponseId": null
+  }
+]

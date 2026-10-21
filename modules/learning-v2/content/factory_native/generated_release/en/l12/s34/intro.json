@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "finished event: visited, used, needed; was/were",
+    "uk": "finished event: visited, used, needed; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рыночный прилавок",
+        "uk": "Ринковий прилавок"
+      },
+      "bodyByLocale": {
+        "ru": "Market stall — «рыночный прилавок или торговая палатка». We visited a market stall — мы подошли к рыночному прилавку. Visit → visited: окончание /ɪd/ добавляет слог. Выберите сообщение о прошлом.",
+        "uk": "Market stall — «ринковий прилавок або торговий намет». We visited a market stall — ми підійшли до ринкового прилавка. Visit → visited: закінчення /ɪd/ додає склад. Виберіть повідомлення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-34:intro1:r1",
+              "text": "We visited a market stall."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro1:r2",
+              "text": "We visit a market stall yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro1:r3",
+              "text": "We visits a market stall yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-34:intro1:r1",
+              "text": "We visited a market stall."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro1:r2",
+              "text": "We visit a market stall yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro1:r3",
+              "text": "We visits a market stall yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тележка и пакет",
+        "uk": "Візок і пакет"
+      },
+      "bodyByLocale": {
+        "ru": "Shopping trolley — «тележка для покупок», carrier bag — «пакет для покупок с ручками». I used a shopping trolley — я пользовался тележкой. Выберите сообщение о тележке.",
+        "uk": "Shopping trolley — «візок для покупок», carrier bag — «пакет для покупок із ручками». I used a shopping trolley — я користувався візком. Виберіть повідомлення про візок."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-34:intro2:r1",
+              "text": "I used a shopping trolley."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro2:r2",
+              "text": "I needed a carrier bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro2:r3",
+              "text": "I use a shopping trolley yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-34:intro2:r1",
+              "text": "I used a shopping trolley."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro2:r2",
+              "text": "I needed a carrier bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro2:r3",
+              "text": "I use a shopping trolley yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Универмаг",
+        "uk": "Універмаг"
+      },
+      "bodyByLocale": {
+        "ru": "Department store — «универмаг, большой магазин с разными отделами». She visited a department store — она побывала в универмаге. Выберите посещение, не описание магазина.",
+        "uk": "Department store — «універмаг, великий магазин із різними відділами». She visited a department store — вона побувала в універмазі. Виберіть відвідування, не опис магазину."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-34:intro3:r1",
+              "text": "She visited a department store."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro3:r2",
+              "text": "The department store was big."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro3:r3",
+              "text": "She visits a department store yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-34:intro3:r1",
+              "text": "She visited a department store."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro3:r2",
+              "text": "The department store was big."
+            },
+            {
+              "responseId": "en:lesson-12:session-34:intro3:r3",
+              "text": "She visits a department store yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "96519659d5f93704697dbee933c586b5bfca0639d02f53215492d3499b4da3d8"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-32:intro1:r2": {
+          "ru": "Для прошлого нужна wanted.",
+          "uk": "Для минулого потрібна wanted."
+        },
+        "en:lesson-12:session-32:intro1:r3": {
+          "ru": "Wants — не прошлое и не форма с I.",
+          "uk": "Wants — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-32:intro2:r2": {
+          "ru": "Это упаковка хлебной палочки, не впечатление от салата.",
+          "uk": "Це пакування хлібної палички, не враження від салату."
+        },
+        "en:lesson-12:session-32:intro2:r3": {
+          "ru": "Для прошлого нужна loved.",
+          "uk": "Для минулого потрібна loved."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-32:intro3:r2": {
+          "ru": "Для прошлого нужна packed.",
+          "uk": "Для минулого потрібна packed."
+        },
+        "en:lesson-12:session-32:intro3:r3": {
+          "ru": "Packs — не прошлое и не форма с we.",
+          "uk": "Packs — не минуле й не форма з we."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dbca2fb8d53b122db1c3b33233672652bb760929342a143c3027a9d1c542aa56"
+}

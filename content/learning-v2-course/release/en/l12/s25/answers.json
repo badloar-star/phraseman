@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-25:word:shower-head",
+    "correctText": "shower head",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i01",
+    "correctText": "I washed the shower head.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i02",
+    "correctText": "She washed the shower head.",
+    "correctResponseId": "en:lesson-12:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i03",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-12:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:word:toilet-seat",
+    "correctText": "toilet seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i04",
+    "correctText": "We cleaned the toilet seat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i05",
+    "correctText": "I cleaned the toilet seat.",
+    "correctResponseId": "en:lesson-12:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i06",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:word:soap-dispenser",
+    "correctText": "soap dispenser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i07",
+    "correctText": "I cleaned the soap dispenser.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i08",
+    "correctText": "We cleaned the soap dispenser.",
+    "correctResponseId": "en:lesson-12:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i09",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:word:toothbrush-holder",
+    "correctText": "toothbrush holder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i10",
+    "correctText": "I wanted a toothbrush holder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i11",
+    "correctText": "She wanted a toothbrush holder.",
+    "correctResponseId": "en:lesson-12:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i12",
+    "correctText": "wanted",
+    "correctResponseId": "en:lesson-12:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i13",
+    "correctText": "en:lesson-12:session-25:i13:p1=shower head\nen:lesson-12:session-25:i13:p2=toilet seat\nen:lesson-12:session-25:i13:p3=soap dispenser\nen:lesson-12:session-25:i13:p4=toothbrush holder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i14",
+    "correctText": "She washed the bathroom mirror.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i15",
+    "correctText": "We needed a toothbrush holder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i16",
+    "correctText": "I washed the shower head yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-25:i17",
+    "correctText": "I wanted a new soap dispenser.",
+    "correctResponseId": null
+  }
+]

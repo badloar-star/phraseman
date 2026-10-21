@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-26:word:pencil-case",
+    "correctText": "pencil case",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i01",
+    "correctText": "I packed my pencil case.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i02",
+    "correctText": "She packed her pencil case.",
+    "correctResponseId": "en:lesson-12:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i03",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:word:schoolbag",
+    "correctText": "schoolbag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i04",
+    "correctText": "I cleaned my schoolbag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i05",
+    "correctText": "We cleaned our schoolbag.",
+    "correctResponseId": "en:lesson-12:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i06",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:word:exercise-book",
+    "correctText": "exercise book",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i07",
+    "correctText": "I needed an exercise book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i08",
+    "correctText": "She needed an exercise book.",
+    "correctResponseId": "en:lesson-12:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i09",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-12:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:word:pencil-sharpener",
+    "correctText": "pencil sharpener",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i10",
+    "correctText": "I wanted a pencil sharpener.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i11",
+    "correctText": "He wanted a pencil sharpener.",
+    "correctResponseId": "en:lesson-12:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i12",
+    "correctText": "wanted",
+    "correctResponseId": "en:lesson-12:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i13",
+    "correctText": "en:lesson-12:session-26:i13:p1=pencil case\nen:lesson-12:session-26:i13:p2=schoolbag\nen:lesson-12:session-26:i13:p3=exercise book\nen:lesson-12:session-26:i13:p4=pencil sharpener",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i14",
+    "correctText": "I finished my homework yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i15",
+    "correctText": "She packed her schoolbag after dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i16",
+    "correctText": "The exercise book was on the table yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-26:i17",
+    "correctText": "I needed a new pencil sharpener.",
+    "correctResponseId": null
+  }
+]

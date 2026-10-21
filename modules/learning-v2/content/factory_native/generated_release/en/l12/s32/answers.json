@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-32:word:muesli",
+    "correctText": "muesli",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i01",
+    "correctText": "I wanted muesli.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i02",
+    "correctText": "She wanted muesli.",
+    "correctResponseId": "en:lesson-12:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i03",
+    "correctText": "wanted",
+    "correctResponseId": "en:lesson-12:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:word:coleslaw",
+    "correctText": "coleslaw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i04",
+    "correctText": "We loved the coleslaw.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i05",
+    "correctText": "I loved the coleslaw.",
+    "correctResponseId": "en:lesson-12:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i06",
+    "correctText": "loved",
+    "correctResponseId": "en:lesson-12:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:word:breadstick",
+    "correctText": "breadstick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i07",
+    "correctText": "I packed a breadstick.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i08",
+    "correctText": "We packed a breadstick.",
+    "correctResponseId": "en:lesson-12:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i09",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:word:rice-cake",
+    "correctText": "rice cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i10",
+    "correctText": "I packed a rice cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i11",
+    "correctText": "She packed a rice cake.",
+    "correctResponseId": "en:lesson-12:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i12",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i13",
+    "correctText": "en:lesson-12:session-32:i13:p1=muesli\nen:lesson-12:session-32:i13:p2=coleslaw\nen:lesson-12:session-32:i13:p3=breadstick\nen:lesson-12:session-32:i13:p4=rice cake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i14",
+    "correctText": "She packed her lunchbox.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i15",
+    "correctText": "We wanted fruit yoghurt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i16",
+    "correctText": "The coleslaw was in the fridge yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-32:i17",
+    "correctText": "I packed a rice cake for my son.",
+    "correctResponseId": null
+  }
+]

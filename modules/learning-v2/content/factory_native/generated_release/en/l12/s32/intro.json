@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "review: wanted /ɪd/, packed /t/, loved /d/; was/were",
+    "uk": "review: wanted /ɪd/, packed /t/, loved /d/; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мюсли",
+        "uk": "Мюслі"
+      },
+      "bodyByLocale": {
+        "ru": "Muesli — «мюсли, смесь хлопьев, орехов или сухофруктов». I wanted muesli — я хотел мюсли. В wanted окончание /ɪd/. Выберите сообщение о прошлом желании.",
+        "uk": "Muesli — «мюслі, суміш пластівців, горіхів або сухофруктів». I wanted muesli — я хотів мюслі. У wanted закінчення /ɪd/. Виберіть повідомлення про минуле бажання."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-32:intro1:r1",
+              "text": "I wanted muesli."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro1:r2",
+              "text": "I want muesli yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro1:r3",
+              "text": "I wants muesli yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-32:intro1:r1",
+              "text": "I wanted muesli."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro1:r2",
+              "text": "I want muesli yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro1:r3",
+              "text": "I wants muesli yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Салат и хлебная палочка",
+        "uk": "Салат і хлібна паличка"
+      },
+      "bodyByLocale": {
+        "ru": "Coleslaw — «салат из нашинкованной капусты с заправкой», breadstick — «хрустящая хлебная палочка». I loved the coleslaw — мне очень понравился капустный салат. В loved окончание /d/. Выберите сообщение о салате.",
+        "uk": "Coleslaw — «салат із нашаткованої капусти із заправкою», breadstick — «хрустка хлібна паличка». I loved the coleslaw — мені дуже сподобався капустяний салат. У loved закінчення /d/. Виберіть повідомлення про салат."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-32:intro2:r1",
+              "text": "I loved the coleslaw."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro2:r2",
+              "text": "I packed a breadstick."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro2:r3",
+              "text": "I love the coleslaw yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-32:intro2:r1",
+              "text": "I loved the coleslaw."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro2:r2",
+              "text": "I packed a breadstick."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro2:r3",
+              "text": "I love the coleslaw yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рисовый хлебец",
+        "uk": "Рисовий хлібець"
+      },
+      "bodyByLocale": {
+        "ru": "Rice cake — здесь «хрустящий рисовый хлебец». We packed a rice cake — мы упаковали рисовый хлебец. В packed окончание /t/. Выберите действие в прошлом.",
+        "uk": "Rice cake — тут «хрусткий рисовий хлібець». We packed a rice cake — ми запакували рисовий хлібець. У packed закінчення /t/. Виберіть дію в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-32:intro3:r1",
+              "text": "We packed a rice cake."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro3:r2",
+              "text": "We pack a rice cake yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro3:r3",
+              "text": "We packs a rice cake yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-32:intro3:r1",
+              "text": "We packed a rice cake."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro3:r2",
+              "text": "We pack a rice cake yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-32:intro3:r3",
+              "text": "We packs a rice cake yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ff36a05c3a282727e1c33ca27847a2ca10ae7940c4eb12df8474cbe2f2db2b78"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-25:intro1:r2": {
+          "ru": "В wanted окончание /ɪd/ даёт отдельный слог.",
+          "uk": "У wanted закінчення /ɪd/ дає окремий склад."
+        },
+        "en:lesson-12:session-25:intro1:r3": {
+          "ru": "В needed окончание /ɪd/ даёт отдельный слог.",
+          "uk": "У needed закінчення /ɪd/ дає окремий склад."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-25:intro2:r2": {
+          "ru": "В washed окончание /t/.",
+          "uk": "У washed закінчення /t/."
+        },
+        "en:lesson-12:session-25:intro2:r3": {
+          "ru": "В wanted окончание /ɪd/.",
+          "uk": "У wanted закінчення /ɪd/."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-25:intro3:r2": {
+          "ru": "В washed нет отдельного слога окончания: /t/.",
+          "uk": "У washed немає окремого складу закінчення: /t/."
+        },
+        "en:lesson-12:session-25:intro3:r3": {
+          "ru": "В cleaned нет отдельного слога окончания: /d/.",
+          "uk": "У cleaned немає окремого складу закінчення: /d/."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a1136c8ff7d6ee9da9c3cf45b67a38b3837c4aee5b55c2b831395a9579854714"
+}

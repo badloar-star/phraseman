@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "kick → kicked /t/; cleaned /d/; noticed /t/",
+    "uk": "kick → kicked /t/; cleaned /d/; noticed /t/"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ударили по мячу",
+        "uk": "Ударили по м’ячу"
+      },
+      "bodyByLocale": {
+        "ru": "Kick — «ударить ногой, пнуть». I kicked the ball — я ударил ногой по мячу. В kicked окончание /t/, без отдельного слога, как в washed. Выберите прошлое действие.",
+        "uk": "Kick — «ударити ногою, копнути». I kicked the ball — я вдарив ногою по м’ячу. У kicked закінчення /t/, без окремого складу, як у washed. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-30:intro1:r1",
+              "text": "I kicked the ball."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro1:r2",
+              "text": "I kick the ball yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro1:r3",
+              "text": "I kicks the ball yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-30:intro1:r1",
+              "text": "I kicked the ball."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro1:r2",
+              "text": "I kick the ball yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro1:r3",
+              "text": "I kicks the ball yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бутсы и вратарь",
+        "uk": "Бутси й воротар"
+      },
+      "bodyByLocale": {
+        "ru": "Football boots — «футбольные бутсы», goalkeeper — «вратарь». I noticed the goalkeeper — я заметил вратаря. Notice → noticed, окончание /t/. Выберите сообщение о вратаре.",
+        "uk": "Football boots — «футбольні бутси», goalkeeper — «воротар». I noticed the goalkeeper — я помітив воротаря. Notice → noticed, закінчення /t/. Виберіть повідомлення про воротаря."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-30:intro2:r1",
+              "text": "I noticed the goalkeeper."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro2:r2",
+              "text": "I cleaned the football boots."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro2:r3",
+              "text": "I notice the goalkeeper yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-30:intro2:r1",
+              "text": "I noticed the goalkeeper."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro2:r2",
+              "text": "I cleaned the football boots."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro2:r3",
+              "text": "I notice the goalkeeper yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стойка ворот",
+        "uk": "Стійка воріт"
+      },
+      "bodyByLocale": {
+        "ru": "Goalpost — «стойка ворот». We checked the goalpost — мы проверили стойку ворот. В checked окончание /t/. Выберите действие проверки, не описание стойки.",
+        "uk": "Goalpost — «стійка воріт». We checked the goalpost — ми перевірили стійку воріт. У checked закінчення /t/. Виберіть дію перевірки, не опис стійки."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-30:intro3:r1",
+              "text": "We checked the goalpost."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro3:r2",
+              "text": "The goalpost was white."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro3:r3",
+              "text": "We check the goalpost yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-30:intro3:r1",
+              "text": "We checked the goalpost."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro3:r2",
+              "text": "The goalpost was white."
+            },
+            {
+              "responseId": "en:lesson-12:session-30:intro3:r3",
+              "text": "We check the goalpost yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b12763a98a56f3b5ad12667b6967888762c52f2e70d7bba3a1dee7cae09160b5"
+}

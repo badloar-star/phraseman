@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-31:intro1:r2": {
+          "ru": "Для прошлого нужна planted.",
+          "uk": "Для минулого потрібна planted."
+        },
+        "en:lesson-12:session-31:intro1:r3": {
+          "ru": "Plants — не прошлое и не форма с I.",
+          "uk": "Plants — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-31:intro2:r2": {
+          "ru": "Здесь посадка куста помидоров, а нужен полив клумбы.",
+          "uk": "Тут посадка куща помідорів, а потрібен полив клумби."
+        },
+        "en:lesson-12:session-31:intro2:r3": {
+          "ru": "Для прошлого нужна watered.",
+          "uk": "Для минулого потрібна watered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-31:intro3:r2": {
+          "ru": "Plants — настоящее; нужна planted.",
+          "uk": "Plants — теперішній час; потрібна planted."
+        },
+        "en:lesson-12:session-31:intro3:r3": {
+          "ru": "Для прошлого нужна planted.",
+          "uk": "Для минулого потрібна planted."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c1e24186883a8a262c9a64148a68622ec41c2d280d97ff226526fe79a67c9df0"
+}

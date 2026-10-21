@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-31:word:rose-bush",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rose bush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:word:rose-bush:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rose bush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:word:rose-bush:audio",
+          "transcript": "rose bush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-31:word:rose-bush:r1",
+            "targetText": "rose bush",
+            "meaningByLocale": {
+              "ru": "розовый куст.",
+              "uk": "кущ троянди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rose bush",
+          "definitionByLocale": {
+            "ru": "розовый куст.",
+            "uk": "кущ троянди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я посадил розовый куст",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я посадил розовый куст",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I planted a rose bush.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я посадил розовый куст",
+          "uk": "Скажіть: Я посадив кущ троянди"
+        },
+        "orderedTokens": [
+          "I",
+          "planted",
+          "a",
+          "rose",
+          "bush"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-31:i02:r1",
+          "text": "She planted a rose bush."
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i02:r2",
+          "text": "She plants a rose bush."
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i02:r3",
+          "text": "We planted a rose bush."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:i02:audio",
+          "transcript": "She planted a rose bush."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-31:i02:r1",
+            "targetText": "She planted a rose bush.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i02:r2",
+            "targetText": "She plants a rose bush.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i02:r3",
+            "targetText": "We planted a rose bush.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She planted a rose bush.",
+              "uk": "У записі звучить She planted a rose bush."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She planted a rose bush.",
+              "uk": "У записі звучить She planted a rose bush."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-31:i03:r1",
+          "text": "planted"
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i03:r2",
+          "text": "plant"
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i03:r3",
+          "text": "plants"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ a rose bush yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-31:i03:r1",
+            "text": "planted"
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i03:r2",
+            "text": "plant"
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i03:r3",
+            "text": "plants"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма planted.",
+              "uk": "Для минулого потрібна форма planted."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна planted.",
+              "uk": "Це не форма минулого. Потрібна planted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:word:flowerbed",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flowerbed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:word:flowerbed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flowerbed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:word:flowerbed:audio",
+          "transcript": "flowerbed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-31:word:flowerbed:r1",
+            "targetText": "flowerbed",
+            "meaningByLocale": {
+              "ru": "клумба.",
+              "uk": "клумба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flowerbed",
+          "definitionByLocale": {
+            "ru": "клумба.",
+            "uk": "клумба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы полили клумбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы полили клумбу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We watered the flowerbed.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы полили клумбу",
+          "uk": "Скажіть: Ми полили клумбу"
+        },
+        "orderedTokens": [
+          "We",
+          "watered",
+          "the",
+          "flowerbed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-31:i05:r1",
+          "text": "I watered the flowerbed."
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i05:r2",
+          "text": "I water the flowerbed."
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i05:r3",
+          "text": "She watered the flowerbed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:i05:audio",
+          "transcript": "I watered the flowerbed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-31:i05:r1",
+            "targetText": "I watered the flowerbed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i05:r2",
+            "targetText": "I water the flowerbed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i05:r3",
+            "targetText": "She watered the flowerbed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-31:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I watered the flowerbed.",
+              "uk": "У записі звучить I watered the flowerbed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I watered the flowerbed.",
+              "uk": "У записі звучить I watered the flowerbed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-31:i06:r1",
+          "text": "watered"
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i06:r2",
+          "text": "water"
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i06:r3",
+          "text": "waters"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the flowerbed yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-31:i06:r1",
+            "text": "watered"
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i06:r2",
+            "text": "water"
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i06:r3",
+            "text": "waters"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма watered.",
+              "uk": "Для минулого потрібна форма watered."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна watered.",
+              "uk": "Це не форма минулого. Потрібна watered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:word:tomato-plant",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tomato plant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:word:tomato-plant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tomato plant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:word:tomato-plant:audio",
+          "transcript": "tomato plant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-31:word:tomato-plant:r1",
+            "targetText": "tomato plant",
+            "meaningByLocale": {
+              "ru": "куст помидоров.",
+              "uk": "кущ помідорів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tomato plant",
+          "definitionByLocale": {
+            "ru": "куст помидоров.",
+            "uk": "кущ помідорів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я полил куст помидоров",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я полил куст помидоров",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I watered the tomato plant.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я полил куст помидоров",
+          "uk": "Скажіть: Я полив кущ помідорів"
+        },
+        "orderedTokens": [
+          "I",
+          "watered",
+          "the",
+          "tomato",
+          "plant"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-31:i08:r1",
+          "text": "We watered the tomato plant."
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i08:r2",
+          "text": "We water the tomato plant."
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i08:r3",
+          "text": "He watered the tomato plant."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:i08:audio",
+          "transcript": "We watered the tomato plant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-31:i08:r1",
+            "targetText": "We watered the tomato plant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i08:r2",
+            "targetText": "We water the tomato plant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i08:r3",
+            "targetText": "He watered the tomato plant.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We watered the tomato plant.",
+              "uk": "У записі звучить We watered the tomato plant."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We watered the tomato plant.",
+              "uk": "У записі звучить We watered the tomato plant."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-31:i09:r1",
+          "text": "watered"
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i09:r2",
+          "text": "water"
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i09:r3",
+          "text": "waters"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the tomato plant yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-31:i09:r1",
+            "text": "watered"
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i09:r2",
+            "text": "water"
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i09:r3",
+            "text": "waters"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма watered.",
+              "uk": "Для минулого потрібна форма watered."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна watered.",
+              "uk": "Це не форма минулого. Потрібна watered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:word:fruit-tree",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fruit tree",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:word:fruit-tree:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fruit tree",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:word:fruit-tree:audio",
+          "transcript": "fruit tree"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-31:word:fruit-tree:r1",
+            "targetText": "fruit tree",
+            "meaningByLocale": {
+              "ru": "плодовое дерево.",
+              "uk": "плодове дерево."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fruit tree",
+          "definitionByLocale": {
+            "ru": "плодовое дерево.",
+            "uk": "плодове дерево."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы посадили плодовое дерево",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы посадили плодовое дерево",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We planted a fruit tree.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы посадили плодовое дерево",
+          "uk": "Скажіть: Ми посадили плодове дерево"
+        },
+        "orderedTokens": [
+          "We",
+          "planted",
+          "a",
+          "fruit",
+          "tree"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-31:i11:r1",
+          "text": "I planted a fruit tree."
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i11:r2",
+          "text": "I plant a fruit tree."
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i11:r3",
+          "text": "They planted a fruit tree."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:i11:audio",
+          "transcript": "I planted a fruit tree."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-31:i11:r1",
+            "targetText": "I planted a fruit tree.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i11:r2",
+            "targetText": "I plant a fruit tree.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i11:r3",
+            "targetText": "They planted a fruit tree.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I planted a fruit tree.",
+              "uk": "У записі звучить I planted a fruit tree."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I planted a fruit tree.",
+              "uk": "У записі звучить I planted a fruit tree."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-31:i12:r1",
+          "text": "planted"
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i12:r2",
+          "text": "plant"
+        },
+        {
+          "responseId": "en:lesson-12:session-31:i12:r3",
+          "text": "plants"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ a fruit tree yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-31:i12:r1",
+            "text": "planted"
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i12:r2",
+            "text": "plant"
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i12:r3",
+            "text": "plants"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма planted.",
+              "uk": "Для минулого потрібна форма planted."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна planted.",
+              "uk": "Це не форма минулого. Потрібна planted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-31:i13:p1",
+            "target": "rose bush",
+            "meaningByLocale": {
+              "ru": "розовый куст",
+              "uk": "кущ троянди"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-31:i13:p2",
+            "target": "flowerbed",
+            "meaningByLocale": {
+              "ru": "клумба",
+              "uk": "клумба"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-31:i13:p3",
+            "target": "tomato plant",
+            "meaningByLocale": {
+              "ru": "куст помидоров",
+              "uk": "кущ помідорів"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-31:i13:p4",
+            "target": "fruit tree",
+            "meaningByLocale": {
+              "ru": "плодовое дерево",
+              "uk": "плодове дерево"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rose bush",
+          "flowerbed",
+          "tomato plant",
+          "fruit tree"
+        ],
+        "rightColumn": [
+          "розовый куст",
+          "клумба",
+          "куст помидоров",
+          "плодовое дерево"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:i14:audio",
+          "transcript": "We planted flowers yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We planted flowers yesterday.",
+        "orderedTokens": [
+          "We",
+          "planted",
+          "flowers",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:i15:audio",
+          "transcript": "She used the garden hose."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She used the garden hose.",
+        "orderedTokens": [
+          "She",
+          "used",
+          "the",
+          "garden",
+          "hose"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера куст помидоров был маленьким",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера куст помидоров был маленьким",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:i16:audio",
+          "transcript": "The tomato plant was small yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The tomato plant was small yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-31:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я посадил плодовое дерево возле забора",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я посадил плодовое дерево возле забора",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-31:i17:audio",
+          "transcript": "I planted a fruit tree near the fence."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I planted a fruit tree near the fence.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c3d246d77dc39b336af3db9fa4520e6ce19cd42b707393316243de8d2d7b9cb7"
+}

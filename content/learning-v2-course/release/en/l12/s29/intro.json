@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "loved /d/; wanted /ɪd/; was/were",
+    "uk": "loved /d/; wanted /ɪd/; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Очень понравилось",
+        "uk": "Дуже сподобалося"
+      },
+      "bodyByLocale": {
+        "ru": "Scone — «небольшая британская булочка к чаю». I loved the scone — мне очень понравилась булочка. Loved здесь означает сильное приятное впечатление. В loved окончание /d/, без отдельного слога. Выберите сообщение о прошлом впечатлении.",
+        "uk": "Scone — «невелика британська булочка до чаю». I loved the scone — мені дуже сподобалася булочка. Loved тут означає сильне приємне враження. У loved закінчення /d/, без окремого складу. Виберіть повідомлення про минуле враження."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-29:intro1:r1",
+              "text": "I loved the scone."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro1:r2",
+              "text": "I love the scone yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro1:r3",
+              "text": "I loves the scone yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-29:intro1:r1",
+              "text": "I loved the scone."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro1:r2",
+              "text": "I love the scone yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro1:r3",
+              "text": "I loves the scone yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Печенье и желе",
+        "uk": "Печиво й желе"
+      },
+      "bodyByLocale": {
+        "ru": "Shortbread — «рассыпчатое сливочное печенье», jelly — «десертное желе», британское значение. She loved the shortbread — ей очень понравилось печенье. Выберите сообщение о печенье.",
+        "uk": "Shortbread — «розсипчасте вершкове печиво», jelly — «десертне желе», британське значення. She loved the shortbread — їй дуже сподобалося печиво. Виберіть повідомлення про печиво."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-29:intro2:r1",
+              "text": "She loved the shortbread."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro2:r2",
+              "text": "She loved the jelly."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro2:r3",
+              "text": "She love the shortbread yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-29:intro2:r1",
+              "text": "She loved the shortbread."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro2:r2",
+              "text": "She loved the jelly."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro2:r3",
+              "text": "She love the shortbread yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пудинг",
+        "uk": "Пудинг"
+      },
+      "bodyByLocale": {
+        "ru": "Pudding — «пудинг, сладкое мягкое блюдо». We wanted the pudding — мы хотели пудинг. В wanted слышен отдельный слог /ɪd/, в loved — только /d/. Выберите сообщение о желании.",
+        "uk": "Pudding — «пудинг, солодка м’яка страва». We wanted the pudding — ми хотіли пудинг. У wanted чути окремий склад /ɪd/, у loved — лише /d/. Виберіть повідомлення про бажання."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-29:intro3:r1",
+              "text": "We wanted the pudding."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro3:r2",
+              "text": "We loved the pudding."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro3:r3",
+              "text": "We want the pudding yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-29:intro3:r1",
+              "text": "We wanted the pudding."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro3:r2",
+              "text": "We loved the pudding."
+            },
+            {
+              "responseId": "en:lesson-12:session-29:intro3:r3",
+              "text": "We want the pudding yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ac08ce6108cf9985b7268d415b0d49a8bf09c400f183f3676f3d9c02343e4638"
+}

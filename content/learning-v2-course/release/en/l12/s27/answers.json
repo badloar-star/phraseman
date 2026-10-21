@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-27:word:mixing-bowl",
+    "correctText": "mixing bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i01",
+    "correctText": "I washed the mixing bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i02",
+    "correctText": "She washed the mixing bowl.",
+    "correctResponseId": "en:lesson-12:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i03",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-12:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:word:soup-bowl",
+    "correctText": "soup bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i04",
+    "correctText": "We washed the soup bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i05",
+    "correctText": "I washed the soup bowl.",
+    "correctResponseId": "en:lesson-12:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i06",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-12:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:word:chopping-board",
+    "correctText": "chopping board",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i07",
+    "correctText": "I cleaned the chopping board.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i08",
+    "correctText": "He cleaned the chopping board.",
+    "correctResponseId": "en:lesson-12:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i09",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:word:baking-tray",
+    "correctText": "baking tray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i10",
+    "correctText": "I needed a baking tray.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i11",
+    "correctText": "She needed a baking tray.",
+    "correctResponseId": "en:lesson-12:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i12",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-12:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i13",
+    "correctText": "en:lesson-12:session-27:i13:p1=mixing bowl\nen:lesson-12:session-27:i13:p2=soup bowl\nen:lesson-12:session-27:i13:p3=chopping board\nen:lesson-12:session-27:i13:p4=baking tray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i14",
+    "correctText": "She helped in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i15",
+    "correctText": "We washed the salad bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i16",
+    "correctText": "The baking tray was hot yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-27:i17",
+    "correctText": "I washed the mixing bowl after lunch.",
+    "correctResponseId": null
+  }
+]

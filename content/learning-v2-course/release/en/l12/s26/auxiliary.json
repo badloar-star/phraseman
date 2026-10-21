@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-26:intro1:r2": {
+          "ru": "Это чистка портфеля, не сбор пенала.",
+          "uk": "Це чищення портфеля, не збирання пенала."
+        },
+        "en:lesson-12:session-26:intro1:r3": {
+          "ru": "Для прошлого нужна packed.",
+          "uk": "Для минулого потрібна packed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-26:intro2:r2": {
+          "ru": "Для прошлого нужна needed.",
+          "uk": "Для минулого потрібна needed."
+        },
+        "en:lesson-12:session-26:intro2:r3": {
+          "ru": "Needs — не прошлое и не форма с I.",
+          "uk": "Needs — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-26:intro3:r2": {
+          "ru": "Для прошлого нужна wanted.",
+          "uk": "Для минулого потрібна wanted."
+        },
+        "en:lesson-12:session-26:intro3:r3": {
+          "ru": "Wants — настоящее; нужна wanted.",
+          "uk": "Wants — теперішній час; потрібна wanted."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4265ff72e134145b591aa47dc7b8e0142ff06bdea6286ebb3a04a40f23091cbb"
+}

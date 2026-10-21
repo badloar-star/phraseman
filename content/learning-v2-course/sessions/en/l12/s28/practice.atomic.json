@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-28",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-28:word:shoehorn",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shoehorn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:word:shoehorn:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shoehorn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:word:shoehorn:audio",
+            "transcript": "shoehorn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:word:shoehorn:r1",
+              "targetText": "shoehorn",
+              "meaningByLocale": {
+                "ru": "ложка для обуви.",
+                "uk": "ложка для взуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoehorn",
+            "definitionByLocale": {
+              "ru": "ложка для обуви.",
+              "uk": "ложка для взуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я воспользовался ложкой для обуви",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я воспользовался ложкой для обуви",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used a shoehorn.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я воспользовался ложкой для обуви",
+            "uk": "Скажіть: Я скористався ложкою для взуття"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "a",
+            "shoehorn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i02:r1",
+            "text": "She used a shoehorn."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i02:r2",
+            "text": "She uses a shoehorn."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i02:r3",
+            "text": "We used a shoehorn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i02:audio",
+            "transcript": "She used a shoehorn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:i02:r1",
+              "targetText": "She used a shoehorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i02:r2",
+              "targetText": "She uses a shoehorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i02:r3",
+              "targetText": "We used a shoehorn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used a shoehorn.",
+                "uk": "У записі звучить She used a shoehorn."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used a shoehorn.",
+                "uk": "У записі звучить She used a shoehorn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i03:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i03:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i03:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a shoehorn yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-28:i03:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i03:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i03:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:word:shoe-polish",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shoe polish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:word:shoe-polish:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shoe polish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:word:shoe-polish:audio",
+            "transcript": "shoe polish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:word:shoe-polish:r1",
+              "targetText": "shoe polish",
+              "meaningByLocale": {
+                "ru": "крем для обуви.",
+                "uk": "крем для взуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoe polish",
+            "definitionByLocale": {
+              "ru": "крем для обуви.",
+              "uk": "крем для взуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы пользовались кремом для обуви",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы пользовались кремом для обуви",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used shoe polish.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы пользовались кремом для обуви",
+            "uk": "Скажіть: Ми користувалися кремом для взуття"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "shoe",
+            "polish"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i05:r1",
+            "text": "I used shoe polish."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i05:r2",
+            "text": "I use shoe polish."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i05:r3",
+            "text": "They used shoe polish."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i05:audio",
+            "transcript": "I used shoe polish."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:i05:r1",
+              "targetText": "I used shoe polish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i05:r2",
+              "targetText": "I use shoe polish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i05:r3",
+              "targetText": "They used shoe polish.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used shoe polish.",
+                "uk": "У записі звучить I used shoe polish."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used shoe polish.",
+                "uk": "У записі звучить I used shoe polish."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i06:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i06:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i06:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ shoe polish yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-28:i06:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i06:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i06:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:word:clothes-brush",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — clothes brush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:word:clothes-brush:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — clothes brush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:word:clothes-brush:audio",
+            "transcript": "clothes brush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:word:clothes-brush:r1",
+              "targetText": "clothes brush",
+              "meaningByLocale": {
+                "ru": "щётка для одежды.",
+                "uk": "щітка для одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clothes brush",
+            "definitionByLocale": {
+              "ru": "щётка для одежды.",
+              "uk": "щітка для одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я заменил щётку для одежды",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я заменил щётку для одежды",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I changed the clothes brush.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я заменил щётку для одежды",
+            "uk": "Скажіть: Я замінив щітку для одягу"
+          },
+          "orderedTokens": [
+            "I",
+            "changed",
+            "the",
+            "clothes",
+            "brush"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i08:r1",
+            "text": "We changed the clothes brush."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i08:r2",
+            "text": "We change the clothes brush."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i08:r3",
+            "text": "She changed the clothes brush."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i08:audio",
+            "transcript": "We changed the clothes brush."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:i08:r1",
+              "targetText": "We changed the clothes brush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i08:r2",
+              "targetText": "We change the clothes brush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i08:r3",
+              "targetText": "She changed the clothes brush.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We changed the clothes brush.",
+                "uk": "У записі звучить We changed the clothes brush."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We changed the clothes brush.",
+                "uk": "У записі звучить We changed the clothes brush."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i09:r1",
+            "text": "changed"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i09:r2",
+            "text": "change"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i09:r3",
+            "text": "changes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ the clothes brush yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-28:i09:r1",
+              "text": "changed"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i09:r2",
+              "text": "change"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i09:r3",
+              "text": "changes"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма changed.",
+                "uk": "Для минулого потрібна форма changed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна changed.",
+                "uk": "Це не форма минулого. Потрібна changed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:word:lint-roller",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lint roller",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:word:lint-roller:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lint roller",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:word:lint-roller:audio",
+            "transcript": "lint roller"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:word:lint-roller:r1",
+              "targetText": "lint roller",
+              "meaningByLocale": {
+                "ru": "липкий ролик для чистки одежды.",
+                "uk": "липкий ролик для чищення одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lint roller",
+            "definitionByLocale": {
+              "ru": "липкий ролик для чистки одежды.",
+              "uk": "липкий ролик для чищення одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мне нужен был ролик для одежды",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мне нужен был ролик для одежды",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I needed a lint roller.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мне нужен был ролик для одежды",
+            "uk": "Скажіть: Мені був потрібен ролик для одягу"
+          },
+          "orderedTokens": [
+            "I",
+            "needed",
+            "a",
+            "lint",
+            "roller"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i11:r1",
+            "text": "She needed a lint roller."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i11:r2",
+            "text": "She needs a lint roller."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i11:r3",
+            "text": "We needed a lint roller."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i11:audio",
+            "transcript": "She needed a lint roller."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:i11:r1",
+              "targetText": "She needed a lint roller.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i11:r2",
+              "targetText": "She needs a lint roller.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i11:r3",
+              "targetText": "We needed a lint roller.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She needed a lint roller.",
+                "uk": "У записі звучить She needed a lint roller."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She needed a lint roller.",
+                "uk": "У записі звучить She needed a lint roller."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i12:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i12:r2",
+            "text": "need"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i12:r3",
+            "text": "needs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a lint roller yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-28:i12:r1",
+              "text": "needed"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i12:r2",
+              "text": "need"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i12:r3",
+              "text": "needs"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма needed.",
+                "uk": "Для минулого потрібна форма needed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна needed.",
+                "uk": "Це не форма минулого. Потрібна needed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-28:i13:p1",
+              "target": "shoehorn",
+              "meaningByLocale": {
+                "ru": "ложка для обуви",
+                "uk": "ложка для взуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-28:i13:p2",
+              "target": "shoe polish",
+              "meaningByLocale": {
+                "ru": "крем для обуви",
+                "uk": "крем для взуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-28:i13:p3",
+              "target": "clothes brush",
+              "meaningByLocale": {
+                "ru": "щётка для одежды",
+                "uk": "щітка для одягу"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-28:i13:p4",
+              "target": "lint roller",
+              "meaningByLocale": {
+                "ru": "липкий ролик для чистки одежды",
+                "uk": "липкий ролик для чищення одягу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shoehorn",
+            "shoe polish",
+            "clothes brush",
+            "lint roller"
+          ],
+          "rightColumn": [
+            "ложка для обуви",
+            "крем для обуви",
+            "щётка для одежды",
+            "липкий ролик для чистки одежды"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i14:audio",
+            "transcript": "She changed her shoes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She changed her shoes.",
+          "orderedTokens": [
+            "She",
+            "changed",
+            "her",
+            "shoes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i15:audio",
+            "transcript": "We wanted a new clothes brush."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We wanted a new clothes brush.",
+          "orderedTokens": [
+            "We",
+            "wanted",
+            "a",
+            "new",
+            "clothes",
+            "brush"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера ложка для обуви была возле двери",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера ложка для обуви была возле двери",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i16:audio",
+            "transcript": "The shoehorn was near the door yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The shoehorn was near the door yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я воспользовался роликом перед работой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я воспользовался роликом перед работой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i17:audio",
+            "transcript": "I used a lint roller before work."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used a lint roller before work.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-28:word:shoehorn",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shoehorn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:word:shoehorn:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shoehorn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:word:shoehorn:audio",
+            "transcript": "shoehorn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:word:shoehorn:r1",
+              "targetText": "shoehorn",
+              "meaningByLocale": {
+                "ru": "ложка для обуви.",
+                "uk": "ложка для взуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoehorn",
+            "definitionByLocale": {
+              "ru": "ложка для обуви.",
+              "uk": "ложка для взуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я скористався ложкою для взуття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я скористався ложкою для взуття",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used a shoehorn.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я воспользовался ложкой для обуви",
+            "uk": "Скажіть: Я скористався ложкою для взуття"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "a",
+            "shoehorn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i02:r1",
+            "text": "She used a shoehorn."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i02:r2",
+            "text": "She uses a shoehorn."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i02:r3",
+            "text": "We used a shoehorn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i02:audio",
+            "transcript": "She used a shoehorn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:i02:r1",
+              "targetText": "She used a shoehorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i02:r2",
+              "targetText": "She uses a shoehorn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i02:r3",
+              "targetText": "We used a shoehorn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used a shoehorn.",
+                "uk": "У записі звучить She used a shoehorn."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used a shoehorn.",
+                "uk": "У записі звучить She used a shoehorn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i03:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i03:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i03:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a shoehorn yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-28:i03:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i03:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i03:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:word:shoe-polish",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shoe polish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:word:shoe-polish:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shoe polish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:word:shoe-polish:audio",
+            "transcript": "shoe polish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:word:shoe-polish:r1",
+              "targetText": "shoe polish",
+              "meaningByLocale": {
+                "ru": "крем для обуви.",
+                "uk": "крем для взуття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoe polish",
+            "definitionByLocale": {
+              "ru": "крем для обуви.",
+              "uk": "крем для взуття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми користувалися кремом для взуття",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми користувалися кремом для взуття",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used shoe polish.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы пользовались кремом для обуви",
+            "uk": "Скажіть: Ми користувалися кремом для взуття"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "shoe",
+            "polish"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i05:r1",
+            "text": "I used shoe polish."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i05:r2",
+            "text": "I use shoe polish."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i05:r3",
+            "text": "They used shoe polish."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i05:audio",
+            "transcript": "I used shoe polish."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:i05:r1",
+              "targetText": "I used shoe polish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i05:r2",
+              "targetText": "I use shoe polish.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i05:r3",
+              "targetText": "They used shoe polish.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used shoe polish.",
+                "uk": "У записі звучить I used shoe polish."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used shoe polish.",
+                "uk": "У записі звучить I used shoe polish."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i06:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i06:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i06:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ shoe polish yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-28:i06:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i06:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i06:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:word:clothes-brush",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — clothes brush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:word:clothes-brush:audio"
+        ],
+        "accessibilityLabel": "Картка слова — clothes brush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:word:clothes-brush:audio",
+            "transcript": "clothes brush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:word:clothes-brush:r1",
+              "targetText": "clothes brush",
+              "meaningByLocale": {
+                "ru": "щётка для одежды.",
+                "uk": "щітка для одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clothes brush",
+            "definitionByLocale": {
+              "ru": "щётка для одежды.",
+              "uk": "щітка для одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я замінив щітку для одягу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я замінив щітку для одягу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I changed the clothes brush.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я заменил щётку для одежды",
+            "uk": "Скажіть: Я замінив щітку для одягу"
+          },
+          "orderedTokens": [
+            "I",
+            "changed",
+            "the",
+            "clothes",
+            "brush"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i08:r1",
+            "text": "We changed the clothes brush."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i08:r2",
+            "text": "We change the clothes brush."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i08:r3",
+            "text": "She changed the clothes brush."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i08:audio",
+            "transcript": "We changed the clothes brush."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:i08:r1",
+              "targetText": "We changed the clothes brush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i08:r2",
+              "targetText": "We change the clothes brush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i08:r3",
+              "targetText": "She changed the clothes brush.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We changed the clothes brush.",
+                "uk": "У записі звучить We changed the clothes brush."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We changed the clothes brush.",
+                "uk": "У записі звучить We changed the clothes brush."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i09:r1",
+            "text": "changed"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i09:r2",
+            "text": "change"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i09:r3",
+            "text": "changes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ the clothes brush yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-28:i09:r1",
+              "text": "changed"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i09:r2",
+              "text": "change"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i09:r3",
+              "text": "changes"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма changed.",
+                "uk": "Для минулого потрібна форма changed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна changed.",
+                "uk": "Це не форма минулого. Потрібна changed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:word:lint-roller",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lint roller",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:word:lint-roller:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lint roller",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:word:lint-roller:audio",
+            "transcript": "lint roller"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:word:lint-roller:r1",
+              "targetText": "lint roller",
+              "meaningByLocale": {
+                "ru": "липкий ролик для чистки одежды.",
+                "uk": "липкий ролик для чищення одягу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lint roller",
+            "definitionByLocale": {
+              "ru": "липкий ролик для чистки одежды.",
+              "uk": "липкий ролик для чищення одягу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Мені був потрібен ролик для одягу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Мені був потрібен ролик для одягу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I needed a lint roller.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мне нужен был ролик для одежды",
+            "uk": "Скажіть: Мені був потрібен ролик для одягу"
+          },
+          "orderedTokens": [
+            "I",
+            "needed",
+            "a",
+            "lint",
+            "roller"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i11:r1",
+            "text": "She needed a lint roller."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i11:r2",
+            "text": "She needs a lint roller."
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i11:r3",
+            "text": "We needed a lint roller."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i11:audio",
+            "transcript": "She needed a lint roller."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-28:i11:r1",
+              "targetText": "She needed a lint roller.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i11:r2",
+              "targetText": "She needs a lint roller.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i11:r3",
+              "targetText": "We needed a lint roller.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She needed a lint roller.",
+                "uk": "У записі звучить She needed a lint roller."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She needed a lint roller.",
+                "uk": "У записі звучить She needed a lint roller."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-28:i12:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i12:r2",
+            "text": "need"
+          },
+          {
+            "responseId": "en:lesson-12:session-28:i12:r3",
+            "text": "needs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a lint roller yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-28:i12:r1",
+              "text": "needed"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i12:r2",
+              "text": "need"
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i12:r3",
+              "text": "needs"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма needed.",
+                "uk": "Для минулого потрібна форма needed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна needed.",
+                "uk": "Це не форма минулого. Потрібна needed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-28:i13:p1",
+              "target": "shoehorn",
+              "meaningByLocale": {
+                "ru": "ложка для обуви",
+                "uk": "ложка для взуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-28:i13:p2",
+              "target": "shoe polish",
+              "meaningByLocale": {
+                "ru": "крем для обуви",
+                "uk": "крем для взуття"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-28:i13:p3",
+              "target": "clothes brush",
+              "meaningByLocale": {
+                "ru": "щётка для одежды",
+                "uk": "щітка для одягу"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-28:i13:p4",
+              "target": "lint roller",
+              "meaningByLocale": {
+                "ru": "липкий ролик для чистки одежды",
+                "uk": "липкий ролик для чищення одягу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shoehorn",
+            "shoe polish",
+            "clothes brush",
+            "lint roller"
+          ],
+          "rightColumn": [
+            "ложка для взуття",
+            "крем для взуття",
+            "щітка для одягу",
+            "липкий ролик для чищення одягу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i14:audio",
+            "transcript": "She changed her shoes."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She changed her shoes.",
+          "orderedTokens": [
+            "She",
+            "changed",
+            "her",
+            "shoes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i15:audio",
+            "transcript": "We wanted a new clothes brush."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We wanted a new clothes brush.",
+          "orderedTokens": [
+            "We",
+            "wanted",
+            "a",
+            "new",
+            "clothes",
+            "brush"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора ложка для взуття була біля дверей",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора ложка для взуття була біля дверей",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i16:audio",
+            "transcript": "The shoehorn was near the door yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The shoehorn was near the door yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я скористався роликом перед роботою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я скористався роликом перед роботою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-28:i17:audio",
+            "transcript": "I used a lint roller before work."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used a lint roller before work.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-28:word:shoehorn",
+      "correctText": "shoehorn",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i01",
+      "correctText": "I used a shoehorn.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i02",
+      "correctText": "She used a shoehorn.",
+      "correctResponseId": "en:lesson-12:session-28:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i03",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-12:session-28:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:word:shoe-polish",
+      "correctText": "shoe polish",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i04",
+      "correctText": "We used shoe polish.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i05",
+      "correctText": "I used shoe polish.",
+      "correctResponseId": "en:lesson-12:session-28:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i06",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-12:session-28:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:word:clothes-brush",
+      "correctText": "clothes brush",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i07",
+      "correctText": "I changed the clothes brush.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i08",
+      "correctText": "We changed the clothes brush.",
+      "correctResponseId": "en:lesson-12:session-28:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i09",
+      "correctText": "changed",
+      "correctResponseId": "en:lesson-12:session-28:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:word:lint-roller",
+      "correctText": "lint roller",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i10",
+      "correctText": "I needed a lint roller.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i11",
+      "correctText": "She needed a lint roller.",
+      "correctResponseId": "en:lesson-12:session-28:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i12",
+      "correctText": "needed",
+      "correctResponseId": "en:lesson-12:session-28:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i14",
+      "correctText": "She changed her shoes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i15",
+      "correctText": "We wanted a new clothes brush.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i16",
+      "correctText": "The shoehorn was near the door yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:i17",
+      "correctText": "I used a lint roller before work.",
+      "correctResponseId": null
+    }
+  ]
+}

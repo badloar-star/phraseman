@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-31:word:rose-bush",
+    "correctText": "rose bush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i01",
+    "correctText": "I planted a rose bush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i02",
+    "correctText": "She planted a rose bush.",
+    "correctResponseId": "en:lesson-12:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i03",
+    "correctText": "planted",
+    "correctResponseId": "en:lesson-12:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:word:flowerbed",
+    "correctText": "flowerbed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i04",
+    "correctText": "We watered the flowerbed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i05",
+    "correctText": "I watered the flowerbed.",
+    "correctResponseId": "en:lesson-12:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i06",
+    "correctText": "watered",
+    "correctResponseId": "en:lesson-12:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:word:tomato-plant",
+    "correctText": "tomato plant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i07",
+    "correctText": "I watered the tomato plant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i08",
+    "correctText": "We watered the tomato plant.",
+    "correctResponseId": "en:lesson-12:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i09",
+    "correctText": "watered",
+    "correctResponseId": "en:lesson-12:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:word:fruit-tree",
+    "correctText": "fruit tree",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i10",
+    "correctText": "We planted a fruit tree.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i11",
+    "correctText": "I planted a fruit tree.",
+    "correctResponseId": "en:lesson-12:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i12",
+    "correctText": "planted",
+    "correctResponseId": "en:lesson-12:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i13",
+    "correctText": "en:lesson-12:session-31:i13:p1=rose bush\nen:lesson-12:session-31:i13:p2=flowerbed\nen:lesson-12:session-31:i13:p3=tomato plant\nen:lesson-12:session-31:i13:p4=fruit tree",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i14",
+    "correctText": "We planted flowers yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i15",
+    "correctText": "She used the garden hose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i16",
+    "correctText": "The tomato plant was small yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-31:i17",
+    "correctText": "I planted a fruit tree near the fence.",
+    "correctResponseId": null
+  }
+]

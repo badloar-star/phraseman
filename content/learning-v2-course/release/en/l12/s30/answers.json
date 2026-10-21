@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-30:word:kick",
+    "correctText": "kick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i01",
+    "correctText": "I can kick the ball.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i02",
+    "correctText": "She kicked the ball.",
+    "correctResponseId": "en:lesson-12:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i03",
+    "correctText": "kicked",
+    "correctResponseId": "en:lesson-12:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:word:football-boots",
+    "correctText": "football boots",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i04",
+    "correctText": "I cleaned my football boots.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i05",
+    "correctText": "She cleaned her football boots.",
+    "correctResponseId": "en:lesson-12:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i06",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:word:goalkeeper",
+    "correctText": "goalkeeper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i07",
+    "correctText": "I noticed the goalkeeper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i08",
+    "correctText": "We noticed the goalkeeper.",
+    "correctResponseId": "en:lesson-12:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i09",
+    "correctText": "noticed",
+    "correctResponseId": "en:lesson-12:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:word:goalpost",
+    "correctText": "goalpost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i10",
+    "correctText": "I checked the goalpost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i11",
+    "correctText": "He checked the goalpost.",
+    "correctResponseId": "en:lesson-12:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i12",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i13",
+    "correctText": "en:lesson-12:session-30:i13:p1=kick\nen:lesson-12:session-30:i13:p2=football boots\nen:lesson-12:session-30:i13:p3=goalkeeper\nen:lesson-12:session-30:i13:p4=goalpost",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i14",
+    "correctText": "We played football yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i15",
+    "correctText": "She kicked the ball to me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i16",
+    "correctText": "The goalkeeper was near the goal yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-30:i17",
+    "correctText": "I cleaned my football boots after the game.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "-ed: /t/, /d/, /ɪd/; washed, cleaned, wanted",
+    "uk": "-ed: /t/, /d/, /ɪd/; washed, cleaned, wanted"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Звук /t/",
+        "uk": "Звук /t/"
+      },
+      "bodyByLocale": {
+        "ru": "Shower head — «душевая лейка», toilet seat — «сиденье унитаза». В washed окончание -ed звучит /t/: один слог, без отдельного «ид». После глухого согласного, кроме /t/, читаем -ed как /t/. Смотрим на последний звук основы wash, не на букву. Выберите слово с таким окончанием.",
+        "uk": "Shower head — «душова лійка», toilet seat — «сидіння унітаза». У washed закінчення -ed звучить /t/: один склад, без окремого «ід». Після глухого приголосного, крім /t/, читаємо -ed як /t/. Дивимося на останній звук основи wash, не на літеру. Виберіть слово з таким закінченням."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-25:intro1:r1",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro1:r2",
+              "text": "wanted"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro1:r3",
+              "text": "needed"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-25:intro1:r1",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro1:r2",
+              "text": "wanted"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro1:r3",
+              "text": "needed"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Звук /d/",
+        "uk": "Звук /d/"
+      },
+      "bodyByLocale": {
+        "ru": "Soap dispenser — «дозатор мыла». I cleaned the soap dispenser — я почистил дозатор мыла. В cleaned окончание /d/, без отдельного слога. После гласного или звонкого согласного, кроме /d/, читаем -ed как /d/. Выберите слово с окончанием /d/.",
+        "uk": "Soap dispenser — «дозатор мила». I cleaned the soap dispenser — я почистив дозатор мила. У cleaned закінчення /d/, без окремого складу. Після голосного або дзвінкого приголосного, крім /d/, читаємо -ed як /d/. Виберіть слово із закінченням /d/."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-25:intro2:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro2:r2",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro2:r3",
+              "text": "wanted"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-25:intro2:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro2:r2",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro2:r3",
+              "text": "wanted"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отдельный слог /ɪd/",
+        "uk": "Окремий склад /ɪd/"
+      },
+      "bodyByLocale": {
+        "ru": "Toothbrush holder — «подставка для зубных щёток». I wanted a toothbrush holder — я хотел подставку для щёток. После звуков /t/ и /d/ окончание -ed звучит /ɪd/ и добавляет слог: wanted, needed. У wanted два слога. Выберите слово с дополнительным слогом /ɪd/.",
+        "uk": "Toothbrush holder — «підставка для зубних щіток». I wanted a toothbrush holder — я хотів підставку для щіток. Після звуків /t/ і /d/ закінчення -ed звучить /ɪd/ і додає склад: wanted, needed. У wanted два склади. Виберіть слово з додатковим складом /ɪd/."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-25:intro3:r1",
+              "text": "wanted"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro3:r2",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro3:r3",
+              "text": "cleaned"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-25:intro3:r1",
+              "text": "wanted"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro3:r2",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-25:intro3:r3",
+              "text": "cleaned"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7828f54031071f85d6387a75c75f05d297079acd5e2af50009008b33a2edd052"
+}

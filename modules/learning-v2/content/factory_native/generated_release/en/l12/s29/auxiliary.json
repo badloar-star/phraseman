@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-29:intro1:r2": {
+          "ru": "Для прошлого нужна loved.",
+          "uk": "Для минулого потрібна loved."
+        },
+        "en:lesson-12:session-29:intro1:r3": {
+          "ru": "Loves — не прошлое и не форма с I.",
+          "uk": "Loves — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-29:intro2:r2": {
+          "ru": "Здесь желе, а нужно печенье.",
+          "uk": "Тут желе, а потрібне печиво."
+        },
+        "en:lesson-12:session-29:intro2:r3": {
+          "ru": "Для прошлого нужна loved.",
+          "uk": "Для минулого потрібна loved."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-29:intro3:r2": {
+          "ru": "Loved — понравилось, а нужно хотели.",
+          "uk": "Loved — сподобалося, а потрібно хотіли."
+        },
+        "en:lesson-12:session-29:intro3:r3": {
+          "ru": "Для прошлого нужна wanted.",
+          "uk": "Для минулого потрібна wanted."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bf2b498197bececc93da1d3f31e9a94f10969f18243ecbbda7fa41e851ac88a8"
+}

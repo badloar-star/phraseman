@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-34:intro1:r2": {
+          "ru": "Для прошлого нужна visited.",
+          "uk": "Для минулого потрібна visited."
+        },
+        "en:lesson-12:session-34:intro1:r3": {
+          "ru": "Visits — не прошлое и не форма с we.",
+          "uk": "Visits — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-34:intro2:r2": {
+          "ru": "Здесь нужен был пакет, а нужно сообщение о тележке.",
+          "uk": "Тут був потрібен пакет, а потрібне повідомлення про візок."
+        },
+        "en:lesson-12:session-34:intro2:r3": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-34:intro3:r2": {
+          "ru": "Это размер магазина, не посещение.",
+          "uk": "Це розмір магазину, не відвідування."
+        },
+        "en:lesson-12:session-34:intro3:r3": {
+          "ru": "Для прошлого нужна visited.",
+          "uk": "Для минулого потрібна visited."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1f3b42d4f9edcc820c7a3da6edb8c9487fdf8a52d91798d9fd7c8a1f9ab26037"
+}

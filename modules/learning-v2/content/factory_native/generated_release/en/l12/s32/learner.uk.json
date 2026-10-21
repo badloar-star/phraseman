@@ -1,0 +1,1109 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-32:word:muesli",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — muesli",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:word:muesli:audio"
+      ],
+      "accessibilityLabel": "Картка слова — muesli",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:word:muesli:audio",
+          "transcript": "muesli"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-32:word:muesli:r1",
+            "targetText": "muesli",
+            "meaningByLocale": {
+              "ru": "мюсли, смесь хлопьев, орехов или сухофруктов.",
+              "uk": "мюслі, суміш пластівців, горіхів або сухофруктів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "muesli",
+          "definitionByLocale": {
+            "ru": "мюсли, смесь хлопьев, орехов или сухофруктов.",
+            "uk": "мюслі, суміш пластівців, горіхів або сухофруктів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я хотів мюслі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я хотів мюслі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wanted muesli.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я хотел мюсли",
+          "uk": "Скажіть: Я хотів мюслі"
+        },
+        "orderedTokens": [
+          "I",
+          "wanted",
+          "muesli"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-32:i02:r1",
+          "text": "She wanted muesli."
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i02:r2",
+          "text": "She wants muesli."
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i02:r3",
+          "text": "We wanted muesli."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:i02:audio",
+          "transcript": "She wanted muesli."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-32:i02:r1",
+            "targetText": "She wanted muesli.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i02:r2",
+            "targetText": "She wants muesli.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i02:r3",
+            "targetText": "We wanted muesli.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She wanted muesli.",
+              "uk": "У записі звучить She wanted muesli."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She wanted muesli.",
+              "uk": "У записі звучить She wanted muesli."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-32:i03:r1",
+          "text": "wanted"
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i03:r2",
+          "text": "want"
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i03:r3",
+          "text": "wants"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ muesli yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-32:i03:r1",
+            "text": "wanted"
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i03:r2",
+            "text": "want"
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i03:r3",
+            "text": "wants"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма wanted.",
+              "uk": "Для минулого потрібна форма wanted."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна wanted.",
+              "uk": "Це не форма минулого. Потрібна wanted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:word:coleslaw",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coleslaw",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:word:coleslaw:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coleslaw",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:word:coleslaw:audio",
+          "transcript": "coleslaw"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-32:word:coleslaw:r1",
+            "targetText": "coleslaw",
+            "meaningByLocale": {
+              "ru": "салат из нашинкованной капусты с заправкой.",
+              "uk": "салат із нашаткованої капусти із заправкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coleslaw",
+          "definitionByLocale": {
+            "ru": "салат из нашинкованной капусты с заправкой.",
+            "uk": "салат із нашаткованої капусти із заправкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Нам дуже сподобався капустяний салат",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Нам дуже сподобався капустяний салат",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We loved the coleslaw.",
+        "localizedMeaning": {
+          "ru": "Скажите: Нам очень понравился капустный салат",
+          "uk": "Скажіть: Нам дуже сподобався капустяний салат"
+        },
+        "orderedTokens": [
+          "We",
+          "loved",
+          "the",
+          "coleslaw"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-32:i05:r1",
+          "text": "I loved the coleslaw."
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i05:r2",
+          "text": "I love the coleslaw."
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i05:r3",
+          "text": "She loved the coleslaw."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:i05:audio",
+          "transcript": "I loved the coleslaw."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-32:i05:r1",
+            "targetText": "I loved the coleslaw.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i05:r2",
+            "targetText": "I love the coleslaw.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i05:r3",
+            "targetText": "She loved the coleslaw.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-32:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I loved the coleslaw.",
+              "uk": "У записі звучить I loved the coleslaw."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I loved the coleslaw.",
+              "uk": "У записі звучить I loved the coleslaw."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-32:i06:r1",
+          "text": "loved"
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i06:r2",
+          "text": "love"
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i06:r3",
+          "text": "loves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the coleslaw yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-32:i06:r1",
+            "text": "loved"
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i06:r2",
+            "text": "love"
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i06:r3",
+            "text": "loves"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-32:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма loved.",
+              "uk": "Для минулого потрібна форма loved."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна loved.",
+              "uk": "Це не форма минулого. Потрібна loved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:word:breadstick",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — breadstick",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:word:breadstick:audio"
+      ],
+      "accessibilityLabel": "Картка слова — breadstick",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:word:breadstick:audio",
+          "transcript": "breadstick"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-32:word:breadstick:r1",
+            "targetText": "breadstick",
+            "meaningByLocale": {
+              "ru": "хрустящая хлебная палочка.",
+              "uk": "хрустка хлібна паличка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "breadstick",
+          "definitionByLocale": {
+            "ru": "хрустящая хлебная палочка.",
+            "uk": "хрустка хлібна паличка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я запакував хлібну паличку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я запакував хлібну паличку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I packed a breadstick.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я упаковал хлебную палочку",
+          "uk": "Скажіть: Я запакував хлібну паличку"
+        },
+        "orderedTokens": [
+          "I",
+          "packed",
+          "a",
+          "breadstick"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-32:i08:r1",
+          "text": "We packed a breadstick."
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i08:r2",
+          "text": "We pack a breadstick."
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i08:r3",
+          "text": "He packed a breadstick."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:i08:audio",
+          "transcript": "We packed a breadstick."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-32:i08:r1",
+            "targetText": "We packed a breadstick.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i08:r2",
+            "targetText": "We pack a breadstick.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i08:r3",
+            "targetText": "He packed a breadstick.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We packed a breadstick.",
+              "uk": "У записі звучить We packed a breadstick."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We packed a breadstick.",
+              "uk": "У записі звучить We packed a breadstick."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-32:i09:r1",
+          "text": "packed"
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i09:r2",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i09:r3",
+          "text": "packs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ a breadstick yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-32:i09:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i09:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i09:r3",
+            "text": "packs"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма packed.",
+              "uk": "Для минулого потрібна форма packed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна packed.",
+              "uk": "Це не форма минулого. Потрібна packed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:word:rice-cake",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rice cake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:word:rice-cake:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rice cake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:word:rice-cake:audio",
+          "transcript": "rice cake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-32:word:rice-cake:r1",
+            "targetText": "rice cake",
+            "meaningByLocale": {
+              "ru": "хрустящий рисовый хлебец.",
+              "uk": "хрусткий рисовий хлібець."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rice cake",
+          "definitionByLocale": {
+            "ru": "хрустящий рисовый хлебец.",
+            "uk": "хрусткий рисовий хлібець."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я запакував рисовий хлібець",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я запакував рисовий хлібець",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I packed a rice cake.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я упаковал рисовый хлебец",
+          "uk": "Скажіть: Я запакував рисовий хлібець"
+        },
+        "orderedTokens": [
+          "I",
+          "packed",
+          "a",
+          "rice",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-32:i11:r1",
+          "text": "She packed a rice cake."
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i11:r2",
+          "text": "She packs a rice cake."
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i11:r3",
+          "text": "They packed a rice cake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:i11:audio",
+          "transcript": "She packed a rice cake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-32:i11:r1",
+            "targetText": "She packed a rice cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i11:r2",
+            "targetText": "She packs a rice cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i11:r3",
+            "targetText": "They packed a rice cake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She packed a rice cake.",
+              "uk": "У записі звучить She packed a rice cake."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She packed a rice cake.",
+              "uk": "У записі звучить She packed a rice cake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-32:i12:r1",
+          "text": "packed"
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i12:r2",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-12:session-32:i12:r3",
+          "text": "packs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ a rice cake yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-32:i12:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i12:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i12:r3",
+            "text": "packs"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма packed.",
+              "uk": "Для минулого потрібна форма packed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна packed.",
+              "uk": "Це не форма минулого. Потрібна packed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-32:i13:p1",
+            "target": "muesli",
+            "meaningByLocale": {
+              "ru": "мюсли, смесь хлопьев, орехов или сухофруктов",
+              "uk": "мюслі, суміш пластівців, горіхів або сухофруктів"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-32:i13:p2",
+            "target": "coleslaw",
+            "meaningByLocale": {
+              "ru": "салат из нашинкованной капусты с заправкой",
+              "uk": "салат із нашаткованої капусти із заправкою"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-32:i13:p3",
+            "target": "breadstick",
+            "meaningByLocale": {
+              "ru": "хрустящая хлебная палочка",
+              "uk": "хрустка хлібна паличка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-32:i13:p4",
+            "target": "rice cake",
+            "meaningByLocale": {
+              "ru": "хрустящий рисовый хлебец",
+              "uk": "хрусткий рисовий хлібець"
+            }
+          }
+        ],
+        "leftColumn": [
+          "muesli",
+          "coleslaw",
+          "breadstick",
+          "rice cake"
+        ],
+        "rightColumn": [
+          "мюслі, суміш пластівців, горіхів або сухофруктів",
+          "салат із нашаткованої капусти із заправкою",
+          "хрустка хлібна паличка",
+          "хрусткий рисовий хлібець"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:i14:audio",
+          "transcript": "She packed her lunchbox."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She packed her lunchbox.",
+        "orderedTokens": [
+          "She",
+          "packed",
+          "her",
+          "lunchbox"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:i15:audio",
+          "transcript": "We wanted fruit yoghurt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We wanted fruit yoghurt.",
+        "orderedTokens": [
+          "We",
+          "wanted",
+          "fruit",
+          "yoghurt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора капустяний салат був у холодильнику",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора капустяний салат був у холодильнику",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:i16:audio",
+          "transcript": "The coleslaw was in the fridge yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coleslaw was in the fridge yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-32:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я запакував рисовий хлібець для сина",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я запакував рисовий хлібець для сина",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-32:i17:audio",
+          "transcript": "I packed a rice cake for my son."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I packed a rice cake for my son.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3adfc31d442aceee98c4ed30c2f5fad038ad316db91f22f5da626bc2d2801b0d"
+}

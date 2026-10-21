@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-28:word:shoehorn",
+    "correctText": "shoehorn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i01",
+    "correctText": "I used a shoehorn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i02",
+    "correctText": "She used a shoehorn.",
+    "correctResponseId": "en:lesson-12:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i03",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:word:shoe-polish",
+    "correctText": "shoe polish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i04",
+    "correctText": "We used shoe polish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i05",
+    "correctText": "I used shoe polish.",
+    "correctResponseId": "en:lesson-12:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i06",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:word:clothes-brush",
+    "correctText": "clothes brush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i07",
+    "correctText": "I changed the clothes brush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i08",
+    "correctText": "We changed the clothes brush.",
+    "correctResponseId": "en:lesson-12:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i09",
+    "correctText": "changed",
+    "correctResponseId": "en:lesson-12:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:word:lint-roller",
+    "correctText": "lint roller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i10",
+    "correctText": "I needed a lint roller.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i11",
+    "correctText": "She needed a lint roller.",
+    "correctResponseId": "en:lesson-12:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i12",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-12:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i13",
+    "correctText": "en:lesson-12:session-28:i13:p1=shoehorn\nen:lesson-12:session-28:i13:p2=shoe polish\nen:lesson-12:session-28:i13:p3=clothes brush\nen:lesson-12:session-28:i13:p4=lint roller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i14",
+    "correctText": "She changed her shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i15",
+    "correctText": "We wanted a new clothes brush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i16",
+    "correctText": "The shoehorn was near the door yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-28:i17",
+    "correctText": "I used a lint roller before work.",
+    "correctResponseId": null
+  }
+]

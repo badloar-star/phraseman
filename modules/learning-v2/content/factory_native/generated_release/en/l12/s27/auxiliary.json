@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-27:intro1:r2": {
+          "ru": "Для прошлого нужна helped.",
+          "uk": "Для минулого потрібна helped."
+        },
+        "en:lesson-12:session-27:intro1:r3": {
+          "ru": "Helps — не прошлое и не форма с I.",
+          "uk": "Helps — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-27:intro2:r2": {
+          "ru": "Для прошлого нужна cleaned.",
+          "uk": "Для минулого потрібна cleaned."
+        },
+        "en:lesson-12:session-27:intro2:r3": {
+          "ru": "Cleans — не прошлое и не форма с I.",
+          "uk": "Cleans — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-27:intro3:r2": {
+          "ru": "Для прошлого нужна needed.",
+          "uk": "Для минулого потрібна needed."
+        },
+        "en:lesson-12:session-27:intro3:r3": {
+          "ru": "Needs — не прошлое и не форма с we.",
+          "uk": "Needs — не минуле й не форма з we."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8db72f1b29c322a675b28c0bc62914ca42f08e09e107583b74823eaf3a302aaa"
+}

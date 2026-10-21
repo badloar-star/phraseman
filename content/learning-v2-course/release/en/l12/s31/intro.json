@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "planted /ɪd/, watered /d/; was/were",
+    "uk": "planted /ɪd/, watered /d/; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Посадили куст",
+        "uk": "Посадили кущ"
+      },
+      "bodyByLocale": {
+        "ru": "Rose bush — «розовый куст». I planted a rose bush — я посадил розовый куст. Plant → planted: после /t/ слышен отдельный слог /ɪd/. В planted два слога. Выберите вчерашнее действие.",
+        "uk": "Rose bush — «кущ троянди». I planted a rose bush — я посадив кущ троянди. Plant → planted: після /t/ чути окремий склад /ɪd/. У planted два склади. Виберіть учорашню дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-31:intro1:r1",
+              "text": "I planted a rose bush yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro1:r2",
+              "text": "I plant a rose bush yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro1:r3",
+              "text": "I plants a rose bush yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-31:intro1:r1",
+              "text": "I planted a rose bush yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro1:r2",
+              "text": "I plant a rose bush yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro1:r3",
+              "text": "I plants a rose bush yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Клумба и помидоры",
+        "uk": "Клумба й помідори"
+      },
+      "bodyByLocale": {
+        "ru": "Flowerbed — «клумба», tomato plant — «куст помидоров». We watered the flowerbed — мы полили клумбу. В watered окончание /d/, без дополнительного слога -ed. Выберите действие с клумбой.",
+        "uk": "Flowerbed — «клумба», tomato plant — «кущ помідорів». We watered the flowerbed — ми полили клумбу. У watered закінчення /d/, без додаткового складу -ed. Виберіть дію з клумбою."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-31:intro2:r1",
+              "text": "We watered the flowerbed."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro2:r2",
+              "text": "We planted a tomato plant."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro2:r3",
+              "text": "We water the flowerbed yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-31:intro2:r1",
+              "text": "We watered the flowerbed."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro2:r2",
+              "text": "We planted a tomato plant."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro2:r3",
+              "text": "We water the flowerbed yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Плодовое дерево",
+        "uk": "Плодове дерево"
+      },
+      "bodyByLocale": {
+        "ru": "Fruit tree — «плодовое дерево». She planted a fruit tree — она посадила плодовое дерево. Planted одинаково после I, she и they. Выберите эту фразу.",
+        "uk": "Fruit tree — «плодове дерево». She planted a fruit tree — вона посадила плодове дерево. Planted однаково після I, she і they. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-31:intro3:r1",
+              "text": "She planted a fruit tree."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro3:r2",
+              "text": "She plants a fruit tree yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro3:r3",
+              "text": "She plant a fruit tree yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-31:intro3:r1",
+              "text": "She planted a fruit tree."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro3:r2",
+              "text": "She plants a fruit tree yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-31:intro3:r3",
+              "text": "She plant a fruit tree yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "107c1d1508637d9bf134898a6f9cabaf184e2d295ad2285adde6ffab0567c057"
+}

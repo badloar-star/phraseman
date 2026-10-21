@@ -1,0 +1,1111 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-29:word:scone",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:word:scone:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:word:scone:audio",
+          "transcript": "scone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-29:word:scone:r1",
+            "targetText": "scone",
+            "meaningByLocale": {
+              "ru": "небольшая британская булочка к чаю.",
+              "uk": "невелика британська булочка до чаю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scone",
+          "definitionByLocale": {
+            "ru": "небольшая британская булочка к чаю.",
+            "uk": "невелика британська булочка до чаю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Мені дуже сподобалася булочка до чаю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Мені дуже сподобалася булочка до чаю",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I loved the scone.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мне очень понравилась булочка к чаю",
+          "uk": "Скажіть: Мені дуже сподобалася булочка до чаю"
+        },
+        "orderedTokens": [
+          "I",
+          "loved",
+          "the",
+          "scone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-29:i02:r1",
+          "text": "She loved the scone."
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i02:r2",
+          "text": "She loves the scone."
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i02:r3",
+          "text": "We loved the scone."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:i02:audio",
+          "transcript": "She loved the scone."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-29:i02:r1",
+            "targetText": "She loved the scone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i02:r2",
+            "targetText": "She loves the scone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i02:r3",
+            "targetText": "We loved the scone.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She loved the scone.",
+              "uk": "У записі звучить She loved the scone."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She loved the scone.",
+              "uk": "У записі звучить She loved the scone."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-29:i03:r1",
+          "text": "loved"
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i03:r2",
+          "text": "love"
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i03:r3",
+          "text": "loves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the scone yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-29:i03:r1",
+            "text": "loved"
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i03:r2",
+            "text": "love"
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i03:r3",
+            "text": "loves"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма loved.",
+              "uk": "Для минулого потрібна форма loved."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна loved.",
+              "uk": "Це не форма минулого. Потрібна loved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:word:shortbread",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shortbread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:word:shortbread:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shortbread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:word:shortbread:audio",
+          "transcript": "shortbread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-29:word:shortbread:r1",
+            "targetText": "shortbread",
+            "meaningByLocale": {
+              "ru": "рассыпчатое сливочное печенье.",
+              "uk": "розсипчасте вершкове печиво."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shortbread",
+          "definitionByLocale": {
+            "ru": "рассыпчатое сливочное печенье.",
+            "uk": "розсипчасте вершкове печиво."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Нам дуже сподобалося вершкове печиво",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Нам дуже сподобалося вершкове печиво",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We loved the shortbread.",
+        "localizedMeaning": {
+          "ru": "Скажите: Нам очень понравилось сливочное печенье",
+          "uk": "Скажіть: Нам дуже сподобалося вершкове печиво"
+        },
+        "orderedTokens": [
+          "We",
+          "loved",
+          "the",
+          "shortbread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-29:i05:r1",
+          "text": "I loved the shortbread."
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i05:r2",
+          "text": "I love the shortbread."
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i05:r3",
+          "text": "She loved the shortbread."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:i05:audio",
+          "transcript": "I loved the shortbread."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-29:i05:r1",
+            "targetText": "I loved the shortbread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i05:r2",
+            "targetText": "I love the shortbread.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i05:r3",
+            "targetText": "She loved the shortbread.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I loved the shortbread.",
+              "uk": "У записі звучить I loved the shortbread."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I loved the shortbread.",
+              "uk": "У записі звучить I loved the shortbread."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-29:i06:r1",
+          "text": "loved"
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i06:r2",
+          "text": "love"
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i06:r3",
+          "text": "loves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the shortbread yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-29:i06:r1",
+            "text": "loved"
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i06:r2",
+            "text": "love"
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i06:r3",
+            "text": "loves"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма loved.",
+              "uk": "Для минулого потрібна форма loved."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна loved.",
+              "uk": "Це не форма минулого. Потрібна loved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:word:jelly",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — jelly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:word:jelly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — jelly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:word:jelly:audio",
+          "transcript": "jelly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-29:word:jelly:r1",
+            "targetText": "jelly",
+            "meaningByLocale": {
+              "ru": "десертное желе.",
+              "uk": "десертне желе."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jelly",
+          "definitionByLocale": {
+            "ru": "десертное желе.",
+            "uk": "десертне желе."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Мені дуже сподобалося желе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Мені дуже сподобалося желе",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I loved the jelly.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мне очень понравилось желе",
+          "uk": "Скажіть: Мені дуже сподобалося желе"
+        },
+        "orderedTokens": [
+          "I",
+          "loved",
+          "the",
+          "jelly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-29:i08:r1",
+          "text": "He loved the jelly."
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i08:r2",
+          "text": "He loves the jelly."
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i08:r3",
+          "text": "We loved the jelly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:i08:audio",
+          "transcript": "He loved the jelly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-29:i08:r1",
+            "targetText": "He loved the jelly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i08:r2",
+            "targetText": "He loves the jelly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i08:r3",
+            "targetText": "We loved the jelly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He loved the jelly.",
+              "uk": "У записі звучить He loved the jelly."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He loved the jelly.",
+              "uk": "У записі звучить He loved the jelly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-29:i09:r1",
+          "text": "loved"
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i09:r2",
+          "text": "love"
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i09:r3",
+          "text": "loves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the jelly yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-29:i09:r1",
+            "text": "loved"
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i09:r2",
+            "text": "love"
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i09:r3",
+            "text": "loves"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма loved.",
+              "uk": "Для минулого потрібна форма loved."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна loved.",
+              "uk": "Це не форма минулого. Потрібна loved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:word:pudding",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pudding",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:word:pudding:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pudding",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:word:pudding:audio",
+          "transcript": "pudding"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-29:word:pudding:r1",
+            "targetText": "pudding",
+            "meaningByLocale": {
+              "ru": "пудинг, сладкое мягкое блюдо.",
+              "uk": "пудинг, солодка м’яка страва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pudding",
+          "definitionByLocale": {
+            "ru": "пудинг, сладкое мягкое блюдо.",
+            "uk": "пудинг, солодка м’яка страва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я хотів пудинг",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я хотів пудинг",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wanted the pudding.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я хотел пудинг",
+          "uk": "Скажіть: Я хотів пудинг"
+        },
+        "orderedTokens": [
+          "I",
+          "wanted",
+          "the",
+          "pudding"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-29:i11:r1",
+          "text": "We wanted the pudding."
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i11:r2",
+          "text": "We want the pudding."
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i11:r3",
+          "text": "She wanted the pudding."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:i11:audio",
+          "transcript": "We wanted the pudding."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-29:i11:r1",
+            "targetText": "We wanted the pudding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i11:r2",
+            "targetText": "We want the pudding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i11:r3",
+            "targetText": "She wanted the pudding.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We wanted the pudding.",
+              "uk": "У записі звучить We wanted the pudding."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We wanted the pudding.",
+              "uk": "У записі звучить We wanted the pudding."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-29:i12:r1",
+          "text": "wanted"
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i12:r2",
+          "text": "want"
+        },
+        {
+          "responseId": "en:lesson-12:session-29:i12:r3",
+          "text": "wants"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the pudding yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-29:i12:r1",
+            "text": "wanted"
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i12:r2",
+            "text": "want"
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i12:r3",
+            "text": "wants"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма wanted.",
+              "uk": "Для минулого потрібна форма wanted."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна wanted.",
+              "uk": "Це не форма минулого. Потрібна wanted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-29:i13:p1",
+            "target": "scone",
+            "meaningByLocale": {
+              "ru": "небольшая британская булочка к чаю",
+              "uk": "невелика британська булочка до чаю"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-29:i13:p2",
+            "target": "shortbread",
+            "meaningByLocale": {
+              "ru": "рассыпчатое сливочное печенье",
+              "uk": "розсипчасте вершкове печиво"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-29:i13:p3",
+            "target": "jelly",
+            "meaningByLocale": {
+              "ru": "десертное желе",
+              "uk": "десертне желе"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-29:i13:p4",
+            "target": "pudding",
+            "meaningByLocale": {
+              "ru": "пудинг, сладкое мягкое блюдо",
+              "uk": "пудинг, солодка м’яка страва"
+            }
+          }
+        ],
+        "leftColumn": [
+          "scone",
+          "shortbread",
+          "jelly",
+          "pudding"
+        ],
+        "rightColumn": [
+          "невелика британська булочка до чаю",
+          "розсипчасте вершкове печиво",
+          "десертне желе",
+          "пудинг, солодка м’яка страва"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:i14:audio",
+          "transcript": "She loved the birthday cake."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She loved the birthday cake.",
+        "orderedTokens": [
+          "She",
+          "loved",
+          "the",
+          "birthday",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:i15:audio",
+          "transcript": "We had tea after lunch."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We had tea after lunch.",
+        "orderedTokens": [
+          "We",
+          "had",
+          "tea",
+          "after",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора желе було холодне",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора желе було холодне",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:i16:audio",
+          "transcript": "The jelly was cold yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The jelly was cold yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-29:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: мені дуже сподобалося печиво в кафе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: мені дуже сподобалося печиво в кафе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-29:i17:audio",
+          "transcript": "I loved the shortbread in the cafe."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I loved the shortbread in the cafe.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6e20c563fbaefadc868934a6e7e87901514ced889db13acec6ec901fd43d1db0"
+}

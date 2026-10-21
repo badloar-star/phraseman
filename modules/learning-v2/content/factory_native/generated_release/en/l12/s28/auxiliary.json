@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-28:intro1:r2": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        },
+        "en:lesson-12:session-28:intro1:r3": {
+          "ru": "Uses — не прошлое и не форма с I.",
+          "uk": "Uses — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-28:intro2:r2": {
+          "ru": "Это использование крема, не замена щётки.",
+          "uk": "Це використання крему, не заміна щітки."
+        },
+        "en:lesson-12:session-28:intro2:r3": {
+          "ru": "Для прошлого нужна changed.",
+          "uk": "Для минулого потрібна changed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-28:intro3:r2": {
+          "ru": "Для прошлого нужна needed.",
+          "uk": "Для минулого потрібна needed."
+        },
+        "en:lesson-12:session-28:intro3:r3": {
+          "ru": "Needs — не прошлое и не форма с I.",
+          "uk": "Needs — не минуле й не форма з I."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "94ebae8513bce607f5397aeab547c644c8bcb77ac8f45a535a1f6db42c077e4d"
+}

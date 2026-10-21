@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-25:word:shower-head",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shower head",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:word:shower-head:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shower head",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:word:shower-head:audio",
+          "transcript": "shower head"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-25:word:shower-head:r1",
+            "targetText": "shower head",
+            "meaningByLocale": {
+              "ru": "душевая лейка.",
+              "uk": "душова лійка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shower head",
+          "definitionByLocale": {
+            "ru": "душевая лейка.",
+            "uk": "душова лійка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я помив душову лійку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я помив душову лійку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I washed the shower head.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я помыл душевую лейку",
+          "uk": "Скажіть: Я помив душову лійку"
+        },
+        "orderedTokens": [
+          "I",
+          "washed",
+          "the",
+          "shower",
+          "head"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-25:i02:r1",
+          "text": "She washed the shower head."
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i02:r2",
+          "text": "She washes the shower head."
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i02:r3",
+          "text": "We washed the shower head."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:i02:audio",
+          "transcript": "She washed the shower head."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-25:i02:r1",
+            "targetText": "She washed the shower head.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i02:r2",
+            "targetText": "She washes the shower head.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i02:r3",
+            "targetText": "We washed the shower head.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She washed the shower head.",
+              "uk": "У записі звучить She washed the shower head."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She washed the shower head.",
+              "uk": "У записі звучить She washed the shower head."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-25:i03:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i03:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i03:r3",
+          "text": "washes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the shower head yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-25:i03:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i03:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i03:r3",
+            "text": "washes"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма washed.",
+              "uk": "Для минулого потрібна форма washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна washed.",
+              "uk": "Це не форма минулого. Потрібна washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:word:toilet-seat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toilet seat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:word:toilet-seat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toilet seat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:word:toilet-seat:audio",
+          "transcript": "toilet seat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-25:word:toilet-seat:r1",
+            "targetText": "toilet seat",
+            "meaningByLocale": {
+              "ru": "сиденье унитаза.",
+              "uk": "сидіння унітаза."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toilet seat",
+          "definitionByLocale": {
+            "ru": "сиденье унитаза.",
+            "uk": "сидіння унітаза."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми почистили сидіння унітаза",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми почистили сидіння унітаза",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We cleaned the toilet seat.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы почистили сиденье унитаза",
+          "uk": "Скажіть: Ми почистили сидіння унітаза"
+        },
+        "orderedTokens": [
+          "We",
+          "cleaned",
+          "the",
+          "toilet",
+          "seat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-25:i05:r1",
+          "text": "I cleaned the toilet seat."
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i05:r2",
+          "text": "I clean the toilet seat."
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i05:r3",
+          "text": "She cleaned the toilet seat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:i05:audio",
+          "transcript": "I cleaned the toilet seat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-25:i05:r1",
+            "targetText": "I cleaned the toilet seat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i05:r2",
+            "targetText": "I clean the toilet seat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i05:r3",
+            "targetText": "She cleaned the toilet seat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the toilet seat.",
+              "uk": "У записі звучить I cleaned the toilet seat."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the toilet seat.",
+              "uk": "У записі звучить I cleaned the toilet seat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-25:i06:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i06:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i06:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the toilet seat yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-25:i06:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i06:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i06:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cleaned.",
+              "uk": "Для минулого потрібна форма cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна cleaned.",
+              "uk": "Це не форма минулого. Потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:word:soap-dispenser",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — soap dispenser",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:word:soap-dispenser:audio"
+      ],
+      "accessibilityLabel": "Картка слова — soap dispenser",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:word:soap-dispenser:audio",
+          "transcript": "soap dispenser"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-25:word:soap-dispenser:r1",
+            "targetText": "soap dispenser",
+            "meaningByLocale": {
+              "ru": "дозатор мыла.",
+              "uk": "дозатор мила."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soap dispenser",
+          "definitionByLocale": {
+            "ru": "дозатор мыла.",
+            "uk": "дозатор мила."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я почистив дозатор мила",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я почистив дозатор мила",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cleaned the soap dispenser.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я почистил дозатор мыла",
+          "uk": "Скажіть: Я почистив дозатор мила"
+        },
+        "orderedTokens": [
+          "I",
+          "cleaned",
+          "the",
+          "soap",
+          "dispenser"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-25:i08:r1",
+          "text": "We cleaned the soap dispenser."
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i08:r2",
+          "text": "We clean the soap dispenser."
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i08:r3",
+          "text": "He cleaned the soap dispenser."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:i08:audio",
+          "transcript": "We cleaned the soap dispenser."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-25:i08:r1",
+            "targetText": "We cleaned the soap dispenser.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i08:r2",
+            "targetText": "We clean the soap dispenser.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i08:r3",
+            "targetText": "He cleaned the soap dispenser.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We cleaned the soap dispenser.",
+              "uk": "У записі звучить We cleaned the soap dispenser."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We cleaned the soap dispenser.",
+              "uk": "У записі звучить We cleaned the soap dispenser."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-25:i09:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i09:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i09:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the soap dispenser yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-25:i09:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i09:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i09:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cleaned.",
+              "uk": "Для минулого потрібна форма cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна cleaned.",
+              "uk": "Це не форма минулого. Потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:word:toothbrush-holder",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toothbrush holder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:word:toothbrush-holder:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toothbrush holder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:word:toothbrush-holder:audio",
+          "transcript": "toothbrush holder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-25:word:toothbrush-holder:r1",
+            "targetText": "toothbrush holder",
+            "meaningByLocale": {
+              "ru": "подставка для зубных щёток.",
+              "uk": "підставка для зубних щіток."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toothbrush holder",
+          "definitionByLocale": {
+            "ru": "подставка для зубных щёток.",
+            "uk": "підставка для зубних щіток."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я хотів підставку для зубних щіток",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я хотів підставку для зубних щіток",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wanted a toothbrush holder.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я хотел подставку для зубных щёток",
+          "uk": "Скажіть: Я хотів підставку для зубних щіток"
+        },
+        "orderedTokens": [
+          "I",
+          "wanted",
+          "a",
+          "toothbrush",
+          "holder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-25:i11:r1",
+          "text": "She wanted a toothbrush holder."
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i11:r2",
+          "text": "She wants a toothbrush holder."
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i11:r3",
+          "text": "They wanted a toothbrush holder."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:i11:audio",
+          "transcript": "She wanted a toothbrush holder."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-25:i11:r1",
+            "targetText": "She wanted a toothbrush holder.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i11:r2",
+            "targetText": "She wants a toothbrush holder.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i11:r3",
+            "targetText": "They wanted a toothbrush holder.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She wanted a toothbrush holder.",
+              "uk": "У записі звучить She wanted a toothbrush holder."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She wanted a toothbrush holder.",
+              "uk": "У записі звучить She wanted a toothbrush holder."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-25:i12:r1",
+          "text": "wanted"
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i12:r2",
+          "text": "want"
+        },
+        {
+          "responseId": "en:lesson-12:session-25:i12:r3",
+          "text": "wants"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ a toothbrush holder yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-25:i12:r1",
+            "text": "wanted"
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i12:r2",
+            "text": "want"
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i12:r3",
+            "text": "wants"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма wanted.",
+              "uk": "Для минулого потрібна форма wanted."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна wanted.",
+              "uk": "Це не форма минулого. Потрібна wanted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-25:i13:p1",
+            "target": "shower head",
+            "meaningByLocale": {
+              "ru": "душевая лейка",
+              "uk": "душова лійка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-25:i13:p2",
+            "target": "toilet seat",
+            "meaningByLocale": {
+              "ru": "сиденье унитаза",
+              "uk": "сидіння унітаза"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-25:i13:p3",
+            "target": "soap dispenser",
+            "meaningByLocale": {
+              "ru": "дозатор мыла",
+              "uk": "дозатор мила"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-25:i13:p4",
+            "target": "toothbrush holder",
+            "meaningByLocale": {
+              "ru": "подставка для зубных щёток",
+              "uk": "підставка для зубних щіток"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shower head",
+          "toilet seat",
+          "soap dispenser",
+          "toothbrush holder"
+        ],
+        "rightColumn": [
+          "душова лійка",
+          "сидіння унітаза",
+          "дозатор мила",
+          "підставка для зубних щіток"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:i14:audio",
+          "transcript": "She washed the bathroom mirror."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She washed the bathroom mirror.",
+        "orderedTokens": [
+          "She",
+          "washed",
+          "the",
+          "bathroom",
+          "mirror"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:i15:audio",
+          "transcript": "We needed a toothbrush holder."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We needed a toothbrush holder.",
+        "orderedTokens": [
+          "We",
+          "needed",
+          "a",
+          "toothbrush",
+          "holder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я помив душову лійку вчора; у washed закінчення /t/",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я помив душову лійку вчора; у washed закінчення /t/",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:i16:audio",
+          "transcript": "I washed the shower head yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I washed the shower head yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-25:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я хотів новий дозатор мила; у wanted закінчення /ɪd/",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я хотів новий дозатор мила; у wanted закінчення /ɪd/",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-25:i17:audio",
+          "transcript": "I wanted a new soap dispenser."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wanted a new soap dispenser.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ad040bbcf141450c015c9b59742edc603d300397821d26e40b87d2b732aa28c3"
+}

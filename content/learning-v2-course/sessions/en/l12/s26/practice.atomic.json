@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-26",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-26:word:pencil-case",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pencil case",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:word:pencil-case:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pencil case",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:word:pencil-case:audio",
+            "transcript": "pencil case"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:word:pencil-case:r1",
+              "targetText": "pencil case",
+              "meaningByLocale": {
+                "ru": "пенал.",
+                "uk": "пенал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pencil case",
+            "definitionByLocale": {
+              "ru": "пенал.",
+              "uk": "пенал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я собрал свой пенал",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я собрал свой пенал",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I packed my pencil case.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я собрал свой пенал",
+            "uk": "Скажіть: Я зібрав свій пенал"
+          },
+          "orderedTokens": [
+            "I",
+            "packed",
+            "my",
+            "pencil",
+            "case"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i02:r1",
+            "text": "She packed her pencil case."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i02:r2",
+            "text": "She packs her pencil case."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i02:r3",
+            "text": "He packed his pencil case."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i02:audio",
+            "transcript": "She packed her pencil case."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:i02:r1",
+              "targetText": "She packed her pencil case.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i02:r2",
+              "targetText": "She packs her pencil case.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i02:r3",
+              "targetText": "He packed his pencil case.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She packed her pencil case.",
+                "uk": "У записі звучить She packed her pencil case."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She packed her pencil case.",
+                "uk": "У записі звучить She packed her pencil case."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i03:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i03:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i03:r3",
+            "text": "packs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ our pencil case yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-26:i03:r1",
+              "text": "packed"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i03:r2",
+              "text": "pack"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i03:r3",
+              "text": "packs"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма packed.",
+                "uk": "Для минулого потрібна форма packed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна packed.",
+                "uk": "Це не форма минулого. Потрібна packed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:word:schoolbag",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — schoolbag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:word:schoolbag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — schoolbag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:word:schoolbag:audio",
+            "transcript": "schoolbag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:word:schoolbag:r1",
+              "targetText": "schoolbag",
+              "meaningByLocale": {
+                "ru": "школьный портфель или рюкзак.",
+                "uk": "шкільний портфель або рюкзак."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "schoolbag",
+            "definitionByLocale": {
+              "ru": "школьный портфель или рюкзак.",
+              "uk": "шкільний портфель або рюкзак."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я почистил свой школьный портфель",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я почистил свой школьный портфель",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I cleaned my schoolbag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я почистил свой школьный портфель",
+            "uk": "Скажіть: Я почистив свій шкільний портфель"
+          },
+          "orderedTokens": [
+            "I",
+            "cleaned",
+            "my",
+            "schoolbag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i05:r1",
+            "text": "We cleaned our schoolbag."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i05:r2",
+            "text": "We clean our schoolbag."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i05:r3",
+            "text": "She cleaned her schoolbag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i05:audio",
+            "transcript": "We cleaned our schoolbag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:i05:r1",
+              "targetText": "We cleaned our schoolbag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i05:r2",
+              "targetText": "We clean our schoolbag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i05:r3",
+              "targetText": "She cleaned her schoolbag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We cleaned our schoolbag.",
+                "uk": "У записі звучить We cleaned our schoolbag."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We cleaned our schoolbag.",
+                "uk": "У записі звучить We cleaned our schoolbag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i06:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i06:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i06:r3",
+            "text": "cleans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ his schoolbag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-26:i06:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i06:r2",
+              "text": "clean"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i06:r3",
+              "text": "cleans"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма cleaned.",
+                "uk": "Для минулого потрібна форма cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна cleaned.",
+                "uk": "Це не форма минулого. Потрібна cleaned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:word:exercise-book",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — exercise book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:word:exercise-book:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — exercise book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:word:exercise-book:audio",
+            "transcript": "exercise book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:word:exercise-book:r1",
+              "targetText": "exercise book",
+              "meaningByLocale": {
+                "ru": "школьная тетрадь.",
+                "uk": "шкільний зошит."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exercise book",
+            "definitionByLocale": {
+              "ru": "школьная тетрадь.",
+              "uk": "шкільний зошит."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мне нужна была тетрадь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мне нужна была тетрадь",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I needed an exercise book.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мне нужна была тетрадь",
+            "uk": "Скажіть: Мені був потрібен зошит"
+          },
+          "orderedTokens": [
+            "I",
+            "needed",
+            "an",
+            "exercise",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i08:r1",
+            "text": "She needed an exercise book."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i08:r2",
+            "text": "She needs an exercise book."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i08:r3",
+            "text": "They needed an exercise book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i08:audio",
+            "transcript": "She needed an exercise book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:i08:r1",
+              "targetText": "She needed an exercise book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i08:r2",
+              "targetText": "She needs an exercise book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i08:r3",
+              "targetText": "They needed an exercise book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She needed an exercise book.",
+                "uk": "У записі звучить She needed an exercise book."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She needed an exercise book.",
+                "uk": "У записі звучить She needed an exercise book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i09:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i09:r2",
+            "text": "need"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i09:r3",
+            "text": "needs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ an exercise book yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-26:i09:r1",
+              "text": "needed"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i09:r2",
+              "text": "need"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i09:r3",
+              "text": "needs"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма needed.",
+                "uk": "Для минулого потрібна форма needed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна needed.",
+                "uk": "Це не форма минулого. Потрібна needed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:word:pencil-sharpener",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pencil sharpener",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:word:pencil-sharpener:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pencil sharpener",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:word:pencil-sharpener:audio",
+            "transcript": "pencil sharpener"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:word:pencil-sharpener:r1",
+              "targetText": "pencil sharpener",
+              "meaningByLocale": {
+                "ru": "точилка для карандашей.",
+                "uk": "точилка для олівців."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pencil sharpener",
+            "definitionByLocale": {
+              "ru": "точилка для карандашей.",
+              "uk": "точилка для олівців."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я хотел точилку для карандашей",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я хотел точилку для карандашей",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wanted a pencil sharpener.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я хотел точилку для карандашей",
+            "uk": "Скажіть: Я хотів точилку для олівців"
+          },
+          "orderedTokens": [
+            "I",
+            "wanted",
+            "a",
+            "pencil",
+            "sharpener"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i11:r1",
+            "text": "He wanted a pencil sharpener."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i11:r2",
+            "text": "He wants a pencil sharpener."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i11:r3",
+            "text": "We wanted a pencil sharpener."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i11:audio",
+            "transcript": "He wanted a pencil sharpener."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:i11:r1",
+              "targetText": "He wanted a pencil sharpener.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i11:r2",
+              "targetText": "He wants a pencil sharpener.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i11:r3",
+              "targetText": "We wanted a pencil sharpener.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He wanted a pencil sharpener.",
+                "uk": "У записі звучить He wanted a pencil sharpener."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He wanted a pencil sharpener.",
+                "uk": "У записі звучить He wanted a pencil sharpener."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i12:r1",
+            "text": "wanted"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i12:r2",
+            "text": "want"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i12:r3",
+            "text": "wants"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ a pencil sharpener yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-26:i12:r1",
+              "text": "wanted"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i12:r2",
+              "text": "want"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i12:r3",
+              "text": "wants"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма wanted.",
+                "uk": "Для минулого потрібна форма wanted."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна wanted.",
+                "uk": "Це не форма минулого. Потрібна wanted."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-26:i13:p1",
+              "target": "pencil case",
+              "meaningByLocale": {
+                "ru": "пенал",
+                "uk": "пенал"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-26:i13:p2",
+              "target": "schoolbag",
+              "meaningByLocale": {
+                "ru": "школьный портфель или рюкзак",
+                "uk": "шкільний портфель або рюкзак"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-26:i13:p3",
+              "target": "exercise book",
+              "meaningByLocale": {
+                "ru": "школьная тетрадь",
+                "uk": "шкільний зошит"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-26:i13:p4",
+              "target": "pencil sharpener",
+              "meaningByLocale": {
+                "ru": "точилка для карандашей",
+                "uk": "точилка для олівців"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pencil case",
+            "schoolbag",
+            "exercise book",
+            "pencil sharpener"
+          ],
+          "rightColumn": [
+            "пенал",
+            "школьный портфель или рюкзак",
+            "школьная тетрадь",
+            "точилка для карандашей"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i14:audio",
+            "transcript": "I finished my homework yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I finished my homework yesterday.",
+          "orderedTokens": [
+            "I",
+            "finished",
+            "my",
+            "homework",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i15:audio",
+            "transcript": "She packed her schoolbag after dinner."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She packed her schoolbag after dinner.",
+          "orderedTokens": [
+            "She",
+            "packed",
+            "her",
+            "schoolbag",
+            "after",
+            "dinner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера тетрадь была на столе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера тетрадь была на столе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i16:audio",
+            "transcript": "The exercise book was on the table yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The exercise book was on the table yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: мне нужна была новая точилка; в needed окончание /ɪd/",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: мне нужна была новая точилка; в needed окончание /ɪd/",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i17:audio",
+            "transcript": "I needed a new pencil sharpener."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I needed a new pencil sharpener.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-26:word:pencil-case",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pencil case",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:word:pencil-case:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pencil case",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:word:pencil-case:audio",
+            "transcript": "pencil case"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:word:pencil-case:r1",
+              "targetText": "pencil case",
+              "meaningByLocale": {
+                "ru": "пенал.",
+                "uk": "пенал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pencil case",
+            "definitionByLocale": {
+              "ru": "пенал.",
+              "uk": "пенал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я зібрав свій пенал",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я зібрав свій пенал",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I packed my pencil case.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я собрал свой пенал",
+            "uk": "Скажіть: Я зібрав свій пенал"
+          },
+          "orderedTokens": [
+            "I",
+            "packed",
+            "my",
+            "pencil",
+            "case"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i02:r1",
+            "text": "She packed her pencil case."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i02:r2",
+            "text": "She packs her pencil case."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i02:r3",
+            "text": "He packed his pencil case."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i02:audio",
+            "transcript": "She packed her pencil case."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:i02:r1",
+              "targetText": "She packed her pencil case.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i02:r2",
+              "targetText": "She packs her pencil case.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i02:r3",
+              "targetText": "He packed his pencil case.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She packed her pencil case.",
+                "uk": "У записі звучить She packed her pencil case."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She packed her pencil case.",
+                "uk": "У записі звучить She packed her pencil case."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i03:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i03:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i03:r3",
+            "text": "packs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ our pencil case yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-26:i03:r1",
+              "text": "packed"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i03:r2",
+              "text": "pack"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i03:r3",
+              "text": "packs"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма packed.",
+                "uk": "Для минулого потрібна форма packed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна packed.",
+                "uk": "Це не форма минулого. Потрібна packed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:word:schoolbag",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — schoolbag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:word:schoolbag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — schoolbag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:word:schoolbag:audio",
+            "transcript": "schoolbag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:word:schoolbag:r1",
+              "targetText": "schoolbag",
+              "meaningByLocale": {
+                "ru": "школьный портфель или рюкзак.",
+                "uk": "шкільний портфель або рюкзак."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "schoolbag",
+            "definitionByLocale": {
+              "ru": "школьный портфель или рюкзак.",
+              "uk": "шкільний портфель або рюкзак."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я почистив свій шкільний портфель",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я почистив свій шкільний портфель",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I cleaned my schoolbag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я почистил свой школьный портфель",
+            "uk": "Скажіть: Я почистив свій шкільний портфель"
+          },
+          "orderedTokens": [
+            "I",
+            "cleaned",
+            "my",
+            "schoolbag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i05:r1",
+            "text": "We cleaned our schoolbag."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i05:r2",
+            "text": "We clean our schoolbag."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i05:r3",
+            "text": "She cleaned her schoolbag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i05:audio",
+            "transcript": "We cleaned our schoolbag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:i05:r1",
+              "targetText": "We cleaned our schoolbag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i05:r2",
+              "targetText": "We clean our schoolbag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i05:r3",
+              "targetText": "She cleaned her schoolbag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We cleaned our schoolbag.",
+                "uk": "У записі звучить We cleaned our schoolbag."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We cleaned our schoolbag.",
+                "uk": "У записі звучить We cleaned our schoolbag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i06:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i06:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i06:r3",
+            "text": "cleans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ his schoolbag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-26:i06:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i06:r2",
+              "text": "clean"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i06:r3",
+              "text": "cleans"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма cleaned.",
+                "uk": "Для минулого потрібна форма cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна cleaned.",
+                "uk": "Це не форма минулого. Потрібна cleaned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:word:exercise-book",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — exercise book",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:word:exercise-book:audio"
+        ],
+        "accessibilityLabel": "Картка слова — exercise book",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:word:exercise-book:audio",
+            "transcript": "exercise book"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:word:exercise-book:r1",
+              "targetText": "exercise book",
+              "meaningByLocale": {
+                "ru": "школьная тетрадь.",
+                "uk": "шкільний зошит."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exercise book",
+            "definitionByLocale": {
+              "ru": "школьная тетрадь.",
+              "uk": "шкільний зошит."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Мені був потрібен зошит",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Мені був потрібен зошит",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I needed an exercise book.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мне нужна была тетрадь",
+            "uk": "Скажіть: Мені був потрібен зошит"
+          },
+          "orderedTokens": [
+            "I",
+            "needed",
+            "an",
+            "exercise",
+            "book"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i08:r1",
+            "text": "She needed an exercise book."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i08:r2",
+            "text": "She needs an exercise book."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i08:r3",
+            "text": "They needed an exercise book."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i08:audio",
+            "transcript": "She needed an exercise book."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:i08:r1",
+              "targetText": "She needed an exercise book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i08:r2",
+              "targetText": "She needs an exercise book.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i08:r3",
+              "targetText": "They needed an exercise book.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She needed an exercise book.",
+                "uk": "У записі звучить She needed an exercise book."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She needed an exercise book.",
+                "uk": "У записі звучить She needed an exercise book."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i09:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i09:r2",
+            "text": "need"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i09:r3",
+            "text": "needs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ an exercise book yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-26:i09:r1",
+              "text": "needed"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i09:r2",
+              "text": "need"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i09:r3",
+              "text": "needs"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма needed.",
+                "uk": "Для минулого потрібна форма needed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна needed.",
+                "uk": "Це не форма минулого. Потрібна needed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:word:pencil-sharpener",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pencil sharpener",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:word:pencil-sharpener:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pencil sharpener",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:word:pencil-sharpener:audio",
+            "transcript": "pencil sharpener"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:word:pencil-sharpener:r1",
+              "targetText": "pencil sharpener",
+              "meaningByLocale": {
+                "ru": "точилка для карандашей.",
+                "uk": "точилка для олівців."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pencil sharpener",
+            "definitionByLocale": {
+              "ru": "точилка для карандашей.",
+              "uk": "точилка для олівців."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я хотів точилку для олівців",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я хотів точилку для олівців",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wanted a pencil sharpener.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я хотел точилку для карандашей",
+            "uk": "Скажіть: Я хотів точилку для олівців"
+          },
+          "orderedTokens": [
+            "I",
+            "wanted",
+            "a",
+            "pencil",
+            "sharpener"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i11:r1",
+            "text": "He wanted a pencil sharpener."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i11:r2",
+            "text": "He wants a pencil sharpener."
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i11:r3",
+            "text": "We wanted a pencil sharpener."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i11:audio",
+            "transcript": "He wanted a pencil sharpener."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-26:i11:r1",
+              "targetText": "He wanted a pencil sharpener.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i11:r2",
+              "targetText": "He wants a pencil sharpener.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i11:r3",
+              "targetText": "We wanted a pencil sharpener.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He wanted a pencil sharpener.",
+                "uk": "У записі звучить He wanted a pencil sharpener."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He wanted a pencil sharpener.",
+                "uk": "У записі звучить He wanted a pencil sharpener."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-26:i12:r1",
+            "text": "wanted"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i12:r2",
+            "text": "want"
+          },
+          {
+            "responseId": "en:lesson-12:session-26:i12:r3",
+            "text": "wants"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ a pencil sharpener yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-26:i12:r1",
+              "text": "wanted"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i12:r2",
+              "text": "want"
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i12:r3",
+              "text": "wants"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма wanted.",
+                "uk": "Для минулого потрібна форма wanted."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна wanted.",
+                "uk": "Це не форма минулого. Потрібна wanted."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-26:i13:p1",
+              "target": "pencil case",
+              "meaningByLocale": {
+                "ru": "пенал",
+                "uk": "пенал"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-26:i13:p2",
+              "target": "schoolbag",
+              "meaningByLocale": {
+                "ru": "школьный портфель или рюкзак",
+                "uk": "шкільний портфель або рюкзак"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-26:i13:p3",
+              "target": "exercise book",
+              "meaningByLocale": {
+                "ru": "школьная тетрадь",
+                "uk": "шкільний зошит"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-26:i13:p4",
+              "target": "pencil sharpener",
+              "meaningByLocale": {
+                "ru": "точилка для карандашей",
+                "uk": "точилка для олівців"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pencil case",
+            "schoolbag",
+            "exercise book",
+            "pencil sharpener"
+          ],
+          "rightColumn": [
+            "пенал",
+            "шкільний портфель або рюкзак",
+            "шкільний зошит",
+            "точилка для олівців"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i14:audio",
+            "transcript": "I finished my homework yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I finished my homework yesterday.",
+          "orderedTokens": [
+            "I",
+            "finished",
+            "my",
+            "homework",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i15:audio",
+            "transcript": "She packed her schoolbag after dinner."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She packed her schoolbag after dinner.",
+          "orderedTokens": [
+            "She",
+            "packed",
+            "her",
+            "schoolbag",
+            "after",
+            "dinner"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора зошит був на столі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора зошит був на столі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i16:audio",
+            "transcript": "The exercise book was on the table yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The exercise book was on the table yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-26:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: мені була потрібна нова точилка; у needed закінчення /ɪd/",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: мені була потрібна нова точилка; у needed закінчення /ɪd/",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-26:i17:audio",
+            "transcript": "I needed a new pencil sharpener."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I needed a new pencil sharpener.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-26:word:pencil-case",
+      "correctText": "pencil case",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i01",
+      "correctText": "I packed my pencil case.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i02",
+      "correctText": "She packed her pencil case.",
+      "correctResponseId": "en:lesson-12:session-26:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i03",
+      "correctText": "packed",
+      "correctResponseId": "en:lesson-12:session-26:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:word:schoolbag",
+      "correctText": "schoolbag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i04",
+      "correctText": "I cleaned my schoolbag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i05",
+      "correctText": "We cleaned our schoolbag.",
+      "correctResponseId": "en:lesson-12:session-26:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i06",
+      "correctText": "cleaned",
+      "correctResponseId": "en:lesson-12:session-26:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:word:exercise-book",
+      "correctText": "exercise book",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i07",
+      "correctText": "I needed an exercise book.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i08",
+      "correctText": "She needed an exercise book.",
+      "correctResponseId": "en:lesson-12:session-26:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i09",
+      "correctText": "needed",
+      "correctResponseId": "en:lesson-12:session-26:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:word:pencil-sharpener",
+      "correctText": "pencil sharpener",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i10",
+      "correctText": "I wanted a pencil sharpener.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i11",
+      "correctText": "He wanted a pencil sharpener.",
+      "correctResponseId": "en:lesson-12:session-26:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i12",
+      "correctText": "wanted",
+      "correctResponseId": "en:lesson-12:session-26:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i14",
+      "correctText": "I finished my homework yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i15",
+      "correctText": "She packed her schoolbag after dinner.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i16",
+      "correctText": "The exercise book was on the table yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-26:i17",
+      "correctText": "I needed a new pencil sharpener.",
+      "correctResponseId": null
+    }
+  ]
+}

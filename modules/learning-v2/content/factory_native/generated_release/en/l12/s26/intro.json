@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "-ed pronunciation review: packed /t/, cleaned /d/, needed /ɪd/; finished /t/",
+    "uk": "-ed pronunciation review: packed /t/, cleaned /d/, needed /ɪd/; finished /t/"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пенал и портфель",
+        "uk": "Пенал і портфель"
+      },
+      "bodyByLocale": {
+        "ru": "Pencil case — «пенал», schoolbag — «школьный портфель или рюкзак». I packed my pencil case — я собрал пенал. В packed окончание /t/, без отдельного слога. Как в finished: I finished my homework. Выберите сообщение о пенале.",
+        "uk": "Pencil case — «пенал», schoolbag — «шкільний портфель або рюкзак». I packed my pencil case — я зібрав пенал. У packed закінчення /t/, без окремого складу. Як у finished: I finished my homework. Виберіть повідомлення про пенал."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-26:intro1:r1",
+              "text": "I packed my pencil case."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro1:r2",
+              "text": "I cleaned my schoolbag."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro1:r3",
+              "text": "I pack my pencil case yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-26:intro1:r1",
+              "text": "I packed my pencil case."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro1:r2",
+              "text": "I cleaned my schoolbag."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro1:r3",
+              "text": "I pack my pencil case yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тетрадь",
+        "uk": "Зошит"
+      },
+      "bodyByLocale": {
+        "ru": "Exercise book — «школьная тетрадь». I needed an exercise book — мне нужна была тетрадь. В needed окончание /ɪd/ даёт второй слог, потому что need заканчивается звуком /d/. Выберите сообщение о прошлом.",
+        "uk": "Exercise book — «шкільний зошит». I needed an exercise book — мені був потрібен зошит. У needed закінчення /ɪd/ дає другий склад, бо need закінчується звуком /d/. Виберіть повідомлення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-26:intro2:r1",
+              "text": "I needed an exercise book."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro2:r2",
+              "text": "I need an exercise book yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro2:r3",
+              "text": "I needs an exercise book yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-26:intro2:r1",
+              "text": "I needed an exercise book."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro2:r2",
+              "text": "I need an exercise book yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro2:r3",
+              "text": "I needs an exercise book yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Точилка",
+        "uk": "Точилка"
+      },
+      "bodyByLocale": {
+        "ru": "Pencil sharpener — «точилка для карандашей». She wanted a pencil sharpener — она хотела точилку. В wanted окончание /ɪd/, как в needed. Выберите эту фразу.",
+        "uk": "Pencil sharpener — «точилка для олівців». She wanted a pencil sharpener — вона хотіла точилку. У wanted закінчення /ɪd/, як у needed. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-26:intro3:r1",
+              "text": "She wanted a pencil sharpener."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro3:r2",
+              "text": "She want a pencil sharpener yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro3:r3",
+              "text": "She wants a pencil sharpener yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-26:intro3:r1",
+              "text": "She wanted a pencil sharpener."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro3:r2",
+              "text": "She want a pencil sharpener yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-26:intro3:r3",
+              "text": "She wants a pencil sharpener yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "030377a6cb6021f69befd06c3699afe75e6ecb6b8154510e27f67a0421b16cbf"
+}

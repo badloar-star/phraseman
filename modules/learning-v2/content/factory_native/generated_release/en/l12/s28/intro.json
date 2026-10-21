@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "changed /d/, used /d/, wanted /ɪd/, needed /ɪd/",
+    "uk": "changed /d/, used /d/, wanted /ɪd/, needed /ɪd/"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ложка для обуви",
+        "uk": "Ложка для взуття"
+      },
+      "bodyByLocale": {
+        "ru": "Shoehorn — «ложка для обуви». I used a shoehorn — я воспользовался ложкой для обуви. В used, когда это прошлое от use «пользоваться», окончание /d/. Выберите вчерашнее действие.",
+        "uk": "Shoehorn — «ложка для взуття». I used a shoehorn — я скористався ложкою для взуття. У used, коли це минуле від use «користуватися», закінчення /d/. Виберіть учорашню дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-28:intro1:r1",
+              "text": "I used a shoehorn yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro1:r2",
+              "text": "I use a shoehorn yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro1:r3",
+              "text": "I uses a shoehorn yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-28:intro1:r1",
+              "text": "I used a shoehorn yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro1:r2",
+              "text": "I use a shoehorn yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro1:r3",
+              "text": "I uses a shoehorn yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Крем и щётка",
+        "uk": "Крем і щітка"
+      },
+      "bodyByLocale": {
+        "ru": "Shoe polish — «крем для обуви», clothes brush — «щётка для одежды». We changed the clothes brush — мы заменили щётку для одежды. Change → changed: окончание /d/, без отдельного слога. Выберите сообщение о замене щётки.",
+        "uk": "Shoe polish — «крем для взуття», clothes brush — «щітка для одягу». We changed the clothes brush — ми замінили щітку для одягу. Change → changed: закінчення /d/, без окремого складу. Виберіть повідомлення про заміну щітки."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-28:intro2:r1",
+              "text": "We changed the clothes brush."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro2:r2",
+              "text": "We used shoe polish."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro2:r3",
+              "text": "We change the clothes brush yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-28:intro2:r1",
+              "text": "We changed the clothes brush."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro2:r2",
+              "text": "We used shoe polish."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro2:r3",
+              "text": "We change the clothes brush yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ролик для одежды",
+        "uk": "Ролик для одягу"
+      },
+      "bodyByLocale": {
+        "ru": "Lint roller — «липкий ролик для чистки одежды». I needed a lint roller — мне нужен был ролик. В needed окончание /ɪd/, как в wanted. Выберите сообщение о прошлой потребности.",
+        "uk": "Lint roller — «липкий ролик для чищення одягу». I needed a lint roller — мені був потрібен ролик. У needed закінчення /ɪd/, як у wanted. Виберіть повідомлення про минулу потребу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-28:intro3:r1",
+              "text": "I needed a lint roller."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro3:r2",
+              "text": "I need a lint roller yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro3:r3",
+              "text": "I needs a lint roller yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-28:intro3:r1",
+              "text": "I needed a lint roller."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro3:r2",
+              "text": "I need a lint roller yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-28:intro3:r3",
+              "text": "I needs a lint roller yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f95f3703e456a8b0f2ae25c9a08fb20c946bd6ba1e45d1a7f57c1090f1c4a88f"
+}

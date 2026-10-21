@@ -3579,9 +3579,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 7,
-    sourceFingerprint: "6065a4ec138492e3be14a4b943272b8868e990face5d8befc838c2df22943594",
+    sourceFingerprint: "6464568f826c819a71d423cb5d9b984c7656c05f9e997956fc03e9dea1dfc9fb",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I carve wooden spoons; I am carving a figurine","uk":"I carve wooden spoons; I am carving a figurine"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I prefer tea; How much does it cost?; What does this word mean?; This bag belongs to me","uk":"I prefer tea; How much does it cost?; What does this word mean?; This bag belongs to me"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

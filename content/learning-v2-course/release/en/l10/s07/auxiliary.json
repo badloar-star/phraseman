@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-07:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-07:intro1:r2": {
-          "ru": "Правильно carving, без e.",
-          "uk": "Правильно carving, без e."
+          "ru": "Здесь prefer без am.",
+          "uk": "Тут prefer без am."
         },
         "en:lesson-10:session-07:intro1:r3": {
-          "ru": "С I перед carving нужно am.",
-          "uk": "З I перед carving потрібне am."
+          "ru": "С I нужна prefer без s.",
+          "uk": "З I потрібна prefer без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-07:intro2:r2": {
-          "ru": "Порядок слов: I am not using.",
-          "uk": "Порядок слів: I am not using."
+          "ru": "После does нужна cost без s.",
+          "uk": "Після does потрібна cost без s."
         },
         "en:lesson-10:session-07:intro2:r3": {
-          "ru": "После am not нужна using.",
-          "uk": "Після am not потрібна using."
+          "ru": "С it нужен does.",
+          "uk": "З it потрібне does."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-07:intro3:r2": {
-          "ru": "После am нужна looking.",
-          "uk": "Після am потрібна looking."
+          "ru": "С this bag нужна belongs.",
+          "uk": "З this bag потрібна belongs."
         },
         "en:lesson-10:session-07:intro3:r3": {
-          "ru": "С I перед looking нужно am.",
-          "uk": "З I перед looking потрібне am."
+          "ru": "Нужна belongs без is.",
+          "uk": "Потрібна belongs без is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e9a94c9d1d5598c72fa9362ff54685010ae12f29df9fbeaa875d6286b290a125"
+  "auxiliaryFingerprint": "d5286ec29c423076cd4d76886307e7c5977f8d7e4d0e5187ed88fd5f8c8af2b0"
 }

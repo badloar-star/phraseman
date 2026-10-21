@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-07:word:figurine",
-    "correctText": "figurine",
+    "interactionId": "en:lesson-10:session-07:word:prefer",
+    "correctText": "prefer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i01",
-    "correctText": "I am carving a figurine.",
+    "correctText": "I prefer tea.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i02",
-    "correctText": "I carve wooden spoons.",
+    "correctText": "We prefer tea.",
     "correctResponseId": "en:lesson-10:session-07:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-07:i03",
-    "correctText": "carve",
+    "correctText": "prefer",
     "correctResponseId": "en:lesson-10:session-07:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-07:word:mallet",
-    "correctText": "mallet",
+    "interactionId": "en:lesson-10:session-07:word:cost",
+    "correctText": "cost",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i04",
-    "correctText": "The mallet is on the bench.",
+    "correctText": "How much does it cost?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i05",
-    "correctText": "I am using the mallet.",
+    "correctText": "How much does it cost?",
     "correctResponseId": "en:lesson-10:session-07:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-07:i06",
-    "correctText": "using",
+    "correctText": "cost",
     "correctResponseId": "en:lesson-10:session-07:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-07:word:sawdust",
-    "correctText": "sawdust",
+    "interactionId": "en:lesson-10:session-07:word:mean",
+    "correctText": "mean",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i07",
-    "correctText": "The sawdust is on the floor.",
+    "correctText": "What does this word mean?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i08",
-    "correctText": "I am sweeping up the sawdust.",
+    "correctText": "What does this word mean?",
     "correctResponseId": "en:lesson-10:session-07:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-07:i09",
-    "correctText": "is",
+    "correctText": "mean",
     "correctResponseId": "en:lesson-10:session-07:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-07:word:wood-grain",
-    "correctText": "wood grain",
+    "interactionId": "en:lesson-10:session-07:word:belong",
+    "correctText": "belong",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i10",
-    "correctText": "I am looking at the wood grain.",
+    "correctText": "These bags belong to me.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i11",
-    "correctText": "The wood grain is clear.",
+    "correctText": "This bag belongs to me.",
     "correctResponseId": "en:lesson-10:session-07:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-07:i12",
-    "correctText": "carving",
+    "correctText": "belongs",
     "correctResponseId": "en:lesson-10:session-07:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-07:i13",
-    "correctText": "en:lesson-10:session-07:i13:p1=figurine\nen:lesson-10:session-07:i13:p2=mallet\nen:lesson-10:session-07:i13:p3=sawdust\nen:lesson-10:session-07:i13:p4=wood grain",
+    "correctText": "en:lesson-10:session-07:i13:p1=prefer\nen:lesson-10:session-07:i13:p2=cost\nen:lesson-10:session-07:i13:p3=mean\nen:lesson-10:session-07:i13:p4=belong",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i14",
-    "correctText": "Are you carving a figurine?",
+    "correctText": "How much does it cost?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i15",
-    "correctText": "I carve wooden spoons.",
+    "correctText": "What does this word mean?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i16",
-    "correctText": "I am not using the mallet.",
+    "correctText": "I prefer tea.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-07:i17",
-    "correctText": "I am carving a figurine.",
+    "correctText": "This bag belongs to me.",
     "correctResponseId": null
   }
 ]

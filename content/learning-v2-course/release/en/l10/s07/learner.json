@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-07:word:figurine",
+      "interactionId": "en:lesson-10:session-07:word:prefer",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — figurine",
+      "prompt": "Карточка слова — prefer",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-07:word:figurine:audio"
+        "en:lesson-10:session-07:word:prefer:audio"
       ],
-      "accessibilityLabel": "Карточка слова — figurine",
+      "accessibilityLabel": "Карточка слова — prefer",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-07:word:figurine:audio",
-          "transcript": "figurine"
+          "audioTargetId": "en:lesson-10:session-07:word:prefer:audio",
+          "transcript": "prefer"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-07:word:figurine:r1",
-            "targetText": "figurine",
+            "responseId": "en:lesson-10:session-07:word:prefer:r1",
+            "targetText": "prefer",
             "meaningByLocale": {
-              "ru": "«статуэтка». I am carving a figurine. — «Я вырезаю статуэтку». Небольшая фигурка человека или животного.",
-              "uk": "«статуетка». I am carving a figurine. — «Я вирізьблюю статуетку». Невелика фігурка людини чи тварини."
+              "ru": "«предпочитать». I prefer tea. — «Я предпочитаю чай».",
+              "uk": "«віддавати перевагу». I prefer tea. — «Я віддаю перевагу чаю»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "figurine",
+          "word": "prefer",
           "definitionByLocale": {
-            "ru": "«статуэтка». I am carving a figurine. — «Я вырезаю статуэтку». Небольшая фигурка человека или животного.",
-            "uk": "«статуетка». I am carving a figurine. — «Я вирізьблюю статуетку». Невелика фігурка людини чи тварини."
+            "ru": "«предпочитать». I prefer tea. — «Я предпочитаю чай».",
+            "uk": "«віддавати перевагу». I prefer tea. — «Я віддаю перевагу чаю»."
           }
         }
       },
@@ -52,24 +52,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Посетитель спрашивает, что вы вырезаете сегодня. Скажите: «Я вырезаю статуэтку»",
+      "prompt": "Вам предлагают кофе или чай. Скажите, что предпочитаете чай",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Посетитель спрашивает, что вы вырезаете сегодня. Скажите: «Я вырезаю статуэтку»",
+      "accessibilityLabel": "Вам предлагают кофе или чай. Скажите, что предпочитаете чай",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am carving a figurine.",
+        "targetPhrase": "I prefer tea.",
         "localizedMeaning": {
-          "ru": "Посетитель спрашивает, что вы вырезаете сегодня. Скажите: «Я вырезаю статуэтку»",
-          "uk": "Відвідувач запитує, що ви вирізьблюєте сьогодні. Скажіть: «Я вирізьблюю статуетку»"
+          "ru": "Вам предлагают кофе или чай. Скажите, что предпочитаете чай",
+          "uk": "Вам пропонують каву або чай. Скажіть, що віддаєте перевагу чаю"
         },
         "orderedTokens": [
           "I",
-          "am",
-          "carving",
-          "a",
-          "figurine"
+          "prefer",
+          "tea"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +88,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-07:i02:r1",
-          "text": "I carve wooden spoons."
+          "text": "We prefer tea."
         },
         {
           "responseId": "en:lesson-10:session-07:i02:r2",
-          "text": "I carve wooden bowls."
+          "text": "I prefer tea."
         },
         {
           "responseId": "en:lesson-10:session-07:i02:r3",
-          "text": "She carves wooden spoons."
+          "text": "We prefer coffee."
         }
       ],
       "mediaIds": [],
@@ -110,23 +108,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-07:i02:audio",
-          "transcript": "I carve wooden spoons."
+          "transcript": "We prefer tea."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-07:i02:r1",
-            "targetText": "I carve wooden spoons.",
+            "targetText": "We prefer tea.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-07:i02:r2",
-            "targetText": "I carve wooden bowls.",
+            "targetText": "I prefer tea.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-07:i02:r3",
-            "targetText": "She carves wooden spoons.",
+            "targetText": "We prefer coffee.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I carve wooden spoons.",
-              "uk": "У записі звучить I carve wooden spoons."
+              "ru": "В записи звучит We prefer tea.",
+              "uk": "У записі звучить We prefer tea."
             }
           },
           {
@@ -146,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I carve wooden spoons.",
-              "uk": "У записі звучить I carve wooden spoons."
+              "ru": "В записи звучит We prefer tea.",
+              "uk": "У записі звучить We prefer tea."
             }
           }
         ],
@@ -162,63 +160,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму carve для обычной работы с I",
+      "prompt": "Выберите форму prefer с I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-07:i03:r1",
-          "text": "carve"
+          "text": "prefer"
         },
         {
           "responseId": "en:lesson-10:session-07:i03:r2",
-          "text": "carves"
+          "text": "prefers"
         },
         {
           "responseId": "en:lesson-10:session-07:i03:r3",
-          "text": "carving"
+          "text": "preferring"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму carve для обычной работы с I",
+      "accessibilityLabel": "Выберите форму prefer с I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму carve для обычной работы с I",
-          "uk": "Виберіть форму carve для звичної роботи з I"
+          "ru": "Выберите форму prefer с I",
+          "uk": "Виберіть форму prefer з I"
         },
-        "gappedTargetPhrase": "I ___ wooden spoons.",
+        "gappedTargetPhrase": "I ___ tea.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-07:i03:r1",
-            "text": "carve"
+            "text": "prefer"
           },
           {
             "responseId": "en:lesson-10:session-07:i03:r2",
-            "text": "carves"
+            "text": "prefers"
           },
           {
             "responseId": "en:lesson-10:session-07:i03:r3",
-            "text": "carving"
+            "text": "preferring"
           }
         ],
-        "testedDimension": "Выберите форму carve для обычной работы с I",
+        "testedDimension": "Выберите форму prefer с I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-07:i03:r2",
             "correct": false,
-            "testedDimension": "Выберите форму carve для обычной работы с I",
+            "testedDimension": "Выберите форму prefer с I",
             "feedbackByLocale": {
-              "ru": "С I в Present Simple не добавляем -s.",
-              "uk": "З I у Present Simple не додаємо -s."
+              "ru": "С I нужна prefer без s.",
+              "uk": "З I потрібна prefer без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-07:i03:r3",
             "correct": false,
-            "testedDimension": "Выберите форму carve для обычной работы с I",
+            "testedDimension": "Выберите форму prefer с I",
             "feedbackByLocale": {
-              "ru": "Для привычной работы здесь нужна carve.",
-              "uk": "Для звичної роботи тут потрібна carve."
+              "ru": "Здесь нужна prefer.",
+              "uk": "Тут потрібна prefer."
             }
           }
         ]
@@ -226,32 +224,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-07:word:mallet",
+      "interactionId": "en:lesson-10:session-07:word:cost",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — mallet",
+      "prompt": "Карточка слова — cost",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-07:word:mallet:audio"
+        "en:lesson-10:session-07:word:cost:audio"
       ],
-      "accessibilityLabel": "Карточка слова — mallet",
+      "accessibilityLabel": "Карточка слова — cost",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-07:word:mallet:audio",
-          "transcript": "mallet"
+          "audioTargetId": "en:lesson-10:session-07:word:cost:audio",
+          "transcript": "cost"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-07:word:mallet:r1",
-            "targetText": "mallet",
+            "responseId": "en:lesson-10:session-07:word:cost:r1",
+            "targetText": "cost",
             "meaningByLocale": {
-              "ru": "«киянка». The mallet is on the bench. — «Киянка на верстаке». Здесь молоток с деревянной головкой.",
-              "uk": "«киянка». The mallet is on the bench. — «Киянка на робочому столі». Тут молоток із дерев’яною головкою."
+              "ru": "«стоить». How much does it cost? — «Сколько это стоит?»",
+              "uk": "«коштувати». How much does it cost? — «Скільки це коштує?»"
             }
           }
         ],
@@ -259,10 +257,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "mallet",
+          "word": "cost",
           "definitionByLocale": {
-            "ru": "«киянка». The mallet is on the bench. — «Киянка на верстаке». Здесь молоток с деревянной головкой.",
-            "uk": "«киянка». The mallet is on the bench. — «Киянка на робочому столі». Тут молоток із дерев’яною головкою."
+            "ru": "«стоить». How much does it cost? — «Сколько это стоит?»",
+            "uk": "«коштувати». How much does it cost? — «Скільки це коштує?»"
           }
         }
       },
@@ -274,25 +272,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега ищет киянку. Скажите: «Киянка на верстаке»",
+      "prompt": "На вещи нет ценника. Спросите, сколько она стоит",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега ищет киянку. Скажите: «Киянка на верстаке»",
+      "accessibilityLabel": "На вещи нет ценника. Спросите, сколько она стоит",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The mallet is on the bench.",
+        "targetPhrase": "How much does it cost?",
         "localizedMeaning": {
-          "ru": "Коллега ищет киянку. Скажите: «Киянка на верстаке»",
-          "uk": "Колега шукає киянку. Скажіть: «Киянка на робочому столі»"
+          "ru": "На вещи нет ценника. Спросите, сколько она стоит",
+          "uk": "На речі немає цінника. Запитайте, скільки вона коштує"
         },
         "orderedTokens": [
-          "The",
-          "mallet",
-          "is",
-          "on",
-          "the",
-          "bench"
+          "How",
+          "much",
+          "does",
+          "it",
+          "cost"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -313,15 +310,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-07:i05:r1",
-          "text": "I am using the mallet."
+          "text": "How much does it cost?"
         },
         {
           "responseId": "en:lesson-10:session-07:i05:r2",
-          "text": "I am not using the mallet."
+          "text": "How much do they cost?"
         },
         {
           "responseId": "en:lesson-10:session-07:i05:r3",
-          "text": "She is using the mallet."
+          "text": "How much does this cost?"
         }
       ],
       "mediaIds": [],
@@ -333,23 +330,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-07:i05:audio",
-          "transcript": "I am using the mallet."
+          "transcript": "How much does it cost?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-07:i05:r1",
-            "targetText": "I am using the mallet.",
+            "targetText": "How much does it cost?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-07:i05:r2",
-            "targetText": "I am not using the mallet.",
+            "targetText": "How much do they cost?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-07:i05:r3",
-            "targetText": "She is using the mallet.",
+            "targetText": "How much does this cost?",
             "meaningByLocale": null
           }
         ],
@@ -360,8 +357,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am using the mallet.",
-              "uk": "У записі звучить I am using the mallet."
+              "ru": "В записи звучит How much does it cost?",
+              "uk": "У записі звучить How much does it cost?"
             }
           },
           {
@@ -369,8 +366,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am using the mallet.",
-              "uk": "У записі звучить I am using the mallet."
+              "ru": "В записи звучит How much does it cost?",
+              "uk": "У записі звучить How much does it cost?"
             }
           }
         ],
@@ -385,63 +382,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму use после am",
+      "prompt": "Выберите форму cost после does",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-07:i06:r1",
-          "text": "using"
+          "text": "cost"
         },
         {
           "responseId": "en:lesson-10:session-07:i06:r2",
-          "text": "useing"
+          "text": "costs"
         },
         {
           "responseId": "en:lesson-10:session-07:i06:r3",
-          "text": "use"
+          "text": "costing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму use после am",
+      "accessibilityLabel": "Выберите форму cost после does",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму use после am",
-          "uk": "Виберіть форму use після am"
+          "ru": "Выберите форму cost после does",
+          "uk": "Виберіть форму cost після does"
         },
-        "gappedTargetPhrase": "I am ___ the mallet.",
+        "gappedTargetPhrase": "How much does it ___?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-07:i06:r1",
-            "text": "using"
+            "text": "cost"
           },
           {
             "responseId": "en:lesson-10:session-07:i06:r2",
-            "text": "useing"
+            "text": "costs"
           },
           {
             "responseId": "en:lesson-10:session-07:i06:r3",
-            "text": "use"
+            "text": "costing"
           }
         ],
-        "testedDimension": "Выберите форму use после am",
+        "testedDimension": "Выберите форму cost после does",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-07:i06:r2",
             "correct": false,
-            "testedDimension": "Выберите форму use после am",
+            "testedDimension": "Выберите форму cost после does",
             "feedbackByLocale": {
-              "ru": "Конечная e исчезает: using.",
-              "uk": "Кінцева e зникає: using."
+              "ru": "После does нужна cost без s.",
+              "uk": "Після does потрібна cost без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-07:i06:r3",
             "correct": false,
-            "testedDimension": "Выберите форму use после am",
+            "testedDimension": "Выберите форму cost после does",
             "feedbackByLocale": {
-              "ru": "После am нужна using.",
-              "uk": "Після am потрібна using."
+              "ru": "После does нужна cost.",
+              "uk": "Після does потрібна cost."
             }
           }
         ]
@@ -449,32 +446,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-07:word:sawdust",
+      "interactionId": "en:lesson-10:session-07:word:mean",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — sawdust",
+      "prompt": "Карточка слова — mean",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-07:word:sawdust:audio"
+        "en:lesson-10:session-07:word:mean:audio"
       ],
-      "accessibilityLabel": "Карточка слова — sawdust",
+      "accessibilityLabel": "Карточка слова — mean",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-07:word:sawdust:audio",
-          "transcript": "sawdust"
+          "audioTargetId": "en:lesson-10:session-07:word:mean:audio",
+          "transcript": "mean"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-07:word:sawdust:r1",
-            "targetText": "sawdust",
+            "responseId": "en:lesson-10:session-07:word:mean:r1",
+            "targetText": "mean",
             "meaningByLocale": {
-              "ru": "«опилки». The sawdust is on the floor. — «Опилки на полу». Мелкие частицы древесины, остающиеся после пиления; неисчисляемое слово.",
-              "uk": "«тирса». The sawdust is on the floor. — «Тирса на підлозі». Дрібні частинки деревини, що залишаються після пиляння; незлічуване слово."
+              "ru": "«означать». What does this word mean? — «Что означает это слово?»",
+              "uk": "«означати». What does this word mean? — «Що означає це слово?»"
             }
           }
         ],
@@ -482,10 +479,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "sawdust",
+          "word": "mean",
           "definitionByLocale": {
-            "ru": "«опилки». The sawdust is on the floor. — «Опилки на полу». Мелкие частицы древесины, остающиеся после пиления; неисчисляемое слово.",
-            "uk": "«тирса». The sawdust is on the floor. — «Тирса на підлозі». Дрібні частинки деревини, що залишаються після пиляння; незлічуване слово."
+            "ru": "«означать». What does this word mean? — «Что означает это слово?»",
+            "uk": "«означати». What does this word mean? — «Що означає це слово?»"
           }
         }
       },
@@ -497,25 +494,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "После распиливания досок коллега спрашивает, где нужно убрать. Скажите: «Опилки на полу»",
+      "prompt": "Покажите на непонятное слово и спросите, что оно означает",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "После распиливания досок коллега спрашивает, где нужно убрать. Скажите: «Опилки на полу»",
+      "accessibilityLabel": "Покажите на непонятное слово и спросите, что оно означает",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The sawdust is on the floor.",
+        "targetPhrase": "What does this word mean?",
         "localizedMeaning": {
-          "ru": "После распиливания досок коллега спрашивает, где нужно убрать. Скажите: «Опилки на полу»",
-          "uk": "Після розпилювання дощок колега запитує, де треба прибрати. Скажіть: «Тирса на підлозі»"
+          "ru": "Покажите на непонятное слово и спросите, что оно означает",
+          "uk": "Покажіть на незрозуміле слово й запитайте, що воно означає"
         },
         "orderedTokens": [
-          "The",
-          "sawdust",
-          "is",
-          "on",
-          "the",
-          "floor"
+          "What",
+          "does",
+          "this",
+          "word",
+          "mean"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -536,15 +532,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-07:i08:r1",
-          "text": "I am sweeping up the sawdust."
+          "text": "What does this word mean?"
         },
         {
           "responseId": "en:lesson-10:session-07:i08:r2",
-          "text": "I am looking at the sawdust."
+          "text": "What does that word mean?"
         },
         {
           "responseId": "en:lesson-10:session-07:i08:r3",
-          "text": "She is sweeping up the sawdust."
+          "text": "What do these words mean?"
         }
       ],
       "mediaIds": [],
@@ -556,23 +552,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-07:i08:audio",
-          "transcript": "I am sweeping up the sawdust."
+          "transcript": "What does this word mean?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-07:i08:r1",
-            "targetText": "I am sweeping up the sawdust.",
+            "targetText": "What does this word mean?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-07:i08:r2",
-            "targetText": "I am looking at the sawdust.",
+            "targetText": "What does that word mean?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-07:i08:r3",
-            "targetText": "She is sweeping up the sawdust.",
+            "targetText": "What do these words mean?",
             "meaningByLocale": null
           }
         ],
@@ -583,8 +579,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am sweeping up the sawdust.",
-              "uk": "У записі звучить I am sweeping up the sawdust."
+              "ru": "В записи звучит What does this word mean?",
+              "uk": "У записі звучить What does this word mean?"
             }
           },
           {
@@ -592,8 +588,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am sweeping up the sawdust.",
-              "uk": "У записі звучить I am sweeping up the sawdust."
+              "ru": "В записи звучит What does this word mean?",
+              "uk": "У записі звучить What does this word mean?"
             }
           }
         ],
@@ -608,63 +604,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для неисчисляемого sawdust",
+      "prompt": "Выберите форму mean после does",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-07:i09:r1",
-          "text": "is"
+          "text": "mean"
         },
         {
           "responseId": "en:lesson-10:session-07:i09:r2",
-          "text": "are"
+          "text": "means"
         },
         {
           "responseId": "en:lesson-10:session-07:i09:r3",
-          "text": "am"
+          "text": "meaning"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для неисчисляемого sawdust",
+      "accessibilityLabel": "Выберите форму mean после does",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для неисчисляемого sawdust",
-          "uk": "Виберіть зв’язку для незлічуваного sawdust"
+          "ru": "Выберите форму mean после does",
+          "uk": "Виберіть форму mean після does"
         },
-        "gappedTargetPhrase": "The sawdust ___ on the floor.",
+        "gappedTargetPhrase": "What does this word ___?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-07:i09:r1",
-            "text": "is"
+            "text": "mean"
           },
           {
             "responseId": "en:lesson-10:session-07:i09:r2",
-            "text": "are"
+            "text": "means"
           },
           {
             "responseId": "en:lesson-10:session-07:i09:r3",
-            "text": "am"
+            "text": "meaning"
           }
         ],
-        "testedDimension": "Выберите связку для неисчисляемого sawdust",
+        "testedDimension": "Выберите форму mean после does",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-07:i09:r2",
             "correct": false,
-            "testedDimension": "Выберите связку для неисчисляемого sawdust",
+            "testedDimension": "Выберите форму mean после does",
             "feedbackByLocale": {
-              "ru": "Sawdust неисчисляемое: is.",
-              "uk": "Sawdust незлічуване: is."
+              "ru": "После does нужна mean без s.",
+              "uk": "Після does потрібна mean без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-07:i09:r3",
             "correct": false,
-            "testedDimension": "Выберите связку для неисчисляемого sawdust",
+            "testedDimension": "Выберите форму mean после does",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "После does нужна mean.",
+              "uk": "Після does потрібна mean."
             }
           }
         ]
@@ -672,32 +668,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-07:word:wood-grain",
+      "interactionId": "en:lesson-10:session-07:word:belong",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — wood grain",
+      "prompt": "Карточка слова — belong",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-07:word:wood-grain:audio"
+        "en:lesson-10:session-07:word:belong:audio"
       ],
-      "accessibilityLabel": "Карточка слова — wood grain",
+      "accessibilityLabel": "Карточка слова — belong",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-07:word:wood-grain:audio",
-          "transcript": "wood grain"
+          "audioTargetId": "en:lesson-10:session-07:word:belong:audio",
+          "transcript": "belong"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-07:word:wood-grain:r1",
-            "targetText": "wood grain",
+            "responseId": "en:lesson-10:session-07:word:belong:r1",
+            "targetText": "belong",
             "meaningByLocale": {
-              "ru": "«рисунок волокон древесины». I am looking at the wood grain. — «Я рассматриваю рисунок волокон древесины». Здесь видимые линии в древесине.",
-              "uk": "«малюнок волокон деревини». I am looking at the wood grain. — «Я розглядаю малюнок волокон деревини». Тут видимі лінії в деревині."
+              "ru": "«принадлежать». belong to me — «принадлежать мне».",
+              "uk": "«належати». belong to me — «належати мені»."
             }
           }
         ],
@@ -705,10 +701,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "wood grain",
+          "word": "belong",
           "definitionByLocale": {
-            "ru": "«рисунок волокон древесины». I am looking at the wood grain. — «Я рассматриваю рисунок волокон древесины». Здесь видимые линии в древесине.",
-            "uk": "«малюнок волокон деревини». I am looking at the wood grain. — «Я розглядаю малюнок волокон деревини». Тут видимі лінії в деревині."
+            "ru": "«принадлежать». belong to me — «принадлежать мне».",
+            "uk": "«належати». belong to me — «належати мені»."
           }
         }
       },
@@ -720,26 +716,24 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает, что вы рассматриваете на доске. Скажите: «Я рассматриваю рисунок волокон древесины»",
+      "prompt": "Хозяин спрашивает, чьи сумки. Скажите: «Эти сумки принадлежат мне»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает, что вы рассматриваете на доске. Скажите: «Я рассматриваю рисунок волокон древесины»",
+      "accessibilityLabel": "Хозяин спрашивает, чьи сумки. Скажите: «Эти сумки принадлежат мне»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am looking at the wood grain.",
+        "targetPhrase": "These bags belong to me.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, что вы рассматриваете на доске. Скажите: «Я рассматриваю рисунок волокон древесины»",
-          "uk": "Колега запитує, що ви розглядаєте на дошці. Скажіть: «Я розглядаю малюнок волокон деревини»"
+          "ru": "Хозяин спрашивает, чьи сумки. Скажите: «Эти сумки принадлежат мне»",
+          "uk": "Господар запитує, чиї сумки. Скажіть: «Ці сумки належать мені»"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "looking",
-          "at",
-          "the",
-          "wood",
-          "grain"
+          "These",
+          "bags",
+          "belong",
+          "to",
+          "me"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -760,15 +754,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-07:i11:r1",
-          "text": "The wood grain is clear."
+          "text": "This bag belongs to me."
         },
         {
           "responseId": "en:lesson-10:session-07:i11:r2",
-          "text": "The wood grain is dark."
+          "text": "This bag belongs to you."
         },
         {
           "responseId": "en:lesson-10:session-07:i11:r3",
-          "text": "The mark is clear."
+          "text": "These bags belong to me."
         }
       ],
       "mediaIds": [],
@@ -780,23 +774,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-07:i11:audio",
-          "transcript": "The wood grain is clear."
+          "transcript": "This bag belongs to me."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-07:i11:r1",
-            "targetText": "The wood grain is clear.",
+            "targetText": "This bag belongs to me.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-07:i11:r2",
-            "targetText": "The wood grain is dark.",
+            "targetText": "This bag belongs to you.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-07:i11:r3",
-            "targetText": "The mark is clear.",
+            "targetText": "These bags belong to me.",
             "meaningByLocale": null
           }
         ],
@@ -807,8 +801,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The wood grain is clear.",
-              "uk": "У записі звучить The wood grain is clear."
+              "ru": "В записи звучит This bag belongs to me.",
+              "uk": "У записі звучить This bag belongs to me."
             }
           },
           {
@@ -816,8 +810,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The wood grain is clear.",
-              "uk": "У записі звучить The wood grain is clear."
+              "ru": "В записи звучит This bag belongs to me.",
+              "uk": "У записі звучить This bag belongs to me."
             }
           }
         ],
@@ -832,63 +826,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите написание carve с -ing",
+      "prompt": "Речь об одной сумке. Выберите форму belong",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-07:i12:r1",
-          "text": "carving"
+          "text": "belongs"
         },
         {
           "responseId": "en:lesson-10:session-07:i12:r2",
-          "text": "carveing"
+          "text": "belong"
         },
         {
           "responseId": "en:lesson-10:session-07:i12:r3",
-          "text": "carve"
+          "text": "belonging"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите написание carve с -ing",
+      "accessibilityLabel": "Речь об одной сумке. Выберите форму belong",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите написание carve с -ing",
-          "uk": "Виберіть написання carve з -ing"
+          "ru": "Речь об одной сумке. Выберите форму belong",
+          "uk": "Йдеться про одну сумку. Виберіть форму belong"
         },
-        "gappedTargetPhrase": "I am ___ a figurine.",
+        "gappedTargetPhrase": "This bag ___ to me.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-07:i12:r1",
-            "text": "carving"
+            "text": "belongs"
           },
           {
             "responseId": "en:lesson-10:session-07:i12:r2",
-            "text": "carveing"
+            "text": "belong"
           },
           {
             "responseId": "en:lesson-10:session-07:i12:r3",
-            "text": "carve"
+            "text": "belonging"
           }
         ],
-        "testedDimension": "Выберите написание carve с -ing",
+        "testedDimension": "Речь об одной сумке. Выберите форму belong",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-07:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите написание carve с -ing",
+            "testedDimension": "Речь об одной сумке. Выберите форму belong",
             "feedbackByLocale": {
-              "ru": "Конечная e исчезает: carving.",
-              "uk": "Кінцева e зникає: carving."
+              "ru": "Одна сумка: belongs с s.",
+              "uk": "Одна сумка: belongs із s."
             }
           },
           {
             "responseId": "en:lesson-10:session-07:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите написание carve с -ing",
+            "testedDimension": "Речь об одной сумке. Выберите форму belong",
             "feedbackByLocale": {
-              "ru": "После am нужна carving.",
-              "uk": "Після am потрібна carving."
+              "ru": "Здесь нужна belongs.",
+              "uk": "Тут потрібна belongs."
             }
           }
         ]
@@ -901,58 +895,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините новые слова со значениями",
+      "prompt": "Соедините слова с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините новые слова со значениями",
+      "accessibilityLabel": "Соедините слова с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-07:i13:p1",
-            "target": "figurine",
+            "target": "prefer",
             "meaningByLocale": {
-              "ru": "статуэтка",
-              "uk": "статуетка"
+              "ru": "предпочитать",
+              "uk": "віддавати перевагу"
             }
           },
           {
             "pairId": "en:lesson-10:session-07:i13:p2",
-            "target": "mallet",
+            "target": "cost",
             "meaningByLocale": {
-              "ru": "киянка",
-              "uk": "киянка"
+              "ru": "стоить",
+              "uk": "коштувати"
             }
           },
           {
             "pairId": "en:lesson-10:session-07:i13:p3",
-            "target": "sawdust",
+            "target": "mean",
             "meaningByLocale": {
-              "ru": "опилки",
-              "uk": "тирса"
+              "ru": "означать",
+              "uk": "означати"
             }
           },
           {
             "pairId": "en:lesson-10:session-07:i13:p4",
-            "target": "wood grain",
+            "target": "belong",
             "meaningByLocale": {
-              "ru": "рисунок волокон древесины",
-              "uk": "малюнок волокон деревини"
+              "ru": "принадлежать",
+              "uk": "належати"
             }
           }
         ],
         "leftColumn": [
-          "figurine",
-          "mallet",
-          "sawdust",
-          "wood grain"
+          "prefer",
+          "cost",
+          "mean",
+          "belong"
         ],
         "rightColumn": [
-          "статуэтка",
-          "киянка",
-          "опилки",
-          "рисунок волокон древесины"
+          "предпочитать",
+          "стоить",
+          "означать",
+          "принадлежать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -974,27 +968,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос о действии сейчас",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-07:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос о действии сейчас",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-07:i14:audio",
-          "transcript": "Are you carving a figurine?"
+          "transcript": "How much does it cost?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Are you carving a figurine?",
+        "hiddenTargetPhrase": "How much does it cost?",
         "orderedTokens": [
-          "Are",
-          "you",
-          "carving",
-          "a",
-          "figurine"
+          "How",
+          "much",
+          "does",
+          "it",
+          "cost"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1008,24 +1002,61 @@
     {
       "interactionId": "en:lesson-10:session-07:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Посетитель спрашивает, что вы обычно делаете в мастерской. Скажите: «Я вырезаю деревянные ложки»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-07:i15:audio"
       ],
-      "accessibilityLabel": "Посетитель спрашивает, что вы обычно делаете в мастерской. Скажите: «Я вырезаю деревянные ложки»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-07:i15:audio",
+          "transcript": "What does this word mean?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "What does this word mean?",
+        "orderedTokens": [
+          "What",
+          "does",
+          "this",
+          "word",
+          "mean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-07:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вам предлагают кофе или чай. Скажите: «Я предпочитаю чай»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Вам предлагают кофе или чай. Скажите: «Я предпочитаю чай»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-07:i15:audio",
-          "transcript": "I carve wooden spoons."
+          "audioTargetId": "en:lesson-10:session-07:i16:audio",
+          "transcript": "I prefer tea."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I carve wooden spoons.",
+        "targetPhrase": "I prefer tea.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1039,72 +1070,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-07:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вы рассматриваете древесину, а киянка лежит в стороне. Скажите коллеге: «Я не пользуюсь киянкой»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вы рассматриваете древесину, а киянка лежит в стороне. Скажите коллеге: «Я не пользуюсь киянкой»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am not using the mallet.",
-        "localizedMeaning": {
-          "ru": "Вы рассматриваете древесину, а киянка лежит в стороне. Скажите коллеге: «Я не пользуюсь киянкой»",
-          "uk": "Ви розглядаєте деревину, а киянка лежить осторонь. Скажіть колезі: «Я не користуюся киянкою»"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "not",
-          "using",
-          "the",
-          "mallet"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-07:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Обычно вы вырезаете ложки, но сегодня работаете над маленькой фигуркой животного. Посетитель спрашивает, что вы делаете. Ответьте: «Я вырезаю статуэтку»",
+      "prompt": "Хозяин спрашивает, чья сумка. Скажите: «Эта сумка принадлежит мне»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-07:i17:audio"
       ],
-      "accessibilityLabel": "Обычно вы вырезаете ложки, но сегодня работаете над маленькой фигуркой животного. Посетитель спрашивает, что вы делаете. Ответьте: «Я вырезаю статуэтку»",
+      "accessibilityLabel": "Хозяин спрашивает, чья сумка. Скажите: «Эта сумка принадлежит мне»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-07:i17:audio",
-          "transcript": "I am carving a figurine."
+          "transcript": "This bag belongs to me."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am carving a figurine.",
+        "targetPhrase": "This bag belongs to me.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1121,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ccbda01dcec221ac5dfe78d2473f1f6510acf68377d7a1b3d3217025e5feda65"
+  "learnerFingerprint": "6eed0f9bc99a7dcce72d7467a28b79dcaf34726306fd1ba8cad944cfaa4b5ce7"
 }

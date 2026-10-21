@@ -1,0 +1,1139 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-27:word:waterfall",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — waterfall",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:word:waterfall:audio"
+      ],
+      "accessibilityLabel": "Картка слова — waterfall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:word:waterfall:audio",
+          "transcript": "waterfall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-27:word:waterfall:r1",
+            "targetText": "waterfall",
+            "meaningByLocale": {
+              "ru": "водопад.",
+              "uk": "водоспад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "waterfall",
+          "definitionByLocale": {
+            "ru": "водопад.",
+            "uk": "водоспад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я дивився на водоспад, коли почався дощ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я дивився на водоспад, коли почався дощ",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was watching a waterfall when it started to rain.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я смотрел на водопад, когда начался дождь",
+          "uk": "Скажіть: Я дивився на водоспад, коли почався дощ"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "watching",
+          "a",
+          "waterfall",
+          "when",
+          "it",
+          "started",
+          "to",
+          "rain"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-27:i02:r1",
+          "text": "You were watching a waterfall when it started to rain."
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i02:r2",
+          "text": "I was watching a waterfall when it started to rain."
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i02:r3",
+          "text": "They were watching a waterfall when it started to rain."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:i02:audio",
+          "transcript": "You were watching a waterfall when it started to rain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-27:i02:r1",
+            "targetText": "You were watching a waterfall when it started to rain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i02:r2",
+            "targetText": "I was watching a waterfall when it started to rain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i02:r3",
+            "targetText": "They were watching a waterfall when it started to rain.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were watching a waterfall when it started to rain.",
+              "uk": "У записі звучить You were watching a waterfall when it started to rain."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were watching a waterfall when it started to rain.",
+              "uk": "У записі звучить You were watching a waterfall when it started to rain."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-27:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ watching a waterfall when it started to rain.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-27:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:word:cliff",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cliff",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:word:cliff:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cliff",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:word:cliff:audio",
+          "transcript": "cliff"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-27:word:cliff:r1",
+            "targetText": "cliff",
+            "meaningByLocale": {
+              "ru": "высокий крутой обрыв или утёс.",
+              "uk": "високий стрімкий обрив або скеля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cliff",
+          "definitionByLocale": {
+            "ru": "высокий крутой обрыв или утёс.",
+            "uk": "високий стрімкий обрив або скеля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони дивилися на стрімку скелю, коли ти зателефонував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони дивилися на стрімку скелю, коли ти зателефонував",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were looking at a cliff when you called.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они смотрели на утёс, когда ты позвонил",
+          "uk": "Скажіть: Вони дивилися на стрімку скелю, коли ти зателефонував"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "looking",
+          "at",
+          "a",
+          "cliff",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-27:i05:r1",
+          "text": "You were looking at a cliff when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i05:r2",
+          "text": "They were looking at a cliff when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i05:r3",
+          "text": "She was looking at a cliff when you called."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:i05:audio",
+          "transcript": "You were looking at a cliff when you called."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-27:i05:r1",
+            "targetText": "You were looking at a cliff when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i05:r2",
+            "targetText": "They were looking at a cliff when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i05:r3",
+            "targetText": "She was looking at a cliff when you called.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-27:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking at a cliff when you called.",
+              "uk": "У записі звучить You were looking at a cliff when you called."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking at a cliff when you called.",
+              "uk": "У записі звучить You were looking at a cliff when you called."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-27:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ looking at a cliff when you called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-27:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:word:cave",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:word:cave:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:word:cave:audio",
+          "transcript": "cave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-27:word:cave:r1",
+            "targetText": "cave",
+            "meaningByLocale": {
+              "ru": "пещера.",
+              "uk": "печера."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cave",
+          "definitionByLocale": {
+            "ru": "пещера.",
+            "uk": "печера."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона дивилася на печеру, коли ти зателефонував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона дивилася на печеру, коли ти зателефонував",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was looking at a cave when you called.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она смотрела на пещеру, когда ты позвонил",
+          "uk": "Скажіть: Вона дивилася на печеру, коли ти зателефонував"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "looking",
+          "at",
+          "a",
+          "cave",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-27:i08:r1",
+          "text": "You were looking at a cave when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i08:r2",
+          "text": "She was looking at a cave when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i08:r3",
+          "text": "They were looking at a cave when you called."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:i08:audio",
+          "transcript": "You were looking at a cave when you called."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-27:i08:r1",
+            "targetText": "You were looking at a cave when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i08:r2",
+            "targetText": "She was looking at a cave when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i08:r3",
+            "targetText": "They were looking at a cave when you called.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking at a cave when you called.",
+              "uk": "У записі звучить You were looking at a cave when you called."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking at a cave when you called.",
+              "uk": "У записі звучить You were looking at a cave when you called."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-27:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ looking at a cave when you called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-27:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:word:lighthouse",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lighthouse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:word:lighthouse:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lighthouse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:word:lighthouse:audio",
+          "transcript": "lighthouse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-27:word:lighthouse:r1",
+            "targetText": "lighthouse",
+            "meaningByLocale": {
+              "ru": "маяк у моря.",
+              "uk": "маяк біля моря."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lighthouse",
+          "definitionByLocale": {
+            "ru": "маяк у моря.",
+            "uk": "маяк біля моря."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми йшли до маяка, коли почався дощ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми йшли до маяка, коли почався дощ",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were walking towards the lighthouse when it started to rain.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы шли к маяку, когда начался дождь",
+          "uk": "Скажіть: Ми йшли до маяка, коли почався дощ"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "walking",
+          "towards",
+          "the",
+          "lighthouse",
+          "when",
+          "it",
+          "started",
+          "to",
+          "rain"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-27:i11:r1",
+          "text": "You were walking towards the lighthouse when it started to rain."
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i11:r2",
+          "text": "We were walking towards the lighthouse when it started to rain."
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i11:r3",
+          "text": "She was walking towards the lighthouse when it started to rain."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:i11:audio",
+          "transcript": "You were walking towards the lighthouse when it started to rain."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-27:i11:r1",
+            "targetText": "You were walking towards the lighthouse when it started to rain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i11:r2",
+            "targetText": "We were walking towards the lighthouse when it started to rain.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i11:r3",
+            "targetText": "She was walking towards the lighthouse when it started to rain.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were walking towards the lighthouse when it started to rain.",
+              "uk": "У записі звучить You were walking towards the lighthouse when it started to rain."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were walking towards the lighthouse when it started to rain.",
+              "uk": "У записі звучить You were walking towards the lighthouse when it started to rain."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-27:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-27:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ walking towards the lighthouse when it started to rain.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-27:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-27:i13:p1",
+            "target": "waterfall",
+            "meaningByLocale": {
+              "ru": "водопад",
+              "uk": "водоспад"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-27:i13:p2",
+            "target": "cliff",
+            "meaningByLocale": {
+              "ru": "высокий крутой обрыв или утёс",
+              "uk": "високий стрімкий обрив або скеля"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-27:i13:p3",
+            "target": "cave",
+            "meaningByLocale": {
+              "ru": "пещера",
+              "uk": "печера"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-27:i13:p4",
+            "target": "lighthouse",
+            "meaningByLocale": {
+              "ru": "маяк у моря",
+              "uk": "маяк біля моря"
+            }
+          }
+        ],
+        "leftColumn": [
+          "waterfall",
+          "cliff",
+          "cave",
+          "lighthouse"
+        ],
+        "rightColumn": [
+          "водоспад",
+          "високий стрімкий обрив або скеля",
+          "печера",
+          "маяк біля моря"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:i14:audio",
+          "transcript": "I was walking when it started to rain."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was walking when it started to rain.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "walking",
+          "when",
+          "it",
+          "started",
+          "to",
+          "rain"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:i15:audio",
+          "transcript": "They were taking photos when you called."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were taking photos when you called.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "taking",
+          "photos",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: вона дивилася на водоспад, коли я зателефонував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: вона дивилася на водоспад, коли я зателефонував",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:i16:audio",
+          "transcript": "She was watching a waterfall when I called."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was watching a waterfall when I called.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я малював маяк, коли ти прийшов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я малював маяк, коли ти прийшов",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-27:i17:audio",
+          "transcript": "I was drawing the lighthouse when you arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was drawing the lighthouse when you arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6153ff3a192d02c7261a1bcb40b0566fe209254259416a90be41d56c53d69f00"
+}

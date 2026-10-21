@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "review: Past Continuous + when + Past Simple",
+    "uk": "review: Past Continuous + when + Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Процесс до события",
+        "uk": "Процес до події"
+      },
+      "bodyByLocale": {
+        "ru": "table runner — узкая декоративная дорожка на стол. I was ironing a table runner when you called. — Я гладил дорожку на стол, когда ты позвонил. Действие уже шло; when вводит событие в прошлом. Выберите прошлый процесс.",
+        "uk": "table runner — вузька декоративна доріжка на стіл. I was ironing a table runner when you called. — Я прасував доріжку на стіл, коли ти зателефонував. Дія вже тривала; when вводить подію в минулому. Виберіть минулий процес."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-30:intro1:r1",
+              "text": "I was ironing a table runner when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro1:r2",
+              "text": "I am ironing a table runner when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro1:r3",
+              "text": "I were ironing a table runner when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-30:intro1:r1",
+              "text": "I was ironing a table runner when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro1:r2",
+              "text": "I am ironing a table runner when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro1:r3",
+              "text": "I were ironing a table runner when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два слова",
+        "uk": "Ще два слова"
+      },
+      "bodyByLocale": {
+        "ru": "napkin ring — кольцо для салфетки. candlestick — подсвечник для высокой свечи. She was cleaning a candlestick when you called. — Она чистила подсвечник, когда ты позвонил. Выберите эту фразу.",
+        "uk": "napkin ring — кільце для серветки. candlestick — свічник для високої свічки. She was cleaning a candlestick when you called. — Вона чистила свічник, коли ти зателефонував. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-30:intro2:r1",
+              "text": "She was cleaning a candlestick when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro2:r2",
+              "text": "She were cleaning a candlestick when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro2:r3",
+              "text": "She was cleaning a candlestick when you call."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-30:intro2:r1",
+              "text": "She was cleaning a candlestick when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro2:r2",
+              "text": "She were cleaning a candlestick when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro2:r3",
+              "text": "She was cleaning a candlestick when you call."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Искали или делали в тот момент",
+        "uk": "Шукали або робили в той момент"
+      },
+      "bodyByLocale": {
+        "ru": "tea cosy — мягкая грелка-чехол для заварочного чайника. We were looking for the tea cosy when you arrived. — Мы искали грелку для чайника, когда ты пришёл. Процесс уже шёл в момент прихода. Выберите прошедшее событие arrived.",
+        "uk": "tea cosy — м’яка грілка-чохол для заварювального чайника. We were looking for the tea cosy when you arrived. — Ми шукали грілку для чайника, коли ти прийшов. Процес уже тривав у момент приходу. Виберіть минулу подію arrived."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-30:intro3:r1",
+              "text": "We were looking for the tea cosy when you arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro3:r2",
+              "text": "We were looking for the tea cosy when you arrive."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro3:r3",
+              "text": "We was looking for the tea cosy when you arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-30:intro3:r1",
+              "text": "We were looking for the tea cosy when you arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro3:r2",
+              "text": "We were looking for the tea cosy when you arrive."
+            },
+            {
+              "responseId": "en:lesson-14:session-30:intro3:r3",
+              "text": "We was looking for the tea cosy when you arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2313a699ccf1735377d6fcd9830d1cba82a01b4d45b14a36fb4fc9473a864f57"
+}

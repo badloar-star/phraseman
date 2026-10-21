@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-28:intro1:r2": {
+          "ru": "Am looking — сейчас.",
+          "uk": "Am looking — зараз."
+        },
+        "en:lesson-14:session-28:intro1:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-28:intro2:r2": {
+          "ru": "Seaweed — морские водоросли.",
+          "uk": "Seaweed — морські водорості."
+        },
+        "en:lesson-14:session-28:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-28:intro3:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-14:session-28:intro3:r3": {
+          "ru": "Событие в прошлом: called.",
+          "uk": "Подія в минулому: called."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bbcabd983a3d435afd4e09a0aa072467fdfd009ba7031955915c8a379ec28b2e"
+}

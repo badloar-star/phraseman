@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-25:word:ankle-boots",
+    "correctText": "ankle boots",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i01",
+    "correctText": "I was cleaning my ankle boots when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i02",
+    "correctText": "You were cleaning my ankle boots when you called.",
+    "correctResponseId": "en:lesson-14:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:word:ballet-flats",
+    "correctText": "ballet flats",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i04",
+    "correctText": "She was packing her ballet flats when I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i05",
+    "correctText": "You were packing her ballet flats when I called.",
+    "correctResponseId": "en:lesson-14:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:word:walking-boots",
+    "correctText": "walking boots",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i07",
+    "correctText": "They were cleaning their walking boots when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i08",
+    "correctText": "You were cleaning their walking boots when I arrived.",
+    "correctResponseId": "en:lesson-14:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:word:insole",
+    "correctText": "insole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i10",
+    "correctText": "We were looking for an insole when you arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i11",
+    "correctText": "You were looking for an insole when you arrived.",
+    "correctResponseId": "en:lesson-14:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i13",
+    "correctText": "en:lesson-14:session-25:i13:p1=ankle boots\nen:lesson-14:session-25:i13:p2=ballet flats\nen:lesson-14:session-25:i13:p3=walking boots\nen:lesson-14:session-25:i13:p4=insole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i14",
+    "correctText": "I was getting ready when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i15",
+    "correctText": "She was packing when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i16",
+    "correctText": "I was packing my walking boots when she called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-25:i17",
+    "correctText": "She was looking for an insole when I arrived.",
+    "correctResponseId": null
+  }
+]

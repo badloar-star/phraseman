@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-26:word:polo-shirt",
+    "correctText": "polo shirt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i01",
+    "correctText": "I was folding a polo shirt when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i02",
+    "correctText": "You were folding a polo shirt when you called.",
+    "correctResponseId": "en:lesson-14:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:word:tank-top",
+    "correctText": "tank top",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i04",
+    "correctText": "They were packing a tank top when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i05",
+    "correctText": "You were packing a tank top when I arrived.",
+    "correctResponseId": "en:lesson-14:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:word:straw-hat",
+    "correctText": "straw hat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i07",
+    "correctText": "She was packing a straw hat when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i08",
+    "correctText": "You were packing a straw hat when I arrived.",
+    "correctResponseId": "en:lesson-14:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:word:bucket-hat",
+    "correctText": "bucket hat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i10",
+    "correctText": "We were looking for a bucket hat when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i11",
+    "correctText": "You were looking for a bucket hat when you called.",
+    "correctResponseId": "en:lesson-14:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i13",
+    "correctText": "en:lesson-14:session-26:i13:p1=polo shirt\nen:lesson-14:session-26:i13:p2=tank top\nen:lesson-14:session-26:i13:p3=straw hat\nen:lesson-14:session-26:i13:p4=bucket hat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i14",
+    "correctText": "We were packing when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i15",
+    "correctText": "He was getting dressed when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i16",
+    "correctText": "She was folding a polo shirt when I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-26:i17",
+    "correctText": "I was looking for a bucket hat when she arrived.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-27:intro1:r2": {
+          "ru": "Am watching — настоящее.",
+          "uk": "Am watching — теперішній час."
+        },
+        "en:lesson-14:session-27:intro1:r3": {
+          "ru": "После was нужна watching.",
+          "uk": "Після was потрібна watching."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-27:intro2:r2": {
+          "ru": "Cliff — утёс или крутой обрыв.",
+          "uk": "Cliff — стрімка скеля або обрив."
+        },
+        "en:lesson-14:session-27:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-27:intro3:r2": {
+          "ru": "Starts — настоящее; нужно started.",
+          "uk": "Starts — теперішній час; потрібно started."
+        },
+        "en:lesson-14:session-27:intro3:r3": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "98ed3a67074ada6ef4e476c7d497a45a1be1b648246d54b3590a2242b9445844"
+}

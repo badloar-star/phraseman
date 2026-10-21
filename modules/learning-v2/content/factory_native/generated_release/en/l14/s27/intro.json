@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "review: interrupted action with when",
+    "uk": "review: interrupted action with when"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Водопад",
+        "uk": "Водоспад"
+      },
+      "bodyByLocale": {
+        "ru": "Waterfall — водопад. I was watching a waterfall when it started to rain. — Я смотрел на водопад, когда начался дождь. Was watching — процесс; started — наступившее событие.",
+        "uk": "Waterfall — водоспад. I was watching a waterfall when it started to rain. — Я дивився на водоспад, коли почався дощ. Was watching — процес; started — подія, що настала."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-27:intro1:r1",
+              "text": "I was watching a waterfall when it started to rain."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro1:r2",
+              "text": "I am watching a waterfall when it started to rain."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro1:r3",
+              "text": "I was watch a waterfall when it started to rain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-27:intro1:r1",
+              "text": "I was watching a waterfall when it started to rain."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro1:r2",
+              "text": "I am watching a waterfall when it started to rain."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro1:r3",
+              "text": "I was watch a waterfall when it started to rain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Утёс и пещера",
+        "uk": "Скеля й печера"
+      },
+      "bodyByLocale": {
+        "ru": "Cliff — высокий крутой обрыв или утёс; cave — пещера. She was looking at a cave when you called. — Она смотрела на пещеру, когда ты позвонил. Выберите пещеру.",
+        "uk": "Cliff — високий стрімкий обрив або скеля; cave — печера. She was looking at a cave when you called. — Вона дивилася на печеру, коли ти зателефонував. Виберіть печеру."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-27:intro2:r1",
+              "text": "She was looking at a cave when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro2:r2",
+              "text": "She was looking at a cliff when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro2:r3",
+              "text": "She were looking at a cave when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-27:intro2:r1",
+              "text": "She was looking at a cave when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro2:r2",
+              "text": "She was looking at a cliff when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro2:r3",
+              "text": "She were looking at a cave when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Маяк",
+        "uk": "Маяк"
+      },
+      "bodyByLocale": {
+        "ru": "Lighthouse — маяк у моря. We were walking towards the lighthouse when it started to rain. — Мы шли к маяку, когда начался дождь. Выберите прошлое событие started.",
+        "uk": "Lighthouse — маяк біля моря. We were walking towards the lighthouse when it started to rain. — Ми йшли до маяка, коли почався дощ. Виберіть минулу подію started."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-27:intro3:r1",
+              "text": "We were walking towards the lighthouse when it started to rain."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro3:r2",
+              "text": "We were walking towards the lighthouse when it starts to rain."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro3:r3",
+              "text": "We was walking towards the lighthouse when it started to rain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-27:intro3:r1",
+              "text": "We were walking towards the lighthouse when it started to rain."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro3:r2",
+              "text": "We were walking towards the lighthouse when it starts to rain."
+            },
+            {
+              "responseId": "en:lesson-14:session-27:intro3:r3",
+              "text": "We was walking towards the lighthouse when it started to rain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9d2fe5bc6618e4d7bd2991736c4b53428903aa2a574cb052a49c8bd1deb3859b"
+}

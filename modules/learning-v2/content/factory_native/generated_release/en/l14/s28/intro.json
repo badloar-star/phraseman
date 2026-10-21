@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "review: interrupted action with when",
+    "uk": "review: interrupted action with when"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Морская звезда",
+        "uk": "Морська зірка"
+      },
+      "bodyByLocale": {
+        "ru": "Starfish — морская звезда. I was looking at a starfish when you called. — Я смотрел на морскую звезду, когда ты позвонил. Выберите процесс в прошлом.",
+        "uk": "Starfish — морська зірка. I was looking at a starfish when you called. — Я дивився на морську зірку, коли ти зателефонував. Виберіть процес у минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-28:intro1:r1",
+              "text": "I was looking at a starfish when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro1:r2",
+              "text": "I am looking at a starfish when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro1:r3",
+              "text": "I were looking at a starfish when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-28:intro1:r1",
+              "text": "I was looking at a starfish when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro1:r2",
+              "text": "I am looking at a starfish when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro1:r3",
+              "text": "I were looking at a starfish when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Водоросли и плавник",
+        "uk": "Водорості й плавник"
+      },
+      "bodyByLocale": {
+        "ru": "Seaweed — морские водоросли; driftwood — древесина, вынесенная водой на берег, плавник. Здесь плавник — не часть рыбы. She was drawing a piece of driftwood when I arrived. — Она рисовала кусок выброшенного на берег дерева, когда я пришёл.",
+        "uk": "Seaweed — морські водорості; driftwood — деревина, винесена водою на берег, плавник. Тут плавник — не частина риби. She was drawing a piece of driftwood when I arrived. — Вона малювала шматок викинутого на берег дерева, коли я прийшов."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-28:intro2:r1",
+              "text": "She was drawing a piece of driftwood when I arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro2:r2",
+              "text": "She was drawing seaweed when I arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro2:r3",
+              "text": "She were drawing a piece of driftwood when I arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-28:intro2:r1",
+              "text": "She was drawing a piece of driftwood when I arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro2:r2",
+              "text": "She was drawing seaweed when I arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro2:r3",
+              "text": "She were drawing a piece of driftwood when I arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вода между камнями",
+        "uk": "Вода між камінням"
+      },
+      "bodyByLocale": {
+        "ru": "Rock pool — небольшое естественное углубление между прибрежными камнями, где остаётся морская вода. We were looking into a rock pool when you called. — Мы заглядывали в лужицу между прибрежными камнями, когда ты позвонил.",
+        "uk": "Rock pool — невелике природне заглиблення між прибережним камінням, де залишається морська вода. We were looking into a rock pool when you called. — Ми заглядали в калюжку між прибережним камінням, коли ти зателефонував."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-28:intro3:r1",
+              "text": "We were looking into a rock pool when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro3:r2",
+              "text": "We was looking into a rock pool when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro3:r3",
+              "text": "We were looking into a rock pool when you call."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-28:intro3:r1",
+              "text": "We were looking into a rock pool when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro3:r2",
+              "text": "We was looking into a rock pool when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-28:intro3:r3",
+              "text": "We were looking into a rock pool when you call."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "855c8abcef0bff035014ed4bcd24b4bbe19a1b2da457754c0e21ee30ee27cddf"
+}

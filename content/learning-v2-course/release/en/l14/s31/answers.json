@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-31:word:basil",
+    "correctText": "basil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i01",
+    "correctText": "I was washing basil when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i02",
+    "correctText": "You were washing basil when you called.",
+    "correctResponseId": "en:lesson-14:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:word:mint",
+    "correctText": "mint",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i04",
+    "correctText": "They were picking mint when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i05",
+    "correctText": "You were picking mint when I arrived.",
+    "correctResponseId": "en:lesson-14:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:word:rosemary",
+    "correctText": "rosemary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i07",
+    "correctText": "She was adding rosemary when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i08",
+    "correctText": "You were adding rosemary when you called.",
+    "correctResponseId": "en:lesson-14:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:word:thyme",
+    "correctText": "thyme",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i10",
+    "correctText": "We were looking for the thyme when you arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i11",
+    "correctText": "You were looking for the thyme when you arrived.",
+    "correctResponseId": "en:lesson-14:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i13",
+    "correctText": "en:lesson-14:session-31:i13:p1=basil\nen:lesson-14:session-31:i13:p2=mint\nen:lesson-14:session-31:i13:p3=rosemary\nen:lesson-14:session-31:i13:p4=thyme",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i14",
+    "correctText": "I was making a salad when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i15",
+    "correctText": "They were cooking when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i16",
+    "correctText": "She was washing basil when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-31:i17",
+    "correctText": "I was picking mint when she called.",
+    "correctResponseId": null
+  }
+]

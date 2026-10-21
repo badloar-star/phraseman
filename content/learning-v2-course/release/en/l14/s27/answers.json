@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-27:word:waterfall",
+    "correctText": "waterfall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i01",
+    "correctText": "I was watching a waterfall when it started to rain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i02",
+    "correctText": "You were watching a waterfall when it started to rain.",
+    "correctResponseId": "en:lesson-14:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:word:cliff",
+    "correctText": "cliff",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i04",
+    "correctText": "They were looking at a cliff when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i05",
+    "correctText": "You were looking at a cliff when you called.",
+    "correctResponseId": "en:lesson-14:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:word:cave",
+    "correctText": "cave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i07",
+    "correctText": "She was looking at a cave when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i08",
+    "correctText": "You were looking at a cave when you called.",
+    "correctResponseId": "en:lesson-14:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:word:lighthouse",
+    "correctText": "lighthouse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i10",
+    "correctText": "We were walking towards the lighthouse when it started to rain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i11",
+    "correctText": "You were walking towards the lighthouse when it started to rain.",
+    "correctResponseId": "en:lesson-14:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i13",
+    "correctText": "en:lesson-14:session-27:i13:p1=waterfall\nen:lesson-14:session-27:i13:p2=cliff\nen:lesson-14:session-27:i13:p3=cave\nen:lesson-14:session-27:i13:p4=lighthouse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i14",
+    "correctText": "I was walking when it started to rain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i15",
+    "correctText": "They were taking photos when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i16",
+    "correctText": "She was watching a waterfall when I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-27:i17",
+    "correctText": "I was drawing the lighthouse when you arrived.",
+    "correctResponseId": null
+  }
+]

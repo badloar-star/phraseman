@@ -1,0 +1,2351 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-32:word:cinnamon",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cinnamon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:word:cinnamon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cinnamon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:word:cinnamon:audio",
+            "transcript": "cinnamon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:word:cinnamon:r1",
+              "targetText": "cinnamon",
+              "meaningByLocale": {
+                "ru": "корица.",
+                "uk": "кориця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cinnamon",
+            "definitionByLocale": {
+              "ru": "корица.",
+              "uk": "кориця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я добавлял корицу, когда ты позвонил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я добавлял корицу, когда ты позвонил",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was adding cinnamon when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я добавлял корицу, когда ты позвонил",
+            "uk": "Скажіть: Я додавав корицю, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "adding",
+            "cinnamon",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i02:r1",
+            "text": "You were adding cinnamon when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i02:r2",
+            "text": "I was adding cinnamon when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i02:r3",
+            "text": "They were adding cinnamon when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i02:audio",
+            "transcript": "You were adding cinnamon when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:i02:r1",
+              "targetText": "You were adding cinnamon when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i02:r2",
+              "targetText": "I was adding cinnamon when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i02:r3",
+              "targetText": "They were adding cinnamon when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding cinnamon when you called.",
+                "uk": "У записі звучить You were adding cinnamon when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding cinnamon when you called.",
+                "uk": "У записі звучить You were adding cinnamon when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ adding cinnamon when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-32:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:word:ginger",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ginger",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:word:ginger:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ginger",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:word:ginger:audio",
+            "transcript": "ginger"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:word:ginger:r1",
+              "targetText": "ginger",
+              "meaningByLocale": {
+                "ru": "имбирь.",
+                "uk": "імбир."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ginger",
+            "definitionByLocale": {
+              "ru": "имбирь.",
+              "uk": "імбир."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они резали имбирь, когда я пришёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они резали имбирь, когда я пришёл",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were cutting ginger when I arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они резали имбирь, когда я пришёл",
+            "uk": "Скажіть: Вони різали імбир, коли я прийшов"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "cutting",
+            "ginger",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i05:r1",
+            "text": "You were cutting ginger when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i05:r2",
+            "text": "They were cutting ginger when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i05:r3",
+            "text": "She was cutting ginger when I arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i05:audio",
+            "transcript": "You were cutting ginger when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:i05:r1",
+              "targetText": "You were cutting ginger when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i05:r2",
+              "targetText": "They were cutting ginger when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i05:r3",
+              "targetText": "She was cutting ginger when I arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting ginger when I arrived.",
+                "uk": "У записі звучить You were cutting ginger when I arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting ginger when I arrived.",
+                "uk": "У записі звучить You were cutting ginger when I arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ cutting ginger when I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-32:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:word:paprika",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — paprika",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:word:paprika:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — paprika",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:word:paprika:audio",
+            "transcript": "paprika"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:word:paprika:r1",
+              "targetText": "paprika",
+              "meaningByLocale": {
+                "ru": "паприка, молотая приправа из красного перца.",
+                "uk": "паприка, мелена приправа з червоного перцю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paprika",
+            "definitionByLocale": {
+              "ru": "паприка, молотая приправа из красного перца.",
+              "uk": "паприка, мелена приправа з червоного перцю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она добавляла паприку, когда ты позвонил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она добавляла паприку, когда ты позвонил",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was adding paprika when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она добавляла паприку, когда ты позвонил",
+            "uk": "Скажіть: Вона додавала паприку, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "adding",
+            "paprika",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i08:r1",
+            "text": "You were adding paprika when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i08:r2",
+            "text": "She was adding paprika when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i08:r3",
+            "text": "They were adding paprika when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i08:audio",
+            "transcript": "You were adding paprika when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:i08:r1",
+              "targetText": "You were adding paprika when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i08:r2",
+              "targetText": "She was adding paprika when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i08:r3",
+              "targetText": "They were adding paprika when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding paprika when you called.",
+                "uk": "У записі звучить You were adding paprika when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding paprika when you called.",
+                "uk": "У записі звучить You were adding paprika when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ adding paprika when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-32:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:word:bay-leaf",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bay leaf",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:word:bay-leaf:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bay leaf",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:word:bay-leaf:audio",
+            "transcript": "bay leaf"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:word:bay-leaf:r1",
+              "targetText": "bay leaf",
+              "meaningByLocale": {
+                "ru": "лавровый лист.",
+                "uk": "лавровий лист."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bay leaf",
+            "definitionByLocale": {
+              "ru": "лавровый лист.",
+              "uk": "лавровий лист."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы искали лавровый лист, когда ты пришёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы искали лавровый лист, когда ты пришёл",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were looking for a bay leaf when you arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы искали лавровый лист, когда ты пришёл",
+            "uk": "Скажіть: Ми шукали лавровий лист, коли ти прийшов"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "looking",
+            "for",
+            "a",
+            "bay",
+            "leaf",
+            "when",
+            "you",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i11:r1",
+            "text": "You were looking for a bay leaf when you arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i11:r2",
+            "text": "We were looking for a bay leaf when you arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i11:r3",
+            "text": "She was looking for a bay leaf when you arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i11:audio",
+            "transcript": "You were looking for a bay leaf when you arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:i11:r1",
+              "targetText": "You were looking for a bay leaf when you arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i11:r2",
+              "targetText": "We were looking for a bay leaf when you arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i11:r3",
+              "targetText": "She was looking for a bay leaf when you arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for a bay leaf when you arrived.",
+                "uk": "У записі звучить You were looking for a bay leaf when you arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for a bay leaf when you arrived.",
+                "uk": "У записі звучить You were looking for a bay leaf when you arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ looking for a bay leaf when you arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-32:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-32:i13:p1",
+              "target": "cinnamon",
+              "meaningByLocale": {
+                "ru": "корица",
+                "uk": "кориця"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-32:i13:p2",
+              "target": "ginger",
+              "meaningByLocale": {
+                "ru": "имбирь",
+                "uk": "імбир"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-32:i13:p3",
+              "target": "paprika",
+              "meaningByLocale": {
+                "ru": "паприка, молотая приправа из красного перца",
+                "uk": "паприка, мелена приправа з червоного перцю"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-32:i13:p4",
+              "target": "bay leaf",
+              "meaningByLocale": {
+                "ru": "лавровый лист",
+                "uk": "лавровий лист"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cinnamon",
+            "ginger",
+            "paprika",
+            "bay leaf"
+          ],
+          "rightColumn": [
+            "корица",
+            "имбирь",
+            "паприка, молотая приправа из красного перца",
+            "лавровый лист"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i14:audio",
+            "transcript": "I was making soup when you called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was making soup when you called.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "making",
+            "soup",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i15:audio",
+            "transcript": "She was reading the recipe when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She was reading the recipe when I arrived.",
+          "orderedTokens": [
+            "She",
+            "was",
+            "reading",
+            "the",
+            "recipe",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: она добавляла корицу, когда я пришёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: она добавляла корицу, когда я пришёл",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i16:audio",
+            "transcript": "She was adding cinnamon when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was adding cinnamon when I arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я резал имбирь, когда она позвонила",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я резал имбирь, когда она позвонила",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i17:audio",
+            "transcript": "I was cutting ginger when she called."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was cutting ginger when she called.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-32:word:cinnamon",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cinnamon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:word:cinnamon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cinnamon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:word:cinnamon:audio",
+            "transcript": "cinnamon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:word:cinnamon:r1",
+              "targetText": "cinnamon",
+              "meaningByLocale": {
+                "ru": "корица.",
+                "uk": "кориця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cinnamon",
+            "definitionByLocale": {
+              "ru": "корица.",
+              "uk": "кориця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я додавав корицю, коли ти зателефонував",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я додавав корицю, коли ти зателефонував",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was adding cinnamon when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я добавлял корицу, когда ты позвонил",
+            "uk": "Скажіть: Я додавав корицю, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "adding",
+            "cinnamon",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i02:r1",
+            "text": "You were adding cinnamon when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i02:r2",
+            "text": "I was adding cinnamon when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i02:r3",
+            "text": "They were adding cinnamon when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i02:audio",
+            "transcript": "You were adding cinnamon when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:i02:r1",
+              "targetText": "You were adding cinnamon when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i02:r2",
+              "targetText": "I was adding cinnamon when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i02:r3",
+              "targetText": "They were adding cinnamon when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding cinnamon when you called.",
+                "uk": "У записі звучить You were adding cinnamon when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding cinnamon when you called.",
+                "uk": "У записі звучить You were adding cinnamon when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ adding cinnamon when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-32:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:word:ginger",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ginger",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:word:ginger:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ginger",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:word:ginger:audio",
+            "transcript": "ginger"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:word:ginger:r1",
+              "targetText": "ginger",
+              "meaningByLocale": {
+                "ru": "имбирь.",
+                "uk": "імбир."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ginger",
+            "definitionByLocale": {
+              "ru": "имбирь.",
+              "uk": "імбир."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони різали імбир, коли я прийшов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони різали імбир, коли я прийшов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were cutting ginger when I arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они резали имбирь, когда я пришёл",
+            "uk": "Скажіть: Вони різали імбир, коли я прийшов"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "cutting",
+            "ginger",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i05:r1",
+            "text": "You were cutting ginger when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i05:r2",
+            "text": "They were cutting ginger when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i05:r3",
+            "text": "She was cutting ginger when I arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i05:audio",
+            "transcript": "You were cutting ginger when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:i05:r1",
+              "targetText": "You were cutting ginger when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i05:r2",
+              "targetText": "They were cutting ginger when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i05:r3",
+              "targetText": "She was cutting ginger when I arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting ginger when I arrived.",
+                "uk": "У записі звучить You were cutting ginger when I arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cutting ginger when I arrived.",
+                "uk": "У записі звучить You were cutting ginger when I arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ cutting ginger when I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-32:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:word:paprika",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — paprika",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:word:paprika:audio"
+        ],
+        "accessibilityLabel": "Картка слова — paprika",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:word:paprika:audio",
+            "transcript": "paprika"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:word:paprika:r1",
+              "targetText": "paprika",
+              "meaningByLocale": {
+                "ru": "паприка, молотая приправа из красного перца.",
+                "uk": "паприка, мелена приправа з червоного перцю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paprika",
+            "definitionByLocale": {
+              "ru": "паприка, молотая приправа из красного перца.",
+              "uk": "паприка, мелена приправа з червоного перцю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона додавала паприку, коли ти зателефонував",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона додавала паприку, коли ти зателефонував",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was adding paprika when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она добавляла паприку, когда ты позвонил",
+            "uk": "Скажіть: Вона додавала паприку, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "adding",
+            "paprika",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i08:r1",
+            "text": "You were adding paprika when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i08:r2",
+            "text": "She was adding paprika when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i08:r3",
+            "text": "They were adding paprika when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i08:audio",
+            "transcript": "You were adding paprika when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:i08:r1",
+              "targetText": "You were adding paprika when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i08:r2",
+              "targetText": "She was adding paprika when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i08:r3",
+              "targetText": "They were adding paprika when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding paprika when you called.",
+                "uk": "У записі звучить You were adding paprika when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were adding paprika when you called.",
+                "uk": "У записі звучить You were adding paprika when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ adding paprika when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-32:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:word:bay-leaf",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bay leaf",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:word:bay-leaf:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bay leaf",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:word:bay-leaf:audio",
+            "transcript": "bay leaf"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:word:bay-leaf:r1",
+              "targetText": "bay leaf",
+              "meaningByLocale": {
+                "ru": "лавровый лист.",
+                "uk": "лавровий лист."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bay leaf",
+            "definitionByLocale": {
+              "ru": "лавровый лист.",
+              "uk": "лавровий лист."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми шукали лавровий лист, коли ти прийшов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми шукали лавровий лист, коли ти прийшов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were looking for a bay leaf when you arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы искали лавровый лист, когда ты пришёл",
+            "uk": "Скажіть: Ми шукали лавровий лист, коли ти прийшов"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "looking",
+            "for",
+            "a",
+            "bay",
+            "leaf",
+            "when",
+            "you",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i11:r1",
+            "text": "You were looking for a bay leaf when you arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i11:r2",
+            "text": "We were looking for a bay leaf when you arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i11:r3",
+            "text": "She was looking for a bay leaf when you arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i11:audio",
+            "transcript": "You were looking for a bay leaf when you arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-32:i11:r1",
+              "targetText": "You were looking for a bay leaf when you arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i11:r2",
+              "targetText": "We were looking for a bay leaf when you arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i11:r3",
+              "targetText": "She was looking for a bay leaf when you arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for a bay leaf when you arrived.",
+                "uk": "У записі звучить You were looking for a bay leaf when you arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking for a bay leaf when you arrived.",
+                "uk": "У записі звучить You were looking for a bay leaf when you arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-32:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-32:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ looking for a bay leaf when you arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-32:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-32:i13:p1",
+              "target": "cinnamon",
+              "meaningByLocale": {
+                "ru": "корица",
+                "uk": "кориця"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-32:i13:p2",
+              "target": "ginger",
+              "meaningByLocale": {
+                "ru": "имбирь",
+                "uk": "імбир"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-32:i13:p3",
+              "target": "paprika",
+              "meaningByLocale": {
+                "ru": "паприка, молотая приправа из красного перца",
+                "uk": "паприка, мелена приправа з червоного перцю"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-32:i13:p4",
+              "target": "bay leaf",
+              "meaningByLocale": {
+                "ru": "лавровый лист",
+                "uk": "лавровий лист"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cinnamon",
+            "ginger",
+            "paprika",
+            "bay leaf"
+          ],
+          "rightColumn": [
+            "кориця",
+            "імбир",
+            "паприка, мелена приправа з червоного перцю",
+            "лавровий лист"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i14:audio",
+            "transcript": "I was making soup when you called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was making soup when you called.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "making",
+            "soup",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i15:audio",
+            "transcript": "She was reading the recipe when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She was reading the recipe when I arrived.",
+          "orderedTokens": [
+            "She",
+            "was",
+            "reading",
+            "the",
+            "recipe",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: вона додавала корицю, коли я прийшов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: вона додавала корицю, коли я прийшов",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i16:audio",
+            "transcript": "She was adding cinnamon when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was adding cinnamon when I arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я різав імбир, коли вона зателефонувала",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я різав імбир, коли вона зателефонувала",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-32:i17:audio",
+            "transcript": "I was cutting ginger when she called."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was cutting ginger when she called.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-32:word:cinnamon",
+      "correctText": "cinnamon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i01",
+      "correctText": "I was adding cinnamon when you called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i02",
+      "correctText": "You were adding cinnamon when you called.",
+      "correctResponseId": "en:lesson-14:session-32:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:word:ginger",
+      "correctText": "ginger",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i04",
+      "correctText": "They were cutting ginger when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i05",
+      "correctText": "You were cutting ginger when I arrived.",
+      "correctResponseId": "en:lesson-14:session-32:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i06",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-32:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:word:paprika",
+      "correctText": "paprika",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i07",
+      "correctText": "She was adding paprika when you called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i08",
+      "correctText": "You were adding paprika when you called.",
+      "correctResponseId": "en:lesson-14:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-32:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:word:bay-leaf",
+      "correctText": "bay leaf",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i10",
+      "correctText": "We were looking for a bay leaf when you arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i11",
+      "correctText": "You were looking for a bay leaf when you arrived.",
+      "correctResponseId": "en:lesson-14:session-32:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-32:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i14",
+      "correctText": "I was making soup when you called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i15",
+      "correctText": "She was reading the recipe when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i16",
+      "correctText": "She was adding cinnamon when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:i17",
+      "correctText": "I was cutting ginger when she called.",
+      "correctResponseId": null
+    }
+  ]
+}

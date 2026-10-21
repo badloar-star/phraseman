@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-30:word:table-runner",
+    "correctText": "table runner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i01",
+    "correctText": "I was ironing a table runner when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i02",
+    "correctText": "You were ironing a table runner when you called.",
+    "correctResponseId": "en:lesson-14:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:word:napkin-ring",
+    "correctText": "napkin ring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i04",
+    "correctText": "They were cleaning a napkin ring when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i05",
+    "correctText": "You were cleaning a napkin ring when I arrived.",
+    "correctResponseId": "en:lesson-14:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:word:candlestick",
+    "correctText": "candlestick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i07",
+    "correctText": "She was cleaning a candlestick when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i08",
+    "correctText": "You were cleaning a candlestick when you called.",
+    "correctResponseId": "en:lesson-14:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:word:tea-cosy",
+    "correctText": "tea cosy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i10",
+    "correctText": "We were looking for the tea cosy when you arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i11",
+    "correctText": "You were looking for the tea cosy when you arrived.",
+    "correctResponseId": "en:lesson-14:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i13",
+    "correctText": "en:lesson-14:session-30:i13:p1=table runner\nen:lesson-14:session-30:i13:p2=napkin ring\nen:lesson-14:session-30:i13:p3=candlestick\nen:lesson-14:session-30:i13:p4=tea cosy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i14",
+    "correctText": "I was setting the table when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i15",
+    "correctText": "She was making tea when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i16",
+    "correctText": "She was ironing a table runner when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-30:i17",
+    "correctText": "I was looking for the tea cosy when she called.",
+    "correctResponseId": null
+  }
+]

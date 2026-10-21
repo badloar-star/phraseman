@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-32:intro1:r2": {
+          "ru": "Am — настоящее, а здесь рассказ о прошлом.",
+          "uk": "Am — теперішній час, а тут розповідь про минуле."
+        },
+        "en:lesson-14:session-32:intro1:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-32:intro2:r2": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        },
+        "en:lesson-14:session-32:intro2:r3": {
+          "ru": "Событие в прошлом: called, не call.",
+          "uk": "Подія в минулому: called, не call."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-32:intro3:r2": {
+          "ru": "Для события в прошлом нужно arrived.",
+          "uk": "Для події в минулому потрібно arrived."
+        },
+        "en:lesson-14:session-32:intro3:r3": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bca527292d5d640002c9ad69bde3e013a10027b2f478ce04336e61f7a7380642"
+}

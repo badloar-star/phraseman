@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "review: interrupted action with when",
+    "uk": "review: interrupted action with when"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рубашка поло",
+        "uk": "Сорочка поло"
+      },
+      "bodyByLocale": {
+        "ru": "Polo shirt — трикотажная рубашка с воротником и короткой застёжкой. I was folding a polo shirt when you called. — Я складывал рубашку поло, когда ты позвонил. Выберите процесс до звонка и сам звонок.",
+        "uk": "Polo shirt — трикотажна сорочка з коміром і короткою застібкою. I was folding a polo shirt when you called. — Я складав сорочку поло, коли ти зателефонував. Виберіть процес до дзвінка й сам дзвінок."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-26:intro1:r1",
+              "text": "I was folding a polo shirt when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro1:r2",
+              "text": "I am folding a polo shirt when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro1:r3",
+              "text": "I were folding a polo shirt when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-26:intro1:r1",
+              "text": "I was folding a polo shirt when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro1:r2",
+              "text": "I am folding a polo shirt when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro1:r3",
+              "text": "I were folding a polo shirt when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Майка и соломенная шляпа",
+        "uk": "Майка й солом’яний капелюх"
+      },
+      "bodyByLocale": {
+        "ru": "Tank top — верх без рукавов, майка; straw hat — соломенная шляпа. She was packing a straw hat when I arrived. — Она укладывала соломенную шляпу, когда я пришёл. Выберите шляпу.",
+        "uk": "Tank top — верх без рукавів, майка; straw hat — солом’яний капелюх. She was packing a straw hat when I arrived. — Вона пакувала солом’яний капелюх, коли я прийшов. Виберіть капелюх."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-26:intro2:r1",
+              "text": "She was packing a straw hat when I arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro2:r2",
+              "text": "She was packing a tank top when I arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro2:r3",
+              "text": "She were packing a straw hat when I arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-26:intro2:r1",
+              "text": "She was packing a straw hat when I arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro2:r2",
+              "text": "She was packing a tank top when I arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro2:r3",
+              "text": "She were packing a straw hat when I arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Панама",
+        "uk": "Панама"
+      },
+      "bodyByLocale": {
+        "ru": "Bucket hat — панама, мягкая шляпа с опущенными полями. We were looking for a bucket hat when you called. — Мы искали панаму, когда ты позвонил. Выберите событие в прошлом: called.",
+        "uk": "Bucket hat — панама, м’який капелюх з опущеними крисами. We were looking for a bucket hat when you called. — Ми шукали панаму, коли ти зателефонував. Виберіть подію в минулому: called."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-26:intro3:r1",
+              "text": "We were looking for a bucket hat when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro3:r2",
+              "text": "We were looking for a bucket hat when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro3:r3",
+              "text": "We was looking for a bucket hat when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-26:intro3:r1",
+              "text": "We were looking for a bucket hat when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro3:r2",
+              "text": "We were looking for a bucket hat when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-26:intro3:r3",
+              "text": "We was looking for a bucket hat when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1fa9af198ca0cc7f6cd6de9e252b58f1e119c4401377a3747cf4f722ff575c91"
+}

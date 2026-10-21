@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-32:word:cinnamon",
+    "correctText": "cinnamon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i01",
+    "correctText": "I was adding cinnamon when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i02",
+    "correctText": "You were adding cinnamon when you called.",
+    "correctResponseId": "en:lesson-14:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:word:ginger",
+    "correctText": "ginger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i04",
+    "correctText": "They were cutting ginger when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i05",
+    "correctText": "You were cutting ginger when I arrived.",
+    "correctResponseId": "en:lesson-14:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:word:paprika",
+    "correctText": "paprika",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i07",
+    "correctText": "She was adding paprika when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i08",
+    "correctText": "You were adding paprika when you called.",
+    "correctResponseId": "en:lesson-14:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:word:bay-leaf",
+    "correctText": "bay leaf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i10",
+    "correctText": "We were looking for a bay leaf when you arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i11",
+    "correctText": "You were looking for a bay leaf when you arrived.",
+    "correctResponseId": "en:lesson-14:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i13",
+    "correctText": "en:lesson-14:session-32:i13:p1=cinnamon\nen:lesson-14:session-32:i13:p2=ginger\nen:lesson-14:session-32:i13:p3=paprika\nen:lesson-14:session-32:i13:p4=bay leaf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i14",
+    "correctText": "I was making soup when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i15",
+    "correctText": "She was reading the recipe when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i16",
+    "correctText": "She was adding cinnamon when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-32:i17",
+    "correctText": "I was cutting ginger when she called.",
+    "correctResponseId": null
+  }
+]

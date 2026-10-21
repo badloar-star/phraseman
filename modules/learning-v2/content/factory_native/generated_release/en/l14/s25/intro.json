@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "Past Continuous + when + Past Simple: interrupted action",
+    "uk": "Past Continuous + when + Past Simple: interrupted action"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Процесс и событие",
+        "uk": "Процес і подія"
+      },
+      "bodyByLocale": {
+        "ru": "Ankle boots — ботильоны, ботинки до щиколотки. I was cleaning my ankle boots when you called. — Я чистил ботинки до щиколотки, когда ты позвонил. Was cleaning — уже шедший процесс; called — событие, которое вмешалось. Выберите эту связь.",
+        "uk": "Ankle boots — ботильйони, черевики до щиколотки. I was cleaning my ankle boots when you called. — Я чистив черевики до щиколотки, коли ти зателефонував. Was cleaning — процес, який уже тривав; called — подія, що втрутилася. Виберіть цей зв’язок."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-25:intro1:r1",
+              "text": "I was cleaning my ankle boots when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro1:r2",
+              "text": "I am cleaning my ankle boots when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro1:r3",
+              "text": "I was clean my ankle boots when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-25:intro1:r1",
+              "text": "I was cleaning my ankle boots when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro1:r2",
+              "text": "I am cleaning my ankle boots when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro1:r3",
+              "text": "I was clean my ankle boots when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда раздался звонок",
+        "uk": "Коли пролунав дзвінок"
+      },
+      "bodyByLocale": {
+        "ru": "Ballet flats — балетки, повседневные туфли без каблука; walking boots — ботинки для долгих прогулок и походов. She was packing her ballet flats when I called. — Она укладывала балетки, когда я позвонил. When вводит событие: called.",
+        "uk": "Ballet flats — балетки, повсякденні туфлі без підборів; walking boots — черевики для тривалих прогулянок і походів. She was packing her ballet flats when I called. — Вона пакувала балетки, коли я зателефонував. When вводить подію: called."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-25:intro2:r1",
+              "text": "She was packing her ballet flats when I called."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro2:r2",
+              "text": "She was packing her ballet flats when I call."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro2:r3",
+              "text": "She were packing her ballet flats when I called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-25:intro2:r1",
+              "text": "She was packing her ballet flats when I called."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro2:r2",
+              "text": "She was packing her ballet flats when I call."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro2:r3",
+              "text": "She were packing her ballet flats when I called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стелька",
+        "uk": "Устілка"
+      },
+      "bodyByLocale": {
+        "ru": "Insole — стелька внутри обуви. We were looking for an insole when you arrived. — Мы искали стельку, когда ты пришёл. Поиск уже шёл, приход произошёл в это время. Выберите процесс с событием.",
+        "uk": "Insole — устілка всередині взуття. We were looking for an insole when you arrived. — Ми шукали устілку, коли ти прийшов. Пошук уже тривав, прихід стався в цей час. Виберіть процес із подією."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-25:intro3:r1",
+              "text": "We were looking for an insole when you arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro3:r2",
+              "text": "We was looking for an insole when you arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro3:r3",
+              "text": "We were looking for an insole when you arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-25:intro3:r1",
+              "text": "We were looking for an insole when you arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro3:r2",
+              "text": "We was looking for an insole when you arrived."
+            },
+            {
+              "responseId": "en:lesson-14:session-25:intro3:r3",
+              "text": "We were looking for an insole when you arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7c16f879c37ff940c732961c44b6ec47f5afc4dd613cc8cd1d6d4f12e35f99c2"
+}

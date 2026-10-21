@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-29:word:fridge-magnet",
+    "correctText": "fridge magnet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i01",
+    "correctText": "I was looking at a fridge magnet when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i02",
+    "correctText": "You were looking at a fridge magnet when you called.",
+    "correctResponseId": "en:lesson-14:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:word:snow-globe",
+    "correctText": "snow globe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i04",
+    "correctText": "They were looking at a snow globe when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i05",
+    "correctText": "You were looking at a snow globe when I arrived.",
+    "correctResponseId": "en:lesson-14:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:word:souvenir-mug",
+    "correctText": "souvenir mug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i07",
+    "correctText": "She was washing a souvenir mug when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i08",
+    "correctText": "You were washing a souvenir mug when you called.",
+    "correctResponseId": "en:lesson-14:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:word:photo-frame",
+    "correctText": "photo frame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i10",
+    "correctText": "We were cleaning a photo frame when you arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i11",
+    "correctText": "You were cleaning a photo frame when you arrived.",
+    "correctResponseId": "en:lesson-14:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i13",
+    "correctText": "en:lesson-14:session-29:i13:p1=fridge magnet\nen:lesson-14:session-29:i13:p2=snow globe\nen:lesson-14:session-29:i13:p3=souvenir mug\nen:lesson-14:session-29:i13:p4=photo frame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i14",
+    "correctText": "I was unpacking when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i15",
+    "correctText": "They were talking about the trip when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i16",
+    "correctText": "She was looking at a fridge magnet when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-29:i17",
+    "correctText": "I was washing a souvenir mug when she called.",
+    "correctResponseId": null
+  }
+]

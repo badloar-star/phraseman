@@ -1,0 +1,2365 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-14:session-29",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-14:session-29:word:fridge-magnet",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fridge magnet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:word:fridge-magnet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fridge magnet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:word:fridge-magnet:audio",
+            "transcript": "fridge magnet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:word:fridge-magnet:r1",
+              "targetText": "fridge magnet",
+              "meaningByLocale": {
+                "ru": "магнит на холодильник.",
+                "uk": "магніт на холодильник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fridge magnet",
+            "definitionByLocale": {
+              "ru": "магнит на холодильник.",
+              "uk": "магніт на холодильник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я рассматривал магнит на холодильник, когда ты позвонил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я рассматривал магнит на холодильник, когда ты позвонил",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was looking at a fridge magnet when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я рассматривал магнит на холодильник, когда ты позвонил",
+            "uk": "Скажіть: Я розглядав магніт на холодильник, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "looking",
+            "at",
+            "a",
+            "fridge",
+            "magnet",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i02:r1",
+            "text": "You were looking at a fridge magnet when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i02:r2",
+            "text": "I was looking at a fridge magnet when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i02:r3",
+            "text": "They were looking at a fridge magnet when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i02:audio",
+            "transcript": "You were looking at a fridge magnet when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:i02:r1",
+              "targetText": "You were looking at a fridge magnet when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i02:r2",
+              "targetText": "I was looking at a fridge magnet when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i02:r3",
+              "targetText": "They were looking at a fridge magnet when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a fridge magnet when you called.",
+                "uk": "У записі звучить You were looking at a fridge magnet when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a fridge magnet when you called.",
+                "uk": "У записі звучить You were looking at a fridge magnet when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ looking at a fridge magnet when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-29:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:word:snow-globe",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snow globe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:word:snow-globe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snow globe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:word:snow-globe:audio",
+            "transcript": "snow globe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:word:snow-globe:r1",
+              "targetText": "snow globe",
+              "meaningByLocale": {
+                "ru": "сувенирный шар со снегом внутри.",
+                "uk": "сувенірна куля зі снігом усередині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snow globe",
+            "definitionByLocale": {
+              "ru": "сувенирный шар со снегом внутри.",
+              "uk": "сувенірна куля зі снігом усередині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Они рассматривали сувенирный шар со снегом, когда я пришёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Они рассматривали сувенирный шар со снегом, когда я пришёл",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were looking at a snow globe when I arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они рассматривали сувенирный шар со снегом, когда я пришёл",
+            "uk": "Скажіть: Вони розглядали сувенірну кулю зі снігом, коли я прийшов"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "looking",
+            "at",
+            "a",
+            "snow",
+            "globe",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i05:r1",
+            "text": "You were looking at a snow globe when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i05:r2",
+            "text": "They were looking at a snow globe when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i05:r3",
+            "text": "She was looking at a snow globe when I arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i05:audio",
+            "transcript": "You were looking at a snow globe when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:i05:r1",
+              "targetText": "You were looking at a snow globe when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i05:r2",
+              "targetText": "They were looking at a snow globe when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i05:r3",
+              "targetText": "She was looking at a snow globe when I arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a snow globe when I arrived.",
+                "uk": "У записі звучить You were looking at a snow globe when I arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a snow globe when I arrived.",
+                "uk": "У записі звучить You were looking at a snow globe when I arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ looking at a snow globe when I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-29:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:word:souvenir-mug",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — souvenir mug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:word:souvenir-mug:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — souvenir mug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:word:souvenir-mug:audio",
+            "transcript": "souvenir mug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:word:souvenir-mug:r1",
+              "targetText": "souvenir mug",
+              "meaningByLocale": {
+                "ru": "сувенирная кружка.",
+                "uk": "сувенірна чашка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "souvenir mug",
+            "definitionByLocale": {
+              "ru": "сувенирная кружка.",
+              "uk": "сувенірна чашка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она мыла сувенирную кружку, когда ты позвонил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она мыла сувенирную кружку, когда ты позвонил",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was washing a souvenir mug when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она мыла сувенирную кружку, когда ты позвонил",
+            "uk": "Скажіть: Вона мила сувенірну чашку, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "washing",
+            "a",
+            "souvenir",
+            "mug",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i08:r1",
+            "text": "You were washing a souvenir mug when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i08:r2",
+            "text": "She was washing a souvenir mug when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i08:r3",
+            "text": "They were washing a souvenir mug when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i08:audio",
+            "transcript": "You were washing a souvenir mug when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:i08:r1",
+              "targetText": "You were washing a souvenir mug when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i08:r2",
+              "targetText": "She was washing a souvenir mug when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i08:r3",
+              "targetText": "They were washing a souvenir mug when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing a souvenir mug when you called.",
+                "uk": "У записі звучить You were washing a souvenir mug when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing a souvenir mug when you called.",
+                "uk": "У записі звучить You were washing a souvenir mug when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ washing a souvenir mug when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-29:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:word:photo-frame",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — photo frame",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:word:photo-frame:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — photo frame",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:word:photo-frame:audio",
+            "transcript": "photo frame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:word:photo-frame:r1",
+              "targetText": "photo frame",
+              "meaningByLocale": {
+                "ru": "рамка для фотографии.",
+                "uk": "рамка для фотографії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "photo frame",
+            "definitionByLocale": {
+              "ru": "рамка для фотографии.",
+              "uk": "рамка для фотографії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы чистили рамку для фотографии, когда ты пришёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы чистили рамку для фотографии, когда ты пришёл",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were cleaning a photo frame when you arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы чистили рамку для фотографии, когда ты пришёл",
+            "uk": "Скажіть: Ми чистили рамку для фотографії, коли ти прийшов"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "cleaning",
+            "a",
+            "photo",
+            "frame",
+            "when",
+            "you",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i11:r1",
+            "text": "You were cleaning a photo frame when you arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i11:r2",
+            "text": "We were cleaning a photo frame when you arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i11:r3",
+            "text": "She was cleaning a photo frame when you arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i11:audio",
+            "transcript": "You were cleaning a photo frame when you arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:i11:r1",
+              "targetText": "You were cleaning a photo frame when you arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i11:r2",
+              "targetText": "We were cleaning a photo frame when you arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i11:r3",
+              "targetText": "She was cleaning a photo frame when you arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning a photo frame when you arrived.",
+                "uk": "У записі звучить You were cleaning a photo frame when you arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning a photo frame when you arrived.",
+                "uk": "У записі звучить You were cleaning a photo frame when you arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В тот момент прошлого. Выберите was или were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ cleaning a photo frame when you arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-29:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В тот момент прошлого. Выберите was или were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "В тот момент прошлого. Выберите was или were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-29:i13:p1",
+              "target": "fridge magnet",
+              "meaningByLocale": {
+                "ru": "магнит на холодильник",
+                "uk": "магніт на холодильник"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-29:i13:p2",
+              "target": "snow globe",
+              "meaningByLocale": {
+                "ru": "сувенирный шар со снегом внутри",
+                "uk": "сувенірна куля зі снігом усередині"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-29:i13:p3",
+              "target": "souvenir mug",
+              "meaningByLocale": {
+                "ru": "сувенирная кружка",
+                "uk": "сувенірна чашка"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-29:i13:p4",
+              "target": "photo frame",
+              "meaningByLocale": {
+                "ru": "рамка для фотографии",
+                "uk": "рамка для фотографії"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fridge magnet",
+            "snow globe",
+            "souvenir mug",
+            "photo frame"
+          ],
+          "rightColumn": [
+            "магнит на холодильник",
+            "сувенирный шар со снегом внутри",
+            "сувенирная кружка",
+            "рамка для фотографии"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i14:audio",
+            "transcript": "I was unpacking when you called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was unpacking when you called.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "unpacking",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i15:audio",
+            "transcript": "They were talking about the trip when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They were talking about the trip when I arrived.",
+          "orderedTokens": [
+            "They",
+            "were",
+            "talking",
+            "about",
+            "the",
+            "trip",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: она рассматривала магнит на холодильник, когда я пришёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: она рассматривала магнит на холодильник, когда я пришёл",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i16:audio",
+            "transcript": "She was looking at a fridge magnet when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was looking at a fridge magnet when I arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я мыл сувенирную кружку, когда она позвонила",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я мыл сувенирную кружку, когда она позвонила",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i17:audio",
+            "transcript": "I was washing a souvenir mug when she called."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was washing a souvenir mug when she called.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-14:session-29:word:fridge-magnet",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fridge magnet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:word:fridge-magnet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fridge magnet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:word:fridge-magnet:audio",
+            "transcript": "fridge magnet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:word:fridge-magnet:r1",
+              "targetText": "fridge magnet",
+              "meaningByLocale": {
+                "ru": "магнит на холодильник.",
+                "uk": "магніт на холодильник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fridge magnet",
+            "definitionByLocale": {
+              "ru": "магнит на холодильник.",
+              "uk": "магніт на холодильник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я розглядав магніт на холодильник, коли ти зателефонував",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я розглядав магніт на холодильник, коли ти зателефонував",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was looking at a fridge magnet when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я рассматривал магнит на холодильник, когда ты позвонил",
+            "uk": "Скажіть: Я розглядав магніт на холодильник, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "looking",
+            "at",
+            "a",
+            "fridge",
+            "magnet",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i02:r1",
+            "text": "You were looking at a fridge magnet when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i02:r2",
+            "text": "I was looking at a fridge magnet when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i02:r3",
+            "text": "They were looking at a fridge magnet when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i02:audio",
+            "transcript": "You were looking at a fridge magnet when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:i02:r1",
+              "targetText": "You were looking at a fridge magnet when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i02:r2",
+              "targetText": "I was looking at a fridge magnet when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i02:r3",
+              "targetText": "They were looking at a fridge magnet when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a fridge magnet when you called.",
+                "uk": "У записі звучить You were looking at a fridge magnet when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a fridge magnet when you called.",
+                "uk": "У записі звучить You were looking at a fridge magnet when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "I ___ looking at a fridge magnet when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-29:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:word:snow-globe",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snow globe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:word:snow-globe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snow globe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:word:snow-globe:audio",
+            "transcript": "snow globe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:word:snow-globe:r1",
+              "targetText": "snow globe",
+              "meaningByLocale": {
+                "ru": "сувенирный шар со снегом внутри.",
+                "uk": "сувенірна куля зі снігом усередині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snow globe",
+            "definitionByLocale": {
+              "ru": "сувенирный шар со снегом внутри.",
+              "uk": "сувенірна куля зі снігом усередині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вони розглядали сувенірну кулю зі снігом, коли я прийшов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вони розглядали сувенірну кулю зі снігом, коли я прийшов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They were looking at a snow globe when I arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Они рассматривали сувенирный шар со снегом, когда я пришёл",
+            "uk": "Скажіть: Вони розглядали сувенірну кулю зі снігом, коли я прийшов"
+          },
+          "orderedTokens": [
+            "They",
+            "were",
+            "looking",
+            "at",
+            "a",
+            "snow",
+            "globe",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i05:r1",
+            "text": "You were looking at a snow globe when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i05:r2",
+            "text": "They were looking at a snow globe when I arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i05:r3",
+            "text": "She was looking at a snow globe when I arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i05:audio",
+            "transcript": "You were looking at a snow globe when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:i05:r1",
+              "targetText": "You were looking at a snow globe when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i05:r2",
+              "targetText": "They were looking at a snow globe when I arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i05:r3",
+              "targetText": "She was looking at a snow globe when I arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a snow globe when I arrived.",
+                "uk": "У записі звучить You were looking at a snow globe when I arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were looking at a snow globe when I arrived.",
+                "uk": "У записі звучить You were looking at a snow globe when I arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "They ___ looking at a snow globe when I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-29:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:word:souvenir-mug",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — souvenir mug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:word:souvenir-mug:audio"
+        ],
+        "accessibilityLabel": "Картка слова — souvenir mug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:word:souvenir-mug:audio",
+            "transcript": "souvenir mug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:word:souvenir-mug:r1",
+              "targetText": "souvenir mug",
+              "meaningByLocale": {
+                "ru": "сувенирная кружка.",
+                "uk": "сувенірна чашка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "souvenir mug",
+            "definitionByLocale": {
+              "ru": "сувенирная кружка.",
+              "uk": "сувенірна чашка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона мила сувенірну чашку, коли ти зателефонував",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона мила сувенірну чашку, коли ти зателефонував",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She was washing a souvenir mug when you called.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она мыла сувенирную кружку, когда ты позвонил",
+            "uk": "Скажіть: Вона мила сувенірну чашку, коли ти зателефонував"
+          },
+          "orderedTokens": [
+            "She",
+            "was",
+            "washing",
+            "a",
+            "souvenir",
+            "mug",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i08:r1",
+            "text": "You were washing a souvenir mug when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i08:r2",
+            "text": "She was washing a souvenir mug when you called."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i08:r3",
+            "text": "They were washing a souvenir mug when you called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i08:audio",
+            "transcript": "You were washing a souvenir mug when you called."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:i08:r1",
+              "targetText": "You were washing a souvenir mug when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i08:r2",
+              "targetText": "She was washing a souvenir mug when you called.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i08:r3",
+              "targetText": "They were washing a souvenir mug when you called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing a souvenir mug when you called.",
+                "uk": "У записі звучить You were washing a souvenir mug when you called."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were washing a souvenir mug when you called.",
+                "uk": "У записі звучить You were washing a souvenir mug when you called."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "She ___ washing a souvenir mug when you called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-29:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна was.",
+                "uk": "З цим підметом у минулому потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна was.",
+                "uk": "Це не форма минулого. Потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:word:photo-frame",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — photo frame",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:word:photo-frame:audio"
+        ],
+        "accessibilityLabel": "Картка слова — photo frame",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:word:photo-frame:audio",
+            "transcript": "photo frame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:word:photo-frame:r1",
+              "targetText": "photo frame",
+              "meaningByLocale": {
+                "ru": "рамка для фотографии.",
+                "uk": "рамка для фотографії."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "photo frame",
+            "definitionByLocale": {
+              "ru": "рамка для фотографии.",
+              "uk": "рамка для фотографії."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми чистили рамку для фотографії, коли ти прийшов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми чистили рамку для фотографії, коли ти прийшов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We were cleaning a photo frame when you arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы чистили рамку для фотографии, когда ты пришёл",
+            "uk": "Скажіть: Ми чистили рамку для фотографії, коли ти прийшов"
+          },
+          "orderedTokens": [
+            "We",
+            "were",
+            "cleaning",
+            "a",
+            "photo",
+            "frame",
+            "when",
+            "you",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i11:r1",
+            "text": "You were cleaning a photo frame when you arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i11:r2",
+            "text": "We were cleaning a photo frame when you arrived."
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i11:r3",
+            "text": "She was cleaning a photo frame when you arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i11:audio",
+            "transcript": "You were cleaning a photo frame when you arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-14:session-29:i11:r1",
+              "targetText": "You were cleaning a photo frame when you arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i11:r2",
+              "targetText": "We were cleaning a photo frame when you arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i11:r3",
+              "targetText": "She was cleaning a photo frame when you arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning a photo frame when you arrived.",
+                "uk": "У записі звучить You were cleaning a photo frame when you arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You were cleaning a photo frame when you arrived.",
+                "uk": "У записі звучить You were cleaning a photo frame when you arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У той момент минулого. Виберіть was або were",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-14:session-29:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-29:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В тот момент прошлого. Выберите was или were",
+            "uk": "У той момент минулого. Виберіть was або were"
+          },
+          "gappedTargetPhrase": "We ___ cleaning a photo frame when you arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-14:session-29:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У той момент минулого. Виберіть was або were",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-14:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим в прошлом нужна were.",
+                "uk": "З цим підметом у минулому потрібна were."
+              }
+            },
+            {
+              "responseId": "en:lesson-14:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "У той момент минулого. Виберіть was або were",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна were.",
+                "uk": "Це не форма минулого. Потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-14:session-29:i13:p1",
+              "target": "fridge magnet",
+              "meaningByLocale": {
+                "ru": "магнит на холодильник",
+                "uk": "магніт на холодильник"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-29:i13:p2",
+              "target": "snow globe",
+              "meaningByLocale": {
+                "ru": "сувенирный шар со снегом внутри",
+                "uk": "сувенірна куля зі снігом усередині"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-29:i13:p3",
+              "target": "souvenir mug",
+              "meaningByLocale": {
+                "ru": "сувенирная кружка",
+                "uk": "сувенірна чашка"
+              }
+            },
+            {
+              "pairId": "en:lesson-14:session-29:i13:p4",
+              "target": "photo frame",
+              "meaningByLocale": {
+                "ru": "рамка для фотографии",
+                "uk": "рамка для фотографії"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fridge magnet",
+            "snow globe",
+            "souvenir mug",
+            "photo frame"
+          ],
+          "rightColumn": [
+            "магніт на холодильник",
+            "сувенірна куля зі снігом усередині",
+            "сувенірна чашка",
+            "рамка для фотографії"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i14:audio",
+            "transcript": "I was unpacking when you called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I was unpacking when you called.",
+          "orderedTokens": [
+            "I",
+            "was",
+            "unpacking",
+            "when",
+            "you",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i15:audio",
+            "transcript": "They were talking about the trip when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They were talking about the trip when I arrived.",
+          "orderedTokens": [
+            "They",
+            "were",
+            "talking",
+            "about",
+            "the",
+            "trip",
+            "when",
+            "I",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: вона розглядала магніт на холодильник, коли я прийшов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: вона розглядала магніт на холодильник, коли я прийшов",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i16:audio",
+            "transcript": "She was looking at a fridge magnet when I arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She was looking at a fridge magnet when I arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-14:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я мив сувенірну чашку, коли вона зателефонувала",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-14:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я мив сувенірну чашку, коли вона зателефонувала",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-14:session-29:i17:audio",
+            "transcript": "I was washing a souvenir mug when she called."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I was washing a souvenir mug when she called.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-14:session-29:word:fridge-magnet",
+      "correctText": "fridge magnet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i01",
+      "correctText": "I was looking at a fridge magnet when you called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i02",
+      "correctText": "You were looking at a fridge magnet when you called.",
+      "correctResponseId": "en:lesson-14:session-29:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-29:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:word:snow-globe",
+      "correctText": "snow globe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i04",
+      "correctText": "They were looking at a snow globe when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i05",
+      "correctText": "You were looking at a snow globe when I arrived.",
+      "correctResponseId": "en:lesson-14:session-29:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i06",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-29:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:word:souvenir-mug",
+      "correctText": "souvenir mug",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i07",
+      "correctText": "She was washing a souvenir mug when you called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i08",
+      "correctText": "You were washing a souvenir mug when you called.",
+      "correctResponseId": "en:lesson-14:session-29:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-14:session-29:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:word:photo-frame",
+      "correctText": "photo frame",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i10",
+      "correctText": "We were cleaning a photo frame when you arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i11",
+      "correctText": "You were cleaning a photo frame when you arrived.",
+      "correctResponseId": "en:lesson-14:session-29:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-14:session-29:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i14",
+      "correctText": "I was unpacking when you called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i15",
+      "correctText": "They were talking about the trip when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i16",
+      "correctText": "She was looking at a fridge magnet when I arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-29:i17",
+      "correctText": "I was washing a souvenir mug when she called.",
+      "correctResponseId": null
+    }
+  ]
+}

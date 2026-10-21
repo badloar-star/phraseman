@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-26:intro1:r2": {
+          "ru": "Am folding — сейчас, не прошлый процесс.",
+          "uk": "Am folding — зараз, не минулий процес."
+        },
+        "en:lesson-14:session-26:intro1:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-26:intro2:r2": {
+          "ru": "Tank top — майка.",
+          "uk": "Tank top — майка."
+        },
+        "en:lesson-14:session-26:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-26:intro3:r2": {
+          "ru": "Call — не форма прошлого; нужно called.",
+          "uk": "Call — не форма минулого; потрібно called."
+        },
+        "en:lesson-14:session-26:intro3:r3": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9fd36ef0ed1420ac09d14e7b5027c71cb738ce5d545ff130af1ea839a72f8a06"
+}

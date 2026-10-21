@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-28:word:starfish",
+    "correctText": "starfish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i01",
+    "correctText": "I was looking at a starfish when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i02",
+    "correctText": "You were looking at a starfish when you called.",
+    "correctResponseId": "en:lesson-14:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:word:seaweed",
+    "correctText": "seaweed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i04",
+    "correctText": "They were looking at seaweed when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i05",
+    "correctText": "You were looking at seaweed when I arrived.",
+    "correctResponseId": "en:lesson-14:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:word:driftwood",
+    "correctText": "driftwood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i07",
+    "correctText": "She was drawing a piece of driftwood when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i08",
+    "correctText": "You were drawing a piece of driftwood when I arrived.",
+    "correctResponseId": "en:lesson-14:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:word:rock-pool",
+    "correctText": "rock pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i10",
+    "correctText": "We were looking into a rock pool when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i11",
+    "correctText": "You were looking into a rock pool when you called.",
+    "correctResponseId": "en:lesson-14:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i13",
+    "correctText": "en:lesson-14:session-28:i13:p1=starfish\nen:lesson-14:session-28:i13:p2=seaweed\nen:lesson-14:session-28:i13:p3=driftwood\nen:lesson-14:session-28:i13:p4=rock pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i14",
+    "correctText": "We were walking on the beach when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i15",
+    "correctText": "I was drawing when she arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i16",
+    "correctText": "She was looking at a starfish when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-28:i17",
+    "correctText": "I was drawing seaweed when you called.",
+    "correctResponseId": null
+  }
+]

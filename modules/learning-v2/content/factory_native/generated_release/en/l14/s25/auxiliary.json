@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-25:intro1:r2": {
+          "ru": "Am cleaning — настоящее, а рассказ о прошлом.",
+          "uk": "Am cleaning — теперішній час, а розповідь про минуле."
+        },
+        "en:lesson-14:session-25:intro1:r3": {
+          "ru": "После was нужна форма cleaning.",
+          "uk": "Після was потрібна форма cleaning."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-25:intro2:r2": {
+          "ru": "Событие тоже в прошлом: called, не call.",
+          "uk": "Подія теж у минулому: called, не call."
+        },
+        "en:lesson-14:session-25:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-25:intro3:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-14:session-25:intro3:r3": {
+          "ru": "В рассказе о прошлом нужно arrived.",
+          "uk": "У розповіді про минуле потрібно arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f906ee79c96d9cbdb3e99e5ea2974e69bd22663bb588048df9648b0254f495d2"
+}

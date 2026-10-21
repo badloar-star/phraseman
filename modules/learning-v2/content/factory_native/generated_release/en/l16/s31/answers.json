@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-31:word:staple-remover",
+    "correctText": "staple remover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i01",
+    "correctText": "I'll get the staple remover.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i02",
+    "correctText": "I'll get the staple remover.",
+    "correctResponseId": "en:lesson-16:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i03",
+    "correctText": "I'll get",
+    "correctResponseId": "en:lesson-16:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:word:correction-tape",
+    "correctText": "correction tape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i04",
+    "correctText": "I'll use the correction tape.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i05",
+    "correctText": "I'll use the correction tape.",
+    "correctResponseId": "en:lesson-16:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i06",
+    "correctText": "I'll use",
+    "correctResponseId": "en:lesson-16:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:word:binder-clip",
+    "correctText": "binder clip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i07",
+    "correctText": "Shall I bring a binder clip?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i08",
+    "correctText": "Shall I bring a binder clip?",
+    "correctResponseId": "en:lesson-16:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i09",
+    "correctText": "Shall I bring",
+    "correctResponseId": "en:lesson-16:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:word:ring-binder",
+    "correctText": "ring binder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i10",
+    "correctText": "Shall I get a ring binder?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i11",
+    "correctText": "Shall I get a ring binder?",
+    "correctResponseId": "en:lesson-16:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i12",
+    "correctText": "Shall I get",
+    "correctResponseId": "en:lesson-16:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i13",
+    "correctText": "en:lesson-16:session-31:i13:p1=staple remover\nen:lesson-16:session-31:i13:p2=correction tape\nen:lesson-16:session-31:i13:p3=binder clip\nen:lesson-16:session-31:i13:p4=ring binder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i14",
+    "correctText": "I'll get the staple remover.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i15",
+    "correctText": "Shall I bring a binder clip?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i16",
+    "correctText": "I'll use the correction tape.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-31:i17",
+    "correctText": "Shall I get a ring binder?",
+    "correctResponseId": null
+  }
+]

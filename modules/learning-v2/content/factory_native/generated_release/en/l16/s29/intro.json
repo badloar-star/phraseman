@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + offer; Shall I + base verb?",
+    "uk": "I'll + offer; Shall I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложить свою помощь",
+        "uk": "Запропонувати свою допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "I'll + глагол может быть предложением помощи: вы замечаете, что человеку что-то нужно, и предлагаете сделать это сами. set up — установить и подготовить к использованию. Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку. I'll set up the tent. — Я установлю палатку",
+        "uk": "I'll + дієслово може бути пропозицією допомоги: ви помічаєте, що людині щось потрібно, і пропонуєте зробити це самі. set up — встановити й підготувати до використання. Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет. I'll set up the tent. — Я встановлю намет"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-29:intro1:r1",
+              "text": "I'll set up the tent."
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro1:r2",
+              "text": "I'll to set up the tent."
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro1:r3",
+              "text": "I will will set up the tent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-29:intro1:r1",
+              "text": "I'll set up the tent."
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro1:r2",
+              "text": "I'll to set up the tent."
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro1:r3",
+              "text": "I will will set up the tent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить, нужна ли помощь",
+        "uk": "Запитати, чи потрібна допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Shall I + глагол? — «Мне сделать…?» Так спрашиваем, нужна ли наша помощь. После I — глагол без to. pack up — собрать и упаковать вещи после использования. blow up — надуть воздухом. Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики. Shall I blow up the balloons? — Мне надуть шарики?",
+        "uk": "Shall I + дієслово? — «Мені зробити…?» Так запитуємо, чи потрібна наша допомога. Після I — дієслово без to. pack up — зібрати й запакувати речі після використання. blow up — надути повітрям. Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки. Shall I blow up the balloons? — Мені надути кульки?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-29:intro2:r1",
+              "text": "Shall I blow up the balloons?"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro2:r2",
+              "text": "Shall I to blow up the balloons?"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro2:r3",
+              "text": "Shall I will blow up the balloons?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-29:intro2:r1",
+              "text": "Shall I blow up the balloons?"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro2:r2",
+              "text": "Shall I to blow up the balloons?"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro2:r3",
+              "text": "Shall I will blow up the balloons?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё одно предложение",
+        "uk": "Ще одна пропозиція"
+      },
+      "bodyByLocale": {
+        "ru": "peg down — закрепить колышками в земле. Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками. Shall I peg down the tent? — Мне закрепить палатку колышками?",
+        "uk": "peg down — закріпити кілочками в землі. Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками. Shall I peg down the tent? — Мені закріпити намет кілочками?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-29:intro3:r1",
+              "text": "Shall I peg down the tent?"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro3:r2",
+              "text": "Shall I to peg down the tent?"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro3:r3",
+              "text": "Shall I will peg down the tent?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-29:intro3:r1",
+              "text": "Shall I peg down the tent?"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro3:r2",
+              "text": "Shall I to peg down the tent?"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:intro3:r3",
+              "text": "Shall I will peg down the tent?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "74358d451fe83deef81fdb0a832a395fe675e313911354132d81209c3142ccbf"
+}

@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-30:word:move-over",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — move over",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:word:move-over:audio"
+      ],
+      "accessibilityLabel": "Картка слова — move over",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:word:move-over:audio",
+          "transcript": "move over"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-30:word:move-over:r1",
+            "targetText": "move over",
+            "meaningByLocale": {
+              "ru": "подвинуться, освобождая место рядом.",
+              "uk": "посунутися, звільняючи місце поруч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "move over",
+          "definitionByLocale": {
+            "ru": "подвинуться, освобождая место рядом.",
+            "uk": "посунутися, звільняючи місце поруч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг хоче сісти поруч на лавку. Запропонуйте посунутися. Скажіть: «Я посунуся».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг хоче сісти поруч на лавку. Запропонуйте посунутися. Скажіть: «Я посунуся».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll move over.",
+        "localizedMeaning": {
+          "ru": "Друг хочет сесть рядом на скамейку. Предложите подвинуться. Скажите: «Я подвинусь».",
+          "uk": "Друг хоче сісти поруч на лавку. Запропонуйте посунутися. Скажіть: «Я посунуся»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "move",
+          "over"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-30:i02:r1",
+          "text": "I'll move over."
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i02:r2",
+          "text": "I'll to move over."
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i02:r3",
+          "text": "I will will move over."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:i02:audio",
+          "transcript": "I'll move over."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-30:i02:r1",
+            "targetText": "I'll move over.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i02:r2",
+            "targetText": "I'll to move over.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i02:r3",
+            "targetText": "I will will move over.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll move over.",
+              "uk": "У записі звучить I'll move over."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll move over.",
+              "uk": "У записі звучить I'll move over."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг хоче сісти поруч на лавку. Запропонуйте посунутися.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-30:i03:r1",
+          "text": "I'll move over"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i03:r2",
+          "text": "I'll to move over"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i03:r3",
+          "text": "I will will move over"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг хоче сісти поруч на лавку. Запропонуйте посунутися.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг хочет сесть рядом на скамейку. Предложите подвинуться.",
+          "uk": "Друг хоче сісти поруч на лавку. Запропонуйте посунутися."
+        },
+        "gappedTargetPhrase": "___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-30:i03:r1",
+            "text": "I'll move over"
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i03:r2",
+            "text": "I'll to move over"
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i03:r3",
+            "text": "I will will move over"
+          }
+        ],
+        "testedDimension": "Друг хоче сісти поруч на лавку. Запропонуйте посунутися.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг хоче сісти поруч на лавку. Запропонуйте посунутися.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг хоче сісти поруч на лавку. Запропонуйте посунутися.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:word:squeeze-in",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — squeeze in",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:word:squeeze-in:audio"
+      ],
+      "accessibilityLabel": "Картка слова — squeeze in",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:word:squeeze-in:audio",
+          "transcript": "squeeze in"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-30:word:squeeze-in:r1",
+            "targetText": "squeeze in",
+            "meaningByLocale": {
+              "ru": "найти время для дополнительного дела в плотном расписании.",
+              "uk": "знайти час для додаткової справи у щільному розкладі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "squeeze in",
+          "definitionByLocale": {
+            "ru": "найти время для дополнительного дела в плотном расписании.",
+            "uk": "знайти час для додаткової справи у щільному розкладі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту. Скажіть: «Я знайду час ненадовго зайти завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту. Скажіть: «Я знайду час ненадовго зайти завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll squeeze in a visit tomorrow.",
+        "localizedMeaning": {
+          "ru": "Друг просит посмотреть его сломанный стул. Завтра вы заняты, но предлагаете найти время для короткого визита. Скажите: «Я найду время ненадолго зайти завтра».",
+          "uk": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту. Скажіть: «Я знайду час ненадовго зайти завтра»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "squeeze",
+          "in",
+          "a",
+          "visit",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-30:i05:r1",
+          "text": "I'll squeeze in a visit tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i05:r2",
+          "text": "I'll to squeeze in a visit tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i05:r3",
+          "text": "I will will squeeze in a visit tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:i05:audio",
+          "transcript": "I'll squeeze in a visit tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-30:i05:r1",
+            "targetText": "I'll squeeze in a visit tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i05:r2",
+            "targetText": "I'll to squeeze in a visit tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i05:r3",
+            "targetText": "I will will squeeze in a visit tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll squeeze in a visit tomorrow.",
+              "uk": "У записі звучить I'll squeeze in a visit tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll squeeze in a visit tomorrow.",
+              "uk": "У записі звучить I'll squeeze in a visit tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-30:i06:r1",
+          "text": "I'll squeeze in"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i06:r2",
+          "text": "I'll to squeeze in"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i06:r3",
+          "text": "I will will squeeze in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг просит посмотреть его сломанный стул. Завтра вы заняты, но предлагаете найти время для короткого визита.",
+          "uk": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту."
+        },
+        "gappedTargetPhrase": "___ a visit tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-30:i06:r1",
+            "text": "I'll squeeze in"
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i06:r2",
+            "text": "I'll to squeeze in"
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i06:r3",
+            "text": "I will will squeeze in"
+          }
+        ],
+        "testedDimension": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:word:come-round",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — come round",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:word:come-round:audio"
+      ],
+      "accessibilityLabel": "Картка слова — come round",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:word:come-round:audio",
+          "transcript": "come round"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-30:word:come-round:r1",
+            "targetText": "come round",
+            "meaningByLocale": {
+              "ru": "зайти к человеку домой.",
+              "uk": "зайти до людини додому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "come round",
+          "definitionByLocale": {
+            "ru": "зайти к человеку домой.",
+            "uk": "зайти до людини додому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері. Скажіть: «Мені зайти до вас сьогодні ввечері?».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері. Скажіть: «Мені зайти до вас сьогодні ввечері?».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall I come round this evening?",
+        "localizedMeaning": {
+          "ru": "Друг просит помочь собрать стол. Предложите зайти к нему вечером. Скажите: «Мне зайти к вам сегодня вечером?».",
+          "uk": "Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері. Скажіть: «Мені зайти до вас сьогодні ввечері?»."
+        },
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "come",
+          "round",
+          "this",
+          "evening"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-30:i08:r1",
+          "text": "Shall I come round this evening?"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i08:r2",
+          "text": "Shall I to come round this evening?"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i08:r3",
+          "text": "Shall I will come round this evening?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:i08:audio",
+          "transcript": "Shall I come round this evening?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-30:i08:r1",
+            "targetText": "Shall I come round this evening?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i08:r2",
+            "targetText": "Shall I to come round this evening?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i08:r3",
+            "targetText": "Shall I will come round this evening?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I come round this evening?",
+              "uk": "У записі звучить Shall I come round this evening?"
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I come round this evening?",
+              "uk": "У записі звучить Shall I come round this evening?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-30:i09:r1",
+          "text": "Shall I come round"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i09:r2",
+          "text": "Shall I to come round"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i09:r3",
+          "text": "Shall I will come round"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг просит помочь собрать стол. Предложите зайти к нему вечером.",
+          "uk": "Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері."
+        },
+        "gappedTargetPhrase": "___ this evening?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-30:i09:r1",
+            "text": "Shall I come round"
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i09:r2",
+            "text": "Shall I to come round"
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i09:r3",
+            "text": "Shall I will come round"
+          }
+        ],
+        "testedDimension": "Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:word:go-over",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — go over",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:word:go-over:audio"
+      ],
+      "accessibilityLabel": "Картка слова — go over",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:word:go-over:audio",
+          "transcript": "go over"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-30:word:go-over:r1",
+            "targetText": "go over",
+            "meaningByLocale": {
+              "ru": "внимательно просмотреть или разобрать вместе.",
+              "uk": "уважно переглянути або розібрати разом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "go over",
+          "definitionByLocale": {
+            "ru": "внимательно просмотреть или разобрать вместе.",
+            "uk": "уважно переглянути або розібрати разом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом. Скажіть: «Мені переглянути список разом із вами?».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом. Скажіть: «Мені переглянути список разом із вами?».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall I go over the list with you?",
+        "localizedMeaning": {
+          "ru": "Друг сомневается, всё ли включил в список для поездки. Предложите внимательно просмотреть список вместе. Скажите: «Мне просмотреть список вместе с вами?».",
+          "uk": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом. Скажіть: «Мені переглянути список разом із вами?»."
+        },
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "go",
+          "over",
+          "the",
+          "list",
+          "with",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-30:i11:r1",
+          "text": "Shall I go over the list with you?"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i11:r2",
+          "text": "Shall I to go over the list with you?"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i11:r3",
+          "text": "Shall I will go over the list with you?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:i11:audio",
+          "transcript": "Shall I go over the list with you?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-30:i11:r1",
+            "targetText": "Shall I go over the list with you?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i11:r2",
+            "targetText": "Shall I to go over the list with you?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i11:r3",
+            "targetText": "Shall I will go over the list with you?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I go over the list with you?",
+              "uk": "У записі звучить Shall I go over the list with you?"
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I go over the list with you?",
+              "uk": "У записі звучить Shall I go over the list with you?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-30:i12:r1",
+          "text": "Shall I go over"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i12:r2",
+          "text": "Shall I to go over"
+        },
+        {
+          "responseId": "en:lesson-16:session-30:i12:r3",
+          "text": "Shall I will go over"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг сомневается, всё ли включил в список для поездки. Предложите внимательно просмотреть список вместе.",
+          "uk": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом."
+        },
+        "gappedTargetPhrase": "___ the list with you?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-30:i12:r1",
+            "text": "Shall I go over"
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i12:r2",
+            "text": "Shall I to go over"
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i12:r3",
+            "text": "Shall I will go over"
+          }
+        ],
+        "testedDimension": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-30:i13:p1",
+            "target": "move over",
+            "meaningByLocale": {
+              "ru": "подвинуться, освобождая место рядом",
+              "uk": "посунутися, звільняючи місце поруч"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-30:i13:p2",
+            "target": "squeeze in",
+            "meaningByLocale": {
+              "ru": "найти время для дополнительного дела в плотном расписании",
+              "uk": "знайти час для додаткової справи у щільному розкладі"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-30:i13:p3",
+            "target": "come round",
+            "meaningByLocale": {
+              "ru": "зайти к человеку домой",
+              "uk": "зайти до людини додому"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-30:i13:p4",
+            "target": "go over",
+            "meaningByLocale": {
+              "ru": "внимательно просмотреть или разобрать вместе",
+              "uk": "уважно переглянути або розібрати разом"
+            }
+          }
+        ],
+        "leftColumn": [
+          "move over",
+          "squeeze in",
+          "come round",
+          "go over"
+        ],
+        "rightColumn": [
+          "посунутися, звільняючи місце поруч",
+          "знайти час для додаткової справи у щільному розкладі",
+          "зайти до людини додому",
+          "уважно переглянути або розібрати разом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту пропозицію допомоги",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту пропозицію допомоги",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:i14:audio",
+          "transcript": "I'll move over."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll move over.",
+        "orderedTokens": [
+          "I'll",
+          "move",
+          "over"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:i15:audio",
+          "transcript": "Shall I come round this evening?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Shall I come round this evening?",
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "come",
+          "round",
+          "this",
+          "evening"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Друг просить подивитися на його зламаний стілець. Завтра ви зайняті, але пропонуєте знайти час для короткого візиту.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:i16:audio",
+          "transcript": "I'll squeeze in a visit tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll squeeze in a visit tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-30:i17:audio",
+          "transcript": "Shall I go over the list with you?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall I go over the list with you?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f5198028b163c2155db424f0ba7d79c7928634aa8186cbc3f699ca51aa74978d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-16:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-16:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-30:intro1:r2": {
+          "ru": "Перед глаголом здесь не нужно to.",
+          "uk": "Перед дієсловом тут не потрібне to."
+        },
+        "en:lesson-16:session-30:intro1:r3": {
+          "ru": "Не добавляйте ещё одно will.",
+          "uk": "Не додавайте ще одне will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-30:intro2:r2": {
+          "ru": "Перед глаголом здесь не нужно to.",
+          "uk": "Перед дієсловом тут не потрібне to."
+        },
+        "en:lesson-16:session-30:intro2:r3": {
+          "ru": "Не добавляйте ещё одно will.",
+          "uk": "Не додавайте ще одне will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-30:intro3:r2": {
+          "ru": "Перед глаголом здесь не нужно to.",
+          "uk": "Перед дієсловом тут не потрібне to."
+        },
+        "en:lesson-16:session-30:intro3:r3": {
+          "ru": "Не добавляйте ещё одно will.",
+          "uk": "Не додавайте ще одне will."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4d3e5fe9a98c5c0de392af1f4613ca0a30e4aad63fc6b9e3c1ed05fb381d43ad"
+}

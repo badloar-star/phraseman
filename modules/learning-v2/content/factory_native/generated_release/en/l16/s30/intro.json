@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + offer; Shall I + base verb?",
+    "uk": "I'll + offer; Shall I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложить свою помощь",
+        "uk": "Запропонувати свою допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "I'll + глагол может быть предложением помощи: вы замечаете, что человеку что-то нужно, и предлагаете сделать это сами. move over — подвинуться, освобождая место рядом. Друг хочет сесть рядом на скамейку. Предложите подвинуться. I'll move over. — Я подвинусь",
+        "uk": "I'll + дієслово може бути пропозицією допомоги: ви помічаєте, що людині щось потрібно, і пропонуєте зробити це самі. move over — посунутися, звільняючи місце поруч. Друг хоче сісти поруч на лавку. Запропонуйте посунутися. I'll move over. — Я посунуся"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-30:intro1:r1",
+              "text": "I'll move over."
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro1:r2",
+              "text": "I'll to move over."
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro1:r3",
+              "text": "I will will move over."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-30:intro1:r1",
+              "text": "I'll move over."
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro1:r2",
+              "text": "I'll to move over."
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro1:r3",
+              "text": "I will will move over."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить, нужна ли помощь",
+        "uk": "Запитати, чи потрібна допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Shall I + глагол? — «Мне сделать…?» Так спрашиваем, нужна ли наша помощь. После I — глагол без to. squeeze in — найти время для дополнительного дела в плотном расписании. come round — зайти к человеку домой. Друг просит помочь собрать стол. Предложите зайти к нему вечером. Shall I come round this evening? — Мне зайти к вам сегодня вечером?",
+        "uk": "Shall I + дієслово? — «Мені зробити…?» Так запитуємо, чи потрібна наша допомога. Після I — дієслово без to. squeeze in — знайти час для додаткової справи у щільному розкладі. come round — зайти до людини додому. Друг просить допомогти зібрати стіл. Запропонуйте зайти до нього ввечері. Shall I come round this evening? — Мені зайти до вас сьогодні ввечері?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-30:intro2:r1",
+              "text": "Shall I come round this evening?"
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro2:r2",
+              "text": "Shall I to come round this evening?"
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro2:r3",
+              "text": "Shall I will come round this evening?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-30:intro2:r1",
+              "text": "Shall I come round this evening?"
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro2:r2",
+              "text": "Shall I to come round this evening?"
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro2:r3",
+              "text": "Shall I will come round this evening?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё одно предложение",
+        "uk": "Ще одна пропозиція"
+      },
+      "bodyByLocale": {
+        "ru": "go over — внимательно просмотреть или разобрать вместе. Друг сомневается, всё ли включил в список для поездки. Предложите внимательно просмотреть список вместе. Shall I go over the list with you? — Мне просмотреть список вместе с вами?",
+        "uk": "go over — уважно переглянути або розібрати разом. Друг сумнівається, чи все включив до списку для поїздки. Запропонуйте уважно переглянути список разом. Shall I go over the list with you? — Мені переглянути список разом із вами?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-30:intro3:r1",
+              "text": "Shall I go over the list with you?"
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro3:r2",
+              "text": "Shall I to go over the list with you?"
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro3:r3",
+              "text": "Shall I will go over the list with you?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-30:intro3:r1",
+              "text": "Shall I go over the list with you?"
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro3:r2",
+              "text": "Shall I to go over the list with you?"
+            },
+            {
+              "responseId": "en:lesson-16:session-30:intro3:r3",
+              "text": "Shall I will go over the list with you?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "403080327102514e526bbc1efdd60d94795baae13ee3bab3c7d1b3f893f9d44c"
+}

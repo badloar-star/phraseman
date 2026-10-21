@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-32:word:upside-down",
+    "correctText": "upside down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i01",
+    "correctText": "I'll turn the pot upside down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i02",
+    "correctText": "I'll turn the pot upside down.",
+    "correctResponseId": "en:lesson-16:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i03",
+    "correctText": "I'll turn",
+    "correctResponseId": "en:lesson-16:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:word:inside-out",
+    "correctText": "inside out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i04",
+    "correctText": "I'll turn the shirt inside out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i05",
+    "correctText": "I'll turn the shirt inside out.",
+    "correctResponseId": "en:lesson-16:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i06",
+    "correctText": "I'll turn",
+    "correctResponseId": "en:lesson-16:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:word:upright",
+    "correctText": "upright",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i07",
+    "correctText": "Shall I hold the bottle upright?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i08",
+    "correctText": "Shall I hold the bottle upright?",
+    "correctResponseId": "en:lesson-16:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i09",
+    "correctText": "Shall I hold",
+    "correctResponseId": "en:lesson-16:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:word:lengthways",
+    "correctText": "lengthways",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i10",
+    "correctText": "Shall I cut the cucumber lengthways?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i11",
+    "correctText": "Shall I cut the cucumber lengthways?",
+    "correctResponseId": "en:lesson-16:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i12",
+    "correctText": "Shall I cut",
+    "correctResponseId": "en:lesson-16:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i13",
+    "correctText": "en:lesson-16:session-32:i13:p1=upside down\nen:lesson-16:session-32:i13:p2=inside out\nen:lesson-16:session-32:i13:p3=upright\nen:lesson-16:session-32:i13:p4=lengthways",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i14",
+    "correctText": "I'll turn the pot upside down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i15",
+    "correctText": "Shall I hold the bottle upright?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i16",
+    "correctText": "I'll turn the shirt inside out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-32:i17",
+    "correctText": "Shall I cut the cucumber lengthways?",
+    "correctResponseId": null
+  }
+]

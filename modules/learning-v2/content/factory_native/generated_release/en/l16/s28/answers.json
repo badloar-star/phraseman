@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-28:word:wrap-up",
+    "correctText": "wrap up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i01",
+    "correctText": "I'll wrap up the present.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i02",
+    "correctText": "I'll wrap up the present.",
+    "correctResponseId": "en:lesson-16:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i03",
+    "correctText": "I'll wrap up",
+    "correctResponseId": "en:lesson-16:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:word:box-up",
+    "correctText": "box up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i04",
+    "correctText": "I'll box up the books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i05",
+    "correctText": "I'll box up the books.",
+    "correctResponseId": "en:lesson-16:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i06",
+    "correctText": "I'll box up",
+    "correctResponseId": "en:lesson-16:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:word:bag-up",
+    "correctText": "bag up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i07",
+    "correctText": "Shall I bag up the clothes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i08",
+    "correctText": "Shall I bag up the clothes?",
+    "correctResponseId": "en:lesson-16:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i09",
+    "correctText": "Shall I bag up",
+    "correctResponseId": "en:lesson-16:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:word:tie-up",
+    "correctText": "tie up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i10",
+    "correctText": "Shall I tie up the parcel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i11",
+    "correctText": "Shall I tie up the parcel?",
+    "correctResponseId": "en:lesson-16:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i12",
+    "correctText": "Shall I tie up",
+    "correctResponseId": "en:lesson-16:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i13",
+    "correctText": "en:lesson-16:session-28:i13:p1=wrap up\nen:lesson-16:session-28:i13:p2=box up\nen:lesson-16:session-28:i13:p3=bag up\nen:lesson-16:session-28:i13:p4=tie up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i14",
+    "correctText": "I'll wrap up the present.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i15",
+    "correctText": "Shall I bag up the clothes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i16",
+    "correctText": "I'll box up the books.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-28:i17",
+    "correctText": "Shall I tie up the parcel?",
+    "correctResponseId": null
+  }
+]

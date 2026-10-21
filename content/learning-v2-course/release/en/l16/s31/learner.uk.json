@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-31:word:staple-remover",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — staple remover",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:word:staple-remover:audio"
+      ],
+      "accessibilityLabel": "Картка слова — staple remover",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:word:staple-remover:audio",
+          "transcript": "staple remover"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-31:word:staple-remover:r1",
+            "targetText": "staple remover",
+            "meaningByLocale": {
+              "ru": "приспособление для удаления скоб из бумаги.",
+              "uk": "пристрій для видалення скоб із паперу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "staple remover",
+          "definitionByLocale": {
+            "ru": "приспособление для удаления скоб из бумаги.",
+            "uk": "пристрій для видалення скоб із паперу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби. Скажіть: «Я принесу пристрій для видалення скоб».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби. Скажіть: «Я принесу пристрій для видалення скоб».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll get the staple remover.",
+        "localizedMeaning": {
+          "ru": "Друг хочет разъединить скреплённые листы. Предложите принести приспособление, которое вынимает скобы. Скажите: «Я принесу приспособление для удаления скоб».",
+          "uk": "Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби. Скажіть: «Я принесу пристрій для видалення скоб»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "get",
+          "the",
+          "staple",
+          "remover"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-31:i02:r1",
+          "text": "I'll get the staple remover."
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i02:r2",
+          "text": "I'll to get the staple remover."
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i02:r3",
+          "text": "I will will get the staple remover."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:i02:audio",
+          "transcript": "I'll get the staple remover."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-31:i02:r1",
+            "targetText": "I'll get the staple remover.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i02:r2",
+            "targetText": "I'll to get the staple remover.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i02:r3",
+            "targetText": "I will will get the staple remover.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll get the staple remover.",
+              "uk": "У записі звучить I'll get the staple remover."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll get the staple remover.",
+              "uk": "У записі звучить I'll get the staple remover."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-31:i03:r1",
+          "text": "I'll get"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i03:r2",
+          "text": "I'll to get"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i03:r3",
+          "text": "I will will get"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг хочет разъединить скреплённые листы. Предложите принести приспособление, которое вынимает скобы.",
+          "uk": "Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби."
+        },
+        "gappedTargetPhrase": "___ the staple remover.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-31:i03:r1",
+            "text": "I'll get"
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i03:r2",
+            "text": "I'll to get"
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i03:r3",
+            "text": "I will will get"
+          }
+        ],
+        "testedDimension": "Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:word:correction-tape",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — correction tape",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:word:correction-tape:audio"
+      ],
+      "accessibilityLabel": "Картка слова — correction tape",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:word:correction-tape:audio",
+          "transcript": "correction tape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-31:word:correction-tape:r1",
+            "targetText": "correction tape",
+            "meaningByLocale": {
+              "ru": "корректирующая лента для закрытия ошибки на бумаге.",
+              "uk": "коригувальна стрічка для закриття помилки на папері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "correction tape",
+          "definitionByLocale": {
+            "ru": "корректирующая лента для закрытия ошибки на бумаге.",
+            "uk": "коригувальна стрічка для закриття помилки на папері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою. Скажіть: «Я скористаюся коригувальною стрічкою».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою. Скажіть: «Я скористаюся коригувальною стрічкою».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll use the correction tape.",
+        "localizedMeaning": {
+          "ru": "В рукописной подписи на коробке ошибка. Предложите закрыть её корректирующей лентой. Скажите: «Я воспользуюсь корректирующей лентой».",
+          "uk": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою. Скажіть: «Я скористаюся коригувальною стрічкою»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "use",
+          "the",
+          "correction",
+          "tape"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-31:i05:r1",
+          "text": "I'll use the correction tape."
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i05:r2",
+          "text": "I'll to use the correction tape."
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i05:r3",
+          "text": "I will will use the correction tape."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:i05:audio",
+          "transcript": "I'll use the correction tape."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-31:i05:r1",
+            "targetText": "I'll use the correction tape.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i05:r2",
+            "targetText": "I'll to use the correction tape.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i05:r3",
+            "targetText": "I will will use the correction tape.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-31:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll use the correction tape.",
+              "uk": "У записі звучить I'll use the correction tape."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll use the correction tape.",
+              "uk": "У записі звучить I'll use the correction tape."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-31:i06:r1",
+          "text": "I'll use"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i06:r2",
+          "text": "I'll to use"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i06:r3",
+          "text": "I will will use"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В рукописной подписи на коробке ошибка. Предложите закрыть её корректирующей лентой.",
+          "uk": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою."
+        },
+        "gappedTargetPhrase": "___ the correction tape.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-31:i06:r1",
+            "text": "I'll use"
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i06:r2",
+            "text": "I'll to use"
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i06:r3",
+            "text": "I will will use"
+          }
+        ],
+        "testedDimension": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:word:binder-clip",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — binder clip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:word:binder-clip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — binder clip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:word:binder-clip:audio",
+          "transcript": "binder clip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-31:word:binder-clip:r1",
+            "targetText": "binder clip",
+            "meaningByLocale": {
+              "ru": "зажим для стопки бумаги с двумя металлическими ручками.",
+              "uk": "затискач для стосу паперу з двома металевими ручками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "binder clip",
+          "definitionByLocale": {
+            "ru": "зажим для стопки бумаги с двумя металлическими ручками.",
+            "uk": "затискач для стосу паперу з двома металевими ручками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками. Скажіть: «Мені принести затискач для стосу паперу?».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками. Скажіть: «Мені принести затискач для стосу паперу?».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall I bring a binder clip?",
+        "localizedMeaning": {
+          "ru": "Стопка листов рассыпается. Предложите принести большой зажим с металлическими ручками. Скажите: «Мне принести зажим для стопки бумаги?».",
+          "uk": "Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками. Скажіть: «Мені принести затискач для стосу паперу?»."
+        },
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "bring",
+          "a",
+          "binder",
+          "clip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-31:i08:r1",
+          "text": "Shall I bring a binder clip?"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i08:r2",
+          "text": "Shall I to bring a binder clip?"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i08:r3",
+          "text": "Shall I will bring a binder clip?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:i08:audio",
+          "transcript": "Shall I bring a binder clip?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-31:i08:r1",
+            "targetText": "Shall I bring a binder clip?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i08:r2",
+            "targetText": "Shall I to bring a binder clip?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i08:r3",
+            "targetText": "Shall I will bring a binder clip?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I bring a binder clip?",
+              "uk": "У записі звучить Shall I bring a binder clip?"
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I bring a binder clip?",
+              "uk": "У записі звучить Shall I bring a binder clip?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-31:i09:r1",
+          "text": "Shall I bring"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i09:r2",
+          "text": "Shall I to bring"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i09:r3",
+          "text": "Shall I will bring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стопка листов рассыпается. Предложите принести большой зажим с металлическими ручками.",
+          "uk": "Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками."
+        },
+        "gappedTargetPhrase": "___ a binder clip?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-31:i09:r1",
+            "text": "Shall I bring"
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i09:r2",
+            "text": "Shall I to bring"
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i09:r3",
+            "text": "Shall I will bring"
+          }
+        ],
+        "testedDimension": "Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:word:ring-binder",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ring binder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:word:ring-binder:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ring binder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:word:ring-binder:audio",
+          "transcript": "ring binder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-31:word:ring-binder:r1",
+            "targetText": "ring binder",
+            "meaningByLocale": {
+              "ru": "папка с кольцами для листов с отверстиями.",
+              "uk": "папка з кільцями для аркушів з отворами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ring binder",
+          "definitionByLocale": {
+            "ru": "папка с кольцами для листов с отверстиями.",
+            "uk": "папка з кільцями для аркушів з отворами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом. Скажіть: «Мені принести папку з кільцями?».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом. Скажіть: «Мені принести папку з кільцями?».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall I get a ring binder?",
+        "localizedMeaning": {
+          "ru": "В листах уже сделаны отверстия. Предложите принести папку с кольцами, чтобы собрать листы вместе. Скажите: «Мне принести папку с кольцами?».",
+          "uk": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом. Скажіть: «Мені принести папку з кільцями?»."
+        },
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "get",
+          "a",
+          "ring",
+          "binder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-31:i11:r1",
+          "text": "Shall I get a ring binder?"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i11:r2",
+          "text": "Shall I to get a ring binder?"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i11:r3",
+          "text": "Shall I will get a ring binder?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:i11:audio",
+          "transcript": "Shall I get a ring binder?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-31:i11:r1",
+            "targetText": "Shall I get a ring binder?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i11:r2",
+            "targetText": "Shall I to get a ring binder?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i11:r3",
+            "targetText": "Shall I will get a ring binder?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I get a ring binder?",
+              "uk": "У записі звучить Shall I get a ring binder?"
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I get a ring binder?",
+              "uk": "У записі звучить Shall I get a ring binder?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-31:i12:r1",
+          "text": "Shall I get"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i12:r2",
+          "text": "Shall I to get"
+        },
+        {
+          "responseId": "en:lesson-16:session-31:i12:r3",
+          "text": "Shall I will get"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В листах уже сделаны отверстия. Предложите принести папку с кольцами, чтобы собрать листы вместе.",
+          "uk": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом."
+        },
+        "gappedTargetPhrase": "___ a ring binder?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-31:i12:r1",
+            "text": "Shall I get"
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i12:r2",
+            "text": "Shall I to get"
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i12:r3",
+            "text": "Shall I will get"
+          }
+        ],
+        "testedDimension": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-31:i13:p1",
+            "target": "staple remover",
+            "meaningByLocale": {
+              "ru": "приспособление для удаления скоб из бумаги",
+              "uk": "пристрій для видалення скоб із паперу"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-31:i13:p2",
+            "target": "correction tape",
+            "meaningByLocale": {
+              "ru": "корректирующая лента для закрытия ошибки на бумаге",
+              "uk": "коригувальна стрічка для закриття помилки на папері"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-31:i13:p3",
+            "target": "binder clip",
+            "meaningByLocale": {
+              "ru": "зажим для стопки бумаги с двумя металлическими ручками",
+              "uk": "затискач для стосу паперу з двома металевими ручками"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-31:i13:p4",
+            "target": "ring binder",
+            "meaningByLocale": {
+              "ru": "папка с кольцами для листов с отверстиями",
+              "uk": "папка з кільцями для аркушів з отворами"
+            }
+          }
+        ],
+        "leftColumn": [
+          "staple remover",
+          "correction tape",
+          "binder clip",
+          "ring binder"
+        ],
+        "rightColumn": [
+          "пристрій для видалення скоб із паперу",
+          "коригувальна стрічка для закриття помилки на папері",
+          "затискач для стосу паперу з двома металевими ручками",
+          "папка з кільцями для аркушів з отворами"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту пропозицію допомоги",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту пропозицію допомоги",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:i14:audio",
+          "transcript": "I'll get the staple remover."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll get the staple remover.",
+        "orderedTokens": [
+          "I'll",
+          "get",
+          "the",
+          "staple",
+          "remover"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:i15:audio",
+          "transcript": "Shall I bring a binder clip?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Shall I bring a binder clip?",
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "bring",
+          "a",
+          "binder",
+          "clip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:i16:audio"
+      ],
+      "accessibilityLabel": "У рукописному підписі на коробці помилка. Запропонуйте закрити її коригувальною стрічкою.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:i16:audio",
+          "transcript": "I'll use the correction tape."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll use the correction tape.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-31:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-31:i17:audio",
+          "transcript": "Shall I get a ring binder?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall I get a ring binder?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a07c5f04a1e1daac24109b1818e4a3890b57b99615f701b8d61097a6af92da23"
+}

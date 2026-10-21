@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-29:word:set-up",
+    "correctText": "set up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i01",
+    "correctText": "I'll set up the tent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i02",
+    "correctText": "I'll set up the tent.",
+    "correctResponseId": "en:lesson-16:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i03",
+    "correctText": "I'll set up",
+    "correctResponseId": "en:lesson-16:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:word:pack-up",
+    "correctText": "pack up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i04",
+    "correctText": "I'll pack up the chairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i05",
+    "correctText": "I'll pack up the chairs.",
+    "correctResponseId": "en:lesson-16:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i06",
+    "correctText": "I'll pack up",
+    "correctResponseId": "en:lesson-16:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:word:blow-up",
+    "correctText": "blow up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i07",
+    "correctText": "Shall I blow up the balloons?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i08",
+    "correctText": "Shall I blow up the balloons?",
+    "correctResponseId": "en:lesson-16:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i09",
+    "correctText": "Shall I blow up",
+    "correctResponseId": "en:lesson-16:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:word:peg-down",
+    "correctText": "peg down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i10",
+    "correctText": "Shall I peg down the tent?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i11",
+    "correctText": "Shall I peg down the tent?",
+    "correctResponseId": "en:lesson-16:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i12",
+    "correctText": "Shall I peg down",
+    "correctResponseId": "en:lesson-16:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i13",
+    "correctText": "en:lesson-16:session-29:i13:p1=set up\nen:lesson-16:session-29:i13:p2=pack up\nen:lesson-16:session-29:i13:p3=blow up\nen:lesson-16:session-29:i13:p4=peg down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i14",
+    "correctText": "I'll set up the tent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i15",
+    "correctText": "Shall I blow up the balloons?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i16",
+    "correctText": "I'll pack up the chairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-29:i17",
+    "correctText": "Shall I peg down the tent?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + offer; Shall I + base verb?",
+    "uk": "I'll + offer; Shall I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложить свою помощь",
+        "uk": "Запропонувати свою допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "I'll + глагол может быть предложением помощи: вы замечаете, что человеку что-то нужно, и предлагаете сделать это сами. staple remover — приспособление для удаления скоб из бумаги. Друг хочет разъединить скреплённые листы. Предложите принести приспособление, которое вынимает скобы. I'll get the staple remover. — Я принесу приспособление для удаления скоб",
+        "uk": "I'll + дієслово може бути пропозицією допомоги: ви помічаєте, що людині щось потрібно, і пропонуєте зробити це самі. staple remover — пристрій для видалення скоб із паперу. Друг хоче роз’єднати скріплені аркуші. Запропонуйте принести пристрій, який виймає скоби. I'll get the staple remover. — Я принесу пристрій для видалення скоб"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-31:intro1:r1",
+              "text": "I'll get the staple remover."
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro1:r2",
+              "text": "I'll to get the staple remover."
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro1:r3",
+              "text": "I will will get the staple remover."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-31:intro1:r1",
+              "text": "I'll get the staple remover."
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro1:r2",
+              "text": "I'll to get the staple remover."
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro1:r3",
+              "text": "I will will get the staple remover."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить, нужна ли помощь",
+        "uk": "Запитати, чи потрібна допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Shall I + глагол? — «Мне сделать…?» Так спрашиваем, нужна ли наша помощь. После I — глагол без to. correction tape — корректирующая лента для закрытия ошибки на бумаге. binder clip — зажим для стопки бумаги с двумя металлическими ручками. Стопка листов рассыпается. Предложите принести большой зажим с металлическими ручками. Shall I bring a binder clip? — Мне принести зажим для стопки бумаги?",
+        "uk": "Shall I + дієслово? — «Мені зробити…?» Так запитуємо, чи потрібна наша допомога. Після I — дієслово без to. correction tape — коригувальна стрічка для закриття помилки на папері. binder clip — затискач для стосу паперу з двома металевими ручками. Стос аркушів розсипається. Запропонуйте принести великий затискач із металевими ручками. Shall I bring a binder clip? — Мені принести затискач для стосу паперу?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-31:intro2:r1",
+              "text": "Shall I bring a binder clip?"
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro2:r2",
+              "text": "Shall I to bring a binder clip?"
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro2:r3",
+              "text": "Shall I will bring a binder clip?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-31:intro2:r1",
+              "text": "Shall I bring a binder clip?"
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro2:r2",
+              "text": "Shall I to bring a binder clip?"
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro2:r3",
+              "text": "Shall I will bring a binder clip?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё одно предложение",
+        "uk": "Ще одна пропозиція"
+      },
+      "bodyByLocale": {
+        "ru": "ring binder — папка с кольцами для листов с отверстиями. В листах уже сделаны отверстия. Предложите принести папку с кольцами, чтобы собрать листы вместе. Shall I get a ring binder? — Мне принести папку с кольцами?",
+        "uk": "ring binder — папка з кільцями для аркушів з отворами. В аркушах уже зроблені отвори. Запропонуйте принести папку з кільцями, щоб зібрати аркуші разом. Shall I get a ring binder? — Мені принести папку з кільцями?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-31:intro3:r1",
+              "text": "Shall I get a ring binder?"
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro3:r2",
+              "text": "Shall I to get a ring binder?"
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro3:r3",
+              "text": "Shall I will get a ring binder?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-31:intro3:r1",
+              "text": "Shall I get a ring binder?"
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro3:r2",
+              "text": "Shall I to get a ring binder?"
+            },
+            {
+              "responseId": "en:lesson-16:session-31:intro3:r3",
+              "text": "Shall I will get a ring binder?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "78e7c25cf603432a4b2ff55f6e547d1e1b7502a888a1477ea5d5193052487865"
+}

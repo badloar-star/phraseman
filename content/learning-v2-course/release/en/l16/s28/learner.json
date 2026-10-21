@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-28:word:wrap-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wrap up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:word:wrap-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wrap up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:word:wrap-up:audio",
+          "transcript": "wrap up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-28:word:wrap-up:r1",
+            "targetText": "wrap up",
+            "meaningByLocale": {
+              "ru": "завернуть предмет в бумагу или ткань.",
+              "uk": "загорнути предмет у папір або тканину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrap up",
+          "definitionByLocale": {
+            "ru": "завернуть предмет в бумагу или ткань.",
+            "uk": "загорнути предмет у папір або тканину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу. Скажите: «Я заверну подарок».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу. Скажите: «Я заверну подарок».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll wrap up the present.",
+        "localizedMeaning": {
+          "ru": "Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу. Скажите: «Я заверну подарок».",
+          "uk": "Друг підписує листівку, а подарунок ще не загорнутий. Запропонуйте загорнути його в папір. Скажіть: «Я загорну подарунок»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "wrap",
+          "up",
+          "the",
+          "present"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-28:i02:r1",
+          "text": "I'll wrap up the present."
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i02:r2",
+          "text": "I'll to wrap up the present."
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i02:r3",
+          "text": "I will will wrap up the present."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:i02:audio",
+          "transcript": "I'll wrap up the present."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-28:i02:r1",
+            "targetText": "I'll wrap up the present.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i02:r2",
+            "targetText": "I'll to wrap up the present.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i02:r3",
+            "targetText": "I will will wrap up the present.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll wrap up the present.",
+              "uk": "У записі звучить I'll wrap up the present."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll wrap up the present.",
+              "uk": "У записі звучить I'll wrap up the present."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-28:i03:r1",
+          "text": "I'll wrap up"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i03:r2",
+          "text": "I'll to wrap up"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i03:r3",
+          "text": "I will will wrap up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу.",
+          "uk": "Друг підписує листівку, а подарунок ще не загорнутий. Запропонуйте загорнути його в папір."
+        },
+        "gappedTargetPhrase": "___ the present.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-28:i03:r1",
+            "text": "I'll wrap up"
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i03:r2",
+            "text": "I'll to wrap up"
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i03:r3",
+            "text": "I will will wrap up"
+          }
+        ],
+        "testedDimension": "Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:word:box-up",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — box up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:word:box-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — box up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:word:box-up:audio",
+          "transcript": "box up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-28:word:box-up:r1",
+            "targetText": "box up",
+            "meaningByLocale": {
+              "ru": "сложить вещи в коробку для перевозки или хранения.",
+              "uk": "скласти речі в коробку для перевезення або зберігання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box up",
+          "definitionByLocale": {
+            "ru": "сложить вещи в коробку для перевозки или хранения.",
+            "uk": "скласти речі в коробку для перевезення або зберігання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг собирает вещи для переезда. Предложите сложить книги в коробку. Скажите: «Я сложу книги в коробку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг собирает вещи для переезда. Предложите сложить книги в коробку. Скажите: «Я сложу книги в коробку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'll box up the books.",
+        "localizedMeaning": {
+          "ru": "Друг собирает вещи для переезда. Предложите сложить книги в коробку. Скажите: «Я сложу книги в коробку».",
+          "uk": "Друг збирає речі для переїзду. Запропонуйте скласти книжки в коробку. Скажіть: «Я складу книжки в коробку»."
+        },
+        "orderedTokens": [
+          "I'll",
+          "box",
+          "up",
+          "the",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-28:i05:r1",
+          "text": "I'll box up the books."
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i05:r2",
+          "text": "I'll to box up the books."
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i05:r3",
+          "text": "I will will box up the books."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:i05:audio",
+          "transcript": "I'll box up the books."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-28:i05:r1",
+            "targetText": "I'll box up the books.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i05:r2",
+            "targetText": "I'll to box up the books.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i05:r3",
+            "targetText": "I will will box up the books.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-28:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll box up the books.",
+              "uk": "У записі звучить I'll box up the books."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I'll box up the books.",
+              "uk": "У записі звучить I'll box up the books."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг собирает вещи для переезда. Предложите сложить книги в коробку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-28:i06:r1",
+          "text": "I'll box up"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i06:r2",
+          "text": "I'll to box up"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i06:r3",
+          "text": "I will will box up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг собирает вещи для переезда. Предложите сложить книги в коробку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг собирает вещи для переезда. Предложите сложить книги в коробку.",
+          "uk": "Друг збирає речі для переїзду. Запропонуйте скласти книжки в коробку."
+        },
+        "gappedTargetPhrase": "___ the books.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-28:i06:r1",
+            "text": "I'll box up"
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i06:r2",
+            "text": "I'll to box up"
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i06:r3",
+            "text": "I will will box up"
+          }
+        ],
+        "testedDimension": "Друг собирает вещи для переезда. Предложите сложить книги в коробку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-28:i06:r2",
+            "correct": false,
+            "testedDimension": "Друг собирает вещи для переезда. Предложите сложить книги в коробку.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i06:r3",
+            "correct": false,
+            "testedDimension": "Друг собирает вещи для переезда. Предложите сложить книги в коробку.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:word:bag-up",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:word:bag-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:word:bag-up:audio",
+          "transcript": "bag up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-28:word:bag-up:r1",
+            "targetText": "bag up",
+            "meaningByLocale": {
+              "ru": "сложить вещи в пакет или мешок.",
+              "uk": "скласти речі в пакет або мішок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag up",
+          "definitionByLocale": {
+            "ru": "сложить вещи в пакет или мешок.",
+            "uk": "скласти речі в пакет або мішок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты. Скажите: «Мне сложить одежду в пакет?».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты. Скажите: «Мне сложить одежду в пакет?».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall I bag up the clothes?",
+        "localizedMeaning": {
+          "ru": "Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты. Скажите: «Мне сложить одежду в пакет?».",
+          "uk": "Одяг вирішили віддати іншим людям. Запитайте, чи потрібно вам скласти його в пакети. Скажіть: «Мені скласти одяг у пакет?»."
+        },
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "bag",
+          "up",
+          "the",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-28:i08:r1",
+          "text": "Shall I bag up the clothes?"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i08:r2",
+          "text": "Shall I to bag up the clothes?"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i08:r3",
+          "text": "Shall I will bag up the clothes?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:i08:audio",
+          "transcript": "Shall I bag up the clothes?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-28:i08:r1",
+            "targetText": "Shall I bag up the clothes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i08:r2",
+            "targetText": "Shall I to bag up the clothes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i08:r3",
+            "targetText": "Shall I will bag up the clothes?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I bag up the clothes?",
+              "uk": "У записі звучить Shall I bag up the clothes?"
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I bag up the clothes?",
+              "uk": "У записі звучить Shall I bag up the clothes?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-28:i09:r1",
+          "text": "Shall I bag up"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i09:r2",
+          "text": "Shall I to bag up"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i09:r3",
+          "text": "Shall I will bag up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты.",
+          "uk": "Одяг вирішили віддати іншим людям. Запитайте, чи потрібно вам скласти його в пакети."
+        },
+        "gappedTargetPhrase": "___ the clothes?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-28:i09:r1",
+            "text": "Shall I bag up"
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i09:r2",
+            "text": "Shall I to bag up"
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i09:r3",
+            "text": "Shall I will bag up"
+          }
+        ],
+        "testedDimension": "Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:word:tie-up",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tie up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:word:tie-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tie up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:word:tie-up:audio",
+          "transcript": "tie up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-28:word:tie-up:r1",
+            "targetText": "tie up",
+            "meaningByLocale": {
+              "ru": "обвязать и закрепить верёвкой или шнуром.",
+              "uk": "обв’язати й закріпити мотузкою або шнурком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tie up",
+          "definitionByLocale": {
+            "ru": "обвязать и закрепить верёвкой или шнуром.",
+            "uk": "обв’язати й закріпити мотузкою або шнурком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку. Скажите: «Мне обвязать посылку?».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку. Скажите: «Мне обвязать посылку?».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall I tie up the parcel?",
+        "localizedMeaning": {
+          "ru": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку. Скажите: «Мне обвязать посылку?».",
+          "uk": "Посилка загорнута в папір, поруч лежить мотузка. Запропонуйте обв’язати посилку. Скажіть: «Мені обв’язати посилку?»."
+        },
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "tie",
+          "up",
+          "the",
+          "parcel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-28:i11:r1",
+          "text": "Shall I tie up the parcel?"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i11:r2",
+          "text": "Shall I to tie up the parcel?"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i11:r3",
+          "text": "Shall I will tie up the parcel?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:i11:audio",
+          "transcript": "Shall I tie up the parcel?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-28:i11:r1",
+            "targetText": "Shall I tie up the parcel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i11:r2",
+            "targetText": "Shall I to tie up the parcel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i11:r3",
+            "targetText": "Shall I will tie up the parcel?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-28:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I tie up the parcel?",
+              "uk": "У записі звучить Shall I tie up the parcel?"
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Shall I tie up the parcel?",
+              "uk": "У записі звучить Shall I tie up the parcel?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-28:i12:r1",
+          "text": "Shall I tie up"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i12:r2",
+          "text": "Shall I to tie up"
+        },
+        {
+          "responseId": "en:lesson-16:session-28:i12:r3",
+          "text": "Shall I will tie up"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку.",
+          "uk": "Посилка загорнута в папір, поруч лежить мотузка. Запропонуйте обв’язати посилку."
+        },
+        "gappedTargetPhrase": "___ the parcel?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-28:i12:r1",
+            "text": "Shall I tie up"
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i12:r2",
+            "text": "Shall I to tie up"
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i12:r3",
+            "text": "Shall I will tie up"
+          }
+        ],
+        "testedDimension": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-28:i12:r2",
+            "correct": false,
+            "testedDimension": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку.",
+            "feedbackByLocale": {
+              "ru": "После will или shall глагол без to.",
+              "uk": "Після will або shall дієслово без to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-28:i12:r3",
+            "correct": false,
+            "testedDimension": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку.",
+            "feedbackByLocale": {
+              "ru": "Здесь лишнее will.",
+              "uk": "Тут зайве will."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-28:i13:p1",
+            "target": "wrap up",
+            "meaningByLocale": {
+              "ru": "завернуть предмет в бумагу или ткань",
+              "uk": "загорнути предмет у папір або тканину"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-28:i13:p2",
+            "target": "box up",
+            "meaningByLocale": {
+              "ru": "сложить вещи в коробку для перевозки или хранения",
+              "uk": "скласти речі в коробку для перевезення або зберігання"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-28:i13:p3",
+            "target": "bag up",
+            "meaningByLocale": {
+              "ru": "сложить вещи в пакет или мешок",
+              "uk": "скласти речі в пакет або мішок"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-28:i13:p4",
+            "target": "tie up",
+            "meaningByLocale": {
+              "ru": "обвязать и закрепить верёвкой или шнуром",
+              "uk": "обв’язати й закріпити мотузкою або шнурком"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wrap up",
+          "box up",
+          "bag up",
+          "tie up"
+        ],
+        "rightColumn": [
+          "завернуть предмет в бумагу или ткань",
+          "сложить вещи в коробку для перевозки или хранения",
+          "сложить вещи в пакет или мешок",
+          "обвязать и закрепить верёвкой или шнуром"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное предложение помощи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное предложение помощи",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:i14:audio",
+          "transcript": "I'll wrap up the present."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'll wrap up the present.",
+        "orderedTokens": [
+          "I'll",
+          "wrap",
+          "up",
+          "the",
+          "present"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:i15:audio",
+          "transcript": "Shall I bag up the clothes?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Shall I bag up the clothes?",
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "bag",
+          "up",
+          "the",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг собирает вещи для переезда. Предложите сложить книги в коробку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:i16:audio"
+      ],
+      "accessibilityLabel": "Друг собирает вещи для переезда. Предложите сложить книги в коробку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:i16:audio",
+          "transcript": "I'll box up the books."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'll box up the books.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-28:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-28:i17:audio",
+          "transcript": "Shall I tie up the parcel?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall I tie up the parcel?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "80b7e3edd6782890ee564d580c71dfd7a30eaac6b929c77866ce3d714539c77e"
+}

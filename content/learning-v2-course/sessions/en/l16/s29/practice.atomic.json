@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-29",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-29:word:set-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — set up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:word:set-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — set up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:word:set-up:audio",
+            "transcript": "set up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:word:set-up:r1",
+              "targetText": "set up",
+              "meaningByLocale": {
+                "ru": "установить и подготовить к использованию.",
+                "uk": "встановити й підготувати до використання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "set up",
+            "definitionByLocale": {
+              "ru": "установить и подготовить к использованию.",
+              "uk": "встановити й підготувати до використання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку. Скажите: «Я установлю палатку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку. Скажите: «Я установлю палатку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll set up the tent.",
+          "localizedMeaning": {
+            "ru": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку. Скажите: «Я установлю палатку».",
+            "uk": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет. Скажіть: «Я встановлю намет»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "set",
+            "up",
+            "the",
+            "tent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i02:r1",
+            "text": "I'll set up the tent."
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i02:r2",
+            "text": "I'll to set up the tent."
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i02:r3",
+            "text": "I will will set up the tent."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i02:audio",
+            "transcript": "I'll set up the tent."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:i02:r1",
+              "targetText": "I'll set up the tent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i02:r2",
+              "targetText": "I'll to set up the tent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i02:r3",
+              "targetText": "I will will set up the tent.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll set up the tent.",
+                "uk": "У записі звучить I'll set up the tent."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll set up the tent.",
+                "uk": "У записі звучить I'll set up the tent."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i03:r1",
+            "text": "I'll set up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i03:r2",
+            "text": "I'll to set up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i03:r3",
+            "text": "I will will set up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку.",
+            "uk": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет."
+          },
+          "gappedTargetPhrase": "___ the tent.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-29:i03:r1",
+              "text": "I'll set up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i03:r2",
+              "text": "I'll to set up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i03:r3",
+              "text": "I will will set up"
+            }
+          ],
+          "testedDimension": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:word:pack-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pack up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:word:pack-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pack up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:word:pack-up:audio",
+            "transcript": "pack up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:word:pack-up:r1",
+              "targetText": "pack up",
+              "meaningByLocale": {
+                "ru": "собрать и упаковать вещи после использования.",
+                "uk": "зібрати й запакувати речі після використання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pack up",
+            "definitionByLocale": {
+              "ru": "собрать и упаковать вещи после использования.",
+              "uk": "зібрати й запакувати речі після використання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пикник закончился. Предложите сложить переносные стулья в их чехлы. Скажите: «Я соберу и упакую стулья».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пикник закончился. Предложите сложить переносные стулья в их чехлы. Скажите: «Я соберу и упакую стулья».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll pack up the chairs.",
+          "localizedMeaning": {
+            "ru": "Пикник закончился. Предложите сложить переносные стулья в их чехлы. Скажите: «Я соберу и упакую стулья».",
+            "uk": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли. Скажіть: «Я зберу й запакую стільці»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "pack",
+            "up",
+            "the",
+            "chairs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i05:r1",
+            "text": "I'll pack up the chairs."
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i05:r2",
+            "text": "I'll to pack up the chairs."
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i05:r3",
+            "text": "I will will pack up the chairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i05:audio",
+            "transcript": "I'll pack up the chairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:i05:r1",
+              "targetText": "I'll pack up the chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i05:r2",
+              "targetText": "I'll to pack up the chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i05:r3",
+              "targetText": "I will will pack up the chairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll pack up the chairs.",
+                "uk": "У записі звучить I'll pack up the chairs."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll pack up the chairs.",
+                "uk": "У записі звучить I'll pack up the chairs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пикник закончился. Предложите сложить переносные стулья в их чехлы.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i06:r1",
+            "text": "I'll pack up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i06:r2",
+            "text": "I'll to pack up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i06:r3",
+            "text": "I will will pack up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пикник закончился. Предложите сложить переносные стулья в их чехлы.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пикник закончился. Предложите сложить переносные стулья в их чехлы.",
+            "uk": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли."
+          },
+          "gappedTargetPhrase": "___ the chairs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-29:i06:r1",
+              "text": "I'll pack up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i06:r2",
+              "text": "I'll to pack up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i06:r3",
+              "text": "I will will pack up"
+            }
+          ],
+          "testedDimension": "Пикник закончился. Предложите сложить переносные стулья в их чехлы.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "Пикник закончился. Предложите сложить переносные стулья в их чехлы.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "Пикник закончился. Предложите сложить переносные стулья в их чехлы.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:word:blow-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blow up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:word:blow-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blow up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:word:blow-up:audio",
+            "transcript": "blow up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:word:blow-up:r1",
+              "targetText": "blow up",
+              "meaningByLocale": {
+                "ru": "надуть воздухом.",
+                "uk": "надути повітрям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blow up",
+            "definitionByLocale": {
+              "ru": "надуть воздухом.",
+              "uk": "надути повітрям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики. Скажите: «Мне надуть шарики?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики. Скажите: «Мне надуть шарики?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I blow up the balloons?",
+          "localizedMeaning": {
+            "ru": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики. Скажите: «Мне надуть шарики?».",
+            "uk": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки. Скажіть: «Мені надути кульки?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "blow",
+            "up",
+            "the",
+            "balloons"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i08:r1",
+            "text": "Shall I blow up the balloons?"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i08:r2",
+            "text": "Shall I to blow up the balloons?"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i08:r3",
+            "text": "Shall I will blow up the balloons?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i08:audio",
+            "transcript": "Shall I blow up the balloons?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:i08:r1",
+              "targetText": "Shall I blow up the balloons?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i08:r2",
+              "targetText": "Shall I to blow up the balloons?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i08:r3",
+              "targetText": "Shall I will blow up the balloons?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I blow up the balloons?",
+                "uk": "У записі звучить Shall I blow up the balloons?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I blow up the balloons?",
+                "uk": "У записі звучить Shall I blow up the balloons?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i09:r1",
+            "text": "Shall I blow up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i09:r2",
+            "text": "Shall I to blow up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i09:r3",
+            "text": "Shall I will blow up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики.",
+            "uk": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки."
+          },
+          "gappedTargetPhrase": "___ the balloons?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-29:i09:r1",
+              "text": "Shall I blow up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i09:r2",
+              "text": "Shall I to blow up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i09:r3",
+              "text": "Shall I will blow up"
+            }
+          ],
+          "testedDimension": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:word:peg-down",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — peg down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:word:peg-down:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — peg down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:word:peg-down:audio",
+            "transcript": "peg down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:word:peg-down:r1",
+              "targetText": "peg down",
+              "meaningByLocale": {
+                "ru": "закрепить колышками в земле.",
+                "uk": "закріпити кілочками в землі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "peg down",
+            "definitionByLocale": {
+              "ru": "закрепить колышками в земле.",
+              "uk": "закріпити кілочками в землі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками. Скажите: «Мне закрепить палатку колышками?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками. Скажите: «Мне закрепить палатку колышками?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I peg down the tent?",
+          "localizedMeaning": {
+            "ru": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками. Скажите: «Мне закрепить палатку колышками?».",
+            "uk": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками. Скажіть: «Мені закріпити намет кілочками?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "peg",
+            "down",
+            "the",
+            "tent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i11:r1",
+            "text": "Shall I peg down the tent?"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i11:r2",
+            "text": "Shall I to peg down the tent?"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i11:r3",
+            "text": "Shall I will peg down the tent?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i11:audio",
+            "transcript": "Shall I peg down the tent?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:i11:r1",
+              "targetText": "Shall I peg down the tent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i11:r2",
+              "targetText": "Shall I to peg down the tent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i11:r3",
+              "targetText": "Shall I will peg down the tent?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I peg down the tent?",
+                "uk": "У записі звучить Shall I peg down the tent?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I peg down the tent?",
+                "uk": "У записі звучить Shall I peg down the tent?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i12:r1",
+            "text": "Shall I peg down"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i12:r2",
+            "text": "Shall I to peg down"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i12:r3",
+            "text": "Shall I will peg down"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками.",
+            "uk": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками."
+          },
+          "gappedTargetPhrase": "___ the tent?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-29:i12:r1",
+              "text": "Shall I peg down"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i12:r2",
+              "text": "Shall I to peg down"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i12:r3",
+              "text": "Shall I will peg down"
+            }
+          ],
+          "testedDimension": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-29:i13:p1",
+              "target": "set up",
+              "meaningByLocale": {
+                "ru": "установить и подготовить к использованию",
+                "uk": "встановити й підготувати до використання"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-29:i13:p2",
+              "target": "pack up",
+              "meaningByLocale": {
+                "ru": "собрать и упаковать вещи после использования",
+                "uk": "зібрати й запакувати речі після використання"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-29:i13:p3",
+              "target": "blow up",
+              "meaningByLocale": {
+                "ru": "надуть воздухом",
+                "uk": "надути повітрям"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-29:i13:p4",
+              "target": "peg down",
+              "meaningByLocale": {
+                "ru": "закрепить колышками в земле",
+                "uk": "закріпити кілочками в землі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "set up",
+            "pack up",
+            "blow up",
+            "peg down"
+          ],
+          "rightColumn": [
+            "установить и подготовить к использованию",
+            "собрать и упаковать вещи после использования",
+            "надуть воздухом",
+            "закрепить колышками в земле"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное предложение помощи",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное предложение помощи",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i14:audio",
+            "transcript": "I'll set up the tent."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll set up the tent.",
+          "orderedTokens": [
+            "I'll",
+            "set",
+            "up",
+            "the",
+            "tent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i15:audio",
+            "transcript": "Shall I blow up the balloons?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Shall I blow up the balloons?",
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "blow",
+            "up",
+            "the",
+            "balloons"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Пикник закончился. Предложите сложить переносные стулья в их чехлы.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Пикник закончился. Предложите сложить переносные стулья в их чехлы.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i16:audio",
+            "transcript": "I'll pack up the chairs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll pack up the chairs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i17:audio",
+            "transcript": "Shall I peg down the tent?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall I peg down the tent?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-29:word:set-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — set up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:word:set-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — set up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:word:set-up:audio",
+            "transcript": "set up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:word:set-up:r1",
+              "targetText": "set up",
+              "meaningByLocale": {
+                "ru": "установить и подготовить к использованию.",
+                "uk": "встановити й підготувати до використання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "set up",
+            "definitionByLocale": {
+              "ru": "установить и подготовить к использованию.",
+              "uk": "встановити й підготувати до використання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет. Скажіть: «Я встановлю намет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет. Скажіть: «Я встановлю намет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll set up the tent.",
+          "localizedMeaning": {
+            "ru": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку. Скажите: «Я установлю палатку».",
+            "uk": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет. Скажіть: «Я встановлю намет»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "set",
+            "up",
+            "the",
+            "tent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i02:r1",
+            "text": "I'll set up the tent."
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i02:r2",
+            "text": "I'll to set up the tent."
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i02:r3",
+            "text": "I will will set up the tent."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i02:audio",
+            "transcript": "I'll set up the tent."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:i02:r1",
+              "targetText": "I'll set up the tent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i02:r2",
+              "targetText": "I'll to set up the tent.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i02:r3",
+              "targetText": "I will will set up the tent.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll set up the tent.",
+                "uk": "У записі звучить I'll set up the tent."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll set up the tent.",
+                "uk": "У записі звучить I'll set up the tent."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i03:r1",
+            "text": "I'll set up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i03:r2",
+            "text": "I'll to set up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i03:r3",
+            "text": "I will will set up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы приехали в кемпинг. Друзья разгружают вещи; предложите установить палатку.",
+            "uk": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет."
+          },
+          "gappedTargetPhrase": "___ the tent.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-29:i03:r1",
+              "text": "I'll set up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i03:r2",
+              "text": "I'll to set up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i03:r3",
+              "text": "I will will set up"
+            }
+          ],
+          "testedDimension": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви приїхали до кемпінгу. Друзі розвантажують речі; запропонуйте встановити намет.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:word:pack-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pack up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:word:pack-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pack up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:word:pack-up:audio",
+            "transcript": "pack up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:word:pack-up:r1",
+              "targetText": "pack up",
+              "meaningByLocale": {
+                "ru": "собрать и упаковать вещи после использования.",
+                "uk": "зібрати й запакувати речі після використання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pack up",
+            "definitionByLocale": {
+              "ru": "собрать и упаковать вещи после использования.",
+              "uk": "зібрати й запакувати речі після використання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли. Скажіть: «Я зберу й запакую стільці».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли. Скажіть: «Я зберу й запакую стільці».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I'll pack up the chairs.",
+          "localizedMeaning": {
+            "ru": "Пикник закончился. Предложите сложить переносные стулья в их чехлы. Скажите: «Я соберу и упакую стулья».",
+            "uk": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли. Скажіть: «Я зберу й запакую стільці»."
+          },
+          "orderedTokens": [
+            "I'll",
+            "pack",
+            "up",
+            "the",
+            "chairs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i05:r1",
+            "text": "I'll pack up the chairs."
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i05:r2",
+            "text": "I'll to pack up the chairs."
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i05:r3",
+            "text": "I will will pack up the chairs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i05:audio",
+            "transcript": "I'll pack up the chairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:i05:r1",
+              "targetText": "I'll pack up the chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i05:r2",
+              "targetText": "I'll to pack up the chairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i05:r3",
+              "targetText": "I will will pack up the chairs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll pack up the chairs.",
+                "uk": "У записі звучить I'll pack up the chairs."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I'll pack up the chairs.",
+                "uk": "У записі звучить I'll pack up the chairs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i06:r1",
+            "text": "I'll pack up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i06:r2",
+            "text": "I'll to pack up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i06:r3",
+            "text": "I will will pack up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пикник закончился. Предложите сложить переносные стулья в их чехлы.",
+            "uk": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли."
+          },
+          "gappedTargetPhrase": "___ the chairs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-29:i06:r1",
+              "text": "I'll pack up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i06:r2",
+              "text": "I'll to pack up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i06:r3",
+              "text": "I will will pack up"
+            }
+          ],
+          "testedDimension": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:word:blow-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blow up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:word:blow-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blow up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:word:blow-up:audio",
+            "transcript": "blow up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:word:blow-up:r1",
+              "targetText": "blow up",
+              "meaningByLocale": {
+                "ru": "надуть воздухом.",
+                "uk": "надути повітрям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blow up",
+            "definitionByLocale": {
+              "ru": "надуть воздухом.",
+              "uk": "надути повітрям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки. Скажіть: «Мені надути кульки?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки. Скажіть: «Мені надути кульки?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I blow up the balloons?",
+          "localizedMeaning": {
+            "ru": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики. Скажите: «Мне надуть шарики?».",
+            "uk": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки. Скажіть: «Мені надути кульки?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "blow",
+            "up",
+            "the",
+            "balloons"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i08:r1",
+            "text": "Shall I blow up the balloons?"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i08:r2",
+            "text": "Shall I to blow up the balloons?"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i08:r3",
+            "text": "Shall I will blow up the balloons?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i08:audio",
+            "transcript": "Shall I blow up the balloons?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:i08:r1",
+              "targetText": "Shall I blow up the balloons?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i08:r2",
+              "targetText": "Shall I to blow up the balloons?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i08:r3",
+              "targetText": "Shall I will blow up the balloons?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I blow up the balloons?",
+                "uk": "У записі звучить Shall I blow up the balloons?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I blow up the balloons?",
+                "uk": "У записі звучить Shall I blow up the balloons?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i09:r1",
+            "text": "Shall I blow up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i09:r2",
+            "text": "Shall I to blow up"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i09:r3",
+            "text": "Shall I will blow up"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друзья украшают место для праздника. Спросите, нужно ли вам надуть шарики.",
+            "uk": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки."
+          },
+          "gappedTargetPhrase": "___ the balloons?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-29:i09:r1",
+              "text": "Shall I blow up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i09:r2",
+              "text": "Shall I to blow up"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i09:r3",
+              "text": "Shall I will blow up"
+            }
+          ],
+          "testedDimension": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Друзі прикрашають місце для свята. Запитайте, чи потрібно вам надути кульки.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:word:peg-down",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — peg down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:word:peg-down:audio"
+        ],
+        "accessibilityLabel": "Картка слова — peg down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:word:peg-down:audio",
+            "transcript": "peg down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:word:peg-down:r1",
+              "targetText": "peg down",
+              "meaningByLocale": {
+                "ru": "закрепить колышками в земле.",
+                "uk": "закріпити кілочками в землі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "peg down",
+            "definitionByLocale": {
+              "ru": "закрепить колышками в земле.",
+              "uk": "закріпити кілочками в землі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками. Скажіть: «Мені закріпити намет кілочками?».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками. Скажіть: «Мені закріпити намет кілочками?».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall I peg down the tent?",
+          "localizedMeaning": {
+            "ru": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками. Скажите: «Мне закрепить палатку колышками?».",
+            "uk": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками. Скажіть: «Мені закріпити намет кілочками?»."
+          },
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "peg",
+            "down",
+            "the",
+            "tent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i11:r1",
+            "text": "Shall I peg down the tent?"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i11:r2",
+            "text": "Shall I to peg down the tent?"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i11:r3",
+            "text": "Shall I will peg down the tent?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i11:audio",
+            "transcript": "Shall I peg down the tent?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-29:i11:r1",
+              "targetText": "Shall I peg down the tent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i11:r2",
+              "targetText": "Shall I to peg down the tent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i11:r3",
+              "targetText": "Shall I will peg down the tent?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I peg down the tent?",
+                "uk": "У записі звучить Shall I peg down the tent?"
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Shall I peg down the tent?",
+                "uk": "У записі звучить Shall I peg down the tent?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-29:i12:r1",
+            "text": "Shall I peg down"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i12:r2",
+            "text": "Shall I to peg down"
+          },
+          {
+            "responseId": "en:lesson-16:session-29:i12:r3",
+            "text": "Shall I will peg down"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Палатка установлена, но ещё не закреплена. Предложите закрепить её колышками.",
+            "uk": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками."
+          },
+          "gappedTargetPhrase": "___ the tent?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-29:i12:r1",
+              "text": "Shall I peg down"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i12:r2",
+              "text": "Shall I to peg down"
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i12:r3",
+              "text": "Shall I will peg down"
+            }
+          ],
+          "testedDimension": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками.",
+              "feedbackByLocale": {
+                "ru": "После will или shall глагол без to.",
+                "uk": "Після will або shall дієслово без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками.",
+              "feedbackByLocale": {
+                "ru": "Здесь лишнее will.",
+                "uk": "Тут зайве will."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-29:i13:p1",
+              "target": "set up",
+              "meaningByLocale": {
+                "ru": "установить и подготовить к использованию",
+                "uk": "встановити й підготувати до використання"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-29:i13:p2",
+              "target": "pack up",
+              "meaningByLocale": {
+                "ru": "собрать и упаковать вещи после использования",
+                "uk": "зібрати й запакувати речі після використання"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-29:i13:p3",
+              "target": "blow up",
+              "meaningByLocale": {
+                "ru": "надуть воздухом",
+                "uk": "надути повітрям"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-29:i13:p4",
+              "target": "peg down",
+              "meaningByLocale": {
+                "ru": "закрепить колышками в земле",
+                "uk": "закріпити кілочками в землі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "set up",
+            "pack up",
+            "blow up",
+            "peg down"
+          ],
+          "rightColumn": [
+            "встановити й підготувати до використання",
+            "зібрати й запакувати речі після використання",
+            "надути повітрям",
+            "закріпити кілочками в землі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту пропозицію допомоги",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту пропозицію допомоги",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i14:audio",
+            "transcript": "I'll set up the tent."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I'll set up the tent.",
+          "orderedTokens": [
+            "I'll",
+            "set",
+            "up",
+            "the",
+            "tent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i15:audio",
+            "transcript": "Shall I blow up the balloons?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Shall I blow up the balloons?",
+          "orderedTokens": [
+            "Shall",
+            "I",
+            "blow",
+            "up",
+            "the",
+            "balloons"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Пікнік закінчився. Запропонуйте скласти переносні стільці в їхні чохли.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i16:audio",
+            "transcript": "I'll pack up the chairs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I'll pack up the chairs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Намет встановлений, але ще не закріплений. Запропонуйте закріпити його кілочками.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-29:i17:audio",
+            "transcript": "Shall I peg down the tent?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall I peg down the tent?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-29:word:set-up",
+      "correctText": "set up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i01",
+      "correctText": "I'll set up the tent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i02",
+      "correctText": "I'll set up the tent.",
+      "correctResponseId": "en:lesson-16:session-29:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i03",
+      "correctText": "I'll set up",
+      "correctResponseId": "en:lesson-16:session-29:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:word:pack-up",
+      "correctText": "pack up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i04",
+      "correctText": "I'll pack up the chairs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i05",
+      "correctText": "I'll pack up the chairs.",
+      "correctResponseId": "en:lesson-16:session-29:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i06",
+      "correctText": "I'll pack up",
+      "correctResponseId": "en:lesson-16:session-29:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:word:blow-up",
+      "correctText": "blow up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i07",
+      "correctText": "Shall I blow up the balloons?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i08",
+      "correctText": "Shall I blow up the balloons?",
+      "correctResponseId": "en:lesson-16:session-29:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i09",
+      "correctText": "Shall I blow up",
+      "correctResponseId": "en:lesson-16:session-29:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:word:peg-down",
+      "correctText": "peg down",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i10",
+      "correctText": "Shall I peg down the tent?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i11",
+      "correctText": "Shall I peg down the tent?",
+      "correctResponseId": "en:lesson-16:session-29:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i12",
+      "correctText": "Shall I peg down",
+      "correctResponseId": "en:lesson-16:session-29:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i14",
+      "correctText": "I'll set up the tent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i15",
+      "correctText": "Shall I blow up the balloons?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i16",
+      "correctText": "I'll pack up the chairs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-29:i17",
+      "correctText": "Shall I peg down the tent?",
+      "correctResponseId": null
+    }
+  ]
+}

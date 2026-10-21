@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "I'll + offer; Shall I + base verb?",
+    "uk": "I'll + offer; Shall I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предложить свою помощь",
+        "uk": "Запропонувати свою допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "I'll + глагол может быть предложением помощи: вы замечаете, что человеку что-то нужно, и предлагаете сделать это сами. wrap up — завернуть предмет в бумагу или ткань. Друг подписывает открытку, а подарок ещё не завёрнут. Предложите завернуть его в бумагу. I'll wrap up the present. — Я заверну подарок",
+        "uk": "I'll + дієслово може бути пропозицією допомоги: ви помічаєте, що людині щось потрібно, і пропонуєте зробити це самі. wrap up — загорнути предмет у папір або тканину. Друг підписує листівку, а подарунок ще не загорнутий. Запропонуйте загорнути його в папір. I'll wrap up the present. — Я загорну подарунок"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-28:intro1:r1",
+              "text": "I'll wrap up the present."
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro1:r2",
+              "text": "I'll to wrap up the present."
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro1:r3",
+              "text": "I will will wrap up the present."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-28:intro1:r1",
+              "text": "I'll wrap up the present."
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro1:r2",
+              "text": "I'll to wrap up the present."
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro1:r3",
+              "text": "I will will wrap up the present."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить, нужна ли помощь",
+        "uk": "Запитати, чи потрібна допомога"
+      },
+      "bodyByLocale": {
+        "ru": "Shall I + глагол? — «Мне сделать…?» Так спрашиваем, нужна ли наша помощь. После I — глагол без to. box up — сложить вещи в коробку для перевозки или хранения. bag up — сложить вещи в пакет или мешок. Одежду решили отдать другим людям. Спросите, нужно ли вам сложить её в пакеты. Shall I bag up the clothes? — Мне сложить одежду в пакет?",
+        "uk": "Shall I + дієслово? — «Мені зробити…?» Так запитуємо, чи потрібна наша допомога. Після I — дієслово без to. box up — скласти речі в коробку для перевезення або зберігання. bag up — скласти речі в пакет або мішок. Одяг вирішили віддати іншим людям. Запитайте, чи потрібно вам скласти його в пакети. Shall I bag up the clothes? — Мені скласти одяг у пакет?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-28:intro2:r1",
+              "text": "Shall I bag up the clothes?"
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro2:r2",
+              "text": "Shall I to bag up the clothes?"
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro2:r3",
+              "text": "Shall I will bag up the clothes?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-28:intro2:r1",
+              "text": "Shall I bag up the clothes?"
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro2:r2",
+              "text": "Shall I to bag up the clothes?"
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro2:r3",
+              "text": "Shall I will bag up the clothes?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё одно предложение",
+        "uk": "Ще одна пропозиція"
+      },
+      "bodyByLocale": {
+        "ru": "tie up — обвязать и закрепить верёвкой или шнуром. Посылка завёрнута в бумагу, рядом лежит бечёвка. Предложите обвязать посылку. Shall I tie up the parcel? — Мне обвязать посылку?",
+        "uk": "tie up — обв’язати й закріпити мотузкою або шнурком. Посилка загорнута в папір, поруч лежить мотузка. Запропонуйте обв’язати посилку. Shall I tie up the parcel? — Мені обв’язати посилку?"
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-28:intro3:r1",
+              "text": "Shall I tie up the parcel?"
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro3:r2",
+              "text": "Shall I to tie up the parcel?"
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro3:r3",
+              "text": "Shall I will tie up the parcel?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-28:intro3:r1",
+              "text": "Shall I tie up the parcel?"
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro3:r2",
+              "text": "Shall I to tie up the parcel?"
+            },
+            {
+              "responseId": "en:lesson-16:session-28:intro3:r3",
+              "text": "Shall I will tie up the parcel?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d234593fbfb28e0b0de6e32882ac243b134db16c64c71d855ee9958488b138c1"
+}

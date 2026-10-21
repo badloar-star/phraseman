@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-24:intro1:r2": {
+          "ru": "Do — настоящее время.",
+          "uk": "Do — теперішній час."
+        },
+        "en:lesson-13:session-24:intro1:r3": {
+          "ru": "После did нужна answer.",
+          "uk": "Після did потрібна answer."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-24:intro2:r2": {
+          "ru": "Angrily — сердито.",
+          "uk": "Angrily — сердито."
+        },
+        "en:lesson-13:session-24:intro2:r3": {
+          "ru": "После did нужна speak.",
+          "uk": "Після did потрібна speak."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-24:intro3:r2": {
+          "ru": "Angrily — сердито, а нужно спокойно.",
+          "uk": "Angrily — сердито, а потрібно спокійно."
+        },
+        "en:lesson-13:session-24:intro3:r3": {
+          "ru": "После did нужна answer.",
+          "uk": "Після did потрібна answer."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "259aa3dad20a84d52ea78a4f3f663973122fdbad9f7ed08509987bf497d583a3"
+}

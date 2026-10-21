@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-14:word:switch-on",
+    "correctText": "switch on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i01",
+    "correctText": "I didn't switch on the lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i02",
+    "correctText": "She didn't switch on the lamp.",
+    "correctResponseId": "en:lesson-13:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:word:switch-off",
+    "correctText": "switch off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i04",
+    "correctText": "I didn't switch off the radio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i05",
+    "correctText": "She didn't switch off the radio.",
+    "correctResponseId": "en:lesson-13:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:word:call-back",
+    "correctText": "call back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i07",
+    "correctText": "I didn't call back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i08",
+    "correctText": "She didn't call back.",
+    "correctResponseId": "en:lesson-13:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:word:write-down",
+    "correctText": "write down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i10",
+    "correctText": "I didn't write down the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i11",
+    "correctText": "She didn't write down the address.",
+    "correctResponseId": "en:lesson-13:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i13",
+    "correctText": "en:lesson-13:session-14:i13:p1=switch on\nen:lesson-13:session-14:i13:p2=switch off\nen:lesson-13:session-14:i13:p3=call back\nen:lesson-13:session-14:i13:p4=write down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i14",
+    "correctText": "We didn't use the phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i15",
+    "correctText": "He didn't read the note.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i16",
+    "correctText": "I didn't call back yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-14:i17",
+    "correctText": "She didn't write down the address yesterday.",
+    "correctResponseId": null
+  }
+]

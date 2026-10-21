@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-13:word:get-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — get up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:word:get-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — get up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:word:get-up:audio",
+          "transcript": "get up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-13:word:get-up:r1",
+            "targetText": "get up",
+            "meaningByLocale": {
+              "ru": "встать с постели.",
+              "uk": "встати з ліжка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get up",
+          "definitionByLocale": {
+            "ru": "встать с постели.",
+            "uk": "встати з ліжка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не встав рано",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не встав рано",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't get up early.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не встал рано",
+          "uk": "Скажіть: Я не встав рано"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "get",
+          "up",
+          "early"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-13:i02:r1",
+          "text": "She didn't get up early."
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i02:r2",
+          "text": "I didn't get up early."
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i02:r3",
+          "text": "She doesn't get up early."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:i02:audio",
+          "transcript": "She didn't get up early."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-13:i02:r1",
+            "targetText": "She didn't get up early.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i02:r2",
+            "targetText": "I didn't get up early.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i02:r3",
+            "targetText": "She doesn't get up early.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't get up early.",
+              "uk": "У записі звучить She didn't get up early."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't get up early.",
+              "uk": "У записі звучить She didn't get up early."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-13:i03:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i03:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i03:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ get up early.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-13:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:word:sit-down",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sit down",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:word:sit-down:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sit down",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:word:sit-down:audio",
+          "transcript": "sit down"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-13:word:sit-down:r1",
+            "targetText": "sit down",
+            "meaningByLocale": {
+              "ru": "сесть.",
+              "uk": "сісти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sit down",
+          "definitionByLocale": {
+            "ru": "сесть.",
+            "uk": "сісти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не сів",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не сів",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't sit down.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не сел",
+          "uk": "Скажіть: Я не сів"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "sit",
+          "down"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-13:i05:r1",
+          "text": "She didn't sit down."
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i05:r2",
+          "text": "I didn't sit down."
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i05:r3",
+          "text": "She doesn't sit down."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:i05:audio",
+          "transcript": "She didn't sit down."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-13:i05:r1",
+            "targetText": "She didn't sit down.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i05:r2",
+            "targetText": "I didn't sit down.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i05:r3",
+            "targetText": "She doesn't sit down.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't sit down.",
+              "uk": "У записі звучить She didn't sit down."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't sit down.",
+              "uk": "У записі звучить She didn't sit down."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-13:i06:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i06:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i06:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ sit down.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-13:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:word:stand-up",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stand up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:word:stand-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stand up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:word:stand-up:audio",
+          "transcript": "stand up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-13:word:stand-up:r1",
+            "targetText": "stand up",
+            "meaningByLocale": {
+              "ru": "встать на ноги, например со стула.",
+              "uk": "встати на ноги, наприклад зі стільця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stand up",
+          "definitionByLocale": {
+            "ru": "встать на ноги, например со стула.",
+            "uk": "встати на ноги, наприклад зі стільця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не встав на ноги",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не встав на ноги",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't stand up.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не встал на ноги",
+          "uk": "Скажіть: Я не встав на ноги"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "stand",
+          "up"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-13:i08:r1",
+          "text": "She didn't stand up."
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i08:r2",
+          "text": "I didn't stand up."
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i08:r3",
+          "text": "She doesn't stand up."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:i08:audio",
+          "transcript": "She didn't stand up."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-13:i08:r1",
+            "targetText": "She didn't stand up.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i08:r2",
+            "targetText": "I didn't stand up.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i08:r3",
+            "targetText": "She doesn't stand up.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't stand up.",
+              "uk": "У записі звучить She didn't stand up."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't stand up.",
+              "uk": "У записі звучить She didn't stand up."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-13:i09:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i09:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i09:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ stand up.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-13:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:word:dress-up",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dress up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:word:dress-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dress up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:word:dress-up:audio",
+          "transcript": "dress up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-13:word:dress-up:r1",
+            "targetText": "dress up",
+            "meaningByLocale": {
+              "ru": "нарядиться для события.",
+              "uk": "вбратися для події."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dress up",
+          "definitionByLocale": {
+            "ru": "нарядиться для события.",
+            "uk": "вбратися для події."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не вбрався на вечірку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не вбрався на вечірку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't dress up for the party.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не нарядился на вечеринку",
+          "uk": "Скажіть: Я не вбрався на вечірку"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "dress",
+          "up",
+          "for",
+          "the",
+          "party"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-13:i11:r1",
+          "text": "She didn't dress up for the party."
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i11:r2",
+          "text": "I didn't dress up for the party."
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i11:r3",
+          "text": "She doesn't dress up for the party."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:i11:audio",
+          "transcript": "She didn't dress up for the party."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-13:i11:r1",
+            "targetText": "She didn't dress up for the party.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i11:r2",
+            "targetText": "I didn't dress up for the party.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i11:r3",
+            "targetText": "She doesn't dress up for the party.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't dress up for the party.",
+              "uk": "У записі звучить She didn't dress up for the party."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't dress up for the party.",
+              "uk": "У записі звучить She didn't dress up for the party."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-13:i12:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i12:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-13:i12:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ dress up for the party.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-13:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-13:i13:p1",
+            "target": "get up",
+            "meaningByLocale": {
+              "ru": "встать с постели",
+              "uk": "встати з ліжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-13:i13:p2",
+            "target": "sit down",
+            "meaningByLocale": {
+              "ru": "сесть",
+              "uk": "сісти"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-13:i13:p3",
+            "target": "stand up",
+            "meaningByLocale": {
+              "ru": "встать на ноги, например со стула",
+              "uk": "встати на ноги, наприклад зі стільця"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-13:i13:p4",
+            "target": "dress up",
+            "meaningByLocale": {
+              "ru": "нарядиться для события",
+              "uk": "вбратися для події"
+            }
+          }
+        ],
+        "leftColumn": [
+          "get up",
+          "sit down",
+          "stand up",
+          "dress up"
+        ],
+        "rightColumn": [
+          "встати з ліжка",
+          "сісти",
+          "встати на ноги, наприклад зі стільця",
+          "вбратися для події"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:i14:audio",
+          "transcript": "We didn't have breakfast early."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't have breakfast early.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "have",
+          "breakfast",
+          "early"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:i15:audio",
+          "transcript": "He didn't leave at eight."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He didn't leave at eight.",
+        "orderedTokens": [
+          "He",
+          "didn't",
+          "leave",
+          "at",
+          "eight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора я не встав рано",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора я не встав рано",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:i16:audio",
+          "transcript": "I didn't get up early yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I didn't get up early yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора вона не вбралася на вечірку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора вона не вбралася на вечірку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-13:i17:audio",
+          "transcript": "She didn't dress up for the party yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't dress up for the party yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7f340a0397bb3ce95910f2d7834fbcf7492fd382db63cbe5d6bbda7229dad0db"
+}

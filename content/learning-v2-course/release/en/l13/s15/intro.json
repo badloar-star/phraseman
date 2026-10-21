@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "review: didn't + base verb",
+    "uk": "review: didn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Присмотреть за ребёнком",
+        "uk": "Приглянути за дитиною"
+      },
+      "bodyByLocale": {
+        "ru": "Look after — присматривать за кем-то, заботиться. I didn't look after my nephew — я не присматривал за племянником. Выберите отрицание о прошлом.",
+        "uk": "Look after — приглядати за кимось, піклуватися. I didn't look after my nephew — я не приглядав за племінником. Виберіть заперечення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-15:intro1:r1",
+              "text": "I didn't look after my nephew."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro1:r2",
+              "text": "I looked after my nephew."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro1:r3",
+              "text": "I didn't looked after my nephew."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-15:intro1:r1",
+              "text": "I didn't look after my nephew."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro1:r2",
+              "text": "I looked after my nephew."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro1:r3",
+              "text": "I didn't looked after my nephew."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выручить",
+        "uk": "Виручити"
+      },
+      "bodyByLocale": {
+        "ru": "Help out — помочь с делами, выручить. I didn't help out at home — я не помог с делами дома. Выберите отрицание, не сообщение о помощи.",
+        "uk": "Help out — допомогти зі справами, виручити. I didn't help out at home — я не допоміг зі справами вдома. Виберіть заперечення, не повідомлення про допомогу."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-15:intro2:r1",
+              "text": "I didn't help out at home."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro2:r2",
+              "text": "I helped out at home."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro2:r3",
+              "text": "I didn't helped out at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-15:intro2:r1",
+              "text": "I didn't help out at home."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro2:r2",
+              "text": "I helped out at home."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro2:r3",
+              "text": "I didn't helped out at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Анкета и информация",
+        "uk": "Анкета й інформація"
+      },
+      "bodyByLocale": {
+        "ru": "Fill in — заполнить анкету или бланк; find out — узнать, выяснить. I didn't fill in the form — я не заполнил анкету. Выберите сообщение об анкете.",
+        "uk": "Fill in — заповнити анкету чи бланк; find out — дізнатися, з’ясувати. I didn't fill in the form — я не заповнив анкету. Виберіть повідомлення про анкету."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-15:intro3:r1",
+              "text": "I didn't fill in the form."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro3:r2",
+              "text": "I didn't find out the price."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro3:r3",
+              "text": "I didn't filled in the form."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-15:intro3:r1",
+              "text": "I didn't fill in the form."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro3:r2",
+              "text": "I didn't find out the price."
+            },
+            {
+              "responseId": "en:lesson-13:session-15:intro3:r3",
+              "text": "I didn't filled in the form."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e99a2a35676c952b4f9d462b2ebdcb35f68b5628ef3df4bfba2db625d3a99ed1"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "review: base form after did/did not",
+    "uk": "review: base form after did/did not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Упасть",
+        "uk": "Впасти"
+      },
+      "bodyByLocale": {
+        "ru": "Fall over — упасть, потеряв равновесие. I didn't fall over — я не упал. После didn't нужна fall, не fell. Выберите отрицание.",
+        "uk": "Fall over — впасти, втративши рівновагу. I didn't fall over — я не впав. Після didn't потрібна fall, не fell. Виберіть заперечення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-20:intro1:r1",
+              "text": "I didn't fall over."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro1:r2",
+              "text": "I fell over."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro1:r3",
+              "text": "I didn't fell over."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-20:intro1:r1",
+              "text": "I didn't fall over."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro1:r2",
+              "text": "I fell over."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro1:r3",
+              "text": "I didn't fell over."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Споткнуться",
+        "uk": "Спіткнутися"
+      },
+      "bodyByLocale": {
+        "ru": "Trip over — споткнуться о предмет. I didn't trip over the bag — я не споткнулся о сумку. Споткнуться не обязательно значит упасть. Выберите сумку.",
+        "uk": "Trip over — спіткнутися об предмет. I didn't trip over the bag — я не спіткнувся об сумку. Спіткнутися не обов’язково означає впасти. Виберіть сумку."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-20:intro2:r1",
+              "text": "I didn't trip over the bag."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro2:r2",
+              "text": "I didn't trip over the box."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro2:r3",
+              "text": "I didn't tripped over the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-20:intro2:r1",
+              "text": "I didn't trip over the bag."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro2:r2",
+              "text": "I didn't trip over the box."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro2:r3",
+              "text": "I didn't tripped over the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Натолкнуться и опрокинуть",
+        "uk": "Наштовхнутися й перекинути"
+      },
+      "bodyByLocale": {
+        "ru": "Bump into здесь — натолкнуться на предмет; knock over — опрокинуть предмет. I didn't knock over the cup — я не опрокинул чашку. Выберите чашку, не стол.",
+        "uk": "Bump into тут — наштовхнутися на предмет; knock over — перекинути предмет. I didn't knock over the cup — я не перекинув чашку. Виберіть чашку, не стіл."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-20:intro3:r1",
+              "text": "I didn't knock over the cup."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro3:r2",
+              "text": "I didn't bump into the table."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro3:r3",
+              "text": "I didn't knocked over the cup."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-20:intro3:r1",
+              "text": "I didn't knock over the cup."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro3:r2",
+              "text": "I didn't bump into the table."
+            },
+            {
+              "responseId": "en:lesson-13:session-20:intro3:r3",
+              "text": "I didn't knocked over the cup."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a8d80b3bd899a010e60f8e538b65389a5fdb8467b2a34456f602e4c29c050260"
+}

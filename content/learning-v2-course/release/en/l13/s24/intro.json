@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "review: base form after did",
+    "uk": "review: base form after did"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Честно",
+        "uk": "Чесно"
+      },
+      "bodyByLocale": {
+        "ru": "Honestly — честно. Did you answer honestly? — Ты ответил честно? Выберите вопрос о прошлом.",
+        "uk": "Honestly — чесно. Did you answer honestly? — Ти відповів чесно? Виберіть запитання про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-24:intro1:r1",
+              "text": "Did you answer honestly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro1:r2",
+              "text": "Do you answer honestly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro1:r3",
+              "text": "Did you answered honestly?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-24:intro1:r1",
+              "text": "Did you answer honestly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro1:r2",
+              "text": "Do you answer honestly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro1:r3",
+              "text": "Did you answered honestly?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "По-доброму",
+        "uk": "По-доброму"
+      },
+      "bodyByLocale": {
+        "ru": "Kindly — по-доброму, доброжелательно. Did she speak kindly? — Она говорила доброжелательно? Выберите доброжелательность, не сердитый тон.",
+        "uk": "Kindly — по-доброму, доброзичливо. Did she speak kindly? — Вона говорила доброзичливо? Виберіть доброзичливість, не сердитий тон."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-24:intro2:r1",
+              "text": "Did she speak kindly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro2:r2",
+              "text": "Did she speak angrily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro2:r3",
+              "text": "Did she spoke kindly?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-24:intro2:r1",
+              "text": "Did she speak kindly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro2:r2",
+              "text": "Did she speak angrily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro2:r3",
+              "text": "Did she spoke kindly?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Смело и спокойно",
+        "uk": "Сміливо й спокійно"
+      },
+      "bodyByLocale": {
+        "ru": "Bravely — смело, несмотря на страх; calmly — спокойно. Did you answer calmly? — Ты ответил спокойно? Выберите спокойный ответ.",
+        "uk": "Bravely — сміливо, попри страх; calmly — спокійно. Did you answer calmly? — Ти відповів спокійно? Виберіть спокійну відповідь."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-24:intro3:r1",
+              "text": "Did you answer calmly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro3:r2",
+              "text": "Did you answer angrily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro3:r3",
+              "text": "Did you answered calmly?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-24:intro3:r1",
+              "text": "Did you answer calmly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro3:r2",
+              "text": "Did you answer angrily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-24:intro3:r3",
+              "text": "Did you answered calmly?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cb8876d726e702deb01391929f44b4e5d7018ed00c60d8dd63af6733bcb7583b"
+}

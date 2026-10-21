@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-23:word:gently",
+    "correctText": "gently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i01",
+    "correctText": "Did you close the door gently?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i02",
+    "correctText": "Did she close the door gently?",
+    "correctResponseId": "en:lesson-13:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:word:easily",
+    "correctText": "easily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i04",
+    "correctText": "Did you open the jar easily?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i05",
+    "correctText": "Did she open the jar easily?",
+    "correctResponseId": "en:lesson-13:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:word:clearly",
+    "correctText": "clearly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i07",
+    "correctText": "Did you speak clearly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i08",
+    "correctText": "Did she speak clearly?",
+    "correctResponseId": "en:lesson-13:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:word:badly",
+    "correctText": "badly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i10",
+    "correctText": "Did you sleep badly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i11",
+    "correctText": "Did she sleep badly?",
+    "correctResponseId": "en:lesson-13:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i13",
+    "correctText": "en:lesson-13:session-23:i13:p1=gently\nen:lesson-13:session-23:i13:p2=easily\nen:lesson-13:session-23:i13:p3=clearly\nen:lesson-13:session-23:i13:p4=badly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i14",
+    "correctText": "We didn't open the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i15",
+    "correctText": "Did he close the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i16",
+    "correctText": "Did you speak clearly yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-23:i17",
+    "correctText": "She didn't sleep badly last night.",
+    "correctResponseId": null
+  }
+]

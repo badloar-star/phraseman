@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-13:intro1:r2": {
+          "ru": "Здесь сказано о пробуждении.",
+          "uk": "Тут сказано про пробудження."
+        },
+        "en:lesson-13:session-13:intro1:r3": {
+          "ru": "После didn't нужна get.",
+          "uk": "Після didn't потрібна get."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-13:intro2:r2": {
+          "ru": "Здесь человек не встал.",
+          "uk": "Тут людина не встала."
+        },
+        "en:lesson-13:session-13:intro2:r3": {
+          "ru": "После didn't нужна sit.",
+          "uk": "Після didn't потрібна sit."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-13:intro3:r2": {
+          "ru": "Здесь человек нарядился.",
+          "uk": "Тут людина вбралася."
+        },
+        "en:lesson-13:session-13:intro3:r3": {
+          "ru": "После didn't нужна dress.",
+          "uk": "Після didn't потрібна dress."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "70f4eaf3498c03013445ca1db4863b7323283beabce2e966df5c8f44cbdbea22"
+}

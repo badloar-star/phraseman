@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-19:word:clean-up",
+    "correctText": "clean up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i01",
+    "correctText": "I didn't clean up the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i02",
+    "correctText": "She didn't clean up the kitchen.",
+    "correctResponseId": "en:lesson-13:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:word:tidy-up",
+    "correctText": "tidy up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i04",
+    "correctText": "I didn't tidy up my room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i05",
+    "correctText": "She didn't tidy up my room.",
+    "correctResponseId": "en:lesson-13:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:word:wash-up",
+    "correctText": "wash up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i07",
+    "correctText": "I didn't wash up after dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i08",
+    "correctText": "She didn't wash up after dinner.",
+    "correctResponseId": "en:lesson-13:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:word:dry-off",
+    "correctText": "dry off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i10",
+    "correctText": "I didn't dry off with a towel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i11",
+    "correctText": "She didn't dry off with a towel.",
+    "correctResponseId": "en:lesson-13:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i13",
+    "correctText": "en:lesson-13:session-19:i13:p1=clean up\nen:lesson-13:session-19:i13:p2=tidy up\nen:lesson-13:session-19:i13:p3=wash up\nen:lesson-13:session-19:i13:p4=dry off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i14",
+    "correctText": "Did they clean up the room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i15",
+    "correctText": "He didn't wash up yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i16",
+    "correctText": "Did you tidy up your room yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-19:i17",
+    "correctText": "She didn't dry off with a towel yesterday.",
+    "correctResponseId": null
+  }
+]

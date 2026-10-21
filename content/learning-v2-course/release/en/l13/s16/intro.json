@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "review: didn't + base verb",
+    "uk": "review: didn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Надеть",
+        "uk": "Одягнути"
+      },
+      "bodyByLocale": {
+        "ru": "Put on — надеть одежду. Это действие; wear — быть в этой одежде. I didn't put on my coat — я не надел пальто. Выберите сообщение о надевании.",
+        "uk": "Put on — одягнути одяг. Це дія; wear — бути в цьому одязі. I didn't put on my coat — я не одягнув пальто. Виберіть повідомлення про одягання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-16:intro1:r1",
+              "text": "I didn't put on my coat."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro1:r2",
+              "text": "I put on my coat."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro1:r3",
+              "text": "I don't put on my coat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-16:intro1:r1",
+              "text": "I didn't put on my coat."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro1:r2",
+              "text": "I put on my coat."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro1:r3",
+              "text": "I don't put on my coat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Снять одежду",
+        "uk": "Зняти одяг"
+      },
+      "bodyByLocale": {
+        "ru": "Take off здесь — снять одежду. I didn't take off my scarf — я не снял шарф. Выберите шарф, не пальто.",
+        "uk": "Take off тут — зняти одяг. I didn't take off my scarf — я не зняв шарф. Виберіть шарф, не пальто."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-16:intro2:r1",
+              "text": "I didn't take off my scarf."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro2:r2",
+              "text": "I didn't take off my coat."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro2:r3",
+              "text": "I didn't took off my scarf."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-16:intro2:r1",
+              "text": "I didn't take off my scarf."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro2:r2",
+              "text": "I didn't take off my coat."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro2:r3",
+              "text": "I didn't took off my scarf."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сесть в автобус и выйти",
+        "uk": "Сісти в автобус і вийти"
+      },
+      "bodyByLocale": {
+        "ru": "Get on — сесть в автобус, поезд или другой подобный транспорт; get off — выйти из него. I didn't get on the bus — я не сел в автобус. Выберите посадку, не выход.",
+        "uk": "Get on — сісти в автобус, поїзд чи інший подібний транспорт; get off — вийти з нього. I didn't get on the bus — я не сів в автобус. Виберіть посадку, не вихід."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-16:intro3:r1",
+              "text": "I didn't get on the bus."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro3:r2",
+              "text": "I didn't get off the bus."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro3:r3",
+              "text": "I didn't got on the bus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-16:intro3:r1",
+              "text": "I didn't get on the bus."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro3:r2",
+              "text": "I didn't get off the bus."
+            },
+            {
+              "responseId": "en:lesson-13:session-16:intro3:r3",
+              "text": "I didn't got on the bus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f5d3ce3f53fdbdc7e1b769001a261ae9fce652e15eccc4d3dfd13d0d5a4591dc"
+}

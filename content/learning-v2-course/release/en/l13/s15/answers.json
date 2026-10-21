@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-15:word:look-after",
+    "correctText": "look after",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i01",
+    "correctText": "I didn't look after my nephew.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i02",
+    "correctText": "She didn't look after my nephew.",
+    "correctResponseId": "en:lesson-13:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:word:help-out",
+    "correctText": "help out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i04",
+    "correctText": "I didn't help out at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i05",
+    "correctText": "She didn't help out at home.",
+    "correctResponseId": "en:lesson-13:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:word:fill-in",
+    "correctText": "fill in",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i07",
+    "correctText": "I didn't fill in the form.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i08",
+    "correctText": "She didn't fill in the form.",
+    "correctResponseId": "en:lesson-13:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:word:find-out",
+    "correctText": "find out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i10",
+    "correctText": "I didn't find out the price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i11",
+    "correctText": "She didn't find out the price.",
+    "correctResponseId": "en:lesson-13:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i13",
+    "correctText": "en:lesson-13:session-15:i13:p1=look after\nen:lesson-13:session-15:i13:p2=help out\nen:lesson-13:session-15:i13:p3=fill in\nen:lesson-13:session-15:i13:p4=find out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i14",
+    "correctText": "We didn't visit my sister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i15",
+    "correctText": "He didn't read the form.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i16",
+    "correctText": "I didn't fill in the form yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-15:i17",
+    "correctText": "She didn't find out the price yesterday.",
+    "correctResponseId": null
+  }
+]

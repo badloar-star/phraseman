@@ -1,0 +1,1110 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-21:word:carefully",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — carefully",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:word:carefully:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — carefully",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:word:carefully:audio",
+          "transcript": "carefully"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-21:word:carefully:r1",
+            "targetText": "carefully",
+            "meaningByLocale": {
+              "ru": "осторожно, внимательно.",
+              "uk": "обережно, уважно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carefully",
+          "definitionByLocale": {
+            "ru": "осторожно, внимательно.",
+            "uk": "обережно, уважно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты вёл машину осторожно?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты вёл машину осторожно?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you drive carefully?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты вёл машину осторожно?",
+          "uk": "Скажіть: Ти вів машину обережно?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "drive",
+          "carefully"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-21:i02:r1",
+          "text": "Did she drive carefully?"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i02:r2",
+          "text": "Did you drive carefully?"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i02:r3",
+          "text": "Did they drive carefully?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:i02:audio",
+          "transcript": "Did she drive carefully?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-21:i02:r1",
+            "targetText": "Did she drive carefully?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i02:r2",
+            "targetText": "Did you drive carefully?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i02:r3",
+            "targetText": "Did they drive carefully?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she drive carefully?",
+              "uk": "У записі звучить Did she drive carefully?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she drive carefully?",
+              "uk": "У записі звучить Did she drive carefully?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-21:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you drive carefully?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-21:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:word:quietly",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quietly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:word:quietly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quietly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:word:quietly:audio",
+          "transcript": "quietly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-21:word:quietly:r1",
+            "targetText": "quietly",
+            "meaningByLocale": {
+              "ru": "тихо.",
+              "uk": "тихо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quietly",
+          "definitionByLocale": {
+            "ru": "тихо.",
+            "uk": "тихо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты говорил тихо?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты говорил тихо?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you speak quietly?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты говорил тихо?",
+          "uk": "Скажіть: Ти говорив тихо?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "speak",
+          "quietly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-21:i05:r1",
+          "text": "Did she speak quietly?"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i05:r2",
+          "text": "Did you speak quietly?"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i05:r3",
+          "text": "Did they speak quietly?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:i05:audio",
+          "transcript": "Did she speak quietly?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-21:i05:r1",
+            "targetText": "Did she speak quietly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i05:r2",
+            "targetText": "Did you speak quietly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i05:r3",
+            "targetText": "Did they speak quietly?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she speak quietly?",
+              "uk": "У записі звучить Did she speak quietly?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she speak quietly?",
+              "uk": "У записі звучить Did she speak quietly?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-21:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you speak quietly?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-21:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:word:loudly",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — loudly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:word:loudly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — loudly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:word:loudly:audio",
+          "transcript": "loudly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-21:word:loudly:r1",
+            "targetText": "loudly",
+            "meaningByLocale": {
+              "ru": "громко.",
+              "uk": "голосно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loudly",
+          "definitionByLocale": {
+            "ru": "громко.",
+            "uk": "голосно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты говорил громко?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты говорил громко?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you speak loudly?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты говорил громко?",
+          "uk": "Скажіть: Ти говорив голосно?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "speak",
+          "loudly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-21:i08:r1",
+          "text": "Did she speak loudly?"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i08:r2",
+          "text": "Did you speak loudly?"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i08:r3",
+          "text": "Did they speak loudly?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:i08:audio",
+          "transcript": "Did she speak loudly?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-21:i08:r1",
+            "targetText": "Did she speak loudly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i08:r2",
+            "targetText": "Did you speak loudly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i08:r3",
+            "targetText": "Did they speak loudly?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she speak loudly?",
+              "uk": "У записі звучить Did she speak loudly?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she speak loudly?",
+              "uk": "У записі звучить Did she speak loudly?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-21:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you speak loudly?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-21:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:word:safely",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — safely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:word:safely:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — safely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:word:safely:audio",
+          "transcript": "safely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-21:word:safely:r1",
+            "targetText": "safely",
+            "meaningByLocale": {
+              "ru": "безопасно, без происшествий.",
+              "uk": "безпечно, без пригод."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "safely",
+          "definitionByLocale": {
+            "ru": "безопасно, без происшествий.",
+            "uk": "безпечно, без пригод."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты благополучно добрался?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты благополучно добрался?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you arrive safely?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты благополучно добрался?",
+          "uk": "Скажіть: Ти благополучно дістався?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "arrive",
+          "safely"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-21:i11:r1",
+          "text": "Did she arrive safely?"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i11:r2",
+          "text": "Did you arrive safely?"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i11:r3",
+          "text": "Did they arrive safely?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:i11:audio",
+          "transcript": "Did she arrive safely?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-21:i11:r1",
+            "targetText": "Did she arrive safely?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i11:r2",
+            "targetText": "Did you arrive safely?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i11:r3",
+            "targetText": "Did they arrive safely?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she arrive safely?",
+              "uk": "У записі звучить Did she arrive safely?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she arrive safely?",
+              "uk": "У записі звучить Did she arrive safely?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-21:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-21:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you arrive safely?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-21:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-21:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-21:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-21:i13:p1",
+            "target": "carefully",
+            "meaningByLocale": {
+              "ru": "осторожно, внимательно",
+              "uk": "обережно, уважно"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-21:i13:p2",
+            "target": "quietly",
+            "meaningByLocale": {
+              "ru": "тихо",
+              "uk": "тихо"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-21:i13:p3",
+            "target": "loudly",
+            "meaningByLocale": {
+              "ru": "громко",
+              "uk": "голосно"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-21:i13:p4",
+            "target": "safely",
+            "meaningByLocale": {
+              "ru": "безопасно, без происшествий",
+              "uk": "безпечно, без пригод"
+            }
+          }
+        ],
+        "leftColumn": [
+          "carefully",
+          "quietly",
+          "loudly",
+          "safely"
+        ],
+        "rightColumn": [
+          "осторожно, внимательно",
+          "тихо",
+          "громко",
+          "безопасно, без происшествий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:i14:audio",
+          "transcript": "We didn't drive fast."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't drive fast.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "drive",
+          "fast"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:i15:audio",
+          "transcript": "Did he arrive at six?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he arrive at six?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "arrive",
+          "at",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга: ты вчера говорил тихо?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите друга: ты вчера говорил тихо?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:i16:audio",
+          "transcript": "Did you speak quietly yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you speak quietly yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера она не вела машину осторожно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера она не вела машину осторожно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-21:i17:audio",
+          "transcript": "She didn't drive carefully yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't drive carefully yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "23c2b7f2d79d6b65b84163b7f5bf17f3627796063088ec6ee74ad66730d5bf91"
+}

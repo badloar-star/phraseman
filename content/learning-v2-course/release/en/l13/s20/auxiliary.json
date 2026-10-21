@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-20:intro1:r2": {
+          "ru": "Здесь человек упал.",
+          "uk": "Тут людина впала."
+        },
+        "en:lesson-13:session-20:intro1:r3": {
+          "ru": "После didn't нужна fall.",
+          "uk": "Після didn't потрібна fall."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-20:intro2:r2": {
+          "ru": "Это коробка.",
+          "uk": "Це коробка."
+        },
+        "en:lesson-13:session-20:intro2:r3": {
+          "ru": "После didn't нужна trip.",
+          "uk": "Після didn't потрібна trip."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-20:intro3:r2": {
+          "ru": "Здесь человек не натолкнулся на стол.",
+          "uk": "Тут людина не наштовхнулася на стіл."
+        },
+        "en:lesson-13:session-20:intro3:r3": {
+          "ru": "После didn't нужна knock.",
+          "uk": "Після didn't потрібна knock."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a2a7ecf078af852fb5d5722d84c72c3d501bf8cabb362f5ae711f2a91c262af8"
+}

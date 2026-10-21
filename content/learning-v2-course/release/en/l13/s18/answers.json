@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-18:word:put-back",
+    "correctText": "put back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i01",
+    "correctText": "I didn't put back the book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i02",
+    "correctText": "She didn't put back the book.",
+    "correctResponseId": "en:lesson-13:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:word:put-down",
+    "correctText": "put down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i04",
+    "correctText": "I didn't put down my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i05",
+    "correctText": "She didn't put down my bag.",
+    "correctResponseId": "en:lesson-13:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:word:pick-out",
+    "correctText": "pick out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i07",
+    "correctText": "I didn't pick out a chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i08",
+    "correctText": "She didn't pick out a chair.",
+    "correctResponseId": "en:lesson-13:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:word:try-out",
+    "correctText": "try out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i10",
+    "correctText": "I didn't try out the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i11",
+    "correctText": "She didn't try out the chair.",
+    "correctResponseId": "en:lesson-13:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i13",
+    "correctText": "en:lesson-13:session-18:i13:p1=put back\nen:lesson-13:session-18:i13:p2=put down\nen:lesson-13:session-18:i13:p3=pick out\nen:lesson-13:session-18:i13:p4=try out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i14",
+    "correctText": "Did they pick out a table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i15",
+    "correctText": "He didn't try out the sofa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i16",
+    "correctText": "Did you put back the book yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-18:i17",
+    "correctText": "She didn't pick out a chair yesterday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-16:intro1:r2": {
+          "ru": "Здесь пальто надели.",
+          "uk": "Тут пальто одягнули."
+        },
+        "en:lesson-13:session-16:intro1:r3": {
+          "ru": "Для прошлого нужна didn't.",
+          "uk": "Для минулого потрібна didn't."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-16:intro2:r2": {
+          "ru": "Это пальто.",
+          "uk": "Це пальто."
+        },
+        "en:lesson-13:session-16:intro2:r3": {
+          "ru": "После didn't нужна take.",
+          "uk": "Після didn't потрібна take."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-16:intro3:r2": {
+          "ru": "Это выход из автобуса.",
+          "uk": "Це вихід з автобуса."
+        },
+        "en:lesson-13:session-16:intro3:r3": {
+          "ru": "После didn't нужна get.",
+          "uk": "Після didn't потрібна get."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7af85b772e77eea71dbfd9b40e6a8c6472da99a1ff8321375963a3d75f52d6b2"
+}

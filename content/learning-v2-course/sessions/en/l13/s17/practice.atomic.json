@@ -1,0 +1,2313 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-17",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-17:word:slow-down",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — slow down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:word:slow-down:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — slow down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:word:slow-down:audio",
+            "transcript": "slow down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:word:slow-down:r1",
+              "targetText": "slow down",
+              "meaningByLocale": {
+                "ru": "замедлиться.",
+                "uk": "уповільнитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slow down",
+            "definitionByLocale": {
+              "ru": "замедлиться.",
+              "uk": "уповільнитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не замедлился",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не замедлился",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't slow down.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не замедлился",
+            "uk": "Скажіть: Я не уповільнився"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "slow",
+            "down"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i02:r1",
+            "text": "She didn't slow down."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i02:r2",
+            "text": "I didn't slow down."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i02:r3",
+            "text": "She doesn't slow down."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i02:audio",
+            "transcript": "She didn't slow down."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:i02:r1",
+              "targetText": "She didn't slow down.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i02:r2",
+              "targetText": "I didn't slow down.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i02:r3",
+              "targetText": "She doesn't slow down.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't slow down.",
+                "uk": "У записі звучить She didn't slow down."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't slow down.",
+                "uk": "У записі звучить She didn't slow down."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Этого не было вчера. Выберите отрицание",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ slow down.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-17:i03:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i03:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i03:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Этого не было вчера. Выберите отрицание",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:word:speed-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — speed up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:word:speed-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — speed up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:word:speed-up:audio",
+            "transcript": "speed up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:word:speed-up:r1",
+              "targetText": "speed up",
+              "meaningByLocale": {
+                "ru": "ускориться.",
+                "uk": "прискоритися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "speed up",
+            "definitionByLocale": {
+              "ru": "ускориться.",
+              "uk": "прискоритися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не ускорился",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не ускорился",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't speed up.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не ускорился",
+            "uk": "Скажіть: Я не прискорився"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "speed",
+            "up"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i05:r1",
+            "text": "She didn't speed up."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i05:r2",
+            "text": "I didn't speed up."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i05:r3",
+            "text": "She doesn't speed up."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i05:audio",
+            "transcript": "She didn't speed up."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:i05:r1",
+              "targetText": "She didn't speed up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i05:r2",
+              "targetText": "I didn't speed up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i05:r3",
+              "targetText": "She doesn't speed up.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't speed up.",
+                "uk": "У записі звучить She didn't speed up."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't speed up.",
+                "uk": "У записі звучить She didn't speed up."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Этого не было вчера. Выберите отрицание",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ speed up.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-17:i06:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i06:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i06:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Этого не было вчера. Выберите отрицание",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:word:calm-down",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — calm down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:word:calm-down:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — calm down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:word:calm-down:audio",
+            "transcript": "calm down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:word:calm-down:r1",
+              "targetText": "calm down",
+              "meaningByLocale": {
+                "ru": "успокоиться.",
+                "uk": "заспокоїтися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "calm down",
+            "definitionByLocale": {
+              "ru": "успокоиться.",
+              "uk": "заспокоїтися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не успокоился быстро",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не успокоился быстро",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't calm down quickly.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не успокоился быстро",
+            "uk": "Скажіть: Я не заспокоївся швидко"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "calm",
+            "down",
+            "quickly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i08:r1",
+            "text": "She didn't calm down quickly."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i08:r2",
+            "text": "I didn't calm down quickly."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i08:r3",
+            "text": "She doesn't calm down quickly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i08:audio",
+            "transcript": "She didn't calm down quickly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:i08:r1",
+              "targetText": "She didn't calm down quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i08:r2",
+              "targetText": "I didn't calm down quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i08:r3",
+              "targetText": "She doesn't calm down quickly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't calm down quickly.",
+                "uk": "У записі звучить She didn't calm down quickly."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't calm down quickly.",
+                "uk": "У записі звучить She didn't calm down quickly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Этого не было вчера. Выберите отрицание",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ calm down quickly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-17:i09:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i09:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i09:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Этого не было вчера. Выберите отрицание",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:word:cheer-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cheer up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:word:cheer-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cheer up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:word:cheer-up:audio",
+            "transcript": "cheer up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:word:cheer-up:r1",
+              "targetText": "cheer up",
+              "meaningByLocale": {
+                "ru": "повеселеть.",
+                "uk": "повеселішати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cheer up",
+            "definitionByLocale": {
+              "ru": "повеселеть.",
+              "uk": "повеселішати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не повеселел быстро",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не повеселел быстро",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't cheer up quickly.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не повеселел быстро",
+            "uk": "Скажіть: Я не повеселішав швидко"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "cheer",
+            "up",
+            "quickly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i11:r1",
+            "text": "She didn't cheer up quickly."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i11:r2",
+            "text": "I didn't cheer up quickly."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i11:r3",
+            "text": "She doesn't cheer up quickly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i11:audio",
+            "transcript": "She didn't cheer up quickly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:i11:r1",
+              "targetText": "She didn't cheer up quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i11:r2",
+              "targetText": "I didn't cheer up quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i11:r3",
+              "targetText": "She doesn't cheer up quickly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't cheer up quickly.",
+                "uk": "У записі звучить She didn't cheer up quickly."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't cheer up quickly.",
+                "uk": "У записі звучить She didn't cheer up quickly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Этого не было вчера. Выберите отрицание",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ cheer up quickly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-17:i12:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i12:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i12:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Этого не было вчера. Выберите отрицание",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-17:i13:p1",
+              "target": "slow down",
+              "meaningByLocale": {
+                "ru": "замедлиться",
+                "uk": "уповільнитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-17:i13:p2",
+              "target": "speed up",
+              "meaningByLocale": {
+                "ru": "ускориться",
+                "uk": "прискоритися"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-17:i13:p3",
+              "target": "calm down",
+              "meaningByLocale": {
+                "ru": "успокоиться",
+                "uk": "заспокоїтися"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-17:i13:p4",
+              "target": "cheer up",
+              "meaningByLocale": {
+                "ru": "повеселеть",
+                "uk": "повеселішати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "slow down",
+            "speed up",
+            "calm down",
+            "cheer up"
+          ],
+          "rightColumn": [
+            "замедлиться",
+            "ускориться",
+            "успокоиться",
+            "повеселеть"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i14:audio",
+            "transcript": "Did they slow down?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did they slow down?",
+          "orderedTokens": [
+            "Did",
+            "they",
+            "slow",
+            "down"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i15:audio",
+            "transcript": "He didn't speed up yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He didn't speed up yesterday.",
+          "orderedTokens": [
+            "He",
+            "didn't",
+            "speed",
+            "up",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите друга: ты вчера быстро успокоился?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Спросите друга: ты вчера быстро успокоился?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i16:audio",
+            "transcript": "Did you calm down quickly yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did you calm down quickly yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера она не повеселела быстро",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера она не повеселела быстро",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i17:audio",
+            "transcript": "She didn't cheer up quickly yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She didn't cheer up quickly yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-17:word:slow-down",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — slow down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:word:slow-down:audio"
+        ],
+        "accessibilityLabel": "Картка слова — slow down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:word:slow-down:audio",
+            "transcript": "slow down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:word:slow-down:r1",
+              "targetText": "slow down",
+              "meaningByLocale": {
+                "ru": "замедлиться.",
+                "uk": "уповільнитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "slow down",
+            "definitionByLocale": {
+              "ru": "замедлиться.",
+              "uk": "уповільнитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не уповільнився",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не уповільнився",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't slow down.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не замедлился",
+            "uk": "Скажіть: Я не уповільнився"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "slow",
+            "down"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i02:r1",
+            "text": "She didn't slow down."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i02:r2",
+            "text": "I didn't slow down."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i02:r3",
+            "text": "She doesn't slow down."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i02:audio",
+            "transcript": "She didn't slow down."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:i02:r1",
+              "targetText": "She didn't slow down.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i02:r2",
+              "targetText": "I didn't slow down.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i02:r3",
+              "targetText": "She doesn't slow down.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't slow down.",
+                "uk": "У записі звучить She didn't slow down."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't slow down.",
+                "uk": "У записі звучить She didn't slow down."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Цього не було вчора. Виберіть заперечення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ slow down.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-17:i03:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i03:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i03:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Цього не було вчора. Виберіть заперечення",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:word:speed-up",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — speed up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:word:speed-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — speed up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:word:speed-up:audio",
+            "transcript": "speed up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:word:speed-up:r1",
+              "targetText": "speed up",
+              "meaningByLocale": {
+                "ru": "ускориться.",
+                "uk": "прискоритися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "speed up",
+            "definitionByLocale": {
+              "ru": "ускориться.",
+              "uk": "прискоритися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не прискорився",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не прискорився",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't speed up.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не ускорился",
+            "uk": "Скажіть: Я не прискорився"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "speed",
+            "up"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i05:r1",
+            "text": "She didn't speed up."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i05:r2",
+            "text": "I didn't speed up."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i05:r3",
+            "text": "She doesn't speed up."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i05:audio",
+            "transcript": "She didn't speed up."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:i05:r1",
+              "targetText": "She didn't speed up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i05:r2",
+              "targetText": "I didn't speed up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i05:r3",
+              "targetText": "She doesn't speed up.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't speed up.",
+                "uk": "У записі звучить She didn't speed up."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't speed up.",
+                "uk": "У записі звучить She didn't speed up."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Цього не було вчора. Виберіть заперечення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ speed up.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-17:i06:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i06:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i06:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Цього не було вчора. Виберіть заперечення",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:word:calm-down",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — calm down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:word:calm-down:audio"
+        ],
+        "accessibilityLabel": "Картка слова — calm down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:word:calm-down:audio",
+            "transcript": "calm down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:word:calm-down:r1",
+              "targetText": "calm down",
+              "meaningByLocale": {
+                "ru": "успокоиться.",
+                "uk": "заспокоїтися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "calm down",
+            "definitionByLocale": {
+              "ru": "успокоиться.",
+              "uk": "заспокоїтися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не заспокоївся швидко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не заспокоївся швидко",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't calm down quickly.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не успокоился быстро",
+            "uk": "Скажіть: Я не заспокоївся швидко"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "calm",
+            "down",
+            "quickly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i08:r1",
+            "text": "She didn't calm down quickly."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i08:r2",
+            "text": "I didn't calm down quickly."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i08:r3",
+            "text": "She doesn't calm down quickly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i08:audio",
+            "transcript": "She didn't calm down quickly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:i08:r1",
+              "targetText": "She didn't calm down quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i08:r2",
+              "targetText": "I didn't calm down quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i08:r3",
+              "targetText": "She doesn't calm down quickly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't calm down quickly.",
+                "uk": "У записі звучить She didn't calm down quickly."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't calm down quickly.",
+                "uk": "У записі звучить She didn't calm down quickly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Цього не було вчора. Виберіть заперечення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ calm down quickly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-17:i09:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i09:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i09:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Цього не було вчора. Виберіть заперечення",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:word:cheer-up",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cheer up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:word:cheer-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cheer up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:word:cheer-up:audio",
+            "transcript": "cheer up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:word:cheer-up:r1",
+              "targetText": "cheer up",
+              "meaningByLocale": {
+                "ru": "повеселеть.",
+                "uk": "повеселішати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cheer up",
+            "definitionByLocale": {
+              "ru": "повеселеть.",
+              "uk": "повеселішати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не повеселішав швидко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не повеселішав швидко",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't cheer up quickly.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не повеселел быстро",
+            "uk": "Скажіть: Я не повеселішав швидко"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "cheer",
+            "up",
+            "quickly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i11:r1",
+            "text": "She didn't cheer up quickly."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i11:r2",
+            "text": "I didn't cheer up quickly."
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i11:r3",
+            "text": "She doesn't cheer up quickly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i11:audio",
+            "transcript": "She didn't cheer up quickly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-17:i11:r1",
+              "targetText": "She didn't cheer up quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i11:r2",
+              "targetText": "I didn't cheer up quickly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i11:r3",
+              "targetText": "She doesn't cheer up quickly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't cheer up quickly.",
+                "uk": "У записі звучить She didn't cheer up quickly."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't cheer up quickly.",
+                "uk": "У записі звучить She didn't cheer up quickly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Цього не було вчора. Виберіть заперечення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-17:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-17:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ cheer up quickly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-17:i12:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i12:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i12:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Цього не було вчора. Виберіть заперечення",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-17:i13:p1",
+              "target": "slow down",
+              "meaningByLocale": {
+                "ru": "замедлиться",
+                "uk": "уповільнитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-17:i13:p2",
+              "target": "speed up",
+              "meaningByLocale": {
+                "ru": "ускориться",
+                "uk": "прискоритися"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-17:i13:p3",
+              "target": "calm down",
+              "meaningByLocale": {
+                "ru": "успокоиться",
+                "uk": "заспокоїтися"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-17:i13:p4",
+              "target": "cheer up",
+              "meaningByLocale": {
+                "ru": "повеселеть",
+                "uk": "повеселішати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "slow down",
+            "speed up",
+            "calm down",
+            "cheer up"
+          ],
+          "rightColumn": [
+            "уповільнитися",
+            "прискоритися",
+            "заспокоїтися",
+            "повеселішати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i14:audio",
+            "transcript": "Did they slow down?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Did they slow down?",
+          "orderedTokens": [
+            "Did",
+            "they",
+            "slow",
+            "down"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i15:audio",
+            "transcript": "He didn't speed up yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He didn't speed up yesterday.",
+          "orderedTokens": [
+            "He",
+            "didn't",
+            "speed",
+            "up",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте друга: ти вчора швидко заспокоївся?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Запитайте друга: ти вчора швидко заспокоївся?",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i16:audio",
+            "transcript": "Did you calm down quickly yesterday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Did you calm down quickly yesterday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора вона не повеселішала швидко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора вона не повеселішала швидко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-17:i17:audio",
+            "transcript": "She didn't cheer up quickly yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She didn't cheer up quickly yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-17:word:slow-down",
+      "correctText": "slow down",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i01",
+      "correctText": "I didn't slow down.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i02",
+      "correctText": "She didn't slow down.",
+      "correctResponseId": "en:lesson-13:session-17:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i03",
+      "correctText": "didn't",
+      "correctResponseId": "en:lesson-13:session-17:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:word:speed-up",
+      "correctText": "speed up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i04",
+      "correctText": "I didn't speed up.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i05",
+      "correctText": "She didn't speed up.",
+      "correctResponseId": "en:lesson-13:session-17:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i06",
+      "correctText": "didn't",
+      "correctResponseId": "en:lesson-13:session-17:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:word:calm-down",
+      "correctText": "calm down",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i07",
+      "correctText": "I didn't calm down quickly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i08",
+      "correctText": "She didn't calm down quickly.",
+      "correctResponseId": "en:lesson-13:session-17:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i09",
+      "correctText": "didn't",
+      "correctResponseId": "en:lesson-13:session-17:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:word:cheer-up",
+      "correctText": "cheer up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i10",
+      "correctText": "I didn't cheer up quickly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i11",
+      "correctText": "She didn't cheer up quickly.",
+      "correctResponseId": "en:lesson-13:session-17:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i12",
+      "correctText": "didn't",
+      "correctResponseId": "en:lesson-13:session-17:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i14",
+      "correctText": "Did they slow down?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i15",
+      "correctText": "He didn't speed up yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i16",
+      "correctText": "Did you calm down quickly yesterday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:i17",
+      "correctText": "She didn't cheer up quickly yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

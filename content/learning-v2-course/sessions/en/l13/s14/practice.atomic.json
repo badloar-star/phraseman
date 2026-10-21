@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-14:word:switch-on",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — switch on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:word:switch-on:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — switch on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:word:switch-on:audio",
+            "transcript": "switch on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:word:switch-on:r1",
+              "targetText": "switch on",
+              "meaningByLocale": {
+                "ru": "включить прибор или свет.",
+                "uk": "увімкнути прилад або світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "switch on",
+            "definitionByLocale": {
+              "ru": "включить прибор или свет.",
+              "uk": "увімкнути прилад або світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не включил лампу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не включил лампу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't switch on the lamp.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не включил лампу",
+            "uk": "Скажіть: Я не увімкнув лампу"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "switch",
+            "on",
+            "the",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i02:r1",
+            "text": "She didn't switch on the lamp."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i02:r2",
+            "text": "I didn't switch on the lamp."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i02:r3",
+            "text": "She doesn't switch on the lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i02:audio",
+            "transcript": "She didn't switch on the lamp."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:i02:r1",
+              "targetText": "She didn't switch on the lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i02:r2",
+              "targetText": "I didn't switch on the lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i02:r3",
+              "targetText": "She doesn't switch on the lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't switch on the lamp.",
+                "uk": "У записі звучить She didn't switch on the lamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't switch on the lamp.",
+                "uk": "У записі звучить She didn't switch on the lamp."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Этого не было вчера. Выберите отрицание",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ switch on the lamp.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-14:i03:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i03:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i03:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Этого не было вчера. Выберите отрицание",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:word:switch-off",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — switch off",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:word:switch-off:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — switch off",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:word:switch-off:audio",
+            "transcript": "switch off"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:word:switch-off:r1",
+              "targetText": "switch off",
+              "meaningByLocale": {
+                "ru": "выключить прибор или свет.",
+                "uk": "вимкнути прилад або світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "switch off",
+            "definitionByLocale": {
+              "ru": "выключить прибор или свет.",
+              "uk": "вимкнути прилад або світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не выключил радио",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не выключил радио",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't switch off the radio.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не выключил радио",
+            "uk": "Скажіть: Я не вимкнув радіо"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "switch",
+            "off",
+            "the",
+            "radio"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i05:r1",
+            "text": "She didn't switch off the radio."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i05:r2",
+            "text": "I didn't switch off the radio."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i05:r3",
+            "text": "She doesn't switch off the radio."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i05:audio",
+            "transcript": "She didn't switch off the radio."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:i05:r1",
+              "targetText": "She didn't switch off the radio.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i05:r2",
+              "targetText": "I didn't switch off the radio.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i05:r3",
+              "targetText": "She doesn't switch off the radio.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't switch off the radio.",
+                "uk": "У записі звучить She didn't switch off the radio."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't switch off the radio.",
+                "uk": "У записі звучить She didn't switch off the radio."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Этого не было вчера. Выберите отрицание",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ switch off the radio.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-14:i06:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i06:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i06:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Этого не было вчера. Выберите отрицание",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:word:call-back",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — call back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:word:call-back:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — call back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:word:call-back:audio",
+            "transcript": "call back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:word:call-back:r1",
+              "targetText": "call back",
+              "meaningByLocale": {
+                "ru": "перезвонить.",
+                "uk": "передзвонити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "call back",
+            "definitionByLocale": {
+              "ru": "перезвонить.",
+              "uk": "передзвонити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не перезвонил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не перезвонил",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't call back.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не перезвонил",
+            "uk": "Скажіть: Я не передзвонив"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "call",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i08:r1",
+            "text": "She didn't call back."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i08:r2",
+            "text": "I didn't call back."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i08:r3",
+            "text": "She doesn't call back."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i08:audio",
+            "transcript": "She didn't call back."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:i08:r1",
+              "targetText": "She didn't call back.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i08:r2",
+              "targetText": "I didn't call back.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i08:r3",
+              "targetText": "She doesn't call back.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't call back.",
+                "uk": "У записі звучить She didn't call back."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't call back.",
+                "uk": "У записі звучить She didn't call back."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Этого не было вчера. Выберите отрицание",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ call back.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-14:i09:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i09:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i09:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Этого не было вчера. Выберите отрицание",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:word:write-down",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — write down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:word:write-down:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — write down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:word:write-down:audio",
+            "transcript": "write down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:word:write-down:r1",
+              "targetText": "write down",
+              "meaningByLocale": {
+                "ru": "записать информацию.",
+                "uk": "записати інформацію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "write down",
+            "definitionByLocale": {
+              "ru": "записать информацию.",
+              "uk": "записати інформацію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я не записал адрес",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я не записал адрес",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't write down the address.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не записал адрес",
+            "uk": "Скажіть: Я не записав адресу"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "write",
+            "down",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i11:r1",
+            "text": "She didn't write down the address."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i11:r2",
+            "text": "I didn't write down the address."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i11:r3",
+            "text": "She doesn't write down the address."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i11:audio",
+            "transcript": "She didn't write down the address."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:i11:r1",
+              "targetText": "She didn't write down the address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i11:r2",
+              "targetText": "I didn't write down the address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i11:r3",
+              "targetText": "She doesn't write down the address.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't write down the address.",
+                "uk": "У записі звучить She didn't write down the address."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't write down the address.",
+                "uk": "У записі звучить She didn't write down the address."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Этого не было вчера. Выберите отрицание",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ write down the address.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-14:i12:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i12:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i12:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Этого не было вчера. Выберите отрицание",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Этого не было вчера. Выберите отрицание",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-14:i13:p1",
+              "target": "switch on",
+              "meaningByLocale": {
+                "ru": "включить прибор или свет",
+                "uk": "увімкнути прилад або світло"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-14:i13:p2",
+              "target": "switch off",
+              "meaningByLocale": {
+                "ru": "выключить прибор или свет",
+                "uk": "вимкнути прилад або світло"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-14:i13:p3",
+              "target": "call back",
+              "meaningByLocale": {
+                "ru": "перезвонить",
+                "uk": "передзвонити"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-14:i13:p4",
+              "target": "write down",
+              "meaningByLocale": {
+                "ru": "записать информацию",
+                "uk": "записати інформацію"
+              }
+            }
+          ],
+          "leftColumn": [
+            "switch on",
+            "switch off",
+            "call back",
+            "write down"
+          ],
+          "rightColumn": [
+            "включить прибор или свет",
+            "выключить прибор или свет",
+            "перезвонить",
+            "записать информацию"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i14:audio",
+            "transcript": "We didn't use the phone."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We didn't use the phone.",
+          "orderedTokens": [
+            "We",
+            "didn't",
+            "use",
+            "the",
+            "phone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i15:audio",
+            "transcript": "He didn't read the note."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He didn't read the note.",
+          "orderedTokens": [
+            "He",
+            "didn't",
+            "read",
+            "the",
+            "note"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера я не перезвонил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера я не перезвонил",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i16:audio",
+            "transcript": "I didn't call back yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I didn't call back yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера она не записала адрес",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера она не записала адрес",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i17:audio",
+            "transcript": "She didn't write down the address yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She didn't write down the address yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-14:word:switch-on",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — switch on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:word:switch-on:audio"
+        ],
+        "accessibilityLabel": "Картка слова — switch on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:word:switch-on:audio",
+            "transcript": "switch on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:word:switch-on:r1",
+              "targetText": "switch on",
+              "meaningByLocale": {
+                "ru": "включить прибор или свет.",
+                "uk": "увімкнути прилад або світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "switch on",
+            "definitionByLocale": {
+              "ru": "включить прибор или свет.",
+              "uk": "увімкнути прилад або світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не увімкнув лампу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не увімкнув лампу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't switch on the lamp.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не включил лампу",
+            "uk": "Скажіть: Я не увімкнув лампу"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "switch",
+            "on",
+            "the",
+            "lamp"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i02:r1",
+            "text": "She didn't switch on the lamp."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i02:r2",
+            "text": "I didn't switch on the lamp."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i02:r3",
+            "text": "She doesn't switch on the lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i02:audio",
+            "transcript": "She didn't switch on the lamp."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:i02:r1",
+              "targetText": "She didn't switch on the lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i02:r2",
+              "targetText": "I didn't switch on the lamp.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i02:r3",
+              "targetText": "She doesn't switch on the lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't switch on the lamp.",
+                "uk": "У записі звучить She didn't switch on the lamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't switch on the lamp.",
+                "uk": "У записі звучить She didn't switch on the lamp."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Цього не було вчора. Виберіть заперечення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ switch on the lamp.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-14:i03:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i03:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i03:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Цього не було вчора. Виберіть заперечення",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:word:switch-off",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — switch off",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:word:switch-off:audio"
+        ],
+        "accessibilityLabel": "Картка слова — switch off",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:word:switch-off:audio",
+            "transcript": "switch off"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:word:switch-off:r1",
+              "targetText": "switch off",
+              "meaningByLocale": {
+                "ru": "выключить прибор или свет.",
+                "uk": "вимкнути прилад або світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "switch off",
+            "definitionByLocale": {
+              "ru": "выключить прибор или свет.",
+              "uk": "вимкнути прилад або світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не вимкнув радіо",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не вимкнув радіо",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't switch off the radio.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не выключил радио",
+            "uk": "Скажіть: Я не вимкнув радіо"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "switch",
+            "off",
+            "the",
+            "radio"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i05:r1",
+            "text": "She didn't switch off the radio."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i05:r2",
+            "text": "I didn't switch off the radio."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i05:r3",
+            "text": "She doesn't switch off the radio."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i05:audio",
+            "transcript": "She didn't switch off the radio."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:i05:r1",
+              "targetText": "She didn't switch off the radio.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i05:r2",
+              "targetText": "I didn't switch off the radio.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i05:r3",
+              "targetText": "She doesn't switch off the radio.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't switch off the radio.",
+                "uk": "У записі звучить She didn't switch off the radio."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't switch off the radio.",
+                "uk": "У записі звучить She didn't switch off the radio."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Цього не було вчора. Виберіть заперечення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ switch off the radio.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-14:i06:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i06:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i06:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Цього не було вчора. Виберіть заперечення",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:word:call-back",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — call back",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:word:call-back:audio"
+        ],
+        "accessibilityLabel": "Картка слова — call back",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:word:call-back:audio",
+            "transcript": "call back"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:word:call-back:r1",
+              "targetText": "call back",
+              "meaningByLocale": {
+                "ru": "перезвонить.",
+                "uk": "передзвонити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "call back",
+            "definitionByLocale": {
+              "ru": "перезвонить.",
+              "uk": "передзвонити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не передзвонив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не передзвонив",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't call back.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не перезвонил",
+            "uk": "Скажіть: Я не передзвонив"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "call",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i08:r1",
+            "text": "She didn't call back."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i08:r2",
+            "text": "I didn't call back."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i08:r3",
+            "text": "She doesn't call back."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i08:audio",
+            "transcript": "She didn't call back."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:i08:r1",
+              "targetText": "She didn't call back.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i08:r2",
+              "targetText": "I didn't call back.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i08:r3",
+              "targetText": "She doesn't call back.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't call back.",
+                "uk": "У записі звучить She didn't call back."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't call back.",
+                "uk": "У записі звучить She didn't call back."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Цього не було вчора. Виберіть заперечення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ call back.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-14:i09:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i09:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i09:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Цього не було вчора. Виберіть заперечення",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:word:write-down",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — write down",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:word:write-down:audio"
+        ],
+        "accessibilityLabel": "Картка слова — write down",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:word:write-down:audio",
+            "transcript": "write down"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:word:write-down:r1",
+              "targetText": "write down",
+              "meaningByLocale": {
+                "ru": "записать информацию.",
+                "uk": "записати інформацію."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "write down",
+            "definitionByLocale": {
+              "ru": "записать информацию.",
+              "uk": "записати інформацію."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я не записав адресу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я не записав адресу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I didn't write down the address.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я не записал адрес",
+            "uk": "Скажіть: Я не записав адресу"
+          },
+          "orderedTokens": [
+            "I",
+            "didn't",
+            "write",
+            "down",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i11:r1",
+            "text": "She didn't write down the address."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i11:r2",
+            "text": "I didn't write down the address."
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i11:r3",
+            "text": "She doesn't write down the address."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i11:audio",
+            "transcript": "She didn't write down the address."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-14:i11:r1",
+              "targetText": "She didn't write down the address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i11:r2",
+              "targetText": "I didn't write down the address.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i11:r3",
+              "targetText": "She doesn't write down the address.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't write down the address.",
+                "uk": "У записі звучить She didn't write down the address."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She didn't write down the address.",
+                "uk": "У записі звучить She didn't write down the address."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Цього не було вчора. Виберіть заперечення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-14:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-14:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Этого не было вчера. Выберите отрицание",
+            "uk": "Цього не було вчора. Виберіть заперечення"
+          },
+          "gappedTargetPhrase": "I ___ write down the address.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-14:i12:r1",
+              "text": "didn't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i12:r2",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i12:r3",
+              "text": "doesn't"
+            }
+          ],
+          "testedDimension": "Цього не було вчора. Виберіть заперечення",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма didn't.",
+                "uk": "Для минулого потрібна форма didn't."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Цього не було вчора. Виберіть заперечення",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна didn't.",
+                "uk": "Це не форма минулого. Потрібна didn't."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-14:i13:p1",
+              "target": "switch on",
+              "meaningByLocale": {
+                "ru": "включить прибор или свет",
+                "uk": "увімкнути прилад або світло"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-14:i13:p2",
+              "target": "switch off",
+              "meaningByLocale": {
+                "ru": "выключить прибор или свет",
+                "uk": "вимкнути прилад або світло"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-14:i13:p3",
+              "target": "call back",
+              "meaningByLocale": {
+                "ru": "перезвонить",
+                "uk": "передзвонити"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-14:i13:p4",
+              "target": "write down",
+              "meaningByLocale": {
+                "ru": "записать информацию",
+                "uk": "записати інформацію"
+              }
+            }
+          ],
+          "leftColumn": [
+            "switch on",
+            "switch off",
+            "call back",
+            "write down"
+          ],
+          "rightColumn": [
+            "увімкнути прилад або світло",
+            "вимкнути прилад або світло",
+            "передзвонити",
+            "записати інформацію"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i14:audio",
+            "transcript": "We didn't use the phone."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We didn't use the phone.",
+          "orderedTokens": [
+            "We",
+            "didn't",
+            "use",
+            "the",
+            "phone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i15:audio",
+            "transcript": "He didn't read the note."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He didn't read the note.",
+          "orderedTokens": [
+            "He",
+            "didn't",
+            "read",
+            "the",
+            "note"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора я не передзвонив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора я не передзвонив",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i16:audio",
+            "transcript": "I didn't call back yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I didn't call back yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора вона не записала адресу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора вона не записала адресу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-14:i17:audio",
+            "transcript": "She didn't write down the address yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She didn't write down the address yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-14:word:switch-on",
+      "correctText": "switch on",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i01",
+      "correctText": "I didn't switch on the lamp.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i02",
+      "correctText": "She didn't switch on the lamp.",
+      "correctResponseId": "en:lesson-13:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i03",
+      "correctText": "didn't",
+      "correctResponseId": "en:lesson-13:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:word:switch-off",
+      "correctText": "switch off",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i04",
+      "correctText": "I didn't switch off the radio.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i05",
+      "correctText": "She didn't switch off the radio.",
+      "correctResponseId": "en:lesson-13:session-14:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i06",
+      "correctText": "didn't",
+      "correctResponseId": "en:lesson-13:session-14:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:word:call-back",
+      "correctText": "call back",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i07",
+      "correctText": "I didn't call back.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i08",
+      "correctText": "She didn't call back.",
+      "correctResponseId": "en:lesson-13:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i09",
+      "correctText": "didn't",
+      "correctResponseId": "en:lesson-13:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:word:write-down",
+      "correctText": "write down",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i10",
+      "correctText": "I didn't write down the address.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i11",
+      "correctText": "She didn't write down the address.",
+      "correctResponseId": "en:lesson-13:session-14:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i12",
+      "correctText": "didn't",
+      "correctResponseId": "en:lesson-13:session-14:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i14",
+      "correctText": "We didn't use the phone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i15",
+      "correctText": "He didn't read the note.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i16",
+      "correctText": "I didn't call back yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:i17",
+      "correctText": "She didn't write down the address yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

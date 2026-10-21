@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-22:word:politely",
+    "correctText": "politely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i01",
+    "correctText": "Did you ask politely?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i02",
+    "correctText": "Did she ask politely?",
+    "correctResponseId": "en:lesson-13:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:word:patiently",
+    "correctText": "patiently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i04",
+    "correctText": "Did you wait patiently?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i05",
+    "correctText": "Did she wait patiently?",
+    "correctResponseId": "en:lesson-13:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:word:angrily",
+    "correctText": "angrily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i07",
+    "correctText": "Did you answer angrily?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i08",
+    "correctText": "Did she answer angrily?",
+    "correctResponseId": "en:lesson-13:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:word:happily",
+    "correctText": "happily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i10",
+    "correctText": "Did you smile happily?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i11",
+    "correctText": "Did she smile happily?",
+    "correctResponseId": "en:lesson-13:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i13",
+    "correctText": "en:lesson-13:session-22:i13:p1=politely\nen:lesson-13:session-22:i13:p2=patiently\nen:lesson-13:session-22:i13:p3=angrily\nen:lesson-13:session-22:i13:p4=happily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i14",
+    "correctText": "We didn't wait long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i15",
+    "correctText": "Did he answer the question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i16",
+    "correctText": "Did you ask politely yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-22:i17",
+    "correctText": "She didn't answer angrily yesterday.",
+    "correctResponseId": null
+  }
+]

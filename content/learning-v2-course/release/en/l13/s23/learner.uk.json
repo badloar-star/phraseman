@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-23:word:gently",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gently",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:word:gently:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gently",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:word:gently:audio",
+          "transcript": "gently"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-23:word:gently:r1",
+            "targetText": "gently",
+            "meaningByLocale": {
+              "ru": "мягко, бережно.",
+              "uk": "м’яко, дбайливо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gently",
+          "definitionByLocale": {
+            "ru": "мягко, бережно.",
+            "uk": "м’яко, дбайливо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти зачинив двері м’яко, не грюкаючи?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти зачинив двері м’яко, не грюкаючи?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you close the door gently?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты закрыл дверь мягко, не хлопая?",
+          "uk": "Скажіть: Ти зачинив двері м’яко, не грюкаючи?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "close",
+          "the",
+          "door",
+          "gently"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-23:i02:r1",
+          "text": "Did she close the door gently?"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i02:r2",
+          "text": "Did you close the door gently?"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i02:r3",
+          "text": "Did they close the door gently?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:i02:audio",
+          "transcript": "Did she close the door gently?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-23:i02:r1",
+            "targetText": "Did she close the door gently?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i02:r2",
+            "targetText": "Did you close the door gently?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i02:r3",
+            "targetText": "Did they close the door gently?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she close the door gently?",
+              "uk": "У записі звучить Did she close the door gently?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she close the door gently?",
+              "uk": "У записі звучить Did she close the door gently?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-23:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you close the door gently?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-23:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:word:easily",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — easily",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:word:easily:audio"
+      ],
+      "accessibilityLabel": "Картка слова — easily",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:word:easily:audio",
+          "transcript": "easily"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-23:word:easily:r1",
+            "targetText": "easily",
+            "meaningByLocale": {
+              "ru": "легко, без труда.",
+              "uk": "легко, без зусиль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "easily",
+          "definitionByLocale": {
+            "ru": "легко, без труда.",
+            "uk": "легко, без зусиль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти легко відкрив банку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти легко відкрив банку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you open the jar easily?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты легко открыл банку?",
+          "uk": "Скажіть: Ти легко відкрив банку?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "open",
+          "the",
+          "jar",
+          "easily"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-23:i05:r1",
+          "text": "Did she open the jar easily?"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i05:r2",
+          "text": "Did you open the jar easily?"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i05:r3",
+          "text": "Did they open the jar easily?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:i05:audio",
+          "transcript": "Did she open the jar easily?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-23:i05:r1",
+            "targetText": "Did she open the jar easily?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i05:r2",
+            "targetText": "Did you open the jar easily?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i05:r3",
+            "targetText": "Did they open the jar easily?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she open the jar easily?",
+              "uk": "У записі звучить Did she open the jar easily?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she open the jar easily?",
+              "uk": "У записі звучить Did she open the jar easily?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-23:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you open the jar easily?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-23:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:word:clearly",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — clearly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:word:clearly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — clearly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:word:clearly:audio",
+          "transcript": "clearly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-23:word:clearly:r1",
+            "targetText": "clearly",
+            "meaningByLocale": {
+              "ru": "ясно, чётко.",
+              "uk": "ясно, чітко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clearly",
+          "definitionByLocale": {
+            "ru": "ясно, чётко.",
+            "uk": "ясно, чітко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти говорив чітко?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти говорив чітко?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you speak clearly?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты говорил чётко?",
+          "uk": "Скажіть: Ти говорив чітко?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "speak",
+          "clearly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-23:i08:r1",
+          "text": "Did she speak clearly?"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i08:r2",
+          "text": "Did you speak clearly?"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i08:r3",
+          "text": "Did they speak clearly?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:i08:audio",
+          "transcript": "Did she speak clearly?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-23:i08:r1",
+            "targetText": "Did she speak clearly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i08:r2",
+            "targetText": "Did you speak clearly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i08:r3",
+            "targetText": "Did they speak clearly?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she speak clearly?",
+              "uk": "У записі звучить Did she speak clearly?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she speak clearly?",
+              "uk": "У записі звучить Did she speak clearly?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-23:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you speak clearly?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-23:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:word:badly",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — badly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:word:badly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — badly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:word:badly:audio",
+          "transcript": "badly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-23:word:badly:r1",
+            "targetText": "badly",
+            "meaningByLocale": {
+              "ru": "плохо.",
+              "uk": "погано."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "badly",
+          "definitionByLocale": {
+            "ru": "плохо.",
+            "uk": "погано."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти погано спав?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти погано спав?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you sleep badly?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты плохо спал?",
+          "uk": "Скажіть: Ти погано спав?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "sleep",
+          "badly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-23:i11:r1",
+          "text": "Did she sleep badly?"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i11:r2",
+          "text": "Did you sleep badly?"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i11:r3",
+          "text": "Did they sleep badly?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:i11:audio",
+          "transcript": "Did she sleep badly?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-23:i11:r1",
+            "targetText": "Did she sleep badly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i11:r2",
+            "targetText": "Did you sleep badly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i11:r3",
+            "targetText": "Did they sleep badly?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she sleep badly?",
+              "uk": "У записі звучить Did she sleep badly?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she sleep badly?",
+              "uk": "У записі звучить Did she sleep badly?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-23:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-23:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you sleep badly?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-23:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-23:i13:p1",
+            "target": "gently",
+            "meaningByLocale": {
+              "ru": "мягко, бережно",
+              "uk": "м’яко, дбайливо"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-23:i13:p2",
+            "target": "easily",
+            "meaningByLocale": {
+              "ru": "легко, без труда",
+              "uk": "легко, без зусиль"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-23:i13:p3",
+            "target": "clearly",
+            "meaningByLocale": {
+              "ru": "ясно, чётко",
+              "uk": "ясно, чітко"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-23:i13:p4",
+            "target": "badly",
+            "meaningByLocale": {
+              "ru": "плохо",
+              "uk": "погано"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gently",
+          "easily",
+          "clearly",
+          "badly"
+        ],
+        "rightColumn": [
+          "м’яко, дбайливо",
+          "легко, без зусиль",
+          "ясно, чітко",
+          "погано"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:i14:audio",
+          "transcript": "We didn't open the window."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't open the window.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "open",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:i15:audio",
+          "transcript": "Did he close the door?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did he close the door?",
+        "orderedTokens": [
+          "Did",
+          "he",
+          "close",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: ти вчора говорив чітко?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: ти вчора говорив чітко?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:i16:audio",
+          "transcript": "Did you speak clearly yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you speak clearly yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: минулої ночі вона не спала погано",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: минулої ночі вона не спала погано",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-23:i17:audio",
+          "transcript": "She didn't sleep badly last night."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't sleep badly last night.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fd73d4ff4274c85c7f60318b23851ec7336036a7ce8b762152fc20884b924d0e"
+}

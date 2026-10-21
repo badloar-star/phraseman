@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "review: didn't + base verb",
+    "uk": "review: didn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Включить",
+        "uk": "Увімкнути"
+      },
+      "bodyByLocale": {
+        "ru": "Switch on — включить прибор или свет. I didn't switch on the lamp — я не включил лампу. Выберите отрицание о прошлом.",
+        "uk": "Switch on — увімкнути прилад або світло. I didn't switch on the lamp — я не увімкнув лампу. Виберіть заперечення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-14:intro1:r1",
+              "text": "I didn't switch on the lamp."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro1:r2",
+              "text": "I switched on the lamp."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro1:r3",
+              "text": "I didn't switched on the lamp."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-14:intro1:r1",
+              "text": "I didn't switch on the lamp."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro1:r2",
+              "text": "I switched on the lamp."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro1:r3",
+              "text": "I didn't switched on the lamp."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выключить",
+        "uk": "Вимкнути"
+      },
+      "bodyByLocale": {
+        "ru": "Switch off — выключить. I didn't switch off the radio — я не выключил радио. Выберите выключение, не включение.",
+        "uk": "Switch off — вимкнути. I didn't switch off the radio — я не вимкнув радіо. Виберіть вимкнення, не ввімкнення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-14:intro2:r1",
+              "text": "I didn't switch off the radio."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro2:r2",
+              "text": "I didn't switch on the radio."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro2:r3",
+              "text": "I didn't switched off the radio."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-14:intro2:r1",
+              "text": "I didn't switch off the radio."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro2:r2",
+              "text": "I didn't switch on the radio."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro2:r3",
+              "text": "I didn't switched off the radio."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перезвонить и записать",
+        "uk": "Передзвонити й записати"
+      },
+      "bodyByLocale": {
+        "ru": "Call back — перезвонить; write down — записать, чтобы сохранить информацию. I didn't write down the address — я не записал адрес. Выберите сообщение об адресе.",
+        "uk": "Call back — передзвонити; write down — записати, щоб зберегти інформацію. I didn't write down the address — я не записав адресу. Виберіть повідомлення про адресу."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-14:intro3:r1",
+              "text": "I didn't write down the address."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro3:r2",
+              "text": "I didn't call back."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro3:r3",
+              "text": "I didn't wrote down the address."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-14:intro3:r1",
+              "text": "I didn't write down the address."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro3:r2",
+              "text": "I didn't call back."
+            },
+            {
+              "responseId": "en:lesson-13:session-14:intro3:r3",
+              "text": "I didn't wrote down the address."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f4c18b6e77abdf3b274bc2a3da3751af9f99cc229809a4f7508aaaec617e212"
+}

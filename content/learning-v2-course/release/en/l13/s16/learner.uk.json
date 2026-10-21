@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-16:word:put-on",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — put on",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:word:put-on:audio"
+      ],
+      "accessibilityLabel": "Картка слова — put on",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:word:put-on:audio",
+          "transcript": "put on"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-16:word:put-on:r1",
+            "targetText": "put on",
+            "meaningByLocale": {
+              "ru": "надеть одежду.",
+              "uk": "одягнути одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "put on",
+          "definitionByLocale": {
+            "ru": "надеть одежду.",
+            "uk": "одягнути одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не одягнув пальто",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не одягнув пальто",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't put on my coat.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не надел пальто",
+          "uk": "Скажіть: Я не одягнув пальто"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "put",
+          "on",
+          "my",
+          "coat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-16:i02:r1",
+          "text": "She didn't put on my coat."
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i02:r2",
+          "text": "I didn't put on my coat."
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i02:r3",
+          "text": "She doesn't put on my coat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:i02:audio",
+          "transcript": "She didn't put on my coat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-16:i02:r1",
+            "targetText": "She didn't put on my coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i02:r2",
+            "targetText": "I didn't put on my coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i02:r3",
+            "targetText": "She doesn't put on my coat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't put on my coat.",
+              "uk": "У записі звучить She didn't put on my coat."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't put on my coat.",
+              "uk": "У записі звучить She didn't put on my coat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-16:i03:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i03:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i03:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ put on my coat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-16:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:word:take-off",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:word:take-off:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:word:take-off:audio",
+          "transcript": "take off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-16:word:take-off:r1",
+            "targetText": "take off",
+            "meaningByLocale": {
+              "ru": "снять одежду.",
+              "uk": "зняти одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take off",
+          "definitionByLocale": {
+            "ru": "снять одежду.",
+            "uk": "зняти одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не зняв шарф",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не зняв шарф",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't take off my scarf.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не снял шарф",
+          "uk": "Скажіть: Я не зняв шарф"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "take",
+          "off",
+          "my",
+          "scarf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-16:i05:r1",
+          "text": "She didn't take off my scarf."
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i05:r2",
+          "text": "I didn't take off my scarf."
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i05:r3",
+          "text": "She doesn't take off my scarf."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:i05:audio",
+          "transcript": "She didn't take off my scarf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-16:i05:r1",
+            "targetText": "She didn't take off my scarf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i05:r2",
+            "targetText": "I didn't take off my scarf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i05:r3",
+            "targetText": "She doesn't take off my scarf.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't take off my scarf.",
+              "uk": "У записі звучить She didn't take off my scarf."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't take off my scarf.",
+              "uk": "У записі звучить She didn't take off my scarf."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-16:i06:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i06:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i06:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ take off my scarf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-16:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:word:get-on",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — get on",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:word:get-on:audio"
+      ],
+      "accessibilityLabel": "Картка слова — get on",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:word:get-on:audio",
+          "transcript": "get on"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-16:word:get-on:r1",
+            "targetText": "get on",
+            "meaningByLocale": {
+              "ru": "сесть в автобус или поезд.",
+              "uk": "сісти в автобус чи поїзд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get on",
+          "definitionByLocale": {
+            "ru": "сесть в автобус или поезд.",
+            "uk": "сісти в автобус чи поїзд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не сів в автобус",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не сів в автобус",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't get on the bus.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не сел в автобус",
+          "uk": "Скажіть: Я не сів в автобус"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "get",
+          "on",
+          "the",
+          "bus"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-16:i08:r1",
+          "text": "She didn't get on the bus."
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i08:r2",
+          "text": "I didn't get on the bus."
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i08:r3",
+          "text": "She doesn't get on the bus."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:i08:audio",
+          "transcript": "She didn't get on the bus."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-16:i08:r1",
+            "targetText": "She didn't get on the bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i08:r2",
+            "targetText": "I didn't get on the bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i08:r3",
+            "targetText": "She doesn't get on the bus.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't get on the bus.",
+              "uk": "У записі звучить She didn't get on the bus."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't get on the bus.",
+              "uk": "У записі звучить She didn't get on the bus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-16:i09:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i09:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i09:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ get on the bus.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-16:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:word:get-off",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — get off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:word:get-off:audio"
+      ],
+      "accessibilityLabel": "Картка слова — get off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:word:get-off:audio",
+          "transcript": "get off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-16:word:get-off:r1",
+            "targetText": "get off",
+            "meaningByLocale": {
+              "ru": "выйти из автобуса или поезда.",
+              "uk": "вийти з автобуса чи поїзда."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "get off",
+          "definitionByLocale": {
+            "ru": "выйти из автобуса или поезда.",
+            "uk": "вийти з автобуса чи поїзда."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я не вийшов на зупинці біля вокзалу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я не вийшов на зупинці біля вокзалу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't get off at the station.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не вышел на остановке у вокзала",
+          "uk": "Скажіть: Я не вийшов на зупинці біля вокзалу"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "get",
+          "off",
+          "at",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-16:i11:r1",
+          "text": "She didn't get off at the station."
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i11:r2",
+          "text": "I didn't get off at the station."
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i11:r3",
+          "text": "She doesn't get off at the station."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:i11:audio",
+          "transcript": "She didn't get off at the station."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-16:i11:r1",
+            "targetText": "She didn't get off at the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i11:r2",
+            "targetText": "I didn't get off at the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i11:r3",
+            "targetText": "She doesn't get off at the station.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't get off at the station.",
+              "uk": "У записі звучить She didn't get off at the station."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't get off at the station.",
+              "uk": "У записі звучить She didn't get off at the station."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Цього не було вчора. Виберіть заперечення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-16:i12:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i12:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-16:i12:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Цього не було вчора. Виберіть заперечення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ get off at the station.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-16:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Цього не було вчора. Виберіть заперечення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Цього не було вчора. Виберіть заперечення",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-16:i13:p1",
+            "target": "put on",
+            "meaningByLocale": {
+              "ru": "надеть одежду",
+              "uk": "одягнути одяг"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-16:i13:p2",
+            "target": "take off",
+            "meaningByLocale": {
+              "ru": "снять одежду",
+              "uk": "зняти одяг"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-16:i13:p3",
+            "target": "get on",
+            "meaningByLocale": {
+              "ru": "сесть в автобус или поезд",
+              "uk": "сісти в автобус чи поїзд"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-16:i13:p4",
+            "target": "get off",
+            "meaningByLocale": {
+              "ru": "выйти из автобуса или поезда",
+              "uk": "вийти з автобуса чи поїзда"
+            }
+          }
+        ],
+        "leftColumn": [
+          "put on",
+          "take off",
+          "get on",
+          "get off"
+        ],
+        "rightColumn": [
+          "одягнути одяг",
+          "зняти одяг",
+          "сісти в автобус чи поїзд",
+          "вийти з автобуса чи поїзда"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:i14:audio",
+          "transcript": "We didn't travel by train."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't travel by train.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "travel",
+          "by",
+          "train"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:i15:audio",
+          "transcript": "He didn't buy a ticket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He didn't buy a ticket.",
+        "orderedTokens": [
+          "He",
+          "didn't",
+          "buy",
+          "a",
+          "ticket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора я не сів в автобус",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора я не сів в автобус",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:i16:audio",
+          "transcript": "I didn't get on the bus yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I didn't get on the bus yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора вона не одягнула пальто",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора вона не одягнула пальто",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-16:i17:audio",
+          "transcript": "She didn't put on her coat yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't put on her coat yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5914fe9df04daf8aa85251cd9642362bc81fd5335900b08ebc0b1b6a58bd8780"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "review: didn't + base verb",
+    "uk": "review: didn't + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Встать с постели",
+        "uk": "Встати з ліжка"
+      },
+      "bodyByLocale": {
+        "ru": "Get up — встать с постели. Wake up — проснуться: можно проснуться и ещё лежать. I didn't get up early — я не встал рано. Выберите сообщение о подъёме с постели.",
+        "uk": "Get up — встати з ліжка. Wake up — прокинутися: можна прокинутися й ще лежати. I didn't get up early — я не встав рано. Виберіть повідомлення про підйом із ліжка."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-13:intro1:r1",
+              "text": "I didn't get up early."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro1:r2",
+              "text": "I didn't wake up early."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro1:r3",
+              "text": "I didn't got up early."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-13:intro1:r1",
+              "text": "I didn't get up early."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro1:r2",
+              "text": "I didn't wake up early."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro1:r3",
+              "text": "I didn't got up early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сесть и встать",
+        "uk": "Сісти й встати"
+      },
+      "bodyByLocale": {
+        "ru": "Sit down — сесть; stand up — встать на ноги, например со стула. I didn't sit down — я не сел. Выберите это сообщение.",
+        "uk": "Sit down — сісти; stand up — встати на ноги, наприклад зі стільця. I didn't sit down — я не сів. Виберіть це повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-13:intro2:r1",
+              "text": "I didn't sit down."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro2:r2",
+              "text": "I didn't stand up."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro2:r3",
+              "text": "I didn't sat down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-13:intro2:r1",
+              "text": "I didn't sit down."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro2:r2",
+              "text": "I didn't stand up."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro2:r3",
+              "text": "I didn't sat down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нарядиться",
+        "uk": "Вбратися"
+      },
+      "bodyByLocale": {
+        "ru": "Dress up — нарядиться, одеться особенно красиво или в костюм для события. I didn't dress up for the party — я не нарядился на вечеринку. Это не значит, что я вообще не оделся. Выберите отрицание.",
+        "uk": "Dress up — вбратися, одягнутися особливо гарно або в костюм для події. I didn't dress up for the party — я не вбрався на вечірку. Це не означає, що я взагалі не одягнувся. Виберіть заперечення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-13:intro3:r1",
+              "text": "I didn't dress up for the party."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro3:r2",
+              "text": "I dressed up for the party."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro3:r3",
+              "text": "I didn't dressed up for the party."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-13:intro3:r1",
+              "text": "I didn't dress up for the party."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro3:r2",
+              "text": "I dressed up for the party."
+            },
+            {
+              "responseId": "en:lesson-13:session-13:intro3:r3",
+              "text": "I didn't dressed up for the party."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "26ff2f269099c546ee5e96da0313823a1c026cfb4cc9116c5be9e13ccfdfd548"
+}

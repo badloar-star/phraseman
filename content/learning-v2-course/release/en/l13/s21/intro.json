@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "review: base form after did",
+    "uk": "review: base form after did"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Осторожно",
+        "uk": "Обережно"
+      },
+      "bodyByLocale": {
+        "ru": "Carefully — осторожно, внимательно к действию. Did you drive carefully? — Ты вёл машину осторожно? После did нужна drive, не drove. Выберите вопрос.",
+        "uk": "Carefully — обережно, уважно до дії. Did you drive carefully? — Ти вів машину обережно? Після did потрібна drive, не drove. Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-21:intro1:r1",
+              "text": "Did you drive carefully?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro1:r2",
+              "text": "Did you drove carefully?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro1:r3",
+              "text": "You drove carefully."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-21:intro1:r1",
+              "text": "Did you drive carefully?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro1:r2",
+              "text": "Did you drove carefully?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro1:r3",
+              "text": "You drove carefully."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тихо и громко",
+        "uk": "Тихо й голосно"
+      },
+      "bodyByLocale": {
+        "ru": "Quietly — тихо; loudly — громко. Did you speak quietly? — Ты говорил тихо? Выберите тихую речь.",
+        "uk": "Quietly — тихо; loudly — голосно. Did you speak quietly? — Ти говорив тихо? Виберіть тихе мовлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-21:intro2:r1",
+              "text": "Did you speak quietly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro2:r2",
+              "text": "Did you speak loudly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro2:r3",
+              "text": "Did you spoke quietly?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-21:intro2:r1",
+              "text": "Did you speak quietly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro2:r2",
+              "text": "Did you speak loudly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro2:r3",
+              "text": "Did you spoke quietly?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Благополучно",
+        "uk": "Благополучно"
+      },
+      "bodyByLocale": {
+        "ru": "Safely — безопасно, без происшествий. Did you arrive safely? — Ты благополучно добрался? Выберите вопрос о благополучном прибытии.",
+        "uk": "Safely — безпечно, без пригод. Did you arrive safely? — Ти благополучно дістався? Виберіть запитання про благополучне прибуття."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-21:intro3:r1",
+              "text": "Did you arrive safely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro3:r2",
+              "text": "Did you arrive early?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro3:r3",
+              "text": "Did you arrived safely?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-21:intro3:r1",
+              "text": "Did you arrive safely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro3:r2",
+              "text": "Did you arrive early?"
+            },
+            {
+              "responseId": "en:lesson-13:session-21:intro3:r3",
+              "text": "Did you arrived safely?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6f879e2cbb54bf18e5122213d3d9823abc9718543b6b9f367fd4a582b8617082"
+}

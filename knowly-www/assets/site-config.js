@@ -77,23 +77,14 @@ window.KNOWLY_SITE = {
     } catch (_) { /* noop */ }
     return 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/webOrderStatus';
   })(),
-  /* Рубильник «Как вручить» (письмом / ссылкой / по нику) на /gift/.
-     зачем: страница может уехать на хостинг раньше функций — без них выбор
-     «по нику» и «ссылкой» сломался бы. Включать ВМЕСТЕ с выкладкой функций
+  /* Рубильник «Как вручить» (письмом / ссылкой) на /gift/.
+     зачем: страница может уехать на хостинг раньше функций — без них
+     ссылка-подарок и отмена не работали бы. Включать ВМЕСТЕ с выкладкой функций
      подарка, по «да» владельца. false = страница работает как раньше (код письмом). */
   giftDeliveryEnabled: false,
   /* Подарок Plus (functions/src/web_gift_endpoints.ts).
-     зачем: «По нику» — карточка «Это он/она?» до оплаты; /g/<КОД> — что за подарок;
+     зачем: /g/<КОД> — что за подарок;
      отмена кода или ссылки до активации со страницы «спасибо». */
-  giftRecipientPreviewEndpoint: (function () {
-    try {
-      var h = window.location.hostname;
-      if (h === 'localhost' || h === '127.0.0.1') {
-        return 'http://127.0.0.1:5001/phraseman-ea0b3/us-central1/giftRecipientPreview';
-      }
-    } catch (_) { /* noop */ }
-    return 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/giftRecipientPreview';
-  })(),
   giftLinkInfoEndpoint: (function () {
     try {
       var h = window.location.hostname;

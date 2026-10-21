@@ -118,14 +118,6 @@
         </div>
       </div>
 
-      <!-- Подарок «По нику»: Plus уже включён получателю -->
-      <div class="qscreen qthanks" id="state-gift-nick" style="display:none">
-        <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
-        <p class="kicker">Оплата прошла 🎉</p>
-        <h1>Подарок <span class="gold-accent">уже у получателя</span></h1>
-        <p class="sub" id="gift-nick-sub">Plus включён — получатель увидит подарок, когда откроет Phraseman. Вводить ничего не нужно. Чек отправили тебе на почту.</p>
-      </div>
-
       <!-- Подарок отменён покупателем до активации -->
       <div class="qscreen qthanks" id="state-gift-cancelled" style="display:none">
         <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" />
@@ -133,7 +125,7 @@
         <p class="sub">Код и ссылка больше не работают. Деньги вернём вручную — <a href="/contact/">напиши в поддержку</a> с email из оплаты, если мы ещё не связались с тобой.</p>
       </div>
 
-      <!-- Отмена кода или ссылки до активации (у подарка «по нику» её нет) -->
+      <!-- Отмена кода или ссылки до активации -->
       <div class="qthanks qgift-cancel" id="gift-cancel" style="display:none;padding-top:0">
         <button class="qgift-cancel-btn" type="button" id="gift-cancel-btn">Отменить подарок</button>
         <div class="qgift-cancel-confirm" id="gift-cancel-confirm" hidden>
@@ -240,7 +232,7 @@
       } catch (_) { /* noop */ }
 
       function show(id) {
-        ['state-waiting', 'state-code', 'state-manual', 'state-gift-link', 'state-gift-nick', 'state-gift-cancelled'].forEach(function (s) {
+        ['state-waiting', 'state-code', 'state-manual', 'state-gift-link', 'state-gift-cancelled'].forEach(function (s) {
           var el = document.getElementById(s);
           if (el) el.style.display = s === id ? '' : 'none';
         });
@@ -368,10 +360,7 @@
           .then(function (r) { return r.json(); })
           .then(function (data) {
             if (data && data.ok && data.status === 'cancelled') { show('state-gift-cancelled'); return; }
-            /* Подарок «по нику»: ждём, пока сервер доставит Plus получателю (код не показываем) */
-            if (data && data.ok && data.giftDelivery === 'nick') {
-              if (data.giftNickDelivered) { show('state-gift-nick'); return; }
-            } else if (data && data.ok && data.status === 'paid' && data.giftDelivery === 'link' && data.giftLink) {
+            if (data && data.ok && data.status === 'paid' && data.giftDelivery === 'link' && data.giftLink) {
               showGiftLink(data.giftLink);
               offerGiftCancel();
               return;

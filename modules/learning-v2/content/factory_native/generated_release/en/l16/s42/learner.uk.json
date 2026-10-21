@@ -1,0 +1,1136 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-42:word:unripe",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unripe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:word:unripe:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unripe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:word:unripe:audio",
+          "transcript": "unripe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-42:word:unripe:r1",
+            "targetText": "unripe",
+            "meaningByLocale": {
+              "ru": "неспелый.",
+              "uk": "недостиглий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unripe",
+          "definitionByLocale": {
+            "ru": "неспелый.",
+            "uk": "недостиглий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will. Скажіть: «Думаю, груші будуть недостиглими».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will. Скажіть: «Думаю, груші будуть недостиглими».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the pears will be unripe.",
+        "localizedMeaning": {
+          "ru": "Вы ещё не получили заказанные груши и предполагаете, что они окажутся неспелыми. Передайте мнение-прогноз через will. Скажите: «Думаю, груши будут неспелыми».",
+          "uk": "Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will. Скажіть: «Думаю, груші будуть недостиглими»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "pears",
+          "will",
+          "be",
+          "unripe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-42:i02:r1",
+          "text": "I think the pears will be unripe."
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i02:r2",
+          "text": "I think the pears are going to be unripe."
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i02:r3",
+          "text": "I think the pears will to be unripe."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:i02:audio",
+          "transcript": "I think the pears will be unripe."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-42:i02:r1",
+            "targetText": "I think the pears will be unripe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i02:r2",
+            "targetText": "I think the pears are going to be unripe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i02:r3",
+            "targetText": "I think the pears will to be unripe.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the pears will be unripe.",
+              "uk": "У записі звучить I think the pears will be unripe."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the pears will be unripe.",
+              "uk": "У записі звучить I think the pears will be unripe."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-42:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i03:r2",
+          "text": "are going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не получили заказанные груши и предполагаете, что они окажутся неспелыми. Передайте мнение-прогноз через will.",
+          "uk": "Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the pears ___ unripe.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-42:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i03:r2",
+            "text": "are going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:word:overripe",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — overripe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:word:overripe:audio"
+      ],
+      "accessibilityLabel": "Картка слова — overripe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:word:overripe:audio",
+          "transcript": "overripe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-42:word:overripe:r1",
+            "targetText": "overripe",
+            "meaningByLocale": {
+              "ru": "переспелый.",
+              "uk": "перестиглий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overripe",
+          "definitionByLocale": {
+            "ru": "переспелый.",
+            "uk": "перестиглий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will. Скажіть: «Думаю, завтра банани будуть перестиглими».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will. Скажіть: «Думаю, завтра банани будуть перестиглими».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the bananas will be overripe tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы высказываете своё мнение о том, какими бананы станут завтра. Передайте мнение-прогноз через will. Скажите: «Думаю, завтра бананы будут переспелыми».",
+          "uk": "Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will. Скажіть: «Думаю, завтра банани будуть перестиглими»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "bananas",
+          "will",
+          "be",
+          "overripe",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-42:i05:r1",
+          "text": "I think the bananas will be overripe tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i05:r2",
+          "text": "I think the bananas are going to be overripe tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i05:r3",
+          "text": "I think the bananas will to be overripe tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:i05:audio",
+          "transcript": "I think the bananas will be overripe tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-42:i05:r1",
+            "targetText": "I think the bananas will be overripe tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i05:r2",
+            "targetText": "I think the bananas are going to be overripe tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i05:r3",
+            "targetText": "I think the bananas will to be overripe tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-42:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the bananas will be overripe tomorrow.",
+              "uk": "У записі звучить I think the bananas will be overripe tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the bananas will be overripe tomorrow.",
+              "uk": "У записі звучить I think the bananas will be overripe tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-42:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i06:r2",
+          "text": "are going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы высказываете своё мнение о том, какими бананы станут завтра. Передайте мнение-прогноз через will.",
+          "uk": "Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the bananas ___ overripe tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-42:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i06:r2",
+            "text": "are going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви висловлюєте свою думку про те, якими банани стануть завтра. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:word:bruised",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bruised",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:word:bruised:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bruised",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:word:bruised:audio",
+          "transcript": "bruised"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-42:word:bruised:r1",
+            "targetText": "bruised",
+            "meaningByLocale": {
+              "ru": "с помятыми, потемневшими местами — о фруктах.",
+              "uk": "із пом’ятими, потемнілими місцями — про фрукти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bruised",
+          "definitionByLocale": {
+            "ru": "с помятыми, потемневшими местами — о фруктах.",
+            "uk": "із пом’ятими, потемнілими місцями — про фрукти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся використати пом’яті яблука для пирога».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся використати пом’яті яблука для пирога».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to use the bruised apples for a pie.",
+        "localizedMeaning": {
+          "ru": "Вы решили испечь пирог из яблок с небольшими помятыми местами; это пока намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь использовать помятые яблоки для пирога».",
+          "uk": "Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся використати пом’яті яблука для пирога»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "use",
+          "the",
+          "bruised",
+          "apples",
+          "for",
+          "a",
+          "pie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-42:i08:r1",
+          "text": "I am going to use the bruised apples for a pie."
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i08:r2",
+          "text": "I am using the bruised apples for a pie."
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i08:r3",
+          "text": "I is going to use the bruised apples for a pie."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:i08:audio",
+          "transcript": "I am going to use the bruised apples for a pie."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-42:i08:r1",
+            "targetText": "I am going to use the bruised apples for a pie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i08:r2",
+            "targetText": "I am using the bruised apples for a pie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i08:r3",
+            "targetText": "I is going to use the bruised apples for a pie.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to use the bruised apples for a pie.",
+              "uk": "У записі звучить I am going to use the bruised apples for a pie."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to use the bruised apples for a pie.",
+              "uk": "У записі звучить I am going to use the bruised apples for a pie."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-42:i09:r1",
+          "text": "am going to use"
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i09:r2",
+          "text": "am using"
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили испечь пирог из яблок с небольшими помятыми местами; это пока намерение. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ the bruised apples for a pie.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-42:i09:r1",
+            "text": "am going to use"
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i09:r2",
+            "text": "am using"
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to use.",
+              "uk": "Потрібна правильно побудована повна форма: am going to use."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:word:seedless",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — seedless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:word:seedless:audio"
+      ],
+      "accessibilityLabel": "Картка слова — seedless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:word:seedless:audio",
+          "transcript": "seedless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-42:word:seedless:r1",
+            "targetText": "seedless",
+            "meaningByLocale": {
+              "ru": "без косточек или семян.",
+              "uk": "без кісточок або насіння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seedless",
+          "definitionByLocale": {
+            "ru": "без косточек или семян.",
+            "uk": "без кісточок або насіння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо виноград без кісточок завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо виноград без кісточок завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are collecting the seedless grapes tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы забираем виноград без косточек завтра».",
+          "uk": "Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми забираємо виноград без кісточок завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "the",
+          "seedless",
+          "grapes",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-42:i11:r1",
+          "text": "We are collecting the seedless grapes tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i11:r2",
+          "text": "We are going to collect the seedless grapes tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i11:r3",
+          "text": "We is collecting the seedless grapes tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:i11:audio",
+          "transcript": "We are collecting the seedless grapes tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-42:i11:r1",
+            "targetText": "We are collecting the seedless grapes tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i11:r2",
+            "targetText": "We are going to collect the seedless grapes tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i11:r3",
+            "targetText": "We is collecting the seedless grapes tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting the seedless grapes tomorrow.",
+              "uk": "У записі звучить We are collecting the seedless grapes tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting the seedless grapes tomorrow.",
+              "uk": "У записі звучить We are collecting the seedless grapes tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-42:i12:r1",
+          "text": "are collecting"
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i12:r2",
+          "text": "are going to collect"
+        },
+        {
+          "responseId": "en:lesson-16:session-42:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ the seedless grapes tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-42:i12:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i12:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви замовили виноград і узгодили з продавцем, що заберете його завтра. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are collecting.",
+              "uk": "Потрібна правильно побудована повна форма: are collecting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-42:i13:p1",
+            "target": "unripe",
+            "meaningByLocale": {
+              "ru": "неспелый",
+              "uk": "недостиглий"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-42:i13:p2",
+            "target": "overripe",
+            "meaningByLocale": {
+              "ru": "переспелый",
+              "uk": "перестиглий"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-42:i13:p3",
+            "target": "bruised",
+            "meaningByLocale": {
+              "ru": "с помятыми, потемневшими местами",
+              "uk": "із пом’ятими, потемнілими місцями"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-42:i13:p4",
+            "target": "seedless",
+            "meaningByLocale": {
+              "ru": "без косточек или семян",
+              "uk": "без кісточок або насіння"
+            }
+          }
+        ],
+        "leftColumn": [
+          "unripe",
+          "overripe",
+          "bruised",
+          "seedless"
+        ],
+        "rightColumn": [
+          "недостиглий",
+          "перестиглий",
+          "із пом’ятими, потемнілими місцями",
+          "без кісточок або насіння"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:i14:audio",
+          "transcript": "I think the pears will be unripe."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the pears will be unripe.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "pears",
+          "will",
+          "be",
+          "unripe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:i15:audio",
+          "transcript": "I am going to use the bruised apples for a pie."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to use the bruised apples for a pie.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "use",
+          "the",
+          "bruised",
+          "apples",
+          "for",
+          "a",
+          "pie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:i16:audio",
+          "transcript": "We are collecting the seedless grapes tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are collecting the seedless grapes tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-42:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте думку-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-42:i17:audio",
+          "transcript": "I think the bananas will be overripe tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the bananas will be overripe tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "81bdf60c6674bd90ab06e5668c4709f5219bd1e109df8a85f857b456ffc6e97e"
+}

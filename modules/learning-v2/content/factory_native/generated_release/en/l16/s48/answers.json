@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-48:word:show-up",
+    "correctText": "show up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i01",
+    "correctText": "I think Tom will show up on time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i02",
+    "correctText": "I think Tom will show up on time.",
+    "correctResponseId": "en:lesson-16:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i03",
+    "correctText": "will show up",
+    "correctResponseId": "en:lesson-16:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:word:come-along",
+    "correctText": "come along",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i04",
+    "correctText": "I think Anna will come along.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i05",
+    "correctText": "I think Anna will come along.",
+    "correctResponseId": "en:lesson-16:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i06",
+    "correctText": "will come along",
+    "correctResponseId": "en:lesson-16:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:word:get-together",
+    "correctText": "get together",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i07",
+    "correctText": "I am going to get together with friends soon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i08",
+    "correctText": "I am going to get together with friends soon.",
+    "correctResponseId": "en:lesson-16:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i09",
+    "correctText": "am going to get together",
+    "correctResponseId": "en:lesson-16:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:word:head-out",
+    "correctText": "head out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i10",
+    "correctText": "We are heading out at eight tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i11",
+    "correctText": "We are heading out at eight tomorrow.",
+    "correctResponseId": "en:lesson-16:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i12",
+    "correctText": "are heading out",
+    "correctResponseId": "en:lesson-16:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i13",
+    "correctText": "en:lesson-16:session-48:i13:p1=show up\nen:lesson-16:session-48:i13:p2=come along\nen:lesson-16:session-48:i13:p3=get together\nen:lesson-16:session-48:i13:p4=head out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i14",
+    "correctText": "I think Tom will show up on time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i15",
+    "correctText": "I am going to get together with friends soon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i16",
+    "correctText": "We are heading out at eight tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-48:i17",
+    "correctText": "I think Anna will come along.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2351 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-47",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-47:word:queue-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — queue up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:word:queue-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — queue up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:word:queue-up:audio",
+            "transcript": "queue up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:word:queue-up:r1",
+              "targetText": "queue up",
+              "meaningByLocale": {
+                "ru": "становиться в очередь.",
+                "uk": "ставати в чергу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "queue up",
+            "definitionByLocale": {
+              "ru": "становиться в очередь.",
+              "uk": "ставати в чергу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will. Скажите: «Думаю, люди будут становиться в очередь на улице».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will. Скажите: «Думаю, люди будут становиться в очередь на улице».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think people will queue up outside.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will. Скажите: «Думаю, люди будут становиться в очередь на улице».",
+            "uk": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will. Скажіть: «Думаю, люди ставатимуть у чергу надворі»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "people",
+            "will",
+            "queue",
+            "up",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i02:r1",
+            "text": "I think people will queue up outside."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i02:r2",
+            "text": "I think people are going to queue up outside."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i02:r3",
+            "text": "I think people will to queue up outside."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i02:audio",
+            "transcript": "I think people will queue up outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:i02:r1",
+              "targetText": "I think people will queue up outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i02:r2",
+              "targetText": "I think people are going to queue up outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i02:r3",
+              "targetText": "I think people will to queue up outside.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think people will queue up outside.",
+                "uk": "У записі звучить I think people will queue up outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think people will queue up outside.",
+                "uk": "У записі звучить I think people will queue up outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i03:r1",
+            "text": "will queue up"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i03:r2",
+            "text": "are going to queue up"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i03:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think people ___ outside.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-47:i03:r1",
+              "text": "will queue up"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i03:r2",
+              "text": "are going to queue up"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i03:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will queue up.",
+                "uk": "Потрібна правильно побудована повна форма: will queue up."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:word:pop-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pop out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:word:pop-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pop out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:word:pop-out:audio",
+            "transcript": "pop out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:word:pop-out:r1",
+              "targetText": "pop out",
+              "meaningByLocale": {
+                "ru": "ненадолго выйти.",
+                "uk": "ненадовго вийти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pop out",
+            "definitionByLocale": {
+              "ru": "ненадолго выйти.",
+              "uk": "ненадовго вийти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will. Скажите: «Думаю, Том ненадолго выйдет за хлебом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will. Скажите: «Думаю, Том ненадолго выйдет за хлебом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think Tom will pop out for bread.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will. Скажите: «Думаю, Том ненадолго выйдет за хлебом».",
+            "uk": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will. Скажіть: «Думаю, Том ненадовго вийде по хліб»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "Tom",
+            "will",
+            "pop",
+            "out",
+            "for",
+            "bread"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i05:r1",
+            "text": "I think Tom will pop out for bread."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i05:r2",
+            "text": "I think Tom is going to pop out for bread."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i05:r3",
+            "text": "I think Tom will to pop out for bread."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i05:audio",
+            "transcript": "I think Tom will pop out for bread."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:i05:r1",
+              "targetText": "I think Tom will pop out for bread.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i05:r2",
+              "targetText": "I think Tom is going to pop out for bread.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i05:r3",
+              "targetText": "I think Tom will to pop out for bread.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Tom will pop out for bread.",
+                "uk": "У записі звучить I think Tom will pop out for bread."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Tom will pop out for bread.",
+                "uk": "У записі звучить I think Tom will pop out for bread."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i06:r1",
+            "text": "will pop out"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i06:r2",
+            "text": "is going to pop out"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i06:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think Tom ___ for bread.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-47:i06:r1",
+              "text": "will pop out"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i06:r2",
+              "text": "is going to pop out"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i06:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will pop out.",
+                "uk": "Потрібна правильно побудована повна форма: will pop out."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:word:stock-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stock up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:word:stock-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stock up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:word:stock-up:audio",
+            "transcript": "stock up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:word:stock-up:r1",
+              "targetText": "stock up",
+              "meaningByLocale": {
+                "ru": "запастись, купить про запас.",
+                "uk": "запастися, купити про запас."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stock up",
+            "definitionByLocale": {
+              "ru": "запастись, купить про запас.",
+              "uk": "запастися, купити про запас."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь запастись рисом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь запастись рисом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to stock up on rice.",
+          "localizedMeaning": {
+            "ru": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь запастись рисом».",
+            "uk": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся запастися рисом»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "stock",
+            "up",
+            "on",
+            "rice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i08:r1",
+            "text": "I am going to stock up on rice."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i08:r2",
+            "text": "I am stocking up on rice."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i08:r3",
+            "text": "I is going to stock up on rice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i08:audio",
+            "transcript": "I am going to stock up on rice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:i08:r1",
+              "targetText": "I am going to stock up on rice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i08:r2",
+              "targetText": "I am stocking up on rice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i08:r3",
+              "targetText": "I is going to stock up on rice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to stock up on rice.",
+                "uk": "У записі звучить I am going to stock up on rice."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to stock up on rice.",
+                "uk": "У записі звучить I am going to stock up on rice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i09:r1",
+            "text": "am going to stock up"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i09:r2",
+            "text": "am stocking up"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ on rice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-47:i09:r1",
+              "text": "am going to stock up"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i09:r2",
+              "text": "am stocking up"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to stock up.",
+                "uk": "Потрібна правильно побудована повна форма: am going to stock up."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:word:cut-down-on",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cut down on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:word:cut-down-on:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cut down on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:word:cut-down-on:audio",
+            "transcript": "cut down on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:word:cut-down-on:r1",
+              "targetText": "cut down on",
+              "meaningByLocale": {
+                "ru": "сократить количество или употребление чего-либо.",
+                "uk": "скоротити кількість або споживання чогось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cut down on",
+            "definitionByLocale": {
+              "ru": "сократить количество или употребление чего-либо.",
+              "uk": "скоротити кількість або споживання чогось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous. Скажите: «С понедельника мы сокращаем количество сладкого».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous. Скажите: «С понедельника мы сокращаем количество сладкого».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are cutting down on sweets from Monday.",
+          "localizedMeaning": {
+            "ru": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous. Скажите: «С понедельника мы сокращаем количество сладкого».",
+            "uk": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous. Скажіть: «З понеділка ми скорочуємо кількість солодкого»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "cutting",
+            "down",
+            "on",
+            "sweets",
+            "from",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i11:r1",
+            "text": "We are cutting down on sweets from Monday."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i11:r2",
+            "text": "We are going to cut down on sweets from Monday."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i11:r3",
+            "text": "We is cutting down on sweets from Monday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i11:audio",
+            "transcript": "We are cutting down on sweets from Monday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:i11:r1",
+              "targetText": "We are cutting down on sweets from Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i11:r2",
+              "targetText": "We are going to cut down on sweets from Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i11:r3",
+              "targetText": "We is cutting down on sweets from Monday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are cutting down on sweets from Monday.",
+                "uk": "У записі звучить We are cutting down on sweets from Monday."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are cutting down on sweets from Monday.",
+                "uk": "У записі звучить We are cutting down on sweets from Monday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i12:r1",
+            "text": "are cutting down on"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i12:r2",
+            "text": "are going to cut down on"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ sweets from Monday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-47:i12:r1",
+              "text": "are cutting down on"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i12:r2",
+              "text": "are going to cut down on"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are cutting down on.",
+                "uk": "Потрібна правильно побудована повна форма: are cutting down on."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-47:i13:p1",
+              "target": "queue up",
+              "meaningByLocale": {
+                "ru": "становиться в очередь",
+                "uk": "ставати в чергу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-47:i13:p2",
+              "target": "pop out",
+              "meaningByLocale": {
+                "ru": "ненадолго выйти",
+                "uk": "ненадовго вийти"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-47:i13:p3",
+              "target": "stock up",
+              "meaningByLocale": {
+                "ru": "запастись, купить про запас",
+                "uk": "запастися, купити про запас"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-47:i13:p4",
+              "target": "cut down on",
+              "meaningByLocale": {
+                "ru": "сократить количество или употребление чего-либо",
+                "uk": "скоротити кількість або споживання чогось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "queue up",
+            "pop out",
+            "stock up",
+            "cut down on"
+          ],
+          "rightColumn": [
+            "становиться в очередь",
+            "ненадолго выйти",
+            "запастись, купить про запас",
+            "сократить количество или употребление чего-либо"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i14:audio",
+            "transcript": "I think people will queue up outside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think people will queue up outside.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "people",
+            "will",
+            "queue",
+            "up",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i15:audio",
+            "transcript": "I am going to stock up on rice."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to stock up on rice.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "stock",
+            "up",
+            "on",
+            "rice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i16:audio",
+            "transcript": "We are cutting down on sweets from Monday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are cutting down on sweets from Monday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте мнение-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i17:audio",
+            "transcript": "I think Tom will pop out for bread."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think Tom will pop out for bread.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-47:word:queue-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — queue up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:word:queue-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — queue up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:word:queue-up:audio",
+            "transcript": "queue up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:word:queue-up:r1",
+              "targetText": "queue up",
+              "meaningByLocale": {
+                "ru": "становиться в очередь.",
+                "uk": "ставати в чергу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "queue up",
+            "definitionByLocale": {
+              "ru": "становиться в очередь.",
+              "uk": "ставати в чергу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will. Скажіть: «Думаю, люди ставатимуть у чергу надворі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will. Скажіть: «Думаю, люди ставатимуть у чергу надворі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think people will queue up outside.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will. Скажите: «Думаю, люди будут становиться в очередь на улице».",
+            "uk": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will. Скажіть: «Думаю, люди ставатимуть у чергу надворі»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "people",
+            "will",
+            "queue",
+            "up",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i02:r1",
+            "text": "I think people will queue up outside."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i02:r2",
+            "text": "I think people are going to queue up outside."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i02:r3",
+            "text": "I think people will to queue up outside."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i02:audio",
+            "transcript": "I think people will queue up outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:i02:r1",
+              "targetText": "I think people will queue up outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i02:r2",
+              "targetText": "I think people are going to queue up outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i02:r3",
+              "targetText": "I think people will to queue up outside.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think people will queue up outside.",
+                "uk": "У записі звучить I think people will queue up outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think people will queue up outside.",
+                "uk": "У записі звучить I think people will queue up outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i03:r1",
+            "text": "will queue up"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i03:r2",
+            "text": "are going to queue up"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i03:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что перед открытием магазина очередь будет снаружи. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think people ___ outside.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-47:i03:r1",
+              "text": "will queue up"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i03:r2",
+              "text": "are going to queue up"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i03:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що перед відкриттям магазину черга буде ззовні. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will queue up.",
+                "uk": "Потрібна правильно побудована повна форма: will queue up."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:word:pop-out",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pop out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:word:pop-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pop out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:word:pop-out:audio",
+            "transcript": "pop out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:word:pop-out:r1",
+              "targetText": "pop out",
+              "meaningByLocale": {
+                "ru": "ненадолго выйти.",
+                "uk": "ненадовго вийти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pop out",
+            "definitionByLocale": {
+              "ru": "ненадолго выйти.",
+              "uk": "ненадовго вийти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will. Скажіть: «Думаю, Том ненадовго вийде по хліб».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will. Скажіть: «Думаю, Том ненадовго вийде по хліб».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think Tom will pop out for bread.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will. Скажите: «Думаю, Том ненадолго выйдет за хлебом».",
+            "uk": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will. Скажіть: «Думаю, Том ненадовго вийде по хліб»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "Tom",
+            "will",
+            "pop",
+            "out",
+            "for",
+            "bread"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i05:r1",
+            "text": "I think Tom will pop out for bread."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i05:r2",
+            "text": "I think Tom is going to pop out for bread."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i05:r3",
+            "text": "I think Tom will to pop out for bread."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i05:audio",
+            "transcript": "I think Tom will pop out for bread."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:i05:r1",
+              "targetText": "I think Tom will pop out for bread.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i05:r2",
+              "targetText": "I think Tom is going to pop out for bread.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i05:r3",
+              "targetText": "I think Tom will to pop out for bread.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Tom will pop out for bread.",
+                "uk": "У записі звучить I think Tom will pop out for bread."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Tom will pop out for bread.",
+                "uk": "У записі звучить I think Tom will pop out for bread."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i06:r1",
+            "text": "will pop out"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i06:r2",
+            "text": "is going to pop out"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i06:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что Том ненадолго сходит за хлебом, но ещё не обсуждали это с ним. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think Tom ___ for bread.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-47:i06:r1",
+              "text": "will pop out"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i06:r2",
+              "text": "is going to pop out"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i06:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що Том ненадовго сходить по хліб, але ще не обговорювали це з ним. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will pop out.",
+                "uk": "Потрібна правильно побудована повна форма: will pop out."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:word:stock-up",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stock up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:word:stock-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stock up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:word:stock-up:audio",
+            "transcript": "stock up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:word:stock-up:r1",
+              "targetText": "stock up",
+              "meaningByLocale": {
+                "ru": "запастись, купить про запас.",
+                "uk": "запастися, купити про запас."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stock up",
+            "definitionByLocale": {
+              "ru": "запастись, купить про запас.",
+              "uk": "запастися, купити про запас."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся запастися рисом».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся запастися рисом».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to stock up on rice.",
+          "localizedMeaning": {
+            "ru": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь запастись рисом».",
+            "uk": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся запастися рисом»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "stock",
+            "up",
+            "on",
+            "rice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i08:r1",
+            "text": "I am going to stock up on rice."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i08:r2",
+            "text": "I am stocking up on rice."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i08:r3",
+            "text": "I is going to stock up on rice."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i08:audio",
+            "transcript": "I am going to stock up on rice."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:i08:r1",
+              "targetText": "I am going to stock up on rice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i08:r2",
+              "targetText": "I am stocking up on rice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i08:r3",
+              "targetText": "I is going to stock up on rice.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to stock up on rice.",
+                "uk": "У записі звучить I am going to stock up on rice."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to stock up on rice.",
+                "uk": "У записі звучить I am going to stock up on rice."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i09:r1",
+            "text": "am going to stock up"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i09:r2",
+            "text": "am stocking up"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили купить рис про запас и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ on rice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-47:i09:r1",
+              "text": "am going to stock up"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i09:r2",
+              "text": "am stocking up"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили купити рис про запас і повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to stock up.",
+                "uk": "Потрібна правильно побудована повна форма: am going to stock up."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:word:cut-down-on",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cut down on",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:word:cut-down-on:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cut down on",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:word:cut-down-on:audio",
+            "transcript": "cut down on"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:word:cut-down-on:r1",
+              "targetText": "cut down on",
+              "meaningByLocale": {
+                "ru": "сократить количество или употребление чего-либо.",
+                "uk": "скоротити кількість або споживання чогось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cut down on",
+            "definitionByLocale": {
+              "ru": "сократить количество или употребление чего-либо.",
+              "uk": "скоротити кількість або споживання чогось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous. Скажіть: «З понеділка ми скорочуємо кількість солодкого».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous. Скажіть: «З понеділка ми скорочуємо кількість солодкого».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are cutting down on sweets from Monday.",
+          "localizedMeaning": {
+            "ru": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous. Скажите: «С понедельника мы сокращаем количество сладкого».",
+            "uk": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous. Скажіть: «З понеділка ми скорочуємо кількість солодкого»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "cutting",
+            "down",
+            "on",
+            "sweets",
+            "from",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i11:r1",
+            "text": "We are cutting down on sweets from Monday."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i11:r2",
+            "text": "We are going to cut down on sweets from Monday."
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i11:r3",
+            "text": "We is cutting down on sweets from Monday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i11:audio",
+            "transcript": "We are cutting down on sweets from Monday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-47:i11:r1",
+              "targetText": "We are cutting down on sweets from Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i11:r2",
+              "targetText": "We are going to cut down on sweets from Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i11:r3",
+              "targetText": "We is cutting down on sweets from Monday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are cutting down on sweets from Monday.",
+                "uk": "У записі звучить We are cutting down on sweets from Monday."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are cutting down on sweets from Monday.",
+                "uk": "У записі звучить We are cutting down on sweets from Monday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-47:i12:r1",
+            "text": "are cutting down on"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i12:r2",
+            "text": "are going to cut down on"
+          },
+          {
+            "responseId": "en:lesson-16:session-47:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с семьёй договорились с понедельника есть меньше сладкого. У cut down on форма с -ing — cutting down on. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ sweets from Monday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-47:i12:r1",
+              "text": "are cutting down on"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i12:r2",
+              "text": "are going to cut down on"
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви з родиною домовилися з понеділка їсти менше солодкого. У cut down on форма з -ing — cutting down on. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are cutting down on.",
+                "uk": "Потрібна правильно побудована повна форма: are cutting down on."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-47:i13:p1",
+              "target": "queue up",
+              "meaningByLocale": {
+                "ru": "становиться в очередь",
+                "uk": "ставати в чергу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-47:i13:p2",
+              "target": "pop out",
+              "meaningByLocale": {
+                "ru": "ненадолго выйти",
+                "uk": "ненадовго вийти"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-47:i13:p3",
+              "target": "stock up",
+              "meaningByLocale": {
+                "ru": "запастись, купить про запас",
+                "uk": "запастися, купити про запас"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-47:i13:p4",
+              "target": "cut down on",
+              "meaningByLocale": {
+                "ru": "сократить количество или употребление чего-либо",
+                "uk": "скоротити кількість або споживання чогось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "queue up",
+            "pop out",
+            "stock up",
+            "cut down on"
+          ],
+          "rightColumn": [
+            "ставати в чергу",
+            "ненадовго вийти",
+            "запастися, купити про запас",
+            "скоротити кількість або споживання чогось"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i14:audio",
+            "transcript": "I think people will queue up outside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think people will queue up outside.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "people",
+            "will",
+            "queue",
+            "up",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i15:audio",
+            "transcript": "I am going to stock up on rice."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to stock up on rice.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "stock",
+            "up",
+            "on",
+            "rice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i16:audio",
+            "transcript": "We are cutting down on sweets from Monday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are cutting down on sweets from Monday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-47:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте думку-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-47:i17:audio",
+            "transcript": "I think Tom will pop out for bread."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think Tom will pop out for bread.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-47:word:queue-up",
+      "correctText": "queue up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i01",
+      "correctText": "I think people will queue up outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i02",
+      "correctText": "I think people will queue up outside.",
+      "correctResponseId": "en:lesson-16:session-47:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i03",
+      "correctText": "will queue up",
+      "correctResponseId": "en:lesson-16:session-47:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:word:pop-out",
+      "correctText": "pop out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i04",
+      "correctText": "I think Tom will pop out for bread.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i05",
+      "correctText": "I think Tom will pop out for bread.",
+      "correctResponseId": "en:lesson-16:session-47:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i06",
+      "correctText": "will pop out",
+      "correctResponseId": "en:lesson-16:session-47:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:word:stock-up",
+      "correctText": "stock up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i07",
+      "correctText": "I am going to stock up on rice.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i08",
+      "correctText": "I am going to stock up on rice.",
+      "correctResponseId": "en:lesson-16:session-47:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i09",
+      "correctText": "am going to stock up",
+      "correctResponseId": "en:lesson-16:session-47:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:word:cut-down-on",
+      "correctText": "cut down on",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i10",
+      "correctText": "We are cutting down on sweets from Monday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i11",
+      "correctText": "We are cutting down on sweets from Monday.",
+      "correctResponseId": "en:lesson-16:session-47:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i12",
+      "correctText": "are cutting down on",
+      "correctResponseId": "en:lesson-16:session-47:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i14",
+      "correctText": "I think people will queue up outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i15",
+      "correctText": "I am going to stock up on rice.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i16",
+      "correctText": "We are cutting down on sweets from Monday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-47:i17",
+      "correctText": "I think Tom will pop out for bread.",
+      "correctResponseId": null
+    }
+  ]
+}

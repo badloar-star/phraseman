@@ -1,0 +1,1133 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-45:word:speak-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — speak up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:word:speak-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — speak up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:word:speak-up:audio",
+          "transcript": "speak up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-45:word:speak-up:r1",
+            "targetText": "speak up",
+            "meaningByLocale": {
+              "ru": "говорить громче.",
+              "uk": "говорити голосніше."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "speak up",
+          "definitionByLocale": {
+            "ru": "говорить громче.",
+            "uk": "говорити голосніше."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна будет говорить громче».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна будет говорить громче».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think Anna will speak up.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна будет говорить громче».",
+          "uk": "Ви припускаєте, що Анна почне говорити голосніше, щоб усім було чутно. Передайте думку-прогноз через will. Скажіть: «Думаю, Анна говоритиме голосніше»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "Anna",
+          "will",
+          "speak",
+          "up"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-45:i02:r1",
+          "text": "I think Anna will speak up."
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i02:r2",
+          "text": "I think Anna is going to speak up."
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i02:r3",
+          "text": "I think Anna will to speak up."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:i02:audio",
+          "transcript": "I think Anna will speak up."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-45:i02:r1",
+            "targetText": "I think Anna will speak up.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i02:r2",
+            "targetText": "I think Anna is going to speak up.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i02:r3",
+            "targetText": "I think Anna will to speak up.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think Anna will speak up.",
+              "uk": "У записі звучить I think Anna will speak up."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think Anna will speak up.",
+              "uk": "У записі звучить I think Anna will speak up."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-45:i03:r1",
+          "text": "will speak up"
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i03:r2",
+          "text": "is going to speak up"
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, що Анна почне говорити голосніше, щоб усім було чутно. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think Anna ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-45:i03:r1",
+            "text": "will speak up"
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i03:r2",
+            "text": "is going to speak up"
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will speak up.",
+              "uk": "Потрібна правильно побудована повна форма: will speak up."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:word:hold-still",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hold still",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:word:hold-still:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hold still",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:word:hold-still:audio",
+          "transcript": "hold still"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-45:word:hold-still:r1",
+            "targetText": "hold still",
+            "meaningByLocale": {
+              "ru": "не двигаться, замереть.",
+              "uk": "не рухатися, завмерти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hold still",
+          "definitionByLocale": {
+            "ru": "не двигаться, замереть.",
+            "uk": "не рухатися, завмерти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will. Скажите: «Думаю, ребёнок замрёт для фотографии».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will. Скажите: «Думаю, ребёнок замрёт для фотографии».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the child will hold still for the photo.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will. Скажите: «Думаю, ребёнок замрёт для фотографии».",
+          "uk": "Ви припускаєте, що дитина зможе не рухатися, поки ви фотографуєте. Передайте думку-прогноз через will. Скажіть: «Думаю, дитина завмре для фотографії»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "child",
+          "will",
+          "hold",
+          "still",
+          "for",
+          "the",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-45:i05:r1",
+          "text": "I think the child will hold still for the photo."
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i05:r2",
+          "text": "I think the child is going to hold still for the photo."
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i05:r3",
+          "text": "I think the child will to hold still for the photo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:i05:audio",
+          "transcript": "I think the child will hold still for the photo."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-45:i05:r1",
+            "targetText": "I think the child will hold still for the photo.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i05:r2",
+            "targetText": "I think the child is going to hold still for the photo.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i05:r3",
+            "targetText": "I think the child will to hold still for the photo.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the child will hold still for the photo.",
+              "uk": "У записі звучить I think the child will hold still for the photo."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the child will hold still for the photo.",
+              "uk": "У записі звучить I think the child will hold still for the photo."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-45:i06:r1",
+          "text": "will hold still"
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i06:r2",
+          "text": "is going to hold still"
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i06:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, що дитина зможе не рухатися, поки ви фотографуєте. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the child ___ for the photo.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-45:i06:r1",
+            "text": "will hold still"
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i06:r2",
+            "text": "is going to hold still"
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i06:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы предполагаете, что ребёнок сможет не двигаться, пока вы фотографируете. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will hold still.",
+              "uk": "Потрібна правильно побудована повна форма: will hold still."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:word:hang-on",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hang on",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:word:hang-on:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hang on",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:word:hang-on:audio",
+          "transcript": "hang on"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-45:word:hang-on:r1",
+            "targetText": "hang on",
+            "meaningByLocale": {
+              "ru": "немного подождать — в разговоре.",
+              "uk": "трохи зачекати — у розмові."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hang on",
+          "definitionByLocale": {
+            "ru": "немного подождать — в разговоре.",
+            "uk": "трохи зачекати — у розмові."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь подождать несколько минут».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь подождать несколько минут».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to hang on for a few minutes.",
+        "localizedMeaning": {
+          "ru": "Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь подождать несколько минут».",
+          "uk": "Друг ще не готовий. Ви вирішили трохи зачекати й повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся зачекати кілька хвилин»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "hang",
+          "on",
+          "for",
+          "a",
+          "few",
+          "minutes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-45:i08:r1",
+          "text": "I am going to hang on for a few minutes."
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i08:r2",
+          "text": "I am hanging on for a few minutes."
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i08:r3",
+          "text": "I is going to hang on for a few minutes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:i08:audio",
+          "transcript": "I am going to hang on for a few minutes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-45:i08:r1",
+            "targetText": "I am going to hang on for a few minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i08:r2",
+            "targetText": "I am hanging on for a few minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i08:r3",
+            "targetText": "I is going to hang on for a few minutes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to hang on for a few minutes.",
+              "uk": "У записі звучить I am going to hang on for a few minutes."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to hang on for a few minutes.",
+              "uk": "У записі звучить I am going to hang on for a few minutes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-45:i09:r1",
+          "text": "am going to hang on"
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i09:r2",
+          "text": "am hanging on"
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+          "uk": "Друг ще не готовий. Ви вирішили трохи зачекати й повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ for a few minutes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-45:i09:r1",
+            "text": "am going to hang on"
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i09:r2",
+            "text": "am hanging on"
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to hang on.",
+              "uk": "Потрібна правильно побудована повна форма: am going to hang on."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:word:stay-put",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stay put",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:word:stay-put:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stay put",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:word:stay-put:audio",
+          "transcript": "stay put"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-45:word:stay-put:r1",
+            "targetText": "stay put",
+            "meaningByLocale": {
+              "ru": "оставаться на месте, никуда не уходить.",
+              "uk": "залишатися на місці, нікуди не йти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stay put",
+          "definitionByLocale": {
+            "ru": "оставаться на месте, никуда не уходить.",
+            "uk": "залишатися на місці, нікуди не йти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous. Скажите: «На этих выходных мы никуда не уезжаем».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous. Скажите: «На этих выходных мы никуда не уезжаем».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are staying put this weekend.",
+        "localizedMeaning": {
+          "ru": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous. Скажите: «На этих выходных мы никуда не уезжаем».",
+          "uk": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Цими вихідними ми нікуди не їдемо»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "staying",
+          "put",
+          "this",
+          "weekend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-45:i11:r1",
+          "text": "We are staying put this weekend."
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i11:r2",
+          "text": "We are going to stay put this weekend."
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i11:r3",
+          "text": "We is staying put this weekend."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:i11:audio",
+          "transcript": "We are staying put this weekend."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-45:i11:r1",
+            "targetText": "We are staying put this weekend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i11:r2",
+            "targetText": "We are going to stay put this weekend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i11:r3",
+            "targetText": "We is staying put this weekend.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are staying put this weekend.",
+              "uk": "У записі звучить We are staying put this weekend."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are staying put this weekend.",
+              "uk": "У записі звучить We are staying put this weekend."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-45:i12:r1",
+          "text": "are staying put"
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i12:r2",
+          "text": "are going to stay put"
+        },
+        {
+          "responseId": "en:lesson-16:session-45:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ this weekend.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-45:i12:r1",
+            "text": "are staying put"
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i12:r2",
+            "text": "are going to stay put"
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are staying put.",
+              "uk": "Потрібна правильно побудована повна форма: are staying put."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-45:i13:p1",
+            "target": "speak up",
+            "meaningByLocale": {
+              "ru": "говорить громче",
+              "uk": "говорити голосніше"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-45:i13:p2",
+            "target": "hold still",
+            "meaningByLocale": {
+              "ru": "не двигаться, замереть",
+              "uk": "не рухатися, завмерти"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-45:i13:p3",
+            "target": "hang on",
+            "meaningByLocale": {
+              "ru": "немного подождать",
+              "uk": "трохи зачекати"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-45:i13:p4",
+            "target": "stay put",
+            "meaningByLocale": {
+              "ru": "оставаться на месте, никуда не уходить",
+              "uk": "залишатися на місці, нікуди не йти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "speak up",
+          "hold still",
+          "hang on",
+          "stay put"
+        ],
+        "rightColumn": [
+          "говорить громче",
+          "не двигаться, замереть",
+          "немного подождать",
+          "оставаться на месте, никуда не уходить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:i14:audio",
+          "transcript": "I think Anna will speak up."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think Anna will speak up.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "Anna",
+          "will",
+          "speak",
+          "up"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:i15:audio",
+          "transcript": "I am going to hang on for a few minutes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to hang on for a few minutes.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "hang",
+          "on",
+          "for",
+          "a",
+          "few",
+          "minutes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:i16:audio",
+          "transcript": "We are staying put this weekend."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are staying put this weekend.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-45:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте мнение-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-45:i17:audio",
+          "transcript": "I think the child will hold still for the photo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the child will hold still for the photo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0ae39a1d4eaf636a4ea1df429991e80c52860b8d0f3c60f71c855c072e5797e3"
+}

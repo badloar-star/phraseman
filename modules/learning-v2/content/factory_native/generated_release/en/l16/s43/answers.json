@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-43:word:crumbly",
+    "correctText": "crumbly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i01",
+    "correctText": "I think the biscuits will be crumbly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i02",
+    "correctText": "I think the biscuits will be crumbly.",
+    "correctResponseId": "en:lesson-16:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:word:watery",
+    "correctText": "watery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i04",
+    "correctText": "I think the soup will be watery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i05",
+    "correctText": "I think the soup will be watery.",
+    "correctResponseId": "en:lesson-16:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:word:boneless",
+    "correctText": "boneless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i07",
+    "correctText": "I am going to buy boneless chicken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i08",
+    "correctText": "I am going to buy boneless chicken.",
+    "correctResponseId": "en:lesson-16:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i09",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-16:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:word:skinless",
+    "correctText": "skinless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i10",
+    "correctText": "We are cooking skinless chicken together tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i11",
+    "correctText": "We are cooking skinless chicken together tonight.",
+    "correctResponseId": "en:lesson-16:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i12",
+    "correctText": "are cooking",
+    "correctResponseId": "en:lesson-16:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i13",
+    "correctText": "en:lesson-16:session-43:i13:p1=crumbly\nen:lesson-16:session-43:i13:p2=watery\nen:lesson-16:session-43:i13:p3=boneless\nen:lesson-16:session-43:i13:p4=skinless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i14",
+    "correctText": "I think the biscuits will be crumbly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i15",
+    "correctText": "I am going to buy boneless chicken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i16",
+    "correctText": "We are cooking skinless chicken together tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-43:i17",
+    "correctText": "I think the soup will be watery.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-43:word:crumbly",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crumbly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:word:crumbly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crumbly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:word:crumbly:audio",
+          "transcript": "crumbly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-43:word:crumbly:r1",
+            "targetText": "crumbly",
+            "meaningByLocale": {
+              "ru": "рассыпчатый, легко крошащийся.",
+              "uk": "розсипчастий, такий, що легко кришиться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crumbly",
+          "definitionByLocale": {
+            "ru": "рассыпчатый, легко крошащийся.",
+            "uk": "розсипчастий, такий, що легко кришиться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will. Скажіть: «Думаю, печиво буде розсипчастим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will. Скажіть: «Думаю, печиво буде розсипчастим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the biscuits will be crumbly.",
+        "localizedMeaning": {
+          "ru": "Вы впервые пробуете рецепт и предполагаете, каким получится печенье. Передайте мнение-прогноз через will. Скажите: «Думаю, печенье будет рассыпчатым».",
+          "uk": "Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will. Скажіть: «Думаю, печиво буде розсипчастим»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "biscuits",
+          "will",
+          "be",
+          "crumbly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-43:i02:r1",
+          "text": "I think the biscuits will be crumbly."
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i02:r2",
+          "text": "I think the biscuits are going to be crumbly."
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i02:r3",
+          "text": "I think the biscuits will to be crumbly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:i02:audio",
+          "transcript": "I think the biscuits will be crumbly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-43:i02:r1",
+            "targetText": "I think the biscuits will be crumbly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i02:r2",
+            "targetText": "I think the biscuits are going to be crumbly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i02:r3",
+            "targetText": "I think the biscuits will to be crumbly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the biscuits will be crumbly.",
+              "uk": "У записі звучить I think the biscuits will be crumbly."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the biscuits will be crumbly.",
+              "uk": "У записі звучить I think the biscuits will be crumbly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-43:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i03:r2",
+          "text": "are going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы впервые пробуете рецепт и предполагаете, каким получится печенье. Передайте мнение-прогноз через will.",
+          "uk": "Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the biscuits ___ crumbly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-43:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i03:r2",
+            "text": "are going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:word:watery",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — watery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:word:watery:audio"
+      ],
+      "accessibilityLabel": "Картка слова — watery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:word:watery:audio",
+          "transcript": "watery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-43:word:watery:r1",
+            "targetText": "watery",
+            "meaningByLocale": {
+              "ru": "водянистый, слишком жидкий или со слабым вкусом.",
+              "uk": "водянистий, надто рідкий або зі слабким смаком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "watery",
+          "definitionByLocale": {
+            "ru": "водянистый, слишком жидкий или со слабым вкусом.",
+            "uk": "водянистий, надто рідкий або зі слабким смаком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will. Скажіть: «Думаю, суп буде водянистим».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will. Скажіть: «Думаю, суп буде водянистим».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the soup will be watery.",
+        "localizedMeaning": {
+          "ru": "Вы обсуждаете рецепт и высказываете опасение, что суп окажется слишком жидким. Передайте мнение-прогноз через will. Скажите: «Думаю, суп будет водянистым».",
+          "uk": "Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will. Скажіть: «Думаю, суп буде водянистим»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "soup",
+          "will",
+          "be",
+          "watery"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-43:i05:r1",
+          "text": "I think the soup will be watery."
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i05:r2",
+          "text": "I think the soup is going to be watery."
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i05:r3",
+          "text": "I think the soup will to be watery."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:i05:audio",
+          "transcript": "I think the soup will be watery."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-43:i05:r1",
+            "targetText": "I think the soup will be watery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i05:r2",
+            "targetText": "I think the soup is going to be watery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i05:r3",
+            "targetText": "I think the soup will to be watery.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the soup will be watery.",
+              "uk": "У записі звучить I think the soup will be watery."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the soup will be watery.",
+              "uk": "У записі звучить I think the soup will be watery."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-43:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i06:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обсуждаете рецепт и высказываете опасение, что суп окажется слишком жидким. Передайте мнение-прогноз через will.",
+          "uk": "Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the soup ___ watery.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-43:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви обговорюєте рецепт і висловлюєте побоювання, що суп виявиться надто рідким. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:word:boneless",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — boneless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:word:boneless:audio"
+      ],
+      "accessibilityLabel": "Картка слова — boneless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:word:boneless:audio",
+          "transcript": "boneless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-43:word:boneless:r1",
+            "targetText": "boneless",
+            "meaningByLocale": {
+              "ru": "без костей — о мясе или рыбе.",
+              "uk": "без кісток — про м’ясо або рибу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boneless",
+          "definitionByLocale": {
+            "ru": "без костей — о мясе или рыбе.",
+            "uk": "без кісток — про м’ясо або рибу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся купити курятину без кісток».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся купити курятину без кісток».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to buy boneless chicken.",
+        "localizedMeaning": {
+          "ru": "Вы решили купить мясо без костей для ужина; это намерение перед походом в магазин. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь купить курицу без костей».",
+          "uk": "Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся купити курятину без кісток»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "boneless",
+          "chicken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-43:i08:r1",
+          "text": "I am going to buy boneless chicken."
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i08:r2",
+          "text": "I am buying boneless chicken."
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i08:r3",
+          "text": "I is going to buy boneless chicken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:i08:audio",
+          "transcript": "I am going to buy boneless chicken."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-43:i08:r1",
+            "targetText": "I am going to buy boneless chicken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i08:r2",
+            "targetText": "I am buying boneless chicken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i08:r3",
+            "targetText": "I is going to buy boneless chicken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy boneless chicken.",
+              "uk": "У записі звучить I am going to buy boneless chicken."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy boneless chicken.",
+              "uk": "У записі звучить I am going to buy boneless chicken."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-43:i09:r1",
+          "text": "am going to buy"
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i09:r2",
+          "text": "am buying"
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили купить мясо без костей для ужина; это намерение перед походом в магазин. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ boneless chicken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-43:i09:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i09:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to buy.",
+              "uk": "Потрібна правильно побудована повна форма: am going to buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:word:skinless",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — skinless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:word:skinless:audio"
+      ],
+      "accessibilityLabel": "Картка слова — skinless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:word:skinless:audio",
+          "transcript": "skinless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-43:word:skinless:r1",
+            "targetText": "skinless",
+            "meaningByLocale": {
+              "ru": "без кожи — о мясе или рыбе.",
+              "uk": "без шкіри — про м’ясо або рибу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "skinless",
+          "definitionByLocale": {
+            "ru": "без кожи — о мясе или рыбе.",
+            "uk": "без шкіри — про м’ясо або рибу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Сьогодні ввечері ми разом готуємо курятину без шкіри».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Сьогодні ввечері ми разом готуємо курятину без шкіри».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are cooking skinless chicken together tonight.",
+        "localizedMeaning": {
+          "ru": "Вы договорились с другом готовить вместе сегодня вечером и уже выбрали продукты. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Сегодня вечером мы вместе готовим курицу без кожи».",
+          "uk": "Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Сьогодні ввечері ми разом готуємо курятину без шкіри»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "cooking",
+          "skinless",
+          "chicken",
+          "together",
+          "tonight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-43:i11:r1",
+          "text": "We are cooking skinless chicken together tonight."
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i11:r2",
+          "text": "We are going to cook skinless chicken together tonight."
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i11:r3",
+          "text": "We is cooking skinless chicken together tonight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:i11:audio",
+          "transcript": "We are cooking skinless chicken together tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-43:i11:r1",
+            "targetText": "We are cooking skinless chicken together tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i11:r2",
+            "targetText": "We are going to cook skinless chicken together tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i11:r3",
+            "targetText": "We is cooking skinless chicken together tonight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are cooking skinless chicken together tonight.",
+              "uk": "У записі звучить We are cooking skinless chicken together tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are cooking skinless chicken together tonight.",
+              "uk": "У записі звучить We are cooking skinless chicken together tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-43:i12:r1",
+          "text": "are cooking"
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i12:r2",
+          "text": "are going to cook"
+        },
+        {
+          "responseId": "en:lesson-16:session-43:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы договорились с другом готовить вместе сегодня вечером и уже выбрали продукты. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ skinless chicken together tonight.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-43:i12:r1",
+            "text": "are cooking"
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i12:r2",
+            "text": "are going to cook"
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are cooking.",
+              "uk": "Потрібна правильно побудована повна форма: are cooking."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-43:i13:p1",
+            "target": "crumbly",
+            "meaningByLocale": {
+              "ru": "рассыпчатый, легко крошащийся",
+              "uk": "розсипчастий, такий, що легко кришиться"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-43:i13:p2",
+            "target": "watery",
+            "meaningByLocale": {
+              "ru": "водянистый, слишком жидкий или со слабым вкусом",
+              "uk": "водянистий, надто рідкий або зі слабким смаком"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-43:i13:p3",
+            "target": "boneless",
+            "meaningByLocale": {
+              "ru": "без костей",
+              "uk": "без кісток"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-43:i13:p4",
+            "target": "skinless",
+            "meaningByLocale": {
+              "ru": "без кожи",
+              "uk": "без шкіри"
+            }
+          }
+        ],
+        "leftColumn": [
+          "crumbly",
+          "watery",
+          "boneless",
+          "skinless"
+        ],
+        "rightColumn": [
+          "розсипчастий, такий, що легко кришиться",
+          "водянистий, надто рідкий або зі слабким смаком",
+          "без кісток",
+          "без шкіри"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:i14:audio",
+          "transcript": "I think the biscuits will be crumbly."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the biscuits will be crumbly.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "biscuits",
+          "will",
+          "be",
+          "crumbly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:i15:audio",
+          "transcript": "I am going to buy boneless chicken."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to buy boneless chicken.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "boneless",
+          "chicken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:i16:audio",
+          "transcript": "We are cooking skinless chicken together tonight."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are cooking skinless chicken together tonight.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-43:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте думку-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-43:i17:audio",
+          "transcript": "I think the soup will be watery."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the soup will be watery.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a9e48c95ec81853481e7e891c25f43c001004f14a74ddefb2eca0298614275cc"
+}

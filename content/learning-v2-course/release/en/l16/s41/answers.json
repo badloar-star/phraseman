@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-41:word:smoky",
+    "correctText": "smoky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i01",
+    "correctText": "I think the cheese will be smoky.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i02",
+    "correctText": "I think the cheese will be smoky.",
+    "correctResponseId": "en:lesson-16:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:word:nutty",
+    "correctText": "nutty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i04",
+    "correctText": "I think the cake will be nutty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i05",
+    "correctText": "I think the cake will be nutty.",
+    "correctResponseId": "en:lesson-16:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:word:savoury",
+    "correctText": "savoury",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i07",
+    "correctText": "I am going to make a savoury pie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i08",
+    "correctText": "I am going to make a savoury pie.",
+    "correctResponseId": "en:lesson-16:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i09",
+    "correctText": "am going to make",
+    "correctResponseId": "en:lesson-16:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:word:tangy",
+    "correctText": "tangy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i10",
+    "correctText": "We are tasting a tangy sauce tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i11",
+    "correctText": "We are tasting a tangy sauce tomorrow.",
+    "correctResponseId": "en:lesson-16:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i12",
+    "correctText": "are tasting",
+    "correctResponseId": "en:lesson-16:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i13",
+    "correctText": "en:lesson-16:session-41:i13:p1=smoky\nen:lesson-16:session-41:i13:p2=nutty\nen:lesson-16:session-41:i13:p3=savoury\nen:lesson-16:session-41:i13:p4=tangy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i14",
+    "correctText": "I think the cheese will be smoky.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i15",
+    "correctText": "I am going to make a savoury pie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i16",
+    "correctText": "We are tasting a tangy sauce tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-41:i17",
+    "correctText": "I think the cake will be nutty.",
+    "correctResponseId": null
+  }
+]

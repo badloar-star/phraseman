@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-45:word:speak-up",
+    "correctText": "speak up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i01",
+    "correctText": "I think Anna will speak up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i02",
+    "correctText": "I think Anna will speak up.",
+    "correctResponseId": "en:lesson-16:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i03",
+    "correctText": "will speak up",
+    "correctResponseId": "en:lesson-16:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:word:hold-still",
+    "correctText": "hold still",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i04",
+    "correctText": "I think the child will hold still for the photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i05",
+    "correctText": "I think the child will hold still for the photo.",
+    "correctResponseId": "en:lesson-16:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i06",
+    "correctText": "will hold still",
+    "correctResponseId": "en:lesson-16:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:word:hang-on",
+    "correctText": "hang on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i07",
+    "correctText": "I am going to hang on for a few minutes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i08",
+    "correctText": "I am going to hang on for a few minutes.",
+    "correctResponseId": "en:lesson-16:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i09",
+    "correctText": "am going to hang on",
+    "correctResponseId": "en:lesson-16:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:word:stay-put",
+    "correctText": "stay put",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i10",
+    "correctText": "We are staying put this weekend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i11",
+    "correctText": "We are staying put this weekend.",
+    "correctResponseId": "en:lesson-16:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i12",
+    "correctText": "are staying put",
+    "correctResponseId": "en:lesson-16:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i13",
+    "correctText": "en:lesson-16:session-45:i13:p1=speak up\nen:lesson-16:session-45:i13:p2=hold still\nen:lesson-16:session-45:i13:p3=hang on\nen:lesson-16:session-45:i13:p4=stay put",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i14",
+    "correctText": "I think Anna will speak up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i15",
+    "correctText": "I am going to hang on for a few minutes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i16",
+    "correctText": "We are staying put this weekend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-45:i17",
+    "correctText": "I think the child will hold still for the photo.",
+    "correctResponseId": null
+  }
+]

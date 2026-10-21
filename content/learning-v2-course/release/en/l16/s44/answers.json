@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-44:word:rechargeable",
+    "correctText": "rechargeable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i01",
+    "correctText": "I think the lamp will be rechargeable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i02",
+    "correctText": "I think the lamp will be rechargeable.",
+    "correctResponseId": "en:lesson-16:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:word:refillable",
+    "correctText": "refillable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i04",
+    "correctText": "I think the soap bottle will be refillable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i05",
+    "correctText": "I think the soap bottle will be refillable.",
+    "correctResponseId": "en:lesson-16:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:word:reversible",
+    "correctText": "reversible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i07",
+    "correctText": "I am going to buy a reversible jacket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i08",
+    "correctText": "I am going to buy a reversible jacket.",
+    "correctResponseId": "en:lesson-16:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i09",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-16:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:word:childproof",
+    "correctText": "childproof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i10",
+    "correctText": "We are fitting childproof locks tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i11",
+    "correctText": "We are fitting childproof locks tomorrow.",
+    "correctResponseId": "en:lesson-16:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i12",
+    "correctText": "are fitting",
+    "correctResponseId": "en:lesson-16:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i13",
+    "correctText": "en:lesson-16:session-44:i13:p1=rechargeable\nen:lesson-16:session-44:i13:p2=refillable\nen:lesson-16:session-44:i13:p3=reversible\nen:lesson-16:session-44:i13:p4=childproof",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i14",
+    "correctText": "I think the lamp will be rechargeable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i15",
+    "correctText": "I am going to buy a reversible jacket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i16",
+    "correctText": "We are fitting childproof locks tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-44:i17",
+    "correctText": "I think the soap bottle will be refillable.",
+    "correctResponseId": null
+  }
+]

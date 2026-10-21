@@ -1,0 +1,1135 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-46:word:nod-off",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nod off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:word:nod-off:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nod off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:word:nod-off:audio",
+          "transcript": "nod off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-46:word:nod-off:r1",
+            "targetText": "nod off",
+            "meaningByLocale": {
+              "ru": "задремать, ненадолго уснуть.",
+              "uk": "задрімати, ненадовго заснути."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nod off",
+          "definitionByLocale": {
+            "ru": "задремать, ненадолго уснуть.",
+            "uk": "задрімати, ненадовго заснути."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will. Скажіть: «Думаю, я задрімаю в потязі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will. Скажіть: «Думаю, я задрімаю в потязі».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think I will nod off on the train.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, что после долгого дня можете задремать по дороге домой. Передайте мнение-прогноз через will. Скажите: «Думаю, я задремлю в поезде».",
+          "uk": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will. Скажіть: «Думаю, я задрімаю в потязі»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "I",
+          "will",
+          "nod",
+          "off",
+          "on",
+          "the",
+          "train"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-46:i02:r1",
+          "text": "I think I will nod off on the train."
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i02:r2",
+          "text": "I think I am going to nod off on the train."
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i02:r3",
+          "text": "I think I will to nod off on the train."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:i02:audio",
+          "transcript": "I think I will nod off on the train."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-46:i02:r1",
+            "targetText": "I think I will nod off on the train.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i02:r2",
+            "targetText": "I think I am going to nod off on the train.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i02:r3",
+            "targetText": "I think I will to nod off on the train.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think I will nod off on the train.",
+              "uk": "У записі звучить I think I will nod off on the train."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think I will nod off on the train.",
+              "uk": "У записі звучить I think I will nod off on the train."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-46:i03:r1",
+          "text": "will nod off"
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i03:r2",
+          "text": "am going to nod off"
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, что после долгого дня можете задремать по дороге домой. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think I ___ on the train.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-46:i03:r1",
+            "text": "will nod off"
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i03:r2",
+            "text": "am going to nod off"
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви припускаєте, що після довгого дня можете задрімати дорогою додому. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will nod off.",
+              "uk": "Потрібна правильно побудована повна форма: will nod off."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:word:warm-up",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — warm up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:word:warm-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — warm up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:word:warm-up:audio",
+          "transcript": "warm up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-46:word:warm-up:r1",
+            "targetText": "warm up",
+            "meaningByLocale": {
+              "ru": "размяться перед физической нагрузкой.",
+              "uk": "розім’ятися перед фізичним навантаженням."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "warm up",
+          "definitionByLocale": {
+            "ru": "размяться перед физической нагрузкой.",
+            "uk": "розім’ятися перед фізичним навантаженням."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will. Скажіть: «Думаю, команда розминатиметься надворі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will. Скажіть: «Думаю, команда розминатиметься надворі».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the team will warm up outside.",
+        "localizedMeaning": {
+          "ru": "Вы не знаете решения тренера и предполагаете, где команда проведёт разминку. Передайте мнение-прогноз через will. Скажите: «Думаю, команда будет разминаться на улице».",
+          "uk": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will. Скажіть: «Думаю, команда розминатиметься надворі»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "team",
+          "will",
+          "warm",
+          "up",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-46:i05:r1",
+          "text": "I think the team will warm up outside."
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i05:r2",
+          "text": "I think the team is going to warm up outside."
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i05:r3",
+          "text": "I think the team will to warm up outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:i05:audio",
+          "transcript": "I think the team will warm up outside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-46:i05:r1",
+            "targetText": "I think the team will warm up outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i05:r2",
+            "targetText": "I think the team is going to warm up outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i05:r3",
+            "targetText": "I think the team will to warm up outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the team will warm up outside.",
+              "uk": "У записі звучить I think the team will warm up outside."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the team will warm up outside.",
+              "uk": "У записі звучить I think the team will warm up outside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-46:i06:r1",
+          "text": "will warm up"
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i06:r2",
+          "text": "is going to warm up"
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i06:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете решения тренера и предполагаете, где команда проведёт разминку. Передайте мнение-прогноз через will.",
+          "uk": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the team ___ outside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-46:i06:r1",
+            "text": "will warm up"
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i06:r2",
+            "text": "is going to warm up"
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i06:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви не знаєте рішення тренера й припускаєте, де команда проведе розминку. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will warm up.",
+              "uk": "Потрібна правильно побудована повна форма: will warm up."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:word:freshen-up",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — freshen up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:word:freshen-up:audio"
+      ],
+      "accessibilityLabel": "Картка слова — freshen up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:word:freshen-up:audio",
+          "transcript": "freshen up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-46:word:freshen-up:r1",
+            "targetText": "freshen up",
+            "meaningByLocale": {
+              "ru": "освежиться, умыться или привести себя в порядок.",
+              "uk": "освіжитися, вмитися або привести себе до ладу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freshen up",
+          "definitionByLocale": {
+            "ru": "освежиться, умыться или привести себя в порядок.",
+            "uk": "освіжитися, вмитися або привести себе до ладу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся освіжитися перед вечерею».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся освіжитися перед вечерею».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to freshen up before dinner.",
+        "localizedMeaning": {
+          "ru": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь освежиться перед ужином».",
+          "uk": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся освіжитися перед вечерею»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "freshen",
+          "up",
+          "before",
+          "dinner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-46:i08:r1",
+          "text": "I am going to freshen up before dinner."
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i08:r2",
+          "text": "I am freshening up before dinner."
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i08:r3",
+          "text": "I is going to freshen up before dinner."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:i08:audio",
+          "transcript": "I am going to freshen up before dinner."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-46:i08:r1",
+            "targetText": "I am going to freshen up before dinner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i08:r2",
+            "targetText": "I am freshening up before dinner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i08:r3",
+            "targetText": "I is going to freshen up before dinner.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to freshen up before dinner.",
+              "uk": "У записі звучить I am going to freshen up before dinner."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to freshen up before dinner.",
+              "uk": "У записі звучить I am going to freshen up before dinner."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-46:i09:r1",
+          "text": "am going to freshen up"
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i09:r2",
+          "text": "am freshening up"
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После дороги вы решили умыться перед ужином и сообщаете об этом намерении. Передайте заранее принятое намерение через going to.",
+          "uk": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ before dinner.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-46:i09:r1",
+            "text": "am going to freshen up"
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i09:r2",
+            "text": "am freshening up"
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to freshen up.",
+              "uk": "Потрібна правильно побудована повна форма: am going to freshen up."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:word:wind-down",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wind down",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:word:wind-down:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wind down",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:word:wind-down:audio",
+          "transcript": "wind down"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-46:word:wind-down:r1",
+            "targetText": "wind down",
+            "meaningByLocale": {
+              "ru": "расслабиться после напряжённого дня или дела.",
+              "uk": "розслабитися після напруженого дня або справи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wind down",
+          "definitionByLocale": {
+            "ru": "расслабиться после напряжённого дня или дела.",
+            "uk": "розслабитися після напруженого дня або справи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are winding down at the spa tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы отдыхаем в спа после напряжённых дней».",
+          "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми відпочиваємо в спа після напружених днів»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "winding",
+          "down",
+          "at",
+          "the",
+          "spa",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-46:i11:r1",
+          "text": "We are winding down at the spa tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i11:r2",
+          "text": "We are going to wind down at the spa tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i11:r3",
+          "text": "We is winding down at the spa tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:i11:audio",
+          "transcript": "We are winding down at the spa tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-46:i11:r1",
+            "targetText": "We are winding down at the spa tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i11:r2",
+            "targetText": "We are going to wind down at the spa tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i11:r3",
+            "targetText": "We is winding down at the spa tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are winding down at the spa tomorrow.",
+              "uk": "У записі звучить We are winding down at the spa tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are winding down at the spa tomorrow.",
+              "uk": "У записі звучить We are winding down at the spa tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-46:i12:r1",
+          "text": "are winding down"
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i12:r2",
+          "text": "are going to wind down"
+        },
+        {
+          "responseId": "en:lesson-16:session-46:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ at the spa tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-46:i12:r1",
+            "text": "are winding down"
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i12:r2",
+            "text": "are going to wind down"
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are winding down.",
+              "uk": "Потрібна правильно побудована повна форма: are winding down."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-46:i13:p1",
+            "target": "nod off",
+            "meaningByLocale": {
+              "ru": "задремать, ненадолго уснуть",
+              "uk": "задрімати, ненадовго заснути"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-46:i13:p2",
+            "target": "warm up",
+            "meaningByLocale": {
+              "ru": "размяться перед физической нагрузкой",
+              "uk": "розім’ятися перед фізичним навантаженням"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-46:i13:p3",
+            "target": "freshen up",
+            "meaningByLocale": {
+              "ru": "освежиться, умыться или привести себя в порядок",
+              "uk": "освіжитися, вмитися або привести себе до ладу"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-46:i13:p4",
+            "target": "wind down",
+            "meaningByLocale": {
+              "ru": "расслабиться после напряжённого дня или дела",
+              "uk": "розслабитися після напруженого дня або справи"
+            }
+          }
+        ],
+        "leftColumn": [
+          "nod off",
+          "warm up",
+          "freshen up",
+          "wind down"
+        ],
+        "rightColumn": [
+          "задрімати, ненадовго заснути",
+          "розім’ятися перед фізичним навантаженням",
+          "освіжитися, вмитися або привести себе до ладу",
+          "розслабитися після напруженого дня або справи"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:i14:audio",
+          "transcript": "I think I will nod off on the train."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think I will nod off on the train.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "I",
+          "will",
+          "nod",
+          "off",
+          "on",
+          "the",
+          "train"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:i15:audio",
+          "transcript": "I am going to freshen up before dinner."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to freshen up before dinner.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "freshen",
+          "up",
+          "before",
+          "dinner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:i16:audio",
+          "transcript": "We are winding down at the spa tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are winding down at the spa tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте думку-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-46:i17:audio",
+          "transcript": "I think the team will warm up outside."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the team will warm up outside.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "374b3b51e4e47417ccdfb8d7cb54f49cdebf4c5f0557bed21e9c272216ceb867"
+}

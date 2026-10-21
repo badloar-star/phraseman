@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-44:word:rechargeable",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rechargeable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:word:rechargeable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rechargeable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:word:rechargeable:audio",
+          "transcript": "rechargeable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-44:word:rechargeable:r1",
+            "targetText": "rechargeable",
+            "meaningByLocale": {
+              "ru": "перезаряжаемый — об аккумуляторе или устройстве.",
+              "uk": "перезаряджуваний — про акумулятор або пристрій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rechargeable",
+          "definitionByLocale": {
+            "ru": "перезаряжаемый — об аккумуляторе или устройстве.",
+            "uk": "перезаряджуваний — про акумулятор або пристрій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will. Скажите: «Думаю, лампу можно будет заряжать».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will. Скажите: «Думаю, лампу можно будет заряжать».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the lamp will be rechargeable.",
+        "localizedMeaning": {
+          "ru": "Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will. Скажите: «Думаю, лампу можно будет заряжать».",
+          "uk": "Вам обіцяли подарувати переносну лампу; ви припускаєте, що вона буде з акумулятором. Передайте думку-прогноз через will. Скажіть: «Думаю, лампу можна буде заряджати»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "lamp",
+          "will",
+          "be",
+          "rechargeable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-44:i02:r1",
+          "text": "I think the lamp will be rechargeable."
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i02:r2",
+          "text": "I think the lamp is going to be rechargeable."
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i02:r3",
+          "text": "I think the lamp will to be rechargeable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:i02:audio",
+          "transcript": "I think the lamp will be rechargeable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-44:i02:r1",
+            "targetText": "I think the lamp will be rechargeable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i02:r2",
+            "targetText": "I think the lamp is going to be rechargeable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i02:r3",
+            "targetText": "I think the lamp will to be rechargeable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the lamp will be rechargeable.",
+              "uk": "У записі звучить I think the lamp will be rechargeable."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the lamp will be rechargeable.",
+              "uk": "У записі звучить I think the lamp will be rechargeable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-44:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i03:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will.",
+          "uk": "Вам обіцяли подарувати переносну лампу; ви припускаєте, що вона буде з акумулятором. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the lamp ___ rechargeable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-44:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:word:refillable",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — refillable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:word:refillable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — refillable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:word:refillable:audio",
+          "transcript": "refillable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-44:word:refillable:r1",
+            "targetText": "refillable",
+            "meaningByLocale": {
+              "ru": "который можно снова наполнить.",
+              "uk": "який можна знову наповнити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "refillable",
+          "definitionByLocale": {
+            "ru": "который можно снова наполнить.",
+            "uk": "який можна знову наповнити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will. Скажите: «Думаю, бутылку для мыла можно будет снова наполнять».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will. Скажите: «Думаю, бутылку для мыла можно будет снова наполнять».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the soap bottle will be refillable.",
+        "localizedMeaning": {
+          "ru": "Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will. Скажите: «Думаю, бутылку для мыла можно будет снова наполнять».",
+          "uk": "Ви очікуєте замовлення з милом і припускаєте, що пляшку можна буде використовувати знову. Передайте думку-прогноз через will. Скажіть: «Думаю, пляшку для мила можна буде знову наповнювати»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "soap",
+          "bottle",
+          "will",
+          "be",
+          "refillable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-44:i05:r1",
+          "text": "I think the soap bottle will be refillable."
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i05:r2",
+          "text": "I think the soap bottle is going to be refillable."
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i05:r3",
+          "text": "I think the soap bottle will to be refillable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:i05:audio",
+          "transcript": "I think the soap bottle will be refillable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-44:i05:r1",
+            "targetText": "I think the soap bottle will be refillable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i05:r2",
+            "targetText": "I think the soap bottle is going to be refillable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i05:r3",
+            "targetText": "I think the soap bottle will to be refillable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the soap bottle will be refillable.",
+              "uk": "У записі звучить I think the soap bottle will be refillable."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the soap bottle will be refillable.",
+              "uk": "У записі звучить I think the soap bottle will be refillable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-44:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i06:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will.",
+          "uk": "Ви очікуєте замовлення з милом і припускаєте, що пляшку можна буде використовувати знову. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the soap bottle ___ refillable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-44:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Вы ожидаете заказ с мылом и предполагаете, что бутылку можно будет использовать снова. Передайте мнение-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:word:reversible",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reversible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:word:reversible:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reversible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:word:reversible:audio",
+          "transcript": "reversible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-44:word:reversible:r1",
+            "targetText": "reversible",
+            "meaningByLocale": {
+              "ru": "двусторонний, пригодный для использования с обеих сторон.",
+              "uk": "двосторонній, придатний для використання з обох боків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reversible",
+          "definitionByLocale": {
+            "ru": "двусторонний, пригодный для использования с обеих сторон.",
+            "uk": "двосторонній, придатний для використання з обох боків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь купить двустороннюю куртку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь купить двустороннюю куртку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to buy a reversible jacket.",
+        "localizedMeaning": {
+          "ru": "Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь купить двустороннюю куртку».",
+          "uk": "Ви вирішили купити куртку, яку можна носити будь-яким боком назовні; поки це намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся купити двосторонню куртку»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "reversible",
+          "jacket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-44:i08:r1",
+          "text": "I am going to buy a reversible jacket."
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i08:r2",
+          "text": "I am buying a reversible jacket."
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i08:r3",
+          "text": "I is going to buy a reversible jacket."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:i08:audio",
+          "transcript": "I am going to buy a reversible jacket."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-44:i08:r1",
+            "targetText": "I am going to buy a reversible jacket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i08:r2",
+            "targetText": "I am buying a reversible jacket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i08:r3",
+            "targetText": "I is going to buy a reversible jacket.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy a reversible jacket.",
+              "uk": "У записі звучить I am going to buy a reversible jacket."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy a reversible jacket.",
+              "uk": "У записі звучить I am going to buy a reversible jacket."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-44:i09:r1",
+          "text": "am going to buy"
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i09:r2",
+          "text": "am buying"
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили купити куртку, яку можна носити будь-яким боком назовні; поки це намір. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a reversible jacket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-44:i09:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i09:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. Передайте заранее принятое намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to buy.",
+              "uk": "Потрібна правильно побудована повна форма: am going to buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:word:childproof",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — childproof",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:word:childproof:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — childproof",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:word:childproof:audio",
+          "transcript": "childproof"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-44:word:childproof:r1",
+            "targetText": "childproof",
+            "meaningByLocale": {
+              "ru": "с защитой от маленьких детей.",
+              "uk": "із захистом від малих дітей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "childproof",
+          "definitionByLocale": {
+            "ru": "с защитой от маленьких детей.",
+            "uk": "із захистом від малих дітей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы устанавливаем замки с защитой от детей завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы устанавливаем замки с защитой от детей завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are fitting childproof locks tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы устанавливаем замки с защитой от детей завтра».",
+          "uk": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "fitting",
+          "childproof",
+          "locks",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-44:i11:r1",
+          "text": "We are fitting childproof locks tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i11:r2",
+          "text": "We are going to fit childproof locks tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i11:r3",
+          "text": "We is fitting childproof locks tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:i11:audio",
+          "transcript": "We are fitting childproof locks tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-44:i11:r1",
+            "targetText": "We are fitting childproof locks tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i11:r2",
+            "targetText": "We are going to fit childproof locks tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i11:r3",
+            "targetText": "We is fitting childproof locks tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are fitting childproof locks tomorrow.",
+              "uk": "У записі звучить We are fitting childproof locks tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are fitting childproof locks tomorrow.",
+              "uk": "У записі звучить We are fitting childproof locks tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-44:i12:r1",
+          "text": "are fitting"
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i12:r2",
+          "text": "are going to fit"
+        },
+        {
+          "responseId": "en:lesson-16:session-44:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ childproof locks tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-44:i12:r1",
+            "text": "are fitting"
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i12:r2",
+            "text": "are going to fit"
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are fitting.",
+              "uk": "Потрібна правильно побудована повна форма: are fitting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-44:i13:p1",
+            "target": "rechargeable",
+            "meaningByLocale": {
+              "ru": "перезаряжаемый",
+              "uk": "перезаряджуваний"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-44:i13:p2",
+            "target": "refillable",
+            "meaningByLocale": {
+              "ru": "который можно снова наполнить",
+              "uk": "який можна знову наповнити"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-44:i13:p3",
+            "target": "reversible",
+            "meaningByLocale": {
+              "ru": "двусторонний, пригодный для использования с обеих сторон",
+              "uk": "двосторонній, придатний для використання з обох боків"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-44:i13:p4",
+            "target": "childproof",
+            "meaningByLocale": {
+              "ru": "с защитой от маленьких детей",
+              "uk": "із захистом від малих дітей"
+            }
+          }
+        ],
+        "leftColumn": [
+          "rechargeable",
+          "refillable",
+          "reversible",
+          "childproof"
+        ],
+        "rightColumn": [
+          "перезаряжаемый",
+          "который можно снова наполнить",
+          "двусторонний, пригодный для использования с обеих сторон",
+          "с защитой от маленьких детей"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:i14:audio",
+          "transcript": "I think the lamp will be rechargeable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the lamp will be rechargeable.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "lamp",
+          "will",
+          "be",
+          "rechargeable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:i15:audio",
+          "transcript": "I am going to buy a reversible jacket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to buy a reversible jacket.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "reversible",
+          "jacket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:i16:audio",
+          "transcript": "We are fitting childproof locks tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are fitting childproof locks tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте мнение-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте мнение-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-44:i17:audio",
+          "transcript": "I think the soap bottle will be refillable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the soap bottle will be refillable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "177f73f4d5c46b1851fd5bc94a1a9a899d8fd5873dca66fff5125f4efc648715"
+}

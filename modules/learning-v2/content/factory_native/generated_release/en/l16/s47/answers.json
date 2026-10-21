@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-47:word:queue-up",
+    "correctText": "queue up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i01",
+    "correctText": "I think people will queue up outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i02",
+    "correctText": "I think people will queue up outside.",
+    "correctResponseId": "en:lesson-16:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i03",
+    "correctText": "will queue up",
+    "correctResponseId": "en:lesson-16:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:word:pop-out",
+    "correctText": "pop out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i04",
+    "correctText": "I think Tom will pop out for bread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i05",
+    "correctText": "I think Tom will pop out for bread.",
+    "correctResponseId": "en:lesson-16:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i06",
+    "correctText": "will pop out",
+    "correctResponseId": "en:lesson-16:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:word:stock-up",
+    "correctText": "stock up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i07",
+    "correctText": "I am going to stock up on rice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i08",
+    "correctText": "I am going to stock up on rice.",
+    "correctResponseId": "en:lesson-16:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i09",
+    "correctText": "am going to stock up",
+    "correctResponseId": "en:lesson-16:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:word:cut-down-on",
+    "correctText": "cut down on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i10",
+    "correctText": "We are cutting down on sweets from Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i11",
+    "correctText": "We are cutting down on sweets from Monday.",
+    "correctResponseId": "en:lesson-16:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i12",
+    "correctText": "are cutting down on",
+    "correctResponseId": "en:lesson-16:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i13",
+    "correctText": "en:lesson-16:session-47:i13:p1=queue up\nen:lesson-16:session-47:i13:p2=pop out\nen:lesson-16:session-47:i13:p3=stock up\nen:lesson-16:session-47:i13:p4=cut down on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i14",
+    "correctText": "I think people will queue up outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i15",
+    "correctText": "I am going to stock up on rice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i16",
+    "correctText": "We are cutting down on sweets from Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-47:i17",
+    "correctText": "I think Tom will pop out for bread.",
+    "correctResponseId": null
+  }
+]

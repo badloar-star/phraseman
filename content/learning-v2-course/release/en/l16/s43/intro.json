@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. crumbly — рассыпчатый, легко крошащийся. Вы впервые пробуете рецепт и предполагаете, каким получится печенье. I think the biscuits will be crumbly. — Думаю, печенье будет рассыпчатым. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. crumbly — розсипчастий, такий, що легко кришиться. Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. I think the biscuits will be crumbly. — Думаю, печиво буде розсипчастим. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-43:intro1:r1",
+              "text": "I think the biscuits will be crumbly."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro1:r2",
+              "text": "I think the biscuits are going to be crumbly."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro1:r3",
+              "text": "I think the biscuits will to be crumbly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-43:intro1:r1",
+              "text": "I think the biscuits will be crumbly."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro1:r2",
+              "text": "I think the biscuits are going to be crumbly."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro1:r3",
+              "text": "I think the biscuits will to be crumbly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "watery — водянистый, слишком жидкий или со слабым вкусом. boneless — без костей — о мясе или рыбе. Вы решили купить мясо без костей для ужина; это намерение перед походом в магазин. I am going to buy boneless chicken. — Я собираюсь купить курицу без костей. Передайте заранее принятое намерение через going to.",
+        "uk": "watery — водянистий, надто рідкий або зі слабким смаком. boneless — без кісток — про м’ясо або рибу. Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. I am going to buy boneless chicken. — Я збираюся купити курятину без кісток. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-43:intro2:r1",
+              "text": "I am going to buy boneless chicken."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro2:r2",
+              "text": "I am buying boneless chicken."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro2:r3",
+              "text": "I is going to buy boneless chicken."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-43:intro2:r1",
+              "text": "I am going to buy boneless chicken."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro2:r2",
+              "text": "I am buying boneless chicken."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro2:r3",
+              "text": "I is going to buy boneless chicken."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "skinless — без кожи — о мясе или рыбе. Вы договорились с другом готовить вместе сегодня вечером и уже выбрали продукты. We are cooking skinless chicken together tonight. — Сегодня вечером мы вместе готовим курицу без кожи. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "skinless — без шкіри — про м’ясо або рибу. Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. We are cooking skinless chicken together tonight. — Сьогодні ввечері ми разом готуємо курятину без шкіри. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-43:intro3:r1",
+              "text": "We are cooking skinless chicken together tonight."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro3:r2",
+              "text": "We are going to cook skinless chicken together tonight."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro3:r3",
+              "text": "We is cooking skinless chicken together tonight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-43:intro3:r1",
+              "text": "We are cooking skinless chicken together tonight."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro3:r2",
+              "text": "We are going to cook skinless chicken together tonight."
+            },
+            {
+              "responseId": "en:lesson-16:session-43:intro3:r3",
+              "text": "We is cooking skinless chicken together tonight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2694176c1327cf88dd80b5bb1e2480b14f34d50972bc83628c677eb74ed9c359"
+}

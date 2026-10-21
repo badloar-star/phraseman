@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. rechargeable — перезаряжаемый — об аккумуляторе или устройстве. Вам обещали подарить переносную лампу; вы предполагаете, что она будет с аккумулятором. I think the lamp will be rechargeable. — Думаю, лампу можно будет заряжать. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. rechargeable — перезаряджуваний — про акумулятор або пристрій. Вам обіцяли подарувати переносну лампу; ви припускаєте, що вона буде з акумулятором. I think the lamp will be rechargeable. — Думаю, лампу можна буде заряджати. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-44:intro1:r1",
+              "text": "I think the lamp will be rechargeable."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro1:r2",
+              "text": "I think the lamp is going to be rechargeable."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro1:r3",
+              "text": "I think the lamp will to be rechargeable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-44:intro1:r1",
+              "text": "I think the lamp will be rechargeable."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro1:r2",
+              "text": "I think the lamp is going to be rechargeable."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro1:r3",
+              "text": "I think the lamp will to be rechargeable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "refillable — который можно снова наполнить. reversible — двусторонний, пригодный для использования с обеих сторон. Вы решили купить куртку, которую можно носить любой стороной наружу; пока это намерение. I am going to buy a reversible jacket. — Я собираюсь купить двустороннюю куртку. Передайте заранее принятое намерение через going to.",
+        "uk": "refillable — який можна знову наповнити. reversible — двосторонній, придатний для використання з обох боків. Ви вирішили купити куртку, яку можна носити будь-яким боком назовні; поки це намір. I am going to buy a reversible jacket. — Я збираюся купити двосторонню куртку. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-44:intro2:r1",
+              "text": "I am going to buy a reversible jacket."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro2:r2",
+              "text": "I am buying a reversible jacket."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro2:r3",
+              "text": "I is going to buy a reversible jacket."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-44:intro2:r1",
+              "text": "I am going to buy a reversible jacket."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro2:r2",
+              "text": "I am buying a reversible jacket."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro2:r3",
+              "text": "I is going to buy a reversible jacket."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "childproof — с защитой от маленьких детей. Вы договорились с мастером поставить замки на кухонные шкафчики завтра. We are fitting childproof locks tomorrow. — Мы устанавливаем замки с защитой от детей завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "childproof — із захистом від малих дітей. Ви домовилися з майстром поставити замки на кухонні шафки завтра. We are fitting childproof locks tomorrow. — Ми встановлюємо замки із захистом від дітей завтра. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-44:intro3:r1",
+              "text": "We are fitting childproof locks tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro3:r2",
+              "text": "We are going to fit childproof locks tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro3:r3",
+              "text": "We is fitting childproof locks tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-44:intro3:r1",
+              "text": "We are fitting childproof locks tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro3:r2",
+              "text": "We are going to fit childproof locks tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-44:intro3:r3",
+              "text": "We is fitting childproof locks tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "55fb5ff6a36d6b2c53eb5176f2b62870aed4d549511da22b55f6ff5ae6848f59"
+}

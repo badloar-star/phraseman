@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. speak up — говорить громче. Вы предполагаете, что Анна станет говорить громче, чтобы всем было слышно. I think Anna will speak up. — Думаю, Анна будет говорить громче. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. speak up — говорити голосніше. Ви припускаєте, що Анна почне говорити голосніше, щоб усім було чутно. I think Anna will speak up. — Думаю, Анна говоритиме голосніше. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-45:intro1:r1",
+              "text": "I think Anna will speak up."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro1:r2",
+              "text": "I think Anna is going to speak up."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro1:r3",
+              "text": "I think Anna will to speak up."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-45:intro1:r1",
+              "text": "I think Anna will speak up."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro1:r2",
+              "text": "I think Anna is going to speak up."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro1:r3",
+              "text": "I think Anna will to speak up."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "hold still — не двигаться, замереть. hang on — немного подождать — в разговоре. Друг ещё не готов. Вы решили немного подождать и сообщаете о своём намерении. I am going to hang on for a few minutes. — Я собираюсь подождать несколько минут. Передайте заранее принятое намерение через going to.",
+        "uk": "hold still — не рухатися, завмерти. hang on — трохи зачекати — у розмові. Друг ще не готовий. Ви вирішили трохи зачекати й повідомляєте про свій намір. I am going to hang on for a few minutes. — Я збираюся зачекати кілька хвилин. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-45:intro2:r1",
+              "text": "I am going to hang on for a few minutes."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro2:r2",
+              "text": "I am hanging on for a few minutes."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro2:r3",
+              "text": "I is going to hang on for a few minutes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-45:intro2:r1",
+              "text": "I am going to hang on for a few minutes."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro2:r2",
+              "text": "I am hanging on for a few minutes."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro2:r3",
+              "text": "I is going to hang on for a few minutes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "stay put — оставаться на месте, никуда не уходить. Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. We are staying put this weekend. — На этих выходных мы никуда не уезжаем. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "stay put — залишатися на місці, нікуди не йти. Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. We are staying put this weekend. — Цими вихідними ми нікуди не їдемо. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-45:intro3:r1",
+              "text": "We are staying put this weekend."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro3:r2",
+              "text": "We are going to stay put this weekend."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro3:r3",
+              "text": "We is staying put this weekend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-45:intro3:r1",
+              "text": "We are staying put this weekend."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro3:r2",
+              "text": "We are going to stay put this weekend."
+            },
+            {
+              "responseId": "en:lesson-16:session-45:intro3:r3",
+              "text": "We is staying put this weekend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8bb09448f9faf74fda4ec52e9470fe216379f2a61fd5d33bb79befb61e7bc57f"
+}

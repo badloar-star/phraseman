@@ -1,0 +1,2353 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-48",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-48:word:show-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — show up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:word:show-up:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — show up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:word:show-up:audio",
+            "transcript": "show up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:word:show-up:r1",
+              "targetText": "show up",
+              "meaningByLocale": {
+                "ru": "прийти, появиться в условленном месте.",
+                "uk": "прийти, з’явитися в домовленому місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "show up",
+            "definitionByLocale": {
+              "ru": "прийти, появиться в условленном месте.",
+              "uk": "прийти, з’явитися в домовленому місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will. Скажите: «Думаю, Том придёт вовремя».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will. Скажите: «Думаю, Том придёт вовремя».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think Tom will show up on time.",
+          "localizedMeaning": {
+            "ru": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will. Скажите: «Думаю, Том придёт вовремя».",
+            "uk": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will. Скажіть: «Думаю, Том прийде вчасно»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "Tom",
+            "will",
+            "show",
+            "up",
+            "on",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i02:r1",
+            "text": "I think Tom will show up on time."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i02:r2",
+            "text": "I think Tom is going to show up on time."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i02:r3",
+            "text": "I think Tom will to show up on time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i02:audio",
+            "transcript": "I think Tom will show up on time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:i02:r1",
+              "targetText": "I think Tom will show up on time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i02:r2",
+              "targetText": "I think Tom is going to show up on time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i02:r3",
+              "targetText": "I think Tom will to show up on time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Tom will show up on time.",
+                "uk": "У записі звучить I think Tom will show up on time."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Tom will show up on time.",
+                "uk": "У записі звучить I think Tom will show up on time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i03:r1",
+            "text": "will show up"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i03:r2",
+            "text": "is going to show up"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i03:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will.",
+            "uk": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think Tom ___ on time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-48:i03:r1",
+              "text": "will show up"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i03:r2",
+              "text": "is going to show up"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i03:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will show up.",
+                "uk": "Потрібна правильно побудована повна форма: will show up."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:word:come-along",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — come along",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:word:come-along:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — come along",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:word:come-along:audio",
+            "transcript": "come along"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:word:come-along:r1",
+              "targetText": "come along",
+              "meaningByLocale": {
+                "ru": "пойти или поехать вместе с кем-то.",
+                "uk": "піти або поїхати разом із кимось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "come along",
+            "definitionByLocale": {
+              "ru": "пойти или поехать вместе с кем-то.",
+              "uk": "піти або поїхати разом із кимось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна пойдёт с нами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна пойдёт с нами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think Anna will come along.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна пойдёт с нами».",
+            "uk": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will. Скажіть: «Думаю, Анна піде з нами»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "Anna",
+            "will",
+            "come",
+            "along"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i05:r1",
+            "text": "I think Anna will come along."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i05:r2",
+            "text": "I think Anna is going to come along."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i05:r3",
+            "text": "I think Anna will to come along."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i05:audio",
+            "transcript": "I think Anna will come along."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:i05:r1",
+              "targetText": "I think Anna will come along.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i05:r2",
+              "targetText": "I think Anna is going to come along.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i05:r3",
+              "targetText": "I think Anna will to come along.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Anna will come along.",
+                "uk": "У записі звучить I think Anna will come along."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Anna will come along.",
+                "uk": "У записі звучить I think Anna will come along."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i06:r1",
+            "text": "will come along"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i06:r2",
+            "text": "is going to come along"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i06:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think Anna ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-48:i06:r1",
+              "text": "will come along"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i06:r2",
+              "text": "is going to come along"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i06:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will come along.",
+                "uk": "Потрібна правильно побудована повна форма: will come along."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:word:get-together",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — get together",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:word:get-together:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — get together",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:word:get-together:audio",
+            "transcript": "get together"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:word:get-together:r1",
+              "targetText": "get together",
+              "meaningByLocale": {
+                "ru": "собраться, встретиться для общения.",
+                "uk": "зібратися, зустрітися для спілкування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get together",
+            "definitionByLocale": {
+              "ru": "собраться, встретиться для общения.",
+              "uk": "зібратися, зустрітися для спілкування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь скоро встретиться с друзьями».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь скоро встретиться с друзьями».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to get together with friends soon.",
+          "localizedMeaning": {
+            "ru": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь скоро встретиться с друзьями».",
+            "uk": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся незабаром зустрітися з друзями»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "get",
+            "together",
+            "with",
+            "friends",
+            "soon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i08:r1",
+            "text": "I am going to get together with friends soon."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i08:r2",
+            "text": "I am getting together with friends soon."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i08:r3",
+            "text": "I is going to get together with friends soon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i08:audio",
+            "transcript": "I am going to get together with friends soon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:i08:r1",
+              "targetText": "I am going to get together with friends soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i08:r2",
+              "targetText": "I am getting together with friends soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i08:r3",
+              "targetText": "I is going to get together with friends soon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to get together with friends soon.",
+                "uk": "У записі звучить I am going to get together with friends soon."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to get together with friends soon.",
+                "uk": "У записі звучить I am going to get together with friends soon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i09:r1",
+            "text": "am going to get together"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i09:r2",
+            "text": "am getting together"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ with friends soon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-48:i09:r1",
+              "text": "am going to get together"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i09:r2",
+              "text": "am getting together"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to get together.",
+                "uk": "Потрібна правильно побудована повна форма: am going to get together."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:word:head-out",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — head out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:word:head-out:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — head out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:word:head-out:audio",
+            "transcript": "head out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:word:head-out:r1",
+              "targetText": "head out",
+              "meaningByLocale": {
+                "ru": "выйти, отправиться куда-либо.",
+                "uk": "вийти, вирушити кудись."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "head out",
+            "definitionByLocale": {
+              "ru": "выйти, отправиться куда-либо.",
+              "uk": "вийти, вирушити кудись."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы выходим в восемь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы выходим в восемь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are heading out at eight tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы выходим в восемь».",
+            "uk": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми виходимо о восьмій»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "heading",
+            "out",
+            "at",
+            "eight",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i11:r1",
+            "text": "We are heading out at eight tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i11:r2",
+            "text": "We are going to head out at eight tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i11:r3",
+            "text": "We is heading out at eight tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i11:audio",
+            "transcript": "We are heading out at eight tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:i11:r1",
+              "targetText": "We are heading out at eight tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i11:r2",
+              "targetText": "We are going to head out at eight tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i11:r3",
+              "targetText": "We is heading out at eight tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are heading out at eight tomorrow.",
+                "uk": "У записі звучить We are heading out at eight tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are heading out at eight tomorrow.",
+                "uk": "У записі звучить We are heading out at eight tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i12:r1",
+            "text": "are heading out"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i12:r2",
+            "text": "are going to head out"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ at eight tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-48:i12:r1",
+              "text": "are heading out"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i12:r2",
+              "text": "are going to head out"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are heading out.",
+                "uk": "Потрібна правильно побудована повна форма: are heading out."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-48:i13:p1",
+              "target": "show up",
+              "meaningByLocale": {
+                "ru": "прийти, появиться в условленном месте",
+                "uk": "прийти, з’явитися в домовленому місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-48:i13:p2",
+              "target": "come along",
+              "meaningByLocale": {
+                "ru": "пойти или поехать вместе с кем-то",
+                "uk": "піти або поїхати разом із кимось"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-48:i13:p3",
+              "target": "get together",
+              "meaningByLocale": {
+                "ru": "собраться, встретиться для общения",
+                "uk": "зібратися, зустрітися для спілкування"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-48:i13:p4",
+              "target": "head out",
+              "meaningByLocale": {
+                "ru": "выйти, отправиться куда-либо",
+                "uk": "вийти, вирушити кудись"
+              }
+            }
+          ],
+          "leftColumn": [
+            "show up",
+            "come along",
+            "get together",
+            "head out"
+          ],
+          "rightColumn": [
+            "прийти, появиться в условленном месте",
+            "пойти или поехать вместе с кем-то",
+            "собраться, встретиться для общения",
+            "выйти, отправиться куда-либо"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i14:audio",
+            "transcript": "I think Tom will show up on time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think Tom will show up on time.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "Tom",
+            "will",
+            "show",
+            "up",
+            "on",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i15:audio",
+            "transcript": "I am going to get together with friends soon."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to get together with friends soon.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "get",
+            "together",
+            "with",
+            "friends",
+            "soon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i16:audio",
+            "transcript": "We are heading out at eight tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are heading out at eight tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте мнение-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i17:audio",
+            "transcript": "I think Anna will come along."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think Anna will come along.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-48:word:show-up",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — show up",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:word:show-up:audio"
+        ],
+        "accessibilityLabel": "Картка слова — show up",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:word:show-up:audio",
+            "transcript": "show up"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:word:show-up:r1",
+              "targetText": "show up",
+              "meaningByLocale": {
+                "ru": "прийти, появиться в условленном месте.",
+                "uk": "прийти, з’явитися в домовленому місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "show up",
+            "definitionByLocale": {
+              "ru": "прийти, появиться в условленном месте.",
+              "uk": "прийти, з’явитися в домовленому місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will. Скажіть: «Думаю, Том прийде вчасно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will. Скажіть: «Думаю, Том прийде вчасно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think Tom will show up on time.",
+          "localizedMeaning": {
+            "ru": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will. Скажите: «Думаю, Том придёт вовремя».",
+            "uk": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will. Скажіть: «Думаю, Том прийде вчасно»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "Tom",
+            "will",
+            "show",
+            "up",
+            "on",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i02:r1",
+            "text": "I think Tom will show up on time."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i02:r2",
+            "text": "I think Tom is going to show up on time."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i02:r3",
+            "text": "I think Tom will to show up on time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i02:audio",
+            "transcript": "I think Tom will show up on time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:i02:r1",
+              "targetText": "I think Tom will show up on time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i02:r2",
+              "targetText": "I think Tom is going to show up on time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i02:r3",
+              "targetText": "I think Tom will to show up on time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Tom will show up on time.",
+                "uk": "У записі звучить I think Tom will show up on time."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Tom will show up on time.",
+                "uk": "У записі звучить I think Tom will show up on time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i03:r1",
+            "text": "will show up"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i03:r2",
+            "text": "is going to show up"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i03:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы высказываете предположение о том, вовремя ли Том придёт на встречу. Передайте мнение-прогноз через will.",
+            "uk": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think Tom ___ on time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-48:i03:r1",
+              "text": "will show up"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i03:r2",
+              "text": "is going to show up"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i03:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will show up.",
+                "uk": "Потрібна правильно побудована повна форма: will show up."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:word:come-along",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — come along",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:word:come-along:audio"
+        ],
+        "accessibilityLabel": "Картка слова — come along",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:word:come-along:audio",
+            "transcript": "come along"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:word:come-along:r1",
+              "targetText": "come along",
+              "meaningByLocale": {
+                "ru": "пойти или поехать вместе с кем-то.",
+                "uk": "піти або поїхати разом із кимось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "come along",
+            "definitionByLocale": {
+              "ru": "пойти или поехать вместе с кем-то.",
+              "uk": "піти або поїхати разом із кимось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will. Скажіть: «Думаю, Анна піде з нами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will. Скажіть: «Думаю, Анна піде з нами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think Anna will come along.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will. Скажите: «Думаю, Анна пойдёт с нами».",
+            "uk": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will. Скажіть: «Думаю, Анна піде з нами»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "Anna",
+            "will",
+            "come",
+            "along"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i05:r1",
+            "text": "I think Anna will come along."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i05:r2",
+            "text": "I think Anna is going to come along."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i05:r3",
+            "text": "I think Anna will to come along."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i05:audio",
+            "transcript": "I think Anna will come along."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:i05:r1",
+              "targetText": "I think Anna will come along.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i05:r2",
+              "targetText": "I think Anna is going to come along.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i05:r3",
+              "targetText": "I think Anna will to come along.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Anna will come along.",
+                "uk": "У записі звучить I think Anna will come along."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think Anna will come along.",
+                "uk": "У записі звучить I think Anna will come along."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i06:r1",
+            "text": "will come along"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i06:r2",
+            "text": "is going to come along"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i06:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что Анна присоединится к вашей прогулке; её ответа ещё нет. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think Anna ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-48:i06:r1",
+              "text": "will come along"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i06:r2",
+              "text": "is going to come along"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i06:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що Анна приєднається до вашої прогулянки; її відповіді ще немає. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will come along.",
+                "uk": "Потрібна правильно побудована повна форма: will come along."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:word:get-together",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — get together",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:word:get-together:audio"
+        ],
+        "accessibilityLabel": "Картка слова — get together",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:word:get-together:audio",
+            "transcript": "get together"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:word:get-together:r1",
+              "targetText": "get together",
+              "meaningByLocale": {
+                "ru": "собраться, встретиться для общения.",
+                "uk": "зібратися, зустрітися для спілкування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "get together",
+            "definitionByLocale": {
+              "ru": "собраться, встретиться для общения.",
+              "uk": "зібратися, зустрітися для спілкування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся незабаром зустрітися з друзями».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся незабаром зустрітися з друзями».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to get together with friends soon.",
+          "localizedMeaning": {
+            "ru": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь скоро встретиться с друзьями».",
+            "uk": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся незабаром зустрітися з друзями»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "get",
+            "together",
+            "with",
+            "friends",
+            "soon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i08:r1",
+            "text": "I am going to get together with friends soon."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i08:r2",
+            "text": "I am getting together with friends soon."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i08:r3",
+            "text": "I is going to get together with friends soon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i08:audio",
+            "transcript": "I am going to get together with friends soon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:i08:r1",
+              "targetText": "I am going to get together with friends soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i08:r2",
+              "targetText": "I am getting together with friends soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i08:r3",
+              "targetText": "I is going to get together with friends soon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to get together with friends soon.",
+                "uk": "У записі звучить I am going to get together with friends soon."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to get together with friends soon.",
+                "uk": "У записі звучить I am going to get together with friends soon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i09:r1",
+            "text": "am going to get together"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i09:r2",
+            "text": "am getting together"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили встретиться с друзьями, но день и место пока не согласовали. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ with friends soon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-48:i09:r1",
+              "text": "am going to get together"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i09:r2",
+              "text": "am getting together"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to get together.",
+                "uk": "Потрібна правильно побудована повна форма: am going to get together."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:word:head-out",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — head out",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:word:head-out:audio"
+        ],
+        "accessibilityLabel": "Картка слова — head out",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:word:head-out:audio",
+            "transcript": "head out"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:word:head-out:r1",
+              "targetText": "head out",
+              "meaningByLocale": {
+                "ru": "выйти, отправиться куда-либо.",
+                "uk": "вийти, вирушити кудись."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "head out",
+            "definitionByLocale": {
+              "ru": "выйти, отправиться куда-либо.",
+              "uk": "вийти, вирушити кудись."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми виходимо о восьмій».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми виходимо о восьмій».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are heading out at eight tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы выходим в восемь».",
+            "uk": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми виходимо о восьмій»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "heading",
+            "out",
+            "at",
+            "eight",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i11:r1",
+            "text": "We are heading out at eight tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i11:r2",
+            "text": "We are going to head out at eight tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i11:r3",
+            "text": "We is heading out at eight tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i11:audio",
+            "transcript": "We are heading out at eight tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-48:i11:r1",
+              "targetText": "We are heading out at eight tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i11:r2",
+              "targetText": "We are going to head out at eight tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i11:r3",
+              "targetText": "We is heading out at eight tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are heading out at eight tomorrow.",
+                "uk": "У записі звучить We are heading out at eight tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are heading out at eight tomorrow.",
+                "uk": "У записі звучить We are heading out at eight tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-48:i12:r1",
+            "text": "are heading out"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i12:r2",
+            "text": "are going to head out"
+          },
+          {
+            "responseId": "en:lesson-16:session-48:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ at eight tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-48:i12:r1",
+              "text": "are heading out"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i12:r2",
+              "text": "are going to head out"
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are heading out.",
+                "uk": "Потрібна правильно побудована повна форма: are heading out."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-48:i13:p1",
+              "target": "show up",
+              "meaningByLocale": {
+                "ru": "прийти, появиться в условленном месте",
+                "uk": "прийти, з’явитися в домовленому місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-48:i13:p2",
+              "target": "come along",
+              "meaningByLocale": {
+                "ru": "пойти или поехать вместе с кем-то",
+                "uk": "піти або поїхати разом із кимось"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-48:i13:p3",
+              "target": "get together",
+              "meaningByLocale": {
+                "ru": "собраться, встретиться для общения",
+                "uk": "зібратися, зустрітися для спілкування"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-48:i13:p4",
+              "target": "head out",
+              "meaningByLocale": {
+                "ru": "выйти, отправиться куда-либо",
+                "uk": "вийти, вирушити кудись"
+              }
+            }
+          ],
+          "leftColumn": [
+            "show up",
+            "come along",
+            "get together",
+            "head out"
+          ],
+          "rightColumn": [
+            "прийти, з’явитися в домовленому місці",
+            "піти або поїхати разом із кимось",
+            "зібратися, зустрітися для спілкування",
+            "вийти, вирушити кудись"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i14:audio",
+            "transcript": "I think Tom will show up on time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think Tom will show up on time.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "Tom",
+            "will",
+            "show",
+            "up",
+            "on",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i15:audio",
+            "transcript": "I am going to get together with friends soon."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to get together with friends soon.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "get",
+            "together",
+            "with",
+            "friends",
+            "soon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i16:audio",
+            "transcript": "We are heading out at eight tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are heading out at eight tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте думку-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-48:i17:audio",
+            "transcript": "I think Anna will come along."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think Anna will come along.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-48:word:show-up",
+      "correctText": "show up",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i01",
+      "correctText": "I think Tom will show up on time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i02",
+      "correctText": "I think Tom will show up on time.",
+      "correctResponseId": "en:lesson-16:session-48:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i03",
+      "correctText": "will show up",
+      "correctResponseId": "en:lesson-16:session-48:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:word:come-along",
+      "correctText": "come along",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i04",
+      "correctText": "I think Anna will come along.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i05",
+      "correctText": "I think Anna will come along.",
+      "correctResponseId": "en:lesson-16:session-48:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i06",
+      "correctText": "will come along",
+      "correctResponseId": "en:lesson-16:session-48:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:word:get-together",
+      "correctText": "get together",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i07",
+      "correctText": "I am going to get together with friends soon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i08",
+      "correctText": "I am going to get together with friends soon.",
+      "correctResponseId": "en:lesson-16:session-48:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i09",
+      "correctText": "am going to get together",
+      "correctResponseId": "en:lesson-16:session-48:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:word:head-out",
+      "correctText": "head out",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i10",
+      "correctText": "We are heading out at eight tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i11",
+      "correctText": "We are heading out at eight tomorrow.",
+      "correctResponseId": "en:lesson-16:session-48:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i12",
+      "correctText": "are heading out",
+      "correctResponseId": "en:lesson-16:session-48:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i14",
+      "correctText": "I think Tom will show up on time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i15",
+      "correctText": "I am going to get together with friends soon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i16",
+      "correctText": "We are heading out at eight tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-48:i17",
+      "correctText": "I think Anna will come along.",
+      "correctResponseId": null
+    }
+  ]
+}

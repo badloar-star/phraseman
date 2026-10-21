@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. unripe — неспелый. Вы ещё не получили заказанные груши и предполагаете, что они окажутся неспелыми. I think the pears will be unripe. — Думаю, груши будут неспелыми. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. unripe — недостиглий. Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. I think the pears will be unripe. — Думаю, груші будуть недостиглими. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-42:intro1:r1",
+              "text": "I think the pears will be unripe."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro1:r2",
+              "text": "I think the pears are going to be unripe."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro1:r3",
+              "text": "I think the pears will to be unripe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-42:intro1:r1",
+              "text": "I think the pears will be unripe."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro1:r2",
+              "text": "I think the pears are going to be unripe."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro1:r3",
+              "text": "I think the pears will to be unripe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "overripe — переспелый. bruised — с помятыми, потемневшими местами — о фруктах. Вы решили испечь пирог из яблок с небольшими помятыми местами; это пока намерение. I am going to use the bruised apples for a pie. — Я собираюсь использовать помятые яблоки для пирога. Передайте заранее принятое намерение через going to.",
+        "uk": "overripe — перестиглий. bruised — із пом’ятими, потемнілими місцями — про фрукти. Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. I am going to use the bruised apples for a pie. — Я збираюся використати пом’яті яблука для пирога. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-42:intro2:r1",
+              "text": "I am going to use the bruised apples for a pie."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro2:r2",
+              "text": "I am using the bruised apples for a pie."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro2:r3",
+              "text": "I is going to use the bruised apples for a pie."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-42:intro2:r1",
+              "text": "I am going to use the bruised apples for a pie."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro2:r2",
+              "text": "I am using the bruised apples for a pie."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro2:r3",
+              "text": "I is going to use the bruised apples for a pie."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "seedless — без косточек или семян. Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. We are collecting the seedless grapes tomorrow. — Мы забираем виноград без косточек завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "seedless — без кісточок або насіння. Ви замовили виноград і узгодили з продавцем, що заберете його завтра. We are collecting the seedless grapes tomorrow. — Ми забираємо виноград без кісточок завтра. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-42:intro3:r1",
+              "text": "We are collecting the seedless grapes tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro3:r2",
+              "text": "We are going to collect the seedless grapes tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro3:r3",
+              "text": "We is collecting the seedless grapes tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-42:intro3:r1",
+              "text": "We are collecting the seedless grapes tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro3:r2",
+              "text": "We are going to collect the seedless grapes tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-42:intro3:r3",
+              "text": "We is collecting the seedless grapes tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b998238f8cdf61ebf486f04aad1e6db22c2f15855dfeeeba05c94481fd4e4e24"
+}

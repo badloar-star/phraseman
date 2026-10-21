@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-41:word:smoky",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — smoky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:word:smoky:audio"
+      ],
+      "accessibilityLabel": "Картка слова — smoky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:word:smoky:audio",
+          "transcript": "smoky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-41:word:smoky:r1",
+            "targetText": "smoky",
+            "meaningByLocale": {
+              "ru": "с дымным вкусом или ароматом.",
+              "uk": "з димним смаком або ароматом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smoky",
+          "definitionByLocale": {
+            "ru": "с дымным вкусом или ароматом.",
+            "uk": "з димним смаком або ароматом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви ще не куштували сир і припускаєте, яким буде його смак. Передайте думку-прогноз через will. Скажіть: «Думаю, сир матиме димний смак».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не куштували сир і припускаєте, яким буде його смак. Передайте думку-прогноз через will. Скажіть: «Думаю, сир матиме димний смак».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the cheese will be smoky.",
+        "localizedMeaning": {
+          "ru": "Вы ещё не пробовали сыр и предполагаете, каким будет его вкус. Передайте мнение-прогноз через will. Скажите: «Думаю, у сыра будет дымный вкус».",
+          "uk": "Ви ще не куштували сир і припускаєте, яким буде його смак. Передайте думку-прогноз через will. Скажіть: «Думаю, сир матиме димний смак»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "cheese",
+          "will",
+          "be",
+          "smoky"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-41:i02:r1",
+          "text": "I think the cheese will be smoky."
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i02:r2",
+          "text": "I think the cheese is going to be smoky."
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i02:r3",
+          "text": "I think the cheese will to be smoky."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:i02:audio",
+          "transcript": "I think the cheese will be smoky."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-41:i02:r1",
+            "targetText": "I think the cheese will be smoky.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i02:r2",
+            "targetText": "I think the cheese is going to be smoky.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i02:r3",
+            "targetText": "I think the cheese will to be smoky.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the cheese will be smoky.",
+              "uk": "У записі звучить I think the cheese will be smoky."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the cheese will be smoky.",
+              "uk": "У записі звучить I think the cheese will be smoky."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ще не куштували сир і припускаєте, яким буде його смак. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-41:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i03:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не куштували сир і припускаєте, яким буде його смак. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не пробовали сыр и предполагаете, каким будет его вкус. Передайте мнение-прогноз через will.",
+          "uk": "Ви ще не куштували сир і припускаєте, яким буде його смак. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the cheese ___ smoky.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-41:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви ще не куштували сир і припускаєте, яким буде його смак. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви ще не куштували сир і припускаєте, яким буде його смак. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви ще не куштували сир і припускаєте, яким буде його смак. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:word:nutty",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nutty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:word:nutty:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nutty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:word:nutty:audio",
+          "transcript": "nutty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-41:word:nutty:r1",
+            "targetText": "nutty",
+            "meaningByLocale": {
+              "ru": "с ореховым вкусом или ароматом.",
+              "uk": "з горіховим смаком або ароматом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nutty",
+          "definitionByLocale": {
+            "ru": "с ореховым вкусом или ароматом.",
+            "uk": "з горіховим смаком або ароматом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви висловлюєте припущення про смак пирога, якого ще не куштували. Передайте думку-прогноз через will. Скажіть: «Думаю, пиріг матиме горіховий смак».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви висловлюєте припущення про смак пирога, якого ще не куштували. Передайте думку-прогноз через will. Скажіть: «Думаю, пиріг матиме горіховий смак».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the cake will be nutty.",
+        "localizedMeaning": {
+          "ru": "Вы высказываете предположение о вкусе пирога, который ещё не пробовали. Передайте мнение-прогноз через will. Скажите: «Думаю, у пирога будет ореховый вкус».",
+          "uk": "Ви висловлюєте припущення про смак пирога, якого ще не куштували. Передайте думку-прогноз через will. Скажіть: «Думаю, пиріг матиме горіховий смак»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "cake",
+          "will",
+          "be",
+          "nutty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-41:i05:r1",
+          "text": "I think the cake will be nutty."
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i05:r2",
+          "text": "I think the cake is going to be nutty."
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i05:r3",
+          "text": "I think the cake will to be nutty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:i05:audio",
+          "transcript": "I think the cake will be nutty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-41:i05:r1",
+            "targetText": "I think the cake will be nutty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i05:r2",
+            "targetText": "I think the cake is going to be nutty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i05:r3",
+            "targetText": "I think the cake will to be nutty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the cake will be nutty.",
+              "uk": "У записі звучить I think the cake will be nutty."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the cake will be nutty.",
+              "uk": "У записі звучить I think the cake will be nutty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви висловлюєте припущення про смак пирога, якого ще не куштували. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-41:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i06:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви висловлюєте припущення про смак пирога, якого ще не куштували. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы высказываете предположение о вкусе пирога, который ещё не пробовали. Передайте мнение-прогноз через will.",
+          "uk": "Ви висловлюєте припущення про смак пирога, якого ще не куштували. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the cake ___ nutty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-41:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви висловлюєте припущення про смак пирога, якого ще не куштували. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви висловлюєте припущення про смак пирога, якого ще не куштували. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви висловлюєте припущення про смак пирога, якого ще не куштували. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:word:savoury",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — savoury",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:word:savoury:audio"
+      ],
+      "accessibilityLabel": "Картка слова — savoury",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:word:savoury:audio",
+          "transcript": "savoury"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-41:word:savoury:r1",
+            "targetText": "savoury",
+            "meaningByLocale": {
+              "ru": "несладкий — о еде, обычно солёной или пряной.",
+              "uk": "несолодкий — про їжу, зазвичай солону або пряну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "savoury",
+          "definitionByLocale": {
+            "ru": "несладкий — о еде, обычно солёной или пряной.",
+            "uk": "несолодкий — про їжу, зазвичай солону або пряну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся приготувати несолодкий пиріг».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся приготувати несолодкий пиріг».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to make a savoury pie.",
+        "localizedMeaning": {
+          "ru": "Вы решили приготовить пирог с овощами вместо сладкого; это пока намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь приготовить несладкий пирог».",
+          "uk": "Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся приготувати несолодкий пиріг»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "make",
+          "a",
+          "savoury",
+          "pie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-41:i08:r1",
+          "text": "I am going to make a savoury pie."
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i08:r2",
+          "text": "I am making a savoury pie."
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i08:r3",
+          "text": "I is going to make a savoury pie."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:i08:audio",
+          "transcript": "I am going to make a savoury pie."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-41:i08:r1",
+            "targetText": "I am going to make a savoury pie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i08:r2",
+            "targetText": "I am making a savoury pie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i08:r3",
+            "targetText": "I is going to make a savoury pie.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to make a savoury pie.",
+              "uk": "У записі звучить I am going to make a savoury pie."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to make a savoury pie.",
+              "uk": "У записі звучить I am going to make a savoury pie."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-41:i09:r1",
+          "text": "am going to make"
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i09:r2",
+          "text": "am making"
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили приготовить пирог с овощами вместо сладкого; это пока намерение. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a savoury pie.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-41:i09:r1",
+            "text": "am going to make"
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i09:r2",
+            "text": "am making"
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to make.",
+              "uk": "Потрібна правильно побудована повна форма: am going to make."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:word:tangy",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tangy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:word:tangy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tangy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:word:tangy:audio",
+          "transcript": "tangy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-41:word:tangy:r1",
+            "targetText": "tangy",
+            "meaningByLocale": {
+              "ru": "с приятным кисловатым вкусом.",
+              "uk": "із приємним кислуватим смаком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tangy",
+          "definitionByLocale": {
+            "ru": "с приятным кисловатым вкусом.",
+            "uk": "із приємним кислуватим смаком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми куштуємо кислуватий соус завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми куштуємо кислуватий соус завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are tasting a tangy sauce tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы договорились с подругой завтра прийти к ней и попробовать её новый соус. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы пробуем кисловатый соус завтра».",
+          "uk": "Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми куштуємо кислуватий соус завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "tasting",
+          "a",
+          "tangy",
+          "sauce",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-41:i11:r1",
+          "text": "We are tasting a tangy sauce tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i11:r2",
+          "text": "We are going to taste a tangy sauce tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i11:r3",
+          "text": "We is tasting a tangy sauce tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:i11:audio",
+          "transcript": "We are tasting a tangy sauce tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-41:i11:r1",
+            "targetText": "We are tasting a tangy sauce tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i11:r2",
+            "targetText": "We are going to taste a tangy sauce tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i11:r3",
+            "targetText": "We is tasting a tangy sauce tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are tasting a tangy sauce tomorrow.",
+              "uk": "У записі звучить We are tasting a tangy sauce tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are tasting a tangy sauce tomorrow.",
+              "uk": "У записі звучить We are tasting a tangy sauce tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-41:i12:r1",
+          "text": "are tasting"
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i12:r2",
+          "text": "are going to taste"
+        },
+        {
+          "responseId": "en:lesson-16:session-41:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы договорились с подругой завтра прийти к ней и попробовать её новый соус. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ a tangy sauce tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-41:i12:r1",
+            "text": "are tasting"
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i12:r2",
+            "text": "are going to taste"
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are tasting.",
+              "uk": "Потрібна правильно побудована повна форма: are tasting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-41:i13:p1",
+            "target": "smoky",
+            "meaningByLocale": {
+              "ru": "с дымным вкусом или ароматом",
+              "uk": "з димним смаком або ароматом"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-41:i13:p2",
+            "target": "nutty",
+            "meaningByLocale": {
+              "ru": "с ореховым вкусом или ароматом",
+              "uk": "з горіховим смаком або ароматом"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-41:i13:p3",
+            "target": "savoury",
+            "meaningByLocale": {
+              "ru": "несладкий",
+              "uk": "несолодкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-41:i13:p4",
+            "target": "tangy",
+            "meaningByLocale": {
+              "ru": "с приятным кисловатым вкусом",
+              "uk": "із приємним кислуватим смаком"
+            }
+          }
+        ],
+        "leftColumn": [
+          "smoky",
+          "nutty",
+          "savoury",
+          "tangy"
+        ],
+        "rightColumn": [
+          "з димним смаком або ароматом",
+          "з горіховим смаком або ароматом",
+          "несолодкий",
+          "із приємним кислуватим смаком"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:i14:audio",
+          "transcript": "I think the cheese will be smoky."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the cheese will be smoky.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "cheese",
+          "will",
+          "be",
+          "smoky"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:i15:audio",
+          "transcript": "I am going to make a savoury pie."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to make a savoury pie.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "make",
+          "a",
+          "savoury",
+          "pie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:i16:audio",
+          "transcript": "We are tasting a tangy sauce tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are tasting a tangy sauce tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте думку-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-41:i17:audio",
+          "transcript": "I think the cake will be nutty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the cake will be nutty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2698409433dab67b3d6e4cb2f7085f793f5617a3febc2fc82c57aace5aadfa74"
+}

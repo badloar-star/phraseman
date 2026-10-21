@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. smoky — с дымным вкусом или ароматом. Вы ещё не пробовали сыр и предполагаете, каким будет его вкус. I think the cheese will be smoky. — Думаю, у сыра будет дымный вкус. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. smoky — з димним смаком або ароматом. Ви ще не куштували сир і припускаєте, яким буде його смак. I think the cheese will be smoky. — Думаю, сир матиме димний смак. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-41:intro1:r1",
+              "text": "I think the cheese will be smoky."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro1:r2",
+              "text": "I think the cheese is going to be smoky."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro1:r3",
+              "text": "I think the cheese will to be smoky."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-41:intro1:r1",
+              "text": "I think the cheese will be smoky."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro1:r2",
+              "text": "I think the cheese is going to be smoky."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro1:r3",
+              "text": "I think the cheese will to be smoky."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "nutty — с ореховым вкусом или ароматом. savoury — несладкий — о еде, обычно солёной или пряной. Вы решили приготовить пирог с овощами вместо сладкого; это пока намерение. I am going to make a savoury pie. — Я собираюсь приготовить несладкий пирог. Передайте заранее принятое намерение через going to.",
+        "uk": "nutty — з горіховим смаком або ароматом. savoury — несолодкий — про їжу, зазвичай солону або пряну. Ви вирішили приготувати пиріг з овочами замість солодкого; це поки намір. I am going to make a savoury pie. — Я збираюся приготувати несолодкий пиріг. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-41:intro2:r1",
+              "text": "I am going to make a savoury pie."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro2:r2",
+              "text": "I am making a savoury pie."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro2:r3",
+              "text": "I is going to make a savoury pie."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-41:intro2:r1",
+              "text": "I am going to make a savoury pie."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro2:r2",
+              "text": "I am making a savoury pie."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro2:r3",
+              "text": "I is going to make a savoury pie."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "tangy — с приятным кисловатым вкусом. Вы договорились с подругой завтра прийти к ней и попробовать её новый соус. We are tasting a tangy sauce tomorrow. — Мы пробуем кисловатый соус завтра. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "tangy — із приємним кислуватим смаком. Ви домовилися з подругою завтра прийти до неї й скуштувати її новий соус. We are tasting a tangy sauce tomorrow. — Ми куштуємо кислуватий соус завтра. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-41:intro3:r1",
+              "text": "We are tasting a tangy sauce tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro3:r2",
+              "text": "We are going to taste a tangy sauce tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro3:r3",
+              "text": "We is tasting a tangy sauce tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-41:intro3:r1",
+              "text": "We are tasting a tangy sauce tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro3:r2",
+              "text": "We are going to taste a tangy sauce tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-41:intro3:r3",
+              "text": "We is tasting a tangy sauce tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2b47e85233480f1f59b88cb790c7b014ccbeb8a0e247bb3615cd3475f7660ec3"
+}

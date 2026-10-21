@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-42:word:unripe",
+    "correctText": "unripe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i01",
+    "correctText": "I think the pears will be unripe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i02",
+    "correctText": "I think the pears will be unripe.",
+    "correctResponseId": "en:lesson-16:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:word:overripe",
+    "correctText": "overripe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i04",
+    "correctText": "I think the bananas will be overripe tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i05",
+    "correctText": "I think the bananas will be overripe tomorrow.",
+    "correctResponseId": "en:lesson-16:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:word:bruised",
+    "correctText": "bruised",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i07",
+    "correctText": "I am going to use the bruised apples for a pie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i08",
+    "correctText": "I am going to use the bruised apples for a pie.",
+    "correctResponseId": "en:lesson-16:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i09",
+    "correctText": "am going to use",
+    "correctResponseId": "en:lesson-16:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:word:seedless",
+    "correctText": "seedless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i10",
+    "correctText": "We are collecting the seedless grapes tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i11",
+    "correctText": "We are collecting the seedless grapes tomorrow.",
+    "correctResponseId": "en:lesson-16:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i12",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-16:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i13",
+    "correctText": "en:lesson-16:session-42:i13:p1=unripe\nen:lesson-16:session-42:i13:p2=overripe\nen:lesson-16:session-42:i13:p3=bruised\nen:lesson-16:session-42:i13:p4=seedless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i14",
+    "correctText": "I think the pears will be unripe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i15",
+    "correctText": "I am going to use the bruised apples for a pie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i16",
+    "correctText": "We are collecting the seedless grapes tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-42:i17",
+    "correctText": "I think the bananas will be overripe tomorrow.",
+    "correctResponseId": null
+  }
+]

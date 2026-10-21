@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "will / going to / Present Continuous: future form contrast",
+    "uk": "will / going to / Present Continuous: future form contrast"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мнение о будущем",
+        "uk": "Думка про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. nod off — задремать, ненадолго уснуть. Вы предполагаете, что после долгого дня можете задремать по дороге домой. I think I will nod off on the train. — Думаю, я задремлю в поезде. Передайте мнение-прогноз через will.",
+        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. nod off — задрімати, ненадовго заснути. Ви припускаєте, що після довгого дня можете задрімати дорогою додому. I think I will nod off on the train. — Думаю, я задрімаю в потязі. Передайте думку-прогноз через will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-46:intro1:r1",
+              "text": "I think I will nod off on the train."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro1:r2",
+              "text": "I think I am going to nod off on the train."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro1:r3",
+              "text": "I think I will to nod off on the train."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-46:intro1:r1",
+              "text": "I think I will nod off on the train."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro1:r2",
+              "text": "I think I am going to nod off on the train."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro1:r3",
+              "text": "I think I will to nod off on the train."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Намерение уже принято",
+        "uk": "Намір уже прийнято"
+      },
+      "bodyByLocale": {
+        "ru": "warm up — размяться перед физической нагрузкой. freshen up — освежиться, умыться или привести себя в порядок. После дороги вы решили умыться перед ужином и сообщаете об этом намерении. I am going to freshen up before dinner. — Я собираюсь освежиться перед ужином. Передайте заранее принятое намерение через going to.",
+        "uk": "warm up — розім’ятися перед фізичним навантаженням. freshen up — освіжитися, вмитися або привести себе до ладу. Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. I am going to freshen up before dinner. — Я збираюся освіжитися перед вечерею. Передайте заздалегідь прийнятий намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-46:intro2:r1",
+              "text": "I am going to freshen up before dinner."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro2:r2",
+              "text": "I am freshening up before dinner."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro2:r3",
+              "text": "I is going to freshen up before dinner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-46:intro2:r1",
+              "text": "I am going to freshen up before dinner."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro2:r2",
+              "text": "I am freshening up before dinner."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro2:r3",
+              "text": "I is going to freshen up before dinner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дело согласовано",
+        "uk": "Справу узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "wind down — расслабиться после напряжённого дня или дела. Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. We are winding down at the spa tomorrow. — Завтра мы отдыхаем в спа после напряжённых дней. Передайте подтверждённую договорённость через Present Continuous.",
+        "uk": "wind down — розслабитися після напруженого дня або справи. Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. We are winding down at the spa tomorrow. — Завтра ми відпочиваємо в спа після напружених днів. Передайте підтверджену домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-46:intro3:r1",
+              "text": "We are winding down at the spa tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro3:r2",
+              "text": "We are going to wind down at the spa tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro3:r3",
+              "text": "We is winding down at the spa tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-46:intro3:r1",
+              "text": "We are winding down at the spa tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro3:r2",
+              "text": "We are going to wind down at the spa tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-46:intro3:r3",
+              "text": "We is winding down at the spa tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "64fb50fd32bb73971b2f77c2e162453d56db2fc89cfe071f88011c8ab5e0301d"
+}

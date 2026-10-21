@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-46:word:nod-off",
+    "correctText": "nod off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i01",
+    "correctText": "I think I will nod off on the train.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i02",
+    "correctText": "I think I will nod off on the train.",
+    "correctResponseId": "en:lesson-16:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i03",
+    "correctText": "will nod off",
+    "correctResponseId": "en:lesson-16:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:word:warm-up",
+    "correctText": "warm up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i04",
+    "correctText": "I think the team will warm up outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i05",
+    "correctText": "I think the team will warm up outside.",
+    "correctResponseId": "en:lesson-16:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i06",
+    "correctText": "will warm up",
+    "correctResponseId": "en:lesson-16:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:word:freshen-up",
+    "correctText": "freshen up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i07",
+    "correctText": "I am going to freshen up before dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i08",
+    "correctText": "I am going to freshen up before dinner.",
+    "correctResponseId": "en:lesson-16:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i09",
+    "correctText": "am going to freshen up",
+    "correctResponseId": "en:lesson-16:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:word:wind-down",
+    "correctText": "wind down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i10",
+    "correctText": "We are winding down at the spa tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i11",
+    "correctText": "We are winding down at the spa tomorrow.",
+    "correctResponseId": "en:lesson-16:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i12",
+    "correctText": "are winding down",
+    "correctResponseId": "en:lesson-16:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i13",
+    "correctText": "en:lesson-16:session-46:i13:p1=nod off\nen:lesson-16:session-46:i13:p2=warm up\nen:lesson-16:session-46:i13:p3=freshen up\nen:lesson-16:session-46:i13:p4=wind down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i14",
+    "correctText": "I think I will nod off on the train.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i15",
+    "correctText": "I am going to freshen up before dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i16",
+    "correctText": "We are winding down at the spa tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-46:i17",
+    "correctText": "I think the team will warm up outside.",
+    "correctResponseId": null
+  }
+]

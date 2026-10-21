@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "rise → rose; have → had; was/were",
+    "uk": "rise → rose; have → had; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Восход солнца",
+        "uk": "Схід сонця"
+      },
+      "bodyByLocale": {
+        "ru": "Rise → rose. The sun rose at six — солнце взошло в шесть. Rose здесь форма глагола rise, а не название цветка. Выберите сообщение о прошлом утре.",
+        "uk": "Rise → rose. The sun rose at six — сонце зійшло о шостій. Rose тут форма дієслова rise, а не назва квітки. Виберіть повідомлення про минулий ранок."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-12:intro1:r1",
+              "text": "The sun rose at six yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro1:r2",
+              "text": "The sun rises at six yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro1:r3",
+              "text": "The sun rised at six yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-12:intro1:r1",
+              "text": "The sun rose at six yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro1:r2",
+              "text": "The sun rises at six yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro1:r3",
+              "text": "The sun rised at six yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что было на завтрак",
+        "uk": "Що було на сніданок"
+      },
+      "bodyByLocale": {
+        "ru": "Breakfast cereal — «сухой завтрак, например хлопья», fruit yoghurt — «фруктовый йогурт». Have → had уже знакомо: I had breakfast cereal — я ел хлопья на завтрак. Выберите сообщение о хлопьях.",
+        "uk": "Breakfast cereal — «сухий сніданок, наприклад пластівці», fruit yoghurt — «фруктовий йогурт». Have → had уже знайоме: I had breakfast cereal — я їв пластівці на сніданок. Виберіть повідомлення про пластівці."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-12:intro2:r1",
+              "text": "I had breakfast cereal."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro2:r2",
+              "text": "I had fruit yoghurt."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro2:r3",
+              "text": "I have breakfast cereal yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-12:intro2:r1",
+              "text": "I had breakfast cereal."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro2:r2",
+              "text": "I had fruit yoghurt."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro2:r3",
+              "text": "I have breakfast cereal yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Яйцо и сыр",
+        "uk": "Яйце й сир"
+      },
+      "bodyByLocale": {
+        "ru": "Boiled egg — «варёное яйцо», soft cheese — «мягкий сыр». I had a boiled egg — я ел варёное яйцо. Для сыра говорим some soft cheese или просто soft cheese: She had some soft cheese. Выберите сообщение о сыре.",
+        "uk": "Boiled egg — «варене яйце», soft cheese — «м’який сир». I had a boiled egg — я їв варене яйце. Для сиру кажемо some soft cheese або просто soft cheese: She had some soft cheese. Виберіть повідомлення про сир."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-12:intro3:r1",
+              "text": "She had some soft cheese."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro3:r2",
+              "text": "She had a boiled egg."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro3:r3",
+              "text": "She has some soft cheese yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-12:intro3:r1",
+              "text": "She had some soft cheese."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro3:r2",
+              "text": "She had a boiled egg."
+            },
+            {
+              "responseId": "en:lesson-12:session-12:intro3:r3",
+              "text": "She has some soft cheese yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "069bd67dd511ef6ea1b1018b75c9d36ce2f1a5054026b14a5f403217b35adbd4"
+}

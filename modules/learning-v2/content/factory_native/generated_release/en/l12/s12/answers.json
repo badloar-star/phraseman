@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-12:word:breakfast-cereal",
+    "correctText": "breakfast cereal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i01",
+    "correctText": "I had breakfast cereal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i02",
+    "correctText": "She had breakfast cereal.",
+    "correctResponseId": "en:lesson-12:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i03",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-12:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:word:fruit-yoghurt",
+    "correctText": "fruit yoghurt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i04",
+    "correctText": "We had fruit yoghurt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i05",
+    "correctText": "He had fruit yoghurt.",
+    "correctResponseId": "en:lesson-12:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i06",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-12:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:word:boiled-egg",
+    "correctText": "boiled egg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i07",
+    "correctText": "I had a boiled egg.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i08",
+    "correctText": "She had a boiled egg.",
+    "correctResponseId": "en:lesson-12:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i09",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-12:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:word:soft-cheese",
+    "correctText": "soft cheese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i10",
+    "correctText": "We had some soft cheese.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i11",
+    "correctText": "I had some soft cheese.",
+    "correctResponseId": "en:lesson-12:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i12",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-12:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i13",
+    "correctText": "en:lesson-12:session-12:i13:p1=breakfast cereal\nen:lesson-12:session-12:i13:p2=fruit yoghurt\nen:lesson-12:session-12:i13:p3=boiled egg\nen:lesson-12:session-12:i13:p4=soft cheese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i14",
+    "correctText": "The sun rose at six.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i15",
+    "correctText": "We had breakfast at seven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i16",
+    "correctText": "The fruit yoghurt was cold yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-12:i17",
+    "correctText": "She had a boiled egg for breakfast yesterday.",
+    "correctResponseId": null
+  }
+]

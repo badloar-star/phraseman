@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-11:word:teddy-bear",
+    "correctText": "teddy bear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i01",
+    "correctText": "I hid the teddy bear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i02",
+    "correctText": "She hid the teddy bear.",
+    "correctResponseId": "en:lesson-12:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i03",
+    "correctText": "hid",
+    "correctResponseId": "en:lesson-12:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:word:toy-car",
+    "correctText": "toy car",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i04",
+    "correctText": "He hid the toy car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i05",
+    "correctText": "We hid the toy car.",
+    "correctResponseId": "en:lesson-12:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i06",
+    "correctText": "hid",
+    "correctResponseId": "en:lesson-12:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:word:building-blocks",
+    "correctText": "building blocks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i07",
+    "correctText": "We cleaned the building blocks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i08",
+    "correctText": "She cleaned the building blocks.",
+    "correctResponseId": "en:lesson-12:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i09",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:word:toy-box",
+    "correctText": "toy box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i10",
+    "correctText": "I cleaned the toy box.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i11",
+    "correctText": "They cleaned the toy box.",
+    "correctResponseId": "en:lesson-12:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i12",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i13",
+    "correctText": "en:lesson-12:session-11:i13:p1=teddy bear\nen:lesson-12:session-11:i13:p2=toy car\nen:lesson-12:session-11:i13:p3=building blocks\nen:lesson-12:session-11:i13:p4=toy box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i14",
+    "correctText": "She hid the car keys.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i15",
+    "correctText": "I saw a toy car in the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i16",
+    "correctText": "The building blocks were on the floor yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-11:i17",
+    "correctText": "I hid the teddy bear under the bed.",
+    "correctResponseId": null
+  }
+]

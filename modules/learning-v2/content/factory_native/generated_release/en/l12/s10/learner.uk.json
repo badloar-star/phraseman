@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-10:word:vegetable-patch",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — vegetable patch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:word:vegetable-patch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — vegetable patch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:word:vegetable-patch:audio",
+          "transcript": "vegetable patch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-10:word:vegetable-patch:r1",
+            "targetText": "vegetable patch",
+            "meaningByLocale": {
+              "ru": "грядка или участок для выращивания овощей.",
+              "uk": "грядка або ділянка для вирощування овочів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vegetable patch",
+          "definitionByLocale": {
+            "ru": "грядка или участок для выращивания овощей.",
+            "uk": "грядка або ділянка для вирощування овочів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми вирощували моркву на грядці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми вирощували моркву на грядці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We grew carrots in the vegetable patch.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы выращивали морковь на грядке",
+          "uk": "Скажіть: Ми вирощували моркву на грядці"
+        },
+        "orderedTokens": [
+          "We",
+          "grew",
+          "carrots",
+          "in",
+          "the",
+          "vegetable",
+          "patch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-10:i02:r1",
+          "text": "She grew carrots in the vegetable patch."
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i02:r2",
+          "text": "She grows carrots in the vegetable patch."
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i02:r3",
+          "text": "We grew carrots in the vegetable patch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:i02:audio",
+          "transcript": "She grew carrots in the vegetable patch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-10:i02:r1",
+            "targetText": "She grew carrots in the vegetable patch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i02:r2",
+            "targetText": "She grows carrots in the vegetable patch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i02:r3",
+            "targetText": "We grew carrots in the vegetable patch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She grew carrots in the vegetable patch.",
+              "uk": "У записі звучить She grew carrots in the vegetable patch."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She grew carrots in the vegetable patch.",
+              "uk": "У записі звучить She grew carrots in the vegetable patch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-10:i03:r1",
+          "text": "grew"
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i03:r2",
+          "text": "grow"
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i03:r3",
+          "text": "grows"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ carrots in the vegetable patch last summer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-10:i03:r1",
+            "text": "grew"
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i03:r2",
+            "text": "grow"
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i03:r3",
+            "text": "grows"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма grew.",
+              "uk": "Для минулого потрібна форма grew."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна grew.",
+              "uk": "Це не форма минулого. Потрібна grew."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:word:seed-packet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — seed packet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:word:seed-packet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — seed packet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:word:seed-packet:audio",
+          "transcript": "seed packet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-10:word:seed-packet:r1",
+            "targetText": "seed packet",
+            "meaningByLocale": {
+              "ru": "пакетик семян.",
+              "uk": "пакетик насіння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seed packet",
+          "definitionByLocale": {
+            "ru": "пакетик семян.",
+            "uk": "пакетик насіння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я вибрав пакетик насіння",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я вибрав пакетик насіння",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I chose a seed packet.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я выбрал пакетик семян",
+          "uk": "Скажіть: Я вибрав пакетик насіння"
+        },
+        "orderedTokens": [
+          "I",
+          "chose",
+          "a",
+          "seed",
+          "packet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-10:i05:r1",
+          "text": "He chose a seed packet."
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i05:r2",
+          "text": "He chooses a seed packet."
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i05:r3",
+          "text": "They chose a seed packet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:i05:audio",
+          "transcript": "He chose a seed packet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-10:i05:r1",
+            "targetText": "He chose a seed packet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i05:r2",
+            "targetText": "He chooses a seed packet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i05:r3",
+            "targetText": "They chose a seed packet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He chose a seed packet.",
+              "uk": "У записі звучить He chose a seed packet."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He chose a seed packet.",
+              "uk": "У записі звучить He chose a seed packet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-10:i06:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i06:r2",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i06:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ a seed packet yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-10:i06:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i06:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i06:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма chose.",
+              "uk": "Для минулого потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна chose.",
+              "uk": "Це не форма минулого. Потрібна chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:word:gardening-gloves",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gardening gloves",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:word:gardening-gloves:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gardening gloves",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:word:gardening-gloves:audio",
+          "transcript": "gardening gloves"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-10:word:gardening-gloves:r1",
+            "targetText": "gardening gloves",
+            "meaningByLocale": {
+              "ru": "садовые перчатки.",
+              "uk": "садові рукавички."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gardening gloves",
+          "definitionByLocale": {
+            "ru": "садовые перчатки.",
+            "uk": "садові рукавички."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я користувався садовими рукавичками",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я користувався садовими рукавичками",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used gardening gloves.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я пользовался садовыми перчатками",
+          "uk": "Скажіть: Я користувався садовими рукавичками"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "gardening",
+          "gloves"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-10:i08:r1",
+          "text": "We used gardening gloves."
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i08:r2",
+          "text": "We use gardening gloves."
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i08:r3",
+          "text": "She used gardening gloves."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:i08:audio",
+          "transcript": "We used gardening gloves."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-10:i08:r1",
+            "targetText": "We used gardening gloves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i08:r2",
+            "targetText": "We use gardening gloves.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i08:r3",
+            "targetText": "She used gardening gloves.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used gardening gloves.",
+              "uk": "У записі звучить We used gardening gloves."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used gardening gloves.",
+              "uk": "У записі звучить We used gardening gloves."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-10:i09:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i09:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i09:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ gardening gloves yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-10:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:word:garden-hose",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — garden hose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:word:garden-hose:audio"
+      ],
+      "accessibilityLabel": "Картка слова — garden hose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:word:garden-hose:audio",
+          "transcript": "garden hose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-10:word:garden-hose:r1",
+            "targetText": "garden hose",
+            "meaningByLocale": {
+              "ru": "садовый шланг.",
+              "uk": "садовий шланг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garden hose",
+          "definitionByLocale": {
+            "ru": "садовый шланг.",
+            "uk": "садовий шланг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми користувалися садовим шлангом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми користувалися садовим шлангом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used the garden hose.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы пользовались садовым шлангом",
+          "uk": "Скажіть: Ми користувалися садовим шлангом"
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "the",
+          "garden",
+          "hose"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-10:i11:r1",
+          "text": "She used the garden hose."
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i11:r2",
+          "text": "She uses the garden hose."
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i11:r3",
+          "text": "They used the garden hose."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:i11:audio",
+          "transcript": "She used the garden hose."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-10:i11:r1",
+            "targetText": "She used the garden hose.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i11:r2",
+            "targetText": "She uses the garden hose.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i11:r3",
+            "targetText": "They used the garden hose.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used the garden hose.",
+              "uk": "У записі звучить She used the garden hose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used the garden hose.",
+              "uk": "У записі звучить She used the garden hose."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-10:i12:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i12:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-10:i12:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the garden hose yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-10:i12:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i12:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i12:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-10:i13:p1",
+            "target": "vegetable patch",
+            "meaningByLocale": {
+              "ru": "грядка или участок для выращивания овощей",
+              "uk": "грядка або ділянка для вирощування овочів"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-10:i13:p2",
+            "target": "seed packet",
+            "meaningByLocale": {
+              "ru": "пакетик семян",
+              "uk": "пакетик насіння"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-10:i13:p3",
+            "target": "gardening gloves",
+            "meaningByLocale": {
+              "ru": "садовые перчатки",
+              "uk": "садові рукавички"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-10:i13:p4",
+            "target": "garden hose",
+            "meaningByLocale": {
+              "ru": "садовый шланг",
+              "uk": "садовий шланг"
+            }
+          }
+        ],
+        "leftColumn": [
+          "vegetable patch",
+          "seed packet",
+          "gardening gloves",
+          "garden hose"
+        ],
+        "rightColumn": [
+          "грядка або ділянка для вирощування овочів",
+          "пакетик насіння",
+          "садові рукавички",
+          "садовий шланг"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:i14:audio",
+          "transcript": "We grew tomatoes last summer."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We grew tomatoes last summer.",
+        "orderedTokens": [
+          "We",
+          "grew",
+          "tomatoes",
+          "last",
+          "summer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:i15:audio",
+          "transcript": "She checked the garden gate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She checked the garden gate.",
+        "orderedTokens": [
+          "She",
+          "checked",
+          "the",
+          "garden",
+          "gate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора садові рукавички були мокрі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора садові рукавички були мокрі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:i16:audio",
+          "transcript": "The gardening gloves were wet yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The gardening gloves were wet yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я вибрав пакетик насіння для тата",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я вибрав пакетик насіння для тата",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-10:i17:audio",
+          "transcript": "I chose a seed packet for my dad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I chose a seed packet for my dad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9b33908b39b08ae6a9c01894375693057f24ad2afc168497cbc1c4ff0e10b530"
+}

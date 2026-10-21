@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "grow → grew; chose, used, checked; was/were",
+    "uk": "grow → grew; chose, used, checked; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выращивали летом",
+        "uk": "Вирощували влітку"
+      },
+      "bodyByLocale": {
+        "ru": "Vegetable patch — «грядка или участок для овощей». Grow → grew: We grew carrots in the vegetable patch — мы выращивали морковь на грядке. Grew — форма прошлого для всех лиц, без -ed и без -s. Выберите сообщение о прошлом лете.",
+        "uk": "Vegetable patch — «грядка або ділянка для овочів». Grow → grew: We grew carrots in the vegetable patch — ми вирощували моркву на грядці. Grew — форма минулого для всіх осіб, без -ed і без -s. Виберіть повідомлення про минуле літо."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-10:intro1:r1",
+              "text": "We grew carrots last summer."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro1:r2",
+              "text": "We grow carrots last summer."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro1:r3",
+              "text": "We growed carrots last summer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-10:intro1:r1",
+              "text": "We grew carrots last summer."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro1:r2",
+              "text": "We grow carrots last summer."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro1:r3",
+              "text": "We growed carrots last summer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Семена и перчатки",
+        "uk": "Насіння й рукавички"
+      },
+      "bodyByLocale": {
+        "ru": "Seed packet — «пакетик семян», gardening gloves — «садовые перчатки». Вчера она выбрала пакетик семян: She chose a seed packet. Chose уже знакомо. Выберите сообщение о выборе семян.",
+        "uk": "Seed packet — «пакетик насіння», gardening gloves — «садові рукавички». Учора вона вибрала пакетик насіння: She chose a seed packet. Chose вже знайоме. Виберіть повідомлення про вибір насіння."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-10:intro2:r1",
+              "text": "She chose a seed packet."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro2:r2",
+              "text": "She used gardening gloves."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro2:r3",
+              "text": "She choose a seed packet yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-10:intro2:r1",
+              "text": "She chose a seed packet."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro2:r2",
+              "text": "She used gardening gloves."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro2:r3",
+              "text": "She choose a seed packet yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шланг",
+        "uk": "Шланг"
+      },
+      "bodyByLocale": {
+        "ru": "Garden hose — «садовый шланг». Вчера вы пользовались шлангом: I used the garden hose. Used — правильная форма от use: к конечной e добавляем d. Выберите действие, не описание состояния.",
+        "uk": "Garden hose — «садовий шланг». Учора ви користувалися шлангом: I used the garden hose. Used — правильна форма від use: до кінцевої e додаємо d. Виберіть дію, не опис стану."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-10:intro3:r1",
+              "text": "I used the garden hose."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro3:r2",
+              "text": "The garden hose was long."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro3:r3",
+              "text": "I use the garden hose yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-10:intro3:r1",
+              "text": "I used the garden hose."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro3:r2",
+              "text": "The garden hose was long."
+            },
+            {
+              "responseId": "en:lesson-12:session-10:intro3:r3",
+              "text": "I use the garden hose yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5813b08ebf3a71a8b439546a743b005c81ae5c918f96167357bb58cb6db7ae5d"
+}

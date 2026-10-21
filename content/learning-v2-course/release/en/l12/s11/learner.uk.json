@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-11:word:teddy-bear",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — teddy bear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:word:teddy-bear:audio"
+      ],
+      "accessibilityLabel": "Картка слова — teddy bear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:word:teddy-bear:audio",
+          "transcript": "teddy bear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-11:word:teddy-bear:r1",
+            "targetText": "teddy bear",
+            "meaningByLocale": {
+              "ru": "плюшевый мишка.",
+              "uk": "плюшевий ведмедик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "teddy bear",
+          "definitionByLocale": {
+            "ru": "плюшевый мишка.",
+            "uk": "плюшевий ведмедик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я сховав плюшевого ведмедика",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я сховав плюшевого ведмедика",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I hid the teddy bear.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я спрятал плюшевого мишку",
+          "uk": "Скажіть: Я сховав плюшевого ведмедика"
+        },
+        "orderedTokens": [
+          "I",
+          "hid",
+          "the",
+          "teddy",
+          "bear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-11:i02:r1",
+          "text": "She hid the teddy bear."
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i02:r2",
+          "text": "She hides the teddy bear."
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i02:r3",
+          "text": "We hid the teddy bear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:i02:audio",
+          "transcript": "She hid the teddy bear."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-11:i02:r1",
+            "targetText": "She hid the teddy bear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i02:r2",
+            "targetText": "She hides the teddy bear.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i02:r3",
+            "targetText": "We hid the teddy bear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She hid the teddy bear.",
+              "uk": "У записі звучить She hid the teddy bear."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She hid the teddy bear.",
+              "uk": "У записі звучить She hid the teddy bear."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-11:i03:r1",
+          "text": "hid"
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i03:r2",
+          "text": "hide"
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i03:r3",
+          "text": "hides"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the teddy bear yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-11:i03:r1",
+            "text": "hid"
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i03:r2",
+            "text": "hide"
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i03:r3",
+            "text": "hides"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма hid.",
+              "uk": "Для минулого потрібна форма hid."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна hid.",
+              "uk": "Це не форма минулого. Потрібна hid."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:word:toy-car",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toy car",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:word:toy-car:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toy car",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:word:toy-car:audio",
+          "transcript": "toy car"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-11:word:toy-car:r1",
+            "targetText": "toy car",
+            "meaningByLocale": {
+              "ru": "игрушечная машинка.",
+              "uk": "іграшкова машинка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toy car",
+          "definitionByLocale": {
+            "ru": "игрушечная машинка.",
+            "uk": "іграшкова машинка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Він сховав іграшкову машинку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Він сховав іграшкову машинку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He hid the toy car.",
+        "localizedMeaning": {
+          "ru": "Скажите: Он спрятал игрушечную машинку",
+          "uk": "Скажіть: Він сховав іграшкову машинку"
+        },
+        "orderedTokens": [
+          "He",
+          "hid",
+          "the",
+          "toy",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-11:i05:r1",
+          "text": "We hid the toy car."
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i05:r2",
+          "text": "We hide the toy car."
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i05:r3",
+          "text": "She hid the toy car."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:i05:audio",
+          "transcript": "We hid the toy car."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-11:i05:r1",
+            "targetText": "We hid the toy car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i05:r2",
+            "targetText": "We hide the toy car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i05:r3",
+            "targetText": "She hid the toy car.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We hid the toy car.",
+              "uk": "У записі звучить We hid the toy car."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We hid the toy car.",
+              "uk": "У записі звучить We hid the toy car."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-11:i06:r1",
+          "text": "hid"
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i06:r2",
+          "text": "hide"
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i06:r3",
+          "text": "hides"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the toy car yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-11:i06:r1",
+            "text": "hid"
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i06:r2",
+            "text": "hide"
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i06:r3",
+            "text": "hides"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма hid.",
+              "uk": "Для минулого потрібна форма hid."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна hid.",
+              "uk": "Це не форма минулого. Потрібна hid."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:word:building-blocks",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — building blocks",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:word:building-blocks:audio"
+      ],
+      "accessibilityLabel": "Картка слова — building blocks",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:word:building-blocks:audio",
+          "transcript": "building blocks"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-11:word:building-blocks:r1",
+            "targetText": "building blocks",
+            "meaningByLocale": {
+              "ru": "строительные кубики для игры.",
+              "uk": "будівельні кубики для гри."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "building blocks",
+          "definitionByLocale": {
+            "ru": "строительные кубики для игры.",
+            "uk": "будівельні кубики для гри."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми почистили кубики",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми почистили кубики",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We cleaned the building blocks.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы почистили кубики",
+          "uk": "Скажіть: Ми почистили кубики"
+        },
+        "orderedTokens": [
+          "We",
+          "cleaned",
+          "the",
+          "building",
+          "blocks"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-11:i08:r1",
+          "text": "She cleaned the building blocks."
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i08:r2",
+          "text": "She cleans the building blocks."
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i08:r3",
+          "text": "I cleaned the building blocks."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:i08:audio",
+          "transcript": "She cleaned the building blocks."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-11:i08:r1",
+            "targetText": "She cleaned the building blocks.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i08:r2",
+            "targetText": "She cleans the building blocks.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i08:r3",
+            "targetText": "I cleaned the building blocks.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cleaned the building blocks.",
+              "uk": "У записі звучить She cleaned the building blocks."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cleaned the building blocks.",
+              "uk": "У записі звучить She cleaned the building blocks."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-11:i09:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i09:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i09:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the building blocks yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-11:i09:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i09:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i09:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cleaned.",
+              "uk": "Для минулого потрібна форма cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна cleaned.",
+              "uk": "Це не форма минулого. Потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:word:toy-box",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toy box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:word:toy-box:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toy box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:word:toy-box:audio",
+          "transcript": "toy box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-11:word:toy-box:r1",
+            "targetText": "toy box",
+            "meaningByLocale": {
+              "ru": "ящик для игрушек.",
+              "uk": "ящик для іграшок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toy box",
+          "definitionByLocale": {
+            "ru": "ящик для игрушек.",
+            "uk": "ящик для іграшок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я почистив ящик для іграшок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я почистив ящик для іграшок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cleaned the toy box.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я почистил ящик для игрушек",
+          "uk": "Скажіть: Я почистив ящик для іграшок"
+        },
+        "orderedTokens": [
+          "I",
+          "cleaned",
+          "the",
+          "toy",
+          "box"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-11:i11:r1",
+          "text": "They cleaned the toy box."
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i11:r2",
+          "text": "They clean the toy box."
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i11:r3",
+          "text": "He cleaned the toy box."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:i11:audio",
+          "transcript": "They cleaned the toy box."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-11:i11:r1",
+            "targetText": "They cleaned the toy box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i11:r2",
+            "targetText": "They clean the toy box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i11:r3",
+            "targetText": "He cleaned the toy box.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They cleaned the toy box.",
+              "uk": "У записі звучить They cleaned the toy box."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They cleaned the toy box.",
+              "uk": "У записі звучить They cleaned the toy box."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-11:i12:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i12:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-11:i12:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ the toy box yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-11:i12:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i12:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i12:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cleaned.",
+              "uk": "Для минулого потрібна форма cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна cleaned.",
+              "uk": "Це не форма минулого. Потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-11:i13:p1",
+            "target": "teddy bear",
+            "meaningByLocale": {
+              "ru": "плюшевый мишка",
+              "uk": "плюшевий ведмедик"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-11:i13:p2",
+            "target": "toy car",
+            "meaningByLocale": {
+              "ru": "игрушечная машинка",
+              "uk": "іграшкова машинка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-11:i13:p3",
+            "target": "building blocks",
+            "meaningByLocale": {
+              "ru": "строительные кубики для игры",
+              "uk": "будівельні кубики для гри"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-11:i13:p4",
+            "target": "toy box",
+            "meaningByLocale": {
+              "ru": "ящик для игрушек",
+              "uk": "ящик для іграшок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "teddy bear",
+          "toy car",
+          "building blocks",
+          "toy box"
+        ],
+        "rightColumn": [
+          "плюшевий ведмедик",
+          "іграшкова машинка",
+          "будівельні кубики для гри",
+          "ящик для іграшок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:i14:audio",
+          "transcript": "She hid the car keys."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She hid the car keys.",
+        "orderedTokens": [
+          "She",
+          "hid",
+          "the",
+          "car",
+          "keys"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:i15:audio",
+          "transcript": "I saw a toy car in the shop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I saw a toy car in the shop.",
+        "orderedTokens": [
+          "I",
+          "saw",
+          "a",
+          "toy",
+          "car",
+          "in",
+          "the",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора кубики були на підлозі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора кубики були на підлозі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:i16:audio",
+          "transcript": "The building blocks were on the floor yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The building blocks were on the floor yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я сховав ведмедика під ліжком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я сховав ведмедика під ліжком",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-11:i17:audio",
+          "transcript": "I hid the teddy bear under the bed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I hid the teddy bear under the bed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f3f8620fab1f5311c964e456d76cbfdc241fc133c9a78b8b2b0c99dbc82c77f2"
+}

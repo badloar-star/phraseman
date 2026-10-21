@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-09",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-09:word:bunch-of-flowers",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bunch of flowers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:word:bunch-of-flowers:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bunch of flowers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:word:bunch-of-flowers:audio",
+            "transcript": "bunch of flowers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:word:bunch-of-flowers:r1",
+              "targetText": "bunch of flowers",
+              "meaningByLocale": {
+                "ru": "букет цветов.",
+                "uk": "букет квітів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bunch of flowers",
+            "definitionByLocale": {
+              "ru": "букет цветов.",
+              "uk": "букет квітів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я выбрал букет цветов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я выбрал букет цветов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I chose a bunch of flowers.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я выбрал букет цветов",
+            "uk": "Скажіть: Я вибрав букет квітів"
+          },
+          "orderedTokens": [
+            "I",
+            "chose",
+            "a",
+            "bunch",
+            "of",
+            "flowers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i02:r1",
+            "text": "She chose a bunch of flowers."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i02:r2",
+            "text": "She chooses a bunch of flowers."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i02:r3",
+            "text": "We chose a bunch of flowers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i02:audio",
+            "transcript": "She chose a bunch of flowers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:i02:r1",
+              "targetText": "She chose a bunch of flowers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i02:r2",
+              "targetText": "She chooses a bunch of flowers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i02:r3",
+              "targetText": "We chose a bunch of flowers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She chose a bunch of flowers.",
+                "uk": "У записі звучить She chose a bunch of flowers."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She chose a bunch of flowers.",
+                "uk": "У записі звучить She chose a bunch of flowers."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i03:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i03:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i03:r3",
+            "text": "chooses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a bunch of flowers yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-09:i03:r1",
+              "text": "chose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i03:r2",
+              "text": "choose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i03:r3",
+              "text": "chooses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма chose.",
+                "uk": "Для минулого потрібна форма chose."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна chose.",
+                "uk": "Це не форма минулого. Потрібна chose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:word:box-of-chocolates",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — box of chocolates",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:word:box-of-chocolates:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — box of chocolates",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:word:box-of-chocolates:audio",
+            "transcript": "box of chocolates"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:word:box-of-chocolates:r1",
+              "targetText": "box of chocolates",
+              "meaningByLocale": {
+                "ru": "коробка шоколадных конфет.",
+                "uk": "коробка шоколадних цукерок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "box of chocolates",
+            "definitionByLocale": {
+              "ru": "коробка шоколадных конфет.",
+              "uk": "коробка шоколадних цукерок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы выбрали коробку конфет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы выбрали коробку конфет",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We chose a box of chocolates.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы выбрали коробку конфет",
+            "uk": "Скажіть: Ми вибрали коробку цукерок"
+          },
+          "orderedTokens": [
+            "We",
+            "chose",
+            "a",
+            "box",
+            "of",
+            "chocolates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i05:r1",
+            "text": "He chose a box of chocolates."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i05:r2",
+            "text": "He chooses a box of chocolates."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i05:r3",
+            "text": "They chose a box of chocolates."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i05:audio",
+            "transcript": "He chose a box of chocolates."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:i05:r1",
+              "targetText": "He chose a box of chocolates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i05:r2",
+              "targetText": "He chooses a box of chocolates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i05:r3",
+              "targetText": "They chose a box of chocolates.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He chose a box of chocolates.",
+                "uk": "У записі звучить He chose a box of chocolates."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He chose a box of chocolates.",
+                "uk": "У записі звучить He chose a box of chocolates."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i06:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i06:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i06:r3",
+            "text": "chooses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a box of chocolates yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-09:i06:r1",
+              "text": "chose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i06:r2",
+              "text": "choose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i06:r3",
+              "text": "chooses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма chose.",
+                "uk": "Для минулого потрібна форма chose."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна chose.",
+                "uk": "Це не форма минулого. Потрібна chose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:word:birthday-card",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — birthday card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:word:birthday-card:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — birthday card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:word:birthday-card:audio",
+            "transcript": "birthday card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:word:birthday-card:r1",
+              "targetText": "birthday card",
+              "meaningByLocale": {
+                "ru": "открытка ко дню рождения.",
+                "uk": "листівка до дня народження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "birthday card",
+            "definitionByLocale": {
+              "ru": "открытка ко дню рождения.",
+              "uk": "листівка до дня народження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я выбрал открытку ко дню рождения",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я выбрал открытку ко дню рождения",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I chose a birthday card.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я выбрал открытку ко дню рождения",
+            "uk": "Скажіть: Я вибрав листівку до дня народження"
+          },
+          "orderedTokens": [
+            "I",
+            "chose",
+            "a",
+            "birthday",
+            "card"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i08:r1",
+            "text": "They chose a birthday card."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i08:r2",
+            "text": "They choose a birthday card."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i08:r3",
+            "text": "She chose a birthday card."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i08:audio",
+            "transcript": "They chose a birthday card."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:i08:r1",
+              "targetText": "They chose a birthday card.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i08:r2",
+              "targetText": "They choose a birthday card.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i08:r3",
+              "targetText": "She chose a birthday card.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They chose a birthday card.",
+                "uk": "У записі звучить They chose a birthday card."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They chose a birthday card.",
+                "uk": "У записі звучить They chose a birthday card."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i09:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i09:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i09:r3",
+            "text": "chooses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ a birthday card yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-09:i09:r1",
+              "text": "chose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i09:r2",
+              "text": "choose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i09:r3",
+              "text": "chooses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма chose.",
+                "uk": "Для минулого потрібна форма chose."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна chose.",
+                "uk": "Це не форма минулого. Потрібна chose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:word:gift-bag",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gift bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:word:gift-bag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gift bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:word:gift-bag:audio",
+            "transcript": "gift bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:word:gift-bag:r1",
+              "targetText": "gift bag",
+              "meaningByLocale": {
+                "ru": "подарочный пакет.",
+                "uk": "подарунковий пакет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gift bag",
+            "definitionByLocale": {
+              "ru": "подарочный пакет.",
+              "uk": "подарунковий пакет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Она выбрала подарочный пакет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Она выбрала подарочный пакет",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She chose a gift bag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она выбрала подарочный пакет",
+            "uk": "Скажіть: Вона вибрала подарунковий пакет"
+          },
+          "orderedTokens": [
+            "She",
+            "chose",
+            "a",
+            "gift",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i11:r1",
+            "text": "I chose a gift bag."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i11:r2",
+            "text": "I choose a gift bag."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i11:r3",
+            "text": "He chose a gift bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i11:audio",
+            "transcript": "I chose a gift bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:i11:r1",
+              "targetText": "I chose a gift bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i11:r2",
+              "targetText": "I choose a gift bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i11:r3",
+              "targetText": "He chose a gift bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I chose a gift bag.",
+                "uk": "У записі звучить I chose a gift bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I chose a gift bag.",
+                "uk": "У записі звучить I chose a gift bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i12:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i12:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i12:r3",
+            "text": "chooses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ a gift bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-09:i12:r1",
+              "text": "chose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i12:r2",
+              "text": "choose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i12:r3",
+              "text": "chooses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма chose.",
+                "uk": "Для минулого потрібна форма chose."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна chose.",
+                "uk": "Це не форма минулого. Потрібна chose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-09:i13:p1",
+              "target": "bunch of flowers",
+              "meaningByLocale": {
+                "ru": "букет цветов",
+                "uk": "букет квітів"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-09:i13:p2",
+              "target": "box of chocolates",
+              "meaningByLocale": {
+                "ru": "коробка шоколадных конфет",
+                "uk": "коробка шоколадних цукерок"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-09:i13:p3",
+              "target": "birthday card",
+              "meaningByLocale": {
+                "ru": "открытка ко дню рождения",
+                "uk": "листівка до дня народження"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-09:i13:p4",
+              "target": "gift bag",
+              "meaningByLocale": {
+                "ru": "подарочный пакет",
+                "uk": "подарунковий пакет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bunch of flowers",
+            "box of chocolates",
+            "birthday card",
+            "gift bag"
+          ],
+          "rightColumn": [
+            "букет цветов",
+            "коробка шоколадных конфет",
+            "открытка ко дню рождения",
+            "подарочный пакет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i14:audio",
+            "transcript": "I went to the shop yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I went to the shop yesterday.",
+          "orderedTokens": [
+            "I",
+            "went",
+            "to",
+            "the",
+            "shop",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i15:audio",
+            "transcript": "I saw my friend yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I saw my friend yesterday.",
+          "orderedTokens": [
+            "I",
+            "saw",
+            "my",
+            "friend",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: мы пили чай",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: мы пили чай",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i16:audio",
+            "transcript": "We had tea."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had tea.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я выбрал подарочный пакет для мамы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я выбрал подарочный пакет для мамы",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i17:audio",
+            "transcript": "I chose a gift bag for my mum."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I chose a gift bag for my mum.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-09:word:bunch-of-flowers",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bunch of flowers",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:word:bunch-of-flowers:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bunch of flowers",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:word:bunch-of-flowers:audio",
+            "transcript": "bunch of flowers"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:word:bunch-of-flowers:r1",
+              "targetText": "bunch of flowers",
+              "meaningByLocale": {
+                "ru": "букет цветов.",
+                "uk": "букет квітів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bunch of flowers",
+            "definitionByLocale": {
+              "ru": "букет цветов.",
+              "uk": "букет квітів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я вибрав букет квітів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я вибрав букет квітів",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I chose a bunch of flowers.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я выбрал букет цветов",
+            "uk": "Скажіть: Я вибрав букет квітів"
+          },
+          "orderedTokens": [
+            "I",
+            "chose",
+            "a",
+            "bunch",
+            "of",
+            "flowers"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i02:r1",
+            "text": "She chose a bunch of flowers."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i02:r2",
+            "text": "She chooses a bunch of flowers."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i02:r3",
+            "text": "We chose a bunch of flowers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i02:audio",
+            "transcript": "She chose a bunch of flowers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:i02:r1",
+              "targetText": "She chose a bunch of flowers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i02:r2",
+              "targetText": "She chooses a bunch of flowers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i02:r3",
+              "targetText": "We chose a bunch of flowers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She chose a bunch of flowers.",
+                "uk": "У записі звучить She chose a bunch of flowers."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She chose a bunch of flowers.",
+                "uk": "У записі звучить She chose a bunch of flowers."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i03:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i03:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i03:r3",
+            "text": "chooses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ a bunch of flowers yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-09:i03:r1",
+              "text": "chose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i03:r2",
+              "text": "choose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i03:r3",
+              "text": "chooses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма chose.",
+                "uk": "Для минулого потрібна форма chose."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна chose.",
+                "uk": "Це не форма минулого. Потрібна chose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:word:box-of-chocolates",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — box of chocolates",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:word:box-of-chocolates:audio"
+        ],
+        "accessibilityLabel": "Картка слова — box of chocolates",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:word:box-of-chocolates:audio",
+            "transcript": "box of chocolates"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:word:box-of-chocolates:r1",
+              "targetText": "box of chocolates",
+              "meaningByLocale": {
+                "ru": "коробка шоколадных конфет.",
+                "uk": "коробка шоколадних цукерок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "box of chocolates",
+            "definitionByLocale": {
+              "ru": "коробка шоколадных конфет.",
+              "uk": "коробка шоколадних цукерок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми вибрали коробку цукерок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми вибрали коробку цукерок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We chose a box of chocolates.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы выбрали коробку конфет",
+            "uk": "Скажіть: Ми вибрали коробку цукерок"
+          },
+          "orderedTokens": [
+            "We",
+            "chose",
+            "a",
+            "box",
+            "of",
+            "chocolates"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i05:r1",
+            "text": "He chose a box of chocolates."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i05:r2",
+            "text": "He chooses a box of chocolates."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i05:r3",
+            "text": "They chose a box of chocolates."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i05:audio",
+            "transcript": "He chose a box of chocolates."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:i05:r1",
+              "targetText": "He chose a box of chocolates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i05:r2",
+              "targetText": "He chooses a box of chocolates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i05:r3",
+              "targetText": "They chose a box of chocolates.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He chose a box of chocolates.",
+                "uk": "У записі звучить He chose a box of chocolates."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He chose a box of chocolates.",
+                "uk": "У записі звучить He chose a box of chocolates."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i06:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i06:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i06:r3",
+            "text": "chooses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a box of chocolates yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-09:i06:r1",
+              "text": "chose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i06:r2",
+              "text": "choose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i06:r3",
+              "text": "chooses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма chose.",
+                "uk": "Для минулого потрібна форма chose."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна chose.",
+                "uk": "Це не форма минулого. Потрібна chose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:word:birthday-card",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — birthday card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:word:birthday-card:audio"
+        ],
+        "accessibilityLabel": "Картка слова — birthday card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:word:birthday-card:audio",
+            "transcript": "birthday card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:word:birthday-card:r1",
+              "targetText": "birthday card",
+              "meaningByLocale": {
+                "ru": "открытка ко дню рождения.",
+                "uk": "листівка до дня народження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "birthday card",
+            "definitionByLocale": {
+              "ru": "открытка ко дню рождения.",
+              "uk": "листівка до дня народження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я вибрав листівку до дня народження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я вибрав листівку до дня народження",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I chose a birthday card.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я выбрал открытку ко дню рождения",
+            "uk": "Скажіть: Я вибрав листівку до дня народження"
+          },
+          "orderedTokens": [
+            "I",
+            "chose",
+            "a",
+            "birthday",
+            "card"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i08:r1",
+            "text": "They chose a birthday card."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i08:r2",
+            "text": "They choose a birthday card."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i08:r3",
+            "text": "She chose a birthday card."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i08:audio",
+            "transcript": "They chose a birthday card."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:i08:r1",
+              "targetText": "They chose a birthday card.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i08:r2",
+              "targetText": "They choose a birthday card.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i08:r3",
+              "targetText": "She chose a birthday card.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They chose a birthday card.",
+                "uk": "У записі звучить They chose a birthday card."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They chose a birthday card.",
+                "uk": "У записі звучить They chose a birthday card."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i09:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i09:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i09:r3",
+            "text": "chooses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ a birthday card yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-09:i09:r1",
+              "text": "chose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i09:r2",
+              "text": "choose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i09:r3",
+              "text": "chooses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма chose.",
+                "uk": "Для минулого потрібна форма chose."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна chose.",
+                "uk": "Це не форма минулого. Потрібна chose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:word:gift-bag",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gift bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:word:gift-bag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gift bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:word:gift-bag:audio",
+            "transcript": "gift bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:word:gift-bag:r1",
+              "targetText": "gift bag",
+              "meaningByLocale": {
+                "ru": "подарочный пакет.",
+                "uk": "подарунковий пакет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gift bag",
+            "definitionByLocale": {
+              "ru": "подарочный пакет.",
+              "uk": "подарунковий пакет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Вона вибрала подарунковий пакет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Вона вибрала подарунковий пакет",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She chose a gift bag.",
+          "localizedMeaning": {
+            "ru": "Скажите: Она выбрала подарочный пакет",
+            "uk": "Скажіть: Вона вибрала подарунковий пакет"
+          },
+          "orderedTokens": [
+            "She",
+            "chose",
+            "a",
+            "gift",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i11:r1",
+            "text": "I chose a gift bag."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i11:r2",
+            "text": "I choose a gift bag."
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i11:r3",
+            "text": "He chose a gift bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i11:audio",
+            "transcript": "I chose a gift bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-09:i11:r1",
+              "targetText": "I chose a gift bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i11:r2",
+              "targetText": "I choose a gift bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i11:r3",
+              "targetText": "He chose a gift bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I chose a gift bag.",
+                "uk": "У записі звучить I chose a gift bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I chose a gift bag.",
+                "uk": "У записі звучить I chose a gift bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-09:i12:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i12:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-09:i12:r3",
+            "text": "chooses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ a gift bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-09:i12:r1",
+              "text": "chose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i12:r2",
+              "text": "choose"
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i12:r3",
+              "text": "chooses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма chose.",
+                "uk": "Для минулого потрібна форма chose."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна chose.",
+                "uk": "Це не форма минулого. Потрібна chose."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-09:i13:p1",
+              "target": "bunch of flowers",
+              "meaningByLocale": {
+                "ru": "букет цветов",
+                "uk": "букет квітів"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-09:i13:p2",
+              "target": "box of chocolates",
+              "meaningByLocale": {
+                "ru": "коробка шоколадных конфет",
+                "uk": "коробка шоколадних цукерок"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-09:i13:p3",
+              "target": "birthday card",
+              "meaningByLocale": {
+                "ru": "открытка ко дню рождения",
+                "uk": "листівка до дня народження"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-09:i13:p4",
+              "target": "gift bag",
+              "meaningByLocale": {
+                "ru": "подарочный пакет",
+                "uk": "подарунковий пакет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bunch of flowers",
+            "box of chocolates",
+            "birthday card",
+            "gift bag"
+          ],
+          "rightColumn": [
+            "букет квітів",
+            "коробка шоколадних цукерок",
+            "листівка до дня народження",
+            "подарунковий пакет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i14:audio",
+            "transcript": "I went to the shop yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I went to the shop yesterday.",
+          "orderedTokens": [
+            "I",
+            "went",
+            "to",
+            "the",
+            "shop",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i15:audio",
+            "transcript": "I saw my friend yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I saw my friend yesterday.",
+          "orderedTokens": [
+            "I",
+            "saw",
+            "my",
+            "friend",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: ми пили чай",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: ми пили чай",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i16:audio",
+            "transcript": "We had tea."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had tea.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я вибрав подарунковий пакет для мами",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я вибрав подарунковий пакет для мами",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-09:i17:audio",
+            "transcript": "I chose a gift bag for my mum."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I chose a gift bag for my mum.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-09:word:bunch-of-flowers",
+      "correctText": "bunch of flowers",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i01",
+      "correctText": "I chose a bunch of flowers.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i02",
+      "correctText": "She chose a bunch of flowers.",
+      "correctResponseId": "en:lesson-12:session-09:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i03",
+      "correctText": "chose",
+      "correctResponseId": "en:lesson-12:session-09:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:word:box-of-chocolates",
+      "correctText": "box of chocolates",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i04",
+      "correctText": "We chose a box of chocolates.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i05",
+      "correctText": "He chose a box of chocolates.",
+      "correctResponseId": "en:lesson-12:session-09:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i06",
+      "correctText": "chose",
+      "correctResponseId": "en:lesson-12:session-09:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:word:birthday-card",
+      "correctText": "birthday card",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i07",
+      "correctText": "I chose a birthday card.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i08",
+      "correctText": "They chose a birthday card.",
+      "correctResponseId": "en:lesson-12:session-09:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i09",
+      "correctText": "chose",
+      "correctResponseId": "en:lesson-12:session-09:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:word:gift-bag",
+      "correctText": "gift bag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i10",
+      "correctText": "She chose a gift bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i11",
+      "correctText": "I chose a gift bag.",
+      "correctResponseId": "en:lesson-12:session-09:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i12",
+      "correctText": "chose",
+      "correctResponseId": "en:lesson-12:session-09:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i14",
+      "correctText": "I went to the shop yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i15",
+      "correctText": "I saw my friend yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i16",
+      "correctText": "We had tea.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:i17",
+      "correctText": "I chose a gift bag for my mum.",
+      "correctResponseId": null
+    }
+  ]
+}

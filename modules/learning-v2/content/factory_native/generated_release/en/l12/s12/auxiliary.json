@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-12:intro1:r2": {
+          "ru": "Rises — настоящее; нужна rose.",
+          "uk": "Rises — теперішній час; потрібна rose."
+        },
+        "en:lesson-12:session-12:intro1:r3": {
+          "ru": "Rised не существует: нужна rose.",
+          "uk": "Rised не існує: потрібна rose."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-12:intro2:r2": {
+          "ru": "Здесь йогурт, а нужны хлопья.",
+          "uk": "Тут йогурт, а потрібні пластівці."
+        },
+        "en:lesson-12:session-12:intro2:r3": {
+          "ru": "В прошлом нужна had.",
+          "uk": "У минулому потрібна had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-12:intro3:r2": {
+          "ru": "Это яйцо, а нужен сыр.",
+          "uk": "Це яйце, а потрібен сир."
+        },
+        "en:lesson-12:session-12:intro3:r3": {
+          "ru": "Has — настоящее; нужна had.",
+          "uk": "Has — теперішній час; потрібна had."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9064d1b14905b782ab9d4255266d1d278e9ac9f99e65557b69c908cc5a7529a3"
+}

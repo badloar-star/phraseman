@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "choose → chose; go → went; see → saw; have → had",
+    "uk": "choose → chose; go → went; see → saw; have → had"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрали вчера",
+        "uk": "Вибрали вчора"
+      },
+      "bodyByLocale": {
+        "ru": "Не все глаголы получают -ed. У choose «выбирать» форма прошлого — chose: I chose a bunch of flowers. Bunch of flowers — «букет цветов». Запоминайте choose → chose целиком. Выберите сообщение о вчерашнем выборе.",
+        "uk": "Не всі дієслова отримують -ed. У choose «вибирати» форма минулого — chose: I chose a bunch of flowers. Bunch of flowers — «букет квітів». Запам’ятовуйте choose → chose цілком. Виберіть повідомлення про вчорашній вибір."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-09:intro1:r1",
+              "text": "I chose a bunch of flowers yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro1:r2",
+              "text": "I choose a bunch of flowers yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro1:r3",
+              "text": "I choosed a bunch of flowers yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-09:intro1:r1",
+              "text": "I chose a bunch of flowers yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro1:r2",
+              "text": "I choose a bunch of flowers yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro1:r3",
+              "text": "I choosed a bunch of flowers yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одинаковая форма",
+        "uk": "Однакова форма"
+      },
+      "bodyByLocale": {
+        "ru": "Box of chocolates — «коробка шоколадных конфет». Birthday card — «открытка ко дню рождения», gift bag — «подарочный пакет». Chose одинаково с I, she и they. Она выбрала коробку конфет: She chose a box of chocolates. Выберите эту фразу.",
+        "uk": "Box of chocolates — «коробка шоколадних цукерок». Birthday card — «листівка до дня народження», gift bag — «подарунковий пакет». Chose однаково з I, she і they. Вона вибрала коробку цукерок: She chose a box of chocolates. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-09:intro2:r1",
+              "text": "She chose a box of chocolates."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro2:r2",
+              "text": "She choses a box of chocolates."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro2:r3",
+              "text": "She choose a box of chocolates yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-09:intro2:r1",
+              "text": "She chose a box of chocolates."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro2:r2",
+              "text": "She choses a box of chocolates."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro2:r3",
+              "text": "She choose a box of chocolates yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё три формы целиком",
+        "uk": "Ще три форми цілком"
+      },
+      "bodyByLocale": {
+        "ru": "Go → went: I went to the shop — я сходил в магазин. See → saw: I saw my friend — я увидел друга. Have → had: We had tea — мы пили чай. Эти формы тоже запоминаем целиком, без -ed. Выберите сообщение о походе в магазин.",
+        "uk": "Go → went: I went to the shop — я сходив до магазину. See → saw: I saw my friend — я побачив друга. Have → had: We had tea — ми пили чай. Ці форми теж запам’ятовуємо цілком, без -ed. Виберіть повідомлення про похід до магазину."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-09:intro3:r1",
+              "text": "I went to the shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro3:r2",
+              "text": "I saw my friend."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro3:r3",
+              "text": "We had tea."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-09:intro3:r1",
+              "text": "I went to the shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro3:r2",
+              "text": "I saw my friend."
+            },
+            {
+              "responseId": "en:lesson-12:session-09:intro3:r3",
+              "text": "We had tea."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9eb622fc2bea400acb4d5ef40176b47f174fcb8c647716b8f1273321cdabe606"
+}

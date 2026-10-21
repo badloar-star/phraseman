@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-09:intro1:r2": {
+          "ru": "Для прошлого нужна chose.",
+          "uk": "Для минулого потрібна chose."
+        },
+        "en:lesson-12:session-09:intro1:r3": {
+          "ru": "Choosed не существует: нужна chose.",
+          "uk": "Choosed не існує: потрібна chose."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-09:intro2:r2": {
+          "ru": "К chose не добавляем -s.",
+          "uk": "До chose не додаємо -s."
+        },
+        "en:lesson-12:session-09:intro2:r3": {
+          "ru": "В прошлом нужна chose.",
+          "uk": "У минулому потрібна chose."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-09:intro3:r2": {
+          "ru": "Здесь встреча с другом, не поход в магазин.",
+          "uk": "Тут зустріч із другом, не похід до магазину."
+        },
+        "en:lesson-12:session-09:intro3:r3": {
+          "ru": "Здесь чаепитие, не поход в магазин.",
+          "uk": "Тут чаювання, не похід до магазину."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0c00939a5f0cd415baec92fd3c6048d8b27193f9950c03dcb3f97cfa868c02a0"
+}

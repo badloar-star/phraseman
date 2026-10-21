@@ -4375,4 +4375,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"regular past: cleaned, washed, checked; was/were","uk":"regular past: cleaned, washed, checked; was/were"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 9,
+    sourceFingerprint: "47295ce7aa9f6f4cc393186ee1d8291adabef2b4117c174b6993ee8de51c4de6",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"choose → chose; go → went; see → saw; have → had","uk":"choose → chose; go → went; see → saw; have → had"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 10,
+    sourceFingerprint: "af8d8c10ee7c323f598f3c8921744917f27a365bb9a1c7e693bb9258b8a2e5d1",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"grow → grew; chose, used, checked; was/were","uk":"grow → grew; chose, used, checked; was/were"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 11,
+    sourceFingerprint: "8396fa4e649bf5a9e84bdc1bcbd21cf0419893f30820408c66d726d4a9870fe8",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"hide → hid; was/were; cleaned","uk":"hide → hid; was/were; cleaned"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 12, sessionOrdinal: 12,
+    sourceFingerprint: "886d5f2640311209e7569265ecaf37728a2d10b7362758e745c30bae21e6acb0",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"rise → rose; have → had; was/were","uk":"rise → rose; have → had; was/were"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 12","uk":"Англійська · Урок 12"}),
+  }),
 ]);

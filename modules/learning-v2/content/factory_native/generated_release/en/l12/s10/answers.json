@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-10:word:vegetable-patch",
+    "correctText": "vegetable patch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i01",
+    "correctText": "We grew carrots in the vegetable patch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i02",
+    "correctText": "She grew carrots in the vegetable patch.",
+    "correctResponseId": "en:lesson-12:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i03",
+    "correctText": "grew",
+    "correctResponseId": "en:lesson-12:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:word:seed-packet",
+    "correctText": "seed packet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i04",
+    "correctText": "I chose a seed packet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i05",
+    "correctText": "He chose a seed packet.",
+    "correctResponseId": "en:lesson-12:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i06",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:word:gardening-gloves",
+    "correctText": "gardening gloves",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i07",
+    "correctText": "I used gardening gloves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i08",
+    "correctText": "We used gardening gloves.",
+    "correctResponseId": "en:lesson-12:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i09",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:word:garden-hose",
+    "correctText": "garden hose",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i10",
+    "correctText": "We used the garden hose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i11",
+    "correctText": "She used the garden hose.",
+    "correctResponseId": "en:lesson-12:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i12",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i13",
+    "correctText": "en:lesson-12:session-10:i13:p1=vegetable patch\nen:lesson-12:session-10:i13:p2=seed packet\nen:lesson-12:session-10:i13:p3=gardening gloves\nen:lesson-12:session-10:i13:p4=garden hose",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i14",
+    "correctText": "We grew tomatoes last summer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i15",
+    "correctText": "She checked the garden gate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i16",
+    "correctText": "The gardening gloves were wet yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-10:i17",
+    "correctText": "I chose a seed packet for my dad.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-11:intro1:r2": {
+          "ru": "Hided не существует: нужна hid.",
+          "uk": "Hided не існує: потрібна hid."
+        },
+        "en:lesson-12:session-11:intro1:r3": {
+          "ru": "Hides — настоящее, а нужна hid.",
+          "uk": "Hides — теперішній час, а потрібна hid."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-11:intro2:r2": {
+          "ru": "Здесь кубики, а нужна машинка.",
+          "uk": "Тут кубики, а потрібна машинка."
+        },
+        "en:lesson-12:session-11:intro2:r3": {
+          "ru": "Для прошлого нужна hid.",
+          "uk": "Для минулого потрібна hid."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-11:intro3:r2": {
+          "ru": "Это состояние ящика, не действие.",
+          "uk": "Це стан ящика, не дія."
+        },
+        "en:lesson-12:session-11:intro3:r3": {
+          "ru": "Для прошлого нужна cleaned.",
+          "uk": "Для минулого потрібна cleaned."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3ded460674a23949d94e91459e3f9321b3ec4f86a362cf48fa3b91e375e8c5c7"
+}

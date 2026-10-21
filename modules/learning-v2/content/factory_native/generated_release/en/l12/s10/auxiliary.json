@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-10:intro1:r2": {
+          "ru": "Нужна форма прошлого grew.",
+          "uk": "Потрібна форма минулого grew."
+        },
+        "en:lesson-12:session-10:intro1:r3": {
+          "ru": "Growed не существует: нужна grew.",
+          "uk": "Growed не існує: потрібна grew."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-10:intro2:r2": {
+          "ru": "Это использование перчаток, не выбор семян.",
+          "uk": "Це використання рукавичок, не вибір насіння."
+        },
+        "en:lesson-12:session-10:intro2:r3": {
+          "ru": "В прошлом нужна chose.",
+          "uk": "У минулому потрібна chose."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-10:intro3:r2": {
+          "ru": "Это описание шланга, не действие.",
+          "uk": "Це опис шланга, не дія."
+        },
+        "en:lesson-12:session-10:intro3:r3": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f778e0a661d714c3891af98aeac90d4654651bd1d2a985ae4809629bec64ea08"
+}

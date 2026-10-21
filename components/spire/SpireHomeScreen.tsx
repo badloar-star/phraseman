@@ -64,6 +64,7 @@ import SpireTower from './SpireTower';
 import SpireWeekResultCard from './SpireWeekResultCard';
 import { useSpirePreview } from './spire_preview_context';
 import type { SpireMemberRow } from './spire_room_types';
+import { useIsPlus } from '../plus/use_is_plus';
 import { spireText, spireTimeLeftText } from './spire_strings';
 import { spirePeopleCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
@@ -89,6 +90,8 @@ export default function SpireHomeScreen() {
   // и экран работает как раньше — конфиг, локальная неделя и игра из реальных источников.
   const preview = useSpirePreview();
   const myCoinRank = preview ? preview.coinRank : realCoinRank;
+  // зачем (владелец 21.10, реестр №6): моя строка в «Всех участниках» и на пьедестале — с кольцом, если у меня Plus (живой статус, не снимок комнаты)
+  const myIsPlus = useIsPlus();
 
   // Замок 2: null = конфиг ещё не прочитан (кэш), дальше решает config.enabled.
   // зачем (аудит Optimistic UI Шпиля, 13.10): повторный заход не рисует пустой `spire-loading` — берём последний настоящий конфиг из памяти процесса; loadSpireConfig ниже освежает его фоном.
@@ -253,8 +256,8 @@ export default function SpireHomeScreen() {
 
   // Комната недели: живые из кэша комнаты + боты формулой + свои локальные ступени.
   const members: readonly SpireMemberRow[] | null = useMemo(
-    () => (game.rows ? game.rows.map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, isMe: r.isMe, coinRank: r.isMe ? myCoinRank : (r.coinRank ?? null), weekCoins: r.weekCoins })) : null),
-    [game.rows, myCoinRank],
+    () => (game.rows ? game.rows.map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, isMe: r.isMe, coinRank: r.isMe ? myCoinRank : (r.coinRank ?? null), weekCoins: r.weekCoins, isPremium: r.isMe ? myIsPlus : r.isPremium === true })) : null),
+    [game.rows, myCoinRank, myIsPlus],
   );
   const offline = game.roomLoad?.status === 'offline';
   // Соперники по этажам — из уже закэшированной комнаты (0 новых чтений).

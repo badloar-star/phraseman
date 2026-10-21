@@ -19,6 +19,8 @@ export type SpireRoomMember = Readonly<{
   coinRank?: number | null;
   /** D162: монеты недели всех режимов — снимок сервера при последнем входе/отчёте участника; нет поля — 0. */
   weekCoins?: number;
+  /** Plus у участника (кольцо у монеты, владелец 21.10): снимок сервера; нет поля — не Plus. Клиент ничего не угадывает. */
+  isPremium?: boolean;
 }>;
 
 /** Кэш комнаты недели на устройстве (форма app/spire/spire_room_client.ts). */
@@ -45,6 +47,8 @@ export type SpireRoomRow = Readonly<{
   coinRank?: number | null;
   /** D162: монеты недели (у ботов — формула от ступеней, только для показа). */
   weekCoins: number;
+  /** Plus (кольцо у монеты): у чужих — из документа комнаты; у своей строки экран берёт живой статус Plus сам. */
+  isPremium?: boolean;
 }>;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -70,7 +74,7 @@ export function spireDecodeRoomMembers(raw: unknown): SpireRoomMember[] {
     const uid = typeof value.uid === 'string' && value.uid ? value.uid : key;
     if (uid.startsWith('res_') || (uid.startsWith('bot_') && value.isBot === true)) continue;
     const name = typeof value.name === 'string' ? value.name.trim().slice(0, 48) : '';
-    out.push({ uid, name: name || '—', steps: num(value.steps), reachedAtMs: num(value.reachedAtMs), totalMs: num(value.totalMs), coinRank: spireDecodeCoinRank(value.coinRank), weekCoins: num(value.weekCoins) });
+    out.push({ uid, name: name || '—', steps: num(value.steps), reachedAtMs: num(value.reachedAtMs), totalMs: num(value.totalMs), coinRank: spireDecodeCoinRank(value.coinRank), weekCoins: num(value.weekCoins), isPremium: value.isPremium === true });
   }
   return out;
 }
@@ -140,8 +144,8 @@ export function spireBuildRoomRows(input: SpireRoomRowsInput): SpireRoomRow[] {
   const myReached = input.mySteps >= serverSteps ? input.myReachedAtMs : (serverMe?.reachedAtMs ?? 0);
   const live: SpireRoomRow[] = room.members
     .filter((m) => m.uid !== myUid)
-    .map((m) => ({ uid: m.uid, name: m.name, steps: m.steps, reachedAtMs: m.reachedAtMs, isMe: false, coinRank: m.coinRank ?? null, weekCoins: liveWeekCoins(m.weekCoins, m.steps) }));
-  live.push({ uid: myUid, name: serverMe?.name ?? '—', steps: mySteps, reachedAtMs: myReached, isMe: true, coinRank: serverMe?.coinRank ?? null, weekCoins: liveWeekCoins(serverMe?.weekCoins, mySteps) });
+    .map((m) => ({ uid: m.uid, name: m.name, steps: m.steps, reachedAtMs: m.reachedAtMs, isMe: false, coinRank: m.coinRank ?? null, weekCoins: liveWeekCoins(m.weekCoins, m.steps), isPremium: m.isPremium === true }));
+  live.push({ uid: myUid, name: serverMe?.name ?? '—', steps: mySteps, reachedAtMs: myReached, isMe: true, coinRank: serverMe?.coinRank ?? null, weekCoins: liveWeekCoins(serverMe?.weekCoins, mySteps), isPremium: serverMe?.isPremium === true });
 
   return live.sort(spireCompareRowsBy(input.rankBy ?? 'steps'));
 }

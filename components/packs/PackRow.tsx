@@ -26,6 +26,7 @@ import { KitTouchable } from '../KitTouchable';
 import { LinearGradient } from '../SafeLinearGradient';
 import { mixDark, themePair } from '../mistakes-panel/panelPaint';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
+import { PlusAvatarRing } from '../plus/PlusAvatarRing';
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
 import { useLineScale } from '../../hooks/useLineScale';
@@ -251,7 +252,7 @@ type DeckProps = Readonly<{
   /** Первые слова набора для трёх чипов; пусто — ряд чипов не рисуется. */
   words?: readonly string[];
   /** Автор добавленного набора: аватар + имя перед числом (`Ирина · 49 · B2`); у своих наборов null. */
-  author?: Readonly<{ name: string; coinRank?: number | null }> | null;
+  author?: Readonly<{ name: string; coinRank?: number | null; /** Plus автора — кольцо у монеты (владелец 21.10). */ isPremium?: boolean }> | null;
   authorTestID?: string;
   /** Статус набора в подписи («На проверке»); пусто — не показывается. */
   note?: string | null;
@@ -278,10 +279,11 @@ const DeckWordChip = memo(function DeckWordChip({ g, word, lineHeight }: Readonl
 });
 
 /** `.av` — аватар автора 22: монета ранга, если она есть, иначе значок человека на тоне контрола. */
-const DeckAvatar = memo(function DeckAvatar({ g, coinRank }: Readonly<{ g: GlassTokens; coinRank?: number | null }>) {
+const DeckAvatar = memo(function DeckAvatar({ g, coinRank, plus }: Readonly<{ g: GlassTokens; coinRank?: number | null; plus?: boolean }>) {
   const coin = isValidCoinRank(coinRank) ? coinRankRowForDisplay(coinRank) : null;
   const size = PACK_DECK_METRICS.avatarSize;
-  if (coin) return <Image source={coin.source} style={{ width: size, height: size }} contentFit="contain" accessible={false} />;
+  // зачем (эталон plus-ring-etalon.html, «Наборы сообщества»): у автора с Plus — кольцо вокруг монеты; аватар 22 ≤ 26 — значок ◆ не рисуется
+  if (coin) return <PlusAvatarRing plus={plus} size={size} surface={g.plateFillFrom}><Image source={coin.source} style={{ width: size, height: size }} contentFit="contain" accessible={false} /></PlusAvatarRing>;
   return (
     <View style={[styles.deckAvatar, { width: size, height: size, borderRadius: size / 2, backgroundColor: g.opaqueControl }]}>
       <Ionicons name="person" size={14} color={g.mutedText} />
@@ -348,7 +350,7 @@ function PackDeckBase({
               {parts.after}
             </ClampedText>
             <View style={[styles.deckSub, { marginTop: m.subGap }]}>
-              {author ? <DeckAvatar g={g} coinRank={author.coinRank} /> : null}
+              {author ? <DeckAvatar g={g} coinRank={author.coinRank} plus={author.isPremium} /> : null}
               <ClampedText testID={authorTestID} maxLines={1} style={[styles.deckSubText, { color: g.secondary, lineHeight: lh(m.subLine) }]}>{subText}</ClampedText>
             </View>
           </View>
@@ -431,6 +433,8 @@ type MetaProps = Readonly<{
   g: GlassTokens;
   authorName: string;
   coinRank?: number | null;
+  /** Plus автора — кольцо у монеты 18 (владелец 21.10). */
+  plus?: boolean;
   likes: number;
   added: number;
   comments: number;
@@ -444,7 +448,7 @@ type MetaProps = Readonly<{
 }>;
 
 /** `.au` макета: монета ранга автора, ник, ♥ · 👥 · 💬 (комментарии — только если есть). Одна строка. */
-export const PackRowAuthorMeta = memo(function PackRowAuthorMeta({ g, authorName, coinRank, likes, added, comments, priceRunes = 0, authorTestID, onCommentsPress, commentsTestID, commentsLabel }: MetaProps) {
+export const PackRowAuthorMeta = memo(function PackRowAuthorMeta({ g, authorName, coinRank, plus, likes, added, comments, priceRunes = 0, authorTestID, onCommentsPress, commentsTestID, commentsLabel }: MetaProps) {
   const lh = useLineScale();
   const coin = isValidCoinRank(coinRank) ? coinRankRowForDisplay(coinRank) : null;
   const line = lh(17);
@@ -452,7 +456,7 @@ export const PackRowAuthorMeta = memo(function PackRowAuthorMeta({ g, authorName
   return (
     <View style={styles.metaRow}>
       <View style={styles.authorBox}>
-        {coin ? <Image source={coin.source} style={styles.coin} contentFit="contain" accessible={false} /> : null}
+        {coin ? <PlusAvatarRing plus={plus} size={18} surface={g.plateFillFrom}><Image source={coin.source} style={styles.coin} contentFit="contain" accessible={false} /></PlusAvatarRing> : null}
         {/* зачем: строка фиксированной высоты (журнал 9) — ник в одну строку через примитив ClampedText. */}
         <ClampedText testID={authorTestID} maxLines={1} style={[styles.metaText, styles.authorText, { color: g.secondary, lineHeight: line }]}>{author}</ClampedText>
       </View>

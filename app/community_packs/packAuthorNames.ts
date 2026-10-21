@@ -28,6 +28,7 @@ import {
 import { triLang, type Lang } from '../../constants/i18n';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { isPlusProfile } from '../../components/plus/plus_ring_spec';
 
 // зачем v2 + короче TTL для косметики (владелец 17.09.2026: «аватарка не
 // показывается правильная, там эмодзи», второе мнение советника): v1 читал
@@ -57,6 +58,11 @@ type CacheRecord = {
    * на ≤24 ч, а бамп заставил бы перечитать ВСЕХ авторов (лишние чтения Firestore).
    */
   coinRank?: number | null;
+  /**
+   * Plus у автора (кольцо у монеты, владелец 21.10): из того же документа public_profiles (поле isPremium), без нового чтения.
+   * Старые записи кэша без поля значат «не Plus» до конца 24-часового срока — ключ кэша не бампаем (иначе лишние чтения всех авторов).
+   */
+  isPremium?: boolean;
   at: number;
 };
 
@@ -65,6 +71,8 @@ export type CommunityAuthorProfile = {
   avatar: string;
   frame: string;
   aura: string;
+  /** Plus автора; поле необязательное, как и coinRank. */
+  isPremium?: boolean;
   /** Ранг монеты автора; поле необязательное — у PackCommentsSheet и локального профиля его нет (совместимость типа). */
   coinRank?: number | null;
 };
@@ -187,6 +195,8 @@ async function fetchPublicProfile(sid: string): Promise<CommunityAuthorProfile> 
       frame: String(data.frame ?? '').trim().slice(0, 80),
       aura: String(data.aura ?? '').trim().slice(0, 80),
       coinRank: isValidCoinRank(data.coinRank) ? data.coinRank : null,
+      // Plus = покупка / VIP / пожизненный Pro (isPlusProfile); в кэше и профиле поле по-прежнему зовётся isPremium
+      isPremium: isPlusProfile({ isPremium: data.isPremium === true, isVip: data.isVip === true, isLifetime: data.isLifetime === true }),
     };
   } catch (e) {
     DebugLogger.warn('packAuthorNames:fetch', `[PACK-COMMENT-AVATAR] чтение public_profiles/${sid} упало: ${e instanceof Error ? e.message : String(e)}`);
@@ -219,7 +229,7 @@ export async function resolveCommunityAuthorProfile(
   const cache = await readCache();
   const hit = cache[sid];
   if (hit && Date.now() - hit.at < AUTHOR_PROFILE_TTL_MS) {
-    return { name: hit.name, avatar: hit.avatar, frame: hit.frame, aura: hit.aura, coinRank: isValidCoinRank(hit.coinRank) ? hit.coinRank : null };
+    return { name: hit.name, avatar: hit.avatar, frame: hit.frame, aura: hit.aura, coinRank: isValidCoinRank(hit.coinRank) ? hit.coinRank : null, isPremium: hit.isPremium === true };
   }
 
   const pending = inFlight.get(sid);
@@ -266,7 +276,7 @@ export function officialPackAuthorName(pack: PackAuthorRef | null | undefined): 
   return isOfficialVideoPack(pack) ? OFFICIAL_PACK_AUTHOR_NAME : null;
 }
 
-export type CommunityAuthorDisplay = Readonly<{ name: string; coinRank: number | null }>;
+export type CommunityAuthorDisplay = Readonly<{ name: string; coinRank: number | null; /** Plus автора — кольцо у монеты (владелец 21.10). */ isPremium: boolean }>;
 
 /**
  * Готовая к показу подпись автора: ник, иначе нейтральный фолбэк.
@@ -286,17 +296,17 @@ export function useCommunityAuthor(pack: PackAuthorRef | null | undefined, lang:
   // зачем: официальному набору профиль не нужен — sid пустой, эффект ниже не идёт в сеть (💸 чтение public_profiles/video:*).
   const sid = official ? '' : String(pack?.authorStableId ?? '').trim();
   const seed = official ? '' : sanitizeNickname(pack?.authorName);
-  const [author, setAuthor] = useState<{ nick: string; coinRank: number | null }>(() => ({ nick: seed, coinRank: null }));
+  const [author, setAuthor] = useState<{ nick: string; coinRank: number | null; isPremium: boolean }>(() => ({ nick: seed, coinRank: null, isPremium: false }));
 
   useEffect(() => {
     let cancelled = false;
-    setAuthor((prev) => (prev.nick === seed && prev.coinRank === null ? prev : { nick: seed, coinRank: null }));
+    setAuthor((prev) => (prev.nick === seed && prev.coinRank === null && !prev.isPremium ? prev : { nick: seed, coinRank: null, isPremium: false }));
     if (!sid) return () => { cancelled = true; };
     void resolveCommunityAuthorProfile(sid).then((profile) => {
       if (cancelled) return;
       const rank = isValidCoinRank(profile.coinRank) ? profile.coinRank : null;
       if (!profile.name && rank === null) return;
-      setAuthor({ nick: profile.name || seed, coinRank: rank });
+      setAuthor({ nick: profile.name || seed, coinRank: rank, isPremium: profile.isPremium === true });
     }).catch((error: unknown) => {
       // Немой catch запрещён: подпись остаётся фолбэком, причина — в журнал (без uid).
       console.warn(`[PACK-AUTHOR] resolve failed kind=${error instanceof Error ? error.name : typeof error}`); // guard-ok
@@ -306,10 +316,10 @@ export function useCommunityAuthor(pack: PackAuthorRef | null | undefined, lang:
     };
   }, [sid, seed]);
 
-  if (official) return { name: official, coinRank: null };
+  if (official) return { name: official, coinRank: null, isPremium: false };
   // зачем (Ревизор 15.10): у набора ролика без названия канала подпись пустая, а не «Автор сообщества» — автора-человека у него нет
-  if (pack?.videoId && !sid && !seed) return { name: '', coinRank: null };
-  return { name: communityAuthorLabel(author.nick, lang), coinRank: author.coinRank };
+  if (pack?.videoId && !sid && !seed) return { name: '', coinRank: null, isPremium: false };
+  return { name: communityAuthorLabel(author.nick, lang), coinRank: author.coinRank, isPremium: author.isPremium };
 }
 
 /** Ник автора набора для UI. Пока грузится — нейтральный фолбэк, не UID. */

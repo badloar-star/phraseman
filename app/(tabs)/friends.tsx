@@ -78,6 +78,7 @@ import { devFriendsDemoData, isDevFriendsDemoOn } from '../dev_friends_demo';
 import { isDevOverlaysOff } from '../dev_overlays_off';
 import { acquireInviteCodeShared, invalidateInviteCodeShared } from '../invite_code_singleton';
 import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
+import { isPlusProfile } from '../../components/plus/plus_ring_spec';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
 import {
   startFriendsTabSwrPrime,
@@ -2495,6 +2496,7 @@ export default function FriendsTabScreen() {
                   friendUid={profile.uid}
                   friendName={profile.name}
                   coinRank={profile.coinRank ?? null}
+                  isPlus={isPlusProfile(profile)}
                   daysTogether={together?.days ?? null}
                   onOpenProfile={openProfileByUid}
                   onOpenDetails={openFriendSheetByUid}

@@ -4,6 +4,7 @@ import { triLang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
 import PremiumGoldUserName from '../PremiumGoldUserName';
 import { FriendsCard, FriendsCoin, FriendsGlassButton, useFriendsGlass } from './FriendsGlassKit';
+import { isPlusProfile } from '../plus/plus_ring_spec';
 import { FlowText } from '../text-integrity';
 
 // зачем (владелец 2026-09-29): карточка входящей заявки 1 в 1 по макету community.html#COM-04
@@ -15,6 +16,7 @@ export type FriendsRequestProfile = {
   name: string;
   isPremium: boolean;
   isVip?: boolean;
+  isLifetime?: boolean;
   coinRank?: number | null;
 };
 
@@ -46,7 +48,7 @@ function FriendsRequestCard({ profile, onAccept, onDecline }: {
       style={{ flexDirection: 'column', alignItems: 'stretch', gap: 12, padding: 14 }}
     >
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-        <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={44} glass={glass} />
+        <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={44} glass={glass} plus={isPlusProfile(profile)} />
         <View style={{ flex: 1, minWidth: 0 }}>
           {profile.isPremium || profile.isVip
             ? <PremiumGoldUserName text={profile.name} fontSize={nameSize} />

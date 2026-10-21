@@ -7,6 +7,7 @@ import { logMemCoin } from '../coins/mem_coin_probe';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
+import { PlusAvatarRing } from '../plus/PlusAvatarRing';
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import PressableHybrid from '../PressableHybrid';
 import { LinearGradient } from '../SafeLinearGradient';
@@ -64,8 +65,27 @@ export function FriendsCard({ glass, children, testID, style, onLayoutHeight }: 
   );
 }
 
+/**
+ * Монета ранга друга + кольцо Plus (владелец 21.10, реестр №6; эталон plus-ring-etalon.html): общая точка для поиска, заявок и списка друзей.
+ * Кольцо — оверлей: размер монеты и раскладка карточки не меняются. Без Plus — ровно прежняя монета.
+ */
+export function FriendsCoin({ coinRank, name, size, glass, plus }: {
+  coinRank?: number | null;
+  name: string;
+  size: number;
+  glass: FriendsGlass;
+  /** У друга есть Plus (isPremium || isVip из публичной проекции). */
+  plus?: boolean;
+}) {
+  return (
+    <PlusAvatarRing plus={plus} size={size} surface={glass.plateFillFrom}>
+      <FriendsCoinFace coinRank={coinRank} name={name} size={size} glass={glass} />
+    </PlusAvatarRing>
+  );
+}
+
 /** Монета ранга друга; данных ранга нет — нейтральный кружок с инициалом (ранги не выдумываем). */
-export function FriendsCoin({ coinRank, name, size, glass }: {
+function FriendsCoinFace({ coinRank, name, size, glass }: {
   coinRank?: number | null;
   name: string;
   size: number;

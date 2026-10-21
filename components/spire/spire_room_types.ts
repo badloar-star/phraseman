@@ -13,6 +13,8 @@ export type SpireMemberRow = Readonly<{
   coinRank?: number | null;
   /** D162: монеты недели (показ при rankBy='coins'); нет — 0. */
   weekCoins?: number;
+  /** Plus (кольцо у монеты, владелец 21.10): нет — не Plus. */
+  isPremium?: boolean;
 }>;
 
 /** D162: чем ранжирована комната на экране — тот же рубильник, что у итога недели. */

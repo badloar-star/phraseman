@@ -3,6 +3,8 @@ import { Animated, Image as RNImage, PixelRatio, View } from 'react-native';
 import { Image } from 'expo-image';
 import { getAvatarByIndex } from '../constants/avatars';
 import { coinRankRowForDisplay, coinRankSourceForSize, isValidCoinRank } from '../app/coin_rank_table_v1';
+import { PlusRingOverlay } from './plus/PlusAvatarRing';
+import type { PlusRingKind } from './plus/plus_ring_spec';
 
 const EXEMPT_COLOR_1 = '#273449'; // theme-exempt: заглушка аватара и подложка — тёмная плашка под изображением
 
@@ -34,6 +36,15 @@ interface Props {
   coinRank?: number | null;
   /** Монета ранга отрисована (expo-image onLoad) — экран снимает свою заглушку того же размера. */
   onCoinLoad?: () => void;
+  /**
+   * У человека есть Plus (владелец 21.10, реестр №6): вокруг аватара кольцо (и значок ◆ от размера 26). Оверлей — раскладка и размер аватара не меняются.
+   * Только true рисует кольцо; false/null/undefined — как раньше, ничего лишнего в дереве.
+   */
+  plus?: boolean | null;
+  /** Вид кольца: list (по умолчанию), flat (жители на башне Пика), card (визитка). */
+  plusKind?: PlusRingKind;
+  /** Цвет поверхности под аватаром — для обводки значка ◆; нет — фон экрана темы. */
+  plusSurface?: string;
   /** Префикс журнала загрузки монеты (например «[PIK-IMG]»): время до onLoad, ранг, размер, откуда ассет. Без префикса — тихо. */
   loadTrace?: string;
 }
@@ -78,7 +89,7 @@ function AvatarImageWithFallback({
   );
 }
 
-function AvatarView({ avatar, size = 44, style, coinRank, onCoinLoad, loadTrace }: Props) {
+function AvatarView({ avatar, size = 44, style, coinRank, onCoinLoad, loadTrace, plus, plusKind, plusSurface }: Props) {
   const mountedAtRef = useRef(Date.now()); // отсчёт журнала загрузки монеты — от монтирования, а не от последней перерисовки
   // зачем (PM-076, D62 п.2): параллельный путь к старому показу — если ранг монеты
   // известен, рисуем монету ранга из единой таблицы. Старые ветки ниже не трогаем:
@@ -112,6 +123,7 @@ function AvatarView({ avatar, size = 44, style, coinRank, onCoinLoad, loadTrace 
             console.warn(loadTrace, JSON.stringify({ stage: 'coin:error', rank: coinRank, ms: Date.now() - traceStartedAt, variant: coinPick.variant, scheme: assetScheme(coinPick.source), error: String(event?.error ?? '').slice(0, 80) })); // guard-ok: ошибка загрузки — причина в журнале, заглушка остаётся
           } : undefined}
         />
+        {plus === true ? <PlusRingOverlay size={size} kind={plusKind} surface={plusSurface} /> : null}
       </View>
     );
   }
@@ -123,6 +135,7 @@ function AvatarView({ avatar, size = 44, style, coinRank, onCoinLoad, loadTrace 
   return (
     <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>
       {content}
+      {plus === true ? <PlusRingOverlay size={size} kind={plusKind} surface={plusSurface} /> : null}
     </View>
   );
 }

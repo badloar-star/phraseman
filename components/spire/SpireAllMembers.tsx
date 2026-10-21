@@ -57,7 +57,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
             accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${rankBy === 'coins' ? spireCoinsCount(lang, m.weekCoins ?? 0) : spireStepsCount(lang, m.steps)}`}
           >
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
-            <SpireRankCoin rank={m.coinRank} size={40} />
+            <SpireRankCoin rank={m.coinRank} size={40} plus={m.isPremium} />
             <View style={s.nameWrap}>
               <Text style={[s.name, { color: p.text }]}>{m.name}</Text>
               {m.isMe ? <View style={[s.you, { backgroundColor: p.cta }]}><Text style={[s.youText, { color: p.ctaText }]}>{spireText(lang, 'you')}</Text></View> : null}

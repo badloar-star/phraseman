@@ -20,6 +20,7 @@ import { useSpireScene } from './useSpireScene';
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import { getDevSpireScrollOverride, getDevSpireTierOverride } from '../../app/dev_spire_tier';
 import SpireRankCoin from './SpireRankCoin';
+import { useIsPlus } from '../plus/use_is_plus';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
 import { SPIRE_WINDOW_MAX } from './spire_tower_window';
@@ -80,7 +81,8 @@ const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth,
       <View key={`rivals-${fl.f}`} style={[s.rivals, { right: renderWidth - (fl.x0 - RIVAL_GAP) * scale, top, opacity: dim ? 0.55 : 1 }]}>
         {list.slice(0, shown).map((m, k) => (
           <View key={m.uid} style={{ marginLeft: k === 0 ? 0 : (RIVAL_STEP - RIVAL) * scale }}>
-            <SpireRankCoin rank={m.coinRank} size={RIVAL * scale} />
+            {/* зачем (эталон plus-ring-etalon.html, «Пик · жители этажей»): монеты мелкие и стопкой — плоское кольцо 3 + зазор 2, без значка */}
+            <SpireRankCoin rank={m.coinRank} size={RIVAL * scale} plus={m.isPremium} plusKind="flat" />
           </View>
         ))}
         {extra > 0 ? <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[s.rivalExtra, { color: p.textSecondary }]}>{`+${extra}`}</Text> : null}
@@ -123,6 +125,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
 
 function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive }: Props) {
   const p = useSpirePalette();
+  const myIsPlus = useIsPlus(); // зачем (владелец 21.10, реестр №6): мой маркер на башне — с кольцом, если у меня Plus
   const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
   const fontScale = useWindowDimensions().fontScale;
@@ -322,7 +325,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
                 <View style={[s.markerGlow, scene.light ? { backgroundColor: scene.tone, opacity: 0.12 } : null]} />
                 <View style={[s.markerRing, scene.light ? { backgroundColor: scene.numMine } : null]}>
                   <View style={s.markerInner}>
-                    {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={MARKER_SIZE - 6} /> : null}
+                    {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={MARKER_SIZE - 6} plus={myIsPlus} plusKind="flat" /> : null}
                   </View>
                 </View>
               </Animated.View>

@@ -14,6 +14,7 @@ import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import type { ProfileCardLook } from '../../app/profile_card_styles';
 import { LinearGradient } from '../SafeLinearGradient';
+import { PlusRingOverlay } from '../plus/PlusAvatarRing';
 import { gradientPoints } from './profile_card_looks';
 import { useLoop } from './useLoop';
 
@@ -23,6 +24,10 @@ type Props = Readonly<{
   size: number;
   animate: boolean;
   testID?: string;
+  /** У человека есть Plus (владелец 21.10, реестр №6): кольцо 6 + зазор 5 и значок ◆ 46 у монеты. Кольцо внутри плавающего корня — «летает» вместе с монетой. */
+  plus?: boolean;
+  /** Цвет карточки — для обводки значка ◆. */
+  plusSurface?: string;
 }>;
 
 const FLOAT_LOOKS: ReadonlySet<ProfileCardLook> = new Set(['holo', 'aura']);
@@ -91,7 +96,7 @@ export function GoldRing({ size }: { size: number }) {
   );
 }
 
-function ProfileCardCoin({ look, rank, size, animate, testID }: Props) {
+function ProfileCardCoin({ look, rank, size, animate, testID, plus, plusSurface }: Props) {
   const float = useLoop(5500, animate && FLOAT_LOOKS.has(look), { yoyo: true, restAt: 0 });
   const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -7 * float.value }] }));
   const shadow = look === 'obs'
@@ -117,6 +122,8 @@ function ProfileCardCoin({ look, rank, size, animate, testID }: Props) {
         <CoinImage rank={rank} size={size} />
       </View>
       {rank !== null && SHEEN_LOOKS.has(look) ? <Sheen rank={rank} size={size} animate={animate} /> : null}
+      {/* зачем: «Обсидиан» держит монету в своём золотом кольце (GoldRing) — второе кольцо рядом не рисуем, значок ◆ остаётся */}
+      {plus === true ? <PlusRingOverlay size={size} kind="card" surface={plusSurface} hideRing={look === 'obs'} testID="profile-card-plus-ring" /> : null}
     </Animated.View>
   );
 }

@@ -13,6 +13,7 @@ import type { Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import type { CoinRankCeremony } from '../../hooks/use_coin_rank_upgrade';
 import { RankChip } from './ProfileCardParts';
+import { PlusTag } from '../plus/PlusAvatarRing';
 import type { useRankChipStyles } from './ProfileCardRankUp';
 import type { ProfileCardLookTokens } from './profile_card_looks';
 import { PC, t4 } from './profile_card_copy';
@@ -31,6 +32,8 @@ type Props = Readonly<{
   showLock: boolean;
   onEditBio: () => void;
   onOpenBuy: () => void;
+  /** У человека есть Plus: метка «◆ Plus» у имени (владелец 21.10, реестр №6). Карточка всегда тёмная — метка тёмного варианта. */
+  plus?: boolean;
 }>;
 
 // зачем (Сверка 05.10 04:45: при rank=5 визитка писала «ранг 6», после повышения «ранг 7»): ранги 0…19 показываются
@@ -40,17 +43,20 @@ export function profileCardRankLabel(rank: number, lang: Lang): string {
 }
 
 function ProfileCardBodyBase({
-  lang, tokens, name, rank, ceremony, chipStyles, bioText, canEditBio, showLock, onEditBio, onOpenBuy,
+  lang, tokens, name, rank, ceremony, chipStyles, bioText, canEditBio, showLock, onEditBio, onOpenBuy, plus,
 }: Props) {
   const editable = canEditBio && !ceremony;
   const content = (
     <>
-      <Text
-        testID="profile-card-name"
-        style={[styles.name, { color: tokens.title }, tokens.titleGlow ? { textShadowColor: tokens.titleGlow, textShadowRadius: 18 } : null]}
-      >
-        {name}
-      </Text>
+      <View style={styles.nameRow}>
+        <Text
+          testID="profile-card-name"
+          style={[styles.name, { color: tokens.title }, tokens.titleGlow ? { textShadowColor: tokens.titleGlow, textShadowRadius: 18 } : null]}
+        >
+          {name}
+        </Text>
+        {plus === true ? <PlusTag testID="profile-card-plus-tag" isLight={false} style={styles.plusTag} /> : null}
+      </View>
       <View style={styles.rankWrap}>
         {ceremony ? (
           <>
@@ -128,8 +134,10 @@ const styles = StyleSheet.create({
     // зачем (владелец 12.10, стиль «Тень»): стеклянная плашка «Ауры» без кромки — отделяет полупрозрачный белый тон на арте
   },
   center: { alignItems: 'center' },
+  nameRow: { alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
+  plusTag: { marginLeft: 8, flexShrink: 0 },
   name: {
-    fontSize: 33, lineHeight: 38, fontWeight: '800', letterSpacing: -0.7, textAlign: 'center', alignSelf: 'stretch',
+    flexShrink: 1, fontSize: 33, lineHeight: 38, fontWeight: '800', letterSpacing: -0.7, textAlign: 'center',
   },
   rankWrap: { marginTop: 10, alignItems: 'center', justifyContent: 'center', minHeight: 36 },
   bioRow: { marginTop: 12, maxWidth: 320, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },

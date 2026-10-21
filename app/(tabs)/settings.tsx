@@ -45,6 +45,7 @@ import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
 import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOffset } from '../scroll_restore_probe';
 import { usePremium } from '../../components/PremiumContext';
+import { PlusAvatarRing, PlusTag } from '../../components/plus/PlusAvatarRing';
 import CustomSwitch from '../../components/CustomSwitch';
 import { setLiteModeOverride, useLiteMode } from '../lite_mode';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
@@ -423,6 +424,8 @@ export default function SettingsMain() {
   /** Пока false — ник ещё не прочитан из AsyncStorage (избегаем кадра «Не задано»). */
   const settingsStorageHydratedRef = useRef(false);
   const { isPremium, isVip, isPro, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
+  // зачем (владелец 21.10, реестр №6): кольцо и метка «◆ Plus» у моей монеты — только при настоящем Plus (isPremium/VIP/Pro), вводный пробный доступ его не даёт
+  const isPlus = isPremium || isVip || isPro;
   const initialSettingsMessageOwnerRef = useRef(captureAccountGeneration().stableId ?? '');
   const [settingsMessageOwner, setSettingsMessageOwner] = useState(initialSettingsMessageOwnerRef.current);
   const [settingsMessageSelection, setSettingsMessageSelection] = useState<SettingsMessageSlotSelection>(() => {
@@ -1115,7 +1118,9 @@ export default function SettingsMain() {
             {L('Настройки', 'Параметри', 'Settings', 'Ajustes', 'Ajustes', 'Cài đặt', 'Setelan', 'Ayarlar', 'Ustawienia')}
           </Text>
           <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-            {renderRankCoin('settings-header-coin', 44)}
+            <PlusAvatarRing plus={isPlus} size={44} surface={glass.bg}>
+              {renderRankCoin('settings-header-coin', 44)}
+            </PlusAvatarRing>
           </View>
         </View>
 
@@ -1132,10 +1137,16 @@ export default function SettingsMain() {
         >
           <KitGlassLayer radius={22} />
           <View style={{ width: 52, height: 52, alignItems: 'center', justifyContent: 'center' }}>
-            {renderRankCoin('settings-profile-coin', 52)}
+            <PlusAvatarRing plus={isPlus} size={52} surface={glass.plateFillFrom}>
+              {renderRankCoin('settings-profile-coin', 52)}
+            </PlusAvatarRing>
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700' /* зачем: имя в карточке профиля — заголовок ≥19 по шкале D145 (макет profile.html показывает 18/22 — Макетам поправить на 19/24) */ }}>{profileCardName}</Text>
+            {/* зачем (эталон plus-ring-etalon.html, «Настройки»): метка «◆ Plus» после имени — только в своём профиле, при Plus */}
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={{ flexShrink: 1, color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700' /* зачем: имя в карточке профиля — заголовок ≥19 по шкале D145 (макет profile.html показывает 18/22 — Макетам поправить на 19/24) */ }}>{profileCardName}</Text>
+              {isPlus ? <PlusTag testID="settings-plus-tag" isLight={glass.isLight} style={{ marginLeft: 8 }} /> : null}
+            </View>
             {profileCardSub ? (
               <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }}>{profileCardSub}</Text>
             ) : null}

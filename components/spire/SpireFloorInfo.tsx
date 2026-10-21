@@ -85,7 +85,7 @@ function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [],
       {others.length > 0 ? (
         <View style={s.who} testID="spire-floor-who">
           {others.slice(0, WHO_MAX).map((m, k) => (
-            <View key={m.uid} style={k === 0 ? null : s.whoOverlap}><SpireRankCoin rank={m.coinRank} size={28} /></View>
+            <View key={m.uid} style={k === 0 ? null : s.whoOverlap}><SpireRankCoin rank={m.coinRank} size={28} plus={m.isPremium} plusKind="flat" /></View>
           ))}
         </View>
       ) : null}

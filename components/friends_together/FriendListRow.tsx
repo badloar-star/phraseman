@@ -16,6 +16,8 @@ export interface FriendListRowProps {
   friendName: string;
   /** Публичный ранг монеты друга; нет данных — нейтральный кружок с инициалом (зачем: макет COM-04, ранги не выдумываем). */
   coinRank?: number | null;
+  /** У друга есть Plus (кольцо у монеты, владелец 21.10). Примитив — строка под memo не перерисовывается зря. */
+  isPlus?: boolean;
   daysTogether: number | null;
   // зачем (аудит скорости 2026-08-22): колбэки принимают friendUid, а не готовое
   // замыкание — так родитель (FriendsTabScreen) передаёт СТАБИЛЬНЫЕ ссылки
@@ -60,6 +62,7 @@ function FriendListRow({
   friendUid,
   friendName,
   coinRank = null,
+  isPlus = false,
   daysTogether,
   onOpenProfile,
   onOpenDetails,
@@ -98,7 +101,7 @@ function FriendListRow({
         style={styles.avatarTarget}
       >
         <View style={event ? [styles.eventRing, { shadowColor: event.kind === 'duel_invite' ? t.wrong : glass.cta }] : undefined}>
-          <FriendsCoin coinRank={coinRank} name={friendName} size={44} glass={glass} />
+          <FriendsCoin coinRank={coinRank} name={friendName} size={44} glass={glass} plus={isPlus} />
         </View>
       </Pressable>
       <Pressable

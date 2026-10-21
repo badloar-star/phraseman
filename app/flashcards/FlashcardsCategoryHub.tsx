@@ -322,7 +322,7 @@ function CommunityPackRowBase({
       count={pack.cardCount}
       level={packDeckLevel(pack)}
       words={deckWords}
-      author={{ name: author.name, coinRank: author.coinRank }}
+      author={{ name: author.name, coinRank: author.coinRank, isPremium: author.isPremium }}
       highlight={highlight}
       emphasis={emphasis}
       onPress={onOpen}

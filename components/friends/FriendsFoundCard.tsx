@@ -6,6 +6,7 @@ import PremiumGoldUserName from '../PremiumGoldUserName';
 import { StreakChainIcon } from '../StreakChainIcon';
 import { useTheme } from '../ThemeContext';
 import { FriendsCard, FriendsCoin, FriendsGlassButton, FriendsRoundButton, useFriendsGlass } from './FriendsGlassKit';
+import { isPlusProfile } from '../plus/plus_ring_spec';
 import { FlowText } from '../text-integrity';
 import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 
@@ -19,6 +20,7 @@ export type FriendsFoundProfile = {
   streak: number;
   isPremium: boolean;
   isVip?: boolean;
+  isLifetime?: boolean;
   coinRank?: number | null;
 };
 
@@ -44,7 +46,7 @@ export default function FriendsFoundCard({ profile, onAdd, onClose, isAdding }: 
       style={{ flexDirection: 'column', alignItems: 'stretch', gap: 14, padding: 14, marginTop: 2 }}
     >
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-        <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={48} glass={glass} />
+        <FriendsCoin coinRank={profile.coinRank} name={profile.name} size={48} glass={glass} plus={isPlusProfile(profile)} />
         <View style={{ flex: 1, minWidth: 0 }}>
           {profile.isPremium || profile.isVip
             ? <PremiumGoldUserName text={profile.name} fontSize={nameSize} />

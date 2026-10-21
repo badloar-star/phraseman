@@ -45,6 +45,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
+import { PlusAvatarRing, PlusTag } from '../components/plus/PlusAvatarRing';
+import { useIsPlus } from '../components/plus/use_is_plus';
 import { coinRankRowForDisplay, isValidCoinRank } from './coin_rank_table_v1';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import {
@@ -101,6 +103,8 @@ export default function AccountDetailsScreen() {
   const insets = useStableSafeAreaInsets();
   // зачем: монета текущего ранга вместо инициалов (макет PRF-02) — из кэша в памяти, без сети.
   const myCoinRank = useMyCoinRank();
+  // зачем (владелец 21.10, реестр №6): в «Аккаунте» у Plus — кольцо и значок у монеты и метка «◆ Plus» у имени (эталон plus-ring-etalon.html)
+  const isPlus = useIsPlus();
   const coinRow = isValidCoinRank(myCoinRank) ? coinRankRowForDisplay(myCoinRank) : null;
   const { lang } = useLang();
   const L = (
@@ -318,21 +322,27 @@ export default function AccountDetailsScreen() {
 
             {/* Герой: монета ранга + имя + «Изменить имя». */}
             <View testID="account-hero" style={{ alignItems: 'center', marginTop: 26 }}>
-              {coinRow ? (
-                <Image testID="account-coin" accessible={false} source={coinRow.source} style={{ width: COIN_SIZE, height: COIN_SIZE }} contentFit="contain" />
-              ) : (
-                <View testID="account-coin-loading" style={{ width: COIN_SIZE, height: COIN_SIZE, borderRadius: COIN_SIZE / 2, backgroundColor: glass.opaqueControl }} />
-              )}
+              <PlusAvatarRing plus={isPlus} size={COIN_SIZE} surface={glass.bg}>
+                {coinRow ? (
+                  <Image testID="account-coin" accessible={false} source={coinRow.source} style={{ width: COIN_SIZE, height: COIN_SIZE }} contentFit="contain" />
+                ) : (
+                  <View testID="account-coin-loading" style={{ width: COIN_SIZE, height: COIN_SIZE, borderRadius: COIN_SIZE / 2, backgroundColor: glass.opaqueControl }} />
+                )}
+              </PlusAvatarRing>
               {/* Высота имени зарезервирована и при пустом нике — геометрия не прыгает.
                   зачем: text-integrity — длинный ник переносится (контент юзера), усечение запрещено. */}
-              <FlowText
-                testID="account-name"
-                provenance="user"
-                // зачем (profile.html `.section-title`): имя 19/24 жирным под монетой.
-                style={{ color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700', marginTop: 10, maxWidth: '86%', textAlign: 'center' }}
-              >
-                {userName || namePlaceholder}
-              </FlowText>
+              {/* зачем (эталон plus-ring-etalon.html, «Аккаунт»): метка «◆ Plus» стоит в одной строке с именем; длинное имя переносится, метка не сжимается */}
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, maxWidth: '92%' }}>
+                <FlowText
+                  testID="account-name"
+                  provenance="user"
+                  // зачем (profile.html `.section-title`): имя 19/24 жирным под монетой.
+                  style={{ flexShrink: 1, color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700', textAlign: 'center' }}
+                >
+                  {userName || namePlaceholder}
+                </FlowText>
+                {isPlus ? <PlusTag testID="account-plus-tag" isLight={glass.isLight} style={{ marginLeft: 8 }} /> : null}
+              </View>
               <PressableHybrid
                 testID="account-change-name"
                 accessibilityLabel={nameLabel}

@@ -77,7 +77,7 @@
 - **Порядок:** до или вместе с группой Б, чтобы оповещение о возврате не потерялось при сбое Telegram.
 - **Сборка приложения:** не нужна.
 
-### Д. Политика конфиденциальности — `C:/Temp/claude/privacy-1021-plus-gift.patch`
+### Д. Политика конфиденциальности — `docs/work/tasks/privacy-1022-plus-gift-streak.patch` (копия: `C:/Temp/claude/privacy-1022-plus-gift-streak.patch`; заменяет `privacy-1021-plus-gift.patch`)
 
 - **Меняется:** `legal/privacy_policy_en.json`, `legal/privacy_policy_en_ios.json` (дата 21.10; Plus-отметка видна другим, в том числе в комнатах Пика; подарок ссылкой). `git apply --check` на HEAD — чисто.
 - **⚠️** Приложение показывает свою копию `app/legal/*.json` (`app/privacy_screen.tsx:9-10`), и она уже сейчас отличается от `legal/`. После применения патча прогнать `scripts/sync-legal-html.mjs`: он пишет `app/legal/*.json` и страницы `knowly-www/legal/*`.
@@ -102,13 +102,16 @@
 
 **Утренний коммит (одним коммитом, по «да» владельца):**
 
-1. `git apply C:/Temp/claude/privacy-1021-plus-gift.patch`
+1. `git apply docs/work/tasks/privacy-1022-plus-gift-streak.patch`
 2. `npm run legal:sync`
 3. В `tests/legal_document_liquid_glass_source_contract.test.mjs` (строки 67–68) новые хэши:
-   - `privacy_policy_en.json` → `0bb9fd6a687e1fd735120385c663f042c7fd28ecd31e7ff356dbaab62af8457c`
-   - `privacy_policy_en_ios.json` → `918ed89c56aca65fd5235c99ef8ed7049fea13fce61ff2344c8cfc98bb679ae8`
+   - `privacy_policy_en.json` → `ca3dc2107c23e1c789e65e8fe065d7facde5218d7ce7b791d0f41b0ba5bed9b5`
+   - `privacy_policy_en_ios.json` → `35dac380ae2c558eb7166bd1069a8e5f606b63b63861421ad7f407357bc1fd6a`
    (посчитаны на результате прогона; если до утра кто-то ещё тронет политику — пересчитать).
 4. Прогнать этот тест и `tests/website_*` — должны быть зелёными; сторож станет зелёным впервые с `745b7e79e`.
+
+**Дополнение 22.10 — «Серия вдвоём» (8 · МОМЕНТЫ, `f1c6e19c3` / `4f33676dc`).** В абзац «Together» (§5, en и en_ios — других языков у политики нет) добавлено: друзья видят, **в какие дни текущей недели** человек занимался, и **общую серию подряд — текущую и лучшую**. Новых данных нет (те же active_days), меняется только показ. Заодно исправлена опечатка «progress, Friends» → «progress. Friends». Новая формулировка: *«…those friends may see whether you studied today, which days of the current week you studied, how many days you both studied on the same day — including your shared streak in a row and its best length — the resulting friendship level and progress. Friends may also send or receive nudge signals through this feature.»*
+Повторный прогон «патч v3 → legal:sync» на копии (`C:/Temp/claude/legal-dryrun3`): `app/legal` и `legal` совпадают байт в байт (все 4 файла), на сайте (`privacy/`, `privacy-ios/`) все 27 разделов и новая фраза; хэши для теста выше обновлены под v3.
 
 ## Что ещё лежит невыложенным в `functions/` (с 21.10, кроме групп выше)
 

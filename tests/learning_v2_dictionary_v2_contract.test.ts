@@ -37,7 +37,7 @@ describe("Learning V2 dictionary V2 wiring", () => {
 
   test("dev route exists for Sverka and is cut from store builds; old overlay stays", () => {
     expect(read("app/dev_learning_v2_dictionary_v2.tsx")).toContain("!ENABLE_DEV_TOOLS || IS_STORE_RELEASE");
-    expect(read("router.ctx.js")).toContain("|dev_learning_v2_dictionary_v2)");
+    expect(read("router.ctx.js")).toMatch(/\|dev_learning_v2_dictionary_v2[|)]/u);
     expect(read("app/(tabs)/lessons.tsx")).toContain("<LearningV2LessonDictionaryOverlayV1");
   });
 

@@ -92,6 +92,14 @@ import {
   type LearningV2EpisodeResumeRecordV1,
 } from "./learning_v2_episode_resume_v1";
 import LessonExitSheet from "../components/lesson_exit/LessonExitSheet";
+import LearningV2TheorySheet from "../components/learning-v2/LearningV2TheorySheet";
+import {
+  LEARNING_V2_THEORY_BUTTON_ENABLED,
+  hasLearningV2TheoryV1,
+  learningV2TheorySectionForSessionV1,
+  loadLearningV2TheoryV1,
+  type LearningV2TheoryV1,
+} from "../modules/learning-v2/theory/learning_v2_theory_v1";
 import { lessonExitText } from "../components/lesson_exit/lesson_exit_strings";
 import {
   activateLearningV2CantSpeakV1,
@@ -1363,6 +1371,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     ru: "Устно", uk: "Усно", en: "Speak", es: "Hablar",
     "pt-BR": "Falar", vi: "Nói", id: "Ucap", tr: "Sesli", pl: "Mów",
   });
+  const footerTheoryLabel = triLang(lang, { ru: "Теория", uk: "Теорія", en: "Theory", es: "Teoría", "pt-BR": "Teoria", vi: "Lý thuyết", id: "Teori", tr: "Teori", pl: "Teoria" });
   const footerWordsLabel = triLang(lang, {
     ru: "Слова", uk: "Слова", en: "Words", es: "Palabras",
     "pt-BR": "Palavras", vi: "Từ", id: "Kata", tr: "Kelimeler", pl: "Słowa",
@@ -2545,6 +2554,20 @@ export default function LearningV2DirectSessionPlayerV1() {
     (LearningV2EpisodeResumeRecordV1 & { inMemory?: boolean }) | null
   >(null);
   const [exitSheetOpen, setExitSheetOpen] = useState(false);
+  // зачем (№42, координатор 22.10): «Теория» — шторка поверх эпизода, место в задании не теряется; за флагом до сверки.
+  // Данные теории разбираются только по тапу (не на старте эпизода).
+  const [theoryState, setTheoryState] = useState<{ theory: LearningV2TheoryV1 | null; section: string } | null>(null);
+  const theoryButtonVisible = LEARNING_V2_THEORY_BUTTON_ENABLED && typeof lessonOrdinal === "number" && hasLearningV2TheoryV1(lessonOrdinal, lang);
+  const openTheory = useCallback(() => {
+    if (typeof lessonOrdinal !== "number") {
+      console.warn("[V2-THEORY] open_skipped", JSON.stringify({ reason: "no_lesson_ordinal" })); // guard-ok: ранний выход с причиной
+      return;
+    }
+    const theory = loadLearningV2TheoryV1(lessonOrdinal, lang);
+    const section = theory ? learningV2TheorySectionForSessionV1(theory, typeof sessionOrdinal === "number" ? sessionOrdinal : null) : "01";
+    console.log("[V2-THEORY] open_from_episode", JSON.stringify({ lesson: lessonOrdinal, session: sessionOrdinal, found: theory !== null, section })); // guard-ok: строка на открытие
+    setTheoryState({ theory, section });
+  }, [lang, lessonOrdinal, sessionOrdinal]);
   const resumeCheckedRef = useRef(false);
   const resumedWithoutChargeRef = useRef(false);
   const clearResumeRef = useRef<(reason: string) => Promise<void>>(async () => undefined);
@@ -3158,6 +3181,16 @@ export default function LearningV2DirectSessionPlayerV1() {
   };
   const episodeOverlays = (
     <>
+      {theoryState ? (
+        <LearningV2TheorySheet
+          visible
+          theory={theoryState.theory}
+          lang={lang}
+          initialSection={theoryState.section}
+          returnTask={runSummary ? { n: practiceIndex + 1, m: runSummary.practiceInteractionCount } : undefined}
+          onClose={() => setTheoryState(null)}
+        />
+      ) : null}
       {resumeOffer ? (
         <View testID="learning-v2-resume-offer" style={[styles.resumeOfferWrap, { paddingBottom: Math.max(insets.bottom, 12) + 12 }]} pointerEvents="box-none">
           <View style={[styles.resumeOfferCard, lv2CardStyle(g)]}>
@@ -4056,6 +4089,24 @@ export default function LearningV2DirectSessionPlayerV1() {
               </Pressable>
               </View>
             </Animated.View>
+
+            {theoryButtonVisible ? (
+              <Pressable
+                testID="learning-v2-footer-theory"
+                accessibilityRole="button"
+                accessibilityLabel={footerTheoryLabel}
+                onPress={() => {
+                  void hapticTap();
+                  openTheory();
+                }}
+                style={({ pressed }) => [styles.footerAction, { opacity: pressed ? 0.62 : 1 }]}
+              >
+                <Ionicons name="book-outline" size={26} color={g.text} />
+                <Text style={[styles.footerActionLabel, { color: g.secondary, fontSize: f.label }]}>
+                  {footerTheoryLabel}
+                </Text>
+              </Pressable>
+            ) : null}
 
             <Pressable
               testID="learning-v2-footer-next"

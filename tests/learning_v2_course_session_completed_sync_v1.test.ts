@@ -1,5 +1,10 @@
 import { httpsCallable } from "@react-native-firebase/functions";
-import { attemptPendingLearningV2CourseSessionCompletedV1 } from "../app/learning_v2_course_session_completed_sync_v1";
+import {
+  __resetLearningV2CompletedSyncFailuresForTests,
+  attemptPendingLearningV2CourseSessionCompletedV1,
+  isTransientSyncError,
+  TRANSIENT_CRITICAL_AFTER,
+} from "../app/learning_v2_course_session_completed_sync_v1";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 
 const completion = Object.freeze({ completionFingerprint: "a".repeat(64) });
@@ -125,5 +130,43 @@ describe("Learning V2 direct completion background sync", () => {
       attemptPendingLearningV2CourseSessionCompletedV1(),
     ).resolves.toEqual({ processed: 0, disposition: "retryable_failure" });
     expect(remove).not.toHaveBeenCalled();
+  });
+
+  // зачем (№47, прод 2.0.0, решение владельца 21.10): DEADLINE EXCEEDED от функции — временный отказ; запись остаётся в очереди,
+  // critical только после TRANSIENT_CRITICAL_AFTER неудач подряд по одной записи.
+  test("treats deadline-exceeded as deferred until repeated failures, never drops the record", async () => {
+    __resetLearningV2CompletedSyncFailuresForTests();
+    mockLogError.mockClear();
+    const deadline = Object.assign(new Error("DEADLINE EXCEEDED"), { code: "functions/deadline-exceeded" });
+    for (let attempt = 1; attempt < TRANSIENT_CRITICAL_AFTER; attempt += 1) {
+      callable.mockRejectedValueOnce(deadline);
+      await expect(
+        attemptPendingLearningV2CourseSessionCompletedV1(),
+      ).resolves.toEqual({ processed: 0, disposition: "deferred" });
+    }
+    expect(mockLogError).not.toHaveBeenCalled();
+    callable.mockRejectedValueOnce(deadline);
+    await expect(
+      attemptPendingLearningV2CourseSessionCompletedV1(),
+    ).resolves.toEqual({ processed: 0, disposition: "retryable_failure" });
+    expect(mockLogError).toHaveBeenCalledWith(
+      "learning_v2:session_completed_sync",
+      expect.objectContaining({ message: "DEADLINE EXCEEDED" }),
+      "critical",
+    );
+    expect(remove).not.toHaveBeenCalled();
+    await expect(
+      attemptPendingLearningV2CourseSessionCompletedV1(),
+    ).resolves.toEqual({ processed: 1, disposition: "drained" });
+    expect(remove).toHaveBeenCalledWith(expect.any(String), completion.completionFingerprint);
+  });
+
+  test("classifies only timeouts and unavailability as transient", () => {
+    expect(isTransientSyncError("functions/deadline-exceeded", new Error("x"))).toBe(true);
+    expect(isTransientSyncError("unavailable", new Error("x"))).toBe(true);
+    expect(isTransientSyncError("callable_timeout", new Error("x"))).toBe(true);
+    expect(isTransientSyncError("", new Error("DEADLINE EXCEEDED"))).toBe(true);
+    expect(isTransientSyncError("functions/permission-denied", new Error("denied"))).toBe(false);
+    expect(isTransientSyncError("", new Error("course_session_completed_receipt_invalid"))).toBe(false);
   });
 });

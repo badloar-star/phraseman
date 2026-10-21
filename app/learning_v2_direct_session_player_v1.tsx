@@ -82,6 +82,7 @@ import {
   learningV2DeviceSkippedVoiceCompletionV1,
   learningV2StarEligibleCompletionsV1,
 } from "./learning_v2_device_voice_skip_v1";
+import { resolveLearningV2FinishCompletionsV1 } from "./learning_v2_finish_completions_v1";
 import { useEnergy, useEnergySessionIntent } from "../components/EnergyContext";
 import { hapticError, hapticSuccess, hapticTap } from "../hooks/use-haptics";
 import { useAudio } from "../hooks/use-audio";
@@ -120,6 +121,8 @@ import { learningV2ScriptedRepeatAnswerBearingContentRevealedV1 } from "../modul
 import { learningV2CourseSessionVoiceResponseV1 } from "../modules/learning-v2/runtime/course_session_voice_response_v1";
 import { getStableId } from "./stable_id";
 import { captureAccountGeneration } from "./account_generation";
+import { clearSessionAttemptsState } from "./session_attempts/session_attempt_recovery";
+import { creditLearningV2SessionRunesToUnifiedWallet } from "./learning_v2_unified_rune_bridge";
 import { captureCurrentAccountObjectiveAttempt } from "./mistake_practice_capture";
 import { markNextNavigationAsReplace, safeRouterBack } from "./navigation_back";
 import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from "./pronunciation_scoring_client";
@@ -206,6 +209,7 @@ import type {
 import {
   createLearningV2InterleavedNewWordFlowV1,
   reduceLearningV2InterleavedNewWordFlowV1,
+  shouldAutoplayLearningV2PracticeAudioV1,
   type LearningV2InterleavedNewWordFlowEventV1,
   type LearningV2InterleavedNewWordFlowStateV1,
 } from "./learning_v2_interleaved_new_word_flow_v1";
@@ -234,7 +238,10 @@ import {
   type LearningV2ModeLearnerFeedbackV1,
 } from "../modules/learning-v2/modes/mode_feedback_v1";
 import ScriptedRepeatCompareModeV1 from "../modules/learning-v2/modes/scripted_repeat_compare_mode_v1";
-import { resolveLearningV2CourseSessionDeviceSpeechTextV1 } from "../modules/learning-v2/runtime/course_session_device_speech_text_v1";
+import {
+  resolveLearningV2CourseSessionDeviceSpeechTextV1,
+  resolveLearningV2CourseSessionSelectableDeviceSpeechTextV1,
+} from "../modules/learning-v2/runtime/course_session_device_speech_text_v1";
 import { stableShuffleLearningV2OptionsV1 } from "../modules/learning-v2/runtime/stable_option_shuffle_v1";
 import {
   markLearningV2AuthoringPreviewWordUnlockedV1,
@@ -399,14 +406,18 @@ function runFrom(
   });
 }
 
-// зачем (координатор 15.10, урок 1 V2 целиком s01–s56): немые catch плеера прятали причину — звук слова или фразы пропадал молча.
-// Поведение прежнее (null/откат), но причина в журнале [V2-PLAYER]. Пересчёты useMemo пишут один раз на место и id, без потока строк.
+// Recorded audio is optional by policy, but resolution failures must stay
+// diagnosable so a missing clip falls back to device speech intentionally.
 const playerSwallowedOnce = new Set<string>();
 function logPlayerSwallowed(where: string, id: string, error: unknown): void {
   const key = `${where}:${id}`;
   if (playerSwallowedOnce.has(key)) return;
   playerSwallowedOnce.add(key);
-  console.warn("[V2-PLAYER] swallowed", JSON.stringify({ where, id, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: причина проглоченной ошибки
+  console.warn("[V2-PLAYER] swallowed", JSON.stringify({
+    where,
+    id,
+    reason: error instanceof Error ? error.message : String(error),
+  })); // guard-ok: причина проглоченной ошибки
 }
 
 export default function LearningV2DirectSessionPlayerV1() {
@@ -590,13 +601,8 @@ export default function LearningV2DirectSessionPlayerV1() {
     }
     return null;
   });
-  // зачем (D47, владелец): раньше TTS телефона разрешался ТОЛЬКО в дев-превью
-  // автора, а обычный ученик при отсутствующем локальном mp3 слышал тишину
-  // (resolveFile просто возвращал null, см. course_session_audio_preload_v1.ts).
-  // Теперь способов СКАЧАТЬ недостающую озвучку V2 не осталось вовсе — значит
-  // единственная замена немому занятию это системный TTS, и он обязан работать
-  // для всех, не только для автора. Клип по-прежнему в приоритете: TTS — это
-  // ветка "нет локального файла", а не замена готовой озвучки.
+  // Recorded clips remain the first choice. Device speech is the normal
+  // fallback when the released audio child has no recording for a prompt.
   const allowsDeviceSpeech = true;
   const [readyHandle] =
     useState<LearningV2CourseSessionReadyHandleV3 | null>(
@@ -630,6 +636,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [practiceAudioAutoplayToken, setPracticeAudioAutoplayToken] =
     useState(0);
+  const consumedPracticeAudioAutoplayTokenRef = useRef(0);
   const [result, setResult] = useState<ResultState>("idle");
   const [attempts, setAttempts] = useState(1);
   const [wrongCount, setWrongCount] = useState(0);
@@ -782,43 +789,8 @@ export default function LearningV2DirectSessionPlayerV1() {
     state: Exclude<LearningV2ReferenceAudioStateV1, "unavailable">;
   }> | null>(null);
   const { speak: speakPreviewAudio, stop: stopPreviewAudio } = useAudio();
-  // зачем (Ревизор 15.10, 🟡 к e6392a5a7): предпросмотр слова озвучивался зашитым en-US, а распознавание шло по языку курса —
-  // испанское слово читалось английским голосом. Локаль курса считается ниже (voiceRecognitionLocale, после runSummary),
-  // поэтому колбэк читает её через ref: в массив зависимостей объявленную ниже константу класть нельзя.
-  const previewSpeechLocaleRef = useRef<string>(studySpeechLocale(studyTarget, "learning_v2_preview"));
-  const [previewSpeechKey, setPreviewSpeechKey] = useState<string | null>(null);
-  const previewSpeechWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const previewSpeechGuardRef = useRef(
-    createLearningV2PreviewSpeechGenerationGuardV1(),
-  );
-  // зачем (owner: "переключение сессий тормозит"): useAudioPlayerStatus
-  // подписан на нативное событие playbackStatusUpdate, которое по дефолту
-  // (updateInterval=500мс) тикает КАЖДЫЕ 500мс, пока идёт воспроизведение —
-  // а автовоспроизведение эталонного произношения запускается почти на
-  // каждой карточке. Каждый тик даёт setState в этом компоненте на 3200+
-  // строк без единого React.memo внутри, то есть перерисовывает ВЕСЬ экран
-  // (шапку, прогресс-бар, счётчик рун, активную карточку режима) 2 раза в
-  // секунду поверх анимации входа/выхода карточки — это и есть источник
-  // "подтормаживает". Ниже по файлу из audioStatus читаются только
-  // isLoaded/playing/didJustFinish (см. использования audioStatus.*) —
-  // currentTime/duration нигде не нужны, поэтому периодический тик не несёт
-  // полезных данных. Поднимаем updateInterval до значения, недостижимого
-  // за время одной фразы: событийные апдейты (onIsPlayingChanged,
-  // onIsLoadingChanged, didJustFinish) по-прежнему приходят мгновенно из
-  // нативных слушателей — они не зависят от таймера и не проседают.
-  //
-  // зачем (owner: "озвучка глохнет через 25-30 слов", 2026-08-28): раньше
-  // источник useAudioPlayer менялся на каждое слово (audioRequest в deps),
-  // и expo-audio пересоздавал нативный ExoPlayer на КАЖДОЕ слово —
-  // node_modules/expo-audio/android AudioPlayer.kt sharedObjectDidRelease()
-  // освобождает старый ExoPlayer АСИНХРОННО (mainQueue.launch, следующий
-  // тик) и ref.release() там последним шагом: если что-то в цепочке кинет
-  // исключение раньше, нативный декодер утекает навсегда. За ~25-30 слов
-  // копится ровно столько утечек decoder-слотов, сколько нужно, чтобы
-  // упереться в системный лимит Android — дальше звук глохнет до рестарта
-  // приложения. Источник плеера теперь СТАБИЛЕН (null, создаётся один раз
-  // за сессию) — сам ExoPlayer живёт весь урок, а переключение слова идёт
-  // через player.replace() (тот же нативный объект, просто новый трек).
+  // Keep one native player for the session and replace its source between
+  // clips. This avoids exhausting Android decoder slots during long lessons.
   const audioPlayer = useAudioPlayer(null, {
     downloadFirst: false,
     updateInterval: 60_000,
@@ -828,23 +800,22 @@ export default function LearningV2DirectSessionPlayerV1() {
     if (!audioRequest) return;
     try {
       audioPlayer.replace({ uri: audioRequest.fileUri });
-    } catch (e) {
-      // Player already released on unmount; playFromStart below will no-op.
-      DebugLogger.error('learning_v2_direct_session_player_v1:audioStatus', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } catch (error: unknown) {
+      DebugLogger.error(
+        "learning_v2_direct_session_player_v1:audioStatus",
+        error instanceof Error ? error : new Error(String(error)),
+        "warning",
+      );
     }
   }, [audioRequest, audioPlayer]);
   const managedAudio = useManagedSpokenAudioPlayer(
     audioPlayer,
     audioStatus.didJustFinish,
   );
-
   const playLocalAudio = useCallback(
     (fileUri: string | null | undefined, rate = 1) => {
       if (!fileUri) return;
       if (!Number.isFinite(rate) || rate < 0.5 || rate > 2) return;
-      // expo-audio preserves the playing state across replace(). Pause and
-      // release the old claim first so the replacement cannot auto-play at
-      // the previous request's rate before the new request is admitted.
       managedAudio.stop();
       stopPreviewAudio();
       previewSpeechGuardRef.current.cancelCurrent();
@@ -860,21 +831,19 @@ export default function LearningV2DirectSessionPlayerV1() {
     },
     [managedAudio, stopPreviewAudio],
   );
-
+  // зачем (Ревизор 15.10, 🟡 к e6392a5a7): предпросмотр слова озвучивался зашитым en-US, а распознавание шло по языку курса —
+  // испанское слово читалось английским голосом. Локаль курса считается ниже (voiceRecognitionLocale, после runSummary),
+  // поэтому колбэк читает её через ref: в массив зависимостей объявленную ниже константу класть нельзя.
+  const previewSpeechLocaleRef = useRef<string>(studySpeechLocale(studyTarget, "learning_v2_preview"));
+  const [previewSpeechKey, setPreviewSpeechKey] = useState<string | null>(null);
+  const previewSpeechWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previewSpeechGuardRef = useRef(
+    createLearningV2PreviewSpeechGenerationGuardV1(),
+  );
   const speakPreviewText = useCallback(
     (text: string | null | undefined, key: string, rate?: number) => {
       const normalized = text?.trim();
       if (!allowsDeviceSpeech || !normalized) return;
-      // зачем (D47): единственная точка входа TTS-фолбэка V2 — сюда попадают
-      // и «нет клипа у практики», и «нет клипа у нового слова». Лог здесь
-      // покрывает все случаи одним местом вместо дублирования на каждом вызове.
-      // Персистентный след — DebugLogger (переживает перезапуск), console.log
-      // только в деве ради живого наблюдения на устройстве разработчика.
-      // зачем БЕЗ courseSessionId: run объявлен ниже по файлу (useMemo,
-      // строка ~958) и НЕ входит в deps этого useCallback — считывать его
-      // тут значило бы либо ловить устаревшее замыкание, либо (если добавить
-      // в deps) пересоздавать колбэк на каждую смену run без нужды. `key`
-      // (`practice:<interactionId>` / `new-word:<id>`) уже называет контекст.
       const ttsTrace = { key, reason: "no_local_audio_file" };
       if (__DEV__) {
         console.log("[V2-AUDIO-TTS]", JSON.stringify(ttsTrace)); // guard-ok: диагностика фолбэка на TTS
@@ -883,10 +852,13 @@ export default function LearningV2DirectSessionPlayerV1() {
       managedAudio.stop();
       setAudioRequest(null);
       setLocalAudioPlayback(null);
+      previewSpeechGuardRef.current.cancelCurrent();
       if (previewSpeechWatchdogRef.current !== null) {
         clearTimeout(previewSpeechWatchdogRef.current);
         previewSpeechWatchdogRef.current = null;
       }
+      setPreviewSpeechKey(null);
+      stopPreviewAudio();
       const request = previewSpeechGuardRef.current.begin(key);
       const clear = () => {
         if (!previewSpeechGuardRef.current.clear(request)) return;
@@ -896,18 +868,19 @@ export default function LearningV2DirectSessionPlayerV1() {
         }
         setPreviewSpeechKey((current) => (current === key ? null : current));
       };
-      // Set the visible state before asking the global speech service to play.
-      // Some system modals revoke audio focus without delivering onStopped;
-      // this bounded watchdog always restores a tappable replay state.
-      setPreviewSpeechKey(key);
+      // A request remains visually idle until the native speech service
+      // confirms that it started. The watchdog bounds a missing callback,
+      // while request identity prevents a late callback from an older replay
+      // of the same text from changing the current button state.
       previewSpeechWatchdogRef.current = setTimeout(
         clear,
         learningV2PreviewSpeechWatchdogMsV1(normalized),
       );
       speakPreviewAudio(normalized, rate, {
         language: previewSpeechLocaleRef.current,
+        systemTtsOnly: true,
         onStart: () => {
-          if (previewSpeechGuardRef.current.currentKey() === key) {
+          if (previewSpeechGuardRef.current.isCurrent(request)) {
             setPreviewSpeechKey(key);
           }
         },
@@ -916,48 +889,10 @@ export default function LearningV2DirectSessionPlayerV1() {
         onError: clear,
       });
     },
-    [allowsDeviceSpeech, managedAudio, speakPreviewAudio],
-  );
-
-  useEffect(
-    () => () => {
-      previewSpeechGuardRef.current.cancelCurrent();
-      if (previewSpeechWatchdogRef.current !== null) {
-        clearTimeout(previewSpeechWatchdogRef.current);
-        previewSpeechWatchdogRef.current = null;
-      }
-    },
-    [],
-  );
-
-  const stopAttemptMediaBeforeRecovery = useCallback(() => {
-    voiceCancelRef.current();
-    managedAudio.stop();
-    stopPreviewAudio();
-    previewSpeechGuardRef.current.cancelCurrent();
-    if (previewSpeechWatchdogRef.current !== null) {
-      clearTimeout(previewSpeechWatchdogRef.current);
-      previewSpeechWatchdogRef.current = null;
-    }
-    setPreviewSpeechKey(null);
-    setAudioRequest(null);
-    setLocalAudioPlayback(null);
-  }, [managedAudio, stopPreviewAudio]);
-
-  useEffect(
-    () => () => {
-      if (attemptsModalTimerRef.current !== null) {
-        clearTimeout(attemptsModalTimerRef.current);
-        attemptsModalTimerRef.current = null;
-      }
-    },
-    [],
+    [allowsDeviceSpeech, managedAudio, speakPreviewAudio, stopPreviewAudio],
   );
 
   useEffect(() => {
-    // The request can switch the hook player to another preloaded local URI.
-    // Waiting for isLoaded prevents a one-shot seekTo(0) failure that otherwise
-    // leaves the button visually active but silent until the next screen.
     if (!audioRequest || !audioStatus.isLoaded) return;
     let cancelled = false;
     audioPlayer.setPlaybackRate(audioRequest.rate, "high");
@@ -983,6 +918,40 @@ export default function LearningV2DirectSessionPlayerV1() {
       return current;
     });
   }, [audioRequest, audioStatus.didJustFinish, audioStatus.playing]);
+
+  useEffect(
+    () => () => {
+      previewSpeechGuardRef.current.cancelCurrent();
+      if (previewSpeechWatchdogRef.current !== null) {
+        clearTimeout(previewSpeechWatchdogRef.current);
+        previewSpeechWatchdogRef.current = null;
+      }
+    },
+    [],
+  );
+
+  const cancelPreviewSpeech = useCallback(() => {
+    managedAudio.stop();
+    setAudioRequest(null);
+    setLocalAudioPlayback(null);
+    previewSpeechGuardRef.current.cancelCurrent();
+    if (previewSpeechWatchdogRef.current !== null) {
+      clearTimeout(previewSpeechWatchdogRef.current);
+      previewSpeechWatchdogRef.current = null;
+    }
+    setPreviewSpeechKey(null);
+    stopPreviewAudio();
+  }, [managedAudio, stopPreviewAudio]);
+
+  useEffect(
+    () => () => {
+      if (attemptsModalTimerRef.current !== null) {
+        clearTimeout(attemptsModalTimerRef.current);
+        attemptsModalTimerRef.current = null;
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!locator) return;
@@ -1048,12 +1017,6 @@ export default function LearningV2DirectSessionPlayerV1() {
     sessionOrdinal,
   ]);
 
-  const audioPreload: LearningV2CourseSessionAudioPreloadHandleV1 | null =
-    readyHandle
-      ? resolveLearningV2CourseSessionReadyMaterialV3(readyHandle).audio
-      : null;
-  const activeAudioPreload = isAuthoringPreview ? null : audioPreload;
-
   const run = useMemo(
     () => (locator && material ? runFrom(locator, material) : null),
     [locator, material],
@@ -1061,6 +1024,11 @@ export default function LearningV2DirectSessionPlayerV1() {
   const runSummary = run
     ? getLearningV2CourseSessionDeviceRunSummaryV1(run)
     : null;
+  const audioPreload: LearningV2CourseSessionAudioPreloadHandleV1 | null =
+    readyHandle
+      ? resolveLearningV2CourseSessionReadyMaterialV3(readyHandle).audio
+      : null;
+  const activeAudioPreload = isAuthoringPreview ? null : audioPreload;
   // Only English initial runs have the local client-authoritative interaction
   // composite. Repeats and other target languages are policy-priced by the
   // server completion flow, so showing per-interaction runes here would be an
@@ -1150,7 +1118,6 @@ export default function LearningV2DirectSessionPlayerV1() {
           })?.fileUri ?? null;
         } catch (error: unknown) {
           logPlayerSwallowed("new_word_audio", encounter.lexicalItemId, error);
-          fileUri = null;
         }
       }
       audioById[wordEncounterPresentationId(encounter)] = fileUri;
@@ -1169,7 +1136,6 @@ export default function LearningV2DirectSessionPlayerV1() {
           })?.fileUri ?? null;
         } catch (error: unknown) {
           logPlayerSwallowed("unlocked_word_audio", word.lexicalItemId, error);
-          readyHandleUri = null;
         }
       }
       return [
@@ -1181,7 +1147,6 @@ export default function LearningV2DirectSessionPlayerV1() {
       Record<string, string | null>
     >;
   }, [activeAudioPreload, unlockedWords]);
-
   useEffect(() => {
     const next = createLearningV2InterleavedNewWordFlowV1();
     newWordFlowRef.current = next;
@@ -1200,8 +1165,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       setNewWordFlow(transition.state);
       transition.effects.forEach((effect) => {
         if (effect === "stop_current_audio") {
-          managedAudio.stop();
-          setAudioRequest(null);
+          cancelPreviewSpeech();
           return;
         }
         if (effect === "play_practice_audio_after_continue") {
@@ -1221,11 +1185,11 @@ export default function LearningV2DirectSessionPlayerV1() {
       });
     },
     [
-      managedAudio,
-      newWordAudioByLexicalItemId,
       newWordSpeechByLexicalItemId,
+      newWordAudioByLexicalItemId,
       playLocalAudio,
       speakPreviewText,
+      cancelPreviewSpeech,
     ],
   );
 
@@ -1243,13 +1207,15 @@ export default function LearningV2DirectSessionPlayerV1() {
   const currentNewWordAudioState: LearningV2NewWordAudioStateV1 =
     !currentNewWordAudioUri && !allowsDeviceSpeech
       ? "unavailable"
+      : currentNewWordAudioUri &&
+          audioRequest?.fileUri === currentNewWordAudioUri &&
+          audioStatus.playing
+        ? "playing"
       : currentNewWordEncounter &&
           previewSpeechKey ===
             `new-word:${wordEncounterPresentationId(currentNewWordEncounter)}`
         ? "playing"
-      : audioRequest?.fileUri === currentNewWordAudioUri && audioStatus.playing
-        ? "playing"
-        : "idle";
+      : "idle";
   const markCurrentNewWordPresented = useCallback(async () => {
     if (!currentNewWordEncounter || !runSummary) return;
     const unlocked: LearningV2UnlockedLessonWordV1 = {
@@ -1471,9 +1437,12 @@ export default function LearningV2DirectSessionPlayerV1() {
   const previewPracticeSpeechText = useMemo(
     () =>
       allowsDeviceSpeech && practice
-        ? resolveLearningV2CourseSessionDeviceSpeechTextV1(practice)
+        ? resolveLearningV2CourseSessionDeviceSpeechTextV1(
+            practice,
+            auxiliary?.save.targetText,
+          )
         : null,
-    [allowsDeviceSpeech, practice],
+    [allowsDeviceSpeech, auxiliary?.save.targetText, practice],
   );
   const previewPracticeSlowSpeechText = useMemo(() => {
     if (!allowsDeviceSpeech || !practice?.modePayload) return null;
@@ -1534,12 +1503,16 @@ export default function LearningV2DirectSessionPlayerV1() {
     speakPreviewText,
   ]);
   useEffect(() => {
-    if (
-      practiceAudioAutoplayToken <= 0 ||
-      !practiceActivated ||
-      !practiceReferenceAvailable
-    )
-      return;
+    if (!shouldAutoplayLearningV2PracticeAudioV1({
+      requestedToken: practiceAudioAutoplayToken,
+      consumedToken: consumedPracticeAudioAutoplayTokenRef.current,
+      practiceActivated,
+      referenceAvailable: practiceReferenceAvailable,
+    })) return;
+    // A continue transition requests one phrase replay. Consuming the token
+    // before playback prevents a later practice/callback identity change from
+    // replaying that old request over the next blocking word card.
+    consumedPracticeAudioAutoplayTokenRef.current = practiceAudioAutoplayToken;
     playPracticeReferenceAudio();
   }, [
     playPracticeReferenceAudio,
@@ -1549,11 +1522,11 @@ export default function LearningV2DirectSessionPlayerV1() {
   ]);
   const playPracticeSlowReferenceAudio = useCallback(() => {
     voiceCancelRef.current();
+    if (!practice) return;
     if (fullPhraseAudio) {
       playLocalAudio(fullPhraseAudio.fileUri, 0.72);
       return;
     }
-    if (!practice) return;
     speakPreviewText(
       previewPracticeSlowSpeechText,
       `practice:${practice.interactionId}:slow`,
@@ -1583,7 +1556,10 @@ export default function LearningV2DirectSessionPlayerV1() {
         allowsDeviceSpeech &&
         practice.modePayload?.family === "sound_contrast"
       ) {
-        const speechText = practice.responseOptions.find((entry) => entry.responseId === selectableId)?.text ?? null;
+        const speechText = resolveLearningV2CourseSessionSelectableDeviceSpeechTextV1(
+          practice,
+          selectableId,
+        );
         speakPreviewText(
           speechText,
           `practice:${practice.interactionId}:${selectableId}`,
@@ -1600,10 +1576,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   );
 
   const resetInteraction = useCallback(() => {
-    managedAudio.stop();
-    stopPreviewAudio();
-    setPreviewSpeechKey(null);
-    setAudioRequest(null);
+    cancelPreviewSpeech();
     setResult("idle");
     setAttempts(1);
     setWrongCount(0);
@@ -1616,11 +1589,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     setVoiceAttemptResult(null);
     setVoiceAttemptSubmitted(false);
     voiceCancelRef.current();
-  }, [managedAudio, stopPreviewAudio]);
+  }, [cancelPreviewSpeech]);
 
   const restartInterruptedRun = useCallback(() => {
-    managedAudio.stop();
-    setAudioRequest(null);
+    cancelPreviewSpeech();
     completionsRef.current.clear();
     answeredUiByInteractionRef.current.clear();
     sessionRunIdRef.current = Crypto.randomUUID();
@@ -1647,7 +1619,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     setSessionRunes(0);
     setRuneFlight(null);
     resetInteraction();
-  }, [managedAudio, publishFinaleFacts, resetInteraction]);
+  }, [cancelPreviewSpeech, publishFinaleFacts, resetInteraction]);
 
   useEffect(() => {
     if (
@@ -2100,21 +2072,17 @@ export default function LearningV2DirectSessionPlayerV1() {
       openVoicePlus();
       return;
     }
-    stopPreviewAudio();
-    managedAudio.stop();
-    setAudioRequest(null);
-    setPreviewSpeechKey(null);
+    cancelPreviewSpeech();
     setVoiceAttemptResult(null);
     void hapticTap();
     setVoiceHoldActive(true);
   }, [
     accessResolved,
     hasPremiumAccess,
-    managedAudio,
     openVoicePlus,
     sessionAttempts.state.phase,
     showVoiceFooter,
-    stopPreviewAudio,
+    cancelPreviewSpeech,
     voiceControlDisabled,
   ]);
   const stopVoiceCapture = useCallback(() => {
@@ -2130,31 +2098,48 @@ export default function LearningV2DirectSessionPlayerV1() {
   const finish = useCallback(async () => {
     if (!run || finishing || finishingRef.current || !runSummary) return;
     finishingRef.current = true;
+    // зачем (владелец 19.10 «в начале занятия снимается сердечко»): завершённое занятие стирает сохранённые сердечки, иначе повтор урока стартует с прошлыми 2/3.
+    if (!isAuthoringPreview) {
+      void clearSessionAttemptsState(attemptsAccountToken, attemptsSessionId).catch((error: unknown) => {
+        console.warn("[ATTEMPTS-HYDRATE]", JSON.stringify({ sessionId: attemptsSessionId, outcome: "clear_failed", error: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
+      });
+    }
     setFinishing(true);
     setFinaleRewardsSettled(false);
     let earned: 0 | 1 | 2 | 3 = 0;
     // зачем (аудит кнопок R58 #40, 15.10): исключение ДО подсчёта звёзд давало «0 звёзд» без объяснения — человек думал, что провалил занятие
     let starsCounted = false;
     try {
-      const interactionCompletions = [
-        ...material!.introChild.pages.map((page) =>
-          completionsRef.current.get(page.question.interactionId),
-        ),
-        ...material!.learnerChild.interactions.map((entry) =>
-          completionsRef.current.get(entry.interactionId),
-        ),
-      ];
-      if (interactionCompletions.some((entry) => entry === undefined))
-        throw new Error("learning_v2_direct_session_incomplete");
+      // зачем (№46): сборка отметок вынесена в resolveLearningV2FinishCompletionsV1 — журнал [V2-FINISH] (вход, роль,
+      // недостающие id по типу) и страховка: недостающие ТОЛЬКО интро досоздаются как skipped и не идут в звёзды;
+      // недостающее задание практики — прежний отказ.
+      const collected = resolveLearningV2FinishCompletionsV1({
+        introInteractionIds: material!.introChild.pages.map((page) => page.question.interactionId),
+        practiceInteractionIds: material!.learnerChild.interactions.map((entry) => entry.interactionId),
+        completions: completionsRef.current,
+        context: {
+          lesson: lessonOrdinal,
+          session: sessionOrdinal,
+          role: sessionRole,
+          isCheckpoint,
+          checkpointEntryDone,
+          introDone,
+          practiceIndex,
+          practiceInteractionCount: runSummary.practiceInteractionCount,
+        },
+      });
+      if (!collected.ok) throw new Error("learning_v2_direct_session_incomplete");
       const completion = materializeLearningV2CourseSessionCompletedSummaryV1({
         run,
         sessionRunId: sessionRunIdRef.current,
         interactionCompletions:
-          interactionCompletions as LearningV2CourseSessionInteractionCompletionV1[],
+          collected.interactionCompletions as LearningV2CourseSessionInteractionCompletionV1[],
       });
       const starCompletions = learningV2StarEligibleCompletionsV1(
         completion.interactionCompletions,
-        deviceSkippedVoiceIdsRef.current,
+        collected.repairedIntroIds.length > 0
+          ? new Set([...deviceSkippedVoiceIdsRef.current, ...collected.repairedIntroIds])
+          : deviceSkippedVoiceIdsRef.current,
       );
       if (starCompletions.length !== completion.interactionCompletions.length)
         console.warn("[SPEECH-AVAIL] learning-v2 finish: voice tasks skipped on device excluded from stars", JSON.stringify({
@@ -2266,6 +2251,8 @@ export default function LearningV2DirectSessionPlayerV1() {
           },
         });
       }
+      // зачем (владелец 19.10 «монеты улетели в счётчик, а счётчик не изменился»): СПЕРВА ЛОГИ — каждая развилка начисления монет за занятие.
+      console.warn("[COINS-AWARD] finish:eligibility", JSON.stringify({ targetLanguage: runSummary.targetLanguage, canEarnSessionRunes, isSessionRepeat, isAuthoringPreview, hasReadyHandle: Boolean(readyHandle), lesson: runSummary.lessonOrdinal })); // guard-ok: трасса начисления
       if (runSummary.targetLanguage === "en" && canEarnSessionRunes) {
         try {
           if (!readyHandle)
@@ -2279,15 +2266,35 @@ export default function LearningV2DirectSessionPlayerV1() {
             publicationToken: publicationToken,
             earnedAtMs: runeRewardEarnedAtMsRef.current,
           });
-          const commitSessionRuneReward = () =>
-            commitLearningV2SessionRuneRewardCompositeV1({
+          // зачем (владелец 19.10 «монеты не начислены»): кошелёк курса не виден счётчикам — каждое проведённое
+          // начисление (и с первого раза, и из повтора) дублируем в общий кошелёк, он идемпотентен по ключу занятия.
+          const commitSessionRuneReward = async () => {
+            const commit = await commitLearningV2SessionRuneRewardCompositeV1({
               candidate: runeReward,
               publicationToken: publicationToken,
             });
+            if (commit.status === "applied") {
+              void creditLearningV2SessionRunesToUnifiedWallet({
+                targetLanguage: runSummary.targetLanguage,
+                lessonOrdinal: runSummary.lessonOrdinal,
+                sessionOrdinal,
+                runes: commit.appliedReceipt.amountSubunits / WALLET_SUBUNITS_PER_STAR,
+              }).catch((error: unknown) => {
+                console.warn("[COINS-AWARD] unified:failed", error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
+              });
+            } else {
+              console.warn("[COINS-AWARD] unified:skip_not_applied", JSON.stringify({ status: commit.status })); // guard-ok: ранний выход
+            }
+            return commit;
+          };
+          // зачем (владелец 19.10 «на экране завершения 10 с был 0»): проводка кошелька курса занимает ~8 с, а экран итога
+          // ждал её. Сумма уже показана из sessionRunes выше; квитанцию дожидаемся фоном, экран не держим.
+          void (async () => {
           try {
             // The runtime persists the verified intent before repository mount.
             // Its receipt enriches the finale but never owns navigation.
             const runeCommit = await commitSessionRuneReward();
+            console.warn("[COINS-AWARD] commit:ok", JSON.stringify({ status: runeCommit.status, amountSubunits: runeCommit.appliedReceipt.amountSubunits })); // guard-ok: трасса начисления
             publishFinaleFacts({
               ...finaleFactsRef.current,
               runes: runeCommit.appliedReceipt.amountSubunits /
@@ -2295,6 +2302,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               credit: runeCommit.status === "applied" ? "credited" : "existing",
             });
           } catch (error: unknown) {
+            console.warn("[COINS-AWARD] commit:failed_retry", error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
             DebugLogger.error(
               "learning_v2_direct_session_player_v1:rune_retry_scheduled",
               error instanceof Error ? error : new Error(String(error)),
@@ -2315,9 +2323,11 @@ export default function LearningV2DirectSessionPlayerV1() {
               },
             });
           }
+          })();
         } catch (error: unknown) {
           // Provenance/eligibility failures stay fail-closed and are never
           // converted into a retryable economic intent.
+          console.warn("[COINS-AWARD] provenance:failed", error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
           DebugLogger.error(
             "learning_v2_direct_session_player_v1:rune_provenance",
             error instanceof Error ? error : new Error(String(error)),
@@ -2406,12 +2416,21 @@ export default function LearningV2DirectSessionPlayerV1() {
       setFinishing(false);
     }
   }, [
+    attemptsAccountToken,
+    attemptsSessionId,
+    sessionOrdinal,
+    isAuthoringPreview,
     finishing,
     canEarnSessionRunes,
     sessionRunes,
     copy,
     isAuthoringPreview,
     isCheckpoint,
+    checkpointEntryDone,
+    introDone,
+    lessonOrdinal,
+    practiceIndex,
+    sessionRole,
     isSessionRepeat,
     lang,
     material,
@@ -2819,9 +2838,19 @@ export default function LearningV2DirectSessionPlayerV1() {
           <Lv2Cta
             accessibilityLabel={checkpointCopy.start}
             onPress={() => {
-              sessionStageRef.current = "practice";
+              // зачем (№46, прод 2.0.0, решение владельца 21.10 «вариант А»): вход сразу в практику пропускал 3 интро, их отметки
+              // не создавались, и finish() падал learning_v2_direct_session_incomplete на КАЖДОЙ проверке главы и итоговом экзамене —
+              // 0 звёзд, проверка не засчитана, следующая глава закрыта. Теперь после экрана входа идут 3 интро, как в обычном эпизоде
+              // (introDone остаётся false → ниже рисуется вступление; его onComplete пишет отметки и переводит в практику).
+              console.log("[V2-CHECKPOINT] entry_start", JSON.stringify({
+                lesson: lessonOrdinal,
+                session: sessionOrdinal,
+                role: sessionRole,
+                introPages: material?.introChild.pages.length ?? null,
+                completionsBefore: completionsRef.current.size,
+              })); // guard-ok: одна строка на вход в проверку
+              sessionStageRef.current = "intro";
               setCheckpointEntryDone(true);
-              setIntroDone(true);
             }}
             right={<Ionicons name="arrow-forward" size={20} color={g.accentInk} />}
           >
@@ -3249,16 +3278,13 @@ export default function LearningV2DirectSessionPlayerV1() {
               >
                 {learnerFacingPracticePrompt}
               </Text>
-              {fullPhraseAudio && (
+              {practiceReferenceAvailable && (
                 <Pressable
                   accessibilityRole="button"
                   accessibilityLabel={copy.listenOffline}
                   accessibilityHint={copy.audioOfflineHint}
                   hitSlop={8}
-                  onPress={() => {
-                    voiceCancelRef.current();
-                    playLocalAudio(fullPhraseAudio.fileUri);
-                  }}
+                  onPress={playPracticeReferenceAudio}
                   style={({ pressed }) => [
                     styles.audioButton,
                     {
@@ -3765,10 +3791,6 @@ export default function LearningV2DirectSessionPlayerV1() {
           onClose={() => setWordPocketOpen(false)}
           onSpeak={(text) => {
             const normalized = text.normalize("NFKC").trim();
-            // The lesson pack completes in the background and updates its
-            // synchronous registry without forcing this large screen to
-            // re-render. Re-read it on tap so an earlier memoized null can
-            // never keep an already prepared word silent.
             const fileUri = preparedWordAudioByText[normalized]
               ?? resolvePreparedLearningV2FactoryWordAudioV1(normalized);
             if (fileUri) {

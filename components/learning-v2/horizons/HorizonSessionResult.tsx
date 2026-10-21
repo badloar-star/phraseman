@@ -98,7 +98,9 @@ export default function HorizonSessionResult({
   const wrong = total - correct;
   // Начисление показываем только подтверждённым фактом кошелька: повтор («existing»),
   // практика и предпросмотр честно дают +0 — повторного начисления нет.
-  const gain = !preview && facts.credit === "credited" ? Math.max(0, Math.round(facts.runes)) : 0; // guard-ok: только показ, баланс не меняется
+  // зачем (владелец 19.10 «на экране завершения 10 с был 0»): «practice» = занятие имеет право на награду и она уже
+  // проводится фоном (~10 с) — показываем заработанное сразу, как Optimistic UI; повтор и предпросмотр по-прежнему +0.
+  const gain = !preview && (facts.credit === "credited" || facts.credit === "practice") ? Math.max(0, Math.round(facts.runes)) : 0; // guard-ok: только показ, баланс не меняется
 
   const title = kind === "final"
     ? c.courseDone

@@ -22,6 +22,29 @@ import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_regi
 const REGION = "us-central1";
 const CALLABLE_NAME = "submitLearningV2CourseSessionCompletedV1";
 const MAX_PER_FLUSH = 8;
+const SYNC_LOG = "[V2-SYNC]";
+/** Сколько временных отказов подряд по одной записи терпим, прежде чем звать critical (№47, решение владельца 21.10). */
+export const TRANSIENT_CRITICAL_AFTER = 3;
+// Счётчик живёт в памяти процесса: после перезапуска приложения отсчёт идёт заново — запись при этом не теряется (она в спуле).
+const transientFailures = new Map<string, { failures: number; firstFailedAt: number }>();
+
+function errorCode(error: unknown): string {
+  const code = (error as { code?: unknown } | null)?.code;
+  return typeof code === "string" ? code : "";
+}
+
+/** deadline-exceeded / unavailable от Firebase и наш клиентский таймаут — временные: запись повторится из очереди. */
+export function isTransientSyncError(code: string, error: unknown): boolean {
+  const normalized = code.replace(/^functions\//u, "");
+  if (normalized === "deadline-exceeded" || normalized === "unavailable" || normalized === "callable_timeout") return true;
+  const message = error instanceof Error ? error.message : String(error);
+  return /deadline[ _-]?exceeded|\bunavailable\b|timed out/iu.test(message);
+}
+
+/** Только для тестов: сбросить счётчик временных отказов. */
+export function __resetLearningV2CompletedSyncFailuresForTests(): void {
+  transientFailures.clear();
+}
 const HASH_RE = /^[a-f0-9]{64}$/u;
 
 export type LearningV2CourseSessionCompletedSyncAttemptV1 = Readonly<{
@@ -134,26 +157,47 @@ export async function attemptPendingLearningV2CourseSessionCompletedV1(): Promis
       return attempt(processed, "bounded_continuation");
     if (!isCurrentAccountGeneration(token, stableId))
       return attempt(processed, "deferred");
+    const startedAt = Date.now();
+    const failureState = transientFailures.get(completion.completionFingerprint);
     try {
       await callServer(completion);
+      if (failureState) {
+        console.log(`${SYNC_LOG} recovered`, JSON.stringify({ record: completion.completionFingerprint.slice(0, 12), attempt: failureState.failures + 1, durationMs: Date.now() - startedAt, ageMs: Date.now() - failureState.firstFailedAt })); // guard-ok: итог повтора
+        transientFailures.delete(completion.completionFingerprint);
+      }
     } catch (error) {
-      // зачем (аудит 2026-08-29): Learning V2 не писал отказы никуда. Провал
-      // отправки завершения сессии — это застрявший прогресс человека; спул
-      // повторит, но повторяющийся отказ обязан быть виден с сервера, а не
-      // только на устройстве. Сетевое «отложили» — не ошибка, молчим.
-      if (!isInteractiveNetworkDeferredError(error)) {
+      if (isInteractiveNetworkDeferredError(error)) {
+        console.log(`${SYNC_LOG} deferred_quiet`, JSON.stringify({ record: completion.completionFingerprint.slice(0, 12) })); // guard-ok: ранний выход с причиной
+        return attempt(processed, "deferred");
+      }
+      // зачем (№47, прод 2.0.0, решение владельца 21.10): «DEADLINE EXCEEDED» / unavailable / клиентский таймаут — это
+      // медленная сеть или холодный старт функции, а не потеря: запись остаётся в очереди и уходит при следующей выгрузке
+      // (сервер идемпотентен по отпечатку). Каждый такой повтор раньше летел владельцу как critical. Теперь critical —
+      // только после TRANSIENT_CRITICAL_AFTER неудач подряд по ОДНОЙ записи; прочие ошибки — critical сразу, как раньше.
+      const code = errorCode(error);
+      const transient = isTransientSyncError(code, error);
+      const failures = (failureState?.failures ?? 0) + 1;
+      const firstFailedAt = failureState?.firstFailedAt ?? startedAt;
+      if (transient) transientFailures.set(completion.completionFingerprint, { failures, firstFailedAt });
+      console.warn(`${SYNC_LOG} attempt_failed`, JSON.stringify({
+        record: completion.completionFingerprint.slice(0, 12),
+        attempt: failures,
+        durationMs: Date.now() - startedAt,
+        code: code || null,
+        transient,
+        ageMs: Date.now() - firstFailedAt,
+        reason: (error instanceof Error ? error.message : String(error)).slice(0, 160),
+      })); // guard-ok: каждая неудача с причиной
+      if (!transient || failures >= TRANSIENT_CRITICAL_AFTER) {
+        // зачем (аудит 2026-08-29): провал отправки завершения — застрявший прогресс человека; повторяющийся отказ
+        // обязан быть виден с сервера, а не только на устройстве.
         DebugLogger.error(
           'learning_v2:session_completed_sync',
           error instanceof Error ? error : new Error(String(error)),
           'critical',
         );
       }
-      return attempt(
-        processed,
-        isInteractiveNetworkDeferredError(error)
-          ? "deferred"
-          : "retryable_failure",
-      );
+      return attempt(processed, transient && failures < TRANSIENT_CRITICAL_AFTER ? "deferred" : "retryable_failure");
     }
     if (!isCurrentAccountGeneration(token, stableId))
       return attempt(processed, "deferred");

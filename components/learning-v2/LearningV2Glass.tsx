@@ -12,8 +12,11 @@ import {
 
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
-import { actionBoxShadow, plateBoxShadow, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
+import { actionBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { hapticTap } from '../../hooks/use-haptics';
+import {
+  LV2_TASK_TILE, LV2_TASK_VERDICT_BLOCK, lv2TaskTileLook, lv2TaskVerdictBlockLook,
+} from './learning_v2_task_layout_tokens';
 import { useTheme } from '../ThemeContext';
 
 // зачем (владелец 2026-09-30): весь Learning V2 (карта, окна, интро, шесть режимов занятия,
@@ -180,10 +183,14 @@ export const Lv2Option = memo(function Lv2Option({
   const bad = verdict === 'bad';
   // зачем (темы 2.0): выбор в цвете темы; «верно/ошибка» темой не красятся никогда.
   // зачем (владелец 12.10, «Тень»): у плиты нет обводки; кольцо остаётся ТОЛЬКО у исхода ответа верно/неверно, выбранное приподнято тенью и сдвигом.
-  const bg = ok ? g.goodSoft : bad ? g.badSoft : selected ? g.accentSoft : g.plateFillFrom;
-  const edge = ok ? g.goodEdge : bad ? g.badEdge : null;
-  const lifted = !!selected && !ok && !bad;
-  const ink = ok ? g.good : bad ? g.bad : g.text;
+  // зачем (владелец 21.10, эталон экзамена chapter-exam-season.html «вот тень — очень красиво, и цвета да»): вид плитки — из общих токенов
+  // (нейтральная = тон карточки + рельефный край; верная — бледно-зелёный; неверная — тёплый бледный), второй копии нет.
+  const look = lv2TaskTileLook(g, ok ? 'ok' : bad ? 'no' : selected ? 'selected' : 'neutral');
+  const bg = look.backgroundColor;
+  const edge = look.edgeColor;
+  const lifted = look.lifted;
+  const ink = look.color;
+  const markInk = ok ? g.good : g.bad;
   return (
     <Pressable
       testID={testID}
@@ -203,9 +210,9 @@ export const Lv2Option = memo(function Lv2Option({
           backgroundColor: bg,
           borderColor: edge ?? 'transparent',
           borderWidth: edge ? StyleSheet.hairlineWidth : 0, // shadow-ok: кольцо исхода ответа верно/неверно
-          boxShadow: lifted ? raisedBoxShadow(g) : plateBoxShadow(g),
-          transform: lifted ? [{ translateY: RAISED_LIFT }] : [],
-          opacity: verdict === 'dim' ? 0.45 : pressed ? 0.86 : 1,
+          boxShadow: look.boxShadow,
+          transform: lifted ? [{ translateY: -LV2_TASK_TILE.lift }] : [],
+          opacity: verdict === 'dim' ? LV2_TASK_TILE.dimOpacity : pressed ? 0.86 : 1,
           paddingRight: showMark && (ok || bad) ? 48 : 18,
           paddingLeft: showMark && (ok || bad) ? 48 : 18,
         },
@@ -215,7 +222,7 @@ export const Lv2Option = memo(function Lv2Option({
       <Text style={[styles.optText, { color: ink }, textStyle]}>{label}</Text>
       {showMark && (ok || bad) ? (
         <View style={styles.optMark} pointerEvents="none">
-          <Ionicons name={ok ? 'checkmark' : 'close'} size={20} color={ink} />
+          <Ionicons name={ok ? 'checkmark' : 'close'} size={LV2_TASK_TILE.markSize} color={markInk} />
         </View>
       ) : null}
     </Pressable>
@@ -278,17 +285,25 @@ export const Lv2Cta = memo(function Lv2Cta({
 
 /** Пояснение `.expl`: значок-лампочка и текст 15/21 в карточке. */
 export const Lv2Explain = memo(function Lv2Explain({
-  children, icon = 'bulb-outline', style, testID,
+  children, icon = 'bulb-outline', style, testID, tone = 'warm',
 }: {
   children: React.ReactNode;
   icon?: React.ComponentProps<typeof Ionicons>['name'];
   style?: StyleProp<ViewStyle>;
   testID?: string;
+  /** warm — тёплый бледный (разбор по эталону экзамена, по умолчанию); ok — бледно-зелёный (всё верно). */
+  tone?: 'warm' | 'ok';
 }) {
   const g = useLv2Glass();
+  // зачем (владелец 21.10, эталон экзамена): блок «Правильно / объяснение» — тот же тёплый бледный тон, без рамки и без тени (`.lane`).
+  const look = lv2TaskVerdictBlockLook(g, tone === 'ok');
   return (
-    <View testID={testID} accessibilityLiveRegion="polite" style={[styles.expl, lv2CardStyle(g), style]}>
-      <Ionicons name={icon} size={20} color={g.secondary} style={styles.explIcon} />
+    <View
+      testID={testID}
+      accessibilityLiveRegion="polite"
+      style={[styles.expl, { backgroundColor: look.backgroundColor, borderRadius: LV2_TASK_VERDICT_BLOCK.radius }, style]}
+    >
+      <Ionicons name={icon} size={20} color={tone === 'ok' ? look.titleColor : g.secondary} style={styles.explIcon} />
       <Text style={[styles.explText, { color: g.text }]}>{children}</Text>
     </View>
   );

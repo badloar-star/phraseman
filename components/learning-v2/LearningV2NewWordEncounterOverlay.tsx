@@ -480,7 +480,7 @@ export default function LearningV2NewWordEncounterOverlay({
 
         {/* макет 61/62: «Перевёрнута и сохранена» — галочка, «Не сохранилось» — лампочка */}
         {copy.saveStatus ? (
-          <Lv2Explain icon={saved ? "checkmark-circle-outline" : "bulb-outline"}>
+          <Lv2Explain icon={saved ? "checkmark-circle-outline" : "bulb-outline"} tone={saved ? "ok" : "warm"}>
             {copy.saveStatus}
           </Lv2Explain>
         ) : null}

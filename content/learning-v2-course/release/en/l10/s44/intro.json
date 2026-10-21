@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-44",
   "learningOutcomeByLocale": {
-    "ru": "We review the agenda every month; We have a quorum; We are discussing the motion",
-    "uk": "We review the agenda every month; We have a quorum; We are discussing the motion"
+    "ru": "I like wool; I am buying a silk scarf; She is wearing a flowery dress",
+    "uk": "I like wool; I am buying a silk scarf; She is wearing a flowery dress"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Повестка встречи",
-        "uk": "Порядок денний зустрічі"
+        "ru": "Материал для тёплой одежды",
+        "uk": "Матеріал для теплого одягу"
       },
       "bodyByLocale": {
-        "ru": "Повторим agenda — «повестка». Комитет клуба встречается ежемесячно: We review the agenda every month — «Мы рассматриваем повестку каждый месяц». Every month показывает повторение, поэтому используем Present Simple.",
-        "uk": "Повторімо agenda — «порядок денний». Комітет клубу зустрічається щомісяця: We review the agenda every month — «Ми розглядаємо порядок денний щомісяця». Every month показує повторення, тому використовуємо Present Simple."
+        "ru": "Вы выбираете тёплый свитер. Wool — «шерсть»: I like wool — «Мне нравится шерсть». Вы говорите, что вам нравится этот материал. Like описывает предпочтение, поэтому like без am liking. Wool здесь не требует a: это название материала.",
+        "uk": "Ви вибираєте теплий светр. Wool — «вовна»: I like wool — «Мені подобається вовна». Ви кажете, що вам подобається цей матеріал. Like описує вподобання, тому like без am liking. Wool тут не потребує a: це назва матеріалу."
       },
       "question": {
         "interactionId": "en:lesson-10:session-44:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-44:intro1:r1",
-              "text": "We review the agenda every month."
+              "text": "I like wool."
             },
             {
               "responseId": "en:lesson-10:session-44:intro1:r2",
-              "text": "We reviews the agenda every month."
+              "text": "I likes wool."
             },
             {
               "responseId": "en:lesson-10:session-44:intro1:r3",
-              "text": "We reviewing the agenda every month."
+              "text": "I am like wool."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-44:intro1:r1",
-              "text": "We review the agenda every month."
+              "text": "I like wool."
             },
             {
               "responseId": "en:lesson-10:session-44:intro1:r2",
-              "text": "We reviews the agenda every month."
+              "text": "I likes wool."
             },
             {
               "responseId": "en:lesson-10:session-44:intro1:r3",
-              "text": "We reviewing the agenda every month."
+              "text": "I am like wool."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Достаточно участников",
-        "uk": "Достатньо учасників"
+        "ru": "Шарф в подарок",
+        "uk": "Шарф у подарунок"
       },
       "bodyByLocale": {
-        "ru": "Quorum — «кворум»: минимальное число участников, необходимое для принятия решений на собрании. По правилам вашего клуба нужно шесть, и шестеро уже пришли: We have a quorum — «У нас есть кворум». Have здесь описывает наличие достаточного числа участников, а не действие; используем Present Simple.",
-        "uk": "Quorum — «кворум»: мінімальна кількість учасників, потрібна для ухвалення рішень на зборах. За правилами вашого клубу потрібно шість, і шестеро вже прийшли: We have a quorum — «У нас є кворум». Have тут описує наявність достатньої кількості учасників, а не дію; використовуємо Present Simple."
+        "ru": "Вы в магазине и выбираете подарок сестре. Silk — «шёлк»: a silk scarf — «шёлковый шарф». I am buying a silk scarf — «Я покупаю шёлковый шарф». Покупка происходит сейчас, поэтому am buying. Silk перед scarf описывает материал шарфа.",
+        "uk": "Ви в магазині й вибираєте подарунок сестрі. Silk — «шовк»: a silk scarf — «шовковий шарф». I am buying a silk scarf — «Я купую шовковий шарф». Купівля відбувається зараз, тому am buying. Silk перед scarf описує матеріал шарфа."
       },
       "question": {
         "interactionId": "en:lesson-10:session-44:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-44:intro2:r1",
-              "text": "We have a quorum."
+              "text": "I am buying a silk scarf."
             },
             {
               "responseId": "en:lesson-10:session-44:intro2:r2",
-              "text": "We has a quorum."
+              "text": "I buying a silk scarf."
             },
             {
               "responseId": "en:lesson-10:session-44:intro2:r3",
-              "text": "We are have a quorum."
+              "text": "I am buy a silk scarf."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-44:intro2:r1",
-              "text": "We have a quorum."
+              "text": "I am buying a silk scarf."
             },
             {
               "responseId": "en:lesson-10:session-44:intro2:r2",
-              "text": "We has a quorum."
+              "text": "I buying a silk scarf."
             },
             {
               "responseId": "en:lesson-10:session-44:intro2:r3",
-              "text": "We are have a quorum."
+              "text": "I am buy a silk scarf."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Обсуждаем предложение",
-        "uk": "Обговорюємо пропозицію"
+        "ru": "Узнать друг друга при встрече",
+        "uk": "Упізнати одне одного під час зустрічі"
       },
       "bodyByLocale": {
-        "ru": "Motion здесь — «предложение для голосования» на заседании. Участник предложил изменить время встреч, и вы сейчас это обсуждаете: We are discussing the motion — «Мы обсуждаем предложение для голосования». Это текущее действие: are + discussing.",
-        "uk": "Motion тут — «пропозиція для голосування» на засіданні. Учасник запропонував змінити час зустрічей, і ви зараз це обговорюєте: We are discussing the motion — «Ми обговорюємо пропозицію для голосування». Це поточна дія: are + discussing."
+        "ru": "Друг ищет вас у кафе. Denim — «джинсовая ткань»: I am wearing a denim jacket — «На мне джинсовая куртка». Вы также описываете сестру рядом. Flowery — «с цветочным рисунком»: She is wearing a flowery dress — «На ней платье с цветочным рисунком». Am/is wearing описывает одежду, которая на вас сейчас.",
+        "uk": "Друг шукає вас біля кафе. Denim — «джинсова тканина»: I am wearing a denim jacket — «На мені джинсова куртка». Ви також описуєте сестру поруч. Flowery — «із квітковим малюнком»: She is wearing a flowery dress — «На ній сукня із квітковим малюнком». Am/is wearing описує одяг, який на вас зараз."
       },
       "question": {
         "interactionId": "en:lesson-10:session-44:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-44:intro3:r1",
-              "text": "We are discussing the motion."
+              "text": "She is wearing a flowery dress."
             },
             {
               "responseId": "en:lesson-10:session-44:intro3:r2",
-              "text": "We discussing the motion."
+              "text": "She wearing a flowery dress."
             },
             {
               "responseId": "en:lesson-10:session-44:intro3:r3",
-              "text": "We is discussing the motion."
+              "text": "She is wear a flowery dress."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-44:intro3:r1",
-              "text": "We are discussing the motion."
+              "text": "She is wearing a flowery dress."
             },
             {
               "responseId": "en:lesson-10:session-44:intro3:r2",
-              "text": "We discussing the motion."
+              "text": "She wearing a flowery dress."
             },
             {
               "responseId": "en:lesson-10:session-44:intro3:r3",
-              "text": "We is discussing the motion."
+              "text": "She is wear a flowery dress."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fe6d9be2178d9e9b827afefd8ddf58d99277c58592e7d827c1e1a5da17a7135d"
+  "introFingerprint": "00b31fbde293a8b89d6b8ccebf21c0c48a07b7c0432d4afea05d5ec82fdbc32c"
 }

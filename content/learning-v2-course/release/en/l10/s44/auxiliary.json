@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-44:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-44:intro1:r2": {
-          "ru": "С we нужна review без s.",
-          "uk": "З we потрібна review без s."
+          "ru": "После I нужна like без s.",
+          "uk": "Після I потрібна like без s."
         },
         "en:lesson-10:session-44:intro1:r3": {
-          "ru": "Для привычки здесь нужна review.",
-          "uk": "Для звички тут потрібна review."
+          "ru": "Для предпочтения здесь нужна like без am.",
+          "uk": "Для вподобання тут потрібна like без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-44:intro2:r2": {
-          "ru": "С we нужна have.",
-          "uk": "З we потрібна have."
+          "ru": "Перед buying нужна am.",
+          "uk": "Перед buying потрібна am."
         },
         "en:lesson-10:session-44:intro2:r3": {
-          "ru": "Are have неверно; здесь нужна have.",
-          "uk": "Are have неправильно; тут потрібна have."
+          "ru": "После am нужна buying.",
+          "uk": "Після am потрібна buying."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-44:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-44:intro3:r2": {
-          "ru": "Перед discussing нужна are.",
-          "uk": "Перед discussing потрібна are."
+          "ru": "Перед wearing нужна is.",
+          "uk": "Перед wearing потрібна is."
         },
         "en:lesson-10:session-44:intro3:r3": {
-          "ru": "С we нужна are.",
-          "uk": "З we потрібна are."
+          "ru": "После is нужна wearing.",
+          "uk": "Після is потрібна wearing."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ad248c86749afe362d7a8fa77ffd6df4dea0b9444fd0543f9b078a2274cf1794"
+  "auxiliaryFingerprint": "e304c66dfefe10a0de7c0e1dff728915a1d38a02d1dcbb7ea054b925b50a2555"
 }

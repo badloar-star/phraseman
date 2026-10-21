@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-44:word:quorum",
+      "interactionId": "en:lesson-10:session-44:word:wool",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — quorum",
+      "prompt": "Карточка слова — wool",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-44:word:quorum:audio"
+        "en:lesson-10:session-44:word:wool:audio"
       ],
-      "accessibilityLabel": "Карточка слова — quorum",
+      "accessibilityLabel": "Карточка слова — wool",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-44:word:quorum:audio",
-          "transcript": "quorum"
+          "audioTargetId": "en:lesson-10:session-44:word:wool:audio",
+          "transcript": "wool"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-44:word:quorum:r1",
-            "targetText": "quorum",
+            "responseId": "en:lesson-10:session-44:word:wool:r1",
+            "targetText": "wool",
             "meaningByLocale": {
-              "ru": "«кворум». We have a quorum. — «У нас есть кворум». Минимальное число участников, необходимое для принятия решений на собрании.",
-              "uk": "«кворум». We have a quorum. — «У нас є кворум». Мінімальна кількість учасників, потрібна для ухвалення рішень на зборах."
+              "ru": "«шерсть» как материал. I like wool. — «Мне нравится шерсть».",
+              "uk": "«вовна» як матеріал. I like wool. — «Мені подобається вовна»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "quorum",
+          "word": "wool",
           "definitionByLocale": {
-            "ru": "«кворум». We have a quorum. — «У нас есть кворум». Минимальное число участников, необходимое для принятия решений на собрании.",
-            "uk": "«кворум». We have a quorum. — «У нас є кворум». Мінімальна кількість учасників, потрібна для ухвалення рішень на зборах."
+            "ru": "«шерсть» как материал. I like wool. — «Мне нравится шерсть».",
+            "uk": "«вовна» як матеріал. I like wool. — «Мені подобається вовна»."
           }
         }
       },
@@ -52,23 +52,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Для решений клуба нужны шесть участников. Все шестеро пришли. Сообщите: «У нас есть кворум»",
+      "prompt": "Вам нравится шерсть как материал для одежды. Скажите: «Мне нравится шерсть»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Для решений клуба нужны шесть участников. Все шестеро пришли. Сообщите: «У нас есть кворум»",
+      "accessibilityLabel": "Вам нравится шерсть как материал для одежды. Скажите: «Мне нравится шерсть»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We have a quorum.",
+        "targetPhrase": "I like wool.",
         "localizedMeaning": {
-          "ru": "Для решений клуба нужны шесть участников. Все шестеро пришли. Сообщите: «У нас есть кворум»",
-          "uk": "Для рішень клубу потрібні шість учасників. Усі шестеро прийшли. Повідомте: «У нас є кворум»"
+          "ru": "Вам нравится шерсть как материал для одежды. Скажите: «Мне нравится шерсть»",
+          "uk": "Вам подобається вовна як матеріал для одягу. Скажіть: «Мені подобається вовна»"
         },
         "orderedTokens": [
-          "We",
-          "have",
-          "a",
-          "quorum"
+          "I",
+          "like",
+          "wool"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +88,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-44:i02:r1",
-          "text": "The quorum is six members."
+          "text": "She likes wool."
         },
         {
           "responseId": "en:lesson-10:session-44:i02:r2",
-          "text": "The quorum is seven members."
+          "text": "He likes wool."
         },
         {
           "responseId": "en:lesson-10:session-44:i02:r3",
-          "text": "The quorum is six people."
+          "text": "She needs wool."
         }
       ],
       "mediaIds": [],
@@ -109,23 +108,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-44:i02:audio",
-          "transcript": "The quorum is six members."
+          "transcript": "She likes wool."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-44:i02:r1",
-            "targetText": "The quorum is six members.",
+            "targetText": "She likes wool.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-44:i02:r2",
-            "targetText": "The quorum is seven members.",
+            "targetText": "He likes wool.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-44:i02:r3",
-            "targetText": "The quorum is six people.",
+            "targetText": "She needs wool.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The quorum is six members.",
-              "uk": "У записі звучить The quorum is six members."
+              "ru": "В записи звучит She likes wool.",
+              "uk": "У записі звучить She likes wool."
             }
           },
           {
@@ -145,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The quorum is six members.",
-              "uk": "У записі звучить The quorum is six members."
+              "ru": "В записи звучит She likes wool.",
+              "uk": "У записі звучить She likes wool."
             }
           }
         ],
@@ -161,63 +160,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Достаточное число участников уже здесь. Выберите have",
+      "prompt": "Выберите форму like после I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-44:i03:r1",
-          "text": "have"
+          "text": "like"
         },
         {
           "responseId": "en:lesson-10:session-44:i03:r2",
-          "text": "has"
+          "text": "likes"
         },
         {
           "responseId": "en:lesson-10:session-44:i03:r3",
-          "text": "are have"
+          "text": "liking"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Достаточное число участников уже здесь. Выберите have",
+      "accessibilityLabel": "Выберите форму like после I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Достаточное число участников уже здесь. Выберите have",
-          "uk": "Достатня кількість учасників уже тут. Виберіть have"
+          "ru": "Выберите форму like после I",
+          "uk": "Виберіть форму like після I"
         },
-        "gappedTargetPhrase": "We ___ a quorum.",
+        "gappedTargetPhrase": "I ___ wool.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-44:i03:r1",
-            "text": "have"
+            "text": "like"
           },
           {
             "responseId": "en:lesson-10:session-44:i03:r2",
-            "text": "has"
+            "text": "likes"
           },
           {
             "responseId": "en:lesson-10:session-44:i03:r3",
-            "text": "are have"
+            "text": "liking"
           }
         ],
-        "testedDimension": "Достаточное число участников уже здесь. Выберите have",
+        "testedDimension": "Выберите форму like после I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-44:i03:r2",
             "correct": false,
-            "testedDimension": "Достаточное число участников уже здесь. Выберите have",
+            "testedDimension": "Выберите форму like после I",
             "feedbackByLocale": {
-              "ru": "С we нужна have.",
-              "uk": "З we потрібна have."
+              "ru": "После I нужна like.",
+              "uk": "Після I потрібна like."
             }
           },
           {
             "responseId": "en:lesson-10:session-44:i03:r3",
             "correct": false,
-            "testedDimension": "Достаточное число участников уже здесь. Выберите have",
+            "testedDimension": "Выберите форму like после I",
             "feedbackByLocale": {
-              "ru": "Are have неверно; здесь нужна have.",
-              "uk": "Are have неправильно; тут потрібна have."
+              "ru": "Для предпочтения здесь нужна like.",
+              "uk": "Для вподобання тут потрібна like."
             }
           }
         ]
@@ -225,32 +224,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-44:word:motion",
+      "interactionId": "en:lesson-10:session-44:word:silk",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — motion",
+      "prompt": "Карточка слова — silk",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-44:word:motion:audio"
+        "en:lesson-10:session-44:word:silk:audio"
       ],
-      "accessibilityLabel": "Карточка слова — motion",
+      "accessibilityLabel": "Карточка слова — silk",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-44:word:motion:audio",
-          "transcript": "motion"
+          "audioTargetId": "en:lesson-10:session-44:word:silk:audio",
+          "transcript": "silk"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-44:word:motion:r1",
-            "targetText": "motion",
+            "responseId": "en:lesson-10:session-44:word:silk:r1",
+            "targetText": "silk",
             "meaningByLocale": {
-              "ru": "«предложение для голосования». We are discussing the motion. — «Мы обсуждаем предложение для голосования». Здесь официальное предложение на заседании, не движение.",
-              "uk": "«пропозиція для голосування». We are discussing the motion. — «Ми обговорюємо пропозицію для голосування». Тут офіційна пропозиція на засіданні, не рух."
+              "ru": "«шёлк». a silk scarf — «шёлковый шарф».",
+              "uk": "«шовк». a silk scarf — «шовковий шарф»."
             }
           }
         ],
@@ -258,10 +257,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "motion",
+          "word": "silk",
           "definitionByLocale": {
-            "ru": "«предложение для голосования». We are discussing the motion. — «Мы обсуждаем предложение для голосования». Здесь официальное предложение на заседании, не движение.",
-            "uk": "«пропозиція для голосування». We are discussing the motion. — «Ми обговорюємо пропозицію для голосування». Тут офіційна пропозиція на засіданні, не рух."
+            "ru": "«шёлк». a silk scarf — «шёлковый шарф».",
+            "uk": "«шовк». a silk scarf — «шовковий шарф»."
           }
         }
       },
@@ -273,24 +272,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Участник предложил изменить время встреч. Обсуждение идёт сейчас. Скажите: «Мы обсуждаем предложение для голосования»",
+      "prompt": "Вы сейчас покупаете подарок. Скажите: «Я покупаю шёлковый шарф»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Участник предложил изменить время встреч. Обсуждение идёт сейчас. Скажите: «Мы обсуждаем предложение для голосования»",
+      "accessibilityLabel": "Вы сейчас покупаете подарок. Скажите: «Я покупаю шёлковый шарф»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are discussing the motion.",
+        "targetPhrase": "I am buying a silk scarf.",
         "localizedMeaning": {
-          "ru": "Участник предложил изменить время встреч. Обсуждение идёт сейчас. Скажите: «Мы обсуждаем предложение для голосования»",
-          "uk": "Учасник запропонував змінити час зустрічей. Обговорення триває зараз. Скажіть: «Ми обговорюємо пропозицію для голосування»"
+          "ru": "Вы сейчас покупаете подарок. Скажите: «Я покупаю шёлковый шарф»",
+          "uk": "Ви зараз купуєте подарунок. Скажіть: «Я купую шовковий шарф»"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "discussing",
-          "the",
-          "motion"
+          "I",
+          "am",
+          "buying",
+          "a",
+          "silk",
+          "scarf"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,15 +311,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-44:i05:r1",
-          "text": "The motion is on the agenda."
+          "text": "She is wearing a silk scarf."
         },
         {
           "responseId": "en:lesson-10:session-44:i05:r2",
-          "text": "The motion is in the email."
+          "text": "She is buying a silk scarf."
         },
         {
           "responseId": "en:lesson-10:session-44:i05:r3",
-          "text": "The question is on the agenda."
+          "text": "He is wearing a silk scarf."
         }
       ],
       "mediaIds": [],
@@ -331,23 +331,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-44:i05:audio",
-          "transcript": "The motion is on the agenda."
+          "transcript": "She is wearing a silk scarf."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-44:i05:r1",
-            "targetText": "The motion is on the agenda.",
+            "targetText": "She is wearing a silk scarf.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-44:i05:r2",
-            "targetText": "The motion is in the email.",
+            "targetText": "She is buying a silk scarf.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-44:i05:r3",
-            "targetText": "The question is on the agenda.",
+            "targetText": "He is wearing a silk scarf.",
             "meaningByLocale": null
           }
         ],
@@ -358,8 +358,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The motion is on the agenda.",
-              "uk": "У записі звучить The motion is on the agenda."
+              "ru": "В записи звучит She is wearing a silk scarf.",
+              "uk": "У записі звучить She is wearing a silk scarf."
             }
           },
           {
@@ -367,8 +367,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The motion is on the agenda.",
-              "uk": "У записі звучить The motion is on the agenda."
+              "ru": "В записи звучит She is wearing a silk scarf.",
+              "uk": "У записі звучить She is wearing a silk scarf."
             }
           }
         ],
@@ -383,63 +383,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы обсуждаете предложение сейчас. Выберите связку",
+      "prompt": "Покупка идёт сейчас. Выберите форму buy",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-44:i06:r1",
-          "text": "are"
+          "text": "buying"
         },
         {
           "responseId": "en:lesson-10:session-44:i06:r2",
-          "text": "is"
+          "text": "buy"
         },
         {
           "responseId": "en:lesson-10:session-44:i06:r3",
-          "text": "am"
+          "text": "buys"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы обсуждаете предложение сейчас. Выберите связку",
+      "accessibilityLabel": "Покупка идёт сейчас. Выберите форму buy",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы обсуждаете предложение сейчас. Выберите связку",
-          "uk": "Ви обговорюєте пропозицію зараз. Виберіть зв’язку"
+          "ru": "Покупка идёт сейчас. Выберите форму buy",
+          "uk": "Купівля триває зараз. Виберіть форму buy"
         },
-        "gappedTargetPhrase": "We ___ discussing the motion.",
+        "gappedTargetPhrase": "I am ___ a silk scarf.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-44:i06:r1",
-            "text": "are"
+            "text": "buying"
           },
           {
             "responseId": "en:lesson-10:session-44:i06:r2",
-            "text": "is"
+            "text": "buy"
           },
           {
             "responseId": "en:lesson-10:session-44:i06:r3",
-            "text": "am"
+            "text": "buys"
           }
         ],
-        "testedDimension": "Вы обсуждаете предложение сейчас. Выберите связку",
+        "testedDimension": "Покупка идёт сейчас. Выберите форму buy",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-44:i06:r2",
             "correct": false,
-            "testedDimension": "Вы обсуждаете предложение сейчас. Выберите связку",
+            "testedDimension": "Покупка идёт сейчас. Выберите форму buy",
             "feedbackByLocale": {
-              "ru": "С we нужна are.",
-              "uk": "З we потрібна are."
+              "ru": "После am нужна buying.",
+              "uk": "Після am потрібна buying."
             }
           },
           {
             "responseId": "en:lesson-10:session-44:i06:r3",
             "correct": false,
-            "testedDimension": "Вы обсуждаете предложение сейчас. Выберите связку",
+            "testedDimension": "Покупка идёт сейчас. Выберите форму buy",
             "feedbackByLocale": {
-              "ru": "Am используется с I; с we нужна are.",
-              "uk": "Am уживається з I; з we потрібна are."
+              "ru": "После am нужна buying, не buys.",
+              "uk": "Після am потрібна buying, не buys."
             }
           }
         ]
@@ -447,32 +447,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-44:word:amendment",
+      "interactionId": "en:lesson-10:session-44:word:denim",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — amendment",
+      "prompt": "Карточка слова — denim",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-44:word:amendment:audio"
+        "en:lesson-10:session-44:word:denim:audio"
       ],
-      "accessibilityLabel": "Карточка слова — amendment",
+      "accessibilityLabel": "Карточка слова — denim",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-44:word:amendment:audio",
-          "transcript": "amendment"
+          "audioTargetId": "en:lesson-10:session-44:word:denim:audio",
+          "transcript": "denim"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-44:word:amendment:r1",
-            "targetText": "amendment",
+            "responseId": "en:lesson-10:session-44:word:denim:r1",
+            "targetText": "denim",
             "meaningByLocale": {
-              "ru": "«поправка». The amendment is clear. — «Поправка понятна». Здесь предложенное изменение текста обсуждаемого предложения.",
-              "uk": "«поправка». The amendment is clear. — «Поправка зрозуміла». Тут запропонована зміна тексту обговорюваної пропозиції."
+              "ru": "«джинсовая ткань». a denim jacket — «джинсовая куртка».",
+              "uk": "«джинсова тканина». a denim jacket — «джинсова куртка»."
             }
           }
         ],
@@ -480,10 +480,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "amendment",
+          "word": "denim",
           "definitionByLocale": {
-            "ru": "«поправка». The amendment is clear. — «Поправка понятна». Здесь предложенное изменение текста обсуждаемого предложения.",
-            "uk": "«поправка». The amendment is clear. — «Поправка зрозуміла». Тут запропонована зміна тексту обговорюваної пропозиції."
+            "ru": "«джинсовая ткань». a denim jacket — «джинсовая куртка».",
+            "uk": "«джинсова тканина». a denim jacket — «джинсова куртка»."
           }
         }
       },
@@ -495,23 +495,25 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега уточнил изменение к предложению. Скажите: «Поправка понятна»",
+      "prompt": "Друг ищет вас у кафе. Скажите: «На мне джинсовая куртка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега уточнил изменение к предложению. Скажите: «Поправка понятна»",
+      "accessibilityLabel": "Друг ищет вас у кафе. Скажите: «На мне джинсовая куртка»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The amendment is clear.",
+        "targetPhrase": "I am wearing a denim jacket.",
         "localizedMeaning": {
-          "ru": "Коллега уточнил изменение к предложению. Скажите: «Поправка понятна»",
-          "uk": "Колега уточнив зміну до пропозиції. Скажіть: «Поправка зрозуміла»"
+          "ru": "Друг ищет вас у кафе. Скажите: «На мне джинсовая куртка»",
+          "uk": "Друг шукає вас біля кафе. Скажіть: «На мені джинсова куртка»"
         },
         "orderedTokens": [
-          "The",
-          "amendment",
-          "is",
-          "clear"
+          "I",
+          "am",
+          "wearing",
+          "a",
+          "denim",
+          "jacket"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -532,15 +534,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-44:i08:r1",
-          "text": "I am reading the amendment."
+          "text": "He is wearing a denim jacket."
         },
         {
           "responseId": "en:lesson-10:session-44:i08:r2",
-          "text": "I am writing the amendment."
+          "text": "She is wearing a denim jacket."
         },
         {
           "responseId": "en:lesson-10:session-44:i08:r3",
-          "text": "I am reading the agenda."
+          "text": "He is buying a denim jacket."
         }
       ],
       "mediaIds": [],
@@ -552,23 +554,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-44:i08:audio",
-          "transcript": "I am reading the amendment."
+          "transcript": "He is wearing a denim jacket."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-44:i08:r1",
-            "targetText": "I am reading the amendment.",
+            "targetText": "He is wearing a denim jacket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-44:i08:r2",
-            "targetText": "I am writing the amendment.",
+            "targetText": "She is wearing a denim jacket.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-44:i08:r3",
-            "targetText": "I am reading the agenda.",
+            "targetText": "He is buying a denim jacket.",
             "meaningByLocale": null
           }
         ],
@@ -579,8 +581,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am reading the amendment.",
-              "uk": "У записі звучить I am reading the amendment."
+              "ru": "В записи звучит He is wearing a denim jacket.",
+              "uk": "У записі звучить He is wearing a denim jacket."
             }
           },
           {
@@ -588,8 +590,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I am reading the amendment.",
-              "uk": "У записі звучить I am reading the amendment."
+              "ru": "В записи звучит He is wearing a denim jacket.",
+              "uk": "У записі звучить He is wearing a denim jacket."
             }
           }
         ],
@@ -604,63 +606,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Речь об одной поправке. Выберите связку",
+      "prompt": "Опишите одежду на себе сейчас. Выберите форму wear",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-44:i09:r1",
-          "text": "is"
+          "text": "wearing"
         },
         {
           "responseId": "en:lesson-10:session-44:i09:r2",
-          "text": "are"
+          "text": "wear"
         },
         {
           "responseId": "en:lesson-10:session-44:i09:r3",
-          "text": "am"
+          "text": "wears"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Речь об одной поправке. Выберите связку",
+      "accessibilityLabel": "Опишите одежду на себе сейчас. Выберите форму wear",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Речь об одной поправке. Выберите связку",
-          "uk": "Ідеться про одну поправку. Виберіть зв’язку"
+          "ru": "Опишите одежду на себе сейчас. Выберите форму wear",
+          "uk": "Опишіть одяг на собі зараз. Виберіть форму wear"
         },
-        "gappedTargetPhrase": "The amendment ___ clear.",
+        "gappedTargetPhrase": "I am ___ a denim jacket.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-44:i09:r1",
-            "text": "is"
+            "text": "wearing"
           },
           {
             "responseId": "en:lesson-10:session-44:i09:r2",
-            "text": "are"
+            "text": "wear"
           },
           {
             "responseId": "en:lesson-10:session-44:i09:r3",
-            "text": "am"
+            "text": "wears"
           }
         ],
-        "testedDimension": "Речь об одной поправке. Выберите связку",
+        "testedDimension": "Опишите одежду на себе сейчас. Выберите форму wear",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-44:i09:r2",
             "correct": false,
-            "testedDimension": "Речь об одной поправке. Выберите связку",
+            "testedDimension": "Опишите одежду на себе сейчас. Выберите форму wear",
             "feedbackByLocale": {
-              "ru": "Одна поправка: is.",
-              "uk": "Одна поправка: is."
+              "ru": "После am нужна wearing.",
+              "uk": "Після am потрібна wearing."
             }
           },
           {
             "responseId": "en:lesson-10:session-44:i09:r3",
             "correct": false,
-            "testedDimension": "Речь об одной поправке. Выберите связку",
+            "testedDimension": "Опишите одежду на себе сейчас. Выберите форму wear",
             "feedbackByLocale": {
-              "ru": "Am используется с I; здесь нужна is.",
-              "uk": "Am уживається з I; тут потрібна is."
+              "ru": "После am нужна wearing, не wears.",
+              "uk": "Після am потрібна wearing, не wears."
             }
           }
         ]
@@ -668,32 +670,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-44:word:ballot",
+      "interactionId": "en:lesson-10:session-44:word:flowery",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — ballot",
+      "prompt": "Карточка слова — flowery",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-44:word:ballot:audio"
+        "en:lesson-10:session-44:word:flowery:audio"
       ],
-      "accessibilityLabel": "Карточка слова — ballot",
+      "accessibilityLabel": "Карточка слова — flowery",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-44:word:ballot:audio",
-          "transcript": "ballot"
+          "audioTargetId": "en:lesson-10:session-44:word:flowery:audio",
+          "transcript": "flowery"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-44:word:ballot:r1",
-            "targetText": "ballot",
+            "responseId": "en:lesson-10:session-44:word:flowery:r1",
+            "targetText": "flowery",
             "meaningByLocale": {
-              "ru": "«голосование». We are holding a secret ballot. — «Мы проводим тайное голосование». Здесь процедура голосования, а не отдельный бюллетень.",
-              "uk": "«голосування». We are holding a secret ballot. — «Ми проводимо таємне голосування». Тут процедура голосування, а не окремий бюлетень."
+              "ru": "«с цветочным рисунком». a flowery dress — «платье с цветочным рисунком».",
+              "uk": "«із квітковим малюнком». a flowery dress — «сукня із квітковим малюнком»."
             }
           }
         ],
@@ -701,10 +703,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "ballot",
+          "word": "flowery",
           "definitionByLocale": {
-            "ru": "«голосование». We are holding a secret ballot. — «Мы проводим тайное голосование». Здесь процедура голосования, а не отдельный бюллетень.",
-            "uk": "«голосування». We are holding a secret ballot. — «Ми проводимо таємне голосування». Тут процедура голосування, а не окремий бюлетень."
+            "ru": "«с цветочным рисунком». a flowery dress — «платье с цветочным рисунком».",
+            "uk": "«із квітковим малюнком». a flowery dress — «сукня із квітковим малюнком»."
           }
         }
       },
@@ -716,25 +718,25 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Члены клуба сейчас голосуют, не раскрывая свой выбор другим. Скажите: «Мы проводим тайное голосование»",
+      "prompt": "Опишите сестру рядом: «На ней платье с цветочным рисунком»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Члены клуба сейчас голосуют, не раскрывая свой выбор другим. Скажите: «Мы проводим тайное голосование»",
+      "accessibilityLabel": "Опишите сестру рядом: «На ней платье с цветочным рисунком»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are holding a secret ballot.",
+        "targetPhrase": "She is wearing a flowery dress.",
         "localizedMeaning": {
-          "ru": "Члены клуба сейчас голосуют, не раскрывая свой выбор другим. Скажите: «Мы проводим тайное голосование»",
-          "uk": "Члени клубу зараз голосують, не розкриваючи свого вибору іншим. Скажіть: «Ми проводимо таємне голосування»"
+          "ru": "Опишите сестру рядом: «На ней платье с цветочным рисунком»",
+          "uk": "Опишіть сестру поруч: «На ній сукня із квітковим малюнком»"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "holding",
+          "She",
+          "is",
+          "wearing",
           "a",
-          "secret",
-          "ballot"
+          "flowery",
+          "dress"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -755,15 +757,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-44:i11:r1",
-          "text": "The ballot is after the discussion."
+          "text": "I like this flowery dress."
         },
         {
           "responseId": "en:lesson-10:session-44:i11:r2",
-          "text": "The ballot is before the discussion."
+          "text": "I like this flowery skirt."
         },
         {
           "responseId": "en:lesson-10:session-44:i11:r3",
-          "text": "The break is after the discussion."
+          "text": "I need this flowery dress."
         }
       ],
       "mediaIds": [],
@@ -775,23 +777,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-44:i11:audio",
-          "transcript": "The ballot is after the discussion."
+          "transcript": "I like this flowery dress."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-44:i11:r1",
-            "targetText": "The ballot is after the discussion.",
+            "targetText": "I like this flowery dress.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-44:i11:r2",
-            "targetText": "The ballot is before the discussion.",
+            "targetText": "I like this flowery skirt.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-44:i11:r3",
-            "targetText": "The break is after the discussion.",
+            "targetText": "I need this flowery dress.",
             "meaningByLocale": null
           }
         ],
@@ -802,8 +804,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The ballot is after the discussion.",
-              "uk": "У записі звучить The ballot is after the discussion."
+              "ru": "В записи звучит I like this flowery dress.",
+              "uk": "У записі звучить I like this flowery dress."
             }
           },
           {
@@ -811,8 +813,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The ballot is after the discussion.",
-              "uk": "У записі звучить The ballot is after the discussion."
+              "ru": "В записи звучит I like this flowery dress.",
+              "uk": "У записі звучить I like this flowery dress."
             }
           }
         ],
@@ -827,63 +829,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Голосование идёт сейчас. Выберите форму holding",
+      "prompt": "Выберите вспомогательный глагол для she перед wearing",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-44:i12:r1",
-          "text": "holding"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-44:i12:r2",
-          "text": "hold"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-44:i12:r3",
-          "text": "holds"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Голосование идёт сейчас. Выберите форму holding",
+      "accessibilityLabel": "Выберите вспомогательный глагол для she перед wearing",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Голосование идёт сейчас. Выберите форму holding",
-          "uk": "Голосування триває зараз. Виберіть форму holding"
+          "ru": "Выберите вспомогательный глагол для she перед wearing",
+          "uk": "Виберіть допоміжне дієслово для she перед wearing"
         },
-        "gappedTargetPhrase": "We are ___ a secret ballot.",
+        "gappedTargetPhrase": "She ___ wearing a flowery dress.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-44:i12:r1",
-            "text": "holding"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-44:i12:r2",
-            "text": "hold"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-44:i12:r3",
-            "text": "holds"
+            "text": "am"
           }
         ],
-        "testedDimension": "Голосование идёт сейчас. Выберите форму holding",
+        "testedDimension": "Выберите вспомогательный глагол для she перед wearing",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-44:i12:r2",
             "correct": false,
-            "testedDimension": "Голосование идёт сейчас. Выберите форму holding",
+            "testedDimension": "Выберите вспомогательный глагол для she перед wearing",
             "feedbackByLocale": {
-              "ru": "После are здесь нужна holding.",
-              "uk": "Після are тут потрібна holding."
+              "ru": "С she нужна is.",
+              "uk": "З she потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-44:i12:r3",
             "correct": false,
-            "testedDimension": "Голосование идёт сейчас. Выберите форму holding",
+            "testedDimension": "Выберите вспомогательный глагол для she перед wearing",
             "feedbackByLocale": {
-              "ru": "Для действия сейчас нужна holding.",
-              "uk": "Для дії зараз потрібна holding."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -896,58 +898,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-44:i13:p1",
-            "target": "quorum",
+            "target": "wool",
             "meaningByLocale": {
-              "ru": "кворум",
-              "uk": "кворум"
+              "ru": "шерсть",
+              "uk": "вовна"
             }
           },
           {
             "pairId": "en:lesson-10:session-44:i13:p2",
-            "target": "motion",
+            "target": "silk",
             "meaningByLocale": {
-              "ru": "предложение для голосования",
-              "uk": "пропозиція для голосування"
+              "ru": "шёлк",
+              "uk": "шовк"
             }
           },
           {
             "pairId": "en:lesson-10:session-44:i13:p3",
-            "target": "amendment",
+            "target": "denim",
             "meaningByLocale": {
-              "ru": "поправка",
-              "uk": "поправка"
+              "ru": "джинсовая ткань",
+              "uk": "джинсова тканина"
             }
           },
           {
             "pairId": "en:lesson-10:session-44:i13:p4",
-            "target": "ballot",
+            "target": "flowery",
             "meaningByLocale": {
-              "ru": "голосование",
-              "uk": "голосування"
+              "ru": "с цветочным рисунком",
+              "uk": "із квітковим малюнком"
             }
           }
         ],
         "leftColumn": [
-          "quorum",
-          "motion",
-          "amendment",
-          "ballot"
+          "wool",
+          "silk",
+          "denim",
+          "flowery"
         ],
         "rightColumn": [
-          "кворум",
-          "предложение для голосования",
-          "поправка",
-          "голосование"
+          "шерсть",
+          "шёлк",
+          "джинсовая ткань",
+          "с цветочным рисунком"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -969,27 +971,28 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-44:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-44:i14:audio",
-          "transcript": "We are discussing the motion."
+          "transcript": "I am buying a silk scarf."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We are discussing the motion.",
+        "hiddenTargetPhrase": "I am buying a silk scarf.",
         "orderedTokens": [
-          "We",
-          "are",
-          "discussing",
-          "the",
-          "motion"
+          "I",
+          "am",
+          "buying",
+          "a",
+          "silk",
+          "scarf"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1003,24 +1006,62 @@
     {
       "interactionId": "en:lesson-10:session-44:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Участник спрашивает, как часто комитет рассматривает повестку. Скажите: «Мы рассматриваем повестку каждый месяц»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-44:i15:audio"
       ],
-      "accessibilityLabel": "Участник спрашивает, как часто комитет рассматривает повестку. Скажите: «Мы рассматриваем повестку каждый месяц»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-44:i15:audio",
+          "transcript": "I am wearing a denim jacket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am wearing a denim jacket.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "wearing",
+          "a",
+          "denim",
+          "jacket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра спрашивает, что вы покупаете. Ответьте: «Я покупаю шёлковый шарф»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Сестра спрашивает, что вы покупаете. Ответьте: «Я покупаю шёлковый шарф»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-44:i15:audio",
-          "transcript": "We review the agenda every month."
+          "audioTargetId": "en:lesson-10:session-44:i16:audio",
+          "transcript": "I am buying a silk scarf."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We review the agenda every month.",
+        "targetPhrase": "I am buying a silk scarf.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1034,70 +1075,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-44:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Нужное число участников собралось. Скажите: «У нас есть кворум»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Нужное число участников собралось. Скажите: «У нас есть кворум»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We have a quorum.",
-        "localizedMeaning": {
-          "ru": "Нужное число участников собралось. Скажите: «У нас есть кворум»",
-          "uk": "Потрібна кількість учасників зібралася. Скажіть: «У нас є кворум»"
-        },
-        "orderedTokens": [
-          "We",
-          "have",
-          "a",
-          "quorum"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-44:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коллега пришёл после начала заседания. Сейчас участники обсуждают официальное предложение изменить время встреч. Объясните: «Мы обсуждаем предложение для голосования»",
+      "prompt": "Друг не может найти вас у кафе. Опишите себя: «На мне джинсовая куртка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-44:i17:audio"
       ],
-      "accessibilityLabel": "Коллега пришёл после начала заседания. Сейчас участники обсуждают официальное предложение изменить время встреч. Объясните: «Мы обсуждаем предложение для голосования»",
+      "accessibilityLabel": "Друг не может найти вас у кафе. Опишите себя: «На мне джинсовая куртка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-44:i17:audio",
-          "transcript": "We are discussing the motion."
+          "transcript": "I am wearing a denim jacket."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are discussing the motion.",
+        "targetPhrase": "I am wearing a denim jacket.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "30f5032aae5a6f0810cc4f0c64c35a0960f1933a35fb01e6aa0b04aee649919f"
+  "learnerFingerprint": "a83aae27f4d7fb425e4d51f83d01a7a3f375af917a6f49cd57476c0c5dc955d0"
 }

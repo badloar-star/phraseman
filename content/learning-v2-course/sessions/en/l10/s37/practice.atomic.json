@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-37:word:semester",
+        "interactionId": "en:lesson-10:session-37:word:underneath",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — semester",
+        "prompt": "Карточка слова — underneath",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-37:word:semester:audio"
+          "en:lesson-10:session-37:word:underneath:audio"
         ],
-        "accessibilityLabel": "Карточка слова — semester",
+        "accessibilityLabel": "Карточка слова — underneath",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:word:semester:audio",
-            "transcript": "semester"
+            "audioTargetId": "en:lesson-10:session-37:word:underneath:audio",
+            "transcript": "underneath"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-37:word:semester:r1",
-              "targetText": "semester",
+              "responseId": "en:lesson-10:session-37:word:underneath:r1",
+              "targetText": "underneath",
               "meaningByLocale": {
-                "ru": "«семестр». This semester is busy. — «Этот семестр насыщенный». Часть учебного года, обычно одна из двух.",
-                "uk": "«семестр». This semester is busy. — «Цей семестр насичений». Частина навчального року, зазвичай одна з двох."
+                "ru": "«под». The keys are underneath the chair. — «Ключи под стулом».",
+                "uk": "«під». The keys are underneath the chair. — «Ключі під стільцем»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "semester",
+            "word": "underneath",
             "definitionByLocale": {
-              "ru": "«семестр». This semester is busy. — «Этот семестр насыщенный». Часть учебного года, обычно одна из двух.",
-              "uk": "«семестр». This semester is busy. — «Цей семестр насичений». Частина навчального року, зазвичай одна з двох."
+              "ru": "«под». The keys are underneath the chair. — «Ключи под стулом».",
+              "uk": "«під». The keys are underneath the chair. — «Ключі під стільцем»."
             }
           }
         },
@@ -52,23 +52,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "У вас много занятий в этом учебном периоде. Скажите: «Этот семестр насыщенный»",
+        "prompt": "Вы нашли ключи под стулом. Сообщите другу, где они",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "У вас много занятий в этом учебном периоде. Скажите: «Этот семестр насыщенный»",
+        "accessibilityLabel": "Вы нашли ключи под стулом. Сообщите другу, где они",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This semester is busy.",
+          "targetPhrase": "The keys are underneath the chair.",
           "localizedMeaning": {
-            "ru": "У вас много занятий в этом учебном периоде. Скажите: «Этот семестр насыщенный»",
-            "uk": "У вас багато занять у цьому навчальному періоді. Скажіть: «Цей семестр насичений»"
+            "ru": "Вы нашли ключи под стулом. Сообщите другу, где они",
+            "uk": "Ви знайшли ключі під стільцем. Повідомте другові, де вони"
           },
           "orderedTokens": [
-            "This",
-            "semester",
-            "is",
-            "busy"
+            "The",
+            "keys",
+            "are",
+            "underneath",
+            "the",
+            "chair"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -89,15 +91,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i02:r1",
-            "text": "The semester starts in September."
+            "text": "The bag is underneath the table."
           },
           {
             "responseId": "en:lesson-10:session-37:i02:r2",
-            "text": "The semester starts in November."
+            "text": "The bag is underneath the chair."
           },
           {
             "responseId": "en:lesson-10:session-37:i02:r3",
-            "text": "The course starts in September."
+            "text": "The box is underneath the table."
           }
         ],
         "mediaIds": [],
@@ -109,23 +111,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i02:audio",
-            "transcript": "The semester starts in September."
+            "transcript": "The bag is underneath the table."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-37:i02:r1",
-              "targetText": "The semester starts in September.",
+              "targetText": "The bag is underneath the table.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i02:r2",
-              "targetText": "The semester starts in November.",
+              "targetText": "The bag is underneath the chair.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i02:r3",
-              "targetText": "The course starts in September.",
+              "targetText": "The box is underneath the table.",
               "meaningByLocale": null
             }
           ],
@@ -136,8 +138,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The semester starts in September.",
-                "uk": "У записі звучить The semester starts in September."
+                "ru": "В записи звучит The bag is underneath the table.",
+                "uk": "У записі звучить The bag is underneath the table."
               }
             },
             {
@@ -145,8 +147,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The semester starts in September.",
-                "uk": "У записі звучить The semester starts in September."
+                "ru": "В записи звучит The bag is underneath the table.",
+                "uk": "У записі звучить The bag is underneath the table."
               }
             }
           ],
@@ -161,15 +163,15 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Опишите один учебный период. Выберите связку",
+        "prompt": "Выберите связку: ключи во множественном числе",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i03:r1",
-            "text": "is"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-37:i03:r2",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-37:i03:r3",
@@ -178,46 +180,46 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Опишите один учебный период. Выберите связку",
+        "accessibilityLabel": "Выберите связку: ключи во множественном числе",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Опишите один учебный период. Выберите связку",
-            "uk": "Опишіть один навчальний період. Виберіть зв’язку"
+            "ru": "Выберите связку: ключи во множественном числе",
+            "uk": "Виберіть зв’язку: ключі у множині"
           },
-          "gappedTargetPhrase": "This semester ___ busy.",
+          "gappedTargetPhrase": "The keys ___ underneath the chair.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-37:i03:r1",
-              "text": "is"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-37:i03:r2",
-              "text": "are"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-37:i03:r3",
               "text": "am"
             }
           ],
-          "testedDimension": "Опишите один учебный период. Выберите связку",
+          "testedDimension": "Выберите связку: ключи во множественном числе",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-37:i03:r2",
               "correct": false,
-              "testedDimension": "Опишите один учебный период. Выберите связку",
+              "testedDimension": "Выберите связку: ключи во множественном числе",
               "feedbackByLocale": {
-                "ru": "С semester в единственном числе нужна is.",
-                "uk": "З semester в однині потрібна is."
+                "ru": "Keys во множественном числе: are.",
+                "uk": "Keys у множині: are."
               }
             },
             {
               "responseId": "en:lesson-10:session-37:i03:r3",
               "correct": false,
-              "testedDimension": "Опишите один учебный период. Выберите связку",
+              "testedDimension": "Выберите связку: ключи во множественном числе",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -225,32 +227,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-37:word:syllabus",
+        "interactionId": "en:lesson-10:session-37:word:against",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — syllabus",
+        "prompt": "Карточка слова — against",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-37:word:syllabus:audio"
+          "en:lesson-10:session-37:word:against:audio"
         ],
-        "accessibilityLabel": "Карточка слова — syllabus",
+        "accessibilityLabel": "Карточка слова — against",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:word:syllabus:audio",
-            "transcript": "syllabus"
+            "audioTargetId": "en:lesson-10:session-37:word:against:audio",
+            "transcript": "against"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-37:word:syllabus:r1",
-              "targetText": "syllabus",
+              "responseId": "en:lesson-10:session-37:word:against:r1",
+              "targetText": "against",
               "meaningByLocale": {
-                "ru": "«программа курса». I am reading the syllabus. — «Я читаю программу курса». В ней перечислены темы и требования курса.",
-                "uk": "«програма курсу». I am reading the syllabus. — «Я читаю програму курсу». У ній перелічено теми й вимоги курсу."
+                "ru": "«к, вплотную к» в описании опоры. The ladder is against the wall. — «Лестница прислонена к стене».",
+                "uk": "«до, впритул до» в описі опори. The ladder is against the wall. — «Драбина притулена до стіни»."
               }
             }
           ],
@@ -258,10 +260,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "syllabus",
+            "word": "against",
             "definitionByLocale": {
-              "ru": "«программа курса». I am reading the syllabus. — «Я читаю программу курса». В ней перечислены темы и требования курса.",
-              "uk": "«програма курсу». I am reading the syllabus. — «Я читаю програму курсу». У ній перелічено теми й вимоги курсу."
+              "ru": "«к, вплотную к» в описании опоры. The ladder is against the wall. — «Лестница прислонена к стене».",
+              "uk": "«до, впритул до» в описі опори. The ladder is against the wall. — «Драбина притулена до стіни»."
             }
           }
         },
@@ -273,24 +275,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы открыли программу курса и сейчас читаете её. Скажите: «Я читаю программу курса»",
+        "prompt": "Лестница опирается на стену. Сообщите: «Лестница прислонена к стене»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы открыли программу курса и сейчас читаете её. Скажите: «Я читаю программу курса»",
+        "accessibilityLabel": "Лестница опирается на стену. Сообщите: «Лестница прислонена к стене»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am reading the syllabus.",
+          "targetPhrase": "The ladder is against the wall.",
           "localizedMeaning": {
-            "ru": "Вы открыли программу курса и сейчас читаете её. Скажите: «Я читаю программу курса»",
-            "uk": "Ви відкрили програму курсу й зараз читаєте її. Скажіть: «Я читаю програму курсу»"
+            "ru": "Лестница опирается на стену. Сообщите: «Лестница прислонена к стене»",
+            "uk": "Драбина спирається на стіну. Повідомте: «Драбина притулена до стіни»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "reading",
+            "The",
+            "ladder",
+            "is",
+            "against",
             "the",
-            "syllabus"
+            "wall"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -311,15 +314,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i05:r1",
-            "text": "The syllabus is on the website."
+            "text": "The chair is against the wall."
           },
           {
             "responseId": "en:lesson-10:session-37:i05:r2",
-            "text": "The syllabus is on the desk."
+            "text": "The ladder is against the wall."
           },
           {
             "responseId": "en:lesson-10:session-37:i05:r3",
-            "text": "The timetable is on the website."
+            "text": "The chair is near the door."
           }
         ],
         "mediaIds": [],
@@ -331,23 +334,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i05:audio",
-            "transcript": "The syllabus is on the website."
+            "transcript": "The chair is against the wall."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-37:i05:r1",
-              "targetText": "The syllabus is on the website.",
+              "targetText": "The chair is against the wall.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i05:r2",
-              "targetText": "The syllabus is on the desk.",
+              "targetText": "The ladder is against the wall.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i05:r3",
-              "targetText": "The timetable is on the website.",
+              "targetText": "The chair is near the door.",
               "meaningByLocale": null
             }
           ],
@@ -358,8 +361,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The syllabus is on the website.",
-                "uk": "У записі звучить The syllabus is on the website."
+                "ru": "В записи звучит The chair is against the wall.",
+                "uk": "У записі звучить The chair is against the wall."
               }
             },
             {
@@ -367,8 +370,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The syllabus is on the website.",
-                "uk": "У записі звучить The syllabus is on the website."
+                "ru": "В записи звучит The chair is against the wall.",
+                "uk": "У записі звучить The chair is against the wall."
               }
             }
           ],
@@ -383,63 +386,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы сейчас читаете программу. Выберите связку",
+        "prompt": "Выберите связку: одна лестница",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i06:r1",
-            "text": "am"
-          },
-          {
-            "responseId": "en:lesson-10:session-37:i06:r2",
             "text": "is"
           },
           {
-            "responseId": "en:lesson-10:session-37:i06:r3",
+            "responseId": "en:lesson-10:session-37:i06:r2",
             "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-37:i06:r3",
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сейчас читаете программу. Выберите связку",
+        "accessibilityLabel": "Выберите связку: одна лестница",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сейчас читаете программу. Выберите связку",
-            "uk": "Ви зараз читаєте програму. Виберіть зв’язку"
+            "ru": "Выберите связку: одна лестница",
+            "uk": "Виберіть зв’язку: одна драбина"
           },
-          "gappedTargetPhrase": "I ___ reading the syllabus.",
+          "gappedTargetPhrase": "The ladder ___ against the wall.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-37:i06:r1",
-              "text": "am"
-            },
-            {
-              "responseId": "en:lesson-10:session-37:i06:r2",
               "text": "is"
             },
             {
-              "responseId": "en:lesson-10:session-37:i06:r3",
+              "responseId": "en:lesson-10:session-37:i06:r2",
               "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-37:i06:r3",
+              "text": "am"
             }
           ],
-          "testedDimension": "Вы сейчас читаете программу. Выберите связку",
+          "testedDimension": "Выберите связку: одна лестница",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-37:i06:r2",
               "correct": false,
-              "testedDimension": "Вы сейчас читаете программу. Выберите связку",
+              "testedDimension": "Выберите связку: одна лестница",
               "feedbackByLocale": {
-                "ru": "С I нужна am.",
-                "uk": "З I потрібна am."
+                "ru": "Одна лестница: is.",
+                "uk": "Одна драбина: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-37:i06:r3",
               "correct": false,
-              "testedDimension": "Вы сейчас читаете программу. Выберите связку",
+              "testedDimension": "Выберите связку: одна лестница",
               "feedbackByLocale": {
-                "ru": "С I нужна am, не are.",
-                "uk": "З I потрібна am, не are."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -447,32 +450,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-37:word:elective",
+        "interactionId": "en:lesson-10:session-37:word:backwards",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — elective",
+        "prompt": "Карточка слова — backwards",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-37:word:elective:audio"
+          "en:lesson-10:session-37:word:backwards:audio"
         ],
-        "accessibilityLabel": "Карточка слова — elective",
+        "accessibilityLabel": "Карточка слова — backwards",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:word:elective:audio",
-            "transcript": "elective"
+            "audioTargetId": "en:lesson-10:session-37:word:backwards:audio",
+            "transcript": "backwards"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-37:word:elective:r1",
-              "targetText": "elective",
+              "responseId": "en:lesson-10:session-37:word:backwards:r1",
+              "targetText": "backwards",
               "meaningByLocale": {
-                "ru": "«курс по выбору». Photography is my elective. — «Фотография — мой курс по выбору». Здесь предмет, который студент выбирает сам.",
-                "uk": "«курс за вибором». Photography is my elective. — «Фотографія — мій курс за вибором». Тут предмет, який студент обирає сам."
+                "ru": "«назад, задом наперёд». I am walking backwards. — «Я иду задом наперёд».",
+                "uk": "«назад, задом наперед». I am walking backwards. — «Я йду задом наперед»."
               }
             }
           ],
@@ -480,10 +483,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "elective",
+            "word": "backwards",
             "definitionByLocale": {
-              "ru": "«курс по выбору». Photography is my elective. — «Фотография — мой курс по выбору». Здесь предмет, который студент выбирает сам.",
-              "uk": "«курс за вибором». Photography is my elective. — «Фотографія — мій курс за вибором». Тут предмет, який студент обирає сам."
+              "ru": "«назад, задом наперёд». I am walking backwards. — «Я иду задом наперёд».",
+              "uk": "«назад, задом наперед». I am walking backwards. — «Я йду задом наперед»."
             }
           }
         },
@@ -495,23 +498,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Из необязательных предметов вы выбрали фотографию. Скажите: «Фотография — мой курс по выбору»",
+        "prompt": "Вы несёте стол спиной вперёд. Скажите: «Я иду задом наперёд»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Из необязательных предметов вы выбрали фотографию. Скажите: «Фотография — мой курс по выбору»",
+        "accessibilityLabel": "Вы несёте стол спиной вперёд. Скажите: «Я иду задом наперёд»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "Photography is my elective.",
+          "targetPhrase": "I am walking backwards.",
           "localizedMeaning": {
-            "ru": "Из необязательных предметов вы выбрали фотографию. Скажите: «Фотография — мой курс по выбору»",
-            "uk": "Із необов’язкових предметів ви обрали фотографію. Скажіть: «Фотографія — мій курс за вибором»"
+            "ru": "Вы несёте стол спиной вперёд. Скажите: «Я иду задом наперёд»",
+            "uk": "Ви несете стіл спиною вперед. Скажіть: «Я йду задом наперед»"
           },
           "orderedTokens": [
-            "Photography",
-            "is",
-            "my",
-            "elective"
+            "I",
+            "am",
+            "walking",
+            "backwards"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -532,15 +535,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i08:r1",
-            "text": "This elective is interesting."
+            "text": "The car is moving backwards."
           },
           {
             "responseId": "en:lesson-10:session-37:i08:r2",
-            "text": "This elective is difficult."
+            "text": "The car is moving slowly."
           },
           {
             "responseId": "en:lesson-10:session-37:i08:r3",
-            "text": "This book is interesting."
+            "text": "The bus is moving backwards."
           }
         ],
         "mediaIds": [],
@@ -552,23 +555,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i08:audio",
-            "transcript": "This elective is interesting."
+            "transcript": "The car is moving backwards."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-37:i08:r1",
-              "targetText": "This elective is interesting.",
+              "targetText": "The car is moving backwards.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i08:r2",
-              "targetText": "This elective is difficult.",
+              "targetText": "The car is moving slowly.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i08:r3",
-              "targetText": "This book is interesting.",
+              "targetText": "The bus is moving backwards.",
               "meaningByLocale": null
             }
           ],
@@ -579,8 +582,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит This elective is interesting.",
-                "uk": "У записі звучить This elective is interesting."
+                "ru": "В записи звучит The car is moving backwards.",
+                "uk": "У записі звучить The car is moving backwards."
               }
             },
             {
@@ -588,8 +591,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит This elective is interesting.",
-                "uk": "У записі звучить This elective is interesting."
+                "ru": "В записи звучит The car is moving backwards.",
+                "uk": "У записі звучить The car is moving backwards."
               }
             }
           ],
@@ -604,63 +607,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы обычно занимаетесь в библиотеке. Выберите форму study",
+        "prompt": "Вы идёте сейчас. Выберите форму walk",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i09:r1",
-            "text": "study"
+            "text": "walking"
           },
           {
             "responseId": "en:lesson-10:session-37:i09:r2",
-            "text": "studies"
+            "text": "walk"
           },
           {
             "responseId": "en:lesson-10:session-37:i09:r3",
-            "text": "studying"
+            "text": "walks"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы обычно занимаетесь в библиотеке. Выберите форму study",
+        "accessibilityLabel": "Вы идёте сейчас. Выберите форму walk",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы обычно занимаетесь в библиотеке. Выберите форму study",
-            "uk": "Ви зазвичай навчаєтеся в бібліотеці. Виберіть форму study"
+            "ru": "Вы идёте сейчас. Выберите форму walk",
+            "uk": "Ви йдете зараз. Виберіть форму walk"
           },
-          "gappedTargetPhrase": "I usually ___ in the library.",
+          "gappedTargetPhrase": "I am ___ backwards.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-37:i09:r1",
-              "text": "study"
+              "text": "walking"
             },
             {
               "responseId": "en:lesson-10:session-37:i09:r2",
-              "text": "studies"
+              "text": "walk"
             },
             {
               "responseId": "en:lesson-10:session-37:i09:r3",
-              "text": "studying"
+              "text": "walks"
             }
           ],
-          "testedDimension": "Вы обычно занимаетесь в библиотеке. Выберите форму study",
+          "testedDimension": "Вы идёте сейчас. Выберите форму walk",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-37:i09:r2",
               "correct": false,
-              "testedDimension": "Вы обычно занимаетесь в библиотеке. Выберите форму study",
+              "testedDimension": "Вы идёте сейчас. Выберите форму walk",
               "feedbackByLocale": {
-                "ru": "С I нужна study без s.",
-                "uk": "З I потрібна study без s."
+                "ru": "После am нужна walking.",
+                "uk": "Після am потрібна walking."
               }
             },
             {
               "responseId": "en:lesson-10:session-37:i09:r3",
               "correct": false,
-              "testedDimension": "Вы обычно занимаетесь в библиотеке. Выберите форму study",
+              "testedDimension": "Вы идёте сейчас. Выберите форму walk",
               "feedbackByLocale": {
-                "ru": "Для привычки здесь нужна study.",
-                "uk": "Для звички тут потрібна study."
+                "ru": "После am нужна walking, не walks.",
+                "uk": "Після am потрібна walking, не walks."
               }
             }
           ]
@@ -668,32 +671,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-37:word:coursework",
+        "interactionId": "en:lesson-10:session-37:word:sideways",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — coursework",
+        "prompt": "Карточка слова — sideways",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-37:word:coursework:audio"
+          "en:lesson-10:session-37:word:sideways:audio"
         ],
-        "accessibilityLabel": "Карточка слова — coursework",
+        "accessibilityLabel": "Карточка слова — sideways",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:word:coursework:audio",
-            "transcript": "coursework"
+            "audioTargetId": "en:lesson-10:session-37:word:sideways:audio",
+            "transcript": "sideways"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-37:word:coursework:r1",
-              "targetText": "coursework",
+              "responseId": "en:lesson-10:session-37:word:sideways:r1",
+              "targetText": "sideways",
               "meaningByLocale": {
-                "ru": "«учебные работы по курсу». I am doing my coursework. — «Я выполняю учебные работы по курсу». Например, письменные задания и проекты, которые оценивают в течение курса. Неисчисляемое слово.",
-                "uk": "«навчальні роботи з курсу». I am doing my coursework. — «Я виконую навчальні роботи з курсу». Наприклад, письмові завдання та проєкти, які оцінюють протягом курсу. Незлічуване слово."
+                "ru": "«боком, в сторону». He is moving sideways. — «Он двигается боком».",
+                "uk": "«боком, убік». He is moving sideways. — «Він рухається боком»."
               }
             }
           ],
@@ -701,10 +704,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "coursework",
+            "word": "sideways",
             "definitionByLocale": {
-              "ru": "«учебные работы по курсу». I am doing my coursework. — «Я выполняю учебные работы по курсу». Например, письменные задания и проекты, которые оценивают в течение курса. Неисчисляемое слово.",
-              "uk": "«навчальні роботи з курсу». I am doing my coursework. — «Я виконую навчальні роботи з курсу». Наприклад, письмові завдання та проєкти, які оцінюють протягом курсу. Незлічуване слово."
+              "ru": "«боком, в сторону». He is moving sideways. — «Он двигается боком».",
+              "uk": "«боком, убік». He is moving sideways. — «Він рухається боком»."
             }
           }
         },
@@ -716,24 +719,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы сейчас выполняете задания, которые будут оценивать в рамках курса. Скажите: «Я выполняю учебные работы по курсу»",
+        "prompt": "Друг проходит с мебелью в узкую дверь боком. Скажите: «Он двигается боком»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сейчас выполняете задания, которые будут оценивать в рамках курса. Скажите: «Я выполняю учебные работы по курсу»",
+        "accessibilityLabel": "Друг проходит с мебелью в узкую дверь боком. Скажите: «Он двигается боком»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am doing my coursework.",
+          "targetPhrase": "He is moving sideways.",
           "localizedMeaning": {
-            "ru": "Вы сейчас выполняете задания, которые будут оценивать в рамках курса. Скажите: «Я выполняю учебные работы по курсу»",
-            "uk": "Ви зараз виконуєте завдання, які оцінюватимуть у межах курсу. Скажіть: «Я виконую навчальні роботи з курсу»"
+            "ru": "Друг проходит с мебелью в узкую дверь боком. Скажите: «Он двигается боком»",
+            "uk": "Друг проходить із меблями у вузькі двері боком. Скажіть: «Він рухається боком»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "doing",
-            "my",
-            "coursework"
+            "He",
+            "is",
+            "moving",
+            "sideways"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -754,15 +756,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i11:r1",
-            "text": "My coursework is almost finished."
+            "text": "She is moving sideways."
           },
           {
             "responseId": "en:lesson-10:session-37:i11:r2",
-            "text": "My coursework is already finished."
+            "text": "He is moving sideways."
           },
           {
             "responseId": "en:lesson-10:session-37:i11:r3",
-            "text": "My report is almost finished."
+            "text": "She is moving backwards."
           }
         ],
         "mediaIds": [],
@@ -774,23 +776,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i11:audio",
-            "transcript": "My coursework is almost finished."
+            "transcript": "She is moving sideways."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-37:i11:r1",
-              "targetText": "My coursework is almost finished.",
+              "targetText": "She is moving sideways.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i11:r2",
-              "targetText": "My coursework is already finished.",
+              "targetText": "He is moving sideways.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i11:r3",
-              "targetText": "My report is almost finished.",
+              "targetText": "She is moving backwards.",
               "meaningByLocale": null
             }
           ],
@@ -801,8 +803,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит My coursework is almost finished.",
-                "uk": "У записі звучить My coursework is almost finished."
+                "ru": "В записи звучит She is moving sideways.",
+                "uk": "У записі звучить She is moving sideways."
               }
             },
             {
@@ -810,8 +812,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит My coursework is almost finished.",
-                "uk": "У записі звучить My coursework is almost finished."
+                "ru": "В записи звучит She is moving sideways.",
+                "uk": "У записі звучить She is moving sideways."
               }
             }
           ],
@@ -826,63 +828,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите связку с неисчисляемым coursework",
+        "prompt": "Выберите форму move для действия сейчас",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i12:r1",
-            "text": "is"
+            "text": "moving"
           },
           {
             "responseId": "en:lesson-10:session-37:i12:r2",
-            "text": "are"
+            "text": "move"
           },
           {
             "responseId": "en:lesson-10:session-37:i12:r3",
-            "text": "am"
+            "text": "moves"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите связку с неисчисляемым coursework",
+        "accessibilityLabel": "Выберите форму move для действия сейчас",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с неисчисляемым coursework",
-            "uk": "Виберіть зв’язку з незлічуваним coursework"
+            "ru": "Выберите форму move для действия сейчас",
+            "uk": "Виберіть форму move для дії зараз"
           },
-          "gappedTargetPhrase": "My coursework ___ almost finished.",
+          "gappedTargetPhrase": "He is ___ sideways.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-37:i12:r1",
-              "text": "is"
+              "text": "moving"
             },
             {
               "responseId": "en:lesson-10:session-37:i12:r2",
-              "text": "are"
+              "text": "move"
             },
             {
               "responseId": "en:lesson-10:session-37:i12:r3",
-              "text": "am"
+              "text": "moves"
             }
           ],
-          "testedDimension": "Выберите связку с неисчисляемым coursework",
+          "testedDimension": "Выберите форму move для действия сейчас",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-37:i12:r2",
               "correct": false,
-              "testedDimension": "Выберите связку с неисчисляемым coursework",
+              "testedDimension": "Выберите форму move для действия сейчас",
               "feedbackByLocale": {
-                "ru": "С coursework нужна is.",
-                "uk": "З coursework потрібна is."
+                "ru": "После is нужна moving.",
+                "uk": "Після is потрібна moving."
               }
             },
             {
               "responseId": "en:lesson-10:session-37:i12:r3",
               "correct": false,
-              "testedDimension": "Выберите связку с неисчисляемым coursework",
+              "testedDimension": "Выберите форму move для действия сейчас",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "После is нужна moving, не moves.",
+                "uk": "Після is потрібна moving, не moves."
               }
             }
           ]
@@ -895,58 +897,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями",
+        "prompt": "Соедините слова с переводом в этих ситуациях",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом в этих ситуациях",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-37:i13:p1",
-              "target": "semester",
+              "target": "underneath",
               "meaningByLocale": {
-                "ru": "семестр",
-                "uk": "семестр"
+                "ru": "под",
+                "uk": "під"
               }
             },
             {
               "pairId": "en:lesson-10:session-37:i13:p2",
-              "target": "syllabus",
+              "target": "against",
               "meaningByLocale": {
-                "ru": "программа курса",
-                "uk": "програма курсу"
+                "ru": "вплотную к",
+                "uk": "впритул до"
               }
             },
             {
               "pairId": "en:lesson-10:session-37:i13:p3",
-              "target": "elective",
+              "target": "backwards",
               "meaningByLocale": {
-                "ru": "курс по выбору",
-                "uk": "курс за вибором"
+                "ru": "задом наперёд",
+                "uk": "задом наперед"
               }
             },
             {
               "pairId": "en:lesson-10:session-37:i13:p4",
-              "target": "coursework",
+              "target": "sideways",
               "meaningByLocale": {
-                "ru": "учебные работы по курсу",
-                "uk": "навчальні роботи з курсу"
+                "ru": "боком",
+                "uk": "боком"
               }
             }
           ],
           "leftColumn": [
-            "semester",
-            "syllabus",
-            "elective",
-            "coursework"
+            "underneath",
+            "against",
+            "backwards",
+            "sideways"
           ],
           "rightColumn": [
-            "семестр",
-            "программа курса",
-            "курс по выбору",
-            "учебные работы по курсу"
+            "под",
+            "вплотную к",
+            "задом наперёд",
+            "боком"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -968,27 +970,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-37:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i14:audio",
-            "transcript": "I am reading the syllabus."
+            "transcript": "I am walking backwards."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am reading the syllabus.",
+          "hiddenTargetPhrase": "I am walking backwards.",
           "orderedTokens": [
             "I",
             "am",
-            "reading",
-            "the",
-            "syllabus"
+            "walking",
+            "backwards"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1002,24 +1003,60 @@
       {
         "interactionId": "en:lesson-10:session-37:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг спрашивает, где вы обычно занимаетесь. Скажите: «Я обычно занимаюсь в библиотеке»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-37:i15:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает, где вы обычно занимаетесь. Скажите: «Я обычно занимаюсь в библиотеке»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-37:i15:audio",
+            "transcript": "He is moving sideways."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is moving sideways.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "moving",
+            "sideways"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-37:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг ищет ключи. Вы видите их под стулом. Скажите: «Ключи под стулом»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Друг ищет ключи. Вы видите их под стулом. Скажите: «Ключи под стулом»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:i15:audio",
-            "transcript": "I usually study in the library."
+            "audioTargetId": "en:lesson-10:session-37:i16:audio",
+            "transcript": "The keys are underneath the chair."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I usually study in the library.",
+          "targetPhrase": "The keys are underneath the chair.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1033,70 +1070,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-37:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает о выбранном необязательном предмете. Скажите: «Фотография — мой курс по выбору»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает о выбранном необязательном предмете. Скажите: «Фотография — мой курс по выбору»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "Photography is my elective.",
-          "localizedMeaning": {
-            "ru": "Друг спрашивает о выбранном необязательном предмете. Скажите: «Фотография — мой курс по выбору»",
-            "uk": "Друг запитує про обраний необов’язковий предмет. Скажіть: «Фотографія — мій курс за вибором»"
-          },
-          "orderedTokens": [
-            "Photography",
-            "is",
-            "my",
-            "elective"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-37:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг звонит, когда вы выполняете задания, оцениваемые в рамках курса. Объясните, чем заняты: «Я выполняю учебные работы по курсу»",
+        "prompt": "Вы несёте стол спиной вперёд. Объясните другу: «Я иду задом наперёд»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-37:i17:audio"
         ],
-        "accessibilityLabel": "Друг звонит, когда вы выполняете задания, оцениваемые в рамках курса. Объясните, чем заняты: «Я выполняю учебные работы по курсу»",
+        "accessibilityLabel": "Вы несёте стол спиной вперёд. Объясните другу: «Я иду задом наперёд»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i17:audio",
-            "transcript": "I am doing my coursework."
+            "transcript": "I am walking backwards."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am doing my coursework.",
+          "targetPhrase": "I am walking backwards.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1109,32 +1105,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-37:word:semester",
+        "interactionId": "en:lesson-10:session-37:word:underneath",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — semester",
+        "prompt": "Картка слова — underneath",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-37:word:semester:audio"
+          "en:lesson-10:session-37:word:underneath:audio"
         ],
-        "accessibilityLabel": "Картка слова — semester",
+        "accessibilityLabel": "Картка слова — underneath",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:word:semester:audio",
-            "transcript": "semester"
+            "audioTargetId": "en:lesson-10:session-37:word:underneath:audio",
+            "transcript": "underneath"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-37:word:semester:r1",
-              "targetText": "semester",
+              "responseId": "en:lesson-10:session-37:word:underneath:r1",
+              "targetText": "underneath",
               "meaningByLocale": {
-                "ru": "«семестр». This semester is busy. — «Этот семестр насыщенный». Часть учебного года, обычно одна из двух.",
-                "uk": "«семестр». This semester is busy. — «Цей семестр насичений». Частина навчального року, зазвичай одна з двох."
+                "ru": "«под». The keys are underneath the chair. — «Ключи под стулом».",
+                "uk": "«під». The keys are underneath the chair. — «Ключі під стільцем»."
               }
             }
           ],
@@ -1142,10 +1138,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "semester",
+            "word": "underneath",
             "definitionByLocale": {
-              "ru": "«семестр». This semester is busy. — «Этот семестр насыщенный». Часть учебного года, обычно одна из двух.",
-              "uk": "«семестр». This semester is busy. — «Цей семестр насичений». Частина навчального року, зазвичай одна з двох."
+              "ru": "«под». The keys are underneath the chair. — «Ключи под стулом».",
+              "uk": "«під». The keys are underneath the chair. — «Ключі під стільцем»."
             }
           }
         },
@@ -1157,23 +1153,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "У вас багато занять у цьому навчальному періоді. Скажіть: «Цей семестр насичений»",
+        "prompt": "Ви знайшли ключі під стільцем. Повідомте другові, де вони",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "У вас багато занять у цьому навчальному періоді. Скажіть: «Цей семестр насичений»",
+        "accessibilityLabel": "Ви знайшли ключі під стільцем. Повідомте другові, де вони",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This semester is busy.",
+          "targetPhrase": "The keys are underneath the chair.",
           "localizedMeaning": {
-            "ru": "У вас много занятий в этом учебном периоде. Скажите: «Этот семестр насыщенный»",
-            "uk": "У вас багато занять у цьому навчальному періоді. Скажіть: «Цей семестр насичений»"
+            "ru": "Вы нашли ключи под стулом. Сообщите другу, где они",
+            "uk": "Ви знайшли ключі під стільцем. Повідомте другові, де вони"
           },
           "orderedTokens": [
-            "This",
-            "semester",
-            "is",
-            "busy"
+            "The",
+            "keys",
+            "are",
+            "underneath",
+            "the",
+            "chair"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1194,15 +1192,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i02:r1",
-            "text": "The semester starts in September."
+            "text": "The bag is underneath the table."
           },
           {
             "responseId": "en:lesson-10:session-37:i02:r2",
-            "text": "The semester starts in November."
+            "text": "The bag is underneath the chair."
           },
           {
             "responseId": "en:lesson-10:session-37:i02:r3",
-            "text": "The course starts in September."
+            "text": "The box is underneath the table."
           }
         ],
         "mediaIds": [],
@@ -1214,23 +1212,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i02:audio",
-            "transcript": "The semester starts in September."
+            "transcript": "The bag is underneath the table."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-37:i02:r1",
-              "targetText": "The semester starts in September.",
+              "targetText": "The bag is underneath the table.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i02:r2",
-              "targetText": "The semester starts in November.",
+              "targetText": "The bag is underneath the chair.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i02:r3",
-              "targetText": "The course starts in September.",
+              "targetText": "The box is underneath the table.",
               "meaningByLocale": null
             }
           ],
@@ -1241,8 +1239,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The semester starts in September.",
-                "uk": "У записі звучить The semester starts in September."
+                "ru": "В записи звучит The bag is underneath the table.",
+                "uk": "У записі звучить The bag is underneath the table."
               }
             },
             {
@@ -1250,8 +1248,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The semester starts in September.",
-                "uk": "У записі звучить The semester starts in September."
+                "ru": "В записи звучит The bag is underneath the table.",
+                "uk": "У записі звучить The bag is underneath the table."
               }
             }
           ],
@@ -1266,15 +1264,15 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Опишіть один навчальний період. Виберіть зв’язку",
+        "prompt": "Виберіть зв’язку: ключі у множині",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i03:r1",
-            "text": "is"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-37:i03:r2",
-            "text": "are"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-37:i03:r3",
@@ -1283,46 +1281,46 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Опишіть один навчальний період. Виберіть зв’язку",
+        "accessibilityLabel": "Виберіть зв’язку: ключі у множині",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Опишите один учебный период. Выберите связку",
-            "uk": "Опишіть один навчальний період. Виберіть зв’язку"
+            "ru": "Выберите связку: ключи во множественном числе",
+            "uk": "Виберіть зв’язку: ключі у множині"
           },
-          "gappedTargetPhrase": "This semester ___ busy.",
+          "gappedTargetPhrase": "The keys ___ underneath the chair.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-37:i03:r1",
-              "text": "is"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-37:i03:r2",
-              "text": "are"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-37:i03:r3",
               "text": "am"
             }
           ],
-          "testedDimension": "Опишіть один навчальний період. Виберіть зв’язку",
+          "testedDimension": "Виберіть зв’язку: ключі у множині",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-37:i03:r2",
               "correct": false,
-              "testedDimension": "Опишіть один навчальний період. Виберіть зв’язку",
+              "testedDimension": "Виберіть зв’язку: ключі у множині",
               "feedbackByLocale": {
-                "ru": "С semester в единственном числе нужна is.",
-                "uk": "З semester в однині потрібна is."
+                "ru": "Keys во множественном числе: are.",
+                "uk": "Keys у множині: are."
               }
             },
             {
               "responseId": "en:lesson-10:session-37:i03:r3",
               "correct": false,
-              "testedDimension": "Опишіть один навчальний період. Виберіть зв’язку",
+              "testedDimension": "Виберіть зв’язку: ключі у множині",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1330,32 +1328,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-37:word:syllabus",
+        "interactionId": "en:lesson-10:session-37:word:against",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — syllabus",
+        "prompt": "Картка слова — against",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-37:word:syllabus:audio"
+          "en:lesson-10:session-37:word:against:audio"
         ],
-        "accessibilityLabel": "Картка слова — syllabus",
+        "accessibilityLabel": "Картка слова — against",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:word:syllabus:audio",
-            "transcript": "syllabus"
+            "audioTargetId": "en:lesson-10:session-37:word:against:audio",
+            "transcript": "against"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-37:word:syllabus:r1",
-              "targetText": "syllabus",
+              "responseId": "en:lesson-10:session-37:word:against:r1",
+              "targetText": "against",
               "meaningByLocale": {
-                "ru": "«программа курса». I am reading the syllabus. — «Я читаю программу курса». В ней перечислены темы и требования курса.",
-                "uk": "«програма курсу». I am reading the syllabus. — «Я читаю програму курсу». У ній перелічено теми й вимоги курсу."
+                "ru": "«к, вплотную к» в описании опоры. The ladder is against the wall. — «Лестница прислонена к стене».",
+                "uk": "«до, впритул до» в описі опори. The ladder is against the wall. — «Драбина притулена до стіни»."
               }
             }
           ],
@@ -1363,10 +1361,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "syllabus",
+            "word": "against",
             "definitionByLocale": {
-              "ru": "«программа курса». I am reading the syllabus. — «Я читаю программу курса». В ней перечислены темы и требования курса.",
-              "uk": "«програма курсу». I am reading the syllabus. — «Я читаю програму курсу». У ній перелічено теми й вимоги курсу."
+              "ru": "«к, вплотную к» в описании опоры. The ladder is against the wall. — «Лестница прислонена к стене».",
+              "uk": "«до, впритул до» в описі опори. The ladder is against the wall. — «Драбина притулена до стіни»."
             }
           }
         },
@@ -1378,24 +1376,25 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви відкрили програму курсу й зараз читаєте її. Скажіть: «Я читаю програму курсу»",
+        "prompt": "Драбина спирається на стіну. Повідомте: «Драбина притулена до стіни»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви відкрили програму курсу й зараз читаєте її. Скажіть: «Я читаю програму курсу»",
+        "accessibilityLabel": "Драбина спирається на стіну. Повідомте: «Драбина притулена до стіни»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am reading the syllabus.",
+          "targetPhrase": "The ladder is against the wall.",
           "localizedMeaning": {
-            "ru": "Вы открыли программу курса и сейчас читаете её. Скажите: «Я читаю программу курса»",
-            "uk": "Ви відкрили програму курсу й зараз читаєте її. Скажіть: «Я читаю програму курсу»"
+            "ru": "Лестница опирается на стену. Сообщите: «Лестница прислонена к стене»",
+            "uk": "Драбина спирається на стіну. Повідомте: «Драбина притулена до стіни»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "reading",
+            "The",
+            "ladder",
+            "is",
+            "against",
             "the",
-            "syllabus"
+            "wall"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1416,15 +1415,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i05:r1",
-            "text": "The syllabus is on the website."
+            "text": "The chair is against the wall."
           },
           {
             "responseId": "en:lesson-10:session-37:i05:r2",
-            "text": "The syllabus is on the desk."
+            "text": "The ladder is against the wall."
           },
           {
             "responseId": "en:lesson-10:session-37:i05:r3",
-            "text": "The timetable is on the website."
+            "text": "The chair is near the door."
           }
         ],
         "mediaIds": [],
@@ -1436,23 +1435,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i05:audio",
-            "transcript": "The syllabus is on the website."
+            "transcript": "The chair is against the wall."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-37:i05:r1",
-              "targetText": "The syllabus is on the website.",
+              "targetText": "The chair is against the wall.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i05:r2",
-              "targetText": "The syllabus is on the desk.",
+              "targetText": "The ladder is against the wall.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i05:r3",
-              "targetText": "The timetable is on the website.",
+              "targetText": "The chair is near the door.",
               "meaningByLocale": null
             }
           ],
@@ -1463,8 +1462,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The syllabus is on the website.",
-                "uk": "У записі звучить The syllabus is on the website."
+                "ru": "В записи звучит The chair is against the wall.",
+                "uk": "У записі звучить The chair is against the wall."
               }
             },
             {
@@ -1472,8 +1471,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The syllabus is on the website.",
-                "uk": "У записі звучить The syllabus is on the website."
+                "ru": "В записи звучит The chair is against the wall.",
+                "uk": "У записі звучить The chair is against the wall."
               }
             }
           ],
@@ -1488,63 +1487,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви зараз читаєте програму. Виберіть зв’язку",
+        "prompt": "Виберіть зв’язку: одна драбина",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i06:r1",
-            "text": "am"
-          },
-          {
-            "responseId": "en:lesson-10:session-37:i06:r2",
             "text": "is"
           },
           {
-            "responseId": "en:lesson-10:session-37:i06:r3",
+            "responseId": "en:lesson-10:session-37:i06:r2",
             "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-37:i06:r3",
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зараз читаєте програму. Виберіть зв’язку",
+        "accessibilityLabel": "Виберіть зв’язку: одна драбина",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сейчас читаете программу. Выберите связку",
-            "uk": "Ви зараз читаєте програму. Виберіть зв’язку"
+            "ru": "Выберите связку: одна лестница",
+            "uk": "Виберіть зв’язку: одна драбина"
           },
-          "gappedTargetPhrase": "I ___ reading the syllabus.",
+          "gappedTargetPhrase": "The ladder ___ against the wall.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-37:i06:r1",
-              "text": "am"
-            },
-            {
-              "responseId": "en:lesson-10:session-37:i06:r2",
               "text": "is"
             },
             {
-              "responseId": "en:lesson-10:session-37:i06:r3",
+              "responseId": "en:lesson-10:session-37:i06:r2",
               "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-37:i06:r3",
+              "text": "am"
             }
           ],
-          "testedDimension": "Ви зараз читаєте програму. Виберіть зв’язку",
+          "testedDimension": "Виберіть зв’язку: одна драбина",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-37:i06:r2",
               "correct": false,
-              "testedDimension": "Ви зараз читаєте програму. Виберіть зв’язку",
+              "testedDimension": "Виберіть зв’язку: одна драбина",
               "feedbackByLocale": {
-                "ru": "С I нужна am.",
-                "uk": "З I потрібна am."
+                "ru": "Одна лестница: is.",
+                "uk": "Одна драбина: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-37:i06:r3",
               "correct": false,
-              "testedDimension": "Ви зараз читаєте програму. Виберіть зв’язку",
+              "testedDimension": "Виберіть зв’язку: одна драбина",
               "feedbackByLocale": {
-                "ru": "С I нужна am, не are.",
-                "uk": "З I потрібна am, не are."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1552,32 +1551,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-37:word:elective",
+        "interactionId": "en:lesson-10:session-37:word:backwards",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — elective",
+        "prompt": "Картка слова — backwards",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-37:word:elective:audio"
+          "en:lesson-10:session-37:word:backwards:audio"
         ],
-        "accessibilityLabel": "Картка слова — elective",
+        "accessibilityLabel": "Картка слова — backwards",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:word:elective:audio",
-            "transcript": "elective"
+            "audioTargetId": "en:lesson-10:session-37:word:backwards:audio",
+            "transcript": "backwards"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-37:word:elective:r1",
-              "targetText": "elective",
+              "responseId": "en:lesson-10:session-37:word:backwards:r1",
+              "targetText": "backwards",
               "meaningByLocale": {
-                "ru": "«курс по выбору». Photography is my elective. — «Фотография — мой курс по выбору». Здесь предмет, который студент выбирает сам.",
-                "uk": "«курс за вибором». Photography is my elective. — «Фотографія — мій курс за вибором». Тут предмет, який студент обирає сам."
+                "ru": "«назад, задом наперёд». I am walking backwards. — «Я иду задом наперёд».",
+                "uk": "«назад, задом наперед». I am walking backwards. — «Я йду задом наперед»."
               }
             }
           ],
@@ -1585,10 +1584,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "elective",
+            "word": "backwards",
             "definitionByLocale": {
-              "ru": "«курс по выбору». Photography is my elective. — «Фотография — мой курс по выбору». Здесь предмет, который студент выбирает сам.",
-              "uk": "«курс за вибором». Photography is my elective. — «Фотографія — мій курс за вибором». Тут предмет, який студент обирає сам."
+              "ru": "«назад, задом наперёд». I am walking backwards. — «Я иду задом наперёд».",
+              "uk": "«назад, задом наперед». I am walking backwards. — «Я йду задом наперед»."
             }
           }
         },
@@ -1600,23 +1599,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Із необов’язкових предметів ви обрали фотографію. Скажіть: «Фотографія — мій курс за вибором»",
+        "prompt": "Ви несете стіл спиною вперед. Скажіть: «Я йду задом наперед»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Із необов’язкових предметів ви обрали фотографію. Скажіть: «Фотографія — мій курс за вибором»",
+        "accessibilityLabel": "Ви несете стіл спиною вперед. Скажіть: «Я йду задом наперед»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "Photography is my elective.",
+          "targetPhrase": "I am walking backwards.",
           "localizedMeaning": {
-            "ru": "Из необязательных предметов вы выбрали фотографию. Скажите: «Фотография — мой курс по выбору»",
-            "uk": "Із необов’язкових предметів ви обрали фотографію. Скажіть: «Фотографія — мій курс за вибором»"
+            "ru": "Вы несёте стол спиной вперёд. Скажите: «Я иду задом наперёд»",
+            "uk": "Ви несете стіл спиною вперед. Скажіть: «Я йду задом наперед»"
           },
           "orderedTokens": [
-            "Photography",
-            "is",
-            "my",
-            "elective"
+            "I",
+            "am",
+            "walking",
+            "backwards"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1637,15 +1636,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i08:r1",
-            "text": "This elective is interesting."
+            "text": "The car is moving backwards."
           },
           {
             "responseId": "en:lesson-10:session-37:i08:r2",
-            "text": "This elective is difficult."
+            "text": "The car is moving slowly."
           },
           {
             "responseId": "en:lesson-10:session-37:i08:r3",
-            "text": "This book is interesting."
+            "text": "The bus is moving backwards."
           }
         ],
         "mediaIds": [],
@@ -1657,23 +1656,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i08:audio",
-            "transcript": "This elective is interesting."
+            "transcript": "The car is moving backwards."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-37:i08:r1",
-              "targetText": "This elective is interesting.",
+              "targetText": "The car is moving backwards.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i08:r2",
-              "targetText": "This elective is difficult.",
+              "targetText": "The car is moving slowly.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i08:r3",
-              "targetText": "This book is interesting.",
+              "targetText": "The bus is moving backwards.",
               "meaningByLocale": null
             }
           ],
@@ -1684,8 +1683,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит This elective is interesting.",
-                "uk": "У записі звучить This elective is interesting."
+                "ru": "В записи звучит The car is moving backwards.",
+                "uk": "У записі звучить The car is moving backwards."
               }
             },
             {
@@ -1693,8 +1692,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит This elective is interesting.",
-                "uk": "У записі звучить This elective is interesting."
+                "ru": "В записи звучит The car is moving backwards.",
+                "uk": "У записі звучить The car is moving backwards."
               }
             }
           ],
@@ -1709,63 +1708,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви зазвичай навчаєтеся в бібліотеці. Виберіть форму study",
+        "prompt": "Ви йдете зараз. Виберіть форму walk",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i09:r1",
-            "text": "study"
+            "text": "walking"
           },
           {
             "responseId": "en:lesson-10:session-37:i09:r2",
-            "text": "studies"
+            "text": "walk"
           },
           {
             "responseId": "en:lesson-10:session-37:i09:r3",
-            "text": "studying"
+            "text": "walks"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зазвичай навчаєтеся в бібліотеці. Виберіть форму study",
+        "accessibilityLabel": "Ви йдете зараз. Виберіть форму walk",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы обычно занимаетесь в библиотеке. Выберите форму study",
-            "uk": "Ви зазвичай навчаєтеся в бібліотеці. Виберіть форму study"
+            "ru": "Вы идёте сейчас. Выберите форму walk",
+            "uk": "Ви йдете зараз. Виберіть форму walk"
           },
-          "gappedTargetPhrase": "I usually ___ in the library.",
+          "gappedTargetPhrase": "I am ___ backwards.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-37:i09:r1",
-              "text": "study"
+              "text": "walking"
             },
             {
               "responseId": "en:lesson-10:session-37:i09:r2",
-              "text": "studies"
+              "text": "walk"
             },
             {
               "responseId": "en:lesson-10:session-37:i09:r3",
-              "text": "studying"
+              "text": "walks"
             }
           ],
-          "testedDimension": "Ви зазвичай навчаєтеся в бібліотеці. Виберіть форму study",
+          "testedDimension": "Ви йдете зараз. Виберіть форму walk",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-37:i09:r2",
               "correct": false,
-              "testedDimension": "Ви зазвичай навчаєтеся в бібліотеці. Виберіть форму study",
+              "testedDimension": "Ви йдете зараз. Виберіть форму walk",
               "feedbackByLocale": {
-                "ru": "С I нужна study без s.",
-                "uk": "З I потрібна study без s."
+                "ru": "После am нужна walking.",
+                "uk": "Після am потрібна walking."
               }
             },
             {
               "responseId": "en:lesson-10:session-37:i09:r3",
               "correct": false,
-              "testedDimension": "Ви зазвичай навчаєтеся в бібліотеці. Виберіть форму study",
+              "testedDimension": "Ви йдете зараз. Виберіть форму walk",
               "feedbackByLocale": {
-                "ru": "Для привычки здесь нужна study.",
-                "uk": "Для звички тут потрібна study."
+                "ru": "После am нужна walking, не walks.",
+                "uk": "Після am потрібна walking, не walks."
               }
             }
           ]
@@ -1773,32 +1772,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-37:word:coursework",
+        "interactionId": "en:lesson-10:session-37:word:sideways",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — coursework",
+        "prompt": "Картка слова — sideways",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-37:word:coursework:audio"
+          "en:lesson-10:session-37:word:sideways:audio"
         ],
-        "accessibilityLabel": "Картка слова — coursework",
+        "accessibilityLabel": "Картка слова — sideways",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:word:coursework:audio",
-            "transcript": "coursework"
+            "audioTargetId": "en:lesson-10:session-37:word:sideways:audio",
+            "transcript": "sideways"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-37:word:coursework:r1",
-              "targetText": "coursework",
+              "responseId": "en:lesson-10:session-37:word:sideways:r1",
+              "targetText": "sideways",
               "meaningByLocale": {
-                "ru": "«учебные работы по курсу». I am doing my coursework. — «Я выполняю учебные работы по курсу». Например, письменные задания и проекты, которые оценивают в течение курса. Неисчисляемое слово.",
-                "uk": "«навчальні роботи з курсу». I am doing my coursework. — «Я виконую навчальні роботи з курсу». Наприклад, письмові завдання та проєкти, які оцінюють протягом курсу. Незлічуване слово."
+                "ru": "«боком, в сторону». He is moving sideways. — «Он двигается боком».",
+                "uk": "«боком, убік». He is moving sideways. — «Він рухається боком»."
               }
             }
           ],
@@ -1806,10 +1805,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "coursework",
+            "word": "sideways",
             "definitionByLocale": {
-              "ru": "«учебные работы по курсу». I am doing my coursework. — «Я выполняю учебные работы по курсу». Например, письменные задания и проекты, которые оценивают в течение курса. Неисчисляемое слово.",
-              "uk": "«навчальні роботи з курсу». I am doing my coursework. — «Я виконую навчальні роботи з курсу». Наприклад, письмові завдання та проєкти, які оцінюють протягом курсу. Незлічуване слово."
+              "ru": "«боком, в сторону». He is moving sideways. — «Он двигается боком».",
+              "uk": "«боком, убік». He is moving sideways. — «Він рухається боком»."
             }
           }
         },
@@ -1821,24 +1820,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви зараз виконуєте завдання, які оцінюватимуть у межах курсу. Скажіть: «Я виконую навчальні роботи з курсу»",
+        "prompt": "Друг проходить із меблями у вузькі двері боком. Скажіть: «Він рухається боком»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зараз виконуєте завдання, які оцінюватимуть у межах курсу. Скажіть: «Я виконую навчальні роботи з курсу»",
+        "accessibilityLabel": "Друг проходить із меблями у вузькі двері боком. Скажіть: «Він рухається боком»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am doing my coursework.",
+          "targetPhrase": "He is moving sideways.",
           "localizedMeaning": {
-            "ru": "Вы сейчас выполняете задания, которые будут оценивать в рамках курса. Скажите: «Я выполняю учебные работы по курсу»",
-            "uk": "Ви зараз виконуєте завдання, які оцінюватимуть у межах курсу. Скажіть: «Я виконую навчальні роботи з курсу»"
+            "ru": "Друг проходит с мебелью в узкую дверь боком. Скажите: «Он двигается боком»",
+            "uk": "Друг проходить із меблями у вузькі двері боком. Скажіть: «Він рухається боком»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "doing",
-            "my",
-            "coursework"
+            "He",
+            "is",
+            "moving",
+            "sideways"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1859,15 +1857,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i11:r1",
-            "text": "My coursework is almost finished."
+            "text": "She is moving sideways."
           },
           {
             "responseId": "en:lesson-10:session-37:i11:r2",
-            "text": "My coursework is already finished."
+            "text": "He is moving sideways."
           },
           {
             "responseId": "en:lesson-10:session-37:i11:r3",
-            "text": "My report is almost finished."
+            "text": "She is moving backwards."
           }
         ],
         "mediaIds": [],
@@ -1879,23 +1877,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i11:audio",
-            "transcript": "My coursework is almost finished."
+            "transcript": "She is moving sideways."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-37:i11:r1",
-              "targetText": "My coursework is almost finished.",
+              "targetText": "She is moving sideways.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i11:r2",
-              "targetText": "My coursework is already finished.",
+              "targetText": "He is moving sideways.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-37:i11:r3",
-              "targetText": "My report is almost finished.",
+              "targetText": "She is moving backwards.",
               "meaningByLocale": null
             }
           ],
@@ -1906,8 +1904,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит My coursework is almost finished.",
-                "uk": "У записі звучить My coursework is almost finished."
+                "ru": "В записи звучит She is moving sideways.",
+                "uk": "У записі звучить She is moving sideways."
               }
             },
             {
@@ -1915,8 +1913,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит My coursework is almost finished.",
-                "uk": "У записі звучить My coursework is almost finished."
+                "ru": "В записи звучит She is moving sideways.",
+                "uk": "У записі звучить She is moving sideways."
               }
             }
           ],
@@ -1931,63 +1929,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть зв’язку з незлічуваним coursework",
+        "prompt": "Виберіть форму move для дії зараз",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-37:i12:r1",
-            "text": "is"
+            "text": "moving"
           },
           {
             "responseId": "en:lesson-10:session-37:i12:r2",
-            "text": "are"
+            "text": "move"
           },
           {
             "responseId": "en:lesson-10:session-37:i12:r3",
-            "text": "am"
+            "text": "moves"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть зв’язку з незлічуваним coursework",
+        "accessibilityLabel": "Виберіть форму move для дії зараз",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите связку с неисчисляемым coursework",
-            "uk": "Виберіть зв’язку з незлічуваним coursework"
+            "ru": "Выберите форму move для действия сейчас",
+            "uk": "Виберіть форму move для дії зараз"
           },
-          "gappedTargetPhrase": "My coursework ___ almost finished.",
+          "gappedTargetPhrase": "He is ___ sideways.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-37:i12:r1",
-              "text": "is"
+              "text": "moving"
             },
             {
               "responseId": "en:lesson-10:session-37:i12:r2",
-              "text": "are"
+              "text": "move"
             },
             {
               "responseId": "en:lesson-10:session-37:i12:r3",
-              "text": "am"
+              "text": "moves"
             }
           ],
-          "testedDimension": "Виберіть зв’язку з незлічуваним coursework",
+          "testedDimension": "Виберіть форму move для дії зараз",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-37:i12:r2",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку з незлічуваним coursework",
+              "testedDimension": "Виберіть форму move для дії зараз",
               "feedbackByLocale": {
-                "ru": "С coursework нужна is.",
-                "uk": "З coursework потрібна is."
+                "ru": "После is нужна moving.",
+                "uk": "Після is потрібна moving."
               }
             },
             {
               "responseId": "en:lesson-10:session-37:i12:r3",
               "correct": false,
-              "testedDimension": "Виберіть зв’язку з незлічуваним coursework",
+              "testedDimension": "Виберіть форму move для дії зараз",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "После is нужна moving, не moves.",
+                "uk": "Після is потрібна moving, не moves."
               }
             }
           ]
@@ -2000,58 +1998,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом у цих ситуаціях",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом у цих ситуаціях",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-37:i13:p1",
-              "target": "semester",
+              "target": "underneath",
               "meaningByLocale": {
-                "ru": "семестр",
-                "uk": "семестр"
+                "ru": "под",
+                "uk": "під"
               }
             },
             {
               "pairId": "en:lesson-10:session-37:i13:p2",
-              "target": "syllabus",
+              "target": "against",
               "meaningByLocale": {
-                "ru": "программа курса",
-                "uk": "програма курсу"
+                "ru": "вплотную к",
+                "uk": "впритул до"
               }
             },
             {
               "pairId": "en:lesson-10:session-37:i13:p3",
-              "target": "elective",
+              "target": "backwards",
               "meaningByLocale": {
-                "ru": "курс по выбору",
-                "uk": "курс за вибором"
+                "ru": "задом наперёд",
+                "uk": "задом наперед"
               }
             },
             {
               "pairId": "en:lesson-10:session-37:i13:p4",
-              "target": "coursework",
+              "target": "sideways",
               "meaningByLocale": {
-                "ru": "учебные работы по курсу",
-                "uk": "навчальні роботи з курсу"
+                "ru": "боком",
+                "uk": "боком"
               }
             }
           ],
           "leftColumn": [
-            "semester",
-            "syllabus",
-            "elective",
-            "coursework"
+            "underneath",
+            "against",
+            "backwards",
+            "sideways"
           ],
           "rightColumn": [
-            "семестр",
-            "програма курсу",
-            "курс за вибором",
-            "навчальні роботи з курсу"
+            "під",
+            "впритул до",
+            "задом наперед",
+            "боком"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2073,27 +2071,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-37:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i14:audio",
-            "transcript": "I am reading the syllabus."
+            "transcript": "I am walking backwards."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am reading the syllabus.",
+          "hiddenTargetPhrase": "I am walking backwards.",
           "orderedTokens": [
             "I",
             "am",
-            "reading",
-            "the",
-            "syllabus"
+            "walking",
+            "backwards"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2107,24 +2104,60 @@
       {
         "interactionId": "en:lesson-10:session-37:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг запитує, де ви зазвичай навчаєтеся. Скажіть: «Я зазвичай навчаюся в бібліотеці»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-37:i15:audio"
         ],
-        "accessibilityLabel": "Друг запитує, де ви зазвичай навчаєтеся. Скажіть: «Я зазвичай навчаюся в бібліотеці»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-37:i15:audio",
+            "transcript": "He is moving sideways."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is moving sideways.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "moving",
+            "sideways"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-37:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг шукає ключі. Ви бачите їх під стільцем. Скажіть: «Ключі під стільцем»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Друг шукає ключі. Ви бачите їх під стільцем. Скажіть: «Ключі під стільцем»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-37:i15:audio",
-            "transcript": "I usually study in the library."
+            "audioTargetId": "en:lesson-10:session-37:i16:audio",
+            "transcript": "The keys are underneath the chair."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I usually study in the library.",
+          "targetPhrase": "The keys are underneath the chair.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2138,70 +2171,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-37:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Друг запитує про обраний необов’язковий предмет. Скажіть: «Фотографія — мій курс за вибором»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Друг запитує про обраний необов’язковий предмет. Скажіть: «Фотографія — мій курс за вибором»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "Photography is my elective.",
-          "localizedMeaning": {
-            "ru": "Друг спрашивает о выбранном необязательном предмете. Скажите: «Фотография — мой курс по выбору»",
-            "uk": "Друг запитує про обраний необов’язковий предмет. Скажіть: «Фотографія — мій курс за вибором»"
-          },
-          "orderedTokens": [
-            "Photography",
-            "is",
-            "my",
-            "elective"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-37:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Друг телефонує, коли ви виконуєте завдання, які оцінюють у межах курсу. Поясніть, чим зайняті: «Я виконую навчальні роботи з курсу»",
+        "prompt": "Ви несете стіл спиною вперед. Поясніть другові: «Я йду задом наперед»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-37:i17:audio"
         ],
-        "accessibilityLabel": "Друг телефонує, коли ви виконуєте завдання, які оцінюють у межах курсу. Поясніть, чим зайняті: «Я виконую навчальні роботи з курсу»",
+        "accessibilityLabel": "Ви несете стіл спиною вперед. Поясніть другові: «Я йду задом наперед»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-37:i17:audio",
-            "transcript": "I am doing my coursework."
+            "transcript": "I am walking backwards."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am doing my coursework.",
+          "targetPhrase": "I am walking backwards.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2215,83 +2207,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-37:word:semester",
-      "correctText": "semester",
+      "interactionId": "en:lesson-10:session-37:word:underneath",
+      "correctText": "underneath",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i01",
-      "correctText": "This semester is busy.",
+      "correctText": "The keys are underneath the chair.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i02",
-      "correctText": "The semester starts in September.",
+      "correctText": "The bag is underneath the table.",
       "correctResponseId": "en:lesson-10:session-37:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-37:i03",
-      "correctText": "is",
+      "correctText": "are",
       "correctResponseId": "en:lesson-10:session-37:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-37:word:syllabus",
-      "correctText": "syllabus",
+      "interactionId": "en:lesson-10:session-37:word:against",
+      "correctText": "against",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i04",
-      "correctText": "I am reading the syllabus.",
+      "correctText": "The ladder is against the wall.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i05",
-      "correctText": "The syllabus is on the website.",
+      "correctText": "The chair is against the wall.",
       "correctResponseId": "en:lesson-10:session-37:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-37:i06",
-      "correctText": "am",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-37:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-37:word:elective",
-      "correctText": "elective",
+      "interactionId": "en:lesson-10:session-37:word:backwards",
+      "correctText": "backwards",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i07",
-      "correctText": "Photography is my elective.",
+      "correctText": "I am walking backwards.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i08",
-      "correctText": "This elective is interesting.",
+      "correctText": "The car is moving backwards.",
       "correctResponseId": "en:lesson-10:session-37:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-37:i09",
-      "correctText": "study",
+      "correctText": "walking",
       "correctResponseId": "en:lesson-10:session-37:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-37:word:coursework",
-      "correctText": "coursework",
+      "interactionId": "en:lesson-10:session-37:word:sideways",
+      "correctText": "sideways",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i10",
-      "correctText": "I am doing my coursework.",
+      "correctText": "He is moving sideways.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i11",
-      "correctText": "My coursework is almost finished.",
+      "correctText": "She is moving sideways.",
       "correctResponseId": "en:lesson-10:session-37:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-37:i12",
-      "correctText": "is",
+      "correctText": "moving",
       "correctResponseId": "en:lesson-10:session-37:i12:r1"
     },
     {
@@ -2301,22 +2293,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-37:i14",
-      "correctText": "I am reading the syllabus.",
+      "correctText": "I am walking backwards.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i15",
-      "correctText": "I usually study in the library.",
+      "correctText": "He is moving sideways.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i16",
-      "correctText": "Photography is my elective.",
+      "correctText": "The keys are underneath the chair.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-37:i17",
-      "correctText": "I am doing my coursework.",
+      "correctText": "I am walking backwards.",
       "correctResponseId": null
     }
   ]

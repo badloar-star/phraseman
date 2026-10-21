@@ -3789,9 +3789,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 37,
-    sourceFingerprint: "2ef80aeb3b546630970a8cbebfd9f0a97dfa1e5da81cb0730691005ed2de85f2",
+    sourceFingerprint: "27c8c58d0c694495179ec54b9728e8f741dc05486cd8d1d176cfa043a594b08e",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"This semester is busy; I am reading the syllabus; I usually study in the library","uk":"This semester is busy; I am reading the syllabus; I usually study in the library"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The keys are underneath the chair; The ladder is against the wall; I am walking backwards","uk":"The keys are underneath the chair; The ladder is against the wall; I am walking backwards"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3838,9 +3838,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 44,
-    sourceFingerprint: "4c15d60cd9eca95624616354ce8bbfa43a692cdd0f485073930621b80f82ba2a",
+    sourceFingerprint: "e42b2a7c2b1ac2b353259a7dcf35b81a123a05371a3e67207d578bd880df7d47",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We review the agenda every month; We have a quorum; We are discussing the motion","uk":"We review the agenda every month; We have a quorum; We are discussing the motion"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I like wool; I am buying a silk scarf; She is wearing a flowery dress","uk":"I like wool; I am buying a silk scarf; She is wearing a flowery dress"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

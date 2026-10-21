@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 44 — Заседание клуба
+# Английский · Урок 10 · Занятие 44 — Выбираем одежду
 
-**Ситуация.** Обсудить повестку заседания клуба, предложение и голосование.
+**Ситуация.** Обсудить материал тёплой одежды, выбрать подарок и описать одежду на себе.
 
-**Что вы освоите:** We review the agenda every month; We have a quorum; We are discussing the motion
-**Новые слова:** quorum, motion, amendment, ballot
+**Что вы освоите:** I like wool; I am buying a silk scarf; She is wearing a flowery dress
+**Новые слова:** wool, silk, denim, flowery
 
 ## Интро 1
 
-### Повестка встречи
+### Материал для тёплой одежды
 
-Повторим agenda — «повестка». Комитет клуба встречается ежемесячно: We review the agenda every month — «Мы рассматриваем повестку каждый месяц». Every month показывает повторение, поэтому используем Present Simple.
+Вы выбираете тёплый свитер. Wool — «шерсть»: I like wool — «Мне нравится шерсть». Вы говорите, что вам нравится этот материал. Like описывает предпочтение, поэтому like без am liking. Wool здесь не требует a: это название материала.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We review the agenda every month.**
-- ❌ We reviews the agenda every month. — *С we нужна review без s.*
-- ❌ We reviewing the agenda every month. — *Для привычки здесь нужна review.*
+- ✅ **I like wool.**
+- ❌ I likes wool. — *После I нужна like без s.*
+- ❌ I am like wool. — *Для предпочтения здесь нужна like без am.*
 
 ---
 
 ## Интро 2
 
-### Достаточно участников
+### Шарф в подарок
 
-Quorum — «кворум»: минимальное число участников, необходимое для принятия решений на собрании. По правилам вашего клуба нужно шесть, и шестеро уже пришли: We have a quorum — «У нас есть кворум». Have здесь описывает наличие достаточного числа участников, а не действие; используем Present Simple.
+Вы в магазине и выбираете подарок сестре. Silk — «шёлк»: a silk scarf — «шёлковый шарф». I am buying a silk scarf — «Я покупаю шёлковый шарф». Покупка происходит сейчас, поэтому am buying. Silk перед scarf описывает материал шарфа.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We have a quorum.**
-- ❌ We has a quorum. — *С we нужна have.*
-- ❌ We are have a quorum. — *Are have неверно; здесь нужна have.*
+- ✅ **I am buying a silk scarf.**
+- ❌ I buying a silk scarf. — *Перед buying нужна am.*
+- ❌ I am buy a silk scarf. — *После am нужна buying.*
 
 ---
 
 ## Интро 3
 
-### Обсуждаем предложение
+### Узнать друг друга при встрече
 
-Motion здесь — «предложение для голосования» на заседании. Участник предложил изменить время встреч, и вы сейчас это обсуждаете: We are discussing the motion — «Мы обсуждаем предложение для голосования». Это текущее действие: are + discussing.
+Друг ищет вас у кафе. Denim — «джинсовая ткань»: I am wearing a denim jacket — «На мне джинсовая куртка». Вы также описываете сестру рядом. Flowery — «с цветочным рисунком»: She is wearing a flowery dress — «На ней платье с цветочным рисунком». Am/is wearing описывает одежду, которая на вас сейчас.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We are discussing the motion.**
-- ❌ We discussing the motion. — *Перед discussing нужна are.*
-- ❌ We is discussing the motion. — *С we нужна are.*
+- ✅ **She is wearing a flowery dress.**
+- ❌ She wearing a flowery dress. — *Перед wearing нужна is.*
+- ❌ She is wear a flowery dress. — *После is нужна wearing.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — quorum**
-<!-- interaction_id: en:lesson-10:session-44:word:quorum; family: word_card -->
-> **quorum** — «кворум». We have a quorum. — «У нас есть кворум». Минимальное число участников, необходимое для принятия решений на собрании.
+**1 · Карточка слова — wool**
+<!-- interaction_id: en:lesson-10:session-44:word:wool; family: word_card -->
+> **wool** — «шерсть» как материал. I like wool. — «Мне нравится шерсть».
 
-**2 · Для решений клуба нужны шесть участников. Все шестеро пришли. Сообщите: «У нас есть кворум»**
+**2 · Вам нравится шерсть как материал для одежды. Скажите: «Мне нравится шерсть»**
 <!-- interaction_id: en:lesson-10:session-44:i01; family: phrase_builder -->
-Плитки: `quorum` `a` `have` `We` → **We have a quorum.**
+Плитки: `wool` `like` `I` → **I like wool.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-44:i02; family: listen_choose -->
-🔊 *The quorum is six members.* → **The quorum is six members.** · The quorum is seven members. · The quorum is six people.
-- The quorum is seven members. — *В записи звучит The quorum is six members.*
-- The quorum is six people. — *В записи звучит The quorum is six members.*
+🔊 *She likes wool.* → **She likes wool.** · He likes wool. · She needs wool.
+- He likes wool. — *В записи звучит She likes wool.*
+- She needs wool. — *В записи звучит She likes wool.*
 
-**4 · Достаточное число участников уже здесь. Выберите have**
+**4 · Выберите форму like после I**
 <!-- interaction_id: en:lesson-10:session-44:i03; family: context_gap_grammar -->
-We ___ a quorum. → **have** · has · are have
-- has — *С we нужна have.*
-- are have — *Are have неверно; здесь нужна have.*
+I ___ wool. → **like** · likes · liking
+- likes — *После I нужна like.*
+- liking — *Для предпочтения здесь нужна like.*
 
-**5 · Карточка слова — motion**
-<!-- interaction_id: en:lesson-10:session-44:word:motion; family: word_card -->
-> **motion** — «предложение для голосования». We are discussing the motion. — «Мы обсуждаем предложение для голосования». Здесь официальное предложение на заседании, не движение.
+**5 · Карточка слова — silk**
+<!-- interaction_id: en:lesson-10:session-44:word:silk; family: word_card -->
+> **silk** — «шёлк». a silk scarf — «шёлковый шарф».
 
-**6 · Участник предложил изменить время встреч. Обсуждение идёт сейчас. Скажите: «Мы обсуждаем предложение для голосования»**
+**6 · Вы сейчас покупаете подарок. Скажите: «Я покупаю шёлковый шарф»**
 <!-- interaction_id: en:lesson-10:session-44:i04; family: phrase_builder -->
-Плитки: `motion` `the` `discussing` `are` `We` → **We are discussing the motion.**
+Плитки: `scarf` `silk` `a` `buying` `am` `I` → **I am buying a silk scarf.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-44:i05; family: listen_choose -->
-🔊 *The motion is on the agenda.* → **The motion is on the agenda.** · The motion is in the email. · The question is on the agenda.
-- The motion is in the email. — *В записи звучит The motion is on the agenda.*
-- The question is on the agenda. — *В записи звучит The motion is on the agenda.*
+🔊 *She is wearing a silk scarf.* → **She is wearing a silk scarf.** · She is buying a silk scarf. · He is wearing a silk scarf.
+- She is buying a silk scarf. — *В записи звучит She is wearing a silk scarf.*
+- He is wearing a silk scarf. — *В записи звучит She is wearing a silk scarf.*
 
-**8 · Вы обсуждаете предложение сейчас. Выберите связку**
+**8 · Покупка идёт сейчас. Выберите форму buy**
 <!-- interaction_id: en:lesson-10:session-44:i06; family: context_gap_grammar -->
-We ___ discussing the motion. → **are** · is · am
-- is — *С we нужна are.*
-- am — *Am используется с I; с we нужна are.*
+I am ___ a silk scarf. → **buying** · buy · buys
+- buy — *После am нужна buying.*
+- buys — *После am нужна buying, не buys.*
 
-**9 · Карточка слова — amendment**
-<!-- interaction_id: en:lesson-10:session-44:word:amendment; family: word_card -->
-> **amendment** — «поправка». The amendment is clear. — «Поправка понятна». Здесь предложенное изменение текста обсуждаемого предложения.
+**9 · Карточка слова — denim**
+<!-- interaction_id: en:lesson-10:session-44:word:denim; family: word_card -->
+> **denim** — «джинсовая ткань». a denim jacket — «джинсовая куртка».
 
-**10 · Коллега уточнил изменение к предложению. Скажите: «Поправка понятна»**
+**10 · Друг ищет вас у кафе. Скажите: «На мне джинсовая куртка»**
 <!-- interaction_id: en:lesson-10:session-44:i07; family: phrase_builder -->
-Плитки: `clear` `is` `amendment` `The` → **The amendment is clear.**
+Плитки: `jacket` `denim` `a` `wearing` `am` `I` → **I am wearing a denim jacket.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-44:i08; family: listen_choose -->
-🔊 *I am reading the amendment.* → **I am reading the amendment.** · I am writing the amendment. · I am reading the agenda.
-- I am writing the amendment. — *В записи звучит I am reading the amendment.*
-- I am reading the agenda. — *В записи звучит I am reading the amendment.*
+🔊 *He is wearing a denim jacket.* → **He is wearing a denim jacket.** · She is wearing a denim jacket. · He is buying a denim jacket.
+- She is wearing a denim jacket. — *В записи звучит He is wearing a denim jacket.*
+- He is buying a denim jacket. — *В записи звучит He is wearing a denim jacket.*
 
-**12 · Речь об одной поправке. Выберите связку**
+**12 · Опишите одежду на себе сейчас. Выберите форму wear**
 <!-- interaction_id: en:lesson-10:session-44:i09; family: context_gap_grammar -->
-The amendment ___ clear. → **is** · are · am
-- are — *Одна поправка: is.*
-- am — *Am используется с I; здесь нужна is.*
+I am ___ a denim jacket. → **wearing** · wear · wears
+- wear — *После am нужна wearing.*
+- wears — *После am нужна wearing, не wears.*
 
-**13 · Карточка слова — ballot**
-<!-- interaction_id: en:lesson-10:session-44:word:ballot; family: word_card -->
-> **ballot** — «голосование». We are holding a secret ballot. — «Мы проводим тайное голосование». Здесь процедура голосования, а не отдельный бюллетень.
+**13 · Карточка слова — flowery**
+<!-- interaction_id: en:lesson-10:session-44:word:flowery; family: word_card -->
+> **flowery** — «с цветочным рисунком». a flowery dress — «платье с цветочным рисунком».
 
-**14 · Члены клуба сейчас голосуют, не раскрывая свой выбор другим. Скажите: «Мы проводим тайное голосование»**
+**14 · Опишите сестру рядом: «На ней платье с цветочным рисунком»**
 <!-- interaction_id: en:lesson-10:session-44:i10; family: phrase_builder -->
-Плитки: `ballot` `secret` `a` `holding` `are` `We` → **We are holding a secret ballot.**
+Плитки: `dress` `flowery` `a` `wearing` `is` `She` → **She is wearing a flowery dress.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-44:i11; family: listen_choose -->
-🔊 *The ballot is after the discussion.* → **The ballot is after the discussion.** · The ballot is before the discussion. · The break is after the discussion.
-- The ballot is before the discussion. — *В записи звучит The ballot is after the discussion.*
-- The break is after the discussion. — *В записи звучит The ballot is after the discussion.*
+🔊 *I like this flowery dress.* → **I like this flowery dress.** · I like this flowery skirt. · I need this flowery dress.
+- I like this flowery skirt. — *В записи звучит I like this flowery dress.*
+- I need this flowery dress. — *В записи звучит I like this flowery dress.*
 
-**16 · Голосование идёт сейчас. Выберите форму holding**
+**16 · Выберите вспомогательный глагол для she перед wearing**
 <!-- interaction_id: en:lesson-10:session-44:i12; family: context_gap_grammar -->
-We are ___ a secret ballot. → **holding** · hold · holds
-- hold — *После are здесь нужна holding.*
-- holds — *Для действия сейчас нужна holding.*
+She ___ wearing a flowery dress. → **is** · are · am
+- are — *С she нужна is.*
+- am — *Am используется с I.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-44:i13; family: speed_match -->
-quorum — кворум · motion — предложение для голосования · amendment — поправка · ballot — голосование
+wool — шерсть · silk — шёлк · denim — джинсовая ткань · flowery — с цветочным рисунком
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-44:i14; family: listen_build_dictation -->
-🔊 *We are discussing the motion.* Плитки: `motion` `the` `discussing` `are` `We` → **We are discussing the motion.**
+🔊 *I am buying a silk scarf.* Плитки: `scarf` `silk` `a` `buying` `am` `I` → **I am buying a silk scarf.**
 
-**19 · Участник спрашивает, как часто комитет рассматривает повестку. Скажите: «Мы рассматриваем повестку каждый месяц»**
-<!-- interaction_id: en:lesson-10:session-44:i15; family: scripted_repeat_compare -->
-🎙 **We review the agenda every month.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-44:i15; family: listen_build_dictation -->
+🔊 *I am wearing a denim jacket.* Плитки: `jacket` `denim` `a` `wearing` `am` `I` → **I am wearing a denim jacket.**
 
-**20 · Нужное число участников собралось. Скажите: «У нас есть кворум»**
-<!-- interaction_id: en:lesson-10:session-44:i16; family: phrase_builder -->
-Плитки: `quorum` `a` `have` `We` → **We have a quorum.**
+**20 · Сестра спрашивает, что вы покупаете. Ответьте: «Я покупаю шёлковый шарф»**
+<!-- interaction_id: en:lesson-10:session-44:i16; family: scripted_repeat_compare -->
+🎙 **I am buying a silk scarf.**
 
-**21 · Коллега пришёл после начала заседания. Сейчас участники обсуждают официальное предложение изменить время встреч. Объясните: «Мы обсуждаем предложение для голосования»**
-<!-- interaction_id: en:lesson-10:session-44:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are discussing the motion.**
+**21 · Друг не может найти вас у кафе. Опишите себя: «На мне джинсовая куртка»**
+<!-- interaction_id: en:lesson-10:session-44:i17; family: scripted_repeat_compare -->
+🎙 **I am wearing a denim jacket.**
 

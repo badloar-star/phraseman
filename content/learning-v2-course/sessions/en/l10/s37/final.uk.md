@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 37 — Новий семестр
+# Англійська · Урок 10 · Заняття 37 — Пересуваємо меблі
 
-**Ситуація.** Обговорити заняття в університеті, програму курсу та поточну навчальну роботу.
+**Ситуація.** Знайти річ під меблями й пояснити, як несете стіл крізь двері.
 
-**Що ви опануєте:** This semester is busy; I am reading the syllabus; I usually study in the library
-**Нові слова:** semester, syllabus, elective, coursework
+**Що ви опануєте:** The keys are underneath the chair; The ladder is against the wall; I am walking backwards
+**Нові слова:** underneath, against, backwards, sideways
 
 ## Інтро 1
 
-### Навчальний період
+### Ключі під стільцем
 
-Semester — «семестр», одна з частин навчального року, зазвичай одна з двох. Цього семестру у вас багато занять: This semester is busy — «Цей семестр насичений». Is описує, який цей період. Не кожне речення про поточний період потребує Continuous.
+Перед перестановкою ви помічаєте ключі на підлозі під стільцем. Underneath — «під»: The keys are underneath the chair — «Ключі під стільцем». Це розташування речей, тому are. Underneath тут близьке за значенням до знайомого under.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **This semester is busy.**
-- ❌ This semester are busy. — *З semester в однині потрібна is.*
-- ❌ This semester busy. — *Перед busy потрібна зв’язка is.*
+- ✅ **The keys are underneath the chair.**
+- ❌ The keys is underneath the chair. — *Keys у множині: are.*
+- ❌ The keys underneath the chair. — *Перед underneath потрібна зв’язка are.*
 
 ---
 
 ## Інтро 2
 
-### Читаємо програму
+### Драбина біля стіни
 
-Syllabus — «програма курсу»: перелік тем і вимог. Ви зараз відкрили її: I am reading the syllabus — «Я читаю програму курсу». Дія відбувається зараз: am + reading.
+Ви шукаєте драбину. Вона стоїть під нахилом і спирається на стіну: The ladder is against the wall — «Драбина притулена до стіни». Against тут означає положення з опорою на стіну або дотиком до неї, а не просто поруч. Це стан: is, без being.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am reading the syllabus.**
-- ❌ I reading the syllabus. — *Перед reading потрібне am.*
-- ❌ I is reading the syllabus. — *З I потрібна am.*
+- ✅ **The ladder is against the wall.**
+- ❌ The ladder against the wall. — *Перед against потрібна is.*
+- ❌ The ladder are against the wall. — *Одна драбина: is.*
 
 ---
 
 ## Інтро 3
 
-### Звичне місце для навчання
+### Проходимо крізь двері
 
-Ви зазвичай навчаєтеся в бібліотеці: I usually study in the library — «Я зазвичай навчаюся в бібліотеці». Для звички використовуємо Present Simple. Usually ставимо перед смисловим дієсловом study. Сьогодні ви працюєте вдома: I am studying at home today.
+Ви з другом несете стіл. Ви йдете спиною вперед: I am walking backwards — «Я йду задом наперед». Backwards — «назад, задом наперед». У вузьких дверях друг повертається боком: He is moving sideways — «Він рухається боком». Sideways — «боком, убік». Обидві дії відбуваються зараз: am walking та is moving.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I usually study in the library.**
-- ❌ I usually studies in the library. — *З I потрібна study без s.*
-- ❌ I usually studying in the library. — *Для звички тут потрібна study.*
+- ✅ **I am walking backwards.**
+- ❌ I walking backwards. — *Перед walking потрібна am.*
+- ❌ I am walk backwards. — *Після am потрібна walking.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — semester**
-<!-- interaction_id: en:lesson-10:session-37:word:semester; family: word_card -->
-> **semester** — «семестр». This semester is busy. — «Цей семестр насичений». Частина навчального року, зазвичай одна з двох.
+**1 · Картка слова — underneath**
+<!-- interaction_id: en:lesson-10:session-37:word:underneath; family: word_card -->
+> **underneath** — «під». The keys are underneath the chair. — «Ключі під стільцем».
 
-**2 · У вас багато занять у цьому навчальному періоді. Скажіть: «Цей семестр насичений»**
+**2 · Ви знайшли ключі під стільцем. Повідомте другові, де вони**
 <!-- interaction_id: en:lesson-10:session-37:i01; family: phrase_builder -->
-Плитки: `busy` `is` `semester` `This` → **This semester is busy.**
+Плитки: `chair` `the` `underneath` `are` `keys` `The` → **The keys are underneath the chair.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-37:i02; family: listen_choose -->
-🔊 *The semester starts in September.* → **The semester starts in September.** · The semester starts in November. · The course starts in September.
-- The semester starts in November. — *У записі звучить The semester starts in September.*
-- The course starts in September. — *У записі звучить The semester starts in September.*
+🔊 *The bag is underneath the table.* → **The bag is underneath the table.** · The bag is underneath the chair. · The box is underneath the table.
+- The bag is underneath the chair. — *У записі звучить The bag is underneath the table.*
+- The box is underneath the table. — *У записі звучить The bag is underneath the table.*
 
-**4 · Опишіть один навчальний період. Виберіть зв’язку**
+**4 · Виберіть зв’язку: ключі у множині**
 <!-- interaction_id: en:lesson-10:session-37:i03; family: context_gap_grammar -->
-This semester ___ busy. → **is** · are · am
-- are — *З semester в однині потрібна is.*
-- am — *Am уживається з I; тут потрібна is.*
+The keys ___ underneath the chair. → **are** · is · am
+- is — *Keys у множині: are.*
+- am — *Am уживається з I.*
 
-**5 · Картка слова — syllabus**
-<!-- interaction_id: en:lesson-10:session-37:word:syllabus; family: word_card -->
-> **syllabus** — «програма курсу». I am reading the syllabus. — «Я читаю програму курсу». У ній перелічено теми й вимоги курсу.
+**5 · Картка слова — against**
+<!-- interaction_id: en:lesson-10:session-37:word:against; family: word_card -->
+> **against** — «до, впритул до» в описі опори. The ladder is against the wall. — «Драбина притулена до стіни».
 
-**6 · Ви відкрили програму курсу й зараз читаєте її. Скажіть: «Я читаю програму курсу»**
+**6 · Драбина спирається на стіну. Повідомте: «Драбина притулена до стіни»**
 <!-- interaction_id: en:lesson-10:session-37:i04; family: phrase_builder -->
-Плитки: `syllabus` `the` `reading` `am` `I` → **I am reading the syllabus.**
+Плитки: `wall` `the` `against` `is` `ladder` `The` → **The ladder is against the wall.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-37:i05; family: listen_choose -->
-🔊 *The syllabus is on the website.* → **The syllabus is on the website.** · The syllabus is on the desk. · The timetable is on the website.
-- The syllabus is on the desk. — *У записі звучить The syllabus is on the website.*
-- The timetable is on the website. — *У записі звучить The syllabus is on the website.*
+🔊 *The chair is against the wall.* → **The chair is against the wall.** · The ladder is against the wall. · The chair is near the door.
+- The ladder is against the wall. — *У записі звучить The chair is against the wall.*
+- The chair is near the door. — *У записі звучить The chair is against the wall.*
 
-**8 · Ви зараз читаєте програму. Виберіть зв’язку**
+**8 · Виберіть зв’язку: одна драбина**
 <!-- interaction_id: en:lesson-10:session-37:i06; family: context_gap_grammar -->
-I ___ reading the syllabus. → **am** · is · are
-- is — *З I потрібна am.*
-- are — *З I потрібна am, не are.*
+The ladder ___ against the wall. → **is** · are · am
+- are — *Одна драбина: is.*
+- am — *Am уживається з I.*
 
-**9 · Картка слова — elective**
-<!-- interaction_id: en:lesson-10:session-37:word:elective; family: word_card -->
-> **elective** — «курс за вибором». Photography is my elective. — «Фотографія — мій курс за вибором». Тут предмет, який студент обирає сам.
+**9 · Картка слова — backwards**
+<!-- interaction_id: en:lesson-10:session-37:word:backwards; family: word_card -->
+> **backwards** — «назад, задом наперед». I am walking backwards. — «Я йду задом наперед».
 
-**10 · Із необов’язкових предметів ви обрали фотографію. Скажіть: «Фотографія — мій курс за вибором»**
+**10 · Ви несете стіл спиною вперед. Скажіть: «Я йду задом наперед»**
 <!-- interaction_id: en:lesson-10:session-37:i07; family: phrase_builder -->
-Плитки: `elective` `my` `is` `Photography` → **Photography is my elective.**
+Плитки: `backwards` `walking` `am` `I` → **I am walking backwards.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-37:i08; family: listen_choose -->
-🔊 *This elective is interesting.* → **This elective is interesting.** · This elective is difficult. · This book is interesting.
-- This elective is difficult. — *У записі звучить This elective is interesting.*
-- This book is interesting. — *У записі звучить This elective is interesting.*
+🔊 *The car is moving backwards.* → **The car is moving backwards.** · The car is moving slowly. · The bus is moving backwards.
+- The car is moving slowly. — *У записі звучить The car is moving backwards.*
+- The bus is moving backwards. — *У записі звучить The car is moving backwards.*
 
-**12 · Ви зазвичай навчаєтеся в бібліотеці. Виберіть форму study**
+**12 · Ви йдете зараз. Виберіть форму walk**
 <!-- interaction_id: en:lesson-10:session-37:i09; family: context_gap_grammar -->
-I usually ___ in the library. → **study** · studies · studying
-- studies — *З I потрібна study без s.*
-- studying — *Для звички тут потрібна study.*
+I am ___ backwards. → **walking** · walk · walks
+- walk — *Після am потрібна walking.*
+- walks — *Після am потрібна walking, не walks.*
 
-**13 · Картка слова — coursework**
-<!-- interaction_id: en:lesson-10:session-37:word:coursework; family: word_card -->
-> **coursework** — «навчальні роботи з курсу». I am doing my coursework. — «Я виконую навчальні роботи з курсу». Наприклад, письмові завдання та проєкти, які оцінюють протягом курсу. Незлічуване слово.
+**13 · Картка слова — sideways**
+<!-- interaction_id: en:lesson-10:session-37:word:sideways; family: word_card -->
+> **sideways** — «боком, убік». He is moving sideways. — «Він рухається боком».
 
-**14 · Ви зараз виконуєте завдання, які оцінюватимуть у межах курсу. Скажіть: «Я виконую навчальні роботи з курсу»**
+**14 · Друг проходить із меблями у вузькі двері боком. Скажіть: «Він рухається боком»**
 <!-- interaction_id: en:lesson-10:session-37:i10; family: phrase_builder -->
-Плитки: `coursework` `my` `doing` `am` `I` → **I am doing my coursework.**
+Плитки: `sideways` `moving` `is` `He` → **He is moving sideways.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-37:i11; family: listen_choose -->
-🔊 *My coursework is almost finished.* → **My coursework is almost finished.** · My coursework is already finished. · My report is almost finished.
-- My coursework is already finished. — *У записі звучить My coursework is almost finished.*
-- My report is almost finished. — *У записі звучить My coursework is almost finished.*
+🔊 *She is moving sideways.* → **She is moving sideways.** · He is moving sideways. · She is moving backwards.
+- He is moving sideways. — *У записі звучить She is moving sideways.*
+- She is moving backwards. — *У записі звучить She is moving sideways.*
 
-**16 · Виберіть зв’язку з незлічуваним coursework**
+**16 · Виберіть форму move для дії зараз**
 <!-- interaction_id: en:lesson-10:session-37:i12; family: context_gap_grammar -->
-My coursework ___ almost finished. → **is** · are · am
-- are — *З coursework потрібна is.*
-- am — *Am уживається з I; тут потрібна is.*
+He is ___ sideways. → **moving** · move · moves
+- move — *Після is потрібна moving.*
+- moves — *Після is потрібна moving, не moves.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте слова з перекладом у цих ситуаціях**
 <!-- interaction_id: en:lesson-10:session-37:i13; family: speed_match -->
-semester — семестр · syllabus — програма курсу · elective — курс за вибором · coursework — навчальні роботи з курсу
+underneath — під · against — впритул до · backwards — задом наперед · sideways — боком
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-37:i14; family: listen_build_dictation -->
-🔊 *I am reading the syllabus.* Плитки: `syllabus` `the` `reading` `am` `I` → **I am reading the syllabus.**
+🔊 *I am walking backwards.* Плитки: `backwards` `walking` `am` `I` → **I am walking backwards.**
 
-**19 · Друг запитує, де ви зазвичай навчаєтеся. Скажіть: «Я зазвичай навчаюся в бібліотеці»**
-<!-- interaction_id: en:lesson-10:session-37:i15; family: scripted_repeat_compare -->
-🎙 **I usually study in the library.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-37:i15; family: listen_build_dictation -->
+🔊 *He is moving sideways.* Плитки: `sideways` `moving` `is` `He` → **He is moving sideways.**
 
-**20 · Друг запитує про обраний необов’язковий предмет. Скажіть: «Фотографія — мій курс за вибором»**
-<!-- interaction_id: en:lesson-10:session-37:i16; family: phrase_builder -->
-Плитки: `elective` `my` `is` `Photography` → **Photography is my elective.**
+**20 · Друг шукає ключі. Ви бачите їх під стільцем. Скажіть: «Ключі під стільцем»**
+<!-- interaction_id: en:lesson-10:session-37:i16; family: scripted_repeat_compare -->
+🎙 **The keys are underneath the chair.**
 
-**21 · Друг телефонує, коли ви виконуєте завдання, які оцінюють у межах курсу. Поясніть, чим зайняті: «Я виконую навчальні роботи з курсу»**
-<!-- interaction_id: en:lesson-10:session-37:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am doing my coursework.**
+**21 · Ви несете стіл спиною вперед. Поясніть другові: «Я йду задом наперед»**
+<!-- interaction_id: en:lesson-10:session-37:i17; family: scripted_repeat_compare -->
+🎙 **I am walking backwards.**
 

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-37:intro1:r2": {
-          "ru": "С semester в единственном числе нужна is.",
-          "uk": "З semester в однині потрібна is."
+          "ru": "Keys во множественном числе: are.",
+          "uk": "Keys у множині: are."
         },
         "en:lesson-10:session-37:intro1:r3": {
-          "ru": "Перед busy нужна связка is.",
-          "uk": "Перед busy потрібна зв’язка is."
+          "ru": "Перед underneath нужна связка are.",
+          "uk": "Перед underneath потрібна зв’язка are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-37:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-37:intro2:r2": {
-          "ru": "Перед reading нужен am.",
-          "uk": "Перед reading потрібне am."
+          "ru": "Перед against нужна is.",
+          "uk": "Перед against потрібна is."
         },
         "en:lesson-10:session-37:intro2:r3": {
-          "ru": "С I нужна am.",
-          "uk": "З I потрібна am."
+          "ru": "Одна лестница: is.",
+          "uk": "Одна драбина: is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-37:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-37:intro3:r2": {
-          "ru": "С I нужна study без s.",
-          "uk": "З I потрібна study без s."
+          "ru": "Перед walking нужна am.",
+          "uk": "Перед walking потрібна am."
         },
         "en:lesson-10:session-37:intro3:r3": {
-          "ru": "Для привычки здесь нужна study.",
-          "uk": "Для звички тут потрібна study."
+          "ru": "После am нужна walking.",
+          "uk": "Після am потрібна walking."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a50676cb3c0e41544b2791334d0de9ddda294f887e2b8a63faa4caacaa3d534b"
+  "auxiliaryFingerprint": "cb9765b557992b6be9fd19e2a7640e57bc7bdb9167197e615371f4faf7ccf4db"
 }

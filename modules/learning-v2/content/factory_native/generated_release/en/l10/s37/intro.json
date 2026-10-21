@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-37",
   "learningOutcomeByLocale": {
-    "ru": "This semester is busy; I am reading the syllabus; I usually study in the library",
-    "uk": "This semester is busy; I am reading the syllabus; I usually study in the library"
+    "ru": "The keys are underneath the chair; The ladder is against the wall; I am walking backwards",
+    "uk": "The keys are underneath the chair; The ladder is against the wall; I am walking backwards"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Учебный период",
-        "uk": "Навчальний період"
+        "ru": "Ключи под стулом",
+        "uk": "Ключі під стільцем"
       },
       "bodyByLocale": {
-        "ru": "Semester — «семестр», одна из частей учебного года, обычно одна из двух. В этом семестре у вас много занятий: This semester is busy — «Этот семестр насыщенный». Is описывает, какой этот период. Не каждое предложение о текущем периоде требует Continuous.",
-        "uk": "Semester — «семестр», одна з частин навчального року, зазвичай одна з двох. Цього семестру у вас багато занять: This semester is busy — «Цей семестр насичений». Is описує, який цей період. Не кожне речення про поточний період потребує Continuous."
+        "ru": "Перед перестановкой вы замечаете ключи на полу под стулом. Underneath — «под»: The keys are underneath the chair — «Ключи под стулом». Это положение вещей, поэтому are. Underneath здесь близко по смыслу к знакомому under.",
+        "uk": "Перед перестановкою ви помічаєте ключі на підлозі під стільцем. Underneath — «під»: The keys are underneath the chair — «Ключі під стільцем». Це розташування речей, тому are. Underneath тут близьке за значенням до знайомого under."
       },
       "question": {
         "interactionId": "en:lesson-10:session-37:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-37:intro1:r1",
-              "text": "This semester is busy."
+              "text": "The keys are underneath the chair."
             },
             {
               "responseId": "en:lesson-10:session-37:intro1:r2",
-              "text": "This semester are busy."
+              "text": "The keys is underneath the chair."
             },
             {
               "responseId": "en:lesson-10:session-37:intro1:r3",
-              "text": "This semester busy."
+              "text": "The keys underneath the chair."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-37:intro1:r1",
-              "text": "This semester is busy."
+              "text": "The keys are underneath the chair."
             },
             {
               "responseId": "en:lesson-10:session-37:intro1:r2",
-              "text": "This semester are busy."
+              "text": "The keys is underneath the chair."
             },
             {
               "responseId": "en:lesson-10:session-37:intro1:r3",
-              "text": "This semester busy."
+              "text": "The keys underneath the chair."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Читаем программу",
-        "uk": "Читаємо програму"
+        "ru": "Лестница у стены",
+        "uk": "Драбина біля стіни"
       },
       "bodyByLocale": {
-        "ru": "Syllabus — «программа курса»: перечень тем и требований. Вы сейчас открыли её: I am reading the syllabus — «Я читаю программу курса». Действие происходит сейчас: am + reading.",
-        "uk": "Syllabus — «програма курсу»: перелік тем і вимог. Ви зараз відкрили її: I am reading the syllabus — «Я читаю програму курсу». Дія відбувається зараз: am + reading."
+        "ru": "Вы ищете лестницу. Она стоит наклонно и опирается на стену: The ladder is against the wall — «Лестница прислонена к стене». Against здесь означает положение с опорой на стену или соприкосновением с ней, а не просто рядом. Это состояние: is, без being.",
+        "uk": "Ви шукаєте драбину. Вона стоїть під нахилом і спирається на стіну: The ladder is against the wall — «Драбина притулена до стіни». Against тут означає положення з опорою на стіну або дотиком до неї, а не просто поруч. Це стан: is, без being."
       },
       "question": {
         "interactionId": "en:lesson-10:session-37:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-37:intro2:r1",
-              "text": "I am reading the syllabus."
+              "text": "The ladder is against the wall."
             },
             {
               "responseId": "en:lesson-10:session-37:intro2:r2",
-              "text": "I reading the syllabus."
+              "text": "The ladder against the wall."
             },
             {
               "responseId": "en:lesson-10:session-37:intro2:r3",
-              "text": "I is reading the syllabus."
+              "text": "The ladder are against the wall."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-37:intro2:r1",
-              "text": "I am reading the syllabus."
+              "text": "The ladder is against the wall."
             },
             {
               "responseId": "en:lesson-10:session-37:intro2:r2",
-              "text": "I reading the syllabus."
+              "text": "The ladder against the wall."
             },
             {
               "responseId": "en:lesson-10:session-37:intro2:r3",
-              "text": "I is reading the syllabus."
+              "text": "The ladder are against the wall."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Обычное место для учёбы",
-        "uk": "Звичне місце для навчання"
+        "ru": "Проходим через дверь",
+        "uk": "Проходимо крізь двері"
       },
       "bodyByLocale": {
-        "ru": "Вы обычно занимаетесь в библиотеке: I usually study in the library — «Я обычно занимаюсь в библиотеке». Для привычки используем Present Simple. Usually ставим перед смысловым глаголом study. Сегодня вы работаете дома: I am studying at home today.",
-        "uk": "Ви зазвичай навчаєтеся в бібліотеці: I usually study in the library — «Я зазвичай навчаюся в бібліотеці». Для звички використовуємо Present Simple. Usually ставимо перед смисловим дієсловом study. Сьогодні ви працюєте вдома: I am studying at home today."
+        "ru": "Вы с другом несёте стол. Вы идёте спиной вперёд: I am walking backwards — «Я иду задом наперёд». Backwards — «назад, задом наперёд». В узкой двери друг поворачивается боком: He is moving sideways — «Он двигается боком». Sideways — «боком, в сторону». Оба действия происходят сейчас: am walking и is moving.",
+        "uk": "Ви з другом несете стіл. Ви йдете спиною вперед: I am walking backwards — «Я йду задом наперед». Backwards — «назад, задом наперед». У вузьких дверях друг повертається боком: He is moving sideways — «Він рухається боком». Sideways — «боком, убік». Обидві дії відбуваються зараз: am walking та is moving."
       },
       "question": {
         "interactionId": "en:lesson-10:session-37:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-37:intro3:r1",
-              "text": "I usually study in the library."
+              "text": "I am walking backwards."
             },
             {
               "responseId": "en:lesson-10:session-37:intro3:r2",
-              "text": "I usually studies in the library."
+              "text": "I walking backwards."
             },
             {
               "responseId": "en:lesson-10:session-37:intro3:r3",
-              "text": "I usually studying in the library."
+              "text": "I am walk backwards."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-37:intro3:r1",
-              "text": "I usually study in the library."
+              "text": "I am walking backwards."
             },
             {
               "responseId": "en:lesson-10:session-37:intro3:r2",
-              "text": "I usually studies in the library."
+              "text": "I walking backwards."
             },
             {
               "responseId": "en:lesson-10:session-37:intro3:r3",
-              "text": "I usually studying in the library."
+              "text": "I am walk backwards."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bced34646e002ab1e2f3d8e61826d487e10fbdb7d0f20027a13ae4b926cda6cb"
+  "introFingerprint": "4b24e453783371e05a5f06302c4f2e14fcc320ee20608d2341382eef6b417ae1"
 }

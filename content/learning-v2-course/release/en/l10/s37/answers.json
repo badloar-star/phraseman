@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-37:word:semester",
-    "correctText": "semester",
+    "interactionId": "en:lesson-10:session-37:word:underneath",
+    "correctText": "underneath",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i01",
-    "correctText": "This semester is busy.",
+    "correctText": "The keys are underneath the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i02",
-    "correctText": "The semester starts in September.",
+    "correctText": "The bag is underneath the table.",
     "correctResponseId": "en:lesson-10:session-37:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-37:i03",
-    "correctText": "is",
+    "correctText": "are",
     "correctResponseId": "en:lesson-10:session-37:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-37:word:syllabus",
-    "correctText": "syllabus",
+    "interactionId": "en:lesson-10:session-37:word:against",
+    "correctText": "against",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i04",
-    "correctText": "I am reading the syllabus.",
+    "correctText": "The ladder is against the wall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i05",
-    "correctText": "The syllabus is on the website.",
+    "correctText": "The chair is against the wall.",
     "correctResponseId": "en:lesson-10:session-37:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-37:i06",
-    "correctText": "am",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-37:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-37:word:elective",
-    "correctText": "elective",
+    "interactionId": "en:lesson-10:session-37:word:backwards",
+    "correctText": "backwards",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i07",
-    "correctText": "Photography is my elective.",
+    "correctText": "I am walking backwards.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i08",
-    "correctText": "This elective is interesting.",
+    "correctText": "The car is moving backwards.",
     "correctResponseId": "en:lesson-10:session-37:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-37:i09",
-    "correctText": "study",
+    "correctText": "walking",
     "correctResponseId": "en:lesson-10:session-37:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-37:word:coursework",
-    "correctText": "coursework",
+    "interactionId": "en:lesson-10:session-37:word:sideways",
+    "correctText": "sideways",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i10",
-    "correctText": "I am doing my coursework.",
+    "correctText": "He is moving sideways.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i11",
-    "correctText": "My coursework is almost finished.",
+    "correctText": "She is moving sideways.",
     "correctResponseId": "en:lesson-10:session-37:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-37:i12",
-    "correctText": "is",
+    "correctText": "moving",
     "correctResponseId": "en:lesson-10:session-37:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-37:i13",
-    "correctText": "en:lesson-10:session-37:i13:p1=semester\nen:lesson-10:session-37:i13:p2=syllabus\nen:lesson-10:session-37:i13:p3=elective\nen:lesson-10:session-37:i13:p4=coursework",
+    "correctText": "en:lesson-10:session-37:i13:p1=underneath\nen:lesson-10:session-37:i13:p2=against\nen:lesson-10:session-37:i13:p3=backwards\nen:lesson-10:session-37:i13:p4=sideways",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i14",
-    "correctText": "I am reading the syllabus.",
+    "correctText": "I am walking backwards.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i15",
-    "correctText": "I usually study in the library.",
+    "correctText": "He is moving sideways.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i16",
-    "correctText": "Photography is my elective.",
+    "correctText": "The keys are underneath the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-37:i17",
-    "correctText": "I am doing my coursework.",
+    "correctText": "I am walking backwards.",
     "correctResponseId": null
   }
 ]

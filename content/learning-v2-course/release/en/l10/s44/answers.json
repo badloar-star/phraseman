@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-44:word:quorum",
-    "correctText": "quorum",
+    "interactionId": "en:lesson-10:session-44:word:wool",
+    "correctText": "wool",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i01",
-    "correctText": "We have a quorum.",
+    "correctText": "I like wool.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i02",
-    "correctText": "The quorum is six members.",
+    "correctText": "She likes wool.",
     "correctResponseId": "en:lesson-10:session-44:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-44:i03",
-    "correctText": "have",
+    "correctText": "like",
     "correctResponseId": "en:lesson-10:session-44:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-44:word:motion",
-    "correctText": "motion",
+    "interactionId": "en:lesson-10:session-44:word:silk",
+    "correctText": "silk",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i04",
-    "correctText": "We are discussing the motion.",
+    "correctText": "I am buying a silk scarf.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i05",
-    "correctText": "The motion is on the agenda.",
+    "correctText": "She is wearing a silk scarf.",
     "correctResponseId": "en:lesson-10:session-44:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-44:i06",
-    "correctText": "are",
+    "correctText": "buying",
     "correctResponseId": "en:lesson-10:session-44:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-44:word:amendment",
-    "correctText": "amendment",
+    "interactionId": "en:lesson-10:session-44:word:denim",
+    "correctText": "denim",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i07",
-    "correctText": "The amendment is clear.",
+    "correctText": "I am wearing a denim jacket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i08",
-    "correctText": "I am reading the amendment.",
+    "correctText": "He is wearing a denim jacket.",
     "correctResponseId": "en:lesson-10:session-44:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-44:i09",
-    "correctText": "is",
+    "correctText": "wearing",
     "correctResponseId": "en:lesson-10:session-44:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-44:word:ballot",
-    "correctText": "ballot",
+    "interactionId": "en:lesson-10:session-44:word:flowery",
+    "correctText": "flowery",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i10",
-    "correctText": "We are holding a secret ballot.",
+    "correctText": "She is wearing a flowery dress.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i11",
-    "correctText": "The ballot is after the discussion.",
+    "correctText": "I like this flowery dress.",
     "correctResponseId": "en:lesson-10:session-44:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-44:i12",
-    "correctText": "holding",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-44:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-44:i13",
-    "correctText": "en:lesson-10:session-44:i13:p1=quorum\nen:lesson-10:session-44:i13:p2=motion\nen:lesson-10:session-44:i13:p3=amendment\nen:lesson-10:session-44:i13:p4=ballot",
+    "correctText": "en:lesson-10:session-44:i13:p1=wool\nen:lesson-10:session-44:i13:p2=silk\nen:lesson-10:session-44:i13:p3=denim\nen:lesson-10:session-44:i13:p4=flowery",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i14",
-    "correctText": "We are discussing the motion.",
+    "correctText": "I am buying a silk scarf.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i15",
-    "correctText": "We review the agenda every month.",
+    "correctText": "I am wearing a denim jacket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i16",
-    "correctText": "We have a quorum.",
+    "correctText": "I am buying a silk scarf.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-44:i17",
-    "correctText": "We are discussing the motion.",
+    "correctText": "I am wearing a denim jacket.",
     "correctResponseId": null
   }
 ]

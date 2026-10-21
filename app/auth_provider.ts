@@ -4185,7 +4185,27 @@ function scheduleSameStablePostAuthRefresh(
 
     // зачем (бета А5 15.10, authfetch_on_r7g: restoreFromCloud FAIL по потолку 20 с, а [LOGIN-BONUS-RESTORE] шёл ещё через 3 с):
     // withTimeout не отменяет восстановление — пишем, чем оно кончилось после потолка. Сперва логи; событие обновления экрана — по фактам.
-    const restorePromise = restoreFromCloudDetailed();
+    // зачем (владелец 21.10, №1 «монеты 0 после смены», A1 «сервер — главный»): серверный кошелёк users/{uid}.stars вливаем
+    // ПОСЛЕ долива аварийной копии — иначе копия пропустит свою проекцию (подтверждения, неотправленные начисления).
+    // Восстановление, доехавшее после потолка 20 с, приходит уже после долива — тогда вливаем сразу.
+    const serverStarsGate: { pending: { stars: unknown } | null; backupSettled: boolean } = { pending: null, backupSettled: false };
+    const adoptServerStars = (stars: unknown, when: string) => {
+      if (!isCurrent()) {
+        console.log(`[ACC-MUT] server_stars skip stage=${stage} when=${when} reason=stale_generation`); // guard-ok: ранний выход
+        return;
+      }
+      console.log(`[ACC-MUT] server_stars adopt stage=${stage} when=${when}`); // guard-ok: ветка решения
+      void import('./level_spin_star_grants')
+        .then(({ adoptServerWalletFromUserDoc }) => adoptServerWalletFromUserDoc(generation, stars, `${stage}:${when}`))
+        .then((outcome) => console.log(`[ACC-MUT] server_stars outcome=${outcome} stage=${stage} when=${when}`)) // guard-ok: итог
+        .catch((error: unknown) => console.warn(`[ACC-MUT] server_stars failed stage=${stage} reason=${identityErrorCode(error)}`)); // guard-ok: catch пишет причину
+    };
+    const restorePromise = restoreFromCloudDetailed({
+      onServerStars: (stars) => {
+        if (serverStarsGate.backupSettled) adoptServerStars(stars, 'late_after_backup');
+        else serverStarsGate.pending = { stars };
+      },
+    });
     restoreResult = (await step('restoreFromCloud', () =>
       withTimeout(restorePromise, SIGNIN_CLOUD_SYNC_TIMEOUT_MS, stage),
     )) ?? 'failed';
@@ -4215,7 +4235,15 @@ function scheduleSameStablePostAuthRefresh(
     // на первом входе с устройства). Журнал client_shard_operation_ledger не тронут.
     console.log(`[AUTH-SHARDS] шаг шардов снят stage=${stage}`);
     await step('switchBackup', () => tryRestoreAccountSwitchBackup(stage, isCurrent));
+    serverStarsGate.backupSettled = true;
     if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_backup`); return; }
+    const pendingStars = serverStarsGate.pending;
+    if (pendingStars) {
+      serverStarsGate.pending = null;
+      adoptServerStars(pendingStars.stars, 'after_backup');
+    } else {
+      console.log(`[ACC-MUT] server_stars none_yet stage=${stage} restore=${restoreResult}`); // guard-ok: ветка решения
+    }
     await step('markOnboarded', () => markOnboardedAfterSignIn(isCurrent));
     if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_onboarded`); return; }
     await step('revenueCat', () => syncRevenueCatAfterAuthLink(isCurrent));

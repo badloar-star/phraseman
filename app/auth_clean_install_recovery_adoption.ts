@@ -275,7 +275,15 @@ async function finishTargetAdoption(
       : { result: 'quarantined', reason: 'ack_rejected' };
   }
   if (!isCurrent()) return { result: 'quarantined', reason: 'target_generation_changed' };
-  const restoreResult = await restoreFromCloudDetailed();
+  // зачем (владелец 21.10, №1 «сервер — главный», A1): на чистой установке аварийной копии нет — серверный кошелёк
+  // users/{uid}.stars вливаем сразу (иначе человек видит 0 монет до первого серверного ответа на действие).
+  const restoreResult = await restoreFromCloudDetailed({
+    onServerStars: (stars) => {
+      void import('./level_spin_star_grants')
+        .then(({ adoptServerWalletFromUserDoc }) => adoptServerWalletFromUserDoc(targetGeneration, stars, 'clean_install_recovery'))
+        .catch((error: unknown) => console.warn(`[ACC-MUT] server_stars clean_install_failed reason=${String(error).slice(0, 120)}`)); // guard-ok: catch пишет причину
+    },
+  });
   if (restoreResult === 'failed') {
     return { result: 'quarantined', reason: 'restore_failed' };
   }

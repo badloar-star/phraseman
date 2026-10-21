@@ -309,6 +309,63 @@ describe('Q-COIN (a): first server observation keeps the larger of server and un
   });
 });
 
+// зачем (владелец 21.10, №1 «монеты 0 после смены аккаунта», решение «сервер — главный»): A2 — пустая проекция не
+// занимает ключ (иначе долив аварийной копии её пропускал); A1 — серверный кошелёк users/{uid}.stars вливается
+// только более новым seq и не трогает базу при неподтверждённых начислениях.
+describe('A1/A2 (21.10): server wallet adoption and the empty projection', () => {
+  test('A2: reading coins with no projection on disk does not write an empty projection', async () => {
+    progress = { stars: 0, starsEarnedTotal: 0 };
+    expect((await readUnifiedLevelSpinStars(captureAccountGeneration())).balance).toBe(0);
+    await recoverAndHydrateLevelSpinStarGrants(captureAccountGeneration(), { syncNow: false });
+    expect(storage[levelSpinStarProjectionKey(OWNER)]).toBeUndefined();
+  });
+
+  test('A2 control: a projection that already exists on disk is still rewritten as before', async () => {
+    storeProjection(0, 0);
+    progress = { stars: 0, starsEarnedTotal: 0 };
+    await recoverAndHydrateLevelSpinStarGrants(captureAccountGeneration(), { syncNow: false });
+    expect(storage[levelSpinStarProjectionKey(OWNER)]).toBeDefined();
+  });
+
+  test('A1: server wallet over an absent projection becomes the visible balance', async () => {
+    progress = { stars: 0, starsEarnedTotal: 0 };
+    const { adoptServerWalletFromUserDoc } = await import('../app/level_spin_star_grants');
+    const token = captureAccountGeneration();
+    expect(await adoptServerWalletFromUserDoc(token, { balance: 900, earnedTotal: 1200, seq: 7 }, 'test')).toBe('merged');
+    expect(progress.stars).toBe(900);
+    expect(storedProjection()).toMatchObject({ serverBalance: 900, serverSeq: 7 });
+    // более старый seq ничего не меняет (поздний ответ, другое устройство)
+    expect(await adoptServerWalletFromUserDoc(token, { balance: 100, earnedTotal: 100, seq: 5 }, 'test')).toBe('merged');
+    expect(progress.stars).toBe(900);
+    expect((await readUnifiedLevelSpinStars(token)).balance).toBe(900);
+  });
+
+  test('A1: an unacknowledged local practice credit keeps the local base (no double count)', async () => {
+    storeProjection(100, 1);
+    progress = { stars: 100, starsEarnedTotal: 100 };
+    const { adoptServerWalletFromUserDoc } = await import('../app/level_spin_star_grants');
+    const token = captureAccountGeneration();
+    await commitPracticeRuneGrantLocally(token, practiceOperation(9));
+    expect(progress.stars).toBe(109);
+    // сервер мог уже учесть это начисление — снимок не может это доказать, база остаётся локальной
+    await adoptServerWalletFromUserDoc(token, { balance: 5000, earnedTotal: 5000, seq: 9 }, 'test');
+    expect(storedProjection()).toMatchObject({ serverBalance: 100, serverSeq: 1 });
+    expect(progress.stars).toBe(109);
+  });
+
+  test('A1: missing or broken stars field changes nothing', async () => {
+    storeProjection(300, 2);
+    progress = { stars: 300, starsEarnedTotal: 300 };
+    const { adoptServerWalletFromUserDoc } = await import('../app/level_spin_star_grants');
+    const token = captureAccountGeneration();
+    expect(await adoptServerWalletFromUserDoc(token, undefined, 'test')).toBe('skip_no_stars_field');
+    expect(await adoptServerWalletFromUserDoc(token, { balance: 'x', seq: 3 }, 'test')).toBe('skip_invalid_stars');
+    expect(await adoptServerWalletFromUserDoc(token, { balance: -5, seq: 3 }, 'test')).toBe('skip_invalid_stars');
+    expect(storedProjection()).toMatchObject({ serverBalance: 300, serverSeq: 2 });
+    expect(progress.stars).toBe(300);
+  });
+});
+
 describe('Q-COIN (b): reconcile receipt is applied once and never doubles coins', () => {
   test('lift absorbed by the server raise: visible unchanged, lift reduced, replay is a no-op', async () => {
     storeProjection(9830, 0);

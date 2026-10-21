@@ -1297,6 +1297,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         && safeHomePath
         && isExamBestPctColdRestoreTabSafe();
     },
+    // зачем (владелец 21.10, №1 «сервер — главный», A1): на старте аварийную копию никто не доливает — серверный
+    // кошелёк users/{uid}.stars вливаем сразу, тем же каналом серверных снимков (только более новый seq).
+    onServerStars: (stars: unknown) => {
+      const token = captureAccountGeneration();
+      void import('./level_spin_star_grants')
+        .then(({ adoptServerWalletFromUserDoc }) => adoptServerWalletFromUserDoc(token, stars, 'boot_restore'))
+        .catch((error: unknown) => console.warn(`[ACC-MUT] server_stars boot_failed reason=${String(error).slice(0, 120)}`)); // guard-ok: catch пишет причину
+    },
   }), []);
   const globalSearchParams = useGlobalSearchParams();
 

@@ -265,7 +265,11 @@ import {
   shelvesAllowedForPostAuthStage,
 } from '../app/account_switch_backup_restore';
 // eslint-disable-next-line import/first
-import { peekStoredLevelSpinStarsForBoot } from '../app/level_spin_star_grants';
+import {
+  adoptServerWalletFromUserDoc,
+  peekStoredLevelSpinStarsForBoot,
+  readUnifiedLevelSpinStars,
+} from '../app/level_spin_star_grants';
 // eslint-disable-next-line import/first
 import {
   __resetAccountGenerationForTests,
@@ -372,7 +376,14 @@ type SignInTrace = Readonly<{
  * Вход провайдером на этом телефоне (ветка merged_swap_to_remote из signInWithProvider):
  * ядро свапа + фоновая догрузка scheduleSameStablePostAuthRefresh в том же порядке.
  */
-async function signInOnThisPhone(account: Account): Promise<SignInTrace> {
+type SignInRace = Readonly<{
+  /** Главная читает монеты ПОСЛЕ восстановления из облака, но ДО долива аварийной копии (как в проде, 21.10). */
+  readCoinsBeforeBackup?: boolean;
+  /** Серверный кошелёк вливается после долива копии — тем же порядком, что scheduleSameStablePostAuthRefresh. */
+  adoptServerStarsAfterBackup?: boolean;
+}>;
+
+async function signInOnThisPhone(account: Account, race: SignInRace = {}): Promise<SignInTrace> {
   setProviderSession(account);
   await withAccountTransitionLock(async (lease) => {
     await wipeLocalAccountData(lease);
@@ -381,9 +392,14 @@ async function signInOnThisPhone(account: Account): Promise<SignInTrace> {
   });
   const generation = captureAccountGeneration();
   const isCurrent = () => isCurrentAccountGeneration(generation, account.stable);
-  const restore = await restoreFromCloudDetailed();
+  let serverStars: unknown = undefined;
+  const restore = await restoreFromCloudDetailed(
+    race.adoptServerStarsAfterBackup ? { onServerStars: (stars) => { serverStars = stars; } } : {},
+  );
   const afterCloud = await dumpStorage();
+  if (race.readCoinsBeforeBackup) await readUnifiedLevelSpinStars(generation);
   const backup = await restoreAccountSwitchEmergencyBackupIfSafe(isCurrent);
+  if (race.adoptServerStarsAfterBackup) await adoptServerWalletFromUserDoc(generation, serverStars, 'scenario');
   const afterBackup = await dumpStorage();
   return { restore, backup: backup.status, afterCloud, afterBackup };
 }
@@ -547,7 +563,7 @@ async function logoutLikeAccountLogoutFlow(): Promise<{ normal: unknown; forced:
   return { normal, forced };
 }
 
-async function runScenario(withB: boolean): Promise<ScenarioResult> {
+async function runScenario(withB: boolean, aReturnRace: SignInRace = {}): Promise<ScenarioResult> {
   const keys = await seedAccountAOnPhone();
   const aScopeHash = deriveLocalOfflineProgressAccountScopeHash(A.stable);
   const coinsSeeded = await peekCoins();
@@ -596,7 +612,7 @@ async function runScenario(withB: boolean): Promise<ScenarioResult> {
   const backupOwnerBeforeAReturn = rootRaw ? (JSON.parse(rootRaw) as { stableId: string }).stableId : null;
 
   // 4. Вход A на том же телефоне.
-  const a = await signInOnThisPhone(A);
+  const a = await signInOnThisPhone(A, aReturnRace);
   const keysAfterAReturn = await AsyncStorage.getAllKeys();
   const shelvedAfterAReturn = keysAfterAReturn.filter((key) => key.startsWith(SHELVED_PREFIX));
   const orphanPagesOfAShelfAfterAReturn = keysAfterAReturn.filter((key) => aShelfBackupIds.some((backupId) => (
@@ -712,6 +728,30 @@ function row(result: ScenarioResult, key: string): Observation {
 
 const CLOUD_KEYS = ['lesson1_best_score', 'streak_count', 'flashcards_v1', 'user_name', 'premium_plan', 'premium_expiry'];
 const LV2_PREFIX = 'learning-v2:course-local-progress:v1:';
+
+// зачем (владелец 21.10, №1 «монеты 0 и там и там после смены и возврата»): в проде Главная читает монеты ДО долива
+// аварийной копии. Раньше это чтение записывало пустую проекцию, долив пропускал занятый ключ и удалял копию — 0.
+// A2: пустая проекция не пишется; A1: серверный кошелёк вливается ПОСЛЕ долива копии.
+describe('AA + гонка 21.10: A → Б → A, Главная читает монеты до долива копии', () => {
+  let raced: ScenarioResult;
+  beforeAll(async () => {
+    raced = await runScenario(true, { readCoinsBeforeBackup: true, adoptServerStarsAfterBackup: true });
+  });
+
+  test('монеты A после возврата равны исходным (350 сервер + 5 ожидающих), а не 0', () => {
+    expect(raced.coinsSeeded).toBe(355);
+    expect(raced.coinsAfterAReturn).toBe(355);
+  });
+
+  test('проекция кошелька A вернулась из аварийной копии, хотя монеты читали до долива', () => {
+    const projection = row(raced, 'level_spin_star_projection_v1:');
+    expect(projection.atAReturn).toBe(projection.seeded);
+  });
+
+  test('повторный долив ничего не меняет и не удваивает', () => {
+    expect(raced.coinsAfterSecondRestore).toBe(355);
+  });
+});
 
 describe('AA: A → выход → Б → выход → A на том же телефоне', () => {
   let result: ScenarioResult;

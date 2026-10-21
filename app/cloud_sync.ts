@@ -4742,6 +4742,12 @@ type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean } & {
 export type CloudRestoreRecoveryDetails = Pick<CloudRestoreAttempt, 'status' | 'failureReason'>;
 type CloudRestoreOptions = Readonly<{
   canPublishExamBestPctOverlay?: () => boolean;
+  /**
+   * Серверный кошелёк users/{uid}.stars из уже прочитанного документа (A1, владелец 21.10 «сервер — главный»).
+   * Восстановление его НЕ вливает само: на входе со сменой аккаунта вливать можно только ПОСЛЕ долива аварийной
+   * копии (adoptServerWalletFromUserDoc). Нет обработчика — монеты не обновятся, но и ничего не затрётся.
+   */
+  onServerStars?: (stars: unknown) => void;
 }>;
 
 function tryPublishExamBestPctOverlay(
@@ -4939,6 +4945,17 @@ async function restoreAndMigrateFromCloudResultTraced(
     ));
     mark('apply');
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+    if (options.onServerStars) {
+      const serverStars = (doc.data() as { stars?: unknown } | undefined)?.stars;
+      console.log(`[ACC-MUT] restore server_stars handed_off present=${serverStars !== undefined && serverStars !== null}`); // guard-ok: без uid и сумм
+      try {
+        options.onServerStars(serverStars);
+      } catch (error) {
+        console.warn(`[ACC-MUT] restore server_stars handler_failed reason=${String(error).slice(0, 120)}`); // guard-ok: catch пишет причину
+      }
+    } else {
+      console.log('[ACC-MUT] restore server_stars not_requested'); // guard-ok: ветка решения
+    }
     // зачем (Account V2, 8I): затёртый 8G облачный progress дозаливается один раз с телефона.
     // Fail-soft: дозаливка никогда не роняет restore.
     try {

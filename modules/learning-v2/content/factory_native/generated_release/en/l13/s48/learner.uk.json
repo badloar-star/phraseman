@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-48:word:cream-cheese",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cream cheese",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:word:cream-cheese:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cream cheese",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:word:cream-cheese:audio",
+          "transcript": "cream cheese"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-48:word:cream-cheese:r1",
+            "targetText": "cream cheese",
+            "meaningByLocale": {
+              "ru": "сливочный сыр.",
+              "uk": "вершковий сир."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cream cheese",
+          "definitionByLocale": {
+            "ru": "сливочный сыр.",
+            "uk": "вершковий сир."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти купив вершковий сир?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти купив вершковий сир?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy cream cheese?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил сливочный сыр?",
+          "uk": "Скажіть: Ти купив вершковий сир?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "cream",
+          "cheese"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-48:i02:r1",
+          "text": "Did she buy cream cheese?"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i02:r2",
+          "text": "Did you buy cream cheese?"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i02:r3",
+          "text": "Did they buy cream cheese?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:i02:audio",
+          "transcript": "Did she buy cream cheese?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-48:i02:r1",
+            "targetText": "Did she buy cream cheese?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i02:r2",
+            "targetText": "Did you buy cream cheese?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i02:r3",
+            "targetText": "Did they buy cream cheese?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy cream cheese?",
+              "uk": "У записі звучить Did she buy cream cheese?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy cream cheese?",
+              "uk": "У записі звучить Did she buy cream cheese?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-48:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy cream cheese?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-48:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:word:cottage-cheese",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cottage cheese",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:word:cottage-cheese:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cottage cheese",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:word:cottage-cheese:audio",
+          "transcript": "cottage cheese"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-48:word:cottage-cheese:r1",
+            "targetText": "cottage cheese",
+            "meaningByLocale": {
+              "ru": "зернёный творог.",
+              "uk": "зернистий кисломолочний сир."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cottage cheese",
+          "definitionByLocale": {
+            "ru": "зернёный творог.",
+            "uk": "зернистий кисломолочний сир."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти скуштував зернистий сир?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти скуштував зернистий сир?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you try cottage cheese?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты попробовал зернёный творог?",
+          "uk": "Скажіть: Ти скуштував зернистий сир?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "try",
+          "cottage",
+          "cheese"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-48:i05:r1",
+          "text": "Did she try cottage cheese?"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i05:r2",
+          "text": "Did you try cottage cheese?"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i05:r3",
+          "text": "Did they try cottage cheese?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:i05:audio",
+          "transcript": "Did she try cottage cheese?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-48:i05:r1",
+            "targetText": "Did she try cottage cheese?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i05:r2",
+            "targetText": "Did you try cottage cheese?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i05:r3",
+            "targetText": "Did they try cottage cheese?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-48:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try cottage cheese?",
+              "uk": "У записі звучить Did she try cottage cheese?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try cottage cheese?",
+              "uk": "У записі звучить Did she try cottage cheese?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-48:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you try cottage cheese?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-48:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:word:whipped-cream",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — whipped cream",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:word:whipped-cream:audio"
+      ],
+      "accessibilityLabel": "Картка слова — whipped cream",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:word:whipped-cream:audio",
+          "transcript": "whipped cream"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-48:word:whipped-cream:r1",
+            "targetText": "whipped cream",
+            "meaningByLocale": {
+              "ru": "взбитые сливки.",
+              "uk": "збиті вершки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "whipped cream",
+          "definitionByLocale": {
+            "ru": "взбитые сливки.",
+            "uk": "збиті вершки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти скуштував збиті вершки?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти скуштував збиті вершки?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you try whipped cream?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты попробовал взбитые сливки?",
+          "uk": "Скажіть: Ти скуштував збиті вершки?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "try",
+          "whipped",
+          "cream"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-48:i08:r1",
+          "text": "Did she try whipped cream?"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i08:r2",
+          "text": "Did you try whipped cream?"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i08:r3",
+          "text": "Did they try whipped cream?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:i08:audio",
+          "transcript": "Did she try whipped cream?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-48:i08:r1",
+            "targetText": "Did she try whipped cream?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i08:r2",
+            "targetText": "Did you try whipped cream?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i08:r3",
+            "targetText": "Did they try whipped cream?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try whipped cream?",
+              "uk": "У записі звучить Did she try whipped cream?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try whipped cream?",
+              "uk": "У записі звучить Did she try whipped cream?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-48:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you try whipped cream?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-48:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:word:sour-cream",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sour cream",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:word:sour-cream:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sour cream",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:word:sour-cream:audio",
+          "transcript": "sour cream"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-48:word:sour-cream:r1",
+            "targetText": "sour cream",
+            "meaningByLocale": {
+              "ru": "сметана.",
+              "uk": "сметана."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sour cream",
+          "definitionByLocale": {
+            "ru": "сметана.",
+            "uk": "сметана."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти купив сметану?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти купив сметану?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy sour cream?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил сметану?",
+          "uk": "Скажіть: Ти купив сметану?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "sour",
+          "cream"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-48:i11:r1",
+          "text": "Did she buy sour cream?"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i11:r2",
+          "text": "Did you buy sour cream?"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i11:r3",
+          "text": "Did they buy sour cream?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:i11:audio",
+          "transcript": "Did she buy sour cream?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-48:i11:r1",
+            "targetText": "Did she buy sour cream?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i11:r2",
+            "targetText": "Did you buy sour cream?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i11:r3",
+            "targetText": "Did they buy sour cream?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy sour cream?",
+              "uk": "У записі звучить Did she buy sour cream?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy sour cream?",
+              "uk": "У записі звучить Did she buy sour cream?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-48:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-48:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy sour cream?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-48:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-48:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-48:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-48:i13:p1",
+            "target": "cream cheese",
+            "meaningByLocale": {
+              "ru": "сливочный сыр",
+              "uk": "вершковий сир"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-48:i13:p2",
+            "target": "cottage cheese",
+            "meaningByLocale": {
+              "ru": "зернёный творог",
+              "uk": "зернистий кисломолочний сир"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-48:i13:p3",
+            "target": "whipped cream",
+            "meaningByLocale": {
+              "ru": "взбитые сливки",
+              "uk": "збиті вершки"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-48:i13:p4",
+            "target": "sour cream",
+            "meaningByLocale": {
+              "ru": "сметана",
+              "uk": "сметана"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cream cheese",
+          "cottage cheese",
+          "whipped cream",
+          "sour cream"
+        ],
+        "rightColumn": [
+          "вершковий сир",
+          "зернистий кисломолочний сир",
+          "збиті вершки",
+          "сметана"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:i14:audio",
+          "transcript": "First I bought cream cheese."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First I bought cream cheese.",
+        "orderedTokens": [
+          "First",
+          "I",
+          "bought",
+          "cream",
+          "cheese"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:i15:audio",
+          "transcript": "Then I bought some bread."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then I bought some bread.",
+        "orderedTokens": [
+          "Then",
+          "I",
+          "bought",
+          "some",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: ти вчора купив сметану?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: ти вчора купив сметану?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:i16:audio",
+          "transcript": "Did you buy sour cream yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you buy sour cream yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: потім вона скуштувала збиті вершки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: потім вона скуштувала збиті вершки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-48:i17:audio",
+          "transcript": "Then she tried whipped cream."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then she tried whipped cream.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d7f8e8b201bc5b411f5067a6b406ef0630d5e7c44c042ff50664682b38e7c250"
+}

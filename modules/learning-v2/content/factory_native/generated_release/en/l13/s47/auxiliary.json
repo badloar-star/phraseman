@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-47:intro1:r2": {
+          "ru": "После did нужна try.",
+          "uk": "Після did потрібна try."
+        },
+        "en:lesson-13:session-47:intro1:r3": {
+          "ru": "Это сообщение, не вопрос.",
+          "uk": "Це повідомлення, не запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-47:intro2:r2": {
+          "ru": "Это бейгл.",
+          "uk": "Це бейгл."
+        },
+        "en:lesson-13:session-47:intro2:r3": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-47:intro3:r2": {
+          "ru": "Это бейгл.",
+          "uk": "Це бейгл."
+        },
+        "en:lesson-13:session-47:intro3:r3": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8539d5afeb6ad89d29f29eba1c48f6115de4e2c499e3bf17abdbb38d7275c815"
+}

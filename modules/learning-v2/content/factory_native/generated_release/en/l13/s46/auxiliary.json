@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-46:intro1:r2": {
+          "ru": "Do не обозначает прошлое.",
+          "uk": "Do не позначає минуле."
+        },
+        "en:lesson-13:session-46:intro1:r3": {
+          "ru": "После did нужна see.",
+          "uk": "Після did потрібна see."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-46:intro2:r2": {
+          "ru": "Это барсук.",
+          "uk": "Це борсук."
+        },
+        "en:lesson-13:session-46:intro2:r3": {
+          "ru": "После did нужна see.",
+          "uk": "Після did потрібна see."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-46:intro3:r2": {
+          "ru": "Это белка.",
+          "uk": "Це білка."
+        },
+        "en:lesson-13:session-46:intro3:r3": {
+          "ru": "После did нужна see.",
+          "uk": "Після did потрібна see."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5c31cb9dc8262f6022fb503fc90f643d336798221c8c0d6f23fd521a197ecb4c"
+}

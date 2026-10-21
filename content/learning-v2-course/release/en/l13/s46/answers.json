@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-46:word:squirrel",
+    "correctText": "squirrel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i01",
+    "correctText": "Did you see a squirrel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i02",
+    "correctText": "Did she see a squirrel?",
+    "correctResponseId": "en:lesson-13:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:word:hedgehog",
+    "correctText": "hedgehog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i04",
+    "correctText": "Did you see a hedgehog?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i05",
+    "correctText": "Did she see a hedgehog?",
+    "correctResponseId": "en:lesson-13:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:word:badger",
+    "correctText": "badger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i07",
+    "correctText": "Did you see a badger?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i08",
+    "correctText": "Did she see a badger?",
+    "correctResponseId": "en:lesson-13:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:word:fox",
+    "correctText": "fox",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i10",
+    "correctText": "Did you see a fox?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i11",
+    "correctText": "Did she see a fox?",
+    "correctResponseId": "en:lesson-13:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i13",
+    "correctText": "en:lesson-13:session-46:i13:p1=squirrel\nen:lesson-13:session-46:i13:p2=hedgehog\nen:lesson-13:session-46:i13:p3=badger\nen:lesson-13:session-46:i13:p4=fox",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i14",
+    "correctText": "First we saw a squirrel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i15",
+    "correctText": "Then we went home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i16",
+    "correctText": "Did you see a hedgehog yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-46:i17",
+    "correctText": "Then we saw a fox.",
+    "correctResponseId": null
+  }
+]

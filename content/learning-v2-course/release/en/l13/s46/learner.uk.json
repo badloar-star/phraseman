@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-46:word:squirrel",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — squirrel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:word:squirrel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — squirrel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:word:squirrel:audio",
+          "transcript": "squirrel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-46:word:squirrel:r1",
+            "targetText": "squirrel",
+            "meaningByLocale": {
+              "ru": "белка.",
+              "uk": "білка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "squirrel",
+          "definitionByLocale": {
+            "ru": "белка.",
+            "uk": "білка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти бачив білку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти бачив білку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you see a squirrel?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты видел белку?",
+          "uk": "Скажіть: Ти бачив білку?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "see",
+          "a",
+          "squirrel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-46:i02:r1",
+          "text": "Did she see a squirrel?"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i02:r2",
+          "text": "Did you see a squirrel?"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i02:r3",
+          "text": "Did they see a squirrel?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:i02:audio",
+          "transcript": "Did she see a squirrel?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-46:i02:r1",
+            "targetText": "Did she see a squirrel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i02:r2",
+            "targetText": "Did you see a squirrel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i02:r3",
+            "targetText": "Did they see a squirrel?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a squirrel?",
+              "uk": "У записі звучить Did she see a squirrel?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a squirrel?",
+              "uk": "У записі звучить Did she see a squirrel?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-46:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you see a squirrel?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-46:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:word:hedgehog",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hedgehog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:word:hedgehog:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hedgehog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:word:hedgehog:audio",
+          "transcript": "hedgehog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-46:word:hedgehog:r1",
+            "targetText": "hedgehog",
+            "meaningByLocale": {
+              "ru": "ёж.",
+              "uk": "їжак."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hedgehog",
+          "definitionByLocale": {
+            "ru": "ёж.",
+            "uk": "їжак."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти бачив їжака?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти бачив їжака?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you see a hedgehog?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты видел ежа?",
+          "uk": "Скажіть: Ти бачив їжака?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "see",
+          "a",
+          "hedgehog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-46:i05:r1",
+          "text": "Did she see a hedgehog?"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i05:r2",
+          "text": "Did you see a hedgehog?"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i05:r3",
+          "text": "Did they see a hedgehog?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:i05:audio",
+          "transcript": "Did she see a hedgehog?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-46:i05:r1",
+            "targetText": "Did she see a hedgehog?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i05:r2",
+            "targetText": "Did you see a hedgehog?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i05:r3",
+            "targetText": "Did they see a hedgehog?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a hedgehog?",
+              "uk": "У записі звучить Did she see a hedgehog?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a hedgehog?",
+              "uk": "У записі звучить Did she see a hedgehog?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-46:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you see a hedgehog?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-46:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:word:badger",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — badger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:word:badger:audio"
+      ],
+      "accessibilityLabel": "Картка слова — badger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:word:badger:audio",
+          "transcript": "badger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-46:word:badger:r1",
+            "targetText": "badger",
+            "meaningByLocale": {
+              "ru": "барсук.",
+              "uk": "борсук."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "badger",
+          "definitionByLocale": {
+            "ru": "барсук.",
+            "uk": "борсук."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти бачив борсука?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти бачив борсука?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you see a badger?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты видел барсука?",
+          "uk": "Скажіть: Ти бачив борсука?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "see",
+          "a",
+          "badger"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-46:i08:r1",
+          "text": "Did she see a badger?"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i08:r2",
+          "text": "Did you see a badger?"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i08:r3",
+          "text": "Did they see a badger?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:i08:audio",
+          "transcript": "Did she see a badger?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-46:i08:r1",
+            "targetText": "Did she see a badger?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i08:r2",
+            "targetText": "Did you see a badger?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i08:r3",
+            "targetText": "Did they see a badger?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a badger?",
+              "uk": "У записі звучить Did she see a badger?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a badger?",
+              "uk": "У записі звучить Did she see a badger?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-46:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you see a badger?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-46:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:word:fox",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fox",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:word:fox:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fox",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:word:fox:audio",
+          "transcript": "fox"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-46:word:fox:r1",
+            "targetText": "fox",
+            "meaningByLocale": {
+              "ru": "лиса.",
+              "uk": "лисиця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fox",
+          "definitionByLocale": {
+            "ru": "лиса.",
+            "uk": "лисиця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти бачив лисицю?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти бачив лисицю?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you see a fox?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты видел лису?",
+          "uk": "Скажіть: Ти бачив лисицю?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "see",
+          "a",
+          "fox"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-46:i11:r1",
+          "text": "Did she see a fox?"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i11:r2",
+          "text": "Did you see a fox?"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i11:r3",
+          "text": "Did they see a fox?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:i11:audio",
+          "transcript": "Did she see a fox?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-46:i11:r1",
+            "targetText": "Did she see a fox?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i11:r2",
+            "targetText": "Did you see a fox?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i11:r3",
+            "targetText": "Did they see a fox?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a fox?",
+              "uk": "У записі звучить Did she see a fox?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a fox?",
+              "uk": "У записі звучить Did she see a fox?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-46:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-46:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you see a fox?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-46:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-46:i13:p1",
+            "target": "squirrel",
+            "meaningByLocale": {
+              "ru": "белка",
+              "uk": "білка"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-46:i13:p2",
+            "target": "hedgehog",
+            "meaningByLocale": {
+              "ru": "ёж",
+              "uk": "їжак"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-46:i13:p3",
+            "target": "badger",
+            "meaningByLocale": {
+              "ru": "барсук",
+              "uk": "борсук"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-46:i13:p4",
+            "target": "fox",
+            "meaningByLocale": {
+              "ru": "лиса",
+              "uk": "лисиця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "squirrel",
+          "hedgehog",
+          "badger",
+          "fox"
+        ],
+        "rightColumn": [
+          "білка",
+          "їжак",
+          "борсук",
+          "лисиця"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:i14:audio",
+          "transcript": "First we saw a squirrel."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First we saw a squirrel.",
+        "orderedTokens": [
+          "First",
+          "we",
+          "saw",
+          "a",
+          "squirrel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:i15:audio",
+          "transcript": "Then we went home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then we went home.",
+        "orderedTokens": [
+          "Then",
+          "we",
+          "went",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: ти вчора бачив їжака?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: ти вчора бачив їжака?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:i16:audio",
+          "transcript": "Did you see a hedgehog yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you see a hedgehog yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: потім ми побачили лисицю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: потім ми побачили лисицю",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-46:i17:audio",
+          "transcript": "Then we saw a fox."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then we saw a fox.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dff0595862090d9eca9ec5e0d4d717684b327f041bd6db60ab43bdb4a11d8cc1"
+}

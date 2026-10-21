@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-45:intro1:r2": {
+          "ru": "После did нужна see.",
+          "uk": "Після did потрібна see."
+        },
+        "en:lesson-13:session-45:intro1:r3": {
+          "ru": "Это сообщение, не вопрос.",
+          "uk": "Це повідомлення, не запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-45:intro2:r2": {
+          "ru": "Это нарцисс.",
+          "uk": "Це нарцис."
+        },
+        "en:lesson-13:session-45:intro2:r3": {
+          "ru": "После did нужна water.",
+          "uk": "Після did потрібна water."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-45:intro3:r2": {
+          "ru": "Water — поливать, здесь спрашивают о посадке.",
+          "uk": "Water — поливати, тут запитують про садіння."
+        },
+        "en:lesson-13:session-45:intro3:r3": {
+          "ru": "После did нужна plant.",
+          "uk": "Після did потрібна plant."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8708cb52230d4e4f08894ecf8354fa4019cba647ffa6d02a1b5ef6eb1be1296f"
+}

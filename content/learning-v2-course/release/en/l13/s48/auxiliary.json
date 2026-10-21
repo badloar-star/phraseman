@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-48:intro1:r2": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        },
+        "en:lesson-13:session-48:intro1:r3": {
+          "ru": "Это сообщение, не вопрос.",
+          "uk": "Це повідомлення, не запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-48:intro2:r2": {
+          "ru": "Это сливочный сыр.",
+          "uk": "Це вершковий сир."
+        },
+        "en:lesson-13:session-48:intro2:r3": {
+          "ru": "После did нужна try.",
+          "uk": "Після did потрібна try."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-48:intro3:r2": {
+          "ru": "Это взбитые сливки.",
+          "uk": "Це збиті вершки."
+        },
+        "en:lesson-13:session-48:intro3:r3": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c702b99a93cfa73237a80471a1e499b313a6d5cdfd275cb49b191b7e7b92ea1e"
+}

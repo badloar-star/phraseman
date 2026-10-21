@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Белка",
+        "uk": "Білка"
+      },
+      "bodyByLocale": {
+        "ru": "Squirrel — белка. Did you see a squirrel? — Ты видел белку? Вспоминаем прошлую прогулку. Выберите вопрос о прошлом.",
+        "uk": "Squirrel — білка. Did you see a squirrel? — Ти бачив білку? Згадуємо минулу прогулянку. Виберіть запитання про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-46:intro1:r1",
+              "text": "Did you see a squirrel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro1:r2",
+              "text": "Do you see a squirrel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro1:r3",
+              "text": "Did you saw a squirrel?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-46:intro1:r1",
+              "text": "Did you see a squirrel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro1:r2",
+              "text": "Do you see a squirrel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro1:r3",
+              "text": "Did you saw a squirrel?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ёж и барсук",
+        "uk": "Їжак і борсук"
+      },
+      "bodyByLocale": {
+        "ru": "Hedgehog — ёж; badger — барсук. Did she see a hedgehog? — Она видела ежа? Выберите ежа.",
+        "uk": "Hedgehog — їжак; badger — борсук. Did she see a hedgehog? — Вона бачила їжака? Виберіть їжака."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-46:intro2:r1",
+              "text": "Did she see a hedgehog?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro2:r2",
+              "text": "Did she see a badger?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro2:r3",
+              "text": "Did she saw a hedgehog?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-46:intro2:r1",
+              "text": "Did she see a hedgehog?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro2:r2",
+              "text": "Did she see a badger?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro2:r3",
+              "text": "Did she saw a hedgehog?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Лиса",
+        "uk": "Лисиця"
+      },
+      "bodyByLocale": {
+        "ru": "Fox — лиса. Did you see a fox? — Ты видел лису? First we saw a squirrel. Then we saw a fox. — Сначала мы увидели белку. Затем увидели лису. Выберите вопрос о лисе.",
+        "uk": "Fox — лисиця. Did you see a fox? — Ти бачив лисицю? First we saw a squirrel. Then we saw a fox. — Спочатку ми побачили білку. Потім побачили лисицю. Виберіть запитання про лисицю."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-46:intro3:r1",
+              "text": "Did you see a fox?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro3:r2",
+              "text": "Did you see a squirrel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro3:r3",
+              "text": "Did you saw a fox?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-46:intro3:r1",
+              "text": "Did you see a fox?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro3:r2",
+              "text": "Did you see a squirrel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-46:intro3:r3",
+              "text": "Did you saw a fox?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e6b4ac9e1220eeafe9fb594ba30b0b38cfa2530e7d6b77ef77d849e6dc9c040d"
+}

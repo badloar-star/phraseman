@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вафля",
+        "uk": "Вафля"
+      },
+      "bodyByLocale": {
+        "ru": "Waffle — вафля с ячейками. Did you try a waffle? — Ты попробовал вафлю? После did нужна try, не tried. Выберите вопрос.",
+        "uk": "Waffle — вафля з комірками. Did you try a waffle? — Ти скуштував вафлю? Після did потрібна try, не tried. Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-47:intro1:r1",
+              "text": "Did you try a waffle?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro1:r2",
+              "text": "Did you tried a waffle?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro1:r3",
+              "text": "You tried a waffle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-47:intro1:r1",
+              "text": "Did you try a waffle?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro1:r2",
+              "text": "Did you tried a waffle?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro1:r3",
+              "text": "You tried a waffle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Два вида хлеба",
+        "uk": "Два види хліба"
+      },
+      "bodyByLocale": {
+        "ru": "Baguette — багет, длинный узкий хлеб; bagel — бейгл, хлебное кольцо с плотным мякишем. Did she buy a baguette? — Она купила багет? Выберите длинный хлеб.",
+        "uk": "Baguette — багет, довгий вузький хліб; bagel — бейгл, хлібне кільце зі щільним м’якушем. Did she buy a baguette? — Вона купила багет? Виберіть довгий хліб."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-47:intro2:r1",
+              "text": "Did she buy a baguette?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro2:r2",
+              "text": "Did she buy a bagel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro2:r3",
+              "text": "Did she bought a baguette?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-47:intro2:r1",
+              "text": "Did she buy a baguette?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro2:r2",
+              "text": "Did she buy a bagel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro2:r3",
+              "text": "Did she bought a baguette?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пончик",
+        "uk": "Пончик"
+      },
+      "bodyByLocale": {
+        "ru": "Doughnut — пончик; в американском английском также пишут donut. Did you buy a doughnut? — Ты купил пончик? First I bought a bagel. Then I bought a doughnut. — Сначала я купил бейгл. Затем купил пончик. Выберите вопрос о пончике.",
+        "uk": "Doughnut — пончик; в американській англійській також пишуть donut. Did you buy a doughnut? — Ти купив пончик? First I bought a bagel. Then I bought a doughnut. — Спочатку я купив бейгл. Потім купив пончик. Виберіть запитання про пончик."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-47:intro3:r1",
+              "text": "Did you buy a doughnut?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro3:r2",
+              "text": "Did you buy a bagel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro3:r3",
+              "text": "Did you bought a doughnut?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-47:intro3:r1",
+              "text": "Did you buy a doughnut?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro3:r2",
+              "text": "Did you buy a bagel?"
+            },
+            {
+              "responseId": "en:lesson-13:session-47:intro3:r3",
+              "text": "Did you bought a doughnut?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "981e35c9064a43fc2c49a7e01450f3e8328066ca6d822128749c6de8f9bb568f"
+}

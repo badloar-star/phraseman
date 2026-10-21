@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-47:word:waffle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — waffle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:word:waffle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — waffle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:word:waffle:audio",
+          "transcript": "waffle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-47:word:waffle:r1",
+            "targetText": "waffle",
+            "meaningByLocale": {
+              "ru": "вафля с ячейками.",
+              "uk": "вафля з комірками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "waffle",
+          "definitionByLocale": {
+            "ru": "вафля с ячейками.",
+            "uk": "вафля з комірками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти скуштував вафлю?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти скуштував вафлю?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you try a waffle?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты попробовал вафлю?",
+          "uk": "Скажіть: Ти скуштував вафлю?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "try",
+          "a",
+          "waffle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-47:i02:r1",
+          "text": "Did she try a waffle?"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i02:r2",
+          "text": "Did you try a waffle?"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i02:r3",
+          "text": "Did they try a waffle?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:i02:audio",
+          "transcript": "Did she try a waffle?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-47:i02:r1",
+            "targetText": "Did she try a waffle?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i02:r2",
+            "targetText": "Did you try a waffle?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i02:r3",
+            "targetText": "Did they try a waffle?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try a waffle?",
+              "uk": "У записі звучить Did she try a waffle?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try a waffle?",
+              "uk": "У записі звучить Did she try a waffle?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-47:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you try a waffle?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-47:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:word:baguette",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — baguette",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:word:baguette:audio"
+      ],
+      "accessibilityLabel": "Картка слова — baguette",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:word:baguette:audio",
+          "transcript": "baguette"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-47:word:baguette:r1",
+            "targetText": "baguette",
+            "meaningByLocale": {
+              "ru": "багет.",
+              "uk": "багет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "baguette",
+          "definitionByLocale": {
+            "ru": "багет.",
+            "uk": "багет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти купив багет?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти купив багет?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy a baguette?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил багет?",
+          "uk": "Скажіть: Ти купив багет?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "a",
+          "baguette"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-47:i05:r1",
+          "text": "Did she buy a baguette?"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i05:r2",
+          "text": "Did you buy a baguette?"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i05:r3",
+          "text": "Did they buy a baguette?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:i05:audio",
+          "transcript": "Did she buy a baguette?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-47:i05:r1",
+            "targetText": "Did she buy a baguette?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i05:r2",
+            "targetText": "Did you buy a baguette?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i05:r3",
+            "targetText": "Did they buy a baguette?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy a baguette?",
+              "uk": "У записі звучить Did she buy a baguette?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy a baguette?",
+              "uk": "У записі звучить Did she buy a baguette?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-47:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy a baguette?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-47:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:word:bagel",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bagel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:word:bagel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bagel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:word:bagel:audio",
+          "transcript": "bagel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-47:word:bagel:r1",
+            "targetText": "bagel",
+            "meaningByLocale": {
+              "ru": "бейгл — плотное хлебное кольцо.",
+              "uk": "бейгл — щільне хлібне кільце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bagel",
+          "definitionByLocale": {
+            "ru": "бейгл — плотное хлебное кольцо.",
+            "uk": "бейгл — щільне хлібне кільце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти скуштував бейгл?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти скуштував бейгл?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you try a bagel?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты попробовал бейгл?",
+          "uk": "Скажіть: Ти скуштував бейгл?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "try",
+          "a",
+          "bagel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-47:i08:r1",
+          "text": "Did she try a bagel?"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i08:r2",
+          "text": "Did you try a bagel?"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i08:r3",
+          "text": "Did they try a bagel?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:i08:audio",
+          "transcript": "Did she try a bagel?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-47:i08:r1",
+            "targetText": "Did she try a bagel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i08:r2",
+            "targetText": "Did you try a bagel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i08:r3",
+            "targetText": "Did they try a bagel?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try a bagel?",
+              "uk": "У записі звучить Did she try a bagel?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she try a bagel?",
+              "uk": "У записі звучить Did she try a bagel?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-47:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you try a bagel?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-47:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:word:doughnut",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — doughnut",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:word:doughnut:audio"
+      ],
+      "accessibilityLabel": "Картка слова — doughnut",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:word:doughnut:audio",
+          "transcript": "doughnut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-47:word:doughnut:r1",
+            "targetText": "doughnut",
+            "meaningByLocale": {
+              "ru": "пончик.",
+              "uk": "пончик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "doughnut",
+          "definitionByLocale": {
+            "ru": "пончик.",
+            "uk": "пончик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти купив пончик?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти купив пончик?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy a doughnut?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил пончик?",
+          "uk": "Скажіть: Ти купив пончик?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "a",
+          "doughnut"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-47:i11:r1",
+          "text": "Did she buy a doughnut?"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i11:r2",
+          "text": "Did you buy a doughnut?"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i11:r3",
+          "text": "Did they buy a doughnut?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:i11:audio",
+          "transcript": "Did she buy a doughnut?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-47:i11:r1",
+            "targetText": "Did she buy a doughnut?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i11:r2",
+            "targetText": "Did you buy a doughnut?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i11:r3",
+            "targetText": "Did they buy a doughnut?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy a doughnut?",
+              "uk": "У записі звучить Did she buy a doughnut?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy a doughnut?",
+              "uk": "У записі звучить Did she buy a doughnut?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-47:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-47:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy a doughnut?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-47:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-47:i13:p1",
+            "target": "waffle",
+            "meaningByLocale": {
+              "ru": "вафля с ячейками",
+              "uk": "вафля з комірками"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-47:i13:p2",
+            "target": "baguette",
+            "meaningByLocale": {
+              "ru": "багет",
+              "uk": "багет"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-47:i13:p3",
+            "target": "bagel",
+            "meaningByLocale": {
+              "ru": "бейгл",
+              "uk": "бейгл"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-47:i13:p4",
+            "target": "doughnut",
+            "meaningByLocale": {
+              "ru": "пончик",
+              "uk": "пончик"
+            }
+          }
+        ],
+        "leftColumn": [
+          "waffle",
+          "baguette",
+          "bagel",
+          "doughnut"
+        ],
+        "rightColumn": [
+          "вафля з комірками",
+          "багет",
+          "бейгл",
+          "пончик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:i14:audio",
+          "transcript": "First I bought a baguette."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First I bought a baguette.",
+        "orderedTokens": [
+          "First",
+          "I",
+          "bought",
+          "a",
+          "baguette"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:i15:audio",
+          "transcript": "Then I went home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then I went home.",
+        "orderedTokens": [
+          "Then",
+          "I",
+          "went",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: ти вчора скуштував вафлю?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: ти вчора скуштував вафлю?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:i16:audio",
+          "transcript": "Did you try a waffle yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you try a waffle yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-47:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: потім вона купила пончик",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: потім вона купила пончик",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-47:i17:audio",
+          "transcript": "Then she bought a doughnut."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then she bought a doughnut.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "654dae6bc9d2ed57cd7e9d88013867175a2e08982344ee7f89efb2ca967f7bc3"
+}

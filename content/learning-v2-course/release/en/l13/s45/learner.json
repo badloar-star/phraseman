@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-45:word:daisy",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — daisy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:word:daisy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — daisy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:word:daisy:audio",
+          "transcript": "daisy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-45:word:daisy:r1",
+            "targetText": "daisy",
+            "meaningByLocale": {
+              "ru": "маргаритка.",
+              "uk": "стокротка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "daisy",
+          "definitionByLocale": {
+            "ru": "маргаритка.",
+            "uk": "стокротка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты видел маргаритку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты видел маргаритку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you see a daisy?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты видел маргаритку?",
+          "uk": "Скажіть: Ти бачив стокротку?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "see",
+          "a",
+          "daisy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-45:i02:r1",
+          "text": "Did she see a daisy?"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i02:r2",
+          "text": "Did you see a daisy?"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i02:r3",
+          "text": "Did they see a daisy?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:i02:audio",
+          "transcript": "Did she see a daisy?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-45:i02:r1",
+            "targetText": "Did she see a daisy?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i02:r2",
+            "targetText": "Did you see a daisy?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i02:r3",
+            "targetText": "Did they see a daisy?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a daisy?",
+              "uk": "У записі звучить Did she see a daisy?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a daisy?",
+              "uk": "У записі звучить Did she see a daisy?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-45:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you see a daisy?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-45:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:word:tulip",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tulip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:word:tulip:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tulip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:word:tulip:audio",
+          "transcript": "tulip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-45:word:tulip:r1",
+            "targetText": "tulip",
+            "meaningByLocale": {
+              "ru": "тюльпан.",
+              "uk": "тюльпан."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tulip",
+          "definitionByLocale": {
+            "ru": "тюльпан.",
+            "uk": "тюльпан."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты полил тюльпан?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты полил тюльпан?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you water the tulip?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты полил тюльпан?",
+          "uk": "Скажіть: Ти полив тюльпан?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "water",
+          "the",
+          "tulip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-45:i05:r1",
+          "text": "Did she water the tulip?"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i05:r2",
+          "text": "Did you water the tulip?"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i05:r3",
+          "text": "Did they water the tulip?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:i05:audio",
+          "transcript": "Did she water the tulip?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-45:i05:r1",
+            "targetText": "Did she water the tulip?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i05:r2",
+            "targetText": "Did you water the tulip?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i05:r3",
+            "targetText": "Did they water the tulip?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she water the tulip?",
+              "uk": "У записі звучить Did she water the tulip?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she water the tulip?",
+              "uk": "У записі звучить Did she water the tulip?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-45:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you water the tulip?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-45:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:word:daffodil",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — daffodil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:word:daffodil:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — daffodil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:word:daffodil:audio",
+          "transcript": "daffodil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-45:word:daffodil:r1",
+            "targetText": "daffodil",
+            "meaningByLocale": {
+              "ru": "нарцисс.",
+              "uk": "нарцис."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "daffodil",
+          "definitionByLocale": {
+            "ru": "нарцисс.",
+            "uk": "нарцис."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты видел нарцисс?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты видел нарцисс?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you see a daffodil?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты видел нарцисс?",
+          "uk": "Скажіть: Ти бачив нарцис?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "see",
+          "a",
+          "daffodil"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-45:i08:r1",
+          "text": "Did she see a daffodil?"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i08:r2",
+          "text": "Did you see a daffodil?"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i08:r3",
+          "text": "Did they see a daffodil?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:i08:audio",
+          "transcript": "Did she see a daffodil?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-45:i08:r1",
+            "targetText": "Did she see a daffodil?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i08:r2",
+            "targetText": "Did you see a daffodil?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i08:r3",
+            "targetText": "Did they see a daffodil?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a daffodil?",
+              "uk": "У записі звучить Did she see a daffodil?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a daffodil?",
+              "uk": "У записі звучить Did she see a daffodil?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-45:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you see a daffodil?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-45:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:word:sunflower",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sunflower",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:word:sunflower:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sunflower",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:word:sunflower:audio",
+          "transcript": "sunflower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-45:word:sunflower:r1",
+            "targetText": "sunflower",
+            "meaningByLocale": {
+              "ru": "подсолнух.",
+              "uk": "соняшник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sunflower",
+          "definitionByLocale": {
+            "ru": "подсолнух.",
+            "uk": "соняшник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты посадил подсолнух?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты посадил подсолнух?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you plant a sunflower?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты посадил подсолнух?",
+          "uk": "Скажіть: Ти посадив соняшник?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "plant",
+          "a",
+          "sunflower"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-45:i11:r1",
+          "text": "Did she plant a sunflower?"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i11:r2",
+          "text": "Did you plant a sunflower?"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i11:r3",
+          "text": "Did they plant a sunflower?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:i11:audio",
+          "transcript": "Did she plant a sunflower?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-45:i11:r1",
+            "targetText": "Did she plant a sunflower?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i11:r2",
+            "targetText": "Did you plant a sunflower?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i11:r3",
+            "targetText": "Did they plant a sunflower?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she plant a sunflower?",
+              "uk": "У записі звучить Did she plant a sunflower?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she plant a sunflower?",
+              "uk": "У записі звучить Did she plant a sunflower?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-45:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-45:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you plant a sunflower?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-45:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-45:i13:p1",
+            "target": "daisy",
+            "meaningByLocale": {
+              "ru": "маргаритка",
+              "uk": "стокротка"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-45:i13:p2",
+            "target": "tulip",
+            "meaningByLocale": {
+              "ru": "тюльпан",
+              "uk": "тюльпан"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-45:i13:p3",
+            "target": "daffodil",
+            "meaningByLocale": {
+              "ru": "нарцисс",
+              "uk": "нарцис"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-45:i13:p4",
+            "target": "sunflower",
+            "meaningByLocale": {
+              "ru": "подсолнух",
+              "uk": "соняшник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "daisy",
+          "tulip",
+          "daffodil",
+          "sunflower"
+        ],
+        "rightColumn": [
+          "маргаритка",
+          "тюльпан",
+          "нарцисс",
+          "подсолнух"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:i14:audio",
+          "transcript": "First I opened the gate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First I opened the gate.",
+        "orderedTokens": [
+          "First",
+          "I",
+          "opened",
+          "the",
+          "gate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:i15:audio",
+          "transcript": "Then I watered the tulip."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then I watered the tulip.",
+        "orderedTokens": [
+          "Then",
+          "I",
+          "watered",
+          "the",
+          "tulip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера видел маргаритку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера видел маргаритку?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:i16:audio",
+          "transcript": "Did you see a daisy yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you see a daisy yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-45:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: затем я полил подсолнух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: затем я полил подсолнух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-45:i17:audio",
+          "transcript": "Then I watered the sunflower."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then I watered the sunflower.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e8dd73422aac3a8fc3efd72e90be5dfb3cd8e736db2b7667a9c7a63811097644"
+}

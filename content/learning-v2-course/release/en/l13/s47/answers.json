@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-47:word:waffle",
+    "correctText": "waffle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i01",
+    "correctText": "Did you try a waffle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i02",
+    "correctText": "Did she try a waffle?",
+    "correctResponseId": "en:lesson-13:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:word:baguette",
+    "correctText": "baguette",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i04",
+    "correctText": "Did you buy a baguette?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i05",
+    "correctText": "Did she buy a baguette?",
+    "correctResponseId": "en:lesson-13:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:word:bagel",
+    "correctText": "bagel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i07",
+    "correctText": "Did you try a bagel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i08",
+    "correctText": "Did she try a bagel?",
+    "correctResponseId": "en:lesson-13:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:word:doughnut",
+    "correctText": "doughnut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i10",
+    "correctText": "Did you buy a doughnut?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i11",
+    "correctText": "Did she buy a doughnut?",
+    "correctResponseId": "en:lesson-13:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i13",
+    "correctText": "en:lesson-13:session-47:i13:p1=waffle\nen:lesson-13:session-47:i13:p2=baguette\nen:lesson-13:session-47:i13:p3=bagel\nen:lesson-13:session-47:i13:p4=doughnut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i14",
+    "correctText": "First I bought a baguette.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i15",
+    "correctText": "Then I went home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i16",
+    "correctText": "Did you try a waffle yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-47:i17",
+    "correctText": "Then she bought a doughnut.",
+    "correctResponseId": null
+  }
+]

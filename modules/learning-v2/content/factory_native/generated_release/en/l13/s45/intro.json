@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маргаритка",
+        "uk": "Стокротка"
+      },
+      "bodyByLocale": {
+        "ru": "Daisy — маргаритка, небольшой цветок с белыми лепестками и жёлтой серединкой. Did you see a daisy? — Ты видел маргаритку? После did нужна see, не saw. Выберите вопрос.",
+        "uk": "Daisy — стокротка, невелика квітка з білими пелюстками та жовтою серединкою. Did you see a daisy? — Ти бачив стокротку? Після did потрібна see, не saw. Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-45:intro1:r1",
+              "text": "Did you see a daisy?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro1:r2",
+              "text": "Did you saw a daisy?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro1:r3",
+              "text": "You saw a daisy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-45:intro1:r1",
+              "text": "Did you see a daisy?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro1:r2",
+              "text": "Did you saw a daisy?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro1:r3",
+              "text": "You saw a daisy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тюльпан и нарцисс",
+        "uk": "Тюльпан і нарцис"
+      },
+      "bodyByLocale": {
+        "ru": "Tulip — тюльпан; daffodil — нарцисс. Did she water the tulip? — Она полила тюльпан? Выберите вопрос о тюльпане.",
+        "uk": "Tulip — тюльпан; daffodil — нарцис. Did she water the tulip? — Вона полила тюльпан? Виберіть запитання про тюльпан."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-45:intro2:r1",
+              "text": "Did she water the tulip?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro2:r2",
+              "text": "Did she water the daffodil?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro2:r3",
+              "text": "Did she watered the tulip?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-45:intro2:r1",
+              "text": "Did she water the tulip?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro2:r2",
+              "text": "Did she water the daffodil?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro2:r3",
+              "text": "Did she watered the tulip?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подсолнух",
+        "uk": "Соняшник"
+      },
+      "bodyByLocale": {
+        "ru": "Sunflower — подсолнух. Did you plant a sunflower? — Ты посадил подсолнух? Сначала посадили, затем полили: First I planted it. Then I watered it. Выберите вопрос о посадке.",
+        "uk": "Sunflower — соняшник. Did you plant a sunflower? — Ти посадив соняшник? Спочатку посадили, потім полили: First I planted it. Then I watered it. Виберіть запитання про садіння."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-45:intro3:r1",
+              "text": "Did you plant a sunflower?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro3:r2",
+              "text": "Did you water a sunflower?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro3:r3",
+              "text": "Did you planted a sunflower?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-45:intro3:r1",
+              "text": "Did you plant a sunflower?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro3:r2",
+              "text": "Did you water a sunflower?"
+            },
+            {
+              "responseId": "en:lesson-13:session-45:intro3:r3",
+              "text": "Did you planted a sunflower?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9db52272db883cce093747ccd48f1937cf5e37e90187e4a3c8db51bf55194676"
+}

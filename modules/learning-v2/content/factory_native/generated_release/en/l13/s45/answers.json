@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-45:word:daisy",
+    "correctText": "daisy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i01",
+    "correctText": "Did you see a daisy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i02",
+    "correctText": "Did she see a daisy?",
+    "correctResponseId": "en:lesson-13:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:word:tulip",
+    "correctText": "tulip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i04",
+    "correctText": "Did you water the tulip?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i05",
+    "correctText": "Did she water the tulip?",
+    "correctResponseId": "en:lesson-13:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:word:daffodil",
+    "correctText": "daffodil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i07",
+    "correctText": "Did you see a daffodil?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i08",
+    "correctText": "Did she see a daffodil?",
+    "correctResponseId": "en:lesson-13:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:word:sunflower",
+    "correctText": "sunflower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i10",
+    "correctText": "Did you plant a sunflower?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i11",
+    "correctText": "Did she plant a sunflower?",
+    "correctResponseId": "en:lesson-13:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i13",
+    "correctText": "en:lesson-13:session-45:i13:p1=daisy\nen:lesson-13:session-45:i13:p2=tulip\nen:lesson-13:session-45:i13:p3=daffodil\nen:lesson-13:session-45:i13:p4=sunflower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i14",
+    "correctText": "First I opened the gate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i15",
+    "correctText": "Then I watered the tulip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i16",
+    "correctText": "Did you see a daisy yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-45:i17",
+    "correctText": "Then I watered the sunflower.",
+    "correctResponseId": null
+  }
+]
